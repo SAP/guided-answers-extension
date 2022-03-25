@@ -1,0 +1,23 @@
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+
+
+# Admin
+/.github/ @SAP/guided-answers-extension-admin
+/.LICENSES/ @SAP/guided-answers-extension-admin
+/.well-known/ @SAP/guided-answers-extension-admin
+/.husky/ @SAP/guided-answers-extension-admin
+/.reuse/ @SAP/guided-answers-extension-admin
+/.eslintrc @SAP/guided-answers-extension-admin
+/.gitignore @SAP/guided-answers-extension-admin
+/.npmrc @SAP/guided-answers-extension-admin
+/.prettierignore @SAP/guided-answers-extension-admin
+/.prettierrc.js @SAP/guided-answers-extension-admin
+/LICENSE @SAP/guided-answers-extension-admin
+/package.json @SAP/guided-answers-extension-admin
+/sonar-project.properties @SAP/guided-answers-extension-admin
+/tsconfig.json @SAP/guided-answers-extension-admin
+
+
+# Rest
+* @SAP/guided-answers-extension-team
