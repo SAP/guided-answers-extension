@@ -4,7 +4,6 @@ module.exports = {
     },
     collectCoverage: true,
     collectCoverageFrom: ['src/**/*.ts'],
-    coverageDirectory: 'reports/test/unit/coverage',
     testPathIgnorePatterns: ['<rootDir>/dist'],
     verbose: true
 };
