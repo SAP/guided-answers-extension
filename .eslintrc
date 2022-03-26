@@ -69,6 +69,7 @@
                 "jsdoc/match-description": "off",
                 "promise/param-names": "off",
                 "promise/catch-or-return": "off",
+                "sonarjs/cognitive-complexity": ["error", 15],
                 "@typescript-eslint/no-unused-vars": "off",
                 "@typescript-eslint/consistent-type-imports": [
                     "error",
