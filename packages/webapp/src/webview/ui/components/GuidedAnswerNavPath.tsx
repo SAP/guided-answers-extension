@@ -21,7 +21,7 @@ export function GuidedAnswerNavPath(): ReactElement {
                 {nodes.map((node, i) => {
                     let markerIcon: ReactElement | string = 'null';
                     if (node.EDGES.length === 0) {
-                        markerIcon = '➤';
+                        markerIcon = '▷';
                     } else {
                         markerIcon =
                             i === lastIndex ? (
@@ -29,7 +29,7 @@ export function GuidedAnswerNavPath(): ReactElement {
                                     aria-label="check mark"
                                     role="img"
                                     style={{ color: 'var(--vscode-textLink-foreground)' }}>
-                                    ➤
+                                    ▷
                                 </span>
                             ) : (
                                 '☑'
