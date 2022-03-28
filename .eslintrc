@@ -125,7 +125,6 @@
         "promise/no-return-in-finally": "warn",
         "promise/valid-params": "warn",
         "no-cond-assign": "error",
-        "no-console": "warn",
         "no-constant-condition": "error",
         "no-control-regex": "error",
         "no-debugger": "error",

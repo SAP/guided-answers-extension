@@ -1,0 +1,10 @@
+{
+    "include": ["src"],
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "jsx": "react",
+        "resolveJsonModule": true,
+        "types": ["node", "jest"]
+    },
+    "exclude": ["dist", ".vscode-test", "reports", ".vscode"]
+}

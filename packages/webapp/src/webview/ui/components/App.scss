@@ -1,0 +1,75 @@
+html {
+    height: 100%;
+}
+* {
+    font-family: var(--vscode-font-family);
+}
+
+h1 {
+    font-weight: 300;
+    color: var(--vscode-foreground);
+}
+
+.guided-answer {
+    &__header {
+        overflow: hidden;
+        position: fixed; /* Set the navbar to fixed position */
+        top: 0; /* Position the navbar at the top of the page */
+        width: 100%;
+        z-index: 10;
+        background-color: var(--vscode-editor-background);
+        &__sub {
+            display: flex;
+            align-items: center;
+        }
+        &__title {
+            font-weight: 600;
+        }
+        &__subtitle {
+            color: var(--vscode-editorCodeLens-foreground, #999);
+            font-size: 20px;
+        }
+        &__goback {
+            border-radius: 5px;
+        }
+    }
+    &__container {
+        margin-top: 74px;
+    }
+    &__tree {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+        padding-left: 3em;
+        text-align: left;
+        display: flex;
+        border: none;
+        border-radius: 8px;
+        background-color: var(--vscode-sideBar-background);
+        &:hover {
+            background-color: var(--vscode-list-hoverBackground);
+        }
+
+        &__ul {
+            padding: 0px;
+            padding-bottom: 1.5em;
+        }
+        &__title {
+            color: var(--vscode-foreground);
+        }
+        &__desc {
+            color: var(--vscode-foreground);
+            height: auto;
+        }
+    }
+}
+
+.tree-search-field {
+    margin: 2em;
+    width: 33%;
+    min-width: 200px;
+}
+
+.tree-item {
+    margin: 2em;
+}

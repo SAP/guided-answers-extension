@@ -1,5 +1,12 @@
-import { Webview, Uri } from 'vscode';
+import type { Webview, Uri } from 'vscode';
 
+/**
+ * Return the URI for webview. For older versions of VSCode, fallback to manual creation with scheme.
+ *
+ * @param webview - the webview
+ * @param localResourceUri - uri to resources
+ * @returns - webview uri (including scheme)
+ */
 export function getWebviewUri(webview: Webview, localResourceUri: Uri): Uri {
     return webview.asWebviewUri
         ? webview.asWebviewUri(localResourceUri)
@@ -7,11 +14,14 @@ export function getWebviewUri(webview: Webview, localResourceUri: Uri): Uri {
 }
 
 /**
- * @see SrvModelerCDSCmd.load()
+ * Return the HTML string for hosting a webview.
  *
- * Script paths have to be fully qualified to work on windows, the use of the base is not sufficient
- *
- * @param uri - the to the directory where the
+ * @param uri - root of the webapp
+ * @param title - title in HTML <head>
+ * @param bundleUri - uri to the JavaScript bundle
+ * @param vendorURI - uri to the vendor JavaScript bundle
+ * @param vendorCssURI - uri to CSS
+ * @returns - HTML string
  */
 export function getHtml(
     uri: string,

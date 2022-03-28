@@ -1,8 +1,9 @@
 import { commands, window } from 'vscode';
-import { Command, TerminalCommand, VSCodeCommand } from '@sap/ux-guided-answer-types';
+import type { Command, TerminalCommand, VSCodeCommand } from '@sap/ux-guided-answer-types';
 
 /**
- * Type guard to check if command is VSCode command
+ * Type guard to check if command is VSCode command.
+ *
  * @param exec - exec property of command
  * @returns true: is VSCode commmand; false: no VSCode command
  */
@@ -11,7 +12,8 @@ function isVSCodeCommand(exec: VSCodeCommand | TerminalCommand): exec is VSCodeC
 }
 
 /**
- * Type guard to check if command is terminal command
+ * Type guard to check if command is terminal command.
+ *
  * @param exec - exec property of command
  * @returns true: is terminal commmand; false: no terminal command
  */
@@ -20,7 +22,8 @@ function isTerminalCommand(exec: VSCodeCommand | TerminalCommand): exec is Termi
 }
 
 /**
- * Execute command execution requests (actions from app info webview)
+ * Execute command execution requests (actions from app info webview).
+ *
  * @param command - the command which could be VSCode command or terminal command
  */
 export function handleCommand(command: Command): void {

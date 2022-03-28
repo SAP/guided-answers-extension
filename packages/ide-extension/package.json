@@ -30,7 +30,7 @@
         "build:extension": "node esbuild.js",
         "clean": "rimraf ./dist ./out ./reports *.tgz *.vsix",
         "format": "prettier --write '**/*.{js,json,ts,yaml,yml}' --ignore-path ../../.prettierignore",
-        "lint": "eslint . --ext .ts,.tsx",
+        "lint": "eslint . --ext .ts",
         "ide-ext:package": "vsce package --yarn --failOnIssues",
         "test": "jest --ci --forceExit --detectOpenHandles --maxWorkers=1 --silent && node ../../../scripts/scov.js reports/test/unit/coverage/lcov.info",
         "vscode:prepublish": "yarn run build",
@@ -229,6 +229,7 @@
     "devDependencies": {
         "@sap/guided-answers-extension-core": "workspace:*",
         "@sap/guided-answers-extension-types": "workspace:*",
+        "@sap/guided-answers-extension-webapp": "workspace:*",
         "cross-env": "6.0.3",
         "esbuild": "0.14.27",
         "@types/vscode": "1.39.0"

@@ -1,0 +1,146 @@
+section.answer__node__body {
+    height: 100%;
+    margin: 0px;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.column {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+}
+
+#left {
+    height: 100%;
+    width: 400px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.main-container {
+    display: flex;
+}
+
+#middle {
+    display: flex;
+    grid-area: content;
+    overflow-x: hidden;
+    position: relative;
+    left: 0;
+    transition: left 0.5s;
+    flex-grow: 1;
+    margin-left: 390px;
+    padding-right: 20px;
+}
+
+#middle-with-command {
+    width: 370vw;
+    display: flex;
+    grid-area: content;
+    overflow-x: hidden;
+    position: relative;
+    left: 0;
+    transition: left 0.5s;
+    flex-grow: 1;
+    margin-left: 400px;
+}
+
+#right {
+    width: 100vw;
+    padding-top: 32px;
+}
+
+.bottom {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.guided-answer__node {
+    &__body {
+        color: var(--vscode-foreground);
+        padding-top: 21px;
+    }
+    &__question {
+        color: var(--vscode-settings-headerForeground);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 16px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    &__edge {
+        background-color: var(--vscode-button-background);
+        border-radius: 8px;
+        color: var(--vscode-button-foreground);
+        cursor: pointer;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 700;
+        height: auto;
+        line-height: 18px;
+        letter-spacing: 0em;
+        margin: 1em;
+        padding: 1em;
+        text-align: center;
+        width: 100%;
+    }
+    &__commands {
+        position: fixed;
+        margin-top: 18px;
+    }
+    &__command {
+        margin: 16px;
+        background-color: var(--vscode-sideBar-background);
+        border-radius: 8px;
+        padding: 10px;
+        &__header {
+            text-align: left;
+            display: flex;
+            &__icon {
+                width: 16px;
+                height: 16px;
+                padding-top: 2px;
+                vertical-align: bottom;
+            }
+            &__label {
+                color: var(--vscode-foreground);
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 18px;
+                padding-left: 5px;
+                white-space: nowrap;
+                display: inline-block;
+            }
+        }
+        &__description {
+            margin: 7px;
+            position: relative;
+            color: var(--vscode-foreground);
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 18px;
+            height: 50%;
+            text-align: start;
+        }
+    }
+    &__command:hover {
+        background-color: var(--vscode-list-hoverBackground);
+        cursor: pointer;
+    }
+}
+
+.light-text {
+    opacity: 0.5;
+    font-weight: 100;
+}

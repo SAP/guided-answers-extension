@@ -1,0 +1,16 @@
+/dist/test/
+/externalLib/
+/reports/
+/src/
+/test/
+/*.ts
+/*.config.js
+/tsconfig.*.json
+/tsconfig.json
+/.eslintrc
+/.eslintignore
+/config/
+tsconfig*.json
+lint*.js
+.eslintrc
+/dist/src/webview/
