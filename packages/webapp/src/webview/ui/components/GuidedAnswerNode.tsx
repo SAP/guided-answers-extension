@@ -1,6 +1,7 @@
 import { default as parse, DOMNode, Element, Text } from 'html-react-parser';
 import React, { ReactElement } from 'react';
-import { GuidedAnswerNode, HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
+import type { GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
+import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 import { useSelector } from 'react-redux';
 import { actions } from '../../state';
 import { AppState } from '../../types';
@@ -14,7 +15,8 @@ import { GuidedAnswerNavPath } from './GuidedAnswerNavPath';
  * @param domNode - current DOM node from html-react-parser
  * @returns - undefined if nothing to replace; the new node (<a>) in case of replacement
  */
-function replace(domNode: DOMNode): JSX.Element | undefined {
+function replace(domNode: DOMNode): ReactElement | undefined {
+    let result: ReactElement | undefined;
     if (domNode.type === 'tag') {
         const domElement: Element = domNode as Element;
         const dataCommandString = domElement?.attribs?.[HTML_ENHANCEMENT_DATA_ATTR_MARKER];
@@ -23,9 +25,9 @@ function replace(domNode: DOMNode): JSX.Element | undefined {
                 const command = JSON.parse(decodeURIComponent(dataCommandString));
                 const textContent = domElement?.firstChild?.type === 'text' ? (domElement.firstChild as Text).data : '';
                 if (command) {
-                    return (
+                    result = (
                         <a
-                            href="javascript:void(0)"
+                            href="" // set href to empty so link is rendered with underline and pointer cursor
                             onClick={(): void => {
                                 actions.executeCommand(command);
                             }}>
@@ -38,6 +40,7 @@ function replace(domNode: DOMNode): JSX.Element | undefined {
             }
         }
     }
+    return result;
 }
 
 /**
@@ -86,7 +89,7 @@ function getNavigationSection(): ReactElement {
  * @param activeNode - the active Guided Answers node
  * @returns - react element for content
  */
-function getContent(activeNode: GuidedAnswerNode): ReactElement {
+function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
     const middle = (
         <div id="middle" className="column">
@@ -114,16 +117,14 @@ function getContent(activeNode: GuidedAnswerNode): ReactElement {
             <div className="guided-answer__node__commands">
                 {activeNode.COMMANDS
                     ? activeNode.COMMANDS.map((command, index) => (
-                          <div className="guided-answer__node__command">
+                          <div className="guided-answer__node__command" key={`command-${index}`}>
                               <div className="guided-answer__node__command__header">
                                   {/* <div className="guided-answer__node__command__header__icon">
                               {command.icon}
                           </div> */}
                                   <div className="guided-answer__node__command__header__label">{command.label}</div>
                               </div>
-
                               <div
-                                  key={`command-${index}`}
                                   className="guided-answer__node__command__description"
                                   onClick={(): void => {
                                       actions.executeCommand(command);
@@ -153,7 +154,7 @@ function getContent(activeNode: GuidedAnswerNode): ReactElement {
  * @returns - react element of Guided Answers node
  */
 export function GuidedAnswerNode(): ReactElement {
-    const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
+    const nodes = useSelector<AppState, GuidedAnswerNodeType[]>((state) => state.activeGuidedAnswerNode);
     const activeNode = nodes[nodes.length - 1];
     return activeNode ? (
         <section className="guided-answer__node__body">

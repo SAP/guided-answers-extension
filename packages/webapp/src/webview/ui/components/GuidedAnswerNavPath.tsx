@@ -5,6 +5,11 @@ import { actions } from '../../state';
 import { AppState } from '../../types';
 import './GuidedAnswerNavPath.scss';
 
+/**
+ * Renders and return the navigation section.
+ *
+ * @returns - react element for navigation section
+ */
 export function GuidedAnswerNavPath(): ReactElement {
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
     const activeNode = nodes[nodes.length - 1];
@@ -14,7 +19,7 @@ export function GuidedAnswerNavPath(): ReactElement {
         return (
             <nav className="container">
                 {nodes.map((node, i) => {
-                    let markerIcon: JSX.Element | string = 'null';
+                    let markerIcon: ReactElement | string = 'null';
                     if (node.EDGES.length === 0) {
                         markerIcon = '➤';
                     } else {

@@ -8,6 +8,11 @@ import { GuidedAnswerNode } from './GuidedAnswerNode';
 
 let timer: NodeJS.Timeout;
 
+/**
+ * Start element for Guided Answers Extension app.
+ *
+ * @returns - react elements for this app
+ */
 export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
 

@@ -30,6 +30,7 @@
         "esbuild-css-modules-plugin": "2.2.5",
         "esbuild-plugin-replace": "1.2.0",
         "esbuild-sass-plugin": "2.2.4",
+        "eslint-plugin-react": "7.29.4",
         "html-react-parser": "1.4.8",
         "i18next": "21.6.14",
         "path": "0.12.7",
