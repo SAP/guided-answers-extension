@@ -1,20 +1,16 @@
 {
-    "include": ["global.d.ts"],
-    "exclude": ["node_modules/"],
+    "exclude": ["node_modules"],
     "compilerOptions": {
-        "baseUrl": ".",
         "declaration": true,
         "declarationMap": true,
         "esModuleInterop": true,
-        "lib": ["es6", "dom", "dom.iterable"],
+        "lib": ["ES2021"],
         "module": "ES2022",
         "moduleResolution": "node",
         "noEmit": false,
-        "outDir": "./dist",
         "sourceMap": true,
         "strict": true,
-        "strictPropertyInitialization": false,
-        "target": "ES6",
+        "target": "ES2021",
         "skipLibCheck": true
     }
 }

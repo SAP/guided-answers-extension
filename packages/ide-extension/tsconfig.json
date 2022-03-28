@@ -1,14 +1,8 @@
 {
+    "extends": "../../tsconfig.json",
     "include": ["src"],
     "compilerOptions": {
-        "outDir": "dist",
-        "lib": ["ES2019", "dom"],
-        "strict": true,
-        "sourceMap": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "module": "ESNext"
+        "outDir": "dist"
     },
-    "extends": "../../tsconfig.json",
     "exclude": ["dist", "node_modules", ".vscode-test", "reports"]
 }
