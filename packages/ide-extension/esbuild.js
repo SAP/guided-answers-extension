@@ -2,7 +2,7 @@ const { join } = require('path');
 const { copy } = require('esbuild-plugin-copy');
 require('esbuild')
     .build({
-        logLevel: 'verbose',
+        logLevel: 'info',
         outfile: 'dist/extension-min.js',
         entryPoints: [join(process.cwd(), 'src/extension.ts')],
         write: true,
