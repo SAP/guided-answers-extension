@@ -14,7 +14,7 @@
         "format": "prettier --write '**/*.{js,json,ts,tsx,yaml,yml}' --ignore-path ../../.prettierignore",
         "lint": "eslint . --ext .ts,.tsx",
         "watch": "",
-        "test": "jest --ci --forceExit --detectOpenHandles --colors"
+        "test": ""
     },
     "devDependencies": {
         "@deanc/esbuild-plugin-postcss": "1.0.2",

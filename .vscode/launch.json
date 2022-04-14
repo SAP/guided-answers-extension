@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Guided Answers: Launch ide-exxtension - SKIP BUILD",
+            "name": "Guided Answers: Launch ide-extension - SKIP BUILD",
             "type": "extensionHost",
             "request": "launch",
             "runtimeExecutable": "${execPath}",

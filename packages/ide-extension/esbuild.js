@@ -1,8 +1,8 @@
 const { join } = require('path');
-
+const { copy } = require('esbuild-plugin-copy');
 require('esbuild')
     .build({
-        logLevel: 'info',
+        logLevel: 'verbose',
         outfile: 'dist/extension-min.js',
         entryPoints: [join(process.cwd(), 'src/extension.ts')],
         write: true,
@@ -23,10 +23,19 @@ require('esbuild')
         platform: 'node',
         target: 'node12.22',
         external: [
-            'vscode', // the vscode-module is created on-the-fly and must be excluded. Add other modules that cannot be webpack'ed, 📖 -> https://webpack.js.org/configuration/externals/
-            '@sap/ux-guided-answer-webapp'
+            'vscode' // the vscode-module is created on-the-fly and must be excluded. Add other modules that cannot be webpack'ed, 📖 -> https://webpack.js.org/configuration/externals/
+            // '@sap/guided-answers-extension-webapp'
         ],
-        plugins: []
+        plugins: [
+            copy({
+                // workaround because vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421)
+                // so it doesn't copy node_modules to vsix.
+                assets: {
+                    from: ['../webapp/dist/guidedAnswers.js', '../webapp/dist/guidedAnswers.css'],
+                    to: ['.']
+                }
+            })
+        ]
     })
     .catch((error) => {
         console.log(error.message);

@@ -1,5 +1,5 @@
 import { commands, window } from 'vscode';
-import type { Command, TerminalCommand, VSCodeCommand } from '@sap/ux-guided-answer-types';
+import type { Command, TerminalCommand, VSCodeCommand } from '@sap/guided-answers-extension-types';
 
 /**
  * Type guard to check if command is VSCode command.

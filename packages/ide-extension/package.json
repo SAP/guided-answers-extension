@@ -31,11 +31,9 @@
         "clean": "rimraf ./dist ./out ./reports *.tgz *.vsix",
         "format": "prettier --write '**/*.{js,json,ts,yaml,yml}' --ignore-path ../../.prettierignore",
         "lint": "eslint . --ext .ts",
-        "ide-ext:package": "vsce package --yarn --failOnIssues",
-        "test": "jest --ci --forceExit --detectOpenHandles --maxWorkers=1 --silent && node ../../../scripts/scov.js reports/test/unit/coverage/lcov.info",
-        "vscode:prepublish": "yarn run build",
-        "watch": "npm-run-all -p watch:*",
-        "watch:extension": "cross-env NODE_OPTIONS='--max-old-space-size=3072' webpack --watch --color  --config webpack.dev.js"
+        "ide-ext:package": "vsce package",
+        "test": "jest --ci --forceExit --detectOpenHandles --colors",
+        "vscode:prepublish": "pnpm run build"
     },
     "activationEvents": [
         "onCommand:sap.ux.guidedAnswer.openGuidedAnswer"
@@ -223,16 +221,17 @@
             }
         ]
     },
-    "dependencies": {
-        "jsdom": "19.0.0"
+    "__dependencies": {
+        "@sap/guided-answers-extension-webapp": "workspace:*"
     },
     "devDependencies": {
         "@sap/guided-answers-extension-core": "workspace:*",
         "@sap/guided-answers-extension-types": "workspace:*",
-        "@sap/guided-answers-extension-webapp": "workspace:*",
-        "cross-env": "6.0.3",
+        "@types/vscode": "1.39.0",
         "esbuild": "0.14.27",
-        "@types/vscode": "1.39.0"
+        "esbuild-plugin-copy": "1.3.0",
+        "jsdom": "19.0.0",
+        "vsce": "2.7.0"
     },
     "galleryBanner": {
         "color": "#00195A",

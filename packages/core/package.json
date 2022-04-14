@@ -5,6 +5,11 @@
     "license": "Apache-2.0",
     "private": true,
     "main": "dist/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/SAP/guided-answers-extension.git",
+        "directory": "packages/guided-answers-extension-types"
+    },
     "scripts": {
         "build": "pnpm clean && tsc",
         "check": "node -e \"require('./dist/index').getGuidedAnswerApi().getTrees().then((t)=>console.log(t));\"",
