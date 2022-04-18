@@ -1,0 +1,26 @@
+{
+    "name": "@sap/guided-answers-extension-types",
+    "description": "Guided Answers extension types",
+    "version": "0.0.1",
+    "license": "Apache-2.0",
+    "private": true,
+    "main": "dist/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/SAP/guided-answers-extension.git",
+        "directory": "packages/guided-answers-extension-types"
+    },
+    "scripts": {
+        "build": "pnpm clean && tsc",
+        "clean": "rimraf dist",
+        "format": "prettier --write '**/*.{js,json,ts,yaml,yml}' --ignore-path ../../.prettierignore",
+        "lint": "eslint . --ext .ts",
+        "lint:fix": "eslint . --ext .ts --fix",
+        "test": "jest --ci --forceExit --detectOpenHandles --colors",
+        "watch": "tsc --watch"
+    },
+    "files": [
+        "LICENSE",
+        "dist"
+    ]
+}
