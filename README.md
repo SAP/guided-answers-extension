@@ -5,8 +5,6 @@ Visual Studio extension for accessing Guided Answers.
 
 Enable community collaboration to jointly promote, develop and consume a VSCode extension which provides a simple interactive way to show the developers how to troubleshoot issues, navigate processes and guide through tasks via the content published to SAP's Guided Answers (https://ga.support.sap.com/dtp/viewer/)
 
-
-
 ## Development Setup
 
 ### Install `pnpm` globally
@@ -73,3 +71,22 @@ We as members, contributors, and leaders pledge to make participation in our com
 ## Licensing
 
 Copyright (2022) SAP SE or an SAP affiliate company and `guided-answers-extension` contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/guided-answers-extension).
+
+
+## Download & Installation
+
+
+## Configuration
+
+
+## Limitations
+
+
+## Known Issues
+
+
+## How to Obtain Support
+
+
+## To-Do (Upcoming changes)
+
