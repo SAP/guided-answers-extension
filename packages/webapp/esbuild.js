@@ -44,15 +44,17 @@ require('esbuild')
             cssModulesPlugin(),
             svgrPlugin()
         ],
-        watch: {
-            onRebuild(error, result) {
-                if (error) {
-                    console.error('watch build failed:', error);
-                } else {
-                    console.log('watch build succeeded:', result);
-                }
-            }
-        }
+        watch: process.argv.includes('--watch')
+            ? {
+                  onRebuild(error, result) {
+                      if (error) {
+                          console.error('watch build failed:', error);
+                      } else {
+                          console.log('watch build succeeded:', result);
+                      }
+                  }
+              }
+            : undefined
     })
     .catch((error) => {
         console.log(error.message);
