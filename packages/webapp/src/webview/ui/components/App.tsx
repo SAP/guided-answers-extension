@@ -7,6 +7,8 @@ import './App.scss';
 import { actions } from '../../state';
 import { GuidedAnswerNode } from './GuidedAnswerNode';
 
+import Logo from './sap-logo.svg';
+
 let timer: NodeJS.Timeout;
 
 /**
@@ -76,6 +78,9 @@ export function App(): ReactElement {
         <div className="guided-answer">
             <div className="guided-answer__header">
                 <div className="guided-answer__header__sub">
+                    <span id="sap-logo">
+                        <Logo />
+                    </span>
                     <h1 className="guided-answer__header__title">Guided Answers</h1>
                     <span className="guided-answer__header__subtitle">
                         {appState.activeGuidedAnswer ? ': ' + appState.activeGuidedAnswer.TITLE : ''}

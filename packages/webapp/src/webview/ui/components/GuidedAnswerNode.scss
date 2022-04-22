@@ -24,7 +24,7 @@ section.answer__node__body {
     top: 0;
     left: 0;
     overflow-x: hidden;
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 .main-container {
@@ -56,7 +56,7 @@ section.answer__node__body {
 }
 
 #right {
-    width: 100vw;
+    min-width: 310px;
     padding-top: 32px;
 }
 
@@ -140,7 +140,8 @@ section.answer__node__body {
     }
 }
 
-.light-text {
-    opacity: 0.5;
-    font-weight: 100;
+.enhancement-link {
+    color: var(--vscode-textLink-foreground);
+    cursor: pointer;
+    text-decoration: underline;
 }

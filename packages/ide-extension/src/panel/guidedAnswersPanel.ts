@@ -84,6 +84,7 @@ export class GuidedAnswersPanel {
                     this.guidedAnswerApi
                         .getNodeById(action.payload)
                         .then((node) => {
+                            logString(`Node selected: ${node.NODE_ID}: ${node.TITLE}`);
                             this.postActionToWebview(updateActiveNode(node));
                         })
                         .catch((error) =>

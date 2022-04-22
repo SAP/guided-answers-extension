@@ -26,13 +26,13 @@ function replace(domNode: DOMNode): ReactElement | undefined {
                 const textContent = domElement?.firstChild?.type === 'text' ? (domElement.firstChild as Text).data : '';
                 if (command) {
                     result = (
-                        <a
-                            href="" // set href to empty so link is rendered with underline and pointer cursor
+                        <div
+                            className="enhancement-link"
                             onClick={(): void => {
                                 actions.executeCommand(command);
                             }}>
                             {textContent}
-                        </a>
+                        </div>
                     );
                 }
             } catch (error) {
@@ -93,9 +93,7 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
     const middle = (
         <div id="middle" className="column">
-            <h1>
-                {activeNode.TITLE} <span className="light-text">#{activeNode.NODE_ID}</span>
-            </h1>
+            <h1>{activeNode.TITLE}</h1>
             {enhancedBody ? enhancedBody : <div dangerouslySetInnerHTML={{ __html: activeNode.BODY }}></div>}
             <p className="guided-answer__node__question">{activeNode.QUESTION}</p>
             <div className="guided-answer__node">
