@@ -1,5 +1,5 @@
 {
-    "guidedAnswer.displayName": "Guided Answers Extension",
+    "guidedAnswer.displayName": "Guided Answers extension by SAP",
     "guidedAnswer.description": "Access SAP Guided Answers through extension",
     "configuration.title": "SAP Guided Answers extension",
     "configuration.apiHost": "SAP Guided Answers API host",

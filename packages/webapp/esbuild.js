@@ -3,6 +3,7 @@ const { sassPlugin } = require('esbuild-sass-plugin');
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
 const cssModulesPlugin = require('esbuild-css-modules-plugin');
+const svgrPlugin = require('esbuild-plugin-svgr');
 
 require('esbuild')
     .build({
@@ -40,8 +41,20 @@ require('esbuild')
                     return css;
                 }
             }),
-            cssModulesPlugin()
-        ]
+            cssModulesPlugin(),
+            svgrPlugin()
+        ],
+        watch: process.argv.includes('--watch')
+            ? {
+                  onRebuild(error, result) {
+                      if (error) {
+                          console.error('watch build failed:', error);
+                      } else {
+                          console.log('watch build succeeded:', result);
+                      }
+                  }
+              }
+            : undefined
     })
     .catch((error) => {
         console.log(error.message);
