@@ -222,7 +222,7 @@
             }
         ]
     },
-    "__dependencies": {
+    "dependencies": {
         "@sap/guided-answers-extension-webapp": "workspace:*"
     },
     "devDependencies": {

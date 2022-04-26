@@ -1,18 +1,3 @@
-import type { Webview, Uri } from 'vscode';
-
-/**
- * Return the URI for webview. For older versions of VSCode, fallback to manual creation with scheme.
- *
- * @param webview - the webview
- * @param localResourceUri - uri to resources
- * @returns - webview uri (including scheme)
- */
-export function getWebviewUri(webview: Webview, localResourceUri: Uri): Uri {
-    return webview.asWebviewUri
-        ? webview.asWebviewUri(localResourceUri)
-        : localResourceUri.with({ scheme: 'vscode-resource' });
-}
-
 /**
  * Return the HTML string for hosting a webview.
  *
