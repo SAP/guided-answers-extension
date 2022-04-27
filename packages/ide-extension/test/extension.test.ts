@@ -1,3 +1,4 @@
+import { join } from 'path';
 import { ExtensionContext, commands, window, OutputChannel, WebviewPanel } from 'vscode';
 import * as logger from '../src/logger/logger';
 import { activate } from '../src/extension';
@@ -47,7 +48,7 @@ describe('Extension test', () => {
         subscriptionsMock.mock.calls[0][1]();
 
         // Result check
-        expect(webViewPanelMock.webview.html).toMatchSnapshot();
+        expect(webViewPanelMock.webview.html.replace(join(__dirname, '..'), '')).toMatchSnapshot();
         expect(webViewPanelMock.reveal).toBeCalled();
         expect(loggerMock).toBeCalled();
     });

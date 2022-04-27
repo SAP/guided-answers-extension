@@ -10,7 +10,7 @@ exports[`Extension test execute command 1`] = `
         <title>Guided Answers</title>
 
         <base href=\\"./\\">
-        <link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"vscode-resource:/Users/d045154/SAPDevelop/git/SAP/guided-answers-extension/packages/ide-extension/src/panel/guidedAnswers.css\\">
+        <link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"vscode-resource:/src/panel/guidedAnswers.css\\">
         <script type=\\"text/javascript\\">
             function onResourceLoadError() {
                 // Load failed - send command to restart webview
