@@ -49,7 +49,10 @@ describe('Extension test', () => {
 
         // Result check
         expect(
-            webViewPanelMock.webview.html.replace(new RegExp(`${join(__dirname, '..')}`, 'g'), '')
+            webViewPanelMock.webview.html.replace(
+                new RegExp(`${join(__dirname, '..')}`.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'),
+                ''
+            )
         ).toMatchSnapshot();
         expect(webViewPanelMock.reveal).toBeCalled();
         expect(loggerMock).toBeCalled();
