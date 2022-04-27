@@ -1,5 +1,6 @@
 import { join } from 'path';
-import { ExtensionContext, commands, window, OutputChannel, WebviewPanel } from 'vscode';
+import { URI } from 'vscode-uri';
+import { ExtensionContext, commands, window, WebviewPanel } from 'vscode';
 import * as logger from '../src/logger/logger';
 import { activate } from '../src/extension';
 
@@ -48,9 +49,10 @@ describe('Extension test', () => {
         subscriptionsMock.mock.calls[0][1]();
 
         // Result check
+        const replaceStr = URI.file(join(__dirname, '..')).with({ scheme: 'vscode-resource' }).toString();
         expect(
             webViewPanelMock.webview.html.replace(
-                new RegExp(`${join(__dirname, '..')}`.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'),
+                new RegExp(`${replaceStr}`.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'),
                 ''
             )
         ).toMatchSnapshot();
