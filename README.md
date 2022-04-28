@@ -75,18 +75,13 @@ Copyright (2022) SAP SE or an SAP affiliate company and `guided-answers-extensio
 
 ## Download & Installation
 
-
-## Configuration
+The Guided Answers Extension Will be available for download via the VSCode Marketplace. It will also be available for download for SAP Business Application Studio.
 
 
 ## Limitations
 
+Users are currently unable to filter the Guided Answers on Products or Components. Will be supported in future releases.
 
 ## Known Issues
 
-
-## How to Obtain Support
-
-
-## To-Do (Upcoming changes)
-
+https://github.com/SAP/guided-answers-extension/issues?q=is%3Aopen+is%3Aissue+label%3Abug
