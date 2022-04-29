@@ -1,6 +1,7 @@
+import type { OutputChannel } from 'vscode';
 import { window } from 'vscode';
 
-const channel = window.createOutputChannel(`Guided Answers Extension`);
+let channel: OutputChannel;
 
 /**
  * Log a message to the output console.
@@ -8,5 +9,8 @@ const channel = window.createOutputChannel(`Guided Answers Extension`);
  * @param message - log message
  */
 export function logString(message: string): void {
+    if (!channel) {
+        channel = window.createOutputChannel(`Guided Answers Extension`);
+    }
     channel.appendLine(message);
 }

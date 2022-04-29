@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Extension test execute command 1`] = `
+"<!DOCTYPE html>
+<html lang=\\"en\\">
+    <head>
+        <meta charset=\\"utf-8\\">
+        <meta name=\\"google\\" content=\\"notranslate\\">
+        <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1, shrink-to-fit=no\\">
+        <title>Guided Answers</title>
+
+        <base href=\\"./\\">
+        <link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"/src/panel/guidedAnswers.css\\">
+        <script type=\\"text/javascript\\">
+            function onResourceLoadError() {
+                // Load failed - send command to restart webview
+                try {
+                    var vscodeMessenger = window.vscode || acquireVsCodeApi();
+                    if (vscodeMessenger) {
+                        vscodeMessenger.postMessage({\\"type\\": \\"RESTART_WEBVIEW\\"});
+                    }
+                    // Rewrite function to avoid multiple restarts - restart logic should be callod only once
+                    onResourceLoadError = function(){};
+                } catch(e) {
+                    console.log(e);
+                }
+            }
+        </script>
+        
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id=\\"root\\"></div>
+        <script src=\\"/src/panel/guidedAnswers.js\\" onerror=\\"onResourceLoadError()\\"></script>
+    </body>
+</html>
+"
+`;

@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Guided Answers Api: getNodeById() Get node by id, node enhanced, should return enhanced node 1`] = `
+Object {
+  "BODY": "<p><span data-guided-answers-command-8d98638a0304b3f13b54d885dc542121=\\"%7B%22label%22%3A%22what%20does%20that%20even%20mean%22%2C%22description%22%3A%22we%20decorate%20'Body%20of'%20with%20a%20link%20to%20vscode%20command%22%2C%22icon%22%3A%22icon%22%2C%22exec%22%3A%7B%22extensionId%22%3A%22terry.exxt%22%2C%22commandId%22%3A%22Knock%20kock%22%2C%22argument%22%3A%7B%22fsPath%22%3A%22whos%2Fthere%2Fbody%2Fof%22%7D%7D%7D\\">Body of</span> <span data-guided-answers-command-8d98638a0304b3f13b54d885dc542121=\\"%7B%22label%22%3A%22of%20course%2C%2042%22%2C%22description%22%3A%22Text%20'solution%20to%20all%20questions'%20decorated%20as%20link%20to%20terminal%20command%22%2C%22icon%22%3A%22%22%2C%22exec%22%3A%7B%22cwd%22%3A%22.%22%2C%22arguments%22%3A%5B%22echo%22%2C%2242%22%5D%7D%7D\\">solution to all questions</span> <img src=\\"https://ga.support.sap.com/dtp/viewer/services/backend.xsjs?cmd=viewImage&amp;id=1\\" width=\\"200\\" height=\\"100\\" />&lt;script&gt;alert(\\"evil\\");&lt;/script&gt;</p>",
+  "COMMANDS": Array [
+    Object {
+      "description": "Node enhancement with terminal command",
+      "exec": Object {
+        "arguments": Array [
+          "launch",
+          "Infinite",
+          "Improbability",
+          "Drive",
+        ],
+        "cwd": ".",
+      },
+      "icon": "",
+      "label": "terminal command enhancement",
+    },
+    Object {
+      "description": "Node enhancement with VSCode command",
+      "exec": Object {
+        "argument": Object {
+          "fsPath": "",
+        },
+        "commandId": "SPEED",
+        "extensionId": "full speed",
+      },
+      "icon": "",
+      "label": "vscode command enhancement",
+    },
+  ],
+  "EDGES": Array [
+    Object {
+      "LABEL": "Yes",
+      "ORD": 1,
+      "TARGET_NODE": 42,
+    },
+    Object {
+      "LABEL": "No",
+      "ORD": 2,
+      "TARGET_NODE": Infinity,
+    },
+  ],
+  "NODE_ID": -1,
+  "QUESTION": "Answer to the Ultimate Question of Life, the Universe, and Everything",
+  "TITLE": "Forty-two",
+}
+`;
+
+exports[`Guided Answers Api: getNodeById() Get node by id, should return the node 1`] = `
+Object {
+  "BODY": "<p>Body of node 123 <img src=\\"https://ga.support.sap.com/dtp/viewer/services/backend.xsjs?cmd=viewImage&amp;id=1\\" width=\\"200\\" height=\\"100\\" />&lt;script&gt;alert(\\"evil\\");&lt;/script&gt;</p>",
+  "EDGES": Array [
+    Object {
+      "LABEL": "Good",
+      "ORD": 1,
+      "TARGET_NODE": 1234,
+    },
+    Object {
+      "LABEL": "Hanging in",
+      "ORD": 2,
+      "TARGET_NODE": 12345,
+    },
+  ],
+  "NODE_ID": 123,
+  "QUESTION": "How are you?",
+  "TITLE": "Node",
+}
+`;

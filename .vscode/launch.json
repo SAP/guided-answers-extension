@@ -5,13 +5,41 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Guided Answers: Launch ide-extension - SKIP BUILD",
+            "name": "core: Run Current Jest File",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+            "args": ["${fileBasenameNoExtension}", "--coverage=false", "--config", "jest.config.js"],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "windows": {
+                "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+            },
+            "cwd": "${workspaceFolder}/packages/core"
+        },
+        {
+            "name": "ide-extension: Launch Guided Answers extension - NO BUILD",
             "type": "extensionHost",
             "request": "launch",
             "runtimeExecutable": "${execPath}",
             "stopOnEntry": true,
             "args": ["--log=debug", "--extensionDevelopmentPath=${workspaceFolder}/packages/ide-extension/"],
             "outFiles": ["${workspaceFolder}/packages/ide-extension/dist/extension-min.js"]
+        },
+        {
+            "name": "ide-extension: Run Current Jest File",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+            "args": ["${fileBasenameNoExtension}", "--coverage=false", "--config", "jest.config.js"],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "windows": {
+                "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+            },
+            "cwd": "${workspaceFolder}/packages/ide-extension"
         }
     ]
 }
