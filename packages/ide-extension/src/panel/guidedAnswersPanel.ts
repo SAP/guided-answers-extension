@@ -54,13 +54,18 @@ export class GuidedAnswersPanel {
          */
         const webappDirPath = __dirname;
         const webAppUri = Uri.file(webappDirPath);
-        this.panel = window.createWebviewPanel('sap.ux.guidedAnswer.view', 'Guided Answers', ViewColumn.Active, {
-            enableCommandUris: true,
-            enableScripts: true,
-            retainContextWhenHidden: true,
-            localResourceRoots: [Uri.file(webappDirPath)],
-            enableFindWidget: true
-        });
+        this.panel = window.createWebviewPanel(
+            'sap.ux.guidedAnswer.view',
+            'Guided Answers extension by SAP',
+            ViewColumn.Active,
+            {
+                enableCommandUris: true,
+                enableScripts: true,
+                retainContextWhenHidden: true,
+                localResourceRoots: [Uri.file(webappDirPath)],
+                enableFindWidget: true
+            }
+        );
         this.panel.webview.onDidReceiveMessage(this.onWebviewMessage.bind(this));
         const html = getHtml(
             webAppUri.with({ scheme: 'vscode-resource' }).toString(),
