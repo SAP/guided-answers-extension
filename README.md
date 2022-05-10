@@ -1,3 +1,6 @@
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP/guided-answers-extension)](https://api.reuse.software/info/github.com/SAP/guided-answers-extension)
+
+
 # SAP Guided Answers Extension
 
 Visual Studio extension for accessing Guided Answers.
