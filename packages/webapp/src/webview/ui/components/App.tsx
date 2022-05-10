@@ -1,6 +1,7 @@
 import type { ReactElement } from 'react';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { VscSearch } from 'react-icons/vsc';
 import { VSCodeButton, VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
 import { AppState } from '../../types';
 import './App.scss';
@@ -39,7 +40,11 @@ export function App(): ReactElement {
                                 actions.searchTree(newValue);
                             }, 400);
                         }
-                    }}></VSCodeTextField>
+                    }}>
+                    <span slot="end" className="tree-search-icon">
+                        <VscSearch />
+                    </span>
+                </VSCodeTextField>
                 {appState.guidedAnswerTrees.map((tree, index) => {
                     return (
                         <div key={`tree-item-${index}`} className="tree-item">

@@ -111,6 +111,7 @@ importers:
             react: 16.14.0
             react-dom: 16.14.0
             react-i18next: 11.10.0
+            react-icons: 4.3.1
             react-redux: 7.2.0
             redux: 4.0.5
         devDependencies:
@@ -136,6 +137,7 @@ importers:
             react: 16.14.0
             react-dom: 16.14.0_react@16.14.0
             react-i18next: 11.10.0_i18next@21.6.14+react@16.14.0
+            react-icons: 4.3.1_react@16.14.0
             react-redux: 7.2.0_bbabd8c34ea235719dc50e75b43f85a4
             redux: 4.0.5
 
@@ -6636,6 +6638,17 @@ packages:
             '@babel/runtime': 7.17.8
             html-parse-stringify: 3.0.1
             i18next: 21.6.14
+            react: 16.14.0
+        dev: true
+
+    /react-icons/4.3.1_react@16.14.0:
+        resolution:
+            {
+                integrity: sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==
+            }
+        peerDependencies:
+            react: '*'
+        dependencies:
             react: 16.14.0
         dev: true
 
