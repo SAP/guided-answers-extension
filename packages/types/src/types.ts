@@ -46,7 +46,6 @@ export interface TerminalCommand {
 export interface Command {
     label: string;
     description: string;
-    icon: string;
     exec: TerminalCommand | VSCodeCommand;
 }
 

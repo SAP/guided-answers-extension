@@ -1,12 +1,7 @@
 // import { dirname } from 'path';
 import type { WebviewPanel } from 'vscode';
 import { Uri, ViewColumn, window, workspace } from 'vscode';
-import type {
-    GuidedAnswerActions,
-    GuidedAnswerAPI,
-    HTMLEnhancement,
-    NodeEnhancement
-} from '@sap/guided-answers-extension-types';
+import type { GuidedAnswerActions, GuidedAnswerAPI } from '@sap/guided-answers-extension-types';
 import {
     SELECT_NODE,
     updateGuidedAnserTrees,
@@ -18,7 +13,7 @@ import {
 } from '@sap/guided-answers-extension-types';
 import { getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
-import { handleCommand } from '../enhancement/commandHandler';
+import { enhancements, handleCommand } from '../enhancement';
 import { logString } from '../logger/logger';
 
 /**
@@ -39,10 +34,7 @@ export class GuidedAnswersPanel {
         this.initialTree = treeId;
         const config = workspace.getConfiguration('sap.ux.guidedAnswer');
         const apiHost = config.get('apiHost') as string;
-        const enhancements = {
-            nodeEnhancements: config.get('nodeEnhancements') as NodeEnhancement[],
-            htmlEnhancements: config.get('htmlEnhancements') as HTMLEnhancement[]
-        };
+
         logString(`Configured enhancements:\n${JSON.stringify(enhancements, null, 2)}`);
         this.guidedAnswerApi = getGuidedAnswerApi({ apiHost, enhancements });
         /**
@@ -54,13 +46,18 @@ export class GuidedAnswersPanel {
          */
         const webappDirPath = __dirname;
         const webAppUri = Uri.file(webappDirPath);
-        this.panel = window.createWebviewPanel('sap.ux.guidedAnswer.view', 'Guided Answers', ViewColumn.Active, {
-            enableCommandUris: true,
-            enableScripts: true,
-            retainContextWhenHidden: true,
-            localResourceRoots: [Uri.file(webappDirPath)],
-            enableFindWidget: true
-        });
+        this.panel = window.createWebviewPanel(
+            'sap.ux.guidedAnswer.view',
+            'Guided Answers extension by SAP',
+            ViewColumn.Active,
+            {
+                enableCommandUris: true,
+                enableScripts: true,
+                retainContextWhenHidden: true,
+                localResourceRoots: [Uri.file(webappDirPath)],
+                enableFindWidget: true
+            }
+        );
         this.panel.webview.onDidReceiveMessage(this.onWebviewMessage.bind(this));
         const html = getHtml(
             webAppUri.with({ scheme: 'vscode-resource' }).toString(),
