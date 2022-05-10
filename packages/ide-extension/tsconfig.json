@@ -2,7 +2,8 @@
     "extends": "../../tsconfig.json",
     "include": ["src"],
     "compilerOptions": {
-        "outDir": "dist"
+        "outDir": "dist",
+        "resolveJsonModule": true
     },
     "exclude": ["dist", "node_modules", ".vscode-test", "reports"]
 }
