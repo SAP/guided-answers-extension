@@ -99,8 +99,12 @@ The exact definition of the properties of `exec` can be found in [packages/types
 
 There can be multiple node enhancements for a single node.
 
-**Hint**
-> When navigating to a node in a Guided Answers tree, the node id is shown in output console of VSCode. To open the output console use menu View -> Output and select 'Guided Answers Extension'
+----
+
+**Hint**: When navigating to a node in a Guided Answers tree, the node id is shown in output console of VSCode. To open the output console use menu  
+`View` -> `Output` and select 'Guided Answers Extension'.
+
+----
 
 ### Html enhancements
 
