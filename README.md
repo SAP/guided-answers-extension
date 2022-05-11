@@ -63,6 +63,15 @@ pnpm test
 ```
 **Note**: if the test run fails due to dependency issues, run `pnpm install && pnpm build` in the root of the repository again to make sure all projects are up-to-date.
 
+### Build extension
+
+To build the `vsix` extension bundle, first change to folder `packages/ide-extension` and run command `pnpm ide-ext:package`:
+```shell
+cd packages/ide-extension
+pnpm ide-ext:package
+```
+
+
 ## Support, Feedback, Contributing
 
 This project is open to feature requests/suggestions, bug reports etc. via [GitHub issues](https://github.com/SAP/guided-answers-extension/issues). Contribution and feedback are encouraged and always welcome. For more information about how to contribute, the project structure, as well as additional contribution information, see our [Contribution Guidelines](CONTRIBUTING.md).
