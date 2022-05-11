@@ -26,13 +26,13 @@ function replace(domNode: DOMNode): ReactElement | undefined {
                 const textContent = domElement?.firstChild?.type === 'text' ? (domElement.firstChild as Text).data : '';
                 if (command) {
                     result = (
-                        <div
+                        <span
                             className="enhancement-link"
                             onClick={(): void => {
                                 actions.executeCommand(command);
                             }}>
                             {textContent}
-                        </div>
+                        </span>
                     );
                 }
             } catch (error) {
