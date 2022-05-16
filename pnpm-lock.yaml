@@ -22,7 +22,7 @@ importers:
             eslint-plugin-prettier: 4.0.0
             eslint-plugin-promise: 6.0.0
             eslint-plugin-sonarjs: 0.13.0
-            husky: 8.0.0
+            husky: 8.0.1
             jest: 27.5.1
             jest-sonar: 0.2.12
             prettier: 2.6.2
@@ -44,7 +44,7 @@ importers:
             eslint-plugin-prettier: 4.0.0_440b30a60bbe5bb6e3ad0057150b2782
             eslint-plugin-promise: 6.0.0_eslint@8.15.0
             eslint-plugin-sonarjs: 0.13.0_eslint@8.15.0
-            husky: 8.0.0
+            husky: 8.0.1
             jest: 27.5.1_ts-node@10.7.0
             jest-sonar: 0.2.12
             prettier: 2.6.2
@@ -4427,10 +4427,10 @@ packages:
         engines: { node: '>=10.17.0' }
         dev: true
 
-    /husky/8.0.0:
+    /husky/8.0.1:
         resolution:
             {
-                integrity: sha512-4qbE/5dzNDNxFEkX9MNRPKl5+omTXQzdILCUWiqG/lWIAioiM5vln265/l6I2Zx8gpW8l1ukZwGQeCFbBZ6+6w==
+                integrity: sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==
             }
         engines: { node: '>=14' }
         hasBin: true
