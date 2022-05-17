@@ -5,7 +5,7 @@
 ### Description
 SAP’s Guided Answers (https://ga.support.sap.com/dtp/viewer/index.html) is an interactive documentation designed to help troubleshoot issues, navigate processes, and guide users through tasks via a series of questions.  SAP experts document the exact steps for analysing issues and make that available to the customers.SAP's Guided Answers is recommended to customers to get the most from the support. Customers can look for solutions themselves instead of opening a customer support incident.
  
-This Guide Answer's extension is an extension that renders content of already existing Guided Answers directly in the IDE (Integrated Developer Environment such as SAP Business Application Studio and VSCode), making the content interactive and context-aware within the IDE. Developers do not need to navigate back and forth between separate supporting materials and their IDE when they come across an issue.  This extension improves and speeds up the support process for SAP tools and increases user satisfaction. It will also help support teams provide clearer and more accurate solutions to issues to their customers. 
+This Guide Answers extension is an extension that renders content of already existing Guided Answers directly in the IDE (Integrated Developer Environment such as SAP Business Application Studio and VSCode), making the content interactive and context-aware within the IDE. Developers do not need to navigate back and forth between separate supporting materials and their IDE when they come across an issue.  This extension improves and speeds up the support process for SAP tools and increases user satisfaction. It will also help support teams provide clearer and more accurate solutions to issues to their customers. 
 
 ### Requirements
 
@@ -51,11 +51,11 @@ To get more help, support, and information about the Guided Answers Extension pl
 
 https://github.com/SAP/guided-answers-extension/issues/new?assignees=&labels=type%3Abug&template=bug_report.md&title=BUG+-+
 
-SAP's Guided Answer Support 
+SAP's Guided Answers Support 
 
 To get more help, support and information about SAP's Guided Answer navigate to  https://ga.support.sap.com/dtp/viewer/ and click on 'Contact Us' 
 
-### Hot to Contribute 
+### How to Contribute 
 
 This project is open to feature requests/suggestions, bug reports etc. via [GitHub issues](https://github.com/SAP/guided-answers-extension/issues). Contribution and feedback are encouraged and always welcome. For more information about how to contribute, the project structure, as well as additional contribution information, see our [Contribution Guidelines](CONTRIBUTING.md).
 
