@@ -1,5 +1,6 @@
 name: Release
-on: workflow_dispatch
+on:
+    workflow_dispatch
     # push:
     #     tags:
     #         - 'v*.*.*'
@@ -20,7 +21,10 @@ jobs:
               run: pnpm install
 
             - name: Build
-              run: pnpm build
+              run: pnpm run build
+
+            - name: Package vsix
+              run: pnpm run ide-ext:package
 
             - name: Create Github Release
               uses: softprops/action-gh-release@v1
