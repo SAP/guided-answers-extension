@@ -1,0 +1,30 @@
+name: Release
+on:
+    push:
+        tags:
+            - 'v*.*.*'
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: lts/*
+
+            - uses: pnpm/action-setup@v2.0.1
+              with:
+                  version: 6.26.1
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Build
+              run: pnpm build
+
+            - name: Create Github Release
+              uses: softprops/action-gh-release@v1
+              with:
+                  draft: true
+                  files: packages/*/*.vsix
+                  fail_on_unmatched_files: true
