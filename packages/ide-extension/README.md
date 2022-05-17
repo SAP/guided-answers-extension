@@ -1,5 +1,5 @@
 
-### Guided Answers Extension 
+# Guided Answers extension by SAP
 
 
 ### Description
