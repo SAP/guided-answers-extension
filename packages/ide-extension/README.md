@@ -43,7 +43,7 @@ By default, VS Code auto-updates extensions as new versions become available as 
  1. Navigate to  https://ga.support.sap.com/dtp/viewer/ and click on 'Contact Us' 
 `
 
-### How to Obtain Support 
+### How to Obtain Support  
 
 Guided Answers Extension
 
