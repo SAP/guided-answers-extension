@@ -164,6 +164,3 @@ dist
 
 # Output of 'npm pack'
 *.tgz
-
-# Output of 'vsce'
-*.vsix
