@@ -27,7 +27,7 @@ By default, VS Code auto-updates extensions as new versions become available as 
  How to launch Guided Answer Extension within VSCode or SBAS 
 
     1. Use Command Palette -> CMD/CTRL + Shift + P
-    2. Type command -> Fiori: Open Guided Answers
+    2. Type command -> SAP: Open Guided Answers
     
  How to launch Guided Answer Extension from within another extension in VSCode or SBAS 
      
