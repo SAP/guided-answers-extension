@@ -29,10 +29,8 @@
     },
     "scripts": {
         "build": "pnpm recursive run build",
-        "ci:publish": "changeset publish",
         "ci:version": "changeset version && pnpm install --lockfile-only",
         "clean": "pnpm recursive run clean",
-        "cset": "changeset",
         "format": "pnpm recursive run format",
         "ide-ext:package": "pnpm recursive run ide-ext:package",
         "lint": "pnpm recursive run lint",

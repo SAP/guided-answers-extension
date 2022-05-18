@@ -1,12 +1,16 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP/guided-answers-extension)](https://api.reuse.software/info/github.com/SAP/guided-answers-extension)
 
 
-# SAP Guided Answers Extension
+# Guided Answers extension by SAP
+<img align="left" style="padding-right:10px" src="./docs/resources/guided-answers-logo.svg"/> 
+A Visual Studio Code extension for accessing SAP's Guided Answers.
+<br clear="left"/>
+<br/>
 
-Visual Studio extension for accessing Guided Answers.
 ## About this project
 
 Enable community collaboration to jointly promote, develop and consume a VSCode extension which provides a simple interactive way to show the developers how to troubleshoot issues, navigate processes and guide through tasks via the content published to SAP's Guided Answers (https://ga.support.sap.com/dtp/viewer/)
+
 
 ## Development Setup
 
@@ -71,6 +75,7 @@ cd packages/ide-extension
 pnpm ide-ext:package
 ```
 
+Additional information for developers can be found in the [developer guide](./docs/developer-guide.md).
 
 ## Support, Feedback, Contributing
 
