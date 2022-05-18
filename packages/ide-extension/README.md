@@ -9,7 +9,7 @@ This Guide Answers extension is an extension that renders content of already exi
 
 ### Requirements
 
-     TBC
+TBD
 
 ### Installation
 
