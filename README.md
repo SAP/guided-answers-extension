@@ -71,6 +71,7 @@ cd packages/ide-extension
 pnpm ide-ext:package
 ```
 
+Additional information for developers can be found in the [developer guide](./docs/developer-guide.md).
 
 ## Support, Feedback, Contributing
 
