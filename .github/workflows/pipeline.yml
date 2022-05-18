@@ -134,17 +134,16 @@ jobs:
               run: pnpm run build
             - name: Package vsix
               run: pnpm run ide-ext:package
-            - name: Setup npmrc with npmjs.com token
-              run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPMJS_TOKEN }}" > .npmrc
-            - name: 'Create GitHub tags'
-              uses: changesets/action@v1.2.0
+            - name: Get version number from /packages/ide-extension/package.json
+              id: package-version
+              uses: martinbeentjes/npm-get-version-action@main
               with:
-                  publish: pnpm run ci:publish
-              env:
-                  GITHUB_TOKEN: ${{ secrets.ACCESS_PAT }}
+                  path: packages/ide-extension
             - name: Create Github Release
               uses: softprops/action-gh-release@v1
               with:
-                  draft: true
-                  files: packages/**/*.vsix
+                  body_path: ${{ github.workspace }}/packages/ide-extension/CHANGELOG.md
+                  draft: false
+                  files: packages/ide-extension/sap-guided-answers*.vsix
                   fail_on_unmatched_files: true
+                  tag_name: sap-guided-answers-extension@${{ steps.package-version.outputs.current-version}}
