@@ -148,7 +148,6 @@ jobs:
             #       publish: pnpm run ci:publish
             #   env:
             #       GITHUB_TOKEN: ${{ secrets.ACCESS_PAT }}
-            - name
             - name: Create Github Release
               uses: softprops/action-gh-release@v1
               with:
