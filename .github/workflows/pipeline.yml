@@ -134,6 +134,8 @@ jobs:
               run: pnpm run build
             - name: Package vsix
               run: pnpm run ide-ext:package
+            - name: Setup npmrc with npmjs.com token
+              run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPMJS_TOKEN }}" > .npmrc
             - name: 'Create GitHub tags'
               uses: changesets/action@v1.2.0
               with:
@@ -144,5 +146,5 @@ jobs:
               uses: softprops/action-gh-release@v1
               with:
                   draft: true
-                  files: packages/*/*.vsix
+                  files: packages/**/*.vsix
                   fail_on_unmatched_files: true
