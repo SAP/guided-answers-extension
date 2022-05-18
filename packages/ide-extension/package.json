@@ -1,5 +1,5 @@
 {
-    "name": "sap-guided-answer-extension",
+    "name": "sap-guided-answers-extension",
     "displayName": "%guidedAnswer.displayName%",
     "description": "%guidedAnswer.description%",
     "publisher": "SAPSE",
