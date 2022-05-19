@@ -3,20 +3,19 @@
 
 
 ### Description
-SAP’s Guided Answers (https://ga.support.sap.com/dtp/viewer/index.html) is an interactive documentation designed to help troubleshoot issues, navigate processes, and guide users through tasks via a series of questions.  SAP experts document the exact steps for analysing issues and make that available to the customers.SAP's Guided Answers is recommended to customers to get the most from the support. Customers can look for solutions themselves instead of opening a customer support incident.
+SAP’s Guided Answers (https://ga.support.sap.com/dtp/viewer/index.html) is an interactive documentation designed to help troubleshoot issues, navigate processes, and guide users through tasks via a series of questions.  SAP experts document the exact steps for analysing issues and make that available to the customers. SAP's Guided Answers is recommended to customers to get the most from the support. Customers can look for solutions themselves instead of opening a customer support incident.
  
-This Guide Answers extension is an extension that renders content of already existing Guided Answers directly in the IDE (Integrated Developer Environment such as SAP Business Application Studio and VSCode), making the content interactive and context-aware within the IDE. Developers do not need to navigate back and forth between separate supporting materials and their IDE when they come across an issue.  This extension improves and speeds up the support process for SAP tools and increases user satisfaction. It will also help support teams provide clearer and more accurate solutions to issues to their customers. 
+This Guided Answers Extension is an extension that renders content of already existing Guided Answers directly in an IDE (Integrated Developer Environment such as SAP Business Application Studio and VSCode), making the content interactive and context-aware within the IDE. Developers do not need to navigate back and forth between separate supporting materials and their IDE when they come across an issue.  This extension improves and speeds up the support process for SAP tools and increases user satisfaction. It will also help support teams provide clearer and more accurate solutions to issues to their customers. 
 
 ### Requirements
 
-     TBC
 
 ### Installation
 
 From VSCode Market Place ( coming soon )
 
 From Github 
-  1. 
+  1. Install the latest release [here](https://github.com/SAP/guided-answers-extension/releases)
 
 ### Updates 
 
@@ -41,7 +40,6 @@ By default, VS Code auto-updates extensions as new versions become available as 
  How to add a new guide to SAP's Guided Answers
  
  1. Navigate to  https://ga.support.sap.com/dtp/viewer/ and click on 'Contact Us' 
-`
 
 ### How to Obtain Support  
 
