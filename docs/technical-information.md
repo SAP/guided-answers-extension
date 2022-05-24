@@ -12,7 +12,7 @@ In this repository you will find multiple modules. As of now, all modules except
 
 ### Module `sap-guided-answer-extension` ([packages/ide-extension](../packages/ide-extension/))
 
-This is the main modules that provides the Visual Studio code extension 'Guided Answers by SAP', which is published to the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/vscode).
+This is the main module that provides the Visual Studio code extension 'Guided Answers by SAP', which is published to the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/vscode).
 
 Here are some characteristics of the module
 - provides the required setting for Visual Studio Code extensions, e.g. `contributes` section the in the [`package.json`](../packages/ide-extension/package.json)
@@ -20,6 +20,17 @@ Here are some characteristics of the module
 - hosts the webview panel that loads the UI from module [`@sap/guided-answers-extension-webapp`](../packages/webapp/)
 - listens to messages/actions from UI and handles or dispatches them
 - uses module [`@sap/guided-answers-extension-core`](../packages/core/) to communicate with the Guided Answers REST API
+
+Command `SAP: Open Guided Answers` is registered to start the main screen which allows to search for Guided Answers. There is also a possibility to programmatically start Guided Answers from another extension with a particular Guided Answers tree id, e.g.
+
+```typescript
+import { commands } from 'vscode';
+
+commands.executeCommand('sap.ux.guidedAnswer.openGuidedAnswer', { treeId: 3046 });
+```
+
+The tree id can be captured from the Guide Answer's guide URL, e.g.:   
+`https://ga.support.sap.com/dtp/viewer/index.html#/tree/`**3046**`/actions/45995`
 
 ### Module `@sap/guided-answers-extension-core` ([packages/core](../packages/core/)) 
 
