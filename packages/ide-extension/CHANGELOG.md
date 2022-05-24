@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.0.4
+
+### Patch Changes
+
+-   74b493b: Update and cleanup dependencies
+
 ## 0.0.3
 
 ### Patch Changes
