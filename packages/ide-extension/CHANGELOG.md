@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.0.5
+
+### Patch Changes
+
+-   0357d66: Updated README.md and documentation, set publisher to SAPOSS
+
 ## 0.0.4
 
 ### Patch Changes
