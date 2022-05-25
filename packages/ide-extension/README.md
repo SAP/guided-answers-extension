@@ -11,9 +11,6 @@ To launch Guided Answer Extension within VSCode or SBAS
 2. Type command -> SAP: Open Guided Answers
 ```
 ## Support
-
-To request a new guide, get help, support, or more information about SAP's Guided Answer navigate to  https://ga.support.sap.com/dtp/viewer/ and click on 'Contact Us'.
-
 If you have an issue with Guided Answers extension for SAP please open a [GitHub issue](https://github.com/SAP/guided-answers-extension/issues/new?assignees=&labels=type%3Abug&template=bug_report.md&title=BUG+-+).
 ## Information for Developers
 This project is open to feature requests/suggestions, bug reports etc. via [GitHub issues](https://github.com/SAP/guided-answers-extension/issues). On GitHub you can also find information for developers including the project structure and extension features such as how to [call this extension from another extension](https://github.com/SAP/guided-answers-extension/blob/main/docs/technical-information.md#module-sap-guided-answer-extension-packageside-extension). 
