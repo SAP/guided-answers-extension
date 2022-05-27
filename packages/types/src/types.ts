@@ -85,7 +85,8 @@ export type GuidedAnswerActions =
     | SetActiveTree
     | SearchTree
     | SetQueryValue
-    | WebviewReady;
+    | WebviewReady
+    | NoAnswersFound;
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnserTrees {
@@ -138,4 +139,9 @@ export interface SetQueryValue {
 export const WEBVIEW_READY = 'WEBVIEW_READY';
 export interface WebviewReady {
     type: typeof WEBVIEW_READY;
+}
+
+export const NO_ANSWERS_FOUND = 'NO_ANSWERS_FOUND';
+export interface NoAnswersFound {
+    type: typeof NO_ANSWERS_FOUND;
 }

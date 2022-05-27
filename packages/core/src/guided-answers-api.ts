@@ -95,6 +95,7 @@ async function getTreeById(host: string, id: GuidedAnswerTreeId): Promise<Guided
 async function getTrees(host: string, query?: string): Promise<GuidedAnswerTree[]> {
     const url = `${host}${TREE_PATH}${query ? query : ''}`;
     const response: AxiosResponse<GuidedAnswerTree[]> = await axios.get<GuidedAnswerTree[]>(url);
+    response.data;
     const treesRaw = Array.isArray(response.data) ? response.data : [response.data];
     // when we get data as search results, TREE_ID and NODE_ID are string. When we get a single tree, both are numbers.
     // generalize to number here

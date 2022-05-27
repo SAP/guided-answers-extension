@@ -9,6 +9,7 @@ import { actions } from '../../state';
 import { GuidedAnswerNode } from './GuidedAnswerNode';
 
 import Logo from './sap-logo.svg';
+// import ErrorIcon from './no-answers-found-icon.svg'
 
 let timer: NodeJS.Timeout;
 
@@ -26,47 +27,40 @@ export function App(): ReactElement {
     } else if (appState.guidedAnswerTrees) {
         content = (
             <>
-                <VSCodeTextField
-                    className="tree-search-field"
-                    value={appState.query}
-                    placeholder="Search Guided Answers"
-                    onInput={(e: any) => {
-                        console.log(`Value changed`, e);
-                        const newValue = e?.target?.value;
-                        if (newValue !== undefined) {
-                            clearTimeout(timer);
-                            actions.setQueryValue(newValue);
-                            timer = setTimeout(() => {
-                                actions.searchTree(newValue);
-                            }, 400);
-                        }
-                    }}>
-                    <span slot="end" className="tree-search-icon">
-                        <VscSearch />
-                    </span>
-                </VSCodeTextField>
-                {appState.guidedAnswerTrees.map((tree, index) => {
-                    return (
-                        <div key={`tree-item-${index}`} className="tree-item">
-                            <div
-                                className="guided-answer__tree"
-                                onClick={(): void => {
-                                    actions.setActiveTree(tree);
-                                    actions.selectNode(tree.FIRST_NODE_ID);
-                                }}>
-                                <ul className="guided-answer__tree__ul">
-                                    <h3 className="guided-answer__tree__title">{tree.TITLE}</h3>
-                                    {tree.DESCRIPTION && (
-                                        <span className="guided-answer__tree__desc">{tree.DESCRIPTION}</span>
-                                    )}
-                                </ul>
-                            </div>
-                        </div>
-                    );
-                })}
+                <ul className="striped-list">
+                    {appState.guidedAnswerTrees.map((tree, index) => {
+                        return (
+                            <li key={`tree-item-${index}`} className="tree-item">
+                                <div
+                                    className="guided-answer__tree"
+                                    onClick={(): void => {
+                                        actions.setActiveTree(tree);
+                                        actions.selectNode(tree.FIRST_NODE_ID);
+                                    }}>
+                                    <ul className="guided-answer__tree__ul">
+                                        <h3 className="guided-answer__tree__title">{tree.TITLE}</h3>
+                                        {tree.DESCRIPTION && (
+                                            <span className="guided-answer__tree__desc">{tree.DESCRIPTION}</span>
+                                        )}
+                                    </ul>
+                                </div>
+                            </li>
+                        );
+                    })}
+                </ul>
             </>
         );
     }
+    // cosnt noDataReturned =
+    //     appState.noAnswersFound ? (
+    //         <div>
+    //             <h1>No answers found</h1>
+    //             <h3>Please modify the search input</h3>
+    //             <ErrorIcon/>
+    //         </div>
+    //     ) : (
+    //         <></>
+    //     );
     const backButton =
         appState.activeGuidedAnswerNode.length > 0 ? (
             <VSCodeButton
@@ -83,13 +77,36 @@ export function App(): ReactElement {
         <div className="guided-answer">
             <div className="guided-answer__header">
                 <div className="guided-answer__header__sub">
-                    <span id="sap-logo">
-                        <Logo />
-                    </span>
-                    <h1 className="guided-answer__header__title">Guided Answers</h1>
-                    <span className="guided-answer__header__subtitle">
-                        {appState.activeGuidedAnswer ? ': ' + appState.activeGuidedAnswer.TITLE : ''}
-                    </span>
+                    <div className="guided-answer__header__logoAndTitle">
+                        <span id="sap-logo">
+                            <Logo />
+                        </span>
+                        <h1 className="guided-answer__header__title">Guided Answers</h1>
+                        <span className="guided-answer__header__subtitle">
+                            {appState.activeGuidedAnswer ? ': ' + appState.activeGuidedAnswer.TITLE : ''}
+                        </span>
+                    </div>
+                    <div className="guided-answer__header__searchField">
+                        <VSCodeTextField
+                            className="tree-search-field"
+                            value={appState.query}
+                            placeholder="Search Guided Answers"
+                            onInput={(e: any) => {
+                                console.log(`Value changed`, e);
+                                const newValue = e?.target?.value;
+                                if (newValue !== undefined) {
+                                    clearTimeout(timer);
+                                    actions.setQueryValue(newValue);
+                                    timer = setTimeout(() => {
+                                        actions.searchTree(newValue);
+                                    }, 400);
+                                }
+                            }}>
+                            <span slot="end" className="tree-search-icon">
+                                <VscSearch />
+                            </span>
+                        </VSCodeTextField>
+                    </div>
                 </div>
                 {backButton}
             </div>

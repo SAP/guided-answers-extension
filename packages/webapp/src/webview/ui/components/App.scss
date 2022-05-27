@@ -21,6 +21,8 @@ h1 {
         &__sub {
             display: flex;
             align-items: center;
+            gap: 1vh;
+            justify-content: space-between;
         }
         &__title {
             font-weight: 600;
@@ -32,6 +34,14 @@ h1 {
         &__goback {
             height: 26px;
             margin-top: 17px;
+        }
+        &__logoAndTitle {
+            display: flex;
+            align-items: center;
+            margin-left: 41px;
+        }
+        &__searchField {
+            margin-right: 17px;
         }
     }
     &__container {
@@ -45,8 +55,7 @@ h1 {
         text-align: left;
         display: flex;
         border: none;
-        border-radius: 8px;
-        background-color: var(--vscode-sideBar-background);
+        // background-color: var(--vscode-sideBar-background);
         &:hover {
             background-color: var(--vscode-list-hoverBackground);
         }
@@ -77,9 +86,18 @@ h1 {
 }
 
 .tree-item {
-    margin: 2em;
+    margin: 0;
 }
 
 #sap-logo {
-    width: 100px;
+    width: 59px;
+}
+
+ul.striped-list > li:nth-of-type(odd) {
+    background-color: var(--vscode-breadcrumbPicker-background);
+}
+
+li {
+    background-color: #1c1c1c;
+    list-style-type: none;
 }
