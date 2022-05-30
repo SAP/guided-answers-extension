@@ -2,13 +2,12 @@ import type { ReactElement } from 'react';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { VscSearch } from 'react-icons/vsc';
-import { VSCodeButton, VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
-import { AppState } from '../../types';
+import { VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
+import { AppState } from '../../../types';
+import { actions } from '../../../state';
+import { GuidedAnswerNode } from '../GuidedAnswerNode';
+import { Header } from '../Header';
 import './App.scss';
-import { actions } from '../../state';
-import { GuidedAnswerNode } from './GuidedAnswerNode';
-
-import Logo from './sap-logo.svg';
 
 let timer: NodeJS.Timeout;
 
@@ -67,32 +66,12 @@ export function App(): ReactElement {
             </>
         );
     }
-    const backButton =
-        appState.activeGuidedAnswerNode.length > 0 ? (
-            <VSCodeButton
-                className="guided-answer__header__goback"
-                onClick={(): void => {
-                    actions.goToPreviousPage();
-                }}>
-                Go back
-            </VSCodeButton>
-        ) : (
-            <></>
-        );
     return (
         <div className="guided-answer">
-            <div className="guided-answer__header">
-                <div className="guided-answer__header__sub">
-                    <span id="sap-logo">
-                        <Logo />
-                    </span>
-                    <h1 className="guided-answer__header__title">Guided Answers</h1>
-                    <span className="guided-answer__header__subtitle">
-                        {appState.activeGuidedAnswer ? ': ' + appState.activeGuidedAnswer.TITLE : ''}
-                    </span>
-                </div>
-                {backButton}
-            </div>
+            <Header
+                showLogo={appState.activeGuidedAnswerNode.length === 0}
+                showNavButon={appState.activeGuidedAnswerNode.length !== 0}
+            />
             <main className="guided-answer__container">{content}</main>
         </div>
     );

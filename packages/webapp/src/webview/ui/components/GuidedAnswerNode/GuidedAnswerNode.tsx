@@ -3,10 +3,10 @@ import React, { ReactElement } from 'react';
 import type { GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 import { useSelector } from 'react-redux';
-import { actions } from '../../state';
-import { AppState } from '../../types';
+import { actions } from '../../../state';
+import { AppState } from '../../../types';
 import './GuidedAnswerNode.scss';
-import { GuidedAnswerNavPath } from './GuidedAnswerNavPath';
+import { GuidedAnswerNavPath } from '../GuidedAnswerNavPath';
 
 /**
  * Replacer function for html-react-parser's replace function. If an element was marked, replace it with  link <a>

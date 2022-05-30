@@ -1,8 +1,8 @@
 import { GuidedAnswerNode } from '@sap/guided-answers-extension-types';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
-import { actions } from '../../state';
-import { AppState } from '../../types';
+import { actions } from '../../../state';
+import { AppState } from '../../../types';
 import './GuidedAnswerNavPath.scss';
 
 /**
