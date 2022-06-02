@@ -7,9 +7,9 @@ import { AppState } from '../../types';
 import './App.scss';
 import { actions } from '../../state';
 import { GuidedAnswerNode } from './GuidedAnswerNode';
+import { NoAnswersFound } from './NoAnswersFound';
 
 import Logo from './sap-logo.svg';
-// import ErrorIcon from './no-answers-found-icon.svg'
 
 let timer: NodeJS.Timeout;
 
@@ -48,19 +48,14 @@ export function App(): ReactElement {
                         );
                     })}
                 </ul>
+                {appState.guidedAnswerTrees.length === 0 && appState.query !== '' && appState.initialState === false ? (
+                    <NoAnswersFound />
+                ) : (
+                    ''
+                )}
             </>
         );
     }
-    // cosnt noDataReturned =
-    //     appState.noAnswersFound ? (
-    //         <div>
-    //             <h1>No answers found</h1>
-    //             <h3>Please modify the search input</h3>
-    //             <ErrorIcon/>
-    //         </div>
-    //     ) : (
-    //         <></>
-    //     );
     const backButton =
         appState.activeGuidedAnswerNode.length > 0 ? (
             <VSCodeButton
