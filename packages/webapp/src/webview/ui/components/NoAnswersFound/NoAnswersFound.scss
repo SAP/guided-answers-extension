@@ -1,9 +1,11 @@
+* {
+    font-family: var(--vscode-font-family);
+}
 .error-screen {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0px;
-    gap: 20px;
+    padding-top: 12vh;
 
     &__objects {
         // display: block;
@@ -15,8 +17,6 @@
     }
 
     h1 {
-        /* H1. Large Header. SF */
-        font-family: 'SF Pro Display';
         font-style: normal;
         font-weight: 700;
         font-size: 24px;
@@ -24,11 +24,13 @@
     }
 
     h2 {
-        /* T1. Body Text. SF */
-        font-family: 'SF Pro Text';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 200;
         font-size: 13px;
         line-height: 18px;
+    }
+
+    &__logo {
+        margin-top: 20px;
     }
 }

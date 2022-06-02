@@ -11,7 +11,7 @@ export function NoAnswersFound() {
             <div className="error-screen__objects">
                 <h1 className="error-screen__object__title">No answers found</h1>
                 <h2 className="error-screen__object__subtitle">Please modfiy search</h2>
-                <span>
+                <span className="error-screen__object__logo">
                     <ErrorIcon />
                 </span>
             </div>
