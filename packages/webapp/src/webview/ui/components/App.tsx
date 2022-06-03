@@ -1,7 +1,6 @@
 import type { ReactElement } from 'react';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { VscSearch } from 'react-icons/vsc';
 import { VSCodeButton, VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
 import { AppState } from '../../types';
 import './App.scss';
