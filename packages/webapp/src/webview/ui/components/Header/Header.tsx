@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { actions } from '../../../state';
 import { AppState } from '../../../types';
+import { VscHome, VscArrowSmallLeft, VscRefresh, VscArrowLeft } from 'react-icons/vsc';
 import Logo from './sap-logo.svg';
 import { VSCodeButton } from '@vscode/webview-ui-toolkit/react';
 import './Header.scss';
@@ -10,21 +11,52 @@ import './Header.scss';
  * Renders and returns the header section.
  *
  * @param props
- * @param props.showNavButon
+ * @param props.showNavButons
  * @param props.showLogo
  * @returns - react element for header section
  */
-export function Header(props: { showNavButon: boolean; showLogo: boolean }): ReactElement {
+export function Header(props: { showNavButons: boolean; showLogo: boolean }): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
-    const backButton =
-        props.showNavButon === true ? (
-            <VSCodeButton
-                className="guided-answer__header__goback"
+    const allAnswersButton = (
+        <>
+            <div
+                className="guided-answer__header__navButtons"
                 onClick={(): void => {
-                    actions.goToPreviousPage();
+                    actions.goToAllAnswers();
                 }}>
-                Go back
-            </VSCodeButton>
+                <VscHome className="guided-answer__header__navButtons__content" />{' '}
+                <span className="guided-answer__header__navButtons__content">All answers</span>
+            </div>
+        </>
+    );
+    const backButton =
+        appState.activeGuidedAnswerNode.length > 1 ? (
+            <>
+                <div
+                    className="guided-answer__header__navButtons"
+                    onClick={(): void => {
+                        actions.goToPreviousPage();
+                    }}>
+                    <VscArrowLeft className="guided-answer__header__navButtons__content" />
+                    <span className="guided-answer__header__navButtons__content">Step back</span>
+                </div>
+            </>
+        ) : (
+            <></>
+        );
+
+    const restartButton =
+        appState.activeGuidedAnswerNode.length > 1 ? (
+            <>
+                <div
+                    className="guided-answer__header__navButtons"
+                    onClick={(): void => {
+                        actions.restartAnswer();
+                    }}>
+                    <VscRefresh className="guided-answer__header__navButtons__content" />
+                    <span className="guided-answer__header__navButtons__content">Restart</span>
+                </div>
+            </>
         ) : (
             <></>
         );
@@ -43,7 +75,17 @@ export function Header(props: { showNavButon: boolean; showLogo: boolean }): Rea
             ) : (
                 ''
             )}
-            {backButton}
+            {props.showNavButons === true ? (
+                <>
+                    <div className="guided-answer__header__allAnswersButton">{allAnswersButton}</div>
+                    <div className="guided-answer__header__back-restart-buttons">
+                        {backButton}
+                        {restartButton}
+                    </div>
+                </>
+            ) : (
+                <></>
+            )}
         </div>
     );
 }

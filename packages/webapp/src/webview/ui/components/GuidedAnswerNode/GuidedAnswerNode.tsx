@@ -94,6 +94,7 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     const middle = (
         <div id="middle" className="column">
             <h1>{activeNode.TITLE}</h1>
+            <hr />
             {enhancedBody ? enhancedBody : <div dangerouslySetInnerHTML={{ __html: activeNode.BODY }}></div>}
             <p className="guided-answer__node__question">{activeNode.QUESTION}</p>
             <div className="guided-answer__node">

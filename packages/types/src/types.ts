@@ -81,6 +81,8 @@ export type GuidedAnswerActions =
     | SelectNode
     | UpdateActiveNode
     | GoToPreviousPage
+    | GoToAllAnswers
+    | RestartAnswer
     | ExecuteCommand
     | SetActiveTree
     | SearchTree
@@ -107,8 +109,20 @@ export interface UpdateActiveNode {
 
 export const GO_TO_PREVIOUS_PAGE = 'GO_TO_PREVIOUS_PAGE';
 
+export const GO_TO_ALL_ANSWERS = 'GO_TO_ALL_ANSWERS';
+
+export const RESTART_ANSWER = 'RESTART_ANSWER';
+
 export interface GoToPreviousPage {
     type: typeof GO_TO_PREVIOUS_PAGE;
+}
+
+export interface GoToAllAnswers {
+    type: typeof GO_TO_ALL_ANSWERS;
+}
+
+export interface RestartAnswer {
+    type: typeof RESTART_ANSWER;
 }
 
 export const EXECUTE_COMMAND = 'EXECUTE_COMMAND';

@@ -5,6 +5,8 @@ import type {
     GuidedAnswerNode,
     GuidedAnswerNodeId,
     GoToPreviousPage,
+    GoToAllAnswers,
+    RestartAnswer,
     SearchTree,
     SelectNode,
     SetActiveTree,
@@ -16,6 +18,8 @@ import type {
 import {
     EXECUTE_COMMAND,
     GO_TO_PREVIOUS_PAGE,
+    GO_TO_ALL_ANSWERS,
+    RESTART_ANSWER,
     SELECT_NODE,
     SET_ACTIVE_TREE,
     SEARCH_TREE,
@@ -39,6 +43,14 @@ export const updateActiveNode = (payload: GuidedAnswerNode): UpdateActiveNode =>
 
 export const goToPreviousPage = (): GoToPreviousPage => ({
     type: GO_TO_PREVIOUS_PAGE
+});
+
+export const goToAllAnswers = (): GoToAllAnswers => ({
+    type: GO_TO_ALL_ANSWERS
+});
+
+export const restartAnswer = (): RestartAnswer => ({
+    type: RESTART_ANSWER
 });
 
 export const executeCommand = (payload: Command): ExecuteCommand => ({

@@ -6,13 +6,14 @@ html {
 }
 
 h1 {
-    font-weight: 300;
-    color: var(--vscode-foreground);
+    color: var(--vscode-settings-headerForeground);
+    font-weight: 700;
+    font-size: 24px;
 }
 
 .guided-answer {
     &__container {
-        margin-top: 74px;
+        margin-top: 45px;
     }
     &__tree {
         width: 100%;

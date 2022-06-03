@@ -3,6 +3,8 @@ import {
     UPDATE_GUIDED_ANSWER_TREES,
     UPDATE_ACTIVE_NODE,
     GO_TO_PREVIOUS_PAGE,
+    GO_TO_ALL_ANSWERS,
+    RESTART_ANSWER,
     SET_ACTIVE_TREE,
     SET_QUERY_VALUE
 } from '@sap/guided-answers-extension-types';
@@ -53,10 +55,16 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             break;
         }
         case GO_TO_PREVIOUS_PAGE: {
-            newState.activeGuidedAnswerNode.pop();
-            if (newState.activeGuidedAnswerNode.length === 0) {
-                delete newState.activeGuidedAnswer;
-            }
+            if (newState.activeGuidedAnswerNode.length > 0) newState.activeGuidedAnswerNode.pop();
+            break;
+        }
+        case GO_TO_ALL_ANSWERS: {
+            newState.activeGuidedAnswerNode = [];
+            delete newState.activeGuidedAnswer;
+            break;
+        }
+        case RESTART_ANSWER: {
+            newState.activeGuidedAnswerNode = [newState.activeGuidedAnswerNode[0]];
             break;
         }
         case SET_ACTIVE_TREE: {

@@ -70,7 +70,7 @@ export function App(): ReactElement {
         <div className="guided-answer">
             <Header
                 showLogo={appState.activeGuidedAnswerNode.length === 0}
-                showNavButon={appState.activeGuidedAnswerNode.length !== 0}
+                showNavButons={appState.activeGuidedAnswerNode.length !== 0}
             />
             <main className="guided-answer__container">{content}</main>
         </div>

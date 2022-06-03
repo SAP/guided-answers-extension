@@ -1,5 +1,6 @@
 .guided-answer {
     &__header {
+        display: flex;
         overflow: hidden;
         position: fixed; /* Set the navbar to fixed position */
         top: 0; /* Position the navbar at the top of the page */
@@ -17,9 +18,23 @@
             color: var(--vscode-editorCodeLens-foreground, #999);
             font-size: 2em;
         }
-        &__goback {
-            height: 26px;
-            margin-top: 17px;
+        &__navButtons {
+            height: 25px;
+            margin-top: 30px;
+            color: var(--vscode-textLink-foreground);
+            &__content {
+                vertical-align: middle;
+                display: inline-block;
+                cursor: pointer;
+            }
+        }
+        &__allAnswersButton {
+            width: 380px;
+        }
+        &__back-restart-buttons {
+            display: flex;
+            width: 600px;
+            justify-content: space-between;
         }
     }
 }

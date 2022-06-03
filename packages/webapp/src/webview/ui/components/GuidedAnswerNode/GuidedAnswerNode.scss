@@ -6,8 +6,6 @@ section.answer__node__body {
 }
 
 .column {
-    height: 100%;
-    display: flex;
     flex-direction: column;
     overflow-y: auto;
     box-sizing: border-box;
@@ -24,7 +22,7 @@ section.answer__node__body {
     top: 0;
     left: 0;
     overflow-x: hidden;
-    padding-top: 40px;
+    padding-top: 45px;
 }
 
 .main-container {
@@ -39,8 +37,14 @@ section.answer__node__body {
     left: 0;
     transition: left 0.5s;
     flex-grow: 1;
-    margin-left: 390px;
+    margin-left: 380px;
     padding-right: 20px;
+    width: 620px;
+}
+
+hr {
+    width: 100%;
+    border: 1px solid var(--vscode-editorWidget-border);
 }
 
 #middle-with-command {
@@ -68,7 +72,6 @@ section.answer__node__body {
 .guided-answer__node {
     &__body {
         color: var(--vscode-foreground);
-        padding-top: 21px;
     }
     &__question {
         color: var(--vscode-settings-headerForeground);
@@ -81,7 +84,6 @@ section.answer__node__body {
     }
     &__edge {
         background-color: var(--vscode-button-background);
-        border-radius: 8px;
         color: var(--vscode-button-foreground);
         cursor: pointer;
         font-size: 13px;
@@ -93,7 +95,6 @@ section.answer__node__body {
         margin: 1em;
         padding: 1em;
         text-align: center;
-        width: 100%;
     }
     &__commands {
         position: fixed;
