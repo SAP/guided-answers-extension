@@ -96,11 +96,7 @@ export function App(): ReactElement {
                                         actions.searchTree(newValue);
                                     }, 400);
                                 }
-                            }}>
-                            <span slot="end" className="tree-search-icon">
-                                <VscSearch />
-                            </span>
-                        </VSCodeTextField>
+                            }}></VSCodeTextField>
                     </div>
                 </div>
                 {backButton}

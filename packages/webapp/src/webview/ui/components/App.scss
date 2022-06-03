@@ -17,12 +17,12 @@ h1 {
         top: 0; /* Position the navbar at the top of the page */
         width: 100%;
         z-index: 10;
-        background-color: var(--vscode-editor-background);
+        // background-color: var(--vscode-editor-background);
         &__sub {
             display: flex;
             align-items: center;
-            gap: 1vh;
-            justify-content: space-between;
+            gap: 14%;
+            justify-content: left;
         }
         &__title {
             font-weight: 600;
@@ -80,7 +80,7 @@ h1 {
 .tree-search-field {
     margin: 2em;
     width: 33%;
-    min-width: 200px;
+    min-width: 350px;
 }
 
 .tree-search-icon {
