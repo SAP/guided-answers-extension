@@ -6,5 +6,5 @@ export interface AppState {
     guidedAnswerTrees: GuidedAnswerTree[];
     activeGuidedAnswerNode: GuidedAnswerNode[];
     activeGuidedAnswer?: GuidedAnswerTree;
-    initialState: boolean;
+    searchResultCount: number;
 }

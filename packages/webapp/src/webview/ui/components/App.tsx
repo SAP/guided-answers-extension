@@ -25,8 +25,10 @@ export function App(): ReactElement {
     if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
     } else if (appState.guidedAnswerTrees) {
-        content = (
-            <>
+        content =
+            appState.searchResultCount === 0 ? (
+                <NoAnswersFound />
+            ) : (
                 <ul className="striped-list">
                     {appState.guidedAnswerTrees.map((tree, index) => {
                         return (
@@ -48,13 +50,7 @@ export function App(): ReactElement {
                         );
                     })}
                 </ul>
-                {appState.guidedAnswerTrees.length === 0 && appState.query !== '' && appState.initialState === false ? (
-                    <NoAnswersFound />
-                ) : (
-                    ''
-                )}
-            </>
-        );
+            );
     }
     const backButton =
         appState.activeGuidedAnswerNode.length > 0 ? (

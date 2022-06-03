@@ -19,7 +19,7 @@ export function getInitialState(): AppState {
         query: '',
         guidedAnswerTrees: [],
         activeGuidedAnswerNode: [],
-        initialState: true
+        searchResultCount: -1
     };
 }
 
@@ -38,7 +38,7 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
     switch (action.type) {
         case UPDATE_GUIDED_ANSWER_TREES: {
             newState.guidedAnswerTrees = action.payload;
-            newState.initialState = false;
+            newState.searchResultCount = newState.guidedAnswerTrees.length;
             delete newState.activeGuidedAnswer;
             break;
         }
