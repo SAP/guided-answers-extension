@@ -3,6 +3,10 @@ import { actions } from '../../../../state';
 import { VscHome, VscRefresh, VscArrowLeft } from 'react-icons/vsc';
 import i18next from 'i18next';
 
+/**
+ *
+ * @returns A button component navigating to all answers.
+ */
 export function AllAnswersButton() {
     return (
         <div
@@ -16,6 +20,10 @@ export function AllAnswersButton() {
     );
 }
 
+/**
+ *
+ * @returns A button component for going back one step.
+ */
 export function BackButton() {
     return (
         <div
@@ -29,6 +37,10 @@ export function BackButton() {
     );
 }
 
+/**
+ *
+ * @returns A button component for going back to the first step.
+ */
 export function RestartButton() {
     return (
         <div

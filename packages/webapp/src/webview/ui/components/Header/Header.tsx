@@ -9,9 +9,9 @@ import './Header.scss';
 /**
  * Renders and returns the header section.
  *
- * @param props
- * @param props.showNavButons
- * @param props.showLogo
+ * @param props Props for Header component
+ * @param props.showNavButons Show/Hide navigation buttons
+ * @param props.showLogo Show/Hide SAP logo
  * @returns - react element for header section
  */
 export function Header(props: { showNavButons: boolean; showLogo: boolean }): ReactElement {
