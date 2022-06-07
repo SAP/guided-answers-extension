@@ -5,6 +5,10 @@ const commands = {
     registerCommand: (id, handler) => handler
 };
 
+const extensions = {
+    getExtension: jest.fn()
+};
+
 const ViewColumn = {
     Active: -1,
     Beside: -2,
@@ -47,6 +51,7 @@ const workspace = {
 
 const vscode = {
     commands,
+    extensions,
     Uri: URI.URI,
     ViewColumn,
     window,
