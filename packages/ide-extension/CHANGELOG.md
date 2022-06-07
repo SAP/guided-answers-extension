@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.1.0
+
+### Minor Changes
+
+-   617f359: Added new UI for GA extension
+
 ## 0.0.5
 
 ### Patch Changes
