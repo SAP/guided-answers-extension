@@ -24,12 +24,6 @@ h2 {
         width: 100%;
         z-index: 10;
         background-color: var(--vscode-editor-background);
-        &__sub {
-            // display: flex;
-            // align-items: center;
-            // gap: 14%;
-            // justify-content: left;
-        }
         &__title {
             font-weight: 600;
             margin: 0px;
@@ -68,7 +62,6 @@ h2 {
         text-align: left;
         display: flex;
         border: none;
-        // background-color: var(--vscode-sideBar-background);
         &:hover {
             background-color: var(--vscode-list-hoverBackground);
         }
