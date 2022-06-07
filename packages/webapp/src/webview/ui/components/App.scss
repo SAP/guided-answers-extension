@@ -8,6 +8,11 @@ html {
 h1 {
     font-weight: 300;
     color: var(--vscode-foreground);
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 13px;
 }
 
 .guided-answer {
@@ -17,11 +22,12 @@ h1 {
         top: 0; /* Position the navbar at the top of the page */
         width: 100%;
         z-index: 10;
+        background-color: var(--vscode-editor-background);
         &__sub {
-            display: flex;
-            align-items: center;
-            gap: 14%;
-            justify-content: left;
+            // display: flex;
+            // align-items: center;
+            // gap: 14%;
+            // justify-content: left;
         }
         &__title {
             font-weight: 600;
@@ -40,7 +46,10 @@ h1 {
             margin-left: 20px;
         }
         &__searchField {
-            margin-right: 17px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-top: -70px;
         }
     }
     &__container {
@@ -79,7 +88,7 @@ h1 {
 .tree-search-field {
     margin: 2em;
     width: 33%;
-    min-width: 350px;
+    min-width: 250px;
 }
 
 .tree-search-icon {
