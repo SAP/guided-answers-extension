@@ -29,37 +29,27 @@ export function Header(props: { showNavButons: boolean; showLogo: boolean }): Re
             </div>
         </>
     );
-    const backButton =
-        appState.activeGuidedAnswerNode.length > 1 ? (
-            <>
-                <div
-                    className="guided-answer__header__navButtons"
-                    onClick={(): void => {
-                        actions.goToPreviousPage();
-                    }}>
-                    <VscArrowLeft className="guided-answer__header__navButtons__content" />
-                    <span className="guided-answer__header__navButtons__content">Step back</span>
-                </div>
-            </>
-        ) : (
-            <></>
-        );
+    const backButton = (
+        <div
+            className="guided-answer__header__navButtons"
+            onClick={(): void => {
+                actions.goToPreviousPage();
+            }}>
+            <VscArrowLeft className="guided-answer__header__navButtons__content" />
+            <span className="guided-answer__header__navButtons__content">Step back</span>
+        </div>
+    );
 
-    const restartButton =
-        appState.activeGuidedAnswerNode.length > 1 ? (
-            <>
-                <div
-                    className="guided-answer__header__navButtons"
-                    onClick={(): void => {
-                        actions.restartAnswer();
-                    }}>
-                    <VscRefresh className="guided-answer__header__navButtons__content" />
-                    <span className="guided-answer__header__navButtons__content">Restart</span>
-                </div>
-            </>
-        ) : (
-            <></>
-        );
+    const restartButton = (
+        <div
+            className="guided-answer__header__navButtons"
+            onClick={(): void => {
+                actions.restartAnswer();
+            }}>
+            <VscRefresh className="guided-answer__header__navButtons__content" />
+            <span className="guided-answer__header__navButtons__content">Restart</span>
+        </div>
+    );
     return (
         <div className="guided-answer__header">
             {props.showLogo === true ? (
@@ -78,10 +68,12 @@ export function Header(props: { showNavButons: boolean; showLogo: boolean }): Re
             {props.showNavButons === true ? (
                 <>
                     <div className="guided-answer__header__allAnswersButton">{allAnswersButton}</div>
-                    <div className="guided-answer__header__back-restart-buttons">
-                        {backButton}
-                        {restartButton}
-                    </div>
+                    {appState.activeGuidedAnswerNode.length > 1 && (
+                        <div className="guided-answer__header__back-restart-buttons">
+                            {backButton}
+                            {restartButton}
+                        </div>
+                    )}
                 </>
             ) : (
                 <></>
