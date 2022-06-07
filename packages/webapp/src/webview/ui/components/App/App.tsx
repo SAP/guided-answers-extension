@@ -1,5 +1,6 @@
 import type { ReactElement } from 'react';
 import React from 'react';
+import i18next from 'i18next';
 import { useSelector } from 'react-redux';
 import { VscSearch } from 'react-icons/vsc';
 import { VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
@@ -28,7 +29,7 @@ export function App(): ReactElement {
                 <VSCodeTextField
                     className="tree-search-field"
                     value={appState.query}
-                    placeholder="Search Guided Answers"
+                    placeholder={i18next.t('SEARCH_GUIDED_ANSWERS')}
                     onInput={(e: any) => {
                         console.log(`Value changed`, e);
                         const newValue = e?.target?.value;

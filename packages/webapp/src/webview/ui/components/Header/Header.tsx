@@ -2,9 +2,9 @@ import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { actions } from '../../../state';
 import { AppState } from '../../../types';
-import { VscHome, VscArrowSmallLeft, VscRefresh, VscArrowLeft } from 'react-icons/vsc';
+import i18next from 'i18next';
+import { VscHome, VscRefresh, VscArrowLeft } from 'react-icons/vsc';
 import Logo from './sap-logo.svg';
-import { VSCodeButton } from '@vscode/webview-ui-toolkit/react';
 import './Header.scss';
 
 /**
@@ -25,7 +25,7 @@ export function Header(props: { showNavButons: boolean; showLogo: boolean }): Re
                     actions.goToAllAnswers();
                 }}>
                 <VscHome className="guided-answer__header__navButtons__content" />{' '}
-                <span className="guided-answer__header__navButtons__content">All answers</span>
+                <span className="guided-answer__header__navButtons__content">{i18next.t('ALL_ANSWERS')}</span>
             </div>
         </>
     );
@@ -36,7 +36,7 @@ export function Header(props: { showNavButons: boolean; showLogo: boolean }): Re
                 actions.goToPreviousPage();
             }}>
             <VscArrowLeft className="guided-answer__header__navButtons__content" />
-            <span className="guided-answer__header__navButtons__content">Step back</span>
+            <span className="guided-answer__header__navButtons__content">{i18next.t('STEP_BACK')}</span>
         </div>
     );
 
@@ -47,7 +47,7 @@ export function Header(props: { showNavButons: boolean; showLogo: boolean }): Re
                 actions.restartAnswer();
             }}>
             <VscRefresh className="guided-answer__header__navButtons__content" />
-            <span className="guided-answer__header__navButtons__content">Restart</span>
+            <span className="guided-answer__header__navButtons__content">{i18next.t('RESTART')}</span>
         </div>
     );
     return (
@@ -57,7 +57,7 @@ export function Header(props: { showNavButons: boolean; showLogo: boolean }): Re
                     <span id="sap-logo">
                         <Logo />
                     </span>
-                    <h1 className="guided-answer__header__title">Guided Answers</h1>
+                    <h1 className="guided-answer__header__title">{i18next.t('GUIDED_ANSWERS')}</h1>
                     <span className="guided-answer__header__subtitle">
                         {appState.activeGuidedAnswer ? ': ' + appState.activeGuidedAnswer.TITLE : ''}
                     </span>
