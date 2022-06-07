@@ -3,6 +3,7 @@ html {
 }
 * {
     font-family: var(--vscode-font-family);
+    webkit-font-smoothing: antialiased;
 }
 
 h1 {
@@ -31,6 +32,7 @@ h2 {
         }
         &__title {
             font-weight: 600;
+            margin: 0px;
         }
         &__subtitle {
             color: var(--vscode-editorCodeLens-foreground, #999);
@@ -43,17 +45,18 @@ h2 {
         &__logoAndTitle {
             display: flex;
             align-items: center;
-            margin-left: 20px;
+            margin-top: 40px;
         }
         &__searchField {
             display: flex;
             align-items: center;
             flex-direction: column;
-            margin-top: -70px;
+            margin-top: -25px;
+            margin-bottom: 40px;
         }
     }
     &__container {
-        margin-top: 74px;
+        margin-top: 111px;
     }
     &__tree {
         width: 100%;
@@ -74,19 +77,20 @@ h2 {
             }
         }
         &__title {
-            color: var(--vscode-foreground);
+            font-size: 14px;
+            color: var(--vscode-settings-headerForeground);
             margin-bottom: 10px;
             margin-top: 0px;
         }
         &__desc {
             color: var(--vscode-foreground);
             height: auto;
+            font-size: 13px;
         }
     }
 }
 
 .tree-search-field {
-    margin: 2em;
     width: 33%;
     min-width: 250px;
 }
@@ -105,7 +109,8 @@ h2 {
 }
 
 .striped-list {
-    padding-left: 20px;
+    padding-left: 0px;
+    margin-top: 0px;
 }
 
 ul.striped-list > li:nth-of-type(odd) {
