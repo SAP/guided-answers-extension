@@ -33,6 +33,8 @@ h2 {
         &__title {
             font-weight: 600;
             margin: 0px;
+            color: var(--vscode-settings-headerForeground);
+            line-height: 29px;
         }
         &__subtitle {
             color: var(--vscode-editorCodeLens-foreground, #999);
