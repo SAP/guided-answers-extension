@@ -53,12 +53,13 @@ h2 {
             display: flex;
             align-items: center;
             flex-direction: column;
-            margin-top: -25px;
+            margin-top: -28px;
             margin-bottom: 40px;
         }
     }
     &__container {
         margin-top: 111px;
+        padding-bottom: 10px;
     }
     &__tree {
         width: 100%;
