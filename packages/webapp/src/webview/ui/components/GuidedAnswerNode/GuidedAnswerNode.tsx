@@ -1,6 +1,6 @@
 import { default as parse, DOMNode, Element, Text } from 'html-react-parser';
 import React, { ReactElement } from 'react';
-import type { GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
+import type { Command, GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 import { useSelector } from 'react-redux';
 import { actions } from '../../../state';
@@ -22,11 +22,12 @@ function replace(domNode: DOMNode): ReactElement | undefined {
         const dataCommandString = domElement?.attribs?.[HTML_ENHANCEMENT_DATA_ATTR_MARKER];
         if (dataCommandString) {
             try {
-                const command = JSON.parse(decodeURIComponent(dataCommandString));
+                const command = JSON.parse(decodeURIComponent(dataCommandString)) as Command;
                 const textContent = domElement?.firstChild?.type === 'text' ? (domElement.firstChild as Text).data : '';
                 if (command) {
                     result = (
                         <span
+                            title={command.description}
                             className="enhancement-link"
                             onClick={(): void => {
                                 actions.executeCommand(command);

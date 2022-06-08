@@ -13,7 +13,7 @@ import {
 } from '@sap/guided-answers-extension-types';
 import { getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
-import { enhancements, handleCommand } from '../enhancement';
+import { getEnhancements, handleCommand } from '../enhancement';
 import { logString } from '../logger/logger';
 
 /**
@@ -34,8 +34,8 @@ export class GuidedAnswersPanel {
         this.initialTree = treeId;
         const config = workspace.getConfiguration('sap.ux.guidedAnswer');
         const apiHost = config.get('apiHost') as string;
+        const enhancements = getEnhancements();
 
-        logString(`Configured enhancements:\n${JSON.stringify(enhancements, null, 2)}`);
         this.guidedAnswerApi = getGuidedAnswerApi({ apiHost, enhancements });
         /**
          * vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421), therefore node_modules from same repo are missing.

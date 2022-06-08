@@ -1,4 +1,16 @@
 {
     "nodeEnhancements": [],
-    "htmlEnhancements": []
+    "htmlEnhancements": [
+        {
+            "text": "Fiori: Archive Project",
+            "command": {
+                "label": "Archive Project",
+                "description": "Run command to archive a Fiori tools project from current workspace",
+                "exec": {
+                    "extensionId": "sapse.sap-ux-application-modeler-extension",
+                    "commandId": "sap.ux.environmentcheck.archiveProject"
+                }
+            }
+        }
+    ]
 }
