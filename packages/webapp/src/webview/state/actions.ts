@@ -3,6 +3,8 @@ export {
     updateActiveNode,
     selectNode,
     goToPreviousPage,
+    goToAllAnswers,
+    restartAnswer,
     executeCommand,
     setActiveTree,
     searchTree,
