@@ -8,8 +8,6 @@ import { Header } from '../Header';
 import { NoAnswersFound } from '../NoAnswersFound';
 import './App.scss';
 
-let timer: NodeJS.Timeout;
-
 /**
  * Start element for Guided Answers Extension app.
  *
@@ -52,6 +50,7 @@ export function App(): ReactElement {
     return (
         <div className="guided-answer">
             <Header
+                showSub={appState.activeGuidedAnswerNode.length === 0}
                 showLogo={appState.activeGuidedAnswerNode.length === 0}
                 showNavButons={appState.activeGuidedAnswerNode.length !== 0}
                 showSearch={appState.activeGuidedAnswerNode.length === 0}
