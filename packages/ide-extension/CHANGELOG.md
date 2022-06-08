@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.3.0
+
+### Minor Changes
+
+-   f9d93ce: Interactive link for `Fiori: Archive Project` to run command
+
 ## 0.2.0
 
 ### Minor Changes

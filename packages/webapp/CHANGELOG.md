@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.2.1
+
+### Patch Changes
+
+-   f9d93ce: Tooltip for links added through enhancement
+
 ## 0.2.0
 
 ### Minor Changes
