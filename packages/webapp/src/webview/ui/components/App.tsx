@@ -72,10 +72,10 @@ export function App(): ReactElement {
                             <Logo />
                         </span>
                         <h1 className="guided-answer__header__title">Guided Answers</h1>
+                        <span className="guided-answer__header__subtitle">
+                            {appState.activeGuidedAnswer ? ': ' + appState.activeGuidedAnswer.TITLE : ''}
+                        </span>
                     </div>
-                    <span className="guided-answer__header__subtitle">
-                        {appState.activeGuidedAnswer ? ': ' + appState.activeGuidedAnswer.TITLE : ''}
-                    </span>
                     <div className="guided-answer__header__searchField">
                         <VSCodeTextField
                             className="tree-search-field"
