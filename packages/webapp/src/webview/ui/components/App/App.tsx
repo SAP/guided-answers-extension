@@ -20,7 +20,7 @@ export function App(): ReactElement {
     if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
     } else if (appState.guidedAnswerTrees) {
-        content = content =
+        content =
             appState.searchResultCount === 0 ? (
                 <NoAnswersFound />
             ) : (

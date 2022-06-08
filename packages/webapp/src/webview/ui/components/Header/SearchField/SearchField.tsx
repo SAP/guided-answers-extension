@@ -18,7 +18,6 @@ export function SearchField() {
                 value={appState.query}
                 placeholder="Search Guided Answers"
                 onInput={(e: any) => {
-                    console.log(`Value changed`, e);
                     const newValue = e?.target?.value;
                     if (newValue !== undefined) {
                         clearTimeout(timer);
