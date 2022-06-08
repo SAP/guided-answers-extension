@@ -19,13 +19,14 @@ function dispatchEnhancements<T extends HTMLEnhancement | NodeEnhancement>(
     const inapplicable: T[] = [];
 
     for (const enhancement of enhancements) {
-        if (
-            isVSCodeCommand(enhancement.command.exec) &&
-            !!extensions.getExtension(enhancement.command.exec.extensionId)
-        ) {
-            applicable.push(enhancement);
+        if (isVSCodeCommand(enhancement.command.exec)) {
+            if (!!extensions.getExtension(enhancement.command.exec.extensionId)) {
+                applicable.push(enhancement);
+            } else {
+                inapplicable.push(enhancement);
+            }
         } else {
-            inapplicable.push(enhancement);
+            applicable.push(enhancement);
         }
     }
     return { applicable, inapplicable };
