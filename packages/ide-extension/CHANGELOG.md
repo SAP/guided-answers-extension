@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.2.0
+
+### Minor Changes
+
+-   bccf83e: Changes in Header component
+
 ## 0.1.0
 
 ### Minor Changes

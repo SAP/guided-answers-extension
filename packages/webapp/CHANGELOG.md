@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.2.0
+
+### Minor Changes
+
+-   bccf83e: Changes in Header component
+
 ## 0.1.0
 
 ### Minor Changes
