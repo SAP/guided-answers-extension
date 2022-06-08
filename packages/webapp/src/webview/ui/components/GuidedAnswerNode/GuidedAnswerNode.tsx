@@ -3,10 +3,10 @@ import React, { ReactElement } from 'react';
 import type { GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 import { useSelector } from 'react-redux';
-import { actions } from '../../state';
-import { AppState } from '../../types';
+import { actions } from '../../../state';
+import { AppState } from '../../../types';
 import './GuidedAnswerNode.scss';
-import { GuidedAnswerNavPath } from './GuidedAnswerNavPath';
+import { GuidedAnswerNavPath } from '../GuidedAnswerNavPath';
 
 /**
  * Replacer function for html-react-parser's replace function. If an element was marked, replace it with  link <a>
@@ -94,6 +94,7 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     const middle = (
         <div id="middle" className="column">
             <h1>{activeNode.TITLE}</h1>
+            <hr />
             {enhancedBody ? enhancedBody : <div dangerouslySetInnerHTML={{ __html: activeNode.BODY }}></div>}
             <p className="guided-answer__node__question">{activeNode.QUESTION}</p>
             <div className="guided-answer__node">

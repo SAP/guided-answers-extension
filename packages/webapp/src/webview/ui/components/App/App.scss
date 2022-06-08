@@ -1,0 +1,82 @@
+html {
+    height: 100%;
+}
+* {
+    font-family: var(--vscode-font-family);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+    color: var(--vscode-settings-headerForeground);
+    font-weight: 700;
+    font-size: 24px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.guided-answer {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    &__container {
+        width: 100%;
+    }
+    &__tree {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+        text-align: left;
+        display: flex;
+        border: none;
+        &:hover {
+            background-color: var(--vscode-list-hoverBackground);
+        }
+
+        &__ul {
+            padding: 15px;
+            &h3 {
+                margin-bottom: 10px;
+            }
+        }
+        &__title {
+            font-size: 14px;
+            color: var(--vscode-settings-headerForeground);
+            margin-bottom: 10px;
+            margin-top: 0px;
+        }
+        &__desc {
+            color: var(--vscode-foreground);
+            height: auto;
+            font-size: 13px;
+        }
+    }
+}
+
+.tree-search-field {
+    width: 50%;
+    min-width: 250px;
+}
+
+.tree-search-icon {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.tree-item {
+    margin: 0;
+}
+
+.striped-list {
+    padding-left: 0;
+    margin-top: 45px;
+}
+
+ul.striped-list > li:nth-of-type(odd) {
+    background-color: var(--vscode-breadcrumbPicker-background);
+    padding-left: 0;
+}
+
+li {
+    background-color: var(--vscode-editor-background);
+    list-style-type: none;
+}
