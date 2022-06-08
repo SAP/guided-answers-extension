@@ -1,18 +1,19 @@
 .guided-answer {
     &__header {
         display: flex;
-        overflow: hidden;
-        position: fixed; /* Set the navbar to fixed position */
-        top: 0; /* Position the navbar at the top of the page */
         width: 100%;
         z-index: 10;
         background-color: var(--vscode-editor-background);
         &__sub {
             display: flex;
             align-items: center;
+            width: 100%;
         }
         &__title {
             font-weight: 600;
+            margin: 0;
+            color: var(--vscode-settings-headerForeground);
+            line-height: 29px;
         }
         &__subtitle {
             color: var(--vscode-editorCodeLens-foreground, #999);
@@ -36,9 +37,18 @@
             width: 600px;
             justify-content: space-between;
         }
+        &__logoAndTitle {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+            width: 25%;
+        }
+        &__searchField {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 40px;
+            width: 75%;
+        }
     }
-}
-
-#sap-logo {
-    width: 100px;
 }
