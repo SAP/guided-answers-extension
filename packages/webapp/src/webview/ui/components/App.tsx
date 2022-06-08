@@ -73,6 +73,9 @@ export function App(): ReactElement {
                         </span>
                         <h1 className="guided-answer__header__title">Guided Answers</h1>
                     </div>
+                    <span className="guided-answer__header__subtitle">
+                        {appState.activeGuidedAnswer ? ': ' + appState.activeGuidedAnswer.TITLE : ''}
+                    </span>
                     <div className="guided-answer__header__searchField">
                         <VSCodeTextField
                             className="tree-search-field"
