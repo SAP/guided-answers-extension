@@ -11,14 +11,14 @@ import { logString } from '../logger/logger';
 export function handleCommand(command: Command): void {
     if (isVSCodeCommand(command.exec)) {
         logString(
-            `Execting VSCode command '${
+            `Executing VSCode command '${
                 command.exec.commandId
             }'. Full command info including arguments:\n${JSON.stringify(command, null, 2)} `
         );
         commands.executeCommand(command.exec.commandId, command.exec.argument);
     }
     if (isTerminalCommand(command.exec)) {
-        const terminal = window.createTerminal(`Guided Answers Terminal`);
+        const terminal = window.createTerminal(`Guided Answers extension by SAP`);
         if (terminal) {
             const commandString = command.exec.arguments.join(' ');
             terminal.show();
