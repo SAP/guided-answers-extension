@@ -5,4 +5,5 @@ export interface AppState {
     guidedAnswerTrees: GuidedAnswerTree[];
     activeGuidedAnswerNode: GuidedAnswerNode[];
     activeGuidedAnswer?: GuidedAnswerTree;
+    searchResultCount: number;
 }

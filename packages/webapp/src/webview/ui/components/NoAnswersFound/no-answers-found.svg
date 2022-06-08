@@ -1,0 +1,7 @@
+<svg width="50" height="49" viewBox="0 0 50 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20.626 40C31.6717 40 40.626 31.0457 40.626 20C40.626 8.9543 31.6717 0 20.626 0C9.58028 0 0.625977 8.9543 0.625977 20C0.625977 31.0457 9.58028 40 20.626 40ZM20.626 37C30.0148 37 37.626 29.3888 37.626 20C37.626 10.6112 30.0148 3 20.626 3C11.2371 3 3.62598 10.6112 3.62598 20C3.62598 29.3888 11.2371 37 20.626 37Z" fill=var(--vscode-foreground)/>
+<rect x="33.626" y="35.1213" width="3" height="19.2712" transform="rotate(-45 33.626 35.1213)" fill=var(--vscode-foreground)/>
+<rect x="15.626" y="13" width="2" height="7" fill=var(--vscode-focusBorder)/>
+<rect x="23.626" y="13" width="2" height="7" fill=var(--vscode-focusBorder)/>
+<path d="M13.2075 28C14.3943 25.0682 17.2686 23 20.626 23C23.9834 23 26.8577 25.0682 28.0445 28H25.8233C24.7859 26.2066 22.8468 25 20.626 25C18.4052 25 16.4661 26.2066 15.4287 28H13.2075Z" fill=var(--vscode-focusBorder)/>
+</svg>

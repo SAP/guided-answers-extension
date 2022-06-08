@@ -1,13 +1,11 @@
 import type { ReactElement } from 'react';
 import React from 'react';
-import i18next from 'i18next';
 import { useSelector } from 'react-redux';
-import { VscSearch } from 'react-icons/vsc';
-import { VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
 import { AppState } from '../../../types';
 import { actions } from '../../../state';
 import { GuidedAnswerNode } from '../GuidedAnswerNode';
 import { Header } from '../Header';
+import { NoAnswersFound } from '../NoAnswersFound';
 import './App.scss';
 
 let timer: NodeJS.Timeout;
@@ -24,54 +22,39 @@ export function App(): ReactElement {
     if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
     } else if (appState.guidedAnswerTrees) {
-        content = (
-            <>
-                <VSCodeTextField
-                    className="tree-search-field"
-                    value={appState.query}
-                    placeholder={i18next.t('SEARCH_GUIDED_ANSWERS')}
-                    onInput={(e: any) => {
-                        console.log(`Value changed`, e);
-                        const newValue = e?.target?.value;
-                        if (newValue !== undefined) {
-                            clearTimeout(timer);
-                            actions.setQueryValue(newValue);
-                            timer = setTimeout(() => {
-                                actions.searchTree(newValue);
-                            }, 400);
-                        }
-                    }}>
-                    <span slot="end" className="tree-search-icon">
-                        <VscSearch />
-                    </span>
-                </VSCodeTextField>
-                {appState.guidedAnswerTrees.map((tree, index) => {
-                    return (
-                        <div key={`tree-item-${index}`} className="tree-item">
-                            <div
-                                className="guided-answer__tree"
-                                onClick={(): void => {
-                                    actions.setActiveTree(tree);
-                                    actions.selectNode(tree.FIRST_NODE_ID);
-                                }}>
-                                <ul className="guided-answer__tree__ul">
-                                    <h3 className="guided-answer__tree__title">{tree.TITLE}</h3>
-                                    {tree.DESCRIPTION && (
-                                        <span className="guided-answer__tree__desc">{tree.DESCRIPTION}</span>
-                                    )}
-                                </ul>
-                            </div>
-                        </div>
-                    );
-                })}
-            </>
-        );
+        content = content =
+            appState.searchResultCount === 0 ? (
+                <NoAnswersFound />
+            ) : (
+                <ul className="striped-list">
+                    {appState.guidedAnswerTrees.map((tree, index) => {
+                        return (
+                            <li key={`tree-item-${index}`} className="tree-item">
+                                <div
+                                    className="guided-answer__tree"
+                                    onClick={(): void => {
+                                        actions.setActiveTree(tree);
+                                        actions.selectNode(tree.FIRST_NODE_ID);
+                                    }}>
+                                    <ul className="guided-answer__tree__ul">
+                                        <h3 className="guided-answer__tree__title">{tree.TITLE}</h3>
+                                        {tree.DESCRIPTION && (
+                                            <span className="guided-answer__tree__desc">{tree.DESCRIPTION}</span>
+                                        )}
+                                    </ul>
+                                </div>
+                            </li>
+                        );
+                    })}
+                </ul>
+            );
     }
     return (
         <div className="guided-answer">
             <Header
                 showLogo={appState.activeGuidedAnswerNode.length === 0}
                 showNavButons={appState.activeGuidedAnswerNode.length !== 0}
+                showSearch={appState.activeGuidedAnswerNode.length === 0}
             />
             <main className="guided-answer__container">{content}</main>
         </div>
