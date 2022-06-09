@@ -1,3 +1,8 @@
+[![Build status](https://github.com/SAP/guided-answers-extension/actions/workflows/pipeline.yml/badge.svg?branch=main)](https://github.com/SAP/guided-answers-extension/actions/workflows/pipeline.yml?query=branch%3Amain)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=SAP_guided-answers-extension&metric=bugs)](https://sonarcloud.io/summary/new_code?id=SAP_guided-answers-extension)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=SAP_guided-answers-extension&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=SAP_guided-answers-extension)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=SAP_guided-answers-extension&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=SAP_guided-answers-extension)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=SAP_guided-answers-extension&metric=coverage)](https://sonarcloud.io/summary/new_code?id=SAP_guided-answers-extension)
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP/guided-answers-extension)](https://api.reuse.software/info/github.com/SAP/guided-answers-extension)
 
 
