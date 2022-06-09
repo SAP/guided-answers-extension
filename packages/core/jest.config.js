@@ -5,5 +5,15 @@ module.exports = {
     collectCoverage: true,
     collectCoverageFrom: ['src/**/*.ts'],
     testPathIgnorePatterns: ['<rootDir>/dist'],
-    verbose: true
+    verbose: true,
+    reporters: [
+        'default',
+        [
+            'jest-sonar',
+            {
+                reportedFilePath: 'relative',
+                relativeRootDir: '<rootDir>/../../../'
+            }
+        ]
+    ]
 };
