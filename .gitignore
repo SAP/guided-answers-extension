@@ -167,3 +167,6 @@ dist
 
 # Output of 'vsce'
 *.vsix
+
+# Jest report coverage
+**/test-report.xml
