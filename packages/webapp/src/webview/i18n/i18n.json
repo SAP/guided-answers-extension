@@ -4,5 +4,7 @@
     "ALL_ANSWERS": "All answers",
     "STEP_BACK": "Step back",
     "RESTART": "Restart",
-    "GUIDED_ANSWERS": "Guided Answers"
+    "GUIDED_ANSWERS": "Guided Answers",
+    "NO_ANSWERS_FOUND": "No answers found",
+    "PLEASE_MODIFY_SEARCH": "Please modfiy search"
 }

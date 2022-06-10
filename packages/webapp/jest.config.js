@@ -1,6 +1,6 @@
 module.exports = {
     name: 'guided-answers-extension-webapp',
-    displayName: 'gguided-answers-extension-webapp',
+    displayName: 'guided-answers-extension-webapp',
     automock: false,
     clearMocks: true,
     collectCoverage: true,
@@ -23,10 +23,12 @@ module.exports = {
     setupFilesAfterEnv: ['./test/test-setup.js'],
     testEnvironment: 'jsdom',
     testMatch: ['**/test/**/*.(test).ts(x)?'],
-    testResultsProcessor: 'jest-sonar-reporter',
     transform: {
-        '^.+\\.test.tsx?$': 'ts-jest',
+        '^.+\\.(ts|tsx)?$': 'ts-jest',
         '.+\\.(css|sass|scss)$': 'jest-css-modules-transform'
+    },
+    moduleNameMapper: {
+        '.+\\.(svg)$': '<rootDir>/test/__mocks__/svgMock.ts'
     },
     transformIgnorePatterns: ['<rootDir>/node_modules/'],
     verbose: false,
