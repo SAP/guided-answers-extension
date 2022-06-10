@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.2.2
+
+### Patch Changes
+
+-   3108cdf: Search bar overlap bug fixed
+
 ## 0.2.1
 
 ### Patch Changes

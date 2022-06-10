@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.3.1
+
+### Patch Changes
+
+-   3108cdf: Search bar overlap bug fixed
+
 ## 0.3.0
 
 ### Minor Changes
