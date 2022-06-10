@@ -41,14 +41,35 @@
             display: flex;
             align-items: center;
             margin-top: 40px;
-            width: 25%;
+            width: 33%;
+            min-width: 250px;
         }
         &__searchField {
             display: flex;
-            align-items: center;
+            align-items: start;
             flex-direction: column;
             margin-top: 40px;
-            width: 75%;
+            width: 66%;
+        }
+    }
+}
+
+@media only screen and (max-width: 625px) {
+    .guided-answer {
+        &__header {
+            &__logoAndTitle {
+                width: 50%;
+            }
+
+            &__sub {
+                align-items: start;
+                flex-direction: column;
+            }
+
+            &__searchField {
+                margin-top: 20px;
+                align-items: start;
+            }
         }
     }
 }
