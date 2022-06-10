@@ -2,6 +2,16 @@
 
 For general development setup see [README.md -> Development Setup](../README.md#development-setup) at root of this repository.
 
+## Code quality
+
+We enforce code style rules using [ESLint](https://eslint.org/). Execute `pnpm lint` to check your code for style issues. You may also find an ESLint integration for your favorite IDE [here](https://eslint.org/docs/user-guide/integrations).
+
+You can fix auto-fixable problems by running:
+```shell
+pnpm lint:fix
+```
+
+In addition to ESLint, we run [SonarCloud](https://sonarcloud.io/project/overview?id=SAP_guided-answers-extension) scans.
 
 ## Create changesets for feature or bug fix branches
 
