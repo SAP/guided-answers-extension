@@ -5,7 +5,6 @@ module.exports = {
     clearMocks: true,
     collectCoverage: true,
     collectCoverageFrom: ['src/**/*.{ts,tsx}'],
-    coverageDirectory: 'reports/test/unit/coverage',
     testPathIgnorePatterns: ['<rootDir>/node_modules/'],
     errorOnDeprecated: true,
     globals: {
@@ -39,5 +38,15 @@ module.exports = {
             lines: 0,
             statements: 0
         }
-    }
+    },
+    reporters: [
+        'default',
+        [
+            'jest-sonar',
+            {
+                reportedFilePath: 'relative',
+                relativeRootDir: '<rootDir>/../../../'
+            }
+        ]
+    ]
 };
