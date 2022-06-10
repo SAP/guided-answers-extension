@@ -111,7 +111,6 @@ importers:
             html-react-parser: 1.4.8
             i18next: 21.6.14
             jest-css-modules-transform: 4.4.2
-            jest-sonar-reporter: 2.0.0
             path: 0.12.7
             postcss: 8.4.12
             react: 16.14.0
@@ -140,7 +139,6 @@ importers:
             html-react-parser: 1.4.8_react@16.14.0
             i18next: 21.6.14
             jest-css-modules-transform: 4.4.2
-            jest-sonar-reporter: 2.0.0
             path: 0.12.7
             postcss: 8.4.12
             react: 16.14.0
@@ -6203,16 +6201,6 @@ packages:
             - supports-color
         dev: true
 
-    /jest-sonar-reporter/2.0.0:
-        resolution:
-            {
-                integrity: sha512-ZervDCgEX5gdUbdtWsjdipLN3bKJwpxbvhkYNXTAYvAckCihobSLr9OT/IuyNIRT1EZMDDwR6DroWtrq+IL64w==
-            }
-        engines: { node: '>=8.0.0' }
-        dependencies:
-            xml: 1.0.1
-        dev: true
-
     /jest-sonar/0.2.12:
         resolution:
             {
@@ -9684,10 +9672,6 @@ packages:
                 integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==
             }
         engines: { node: '>=12' }
-        dev: true
-
-    /xml/1.0.1:
-        resolution: { integrity: sha1-eLpyAgApxbyHuKgaPPzXS0ovweU= }
         dev: true
 
     /xml2js/0.4.23:

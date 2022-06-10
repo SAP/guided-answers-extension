@@ -23,7 +23,6 @@ module.exports = {
     setupFilesAfterEnv: ['./test/test-setup.js'],
     testEnvironment: 'jsdom',
     testMatch: ['**/test/**/*.(test).ts(x)?'],
-    testResultsProcessor: 'jest-sonar-reporter',
     transform: {
         '^.+\\.(ts|tsx)?$': 'ts-jest',
         '.+\\.(css|sass|scss)$': 'jest-css-modules-transform'
