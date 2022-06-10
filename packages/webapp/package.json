@@ -14,12 +14,15 @@
         "format": "prettier --write '**/*.{js,json,ts,tsx,yaml,yml}' --ignore-path ../../.prettierignore",
         "lint": "eslint . --ext .ts,.tsx",
         "watch": "node esbuild.js --watch",
-        "test": ""
+        "test": "jest --maxWorkers=2 --silent"
     },
     "devDependencies": {
+        "enzyme": "3.11.0",
+        "enzyme-adapter-react-16": "1.15.6",
         "@reduxjs/toolkit": "1.6.1",
         "@sap/guided-answers-extension-types": "workspace:*",
-        "@testing-library/dom": "^8.1.0",
+        "@types/enzyme": "3.10.12",
+        "@types/enzyme-adapter-react-16": "1.0.6",
         "@types/react": "17.0.43",
         "@types/react-dom": "17.0.14",
         "@types/react-redux": "7.1.23",
@@ -31,6 +34,7 @@
         "esbuild-plugin-svgr": "1.0.1",
         "esbuild-sass-plugin": "2.2.4",
         "html-react-parser": "1.4.8",
+        "jest-css-modules-transform": "4.4.2",
         "i18next": "21.6.14",
         "path": "0.12.7",
         "postcss": "8.4.12",
