@@ -11,7 +11,7 @@ You can fix auto-fixable problems by running:
 pnpm lint:fix
 ```
 
-In addition to ESLint, we run [SonarCloud](https://sonarcloud.io/project/overview?id=SAP_guided-answers-extension) scans.
+In addition to ESLint, we run [SonarCloud](https://sonarcloud.io/project/overview?id=SAP_guided-answers-extension) scans to check code quality and code security.
 
 ## Create changesets for feature or bug fix branches
 
