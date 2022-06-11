@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.2.3
+
+### Patch Changes
+
+-   0d634d1: Fix duplicate CSS property
+
 ## 0.2.2
 
 ### Patch Changes
