@@ -19,7 +19,7 @@ export function GuidedAnswerNavPath(): ReactElement {
         return (
             <nav className="container">
                 {nodes.map((node, i) => {
-                    let markerIcon: ReactElement | string = 'null';
+                    let markerIcon: ReactElement | string;
                     if (node.EDGES.length === 0) {
                         markerIcon = '▷';
                     } else {
