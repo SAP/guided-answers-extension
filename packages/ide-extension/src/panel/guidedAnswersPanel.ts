@@ -1,4 +1,3 @@
-// import { dirname } from 'path';
 import type { WebviewPanel } from 'vscode';
 import { Uri, ViewColumn, window, workspace } from 'vscode';
 import type { GuidedAnswerActions, GuidedAnswerAPI } from '@sap/guided-answers-extension-types';
