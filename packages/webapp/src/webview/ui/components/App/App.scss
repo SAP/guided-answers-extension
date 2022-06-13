@@ -20,6 +20,8 @@ h1 {
     flex-direction: column;
     &__container {
         width: 100%;
+        position: absolute;
+        top: 80px;
     }
     &__tree {
         width: 100%;
@@ -68,7 +70,8 @@ h1 {
 
 .striped-list {
     padding-left: 0;
-    margin-top: 40px;
+    padding-right: 40px;
+    width: 100%;
 }
 
 ul.striped-list > li:nth-of-type(odd) {

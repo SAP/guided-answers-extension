@@ -1,13 +1,16 @@
 .guided-answer {
     &__header {
         display: flex;
+        position: fixed;
+        top: 0;
+        z-index: 20;
         width: 100%;
-        z-index: 10;
         background-color: var(--vscode-editor-background);
         &__sub {
             display: flex;
             align-items: center;
             width: 100%;
+            height: 100px;
         }
         &__title {
             font-weight: 600;
@@ -30,17 +33,18 @@
             }
         }
         &__allAnswersButton {
-            width: 380px;
+            width: 33%;
         }
         &__back-restart-buttons {
             display: flex;
-            width: 600px;
+            width: 66%;
             justify-content: space-between;
+            max-width: 620px;
+            padding-right: 20px;
         }
         &__logoAndTitle {
             display: flex;
             align-items: center;
-            margin-top: 40px;
             width: 33%;
             min-width: 250px;
         }
@@ -48,7 +52,6 @@
             display: flex;
             align-items: start;
             flex-direction: column;
-            margin-top: 40px;
             width: 66%;
         }
     }
