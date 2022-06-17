@@ -4,6 +4,9 @@
         width: 100%;
         z-index: 10;
         background-color: var(--vscode-editor-background);
+        position: sticky;
+        top: 0;
+        padding-bottom: 10px;
         &__sub {
             display: flex;
             align-items: center;
@@ -23,24 +26,27 @@
             height: 25px;
             margin-top: 30px;
             color: var(--vscode-textLink-foreground);
+            text-align: start;
+            cursor: pointer;
             &__content {
                 vertical-align: middle;
                 display: inline-block;
-                cursor: pointer;
             }
         }
         &__allAnswersButton {
-            width: 380px;
+            width: 25%;
+            margin-right: 5%;
         }
         &__back-restart-buttons {
             display: flex;
-            width: 600px;
             justify-content: space-between;
+            width: 75%;
+            max-width: 620px;
         }
         &__logoAndTitle {
             display: flex;
             align-items: center;
-            margin-top: 40px;
+            margin-top: 30px;
             width: 33%;
             min-width: 250px;
         }
@@ -48,7 +54,7 @@
             display: flex;
             align-items: start;
             flex-direction: column;
-            margin-top: 40px;
+            margin-top: 30px;
             width: 66%;
         }
     }
@@ -69,6 +75,18 @@
             &__searchField {
                 margin-top: 20px;
                 align-items: start;
+            }
+            &__navButtons {
+                text-align: center;
+            }
+            &__navButtons__content__text {
+                display: none;
+            }
+            &__back-restart-buttons {
+                justify-content: space-evenly;
+            }
+            &__allAnswersButton {
+                margin-right: 0;
             }
         }
     }

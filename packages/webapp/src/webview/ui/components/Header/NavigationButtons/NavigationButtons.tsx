@@ -15,7 +15,7 @@ export function AllAnswersButton() {
                 actions.goToAllAnswers();
             }}>
             <VscHome className="guided-answer__header__navButtons__content" />{' '}
-            <span className="guided-answer__header__navButtons__content">{i18next.t('ALL_ANSWERS')}</span>
+            <span className="guided-answer__header__navButtons__content__text">{i18next.t('ALL_ANSWERS')}</span>
         </div>
     );
 }

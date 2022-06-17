@@ -16,13 +16,8 @@ section.answer__node__body {
 
 #left {
     height: 100%;
-    width: 400px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
-    padding-top: 45px;
+    width: 25%;
+    margin-right: 5%;
 }
 
 .main-container {
@@ -31,15 +26,9 @@ section.answer__node__body {
 
 #middle {
     display: flex;
-    grid-area: content;
-    overflow-x: hidden;
-    position: relative;
-    left: 0;
-    transition: left 0.5s;
-    flex-grow: 1;
-    margin-left: 380px;
-    padding-right: 20px;
     max-width: 620px;
+    width: 75%;
+    align-content: flex-start;
 }
 
 #hr {
@@ -72,6 +61,7 @@ section.answer__node__body {
 .guided-answer__node {
     &__body {
         color: var(--vscode-foreground);
+        display: flex;
     }
     &__question {
         color: var(--vscode-settings-headerForeground);

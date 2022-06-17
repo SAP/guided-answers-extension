@@ -8,22 +8,20 @@ h1 span {
 }
 
 .container {
-    width: 100%;
-    margin-top: 25px;
-    position: relative;
+    width: 25%;
+    margin-top: 10px;
+    position: fixed;
     overflow: hidden;
-    padding-left: 20px;
-    padding-right: 40px;
 }
 
 .vertical-line {
     display: block;
-    left: 50%;
+    left: 45%;
     width: 1px;
     position: absolute;
-    top: 38px;
+    top: 20px;
     margin-left: -1px;
-    height: 50px;
+    height: 80%;
     background: #666;
     z-index: -1;
 }
@@ -94,11 +92,17 @@ h1 span {
     display: none;
 }
 
-@media only screen and (max-width: 25%) {
+@media only screen and (max-width: 625px) {
     .timeline-content-title-large {
         display: none;
     }
     .timeline-content-title-small {
         display: block;
+    }
+    .timeline-content {
+        align-items: center;
+    }
+    .vertical-line {
+        left: 44%;
     }
 }

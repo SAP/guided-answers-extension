@@ -64,6 +64,8 @@ h1 {
 
 .tree-item {
     margin: 0;
+    background-color: var(--vscode-editor-background);
+    list-style-type: none;
 }
 
 .striped-list {
@@ -74,9 +76,4 @@ h1 {
 ul.striped-list > li:nth-of-type(odd) {
     background-color: var(--vscode-breadcrumbPicker-background);
     padding-left: 0;
-}
-
-li {
-    background-color: var(--vscode-editor-background);
-    list-style-type: none;
 }
