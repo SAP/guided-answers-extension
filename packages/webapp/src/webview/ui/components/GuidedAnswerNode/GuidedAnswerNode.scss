@@ -42,9 +42,9 @@ section.answer__node__body {
     max-width: 620px;
 }
 
-hr {
+#hr {
     width: 100%;
-    border: 1px solid var(--vscode-editorWidget-border);
+    border-bottom: 1px solid var(--vscode-editorWidget-border);
 }
 
 #middle-with-command {

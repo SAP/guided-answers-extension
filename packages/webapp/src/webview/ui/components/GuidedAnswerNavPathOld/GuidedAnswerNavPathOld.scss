@@ -13,28 +13,30 @@ h1 span {
     position: relative;
     overflow: hidden;
     padding-left: 20px;
-    padding-right: 40px;
+    padding-right: 20px;
 }
 
 .vertical-line {
     display: block;
-    left: 50%;
+    left: 9px;
     width: 1px;
     position: absolute;
-    top: 38px;
+    top: 47px;
     margin-left: -1px;
-    height: 50px;
-    background: #666;
-    z-index: -1;
+    height: 55px;
+    background: lightgray;
+    z-index: 1;
 }
 
 .timeline-block {
     width: 100%;
+    margin: 0px 0px 0px 10px;
     display: flex;
     justify-content: space-between;
     clear: both;
     position: relative;
     float: none;
+    height: 80px;
 }
 
 .marker {
@@ -45,15 +47,9 @@ h1 span {
 
 .timeline-content {
     width: 100%;
-    margin: 0px 10px 10px 0px;
-    border-radius: 3px;
+    margin: 10px 10px 10px 35px;
+    border: 1px solid lightgray;
     color: #666;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    background: #252526;
-    cursor: pointer;
 }
 
 .timeline-content-arrow {
@@ -73,32 +69,9 @@ h1 span {
     z-index: 1;
 }
 
-.timeline-content-bottom-border {
-    border-bottom: 3px solid #007fd4;
-}
-
 .timeline__path {
     display: inline-block;
-    color: #cccccc;
-    padding: 10px;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 18px;
-    font-style: normal;
-}
-
-.timeline-content-title-large {
-    display: block;
-}
-.timeline-content-title-small {
-    display: none;
-}
-
-@media only screen and (max-width: 25%) {
-    .timeline-content-title-large {
-        display: none;
-    }
-    .timeline-content-title-small {
-        display: block;
-    }
+    color: var(--vscode-textLink-foreground);
+    cursor: pointer;
+    padding: 1px 7px 2px 18px;
 }
