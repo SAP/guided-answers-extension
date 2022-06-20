@@ -32,6 +32,8 @@
                 vertical-align: middle;
                 display: inline-block;
             }
+            display: flex;
+            align-items: center;
         }
         &__allAnswersButton {
             width: 25%;
@@ -78,6 +80,7 @@
             }
             &__navButtons {
                 text-align: center;
+                justify-content: center;
             }
             &__navButtons__content__text {
                 display: none;

@@ -16,13 +16,13 @@ h1 span {
 
 .vertical-line {
     display: block;
-    left: 45%;
+    left: 50%;
     width: 1px;
     position: absolute;
     top: 20px;
     margin-left: -1px;
     height: 80%;
-    background: #666;
+    background: var(--vscode-editorBracketMatch-border);
     z-index: -1;
 }
 
@@ -35,49 +35,26 @@ h1 span {
     float: none;
 }
 
-.marker {
-    position: absolute;
-    top: 20px;
-    font-size: 20px;
-}
-
 .timeline-content {
     width: 100%;
     margin: 0px 10px 10px 0px;
     border-radius: 3px;
-    color: #666;
+    color: var(--vscode-terminal-ansiBrightBlack, #666666);
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    background: #252526;
+    background: var(--vscode-editorWidget-background, #252526);
     cursor: pointer;
 }
 
-.timeline-content-arrow {
-    top: 16px;
-    left: -7px;
-    position: relative;
-    width: 0.75rem;
-    height: 0.75rem;
-    background-color: var(--vscode-editor-background);
-    opacity: 1;
-    -moz-opacity: 1;
-    -webkit-opacity: 1;
-    border-bottom: 0.0625rem solid #d1d1d1;
-    border-left: 0.0625rem solid #d1d1d1;
-    transform: translateX(0px) translateY(0px) rotate(45deg);
-    -moz-transform: translateX(0px) translateY(0px) rotate(45deg);
-    z-index: 1;
-}
-
 .timeline-content-bottom-border {
-    border-bottom: 3px solid #007fd4;
+    border-bottom: 3px solid var(--vscode-focusBorder, #007fd4);
 }
 
 .timeline__path {
     display: inline-block;
-    color: #cccccc;
+    color: var(--vscode-menu-foreground, #cccccc);
     padding: 10px;
     font-weight: 400;
     font-size: 13px;
@@ -103,6 +80,6 @@ h1 span {
         align-items: center;
     }
     .vertical-line {
-        left: 44%;
+        left: 46%;
     }
 }
