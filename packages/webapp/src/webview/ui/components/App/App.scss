@@ -76,7 +76,7 @@ ul.striped-list > li:nth-of-type(odd) {
     padding-left: 0;
 }
 
-li {
+li.tree-item {
     background-color: var(--vscode-editor-background);
     list-style-type: none;
 }
