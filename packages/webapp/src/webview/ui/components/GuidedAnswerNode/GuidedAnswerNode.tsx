@@ -7,6 +7,7 @@ import { actions } from '../../../state';
 import { AppState } from '../../../types';
 import './GuidedAnswerNode.scss';
 import { GuidedAnswerNavPath } from '../GuidedAnswerNavPath';
+import { FeedbackInterface } from '../FeedbackInterface';
 
 /**
  * Replacer function for html-react-parser's replace function. If an element was marked, replace it with  link <a>
@@ -99,16 +100,20 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
             {enhancedBody ? enhancedBody : <div dangerouslySetInnerHTML={{ __html: activeNode.BODY }}></div>}
             <p className="guided-answer__node__question">{activeNode.QUESTION}</p>
             <div className="guided-answer__node">
-                {activeNode.EDGES.map((edge, index) => (
-                    <div
-                        key={`edge_button${index}`}
-                        className="guided-answer__node__edge"
-                        onClick={(): void => {
-                            actions.selectNode(edge.TARGET_NODE);
-                        }}>
-                        {edge.LABEL}
-                    </div>
-                ))}
+                {activeNode.EDGES.length > 0 ? (
+                    activeNode.EDGES.map((edge, index) => (
+                        <div
+                            key={`edge_button${index}`}
+                            className="guided-answer__node__edge"
+                            onClick={(): void => {
+                                actions.selectNode(edge.TARGET_NODE);
+                            }}>
+                            {edge.LABEL}
+                        </div>
+                    ))
+                ) : (
+                    <FeedbackInterface />
+                )}
             </div>
         </div>
     );

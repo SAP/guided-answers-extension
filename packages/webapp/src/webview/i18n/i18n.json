@@ -6,5 +6,7 @@
     "RESTART": "Restart",
     "GUIDED_ANSWERS": "Guided Answers",
     "NO_ANSWERS_FOUND": "No answers found",
-    "PLEASE_MODIFY_SEARCH": "Please modfiy search"
+    "PLEASE_MODIFY_SEARCH": "Please modfiy search",
+    "THIS_SOLVED_MY_ISSUE": "This solved my issue",
+    "THIS_DID_NOT_SOLVED_MY_ISSUE": "This did not solve my issue"
 }
