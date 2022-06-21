@@ -3,7 +3,7 @@ import { isVSCodeCommand } from '@sap/guided-answers-extension-types';
 import type { HTMLEnhancement, NodeEnhancement } from '@sap/guided-answers-extension-types';
 import { logString } from '../logger/logger';
 
-import enhancements from './enhancements.json';
+import enhancementsJson from './enhancements.json';
 
 /**
  * Classifies enhancements as applicable and inapplicable. There can be different reasons for a command to be
@@ -20,7 +20,7 @@ function classifyEnhancements<T extends HTMLEnhancement | NodeEnhancement>(
 
     for (const enhancement of enhancements) {
         if (isVSCodeCommand(enhancement.command.exec)) {
-            if (!!extensions.getExtension(enhancement.command.exec.extensionId)) {
+            if (extensions.getExtension(enhancement.command.exec.extensionId)) {
                 applicable.push(enhancement);
             } else {
                 inapplicable.push(enhancement);
@@ -41,8 +41,8 @@ export function getEnhancements(): {
     nodeEnhancements: NodeEnhancement[];
     htmlEnhancements: HTMLEnhancement[];
 } {
-    const htmlEnhancements = classifyEnhancements<HTMLEnhancement>(enhancements.htmlEnhancements);
-    const nodeEnhancements = classifyEnhancements<NodeEnhancement>(enhancements.nodeEnhancements);
+    const htmlEnhancements = classifyEnhancements<HTMLEnhancement>(enhancementsJson.htmlEnhancements);
+    const nodeEnhancements = classifyEnhancements<NodeEnhancement>(enhancementsJson.nodeEnhancements);
 
     if (htmlEnhancements.applicable.length > 0) {
         logString(`Applicable html enhancements:\n${JSON.stringify(htmlEnhancements.applicable, null, 2)}`);
