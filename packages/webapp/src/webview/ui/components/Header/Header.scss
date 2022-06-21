@@ -105,6 +105,7 @@
     .home-icon {
         width: 24px;
         border-radius: 3px;
+        color: var(--vscode-menu-foreground, #cccccc);
     }
     .home-icon:hover {
         background: var(--divider-background, #454545);
