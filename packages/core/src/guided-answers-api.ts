@@ -29,13 +29,12 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
     const nodeEnhancements = options?.enhancements?.nodeEnhancements || [];
     const htmlEnhancements = options?.enhancements?.htmlEnhancements || [];
 
-    const api = {
+    return {
         getNodeById: async (id: GuidedAnswerNodeId): Promise<GuidedAnswerNode> =>
             enhanceNode(await getNodeById(apiHost, id), nodeEnhancements, htmlEnhancements),
         getTreeById: async (id: GuidedAnswerTreeId): Promise<GuidedAnswerTree> => getTreeById(apiHost, id),
         getTrees: async (query?: string): Promise<GuidedAnswerTree[]> => getTrees(apiHost, query)
     };
-    return api;
 }
 
 /**
@@ -96,14 +95,14 @@ async function getTrees(host: string, query?: string): Promise<GuidedAnswerTree[
     const url = `${host}${TREE_PATH}${query ? query : ''}`;
     const response: AxiosResponse<GuidedAnswerTree[]> = await axios.get<GuidedAnswerTree[]>(url);
     const treesRaw = Array.isArray(response.data) ? response.data : [response.data];
+
     // when we get data as search results, TREE_ID and NODE_ID are string. When we get a single tree, both are numbers.
     // generalize to number here
-    const trees = treesRaw.map((treeItem) => {
+    return treesRaw.map((treeItem) => {
         treeItem.TREE_ID = parseInt(treeItem.TREE_ID as unknown as string, 10);
         treeItem.FIRST_NODE_ID = parseInt(treeItem.FIRST_NODE_ID as unknown as string, 10);
         return treeItem;
     });
-    return trees;
 }
 
 /**
