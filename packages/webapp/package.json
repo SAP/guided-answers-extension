@@ -17,7 +17,6 @@
         "test": "jest --maxWorkers=2 --silent"
     },
     "devDependencies": {
-        "@fluentui/react": "8.77.0",
         "@reduxjs/toolkit": "1.6.1",
         "@sap/guided-answers-extension-types": "workspace:*",
         "@types/enzyme": "3.10.12",
@@ -44,9 +43,8 @@
         "react-i18next": "11.10.0",
         "react-icons": "4.3.1",
         "react-redux": "7.2.8",
-        "redux": "4.0.5"
-    },
-    "dependencies": {
+        "redux": "4.0.5",
+        "@fluentui/react": "8.77.0",
         "@fluentui/react-hooks": "8.6.0"
     }
 }

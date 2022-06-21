@@ -8,9 +8,8 @@ import { Dialog, DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
 import { useBoolean } from '@fluentui/react-hooks';
 import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
 
-const appState = useSelector<AppState, AppState>((state) => state);
-
 export const SolvedMessage: React.FunctionComponent = () => {
+    const appState = useSelector<AppState, AppState>((state) => state);
     const [isDraggable, { toggle: toggleIsDraggable }] = useBoolean(false);
 
     const dialogContentProps = {
@@ -30,7 +29,7 @@ export const SolvedMessage: React.FunctionComponent = () => {
 
     return (
         <>
-            <Dialog hidden={true} dialogContentProps={dialogContentProps} modalProps={modalProps}>
+            <Dialog hidden={false} dialogContentProps={dialogContentProps} modalProps={modalProps}>
                 {/* <DialogFooter>
                     <PrimaryButton onClick={actions.goToAllAnswers} text="Home" />
                     <DefaultButton onClick={actions.guideFeedback(null)} text="Close" />

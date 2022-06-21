@@ -16,7 +16,6 @@ import { FeedbackInterface } from '../FeedbackInterface';
  * @param domNode - current DOM node from html-react-parser
  * @returns - undefined if nothing to replace; the new node (<a>) in case of replacement
  */
-const appState = useSelector<AppState, AppState>((state) => state);
 function replace(domNode: DOMNode): ReactElement | undefined {
     let result: ReactElement | undefined;
     if (domNode.type === 'tag') {
