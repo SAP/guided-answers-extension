@@ -6,7 +6,8 @@ import {
     GO_TO_ALL_ANSWERS,
     RESTART_ANSWER,
     SET_ACTIVE_TREE,
-    SET_QUERY_VALUE
+    SET_QUERY_VALUE,
+    GUIDE_FEEDBACK
 } from '@sap/guided-answers-extension-types';
 import type { Reducer } from 'redux';
 import type { AppState } from '../types';
@@ -21,7 +22,8 @@ export function getInitialState(): AppState {
         query: '',
         guidedAnswerTrees: [],
         activeGuidedAnswerNode: [],
-        searchResultCount: -1
+        searchResultCount: -1,
+        guideFeedback: null
     };
 }
 
@@ -77,6 +79,10 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         }
         case SET_QUERY_VALUE: {
             newState.query = action.payload;
+            break;
+        }
+        case GUIDE_FEEDBACK: {
+            newState.guideFeedback = action.payload;
             break;
         }
         default: {

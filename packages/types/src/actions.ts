@@ -13,7 +13,8 @@ import type {
     SetQueryValue,
     UpdateGuidedAnserTrees,
     UpdateActiveNode,
-    WebviewReady
+    WebviewReady,
+    GuideFeedback
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -26,7 +27,8 @@ import {
     SET_QUERY_VALUE,
     UPDATE_GUIDED_ANSWER_TREES,
     UPDATE_ACTIVE_NODE,
-    WEBVIEW_READY
+    WEBVIEW_READY,
+    GUIDE_FEEDBACK
 } from './types';
 
 export const updateGuidedAnserTrees = (payload: GuidedAnswerTree[]): UpdateGuidedAnserTrees => ({
@@ -74,3 +76,8 @@ export const setQueryValue = (payload: string): SetQueryValue => ({
 });
 
 export const webviewReady = (): WebviewReady => ({ type: WEBVIEW_READY });
+
+export const guideFeedback = (payload: boolean | null): GuideFeedback => ({
+    type: GUIDE_FEEDBACK,
+    payload
+});

@@ -17,8 +17,7 @@
         "test": "jest --maxWorkers=2 --silent"
     },
     "devDependencies": {
-        "enzyme": "3.11.0",
-        "enzyme-adapter-react-16": "1.15.6",
+        "@fluentui/react": "8.77.0",
         "@reduxjs/toolkit": "1.6.1",
         "@sap/guided-answers-extension-types": "workspace:*",
         "@types/enzyme": "3.10.12",
@@ -28,14 +27,16 @@
         "@types/react-redux": "7.1.23",
         "@vscode/webview-ui-toolkit": "0.9.3",
         "autoprefixer": "10.4.4",
+        "enzyme": "3.11.0",
+        "enzyme-adapter-react-16": "1.15.6",
         "esbuild": "0.14.39",
         "esbuild-css-modules-plugin": "2.2.5",
         "esbuild-plugin-replace": "1.2.0",
         "esbuild-plugin-svgr": "1.0.1",
         "esbuild-sass-plugin": "2.2.4",
         "html-react-parser": "1.4.8",
-        "jest-css-modules-transform": "4.4.2",
         "i18next": "21.6.14",
+        "jest-css-modules-transform": "4.4.2",
         "path": "0.12.7",
         "postcss": "8.4.12",
         "react": "16.14.0",
@@ -44,5 +45,8 @@
         "react-icons": "4.3.1",
         "react-redux": "7.2.8",
         "redux": "4.0.5"
+    },
+    "dependencies": {
+        "@fluentui/react-hooks": "8.6.0"
     }
 }
