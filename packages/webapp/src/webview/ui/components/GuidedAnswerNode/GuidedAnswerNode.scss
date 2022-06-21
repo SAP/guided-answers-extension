@@ -17,7 +17,7 @@ section.answer__node__body {
 #left {
     height: 100%;
     width: 25%;
-    margin-right: 5%;
+    margin-right: 80px;
 }
 
 .main-container {
@@ -29,11 +29,16 @@ section.answer__node__body {
     max-width: 620px;
     width: 75%;
     align-content: flex-start;
+
+    .content > * {
+        line-height: 18px;
+    }
 }
 
 #hr {
     width: 100%;
     border-bottom: 1px solid var(--vscode-editorWidget-border);
+    padding-bottom: 10px;
 }
 
 #middle-with-command {
@@ -135,4 +140,14 @@ section.answer__node__body {
     color: var(--vscode-textLink-foreground);
     cursor: pointer;
     text-decoration: underline;
+}
+
+@media only screen and (max-width: 625px) {
+    #middle {
+        width: 100%;
+    }
+
+    #left {
+        width: auto;
+    }
 }

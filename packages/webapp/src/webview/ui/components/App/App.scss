@@ -70,7 +70,7 @@ h1 {
 
 .striped-list {
     padding-left: 0;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 ul.striped-list > li:nth-of-type(odd) {
@@ -80,4 +80,8 @@ ul.striped-list > li:nth-of-type(odd) {
 
 .bold-text {
     font-weight: 800;
+}
+
+.text-hover:hover {
+    text-decoration: underline;
 }

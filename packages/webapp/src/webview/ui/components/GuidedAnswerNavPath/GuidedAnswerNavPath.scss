@@ -45,7 +45,12 @@ h1 span {
     align-items: flex-start;
     flex-direction: column;
     background: var(--vscode-editorWidget-background, #252526);
+    border: 1px solid var(--divider-background, #454545);
+}
+
+.timeline-content:hover {
     cursor: pointer;
+    background: var(--divider-background, #454545);
 }
 
 .timeline-content-bottom-border {
@@ -81,5 +86,12 @@ h1 span {
     }
     .vertical-line {
         left: 46%;
+    }
+    .container {
+        width: 40px;
+    }
+    .timeline__path {
+        width: 34px;
+        text-align: center;
     }
 }

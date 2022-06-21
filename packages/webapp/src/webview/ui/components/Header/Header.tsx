@@ -41,12 +41,11 @@ export function Header(props: {
                     <div className="guided-answer__header__allAnswersButton">
                         <AllAnswersButton />
                     </div>
-                    {appState.activeGuidedAnswerNode.length > 1 && (
-                        <div className="guided-answer__header__back-restart-buttons">
-                            <BackButton />
-                            <RestartButton />
-                        </div>
-                    )}
+
+                    <div className="guided-answer__header__back-restart-buttons">
+                        <BackButton />
+                        {appState.activeGuidedAnswerNode.length > 1 && <RestartButton />}
+                    </div>
                 </>
             ) : (
                 <></>
