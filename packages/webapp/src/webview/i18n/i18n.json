@@ -8,5 +8,9 @@
     "NO_ANSWERS_FOUND": "No answers found",
     "PLEASE_MODIFY_SEARCH": "Please modfiy search",
     "THIS_SOLVED_MY_ISSUE": "This solved my issue",
-    "THIS_DID_NOT_SOLVED_MY_ISSUE": "This did not solve my issue"
+    "THIS_DID_NOT_SOLVED_MY_ISSUE": "This did not solve my issue",
+    "THANK_YOU_TEXT": "We are glad to hear that your issue has been resolved and we hope you enjoy using the Guided Answer application.",
+    "THANKS": "Thanks!",
+    "HOME": "Home",
+    "CLOSE": "Close"
 }

@@ -10,13 +10,17 @@ import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
 
 export const SolvedMessage: React.FunctionComponent = () => {
     const appState = useSelector<AppState, AppState>((state) => state);
+    const isHidden = appState.guideFeedback === true ? false : true;
     const [isDraggable, { toggle: toggleIsDraggable }] = useBoolean(false);
+
+    function toggleHidden(): void {
+        actions.guideFeedback(null);
+    }
 
     const dialogContentProps = {
         type: DialogType.normal,
-        title: 'Thanks!',
-        subText:
-            'We are glad to hear that your issue has been resolved and we hope you enjoy using the Guided Answer application.'
+        title: i18next.t('THANKS'),
+        subText: i18next.t('THANK_YOU_TEXT')
     };
 
     const modalPropsStyles = { main: { maxWidth: 450 } };
@@ -29,11 +33,11 @@ export const SolvedMessage: React.FunctionComponent = () => {
 
     return (
         <>
-            <Dialog hidden={false} dialogContentProps={dialogContentProps} modalProps={modalProps}>
-                {/* <DialogFooter>
-                    <PrimaryButton onClick={actions.goToAllAnswers} text="Home" />
-                    <DefaultButton onClick={actions.guideFeedback(null)} text="Close" />
-                </DialogFooter> */}
+            <Dialog hidden={isHidden} dialogContentProps={dialogContentProps} modalProps={modalProps}>
+                <DialogFooter>
+                    <PrimaryButton text={i18next.t('HOME')} onClick={actions.goToAllAnswers} />
+                    <DefaultButton text={i18next.t('CLOSE')} onClick={toggleHidden} />
+                </DialogFooter>
             </Dialog>
         </>
     );
