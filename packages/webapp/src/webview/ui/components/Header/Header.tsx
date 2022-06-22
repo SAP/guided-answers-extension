@@ -24,7 +24,7 @@ export function Header(props: {
 }): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
     return (
-        <div className="guided-answer__header">
+        <div className="guided-answer__header" style={{ paddingBottom: props.showNavButons === true ? '0' : '20px' }}>
             {props.showSub === true ? (
                 <>
                     <div className="guided-answer__header__sub">

@@ -37,6 +37,10 @@
             }
             display: flex;
             align-items: center;
+            svg {
+                width: 16px;
+                height: 16px;
+            }
         }
         &__allAnswersButton {
             width: 25%;
@@ -92,11 +96,11 @@
                 display: none;
             }
             &__back-restart-buttons {
-                justify-content: space-evenly;
+                justify-content: space-between;
                 width: 100%;
             }
             &__allAnswersButton {
-                margin-right: 20px;
+                margin-right: 48px;
                 width: 28px;
                 margin-left: 6px;
             }

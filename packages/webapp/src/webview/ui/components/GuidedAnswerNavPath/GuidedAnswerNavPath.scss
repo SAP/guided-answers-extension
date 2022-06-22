@@ -19,10 +19,10 @@ h1 span {
     left: 50%;
     width: 1px;
     position: absolute;
-    top: 20px;
+    top: 40px;
     margin-left: -1px;
-    height: 80%;
-    background: var(--vscode-editorBracketMatch-border);
+    height: 10px;
+    background: var(--vscode-editorWidget-border);
     z-index: -1;
 }
 
@@ -39,18 +39,18 @@ h1 span {
     width: 100%;
     margin: 0px 10px 10px 0px;
     border-radius: 3px;
-    color: var(--vscode-terminal-ansiBrightBlack, #666666);
+    color: var(--vscode-foreground);
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    background: var(--vscode-editorWidget-background, #252526);
-    border: 1px solid var(--divider-background, #454545);
+    background: var(--vscode-menu-background);
+    border: 1px solid var(--vscode-editorWidget-border);
 }
 
 .timeline-content:hover {
     cursor: pointer;
-    background: var(--divider-background, #454545);
+    background: var(--vscode-list-hoverBackground);
 }
 
 .timeline-content-bottom-border {

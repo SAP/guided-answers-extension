@@ -29,7 +29,7 @@ export function GuidedAnswerNavPath(): ReactElement {
                                 onClick={(): void => {
                                     actions.updateActiveNode(node);
                                 }}>
-                                <div className="timeline__path">
+                                <div className="timeline__path" title={node.TITLE}>
                                     <span className="timeline-content-title-small bold-text">{i + 1}</span>
                                     <span className={`timeline-content-title-large ${i === 0 ? 'bold-text' : ''}`}>
                                         {node.TITLE}
