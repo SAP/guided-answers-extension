@@ -90,7 +90,7 @@ section.answer__node__body {
         margin: 10px 0;
         padding: 10px;
         text-align: center;
-        outline-offset: -1;
+        outline-offset: -1px;
         outline: 1px solid var(--vscode-contrastBorder);
     }
     &__edge:hover {
