@@ -9,4 +9,8 @@ const Adapter = require('enzyme-adapter-react-16');
 
 global.vscode = { postMessage: (e) => {} };
 
+global.window = window;
+
+global.acquireVsCodeApi = () => typeof window['vscode'];
+
 enzyme.configure({ adapter: new Adapter() });
