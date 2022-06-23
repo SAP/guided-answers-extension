@@ -15,15 +15,12 @@ h1 span {
 }
 
 .vertical-line {
-    display: block;
-    left: 50%;
     width: 1px;
-    position: absolute;
-    top: 40px;
-    margin-left: -1px;
+    margin-left: 50%;
     height: 10px;
     background: var(--vscode-editorWidget-border);
     z-index: -1;
+    margin-top: -10px;
 }
 
 .timeline-block {
@@ -33,6 +30,7 @@ h1 span {
     clear: both;
     position: relative;
     float: none;
+    flex-direction: column;
 }
 
 .timeline-content {
