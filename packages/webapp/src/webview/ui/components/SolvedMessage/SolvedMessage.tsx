@@ -4,7 +4,7 @@ import { actions } from '../../../state';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../types';
 import './SolvedMessage.scss';
-import { Dialog, DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
+import { Dialog, DialogType, DialogFooter, IDialogProps } from '@fluentui/react/lib/Dialog';
 import { useBoolean } from '@fluentui/react-hooks';
 import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
 
@@ -17,6 +17,8 @@ export const SolvedMessage: React.FunctionComponent = () => {
         actions.guideFeedback(null);
     }
 
+    const Theme: Itheme = 
+
     const dialogContentProps = {
         type: DialogType.normal,
         title: i18next.t('THANKS'),
@@ -26,7 +28,9 @@ export const SolvedMessage: React.FunctionComponent = () => {
     const modalPropsStyles = { main: { maxWidth: 450 } };
     const modalProps = React.useMemo(
         () => ({
-            styles: modalPropsStyles
+            styles: modalPropsStyles,
+            isDarkOverlay: true,
+            className: test
         }),
         [isDraggable]
     );
@@ -41,4 +45,5 @@ export const SolvedMessage: React.FunctionComponent = () => {
             </Dialog>
         </>
     );
+
 };

@@ -59,7 +59,7 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             break;
         }
         case GO_TO_PREVIOUS_PAGE: {
-            if (newState.activeGuidedAnswerNode.length > 0) {
+            if (newState.activeGuidedAnswerNode.length > 0 && newState.guideFeedback !== false) {
                 newState.activeGuidedAnswerNode.pop();
             }
             if (newState.guideFeedback === false) {
