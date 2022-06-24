@@ -4,9 +4,9 @@ Pre Req: Guided Answers Extension is installed
 
 ### Open Guided Answers (SBAS and VSCODE)
 
-**GIVEN** the user opens in the 'Command Pallette' in SBAS/VSCODE
+**GIVEN** the user opens the 'Command Palette' in SAP Buisness Application Studio/VSCODE
 **WHEN** the user enters 'SAP: Open Guided Answers'
-**THEN** 'SAP:Open Guided Answers' appears in the command palette drop down
+**THEN** 'SAP: Open Guided Answers' appears in the command palette drop down
 
 
 **GIVEN** 'SAP: Open Guided Answes' appears in the command paletted dropdown 
@@ -17,7 +17,7 @@ Pre Req: Guided Answers Extension is installed
     b. Empty search input field
 
 **GIVEN** the Guided Answer Extension is opened
-**WHEN** the makes the view port smaller 
+**WHEN** the user makes the view port smaller 
 **THEN** the Guided Answers Extension adapts:
   
     a.The search input field falls under the SAP Guided Answers Extension 
@@ -25,11 +25,12 @@ Pre Req: Guided Answers Extension is installed
 ### Search Guided Answers Content
 
 **GIVEN** the Guided Answer Extension is opened
-**WHEN** the user enters search crtieria
+**WHEN** the user enters 'SAP Fiori tools' in the search field
 **THEN** a list of guided answers closely matching the search criteria appears in the list. The list contains 
 
-    a. The name of the Guided Answer
-    b. The description of the Guided Answer 
+    a. A list containing guides that are related to the 'SAP Fiori Tools' search criteria.
+    b. The name of the Guided Answer should appear in the list 
+    b. The description of the Guided Answer  should appear in the list
 
 
 
@@ -37,12 +38,12 @@ Pre Req: Guided Answers Extension is installed
 
 **GIVEN** the user has searched Guided Answers content
 **WHEN**  the user selects a Guided Answer
-**THEN** the Guide Answer is opened showing:
+**THEN** the Guided Answer is opened showing:
 
     a. 'All Answers' link
     b. Guided Answers content tree showing the first node of the Guided Answer Tree
     c. The title of the Guided Answer
-    d. The content of the first Guided Answer content 
+    d. The content of the first Guided Answer node
     e. The outcomes of the Guided Answer content 
 
 Note: Check the content matches the content in the web application e.g. headers , bullet points , images 
