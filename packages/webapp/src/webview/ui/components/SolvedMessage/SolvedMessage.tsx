@@ -17,8 +17,6 @@ export const SolvedMessage: React.FunctionComponent = () => {
         actions.guideFeedback(null);
     }
 
-    const Theme: Itheme = 
-
     const dialogContentProps = {
         type: DialogType.normal,
         title: i18next.t('THANKS'),
@@ -29,8 +27,7 @@ export const SolvedMessage: React.FunctionComponent = () => {
     const modalProps = React.useMemo(
         () => ({
             styles: modalPropsStyles,
-            isDarkOverlay: true,
-            className: test
+            isDarkOverlay: true //not working
         }),
         [isDraggable]
     );
@@ -45,5 +42,4 @@ export const SolvedMessage: React.FunctionComponent = () => {
             </Dialog>
         </>
     );
-
 };
