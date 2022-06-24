@@ -22,7 +22,7 @@ export function FeedbackInterface(): ReactElement {
                 <div
                     className="not-solved-box"
                     onClick={(): void => {
-                        // actions.guideFeedback(null);
+                        actions.guideFeedback(false);
                     }}>
                     <NotSolved />
                     <h3>{i18next.t('THIS_DID_NOT_SOLVED_MY_ISSUE')}</h3>
