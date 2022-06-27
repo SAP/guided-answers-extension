@@ -12,5 +12,6 @@
     "THANK_YOU_TEXT": "We are glad to hear that your issue has been resolved and we hope you enjoy using the Guided Answer application.",
     "THANKS": "Thanks!",
     "HOME": "Home",
-    "CLOSE": "Close"
+    "CLOSE": "Close",
+    "ISSUE_IS_NOT_RESOLVED": "Issue is not resolved"
 }

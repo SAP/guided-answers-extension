@@ -55,6 +55,10 @@ h1 span {
     border-bottom: 3px solid var(--vscode-focusBorder, #007fd4);
 }
 
+.timeline-content-bottom-border-not-solved {
+    border-bottom: 3px solid var(--vscode-notificationsErrorIcon-foreground, #f14c4c);
+}
+
 .timeline__path {
     display: inline-block;
     color: var(--vscode-menu-foreground, #cccccc);
