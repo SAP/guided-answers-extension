@@ -5,13 +5,11 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../types';
 import './SolvedMessage.scss';
 import { Dialog, DialogType, DialogFooter, IDialogProps } from '@fluentui/react/lib/Dialog';
-import { useBoolean } from '@fluentui/react-hooks';
 import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
 
 export const SolvedMessage: React.FunctionComponent = () => {
     const appState = useSelector<AppState, AppState>((state) => state);
-    const isHidden = appState.guideFeedback === true ? false : true;
-    const [isDraggable, { toggle: toggleIsDraggable }] = useBoolean(false);
+    const isHidden = !appState.guideFeedback;
 
     function toggleHidden(): void {
         actions.guideFeedback(null);
@@ -23,14 +21,10 @@ export const SolvedMessage: React.FunctionComponent = () => {
         subText: i18next.t('THANK_YOU_TEXT')
     };
 
-    const modalPropsStyles = { main: { maxWidth: 450 } };
-    const modalProps = React.useMemo(
-        () => ({
-            styles: modalPropsStyles,
-            isDarkOverlay: true //not working
-        }),
-        [isDraggable]
-    );
+    const modalProps = {
+        isDarkOverlay: true,
+        className: 'solved-message-dialog'
+    };
 
     return (
         <>
