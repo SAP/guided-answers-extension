@@ -10,12 +10,14 @@ import i18next from 'i18next';
 export function AllAnswersButton() {
     return (
         <div
-            className="guided-answer__header__navButtons"
+            className="guided-answer__header__navButtons home-icon"
             onClick={(): void => {
                 actions.goToAllAnswers();
             }}>
             <VscHome className="guided-answer__header__navButtons__content" />{' '}
-            <span className="guided-answer__header__navButtons__content">{i18next.t('ALL_ANSWERS')}</span>
+            <span className="guided-answer__header__navButtons__content__text text-hover">
+                {i18next.t('ALL_ANSWERS')}
+            </span>
         </div>
     );
 }
@@ -32,7 +34,9 @@ export function BackButton() {
                 actions.goToPreviousPage();
             }}>
             <VscArrowLeft className="guided-answer__header__navButtons__content" />
-            <span className="guided-answer__header__navButtons__content">{i18next.t('STEP_BACK')}</span>
+            <span className="guided-answer__header__navButtons__content text-hover" style={{ marginLeft: '3px' }}>
+                {i18next.t('STEP_BACK')}
+            </span>
         </div>
     );
 }
@@ -49,7 +53,9 @@ export function RestartButton() {
                 actions.restartAnswer();
             }}>
             <VscRefresh className="guided-answer__header__navButtons__content" />
-            <span className="guided-answer__header__navButtons__content">{i18next.t('RESTART')}</span>
+            <span className="guided-answer__header__navButtons__content text-hover" style={{ marginLeft: '3px' }}>
+                {i18next.t('RESTART')}
+            </span>
         </div>
     );
 }

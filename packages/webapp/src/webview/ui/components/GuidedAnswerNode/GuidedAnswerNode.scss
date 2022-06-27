@@ -16,13 +16,8 @@ section.answer__node__body {
 
 #left {
     height: 100%;
-    width: 400px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
-    padding-top: 45px;
+    width: 25%;
+    margin-right: 80px;
 }
 
 .main-container {
@@ -31,20 +26,19 @@ section.answer__node__body {
 
 #middle {
     display: flex;
-    grid-area: content;
-    overflow-x: hidden;
-    position: relative;
-    left: 0;
-    transition: left 0.5s;
-    flex-grow: 1;
-    margin-left: 380px;
-    padding-right: 20px;
     max-width: 620px;
+    width: 75%;
+    align-content: flex-start;
+
+    .content > * {
+        line-height: 18px;
+    }
 }
 
-hr {
+#hr {
     width: 100%;
-    border: 1px solid var(--vscode-editorWidget-border);
+    border-bottom: 1px solid var(--vscode-editorWidget-border);
+    padding-bottom: 10px;
 }
 
 #middle-with-command {
@@ -72,6 +66,7 @@ hr {
 .guided-answer__node {
     &__body {
         color: var(--vscode-foreground);
+        display: flex;
     }
     &__question {
         color: var(--vscode-settings-headerForeground);
@@ -92,9 +87,14 @@ hr {
         height: auto;
         line-height: 18px;
         letter-spacing: 0em;
-        margin: 1em;
-        padding: 1em;
+        margin: 10px 0;
+        padding: 10px;
         text-align: center;
+        outline-offset: -1px;
+        outline: 1px solid var(--vscode-contrastBorder);
+    }
+    &__edge:hover {
+        background-color: var(--vscode-button-hoverBackground);
     }
     &__commands {
         position: fixed;
@@ -145,4 +145,14 @@ hr {
     color: var(--vscode-textLink-foreground);
     cursor: pointer;
     text-decoration: underline;
+}
+
+@media only screen and (max-width: 625px) {
+    #middle {
+        width: 100%;
+    }
+
+    #left {
+        width: auto;
+    }
 }
