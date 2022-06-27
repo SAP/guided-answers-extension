@@ -102,8 +102,10 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     const middleNotSolved = (
         <div id="middle" className="column">
             <h1>Issue is not resolved</h1>
-            <hr />
-            <p className="guided-answer__node__question">We are sorry to hear that your issue is not yet resolved.</p>
+            <div id="hr"></div>
+            <p className="guided-answer__node__question">
+                <strong>We are sorry to hear that your issue is not yet resolved.</strong>
+            </p>
             <p className="guided-answer__node__question">There are several options for getting further assistance:</p>
             <div className="guided-answer__node">
                 <div className="guided-answer__node__edges">
