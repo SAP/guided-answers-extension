@@ -1,5 +1,17 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.3.0
+
+### Minor Changes
+
+-   8ee2407: Redesign details page
+
+## 0.2.4
+
+### Patch Changes
+
+-   bf6203f: Fix for missing numbers in numbered lists
+
 ## 0.2.3
 
 ### Patch Changes

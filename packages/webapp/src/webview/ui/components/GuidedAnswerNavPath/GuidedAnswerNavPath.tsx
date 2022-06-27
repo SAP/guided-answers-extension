@@ -19,36 +19,23 @@ export function GuidedAnswerNavPath(): ReactElement {
         return (
             <nav className="container">
                 {nodes.map((node, i) => {
-                    let markerIcon: ReactElement | string = 'null';
-                    if (node.EDGES.length === 0) {
-                        markerIcon = '▷';
-                    } else {
-                        markerIcon =
-                            i === lastIndex ? (
-                                <span
-                                    aria-label="check mark"
-                                    role="img"
-                                    style={{ color: 'var(--vscode-textLink-foreground)' }}>
-                                    ▷
-                                </span>
-                            ) : (
-                                '☑'
-                            );
-                    }
                     return (
                         <div key={`timeline-block-${i}`} className="timeline-block">
-                            {i !== lastIndex ? <div className="vertical-line"></div> : <></>}
-                            <div className="marker">{markerIcon}</div>
-                            <div className="timeline-content">
-                                <div className="timeline-content-arrow"></div>
-                                <div
-                                    className="timeline__path"
-                                    onClick={(): void => {
-                                        actions.updateActiveNode(node);
-                                    }}>
-                                    {node.TITLE}
+                            <div
+                                className={`timeline-content ${
+                                    i === lastIndex ? 'timeline-content-bottom-border' : ''
+                                }`}
+                                onClick={(): void => {
+                                    actions.updateActiveNode(node);
+                                }}>
+                                <div className="timeline__path" title={node.TITLE}>
+                                    <span className="timeline-content-title-small bold-text">{i + 1}</span>
+                                    <span className={`timeline-content-title-large ${i === 0 ? 'bold-text' : ''}`}>
+                                        {node.TITLE}
+                                    </span>
                                 </div>
                             </div>
+                            {i !== lastIndex ? <div className="vertical-line"></div> : <></>}
                         </div>
                     );
                 })}

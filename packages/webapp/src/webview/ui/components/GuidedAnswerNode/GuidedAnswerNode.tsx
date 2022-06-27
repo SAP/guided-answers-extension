@@ -120,8 +120,12 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     const middleStandard = (
         <div id="middle" className="column">
             <h1>{activeNode.TITLE}</h1>
-            <hr />
-            {enhancedBody ? enhancedBody : <div dangerouslySetInnerHTML={{ __html: activeNode.BODY }}></div>}
+            <div id="hr"></div>
+            {enhancedBody ? (
+                enhancedBody
+            ) : (
+                <div className="content" dangerouslySetInnerHTML={{ __html: activeNode.BODY }}></div>
+            )}
             <p className="guided-answer__node__question">{activeNode.QUESTION}</p>
             <div className="guided-answer__node">
                 {activeNode.EDGES.length > 0 ? (
@@ -153,32 +157,31 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     //     { option: 'Ask the SAP Community', link: 'https://answers.sap.com/index.html' }
     // ];
 
-    const right = activeNode.COMMANDS ? (
-        <div id="right" className="column">
-            <div className="guided-answer__node__commands">
-                {activeNode.COMMANDS
-                    ? activeNode.COMMANDS.map((command, index) => (
-                          <div className="guided-answer__node__command" key={`command-${index}`}>
-                              <div className="guided-answer__node__command__header">
-                                  {/* <div className="guided-answer__node__command__header__icon">
-                              {command.icon}
-                          </div> */}
-                                  <div className="guided-answer__node__command__header__label">{command.label}</div>
+    let right = null;
+    if (activeNode.COMMANDS) {
+        right = (
+            <div id="right" className="column">
+                <div className="guided-answer__node__commands">
+                    {activeNode.COMMANDS
+                        ? activeNode.COMMANDS.map((command, index) => (
+                              <div className="guided-answer__node__command" key={`command-${index}`}>
+                                  <div className="guided-answer__node__command__header">
+                                      <div className="guided-answer__node__command__header__label">{command.label}</div>
+                                  </div>
+                                  <div
+                                      className="guided-answer__node__command__description"
+                                      onClick={(): void => {
+                                          actions.executeCommand(command);
+                                      }}>
+                                      {command.description}
+                                  </div>
                               </div>
-                              <div
-                                  className="guided-answer__node__command__description"
-                                  onClick={(): void => {
-                                      actions.executeCommand(command);
-                                  }}>
-                                  {command.description}
-                              </div>
-                          </div>
-                      ))
-                    : ''}
+                          ))
+                        : ''}
+                </div>
             </div>
-        </div>
-    ) : null;
-
+        );
+    }
     return right ? (
         <div className="main-container">
             {middle}

@@ -34,12 +34,16 @@ export function App(): ReactElement {
                                         actions.setActiveTree(tree);
                                         actions.selectNode(tree.FIRST_NODE_ID);
                                     }}>
-                                    <ul className="guided-answer__tree__ul">
-                                        <h3 className="guided-answer__tree__title">{tree.TITLE}</h3>
+                                    <div className="guided-answer__tree__ul">
+                                        <h3
+                                            className="guided-answer__tree__title"
+                                            style={{ marginTop: tree.DESCRIPTION ? '0' : '10px' }}>
+                                            {tree.TITLE}
+                                        </h3>
                                         {tree.DESCRIPTION && (
                                             <span className="guided-answer__tree__desc">{tree.DESCRIPTION}</span>
                                         )}
-                                    </ul>
+                                    </div>
                                 </div>
                             </li>
                         );
