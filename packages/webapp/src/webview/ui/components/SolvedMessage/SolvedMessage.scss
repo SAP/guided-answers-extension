@@ -2,4 +2,36 @@
     .ms-Dialog-main {
         background-color: var(--vscode-editorWidget-background);
     }
+    .title-117 {
+        color: var(--vscode-settings-headerForeground);
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+    }
+    .subText-113 {
+        color: var(--vscode-settings-headerForeground);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 18px;
+    }
+    .actionsRight-121 {
+        text-align: center;
+    }
+
+    .root-122 {
+        background-color: var(--vscode-button-background);
+        border-color: var(--vscode-button-background);
+    }
+
+    .root-130 {
+        background-color: var(--vscode-button-secondaryBackground);
+        border-color: var(--vscode-button-secondaryBackground);
+    }
+
+    .label-126 {
+        color: var(--vscode-button-foreground);
+        font-weight: 400;
+    }
 }

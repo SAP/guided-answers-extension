@@ -28,7 +28,7 @@
 
 .solved-box:hover {
     background-color: var(--vscode-terminal-ansiGreen);
-
+    cursor: pointer;
     > h3 {
         color: var(--vscode-editor-background);
     }
@@ -51,7 +51,7 @@
 
 .not-solved-box:hover {
     background-color: var(--vscode-terminal-ansiRed);
-
+    cursor: pointer;
     > h3 {
         color: var(--vscode-editor-background);
     }
