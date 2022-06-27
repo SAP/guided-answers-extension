@@ -94,10 +94,12 @@ function getNavigationSection(): ReactElement {
 function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
     const appState = useSelector<AppState, AppState>((state) => state);
-
-    const handleClick = (link: string): void => {
-        window.open(link);
-    };
+    const options = [
+        { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Start an Expert Chat' },
+        { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Schedule an Expert' },
+        { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Open an Incident' },
+        { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Ask the SAP Community' }
+    ];
 
     const middleNotSolved = (
         <div id="middle" className="column">
@@ -108,14 +110,11 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
             </p>
             <p className="guided-answer__node__question">There are several options for getting further assistance:</p>
             <div className="guided-answer__node">
-                <div className="guided-answer__node__edges">
-                    <div onClick={(): void => handleClick('https://launchpad.support.sap.com/#/expertchat/create')}>
-                        Start an Expert Chat
-                    </div>
-                    <div>Schedule an Expert</div>
-                    <div>Open an Incident</div>
-                    <div>Ask the SAP Community</div>
-                </div>
+                {options.map((btn, i) => (
+                    <a href={btn.link} key={i} style={{ textDecoration: 'none' }}>
+                        <div className="guided-answer__node__edges">{btn.text}</div>
+                    </a>
+                ))}
             </div>
         </div>
     );

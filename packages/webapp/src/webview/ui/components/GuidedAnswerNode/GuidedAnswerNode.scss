@@ -96,7 +96,7 @@ section.answer__node__body {
     &__edge:hover {
         background-color: var(--vscode-button-hoverBackground);
     }
-    &__edges > div {
+    &__edges {
         background-color: var(--vscode-button-background);
         color: var(--vscode-button-foreground);
         cursor: pointer;
