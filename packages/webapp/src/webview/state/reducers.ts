@@ -64,6 +64,7 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             }
             if (newState.guideFeedback === false) {
                 newState.guideFeedback = null;
+                newState.activeGuidedAnswerNode.pop();
             }
             break;
         }
