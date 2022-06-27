@@ -96,6 +96,21 @@ section.answer__node__body {
     &__edge:hover {
         background-color: var(--vscode-button-hoverBackground);
     }
+    &__edges > div {
+        background-color: var(--vscode-button-background);
+        color: var(--vscode-button-foreground);
+        cursor: pointer;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 700;
+        height: auto;
+        line-height: 18px;
+        letter-spacing: 0em;
+        margin: 1em;
+        margin-left: 0;
+        padding: 1em;
+        text-align: center;
+    }
     &__commands {
         position: fixed;
         margin-top: 18px;
@@ -145,6 +160,20 @@ section.answer__node__body {
     color: var(--vscode-textLink-foreground);
     cursor: pointer;
     text-decoration: underline;
+}
+
+.guided-answer__node_edges > div {
+    background-color: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    cursor: pointer;
+    font-size: 13px;
+    font-style: normal;
+    height: auto;
+    line-height: 18px;
+    letter-spacing: 0em;
+    margin: 1em;
+    padding: 1em;
+    text-align: center;
 }
 
 @media only screen and (max-width: 625px) {

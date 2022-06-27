@@ -93,7 +93,33 @@ function getNavigationSection(): ReactElement {
  */
 function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
-    const middle = (
+    const appState = useSelector<AppState, AppState>((state) => state);
+
+    const handleClick = (link: string): void => {
+        window.open(link);
+    };
+
+    const middleNotSolved = (
+        <div id="middle" className="column">
+            <h1>Issue is not resolved</h1>
+            <div id="hr"></div>
+            <p className="guided-answer__node__question">
+                <strong>We are sorry to hear that your issue is not yet resolved.</strong>
+            </p>
+            <p className="guided-answer__node__question">There are several options for getting further assistance:</p>
+            <div className="guided-answer__node">
+                <div className="guided-answer__node__edges">
+                    <div onClick={(): void => handleClick('https://launchpad.support.sap.com/#/expertchat/create')}>
+                        Start an Expert Chat
+                    </div>
+                    <div>Schedule an Expert</div>
+                    <div>Open an Incident</div>
+                    <div>Ask the SAP Community</div>
+                </div>
+            </div>
+        </div>
+    );
+    const middleStandard = (
         <div id="middle" className="column">
             <h1>{activeNode.TITLE}</h1>
             <div id="hr"></div>
@@ -119,9 +145,20 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
                     <FeedbackInterface />
                 )}
             </div>
-            {}
         </div>
     );
+
+    const middle = appState.guideFeedback === false ? middleNotSolved : middleStandard;
+
+    // );
+
+    // const notSolvedButtons = [
+    //     { option: 'Start an Expert Chat', link: 'https://launchpad.support.sap.com/#/expertchat/create' },
+    //     { option: 'Schedule an Exper', link: 'https://launchpad.support.sap.com/#/sae' },
+    //     { option: 'Open an Incident ', link: 'https://launchpad.support.sap.com/#/incident/create' },
+    //     { option: 'Ask the SAP Community', link: 'https://answers.sap.com/index.html' }
+    // ];
+
     let right = null;
     if (activeNode.COMMANDS) {
         right = (

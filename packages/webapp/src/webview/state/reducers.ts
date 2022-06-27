@@ -59,18 +59,27 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             break;
         }
         case GO_TO_PREVIOUS_PAGE: {
-            if (newState.activeGuidedAnswerNode.length > 0) {
+            if (newState.activeGuidedAnswerNode.length > 0 && newState.guideFeedback !== false) {
                 newState.activeGuidedAnswerNode.pop();
+            }
+            if (newState.guideFeedback === false) {
+                newState.guideFeedback = null;
             }
             break;
         }
         case GO_TO_ALL_ANSWERS: {
             newState.activeGuidedAnswerNode = [];
             delete newState.activeGuidedAnswer;
+            if (newState.guideFeedback === false) {
+                newState.guideFeedback = null;
+            }
             break;
         }
         case RESTART_ANSWER: {
             newState.activeGuidedAnswerNode = [newState.activeGuidedAnswerNode[0]];
+            if (newState.guideFeedback === false) {
+                newState.guideFeedback = null;
+            }
             break;
         }
         case SET_ACTIVE_TREE: {
