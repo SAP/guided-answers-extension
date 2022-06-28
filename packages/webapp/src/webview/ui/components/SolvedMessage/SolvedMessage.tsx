@@ -1,10 +1,10 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import i18next from 'i18next';
 import { actions } from '../../../state';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../types';
 import './SolvedMessage.scss';
-import { Dialog, DialogType, DialogFooter, IDialogProps } from '@fluentui/react/lib/Dialog';
+import { Dialog, DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
 import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
 
 export const SolvedMessage: React.FunctionComponent = () => {
