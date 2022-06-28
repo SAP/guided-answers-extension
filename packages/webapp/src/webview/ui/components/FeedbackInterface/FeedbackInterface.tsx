@@ -9,7 +9,7 @@ import { SolvedMessage } from '../SolvedMessage';
 export function FeedbackInterface(): ReactElement {
     return (
         <div className="feedback-container">
-            <h3>Please tell us if this answer was helpful</h3>
+            <h3>{i18next.t('PLEASE_TELL_US_IF_THIS_ANSWER_WAS_HELPFUL')}</h3>
             <div className="feedback-subcontainer">
                 <div
                     className="solved-box"

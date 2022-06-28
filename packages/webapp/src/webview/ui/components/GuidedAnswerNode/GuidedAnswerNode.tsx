@@ -8,6 +8,7 @@ import { AppState } from '../../../types';
 import './GuidedAnswerNode.scss';
 import { GuidedAnswerNavPath } from '../GuidedAnswerNavPath';
 import { FeedbackInterface } from '../FeedbackInterface';
+import i18next from 'i18next';
 
 /**
  * Replacer function for html-react-parser's replace function. If an element was marked, replace it with  link <a>
@@ -103,7 +104,7 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
 
     const middleNotSolved = (
         <div id="middle" className="column">
-            <h1>Issue is not resolved</h1>
+            <h1>{i18next.t('ISSUE_IS_NOT_RESOLVED')}</h1>
             <div id="hr"></div>
             <p className="guided-answer__node__question">
                 <strong>We are sorry to hear that your issue is not yet resolved.</strong>
@@ -148,15 +149,6 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     );
 
     const middle = appState.guideFeedback === false ? middleNotSolved : middleStandard;
-
-    // );
-
-    // const notSolvedButtons = [
-    //     { option: 'Start an Expert Chat', link: 'https://launchpad.support.sap.com/#/expertchat/create' },
-    //     { option: 'Schedule an Exper', link: 'https://launchpad.support.sap.com/#/sae' },
-    //     { option: 'Open an Incident ', link: 'https://launchpad.support.sap.com/#/incident/create' },
-    //     { option: 'Ask the SAP Community', link: 'https://answers.sap.com/index.html' }
-    // ];
 
     let right = null;
     if (activeNode.COMMANDS) {
