@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.4.0
+
+### Minor Changes
+
+-   8ee2407: Redesign details page
+
 ## 0.3.3
 
 ### Patch Changes

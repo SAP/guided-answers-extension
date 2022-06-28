@@ -8,70 +8,88 @@ h1 span {
 }
 
 .container {
-    width: 100%;
-    margin-top: 25px;
-    position: relative;
+    width: 25%;
+    margin-top: 10px;
+    position: fixed;
     overflow: hidden;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 .vertical-line {
-    display: block;
-    left: 9px;
     width: 1px;
-    position: absolute;
-    top: 47px;
-    margin-left: -1px;
-    height: 55px;
-    background: lightgray;
-    z-index: 1;
+    margin-left: 50%;
+    height: 10px;
+    background: var(--vscode-editorWidget-border);
+    z-index: -1;
+    margin-top: -10px;
 }
 
 .timeline-block {
     width: 100%;
-    margin: 0px 0px 0px 10px;
     display: flex;
     justify-content: space-between;
     clear: both;
     position: relative;
     float: none;
-    height: 80px;
-}
-
-.marker {
-    position: absolute;
-    top: 20px;
-    font-size: 20px;
+    flex-direction: column;
 }
 
 .timeline-content {
     width: 100%;
-    margin: 10px 10px 10px 35px;
-    border: 1px solid lightgray;
-    color: #666;
+    margin: 0px 10px 10px 0px;
+    border-radius: 3px;
+    color: var(--vscode-foreground);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    background: var(--vscode-menu-background);
+    border: 1px solid var(--vscode-editorWidget-border);
 }
 
-.timeline-content-arrow {
-    top: 16px;
-    left: -7px;
-    position: relative;
-    width: 0.75rem;
-    height: 0.75rem;
-    background-color: var(--vscode-editor-background);
-    opacity: 1;
-    -moz-opacity: 1;
-    -webkit-opacity: 1;
-    border-bottom: 0.0625rem solid #d1d1d1;
-    border-left: 0.0625rem solid #d1d1d1;
-    transform: translateX(0px) translateY(0px) rotate(45deg);
-    -moz-transform: translateX(0px) translateY(0px) rotate(45deg);
-    z-index: 1;
+.timeline-content:hover {
+    cursor: pointer;
+    background: var(--vscode-list-hoverBackground);
+}
+
+.timeline-content-bottom-border {
+    border-bottom: 3px solid var(--vscode-focusBorder, #007fd4);
 }
 
 .timeline__path {
     display: inline-block;
-    color: var(--vscode-textLink-foreground);
-    cursor: pointer;
-    padding: 1px 7px 2px 18px;
+    color: var(--vscode-menu-foreground, #cccccc);
+    padding: 10px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    font-style: normal;
+}
+
+.timeline-content-title-large {
+    display: block;
+}
+.timeline-content-title-small {
+    display: none;
+}
+
+@media only screen and (max-width: 625px) {
+    .timeline-content-title-large {
+        display: none;
+    }
+    .timeline-content-title-small {
+        display: block;
+    }
+    .timeline-content {
+        align-items: center;
+    }
+    .vertical-line {
+        left: 46%;
+    }
+    .container {
+        width: 40px;
+    }
+    .timeline__path {
+        width: 34px;
+        text-align: center;
+    }
 }

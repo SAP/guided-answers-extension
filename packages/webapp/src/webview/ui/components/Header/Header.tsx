@@ -24,7 +24,7 @@ export function Header(props: {
 }): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
     return (
-        <div className="guided-answer__header">
+        <div className="guided-answer__header" style={{ paddingBottom: props.showNavButons === true ? '0' : '20px' }}>
             {props.showSub === true ? (
                 <>
                     <div className="guided-answer__header__sub">
@@ -41,12 +41,11 @@ export function Header(props: {
                     <div className="guided-answer__header__allAnswersButton">
                         <AllAnswersButton />
                     </div>
-                    {appState.activeGuidedAnswerNode.length > 1 && (
-                        <div className="guided-answer__header__back-restart-buttons">
-                            <BackButton />
-                            <RestartButton />
-                        </div>
-                    )}
+
+                    <div className="guided-answer__header__back-restart-buttons">
+                        <BackButton />
+                        {appState.activeGuidedAnswerNode.length > 1 && <RestartButton />}
+                    </div>
                 </>
             ) : (
                 <></>
