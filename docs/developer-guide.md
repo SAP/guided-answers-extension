@@ -29,7 +29,7 @@ A GitHub bot [changeset-bot](https://github.com/apps/changeset-bot) has been ena
 
 ## Git Guidelines
 
-We adhere to the [Conventional Commits](https://conventionalcommits.org) specification.
+We adhere to the [Conventional Commits](https://conventionalcommits.org) specification. Commit message validation is enforced using [husky](https://github.com/typicode/husky) Git hook `commit-msg`, which runs [`@commitlint/cli`](https://github.com/conventional-changelog/commitlint) to validate against config [`@commitlint/config-conventional`](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional).
 
 ### Commit Message Style
 The commit message consists of three parts:
