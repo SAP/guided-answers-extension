@@ -162,20 +162,6 @@ section.answer__node__body {
     text-decoration: underline;
 }
 
-.guided-answer__node_edges > div {
-    background-color: var(--vscode-button-background);
-    color: var(--vscode-button-foreground);
-    cursor: pointer;
-    font-size: 13px;
-    font-style: normal;
-    height: auto;
-    line-height: 18px;
-    letter-spacing: 0em;
-    margin: 1em;
-    padding: 1em;
-    text-align: center;
-}
-
 @media only screen and (max-width: 625px) {
     #middle {
         width: 100%;

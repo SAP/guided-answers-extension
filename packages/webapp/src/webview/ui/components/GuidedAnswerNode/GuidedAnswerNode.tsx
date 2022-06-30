@@ -106,10 +106,14 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
         <div id="middle" className="column">
             <h1>{i18next.t('ISSUE_IS_NOT_RESOLVED')}</h1>
             <div id="hr"></div>
-            <p className="guided-answer__node__question">
-                <strong>We are sorry to hear that your issue is not yet resolved.</strong>
-            </p>
-            <p className="guided-answer__node__question">There are several options for getting further assistance:</p>
+            <div className="guided-answer__node__question">
+                <p>
+                    <strong>{i18next.t('WE_ARE_SORRY_TO_HEAR_THAT_YOUR_ISSUE_IS_NOT_YET_RESOLVED')}</strong>
+                </p>
+                <p style={{ fontWeight: 400 }}>
+                    {i18next.t('THERE_ARE_SEVERAL_OPTIONS_FOR_GETTING_FURTHER_ASSISTANCE')}
+                </p>
+            </div>
             <div className="guided-answer__node">
                 {options.map((btn, i) => (
                     <a href={btn.link} key={i} style={{ textDecoration: 'none' }}>

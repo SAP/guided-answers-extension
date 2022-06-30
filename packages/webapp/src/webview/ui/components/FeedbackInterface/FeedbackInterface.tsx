@@ -12,7 +12,7 @@ export function FeedbackInterface(): ReactElement {
             <h3>{i18next.t('PLEASE_TELL_US_IF_THIS_ANSWER_WAS_HELPFUL')}</h3>
             <div className="feedback-subcontainer">
                 <div
-                    className="solved-box"
+                    className="feedback-box solved-hover"
                     onClick={(): void => {
                         actions.guideFeedback(true);
                     }}>
@@ -20,7 +20,8 @@ export function FeedbackInterface(): ReactElement {
                     <h3>{i18next.t('THIS_SOLVED_MY_ISSUE')}</h3>
                 </div>
                 <div
-                    className="not-solved-box"
+                    className="feedback-box not-solved-hover"
+                    style={{ border: '2px solid var(--vscode-terminal-ansiRed)' }}
                     onClick={(): void => {
                         actions.guideFeedback(false);
                     }}>

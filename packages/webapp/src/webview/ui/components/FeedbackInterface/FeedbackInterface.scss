@@ -16,7 +16,7 @@
     margin-bottom: 15px;
 }
 
-.solved-box {
+.feedback-box {
     height: 101px;
     width: 220px;
     border: 2px solid var(--vscode-terminal-ansiGreen);
@@ -26,36 +26,24 @@
     padding: 15px;
 }
 
-.solved-box:hover {
+.solved-hover:hover {
     background-color: var(--vscode-terminal-ansiGreen);
     cursor: pointer;
     > h3 {
         color: var(--vscode-editor-background);
     }
-
     svg > path,
     svg > rect {
         fill: var(--vscode-editor-background);
     }
 }
 
-.not-solved-box {
-    height: 101px;
-    width: 220px;
-    border: 2px solid var(--vscode-terminal-ansiRed);
-    border-radius: 3px;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-}
-
-.not-solved-box:hover {
+.not-solved-hover:hover {
     background-color: var(--vscode-terminal-ansiRed);
     cursor: pointer;
     > h3 {
         color: var(--vscode-editor-background);
     }
-
     svg > path,
     svg > rect {
         fill: var(--vscode-editor-background);
