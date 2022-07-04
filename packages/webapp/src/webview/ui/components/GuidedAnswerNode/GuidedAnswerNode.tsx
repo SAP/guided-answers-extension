@@ -7,6 +7,7 @@ import { actions } from '../../../state';
 import { AppState } from '../../../types';
 import './GuidedAnswerNode.scss';
 import { GuidedAnswerNavPath } from '../GuidedAnswerNavPath';
+import { Middle } from './Middle';
 
 /**
  * Replacer function for html-react-parser's replace function. If an element was marked, replace it with  link <a>
@@ -92,30 +93,6 @@ function getNavigationSection(): ReactElement {
  */
 function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
-    const middle = (
-        <div id="middle" className="column">
-            <h1>{activeNode.TITLE}</h1>
-            <div id="hr"></div>
-            {enhancedBody ? (
-                enhancedBody
-            ) : (
-                <div className="content" dangerouslySetInnerHTML={{ __html: activeNode.BODY }}></div>
-            )}
-            <p className="guided-answer__node__question">{activeNode.QUESTION}</p>
-            <div className="guided-answer__node">
-                {activeNode.EDGES.map((edge, index) => (
-                    <div
-                        key={`edge_button${index}`}
-                        className="guided-answer__node__edge"
-                        onClick={(): void => {
-                            actions.selectNode(edge.TARGET_NODE);
-                        }}>
-                        {edge.LABEL}
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
     let right = null;
     if (activeNode.COMMANDS) {
         right = (
@@ -143,11 +120,11 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     }
     return right ? (
         <div className="main-container">
-            {middle}
+            {<Middle activeNode={activeNode} enhancedBody={enhancedBody} />}
             {right}
         </div>
     ) : (
-        middle
+        <Middle activeNode={activeNode} enhancedBody={enhancedBody} />
     );
 }
 
