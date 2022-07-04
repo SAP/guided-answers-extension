@@ -94,19 +94,16 @@ function getNavigationSection(): ReactElement {
  */
 function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
-    let rightExists = false;
     if (activeNode.COMMANDS) {
-        <Right activeNode={activeNode} />;
-        rightExists = true;
+        return (
+            <div className="main-container">
+                {<Middle activeNode={activeNode} enhancedBody={enhancedBody} />}
+                {<Right activeNode={activeNode} />}
+            </div>
+        );
+    } else {
+        return <Middle activeNode={activeNode} enhancedBody={enhancedBody} />;
     }
-    return rightExists ? (
-        <div className="main-container">
-            {<Middle activeNode={activeNode} enhancedBody={enhancedBody} />}
-            {<Right activeNode={activeNode} />}
-        </div>
-    ) : (
-        <Middle activeNode={activeNode} enhancedBody={enhancedBody} />
-    );
 }
 
 /**
