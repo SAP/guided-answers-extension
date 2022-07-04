@@ -8,6 +8,7 @@ import { AppState } from '../../../types';
 import './GuidedAnswerNode.scss';
 import { GuidedAnswerNavPath } from '../GuidedAnswerNavPath';
 import { Middle } from './Middle';
+import { Right } from './Right';
 
 /**
  * Replacer function for html-react-parser's replace function. If an element was marked, replace it with  link <a>
@@ -93,35 +94,15 @@ function getNavigationSection(): ReactElement {
  */
 function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
-    let right = null;
+    let rightExists = false;
     if (activeNode.COMMANDS) {
-        right = (
-            <div id="right" className="column">
-                <div className="guided-answer__node__commands">
-                    {activeNode.COMMANDS
-                        ? activeNode.COMMANDS.map((command, index) => (
-                              <div className="guided-answer__node__command" key={`command-${index}`}>
-                                  <div className="guided-answer__node__command__header">
-                                      <div className="guided-answer__node__command__header__label">{command.label}</div>
-                                  </div>
-                                  <div
-                                      className="guided-answer__node__command__description"
-                                      onClick={(): void => {
-                                          actions.executeCommand(command);
-                                      }}>
-                                      {command.description}
-                                  </div>
-                              </div>
-                          ))
-                        : ''}
-                </div>
-            </div>
-        );
+        <Right activeNode={activeNode} />;
+        rightExists = true;
     }
-    return right ? (
+    return rightExists ? (
         <div className="main-container">
             {<Middle activeNode={activeNode} enhancedBody={enhancedBody} />}
-            {right}
+            {<Right activeNode={activeNode} />}
         </div>
     ) : (
         <Middle activeNode={activeNode} enhancedBody={enhancedBody} />
