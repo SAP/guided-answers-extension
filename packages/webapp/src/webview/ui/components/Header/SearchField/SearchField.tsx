@@ -17,6 +17,7 @@ export function SearchField() {
                 className="tree-search-field"
                 value={appState.query}
                 placeholder="Search Guided Answers"
+                id="search-field"
                 onInput={(e: any) => {
                     const newValue = e?.target?.value;
                     if (newValue !== undefined) {
