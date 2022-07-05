@@ -7,6 +7,8 @@ import { actions } from '../../../state';
 import { AppState } from '../../../types';
 import './GuidedAnswerNode.scss';
 import { GuidedAnswerNavPath } from '../GuidedAnswerNavPath';
+import { FeedbackInterface } from '../FeedbackInterface';
+import i18next from 'i18next';
 
 /**
  * Replacer function for html-react-parser's replace function. If an element was marked, replace it with  link <a>
@@ -92,7 +94,36 @@ function getNavigationSection(): ReactElement {
  */
 function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
-    const middle = (
+    const appState = useSelector<AppState, AppState>((state) => state);
+    const options = [
+        { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Start an Expert Chat' },
+        { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Schedule an Expert' },
+        { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Open an Incident' },
+        { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Ask the SAP Community' }
+    ];
+
+    const middleNotSolved = (
+        <div id="middle" className="column">
+            <h1>{i18next.t('ISSUE_IS_NOT_RESOLVED')}</h1>
+            <div id="hr"></div>
+            <div className="guided-answer__node__question">
+                <p>
+                    <strong>{i18next.t('WE_ARE_SORRY_TO_HEAR_THAT_YOUR_ISSUE_IS_NOT_YET_RESOLVED')}</strong>
+                </p>
+                <p style={{ fontWeight: 400 }}>
+                    {i18next.t('THERE_ARE_SEVERAL_OPTIONS_FOR_GETTING_FURTHER_ASSISTANCE')}
+                </p>
+            </div>
+            <div className="guided-answer__node">
+                {options.map((btn, i) => (
+                    <a href={btn.link} key={i} style={{ textDecoration: 'none' }}>
+                        <div className="guided-answer__node__edges">{btn.text}</div>
+                    </a>
+                ))}
+            </div>
+        </div>
+    );
+    const middleStandard = (
         <div id="middle" className="column">
             <h1>{activeNode.TITLE}</h1>
             <div id="hr"></div>
@@ -103,19 +134,26 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
             )}
             <p className="guided-answer__node__question">{activeNode.QUESTION}</p>
             <div className="guided-answer__node">
-                {activeNode.EDGES.map((edge, index) => (
-                    <div
-                        key={`edge_button${index}`}
-                        className="guided-answer__node__edge"
-                        onClick={(): void => {
-                            actions.selectNode(edge.TARGET_NODE);
-                        }}>
-                        {edge.LABEL}
-                    </div>
-                ))}
+                {activeNode.EDGES.length > 0 ? (
+                    activeNode.EDGES.map((edge, index) => (
+                        <div
+                            key={`edge_button${index}`}
+                            className="guided-answer__node__edge"
+                            onClick={(): void => {
+                                actions.selectNode(edge.TARGET_NODE);
+                            }}>
+                            {edge.LABEL}
+                        </div>
+                    ))
+                ) : (
+                    <FeedbackInterface />
+                )}
             </div>
         </div>
     );
+
+    const middle = appState.guideFeedback === false ? middleNotSolved : middleStandard;
+
     let right = null;
     if (activeNode.COMMANDS) {
         right = (

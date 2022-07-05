@@ -6,7 +6,8 @@ import {
     GO_TO_ALL_ANSWERS,
     RESTART_ANSWER,
     SET_ACTIVE_TREE,
-    SET_QUERY_VALUE
+    SET_QUERY_VALUE,
+    GUIDE_FEEDBACK
 } from '@sap/guided-answers-extension-types';
 import type { Reducer } from 'redux';
 import type { AppState } from '../types';
@@ -21,7 +22,8 @@ export function getInitialState(): AppState {
         query: '',
         guidedAnswerTrees: [],
         activeGuidedAnswerNode: [],
-        searchResultCount: -1
+        searchResultCount: -1,
+        guideFeedback: null
     };
 }
 
@@ -57,7 +59,11 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             break;
         }
         case GO_TO_PREVIOUS_PAGE: {
-            if (newState.activeGuidedAnswerNode.length > 0) {
+            if (newState.activeGuidedAnswerNode.length > 0 && newState.guideFeedback !== false) {
+                newState.activeGuidedAnswerNode.pop();
+            }
+            if (newState.guideFeedback === false) {
+                newState.guideFeedback = null;
                 newState.activeGuidedAnswerNode.pop();
             }
             break;
@@ -65,10 +71,12 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         case GO_TO_ALL_ANSWERS: {
             newState.activeGuidedAnswerNode = [];
             delete newState.activeGuidedAnswer;
+            newState.guideFeedback = null;
             break;
         }
         case RESTART_ANSWER: {
             newState.activeGuidedAnswerNode = [newState.activeGuidedAnswerNode[0]];
+            newState.guideFeedback = null;
             break;
         }
         case SET_ACTIVE_TREE: {
@@ -77,6 +85,10 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         }
         case SET_QUERY_VALUE: {
             newState.query = action.payload;
+            break;
+        }
+        case GUIDE_FEEDBACK: {
+            newState.guideFeedback = action.payload;
             break;
         }
         default: {

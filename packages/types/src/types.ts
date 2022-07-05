@@ -87,7 +87,8 @@ export type GuidedAnswerActions =
     | SetActiveTree
     | SearchTree
     | SetQueryValue
-    | WebviewReady;
+    | WebviewReady
+    | GuideFeedback;
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnserTrees {
@@ -152,4 +153,10 @@ export interface SetQueryValue {
 export const WEBVIEW_READY = 'WEBVIEW_READY';
 export interface WebviewReady {
     type: typeof WEBVIEW_READY;
+}
+
+export const GUIDE_FEEDBACK = 'GUIDE_FEEDBACK';
+export interface GuideFeedback {
+    type: typeof GUIDE_FEEDBACK;
+    payload: boolean | null;
 }
