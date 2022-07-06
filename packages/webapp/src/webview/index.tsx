@@ -24,3 +24,6 @@ render(
  * Fire action which is captured in hosting app (ide-extension) to signal that we are ready to receive messages
  */
 actions.webviewReady();
+
+/**Once webview is ready we focus to search field */
+document.getElementById('search-field')?.focus();

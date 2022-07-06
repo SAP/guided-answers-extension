@@ -9,16 +9,17 @@ import i18next from 'i18next';
  */
 export function AllAnswersButton() {
     return (
-        <div
+        <button
             className="guided-answer__header__navButtons home-icon"
             onClick={(): void => {
                 actions.goToAllAnswers();
-            }}>
+            }}
+            title={i18next.t('ALL_ANSWERS')}>
             <VscHome className="guided-answer__header__navButtons__content" />{' '}
-            <span className="guided-answer__header__navButtons__content__text text-hover">
+            <span className="guided-answer__header__navButtons__content__text text-underline">
                 {i18next.t('ALL_ANSWERS')}
             </span>
-        </div>
+        </button>
     );
 }
 
@@ -28,16 +29,17 @@ export function AllAnswersButton() {
  */
 export function BackButton() {
     return (
-        <div
+        <button
             className="guided-answer__header__navButtons"
             onClick={(): void => {
                 actions.goToPreviousPage();
-            }}>
+            }}
+            title={i18next.t('STEP_BACK')}>
             <VscArrowLeft className="guided-answer__header__navButtons__content" />
-            <span className="guided-answer__header__navButtons__content text-hover" style={{ marginLeft: '3px' }}>
+            <span className="guided-answer__header__navButtons__content text-underline" style={{ marginLeft: '3px' }}>
                 {i18next.t('STEP_BACK')}
             </span>
-        </div>
+        </button>
     );
 }
 
@@ -47,15 +49,16 @@ export function BackButton() {
  */
 export function RestartButton() {
     return (
-        <div
+        <button
             className="guided-answer__header__navButtons"
             onClick={(): void => {
                 actions.restartAnswer();
-            }}>
+            }}
+            title={i18next.t('RESTART')}>
             <VscRefresh className="guided-answer__header__navButtons__content" />
-            <span className="guided-answer__header__navButtons__content text-hover" style={{ marginLeft: '3px' }}>
+            <span className="guided-answer__header__navButtons__content text-underline" style={{ marginLeft: '3px' }}>
                 {i18next.t('RESTART')}
             </span>
-        </div>
+        </button>
     );
 }

@@ -32,7 +32,7 @@ describe('<AllAnswersButton />', () => {
         expect(wrapper.find('.guided-answer__header__navButtons').hasClass('home-icon')).toBe(true);
         expect(wrapper.find('.guided-answer__header__navButtons').props().onClick).toBeDefined();
         expect(wrapper.find('VscHome').length).toBe(1);
-        expect(wrapper.find('.guided-answer__header__navButtons__content__text').hasClass('text-hover')).toBe(true);
+        expect(wrapper.find('.guided-answer__header__navButtons__content__text').hasClass('text-underline')).toBe(true);
         expect(wrapper.find('.guided-answer__header__navButtons__content__text').text()).toBe(i18next.t('ALL_ANSWERS'));
 
         //Test click event
@@ -58,7 +58,7 @@ describe('<BackButton />', () => {
         expect(wrapper.find('.guided-answer__header__navButtons').length).toBe(1);
         expect(wrapper.find('.guided-answer__header__navButtons').props().onClick).toBeDefined();
         expect(wrapper.find('VscArrowLeft').length).toBe(1);
-        expect(wrapper.find('.guided-answer__header__navButtons__content').at(1).hasClass('text-hover')).toBe(true);
+        expect(wrapper.find('.guided-answer__header__navButtons__content').at(1).hasClass('text-underline')).toBe(true);
         expect(wrapper.find('.guided-answer__header__navButtons__content').at(1).text()).toBe(i18next.t('STEP_BACK'));
 
         //Test click event
@@ -84,7 +84,7 @@ describe('<RestartButton />', () => {
         expect(wrapper.find('.guided-answer__header__navButtons').length).toBe(1);
         expect(wrapper.find('.guided-answer__header__navButtons').props().onClick).toBeDefined();
         expect(wrapper.find('VscRefresh').length).toBe(1);
-        expect(wrapper.find('.guided-answer__header__navButtons__content').at(1).hasClass('text-hover')).toBe(true);
+        expect(wrapper.find('.guided-answer__header__navButtons__content').at(1).hasClass('text-underline')).toBe(true);
         expect(wrapper.find('.guided-answer__header__navButtons__content').at(1).text()).toBe(i18next.t('RESTART'));
 
         //Test click event

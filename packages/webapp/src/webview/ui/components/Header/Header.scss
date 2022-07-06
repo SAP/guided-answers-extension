@@ -25,9 +25,12 @@
         &__navButtons {
             height: 25px;
             margin-top: 30px;
-            color: var(--vscode-textLink-foreground);
+            color: var(--vscode-foreground);
+            padding: 0 5px 2px 3px;
             text-align: start;
             cursor: pointer;
+            background: none;
+            border: 0;
             &__content {
                 vertical-align: middle;
                 display: inline-block;
@@ -40,6 +43,13 @@
             svg {
                 width: 16px;
                 height: 16px;
+            }
+        }
+        &__navButtons:hover {
+            background: var(--vscode-menubar-selectionBackground);
+            border-radius: 3px;
+            > span {
+                text-decoration: none;
             }
         }
         &__allAnswersButton {
@@ -67,6 +77,10 @@
             width: 66%;
         }
     }
+}
+
+.home-icon {
+    width: 62px;
 }
 
 @media only screen and (max-width: 625px) {
@@ -107,11 +121,12 @@
         }
     }
     .home-icon {
-        width: 24px;
+        width: 28px;
+        padding: 0 3px 2px 3px;
         border-radius: 3px;
         color: var(--vscode-menu-foreground, #cccccc);
     }
     .home-icon:hover {
-        background: var(--divider-background, #454545);
+        background: var(--vscode-menubar-selectionBackground);
     }
 }
