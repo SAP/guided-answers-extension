@@ -28,8 +28,8 @@ export function Header(props: {
             {props.showSub === true ? (
                 <>
                     <div className="guided-answer__header__sub">
-                        {props.showLogo === true ? <Logo /> : ''}
-                        {props.showSearch === true ? <SearchField /> : ''}
+                        {!!props.showLogo && <Logo />}
+                        {!!props.showSearch && <SearchField />}
                     </div>{' '}
                 </>
             ) : (
