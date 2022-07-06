@@ -1,5 +1,4 @@
 module.exports = {
-    name: 'guided-answers-extension-webapp',
     displayName: 'guided-answers-extension-webapp',
     automock: false,
     clearMocks: true,
