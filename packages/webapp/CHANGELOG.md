@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.4.0
+
+### Minor Changes
+
+-   aad18ae: Styling and accessibility changes
+
 ## 0.3.0
 
 ### Minor Changes
