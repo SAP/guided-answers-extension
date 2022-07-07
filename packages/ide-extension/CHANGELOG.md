@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.5.0
+
+### Minor Changes
+
+-   e0d2a6e: feat: Add a new html enhancement to launch SAP Fiori tools Environment Check
+
 ## 0.4.0
 
 ### Minor Changes

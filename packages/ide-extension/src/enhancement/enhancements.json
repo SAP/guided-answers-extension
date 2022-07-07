@@ -11,6 +11,17 @@
                     "commandId": "sap.ux.environmentcheck.archiveProject"
                 }
             }
+        },
+        {
+            "text": "Fiori: Open Environment Check",
+            "command": {
+                "label": "Environment Check",
+                "description": "Command to run environment check",
+                "exec": {
+                    "extensionId": "sapse.sap-ux-application-modeler-extension",
+                    "commandId": "sap.ux.environmentcheck.open"
+                }
+            }
         }
     ]
 }

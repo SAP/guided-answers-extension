@@ -7,6 +7,8 @@ import { actions } from '../../../state';
 import { AppState } from '../../../types';
 import './GuidedAnswerNode.scss';
 import { GuidedAnswerNavPath } from '../GuidedAnswerNavPath';
+import { Middle } from './Middle';
+import { Right } from './Right';
 
 /**
  * Replacer function for html-react-parser's replace function. If an element was marked, replace it with  link <a>
@@ -92,63 +94,16 @@ function getNavigationSection(): ReactElement {
  */
 function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
     const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
-    const middle = (
-        <div id="middle" className="column">
-            <h1>{activeNode.TITLE}</h1>
-            <div id="hr"></div>
-            {enhancedBody ? (
-                enhancedBody
-            ) : (
-                <div className="content" dangerouslySetInnerHTML={{ __html: activeNode.BODY }}></div>
-            )}
-            <p className="guided-answer__node__question">{activeNode.QUESTION}</p>
-            <div className="guided-answer__node">
-                {activeNode.EDGES.map((edge, index) => (
-                    <div
-                        key={`edge_button${index}`}
-                        className="guided-answer__node__edge"
-                        onClick={(): void => {
-                            actions.selectNode(edge.TARGET_NODE);
-                        }}>
-                        {edge.LABEL}
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-    let right = null;
     if (activeNode.COMMANDS) {
-        right = (
-            <div id="right" className="column">
-                <div className="guided-answer__node__commands">
-                    {activeNode.COMMANDS
-                        ? activeNode.COMMANDS.map((command, index) => (
-                              <div className="guided-answer__node__command" key={`command-${index}`}>
-                                  <div className="guided-answer__node__command__header">
-                                      <div className="guided-answer__node__command__header__label">{command.label}</div>
-                                  </div>
-                                  <div
-                                      className="guided-answer__node__command__description"
-                                      onClick={(): void => {
-                                          actions.executeCommand(command);
-                                      }}>
-                                      {command.description}
-                                  </div>
-                              </div>
-                          ))
-                        : ''}
-                </div>
+        return (
+            <div className="main-container">
+                {<Middle activeNode={activeNode} enhancedBody={enhancedBody} />}
+                {<Right activeNode={activeNode} />}
             </div>
         );
+    } else {
+        return <Middle activeNode={activeNode} enhancedBody={enhancedBody} />;
     }
-    return right ? (
-        <div className="main-container">
-            {middle}
-            {right}
-        </div>
-    ) : (
-        middle
-    );
 }
 
 /**
