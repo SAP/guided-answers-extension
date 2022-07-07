@@ -48,6 +48,10 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         }
         case UPDATE_ACTIVE_NODE: {
             const node = newState.activeGuidedAnswerNode.find((n) => n.NODE_ID === action.payload.NODE_ID);
+            if (newState.guideFeedback === false) {
+                newState.guideFeedback = null;
+                newState.activeGuidedAnswerNode.pop();
+            }
             if (node) {
                 newState.activeGuidedAnswerNode = newState.activeGuidedAnswerNode.slice(
                     0,
