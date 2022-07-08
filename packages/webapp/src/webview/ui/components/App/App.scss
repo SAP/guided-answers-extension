@@ -31,6 +31,9 @@ h1 {
         &:hover {
             background-color: var(--vscode-list-hoverBackground);
         }
+        &:focus {
+            outline: 1px solid var(--vscode-focusBorder, #007fd4);
+        }
 
         &__ul {
             padding: 15px;

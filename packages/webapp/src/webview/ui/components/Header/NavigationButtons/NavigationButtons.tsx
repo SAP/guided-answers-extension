@@ -13,7 +13,9 @@ export function AllAnswersButton() {
             className="guided-answer__header__navButtons home-icon"
             onClick={(): void => {
                 actions.goToAllAnswers();
-            }}>
+            }}
+            title={i18next.t('ALL_ANSWERS')}
+            tabIndex={0}>
             <VscHome className="guided-answer__header__navButtons__content" />{' '}
             <span className="guided-answer__header__navButtons__content__text text-hover">
                 {i18next.t('ALL_ANSWERS')}
@@ -32,7 +34,9 @@ export function BackButton() {
             className="guided-answer__header__navButtons"
             onClick={(): void => {
                 actions.goToPreviousPage();
-            }}>
+            }}
+            title={i18next.t('STEP_BACK')}
+            tabIndex={0}>
             <VscArrowLeft className="guided-answer__header__navButtons__content" />
             <span className="guided-answer__header__navButtons__content text-hover" style={{ marginLeft: '3px' }}>
                 {i18next.t('STEP_BACK')}
@@ -51,7 +55,9 @@ export function RestartButton() {
             className="guided-answer__header__navButtons"
             onClick={(): void => {
                 actions.restartAnswer();
-            }}>
+            }}
+            title={i18next.t('RESTART')}
+            tabIndex={0}>
             <VscRefresh className="guided-answer__header__navButtons__content" />
             <span className="guided-answer__header__navButtons__content text-hover" style={{ marginLeft: '3px' }}>
                 {i18next.t('RESTART')}

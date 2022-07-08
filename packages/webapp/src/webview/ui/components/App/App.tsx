@@ -28,12 +28,13 @@ export function App(): ReactElement {
                     {appState.guidedAnswerTrees.map((tree, index) => {
                         return (
                             <li key={`tree-item-${index}`} className="tree-item">
-                                <div
+                                <button
                                     className="guided-answer__tree"
                                     onClick={(): void => {
                                         actions.setActiveTree(tree);
                                         actions.selectNode(tree.FIRST_NODE_ID);
-                                    }}>
+                                    }}
+                                    tabIndex={0}>
                                     <div className="guided-answer__tree__ul">
                                         <h3
                                             className="guided-answer__tree__title"
@@ -44,7 +45,7 @@ export function App(): ReactElement {
                                             <span className="guided-answer__tree__desc">{tree.DESCRIPTION}</span>
                                         )}
                                     </div>
-                                </div>
+                                </button>
                             </li>
                         );
                     })}

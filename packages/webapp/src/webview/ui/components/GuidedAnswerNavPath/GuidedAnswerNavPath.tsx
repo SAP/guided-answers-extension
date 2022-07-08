@@ -16,13 +16,11 @@ export function GuidedAnswerNavPath(): ReactElement {
     const isSolved = useSelector<AppState, boolean | null>((state) => state.guideFeedback);
     let activeNode = nodes[nodes.length - 1];
     let lastIndex = nodes.length - 1;
-    let lastBlockBorderStyle = 'timeline-content-bottom-border';
 
     if (isSolved === false && isSolved !== null) {
         nodes.push({ NODE_ID: 99999, TITLE: i18next.t('ISSUE_IS_NOT_RESOLVED'), BODY: '', QUESTION: '', EDGES: [] });
         activeNode = nodes[nodes.length - 1];
         lastIndex = nodes.length - 1;
-        lastBlockBorderStyle = 'timeline-content-bottom-border-not-solved';
     }
 
     if (activeNode) {
@@ -31,8 +29,10 @@ export function GuidedAnswerNavPath(): ReactElement {
                 {nodes.map((node, i) => {
                     return (
                         <div key={`timeline-block-${i}`} className="timeline-block">
-                            <div
-                                className={`timeline-content ${i === lastIndex ? lastBlockBorderStyle : ''}`}
+                            <button
+                                className={`timeline-content ${
+                                    i === lastIndex ? 'timeline-content-bottom-border' : ''
+                                }`}
                                 onClick={(): void => {
                                     actions.updateActiveNode(node);
                                 }}>
@@ -42,7 +42,7 @@ export function GuidedAnswerNavPath(): ReactElement {
                                         {node.TITLE}
                                     </span>
                                 </div>
-                            </div>
+                            </button>
                             {i !== lastIndex ? <div className="vertical-line"></div> : <></>}
                         </div>
                     );
