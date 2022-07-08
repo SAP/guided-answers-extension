@@ -44,8 +44,9 @@ describe('<GuidedAnswerNavPath />', () => {
     });
 
     it('Should render a GuidedAnswerNavPath component', () => {
-        expect(wrapper.html()).toMatchSnapshot(
-            '<nav class="container"><div class="timeline-block"><div class="timeline-content timeline-content-bottom-border"><div class="timeline__path" title="SAP Fiori Tools"><span class="timeline-content-title-small bold-text">1</span><span class="timeline-content-title-large bold-text">SAP Fiori Tools</span></div></div></div></nav>'
+        expect(wrapper.html()).toMatchInlineSnapshot(
+            '<nav class="container"><div class="timeline-block"><div class="timeline-content timeline-content-bottom-border"><div class="timeline__path" title="SAP Fiori Tools"><span class="timeline-content-title-small bold-text">1</span><span class="timeline-content-title-large bold-text">SAP Fiori Tools</span></div></div></div></nav>',
+            `"<nav class=\\"container\\"><div class=\\"timeline-block\\"><div class=\\"timeline-content timeline-content-bottom-border\\"><div class=\\"timeline__path\\" title=\\"SAP Fiori Tools\\"><span class=\\"timeline-content-title-small bold-text\\">1</span><span class=\\"timeline-content-title-large bold-text\\">SAP Fiori Tools</span></div></div></div></nav>"`
         );
 
         //Test click event

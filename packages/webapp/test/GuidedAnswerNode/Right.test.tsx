@@ -47,8 +47,9 @@ describe('<Right />', () => {
     });
 
     it('Should render a Right component', () => {
-        expect(wrapper.html()).toMatchSnapshot(
-            '<div id="right" class="column"><div class="guided-answer__node__commands"><div class="guided-answer__node__command"><div class="guided-answer__node__command__header"><div class="guided-answer__node__command__header__label">Label for command</div></div><div class="guided-answer__node__command__description">Description for command</div></div></div></div>'
+        expect(wrapper.html()).toMatchInlineSnapshot(
+            '<div id="right" class="column"><div class="guided-answer__node__commands"><div class="guided-answer__node__command"><div class="guided-answer__node__command__header"><div class="guided-answer__node__command__header__label">Label for command</div></div><div class="guided-answer__node__command__description">Description for command</div></div></div></div>',
+            `"<div id=\\"right\\" class=\\"column\\"><div class=\\"guided-answer__node__commands\\"><div class=\\"guided-answer__node__command\\"><div class=\\"guided-answer__node__command__header\\"><div class=\\"guided-answer__node__command__header__label\\">Label for command</div></div><div class=\\"guided-answer__node__command__description\\">Description for command</div></div></div></div>"`
         );
 
         //Test click event
