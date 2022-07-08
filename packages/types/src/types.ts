@@ -39,7 +39,7 @@ export interface VSCodeCommand {
 }
 
 export interface TerminalCommand {
-    cwd: string;
+    cwd?: string;
     arguments: string[];
 }
 

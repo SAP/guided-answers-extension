@@ -38,7 +38,11 @@ const window = {
             onDidChangeViewState: jest.fn(),
             onDidDispose: jest.fn()
         };
-    })
+    }),
+    createTerminal: () => {
+        show: jest.fn();
+        sendText: jest.fn();
+    }
 };
 
 const workspace = {
