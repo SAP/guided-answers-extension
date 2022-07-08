@@ -3,9 +3,8 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import { VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
-import i18next from 'i18next';
 
-let timer: ReturnType<typeof setTimeout>;
+let timer: NodeJS.Timeout;
 /**
  *
  * @returns An input field
@@ -17,7 +16,7 @@ export function SearchField() {
             <VSCodeTextField
                 className="tree-search-field"
                 value={appState.query}
-                placeholder={i18next.t('SEARCH_GUIDED_ANSWERS')}
+                placeholder="Search Guided Answers"
                 id="search-field"
                 onInput={(e: any) => {
                     const newValue = e?.target?.value;
