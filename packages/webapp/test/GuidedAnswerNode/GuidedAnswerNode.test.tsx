@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { shallow } from 'enzyme';
-import { GuidedAnswerNode, enhanceBodyHtml } from '../../src/webview/ui/components/GuidedAnswerNode';
+import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
+import { GuidedAnswerNode } from '../../src/webview/ui/components/GuidedAnswerNode';
 import { initI18n } from '../../src/webview/i18n';
 
 jest.mock('react-redux', () => ({
@@ -10,7 +11,7 @@ jest.mock('react-redux', () => ({
         .mockReturnValue({ activeGuidedAnswerNode: [] })
         .mockReturnValueOnce([
             {
-                BODY: '<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p>',
+                BODY: `<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code <span ${HTML_ENHANCEMENT_DATA_ATTR_MARKER}="%7B%22label%22%3A%22Archive%20Project%22%2C%22description%22%3A%22Run%20command%20to%20archive%20a%20Fiori%20tools%20project%20from%20current%20workspace%22%2C%22exec%22%3A%7B%22extensionId%22%3A%22sapse.sap-ux-application-modeler-extension%22%2C%22commandId%22%3A%22sap.ux.environmentcheck.archiveProject%22%7D%7D">Fiori: Archive Project</span></p>`,
                 EDGES: [
                     { LABEL: 'Deployment', TARGET_NODE: 45996, ORD: 1 },
                     { LABEL: 'Fiori Generator', TARGET_NODE: 48363, ORD: 2 }
@@ -37,21 +38,11 @@ describe('<GuidedAnswerNode />', () => {
     it('Should render a GuidedAnswerNode component', () => {
         const component = wrapper.html();
         expect(component).toMatchInlineSnapshot(
-            `"<section class=\\"guided-answer__node__body\\"><div id=\\"left\\" class=\\"column\\"></div><div id=\\"middle\\" class=\\"column\\"><h1>SAP Fiori Tools</h1><div id=\\"hr\\"></div><div class=\\"content\\"><p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p></div><p class=\\"guided-answer__node__question\\">I have a problem with</p><div class=\\"guided-answer__node\\"><div class=\\"guided-answer__node__edge\\">Deployment</div><div class=\\"guided-answer__node__edge\\">Fiori Generator</div></div></div></section>"`
+            `"<section class=\\"guided-answer__node__body\\"><div id=\\"left\\" class=\\"column\\"></div><div id=\\"middle\\" class=\\"column\\"><h1>SAP Fiori Tools</h1><div id=\\"hr\\"></div><p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code <span title=\\"Run command to archive a Fiori tools project from current workspace\\" class=\\"enhancement-link\\">Fiori: Archive Project</span></p><p class=\\"guided-answer__node__question\\">I have a problem with</p><div class=\\"guided-answer__node\\"><div class=\\"guided-answer__node__edge\\">Deployment</div><div class=\\"guided-answer__node__edge\\">Fiori Generator</div></div></div></section>"`
         );
     });
 
     it('Should render an empty GuidedAnswerNode component', () => {
         expect(wrapper.find('Fragment').length).toBe(1);
-    });
-
-    it('Test helper functions', () => {
-        const enhancedReactComponent = enhanceBodyHtml('<p id="enhancedHtml">This is a test paragraph</p>');
-        function TestComponent(): ReactElement {
-            return <div>{enhancedReactComponent}</div>;
-        }
-
-        wrapper = shallow(<TestComponent />);
-        expect(wrapper.find('#enhancedHtml').text()).toBe('This is a test paragraph');
     });
 });

@@ -52,7 +52,7 @@ function replace(domNode: DOMNode): ReactElement | undefined {
  * @param htmlString - HTML string
  * @returns - react elements including enhancements
  */
-export function enhanceBodyHtml(htmlString: string): ReactElement | undefined {
+function enhanceBodyHtml(htmlString: string): ReactElement | undefined {
     let result;
     try {
         result = parse(htmlString, { replace });
