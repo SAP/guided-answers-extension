@@ -1,8 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { GuidedAnswerNavPath } from '../src/webview/ui/components/GuidedAnswerNavPath';
-import { initI18n } from '../src/webview/i18n';
-import { actions } from '../src/webview/state';
+import { GuidedAnswerNode } from '../../src/webview/ui/components/GuidedAnswerNode';
+import { initI18n } from '../../src/webview/i18n';
 
 jest.mock('react-redux', () => ({
     ...jest.requireActual('react-redux'),
@@ -23,19 +22,11 @@ jest.mock('react-redux', () => ({
         ])
 }));
 
-jest.mock('../src/webview/state', () => {
-    return {
-        actions: {
-            updateActiveNode: jest.fn()
-        }
-    };
-});
-
-describe('<GuidedAnswerNavPath />', () => {
+describe('<GuidedAnswerNode />', () => {
     let wrapper: any;
     initI18n();
     beforeEach(() => {
-        wrapper = shallow(<GuidedAnswerNavPath />);
+        wrapper = shallow(<GuidedAnswerNode />);
     });
 
     afterEach(() => {
@@ -43,18 +34,14 @@ describe('<GuidedAnswerNavPath />', () => {
         wrapper.unmount();
     });
 
-    it('Should render a GuidedAnswerNavPath component', () => {
+    it('Should render a GuidedAnswerNode component', () => {
         const component = wrapper.html();
         expect(component).toMatchInlineSnapshot(
-            `"<nav class=\\"container\\"><div class=\\"timeline-block\\"><div class=\\"timeline-content timeline-content-bottom-border\\"><div class=\\"timeline__path\\" title=\\"SAP Fiori Tools\\"><span class=\\"timeline-content-title-small bold-text\\">1</span><span class=\\"timeline-content-title-large bold-text\\">SAP Fiori Tools</span></div></div></div></nav>"`
+            `"<section class=\\"guided-answer__node__body\\"><div id=\\"left\\" class=\\"column\\"></div><div id=\\"middle\\" class=\\"column\\"><h1>SAP Fiori Tools</h1><div id=\\"hr\\"></div><div class=\\"content\\"><p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p></div><p class=\\"guided-answer__node__question\\">I have a problem with</p><div class=\\"guided-answer__node\\"><div class=\\"guided-answer__node__edge\\">Deployment</div><div class=\\"guided-answer__node__edge\\">Fiori Generator</div></div></div></section>"`
         );
-
-        //Test click event
-        wrapper.find('.timeline-content').simulate('click');
-        expect(actions.updateActiveNode).toBeCalled();
     });
 
-    it('Should render an empty GuidedAnswerNavPath component', () => {
+    it('Should render an empty GuidedAnswerNode component', () => {
         expect(wrapper.find('Fragment').length).toBe(1);
     });
 });
