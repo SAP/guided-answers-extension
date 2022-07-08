@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { App } from '../src/webview/ui/components/App';
 import { initI18n } from '../src/webview/i18n';
+import { actions } from '../src/webview/state';
 
 jest.mock('@vscode/webview-ui-toolkit/react', () => ({
     VSCodeTextField: () => (
@@ -10,6 +11,15 @@ jest.mock('@vscode/webview-ui-toolkit/react', () => ({
         </>
     )
 }));
+
+jest.mock('../src/webview/state', () => {
+    return {
+        actions: {
+            setActiveTree: jest.fn(),
+            selectNode: jest.fn()
+        }
+    };
+});
 
 jest.mock('react-redux', () => ({
     ...jest.requireActual('react-redux'),
@@ -68,6 +78,10 @@ describe('<NoAnswersFound />', () => {
         expect(wrapper.find('.guided-answer__tree__desc').text()).toBe(
             'This is a troubleshooting guide to solve the issues while using SAP Fiori tools'
         );
+        //Test click event
+        wrapper.find('.guided-answer__tree').simulate('click');
+        expect(actions.setActiveTree).toBeCalled();
+        expect(actions.selectNode).toHaveBeenCalledWith(45995);
     });
 
     it('Should render a App component with GuidedAnswerNode component', () => {
