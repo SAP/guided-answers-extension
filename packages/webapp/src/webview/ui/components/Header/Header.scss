@@ -52,6 +52,10 @@
                 text-decoration: none;
             }
         }
+        &__navButtons:focus {
+            outline: 1px solid var(--vscode-focusBorder, #007fd4);
+        }
+
         &__allAnswersButton {
             width: 25%;
             margin-right: 80px;

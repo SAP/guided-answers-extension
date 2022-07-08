@@ -21,7 +21,7 @@ export function GuidedAnswerNavPath(): ReactElement {
                 {nodes.map((node, i) => {
                     return (
                         <div key={`timeline-block-${i}`} className="timeline-block">
-                            <div
+                            <button
                                 className={`timeline-content ${
                                     i === lastIndex ? 'timeline-content-bottom-border' : ''
                                 }`}
@@ -34,7 +34,7 @@ export function GuidedAnswerNavPath(): ReactElement {
                                         {node.TITLE}
                                     </span>
                                 </div>
-                            </div>
+                            </button>
                             {i !== lastIndex ? <div className="vertical-line"></div> : <></>}
                         </div>
                     );

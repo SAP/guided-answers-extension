@@ -18,13 +18,13 @@ export function Right(props: { activeNode: GuidedAnswerNodeType }): ReactElement
                               <div className="guided-answer__node__command__header">
                                   <div className="guided-answer__node__command__header__label">{command.label}</div>
                               </div>
-                              <div
+                              <button
                                   className="guided-answer__node__command__description"
                                   onClick={(): void => {
                                       actions.executeCommand(command);
                                   }}>
                                   {command.description}
-                              </div>
+                              </button>
                           </div>
                       ))
                     : ''}

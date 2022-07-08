@@ -23,7 +23,7 @@ export function Middle(props: {
                 <div className="content" dangerouslySetInnerHTML={{ __html: props.activeNode.BODY }}></div>
             )}
             <p className="guided-answer__node__question">{props.activeNode.QUESTION}</p>
-            <div className="guided-answer__node">
+            <button className="guided-answer__node">
                 {props.activeNode.EDGES.map((edge, index) => (
                     <div
                         key={`edge_button${index}`}
@@ -34,7 +34,7 @@ export function Middle(props: {
                         {edge.LABEL}
                     </div>
                 ))}
-            </div>
+            </button>
         </div>
     );
 }
