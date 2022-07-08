@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { shallow } from 'enzyme';
-import { GuidedAnswerNode } from '../../src/webview/ui/components/GuidedAnswerNode';
+import { GuidedAnswerNode, enhanceBodyHtml } from '../../src/webview/ui/components/GuidedAnswerNode';
 import { initI18n } from '../../src/webview/i18n';
 
 jest.mock('react-redux', () => ({
@@ -43,5 +43,15 @@ describe('<GuidedAnswerNode />', () => {
 
     it('Should render an empty GuidedAnswerNode component', () => {
         expect(wrapper.find('Fragment').length).toBe(1);
+    });
+
+    it('Test helper functions', () => {
+        const enhancedReactComponent = enhanceBodyHtml('<p id="enhancedHtml">This is a test paragraph</p>');
+        function TestComponent(): ReactElement {
+            return <div>{enhancedReactComponent}</div>;
+        }
+
+        wrapper = shallow(<TestComponent />);
+        expect(wrapper.find('#enhancedHtml').text()).toBe('This is a test paragraph');
     });
 });
