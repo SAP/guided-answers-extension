@@ -14,6 +14,11 @@ button {
     cursor: pointer;
     outline: inherit;
 }
+
+button:focus {
+    outline: 1px solid var(--vscode-focusBorder, #007fd4);
+}
+
 .column {
     flex-direction: column;
     overflow-y: auto;
@@ -73,6 +78,10 @@ button {
 }
 
 .guided-answer__node {
+    & {
+        display: flex;
+        flex-direction: column;
+    }
     &__body {
         color: var(--vscode-foreground);
         display: flex;
