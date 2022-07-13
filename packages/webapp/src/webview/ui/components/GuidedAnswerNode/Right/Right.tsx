@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { actions } from '../../../../state';
 import type { GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
 import '../GuidedAnswerNode.scss';
+import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
 /**
  * @param props - props for middle component
@@ -18,12 +19,18 @@ export function Right(props: { activeNode: GuidedAnswerNodeType }): ReactElement
                               <div className="guided-answer__node__command__header">
                                   <div className="guided-answer__node__command__header__label">{command.label}</div>
                               </div>
+
                               <button
                                   className="guided-answer__node__command__description"
                                   onClick={(): void => {
                                       actions.executeCommand(command);
                                   }}>
-                                  {command.description}
+                                  <FocusZone
+                                      direction={FocusZoneDirection.vertical}
+                                      isCircularNavigation={true}
+                                      role="grid">
+                                      {command.description}
+                                  </FocusZone>
                               </button>
                           </div>
                       ))

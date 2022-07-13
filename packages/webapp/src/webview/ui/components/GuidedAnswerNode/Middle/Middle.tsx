@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { actions } from '../../../../state';
 import type { GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
 import '../GuidedAnswerNode.scss';
+import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
 /**
  * @param props - props for middle component
@@ -18,23 +19,29 @@ export function Middle(props: {
             <h1>{props.activeNode.TITLE}</h1>
             <div id="hr"></div>
             {props.enhancedBody ? (
-                props.enhancedBody
+                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
+                    {props.enhancedBody}
+                </FocusZone>
             ) : (
-                <div className="content" dangerouslySetInnerHTML={{ __html: props.activeNode.BODY }}></div>
+                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
+                    <div className="content" dangerouslySetInnerHTML={{ __html: props.activeNode.BODY }}></div>
+                </FocusZone>
             )}
             <p className="guided-answer__node__question">{props.activeNode.QUESTION}</p>
-            <div className="guided-answer__node">
-                {props.activeNode.EDGES.map((edge, index) => (
-                    <button
-                        key={`edge_button${index}`}
-                        className="guided-answer__node__edge"
-                        onClick={(): void => {
-                            actions.selectNode(edge.TARGET_NODE);
-                        }}>
-                        {edge.LABEL}
-                    </button>
-                ))}
-            </div>
+            <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
+                <div className="guided-answer__node">
+                    {props.activeNode.EDGES.map((edge, index) => (
+                        <button
+                            key={`edge_button${index}`}
+                            className="guided-answer__node__edge"
+                            onClick={(): void => {
+                                actions.selectNode(edge.TARGET_NODE);
+                            }}>
+                            {edge.LABEL}
+                        </button>
+                    ))}
+                </div>
+            </FocusZone>
         </div>
     );
 }

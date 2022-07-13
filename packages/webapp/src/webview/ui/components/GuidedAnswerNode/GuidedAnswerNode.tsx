@@ -9,6 +9,7 @@ import './GuidedAnswerNode.scss';
 import { GuidedAnswerNavPath } from '../GuidedAnswerNavPath';
 import { Middle } from './Middle';
 import { Right } from './Right';
+import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
 /**
  * Replacer function for html-react-parser's replace function. If an element was marked, replace it with  link <a>
@@ -116,8 +117,12 @@ export function GuidedAnswerNode(): ReactElement {
     const activeNode = nodes[nodes.length - 1];
     return activeNode ? (
         <section className="guided-answer__node__body">
-            {getNavigationSection()}
+            <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
+                {getNavigationSection()}
+            </FocusZone>
+            {/* <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid"> */}
             {getContent(activeNode)}
+            {/* </FocusZone> */}
         </section>
     ) : (
         <></>
