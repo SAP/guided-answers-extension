@@ -23,7 +23,9 @@ export function Middle(props: {
                     {props.enhancedBody}
                 </FocusZone>
             ) : (
-                <div className="content" dangerouslySetInnerHTML={{ __html: props.activeNode.BODY }}></div>
+                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
+                    <div className="content" dangerouslySetInnerHTML={{ __html: props.activeNode.BODY }}></div>
+                </FocusZone>
             )}
             <p className="guided-answer__node__question">{props.activeNode.QUESTION}</p>
             <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true} role="grid">

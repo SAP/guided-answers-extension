@@ -47,6 +47,10 @@ button:focus {
     .content > * {
         line-height: 18px;
     }
+
+    a:focus {
+        outline: 1px solid var(--vscode-focusBorder, #007fd4);
+    }
 }
 
 #hr {
