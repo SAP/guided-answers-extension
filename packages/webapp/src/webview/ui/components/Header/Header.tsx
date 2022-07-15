@@ -25,40 +25,44 @@ export function Header(props: {
 }): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
     return (
-        <div className="guided-answer__header" style={{ paddingBottom: props.showNavButons === true ? '0' : '20px' }}>
-            {props.showSub === true ? (
-                <>
-                    <div className="guided-answer__header__sub">
-                        {!!props.showLogo && <Logo />}
-                        {!!props.showSearch && <SearchField />}
-                    </div>{' '}
-                </>
-            ) : (
-                <></>
-            )}
+        <header>
+            <div
+                className="guided-answer__header"
+                style={{ paddingBottom: props.showNavButons === true ? '0' : '20px' }}>
+                {props.showSub === true ? (
+                    <>
+                        <div className="guided-answer__header__sub">
+                            {!!props.showLogo && <Logo />}
+                            {!!props.showSearch && <SearchField />}
+                        </div>{' '}
+                    </>
+                ) : (
+                    <></>
+                )}
 
-            {props.showNavButons === true ? (
-                <>
-                    <div className="guided-answer__header__allAnswersButton">
-                        {/* <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid"> */}
-                        <AllAnswersButton />
-                        {/* </FocusZone> */}
-                    </div>
+                {props.showNavButons === true ? (
+                    <>
+                        <div className="guided-answer__header__allAnswersButton">
+                            {/* <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid"> */}
+                            <AllAnswersButton />
+                            {/* </FocusZone> */}
+                        </div>
 
-                    <div className="guided-answer__header__back-restart-buttons">
-                        {/* <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid"> */}
-                        <BackButton />
-                        {/* </FocusZone> */}
-                        {appState.activeGuidedAnswerNode.length > 1 && (
-                            // <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
-                            <RestartButton />
-                            // </FocusZone>
-                        )}
-                    </div>
-                </>
-            ) : (
-                <></>
-            )}
-        </div>
+                        <div className="guided-answer__header__back-restart-buttons">
+                            {/* <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid"> */}
+                            <BackButton />
+                            {/* </FocusZone> */}
+                            {appState.activeGuidedAnswerNode.length > 1 && (
+                                // <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
+                                <RestartButton />
+                                // </FocusZone>
+                            )}
+                        </div>
+                    </>
+                ) : (
+                    <></>
+                )}
+            </div>
+        </header>
     );
 }

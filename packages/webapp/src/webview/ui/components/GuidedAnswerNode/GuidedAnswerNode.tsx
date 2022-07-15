@@ -117,12 +117,8 @@ export function GuidedAnswerNode(): ReactElement {
     const activeNode = nodes[nodes.length - 1];
     return activeNode ? (
         <section className="guided-answer__node__body">
-            <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
-                {getNavigationSection()}
-            </FocusZone>
-            {/* <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid"> */}
+            {getNavigationSection()}
             {getContent(activeNode)}
-            {/* </FocusZone> */}
         </section>
     ) : (
         <></>

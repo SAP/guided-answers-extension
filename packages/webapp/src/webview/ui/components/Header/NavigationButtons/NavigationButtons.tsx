@@ -15,7 +15,7 @@ export function AllAnswersButton() {
                 actions.goToAllAnswers();
             }}
             title={i18next.t('ALL_ANSWERS')}
-            tabIndex={1}>
+            tabIndex={0}>
             <VscHome className="guided-answer__header__navButtons__content" />{' '}
             <span className="guided-answer__header__navButtons__content__text text-underline">
                 {i18next.t('ALL_ANSWERS')}

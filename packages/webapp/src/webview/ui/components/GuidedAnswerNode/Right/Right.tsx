@@ -13,28 +13,25 @@ export function Right(props: { activeNode: GuidedAnswerNodeType }): ReactElement
     return (
         <div id="right" className="column">
             <div className="guided-answer__node__commands">
-                {props.activeNode.COMMANDS
-                    ? props.activeNode.COMMANDS.map((command, index) => (
-                          <div className="guided-answer__node__command" key={`command-${index}`}>
-                              <div className="guided-answer__node__command__header">
-                                  <div className="guided-answer__node__command__header__label">{command.label}</div>
-                              </div>
+                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
+                    {props.activeNode.COMMANDS
+                        ? props.activeNode.COMMANDS.map((command, index) => (
+                              <div className="guided-answer__node__command" key={`command-${index}`}>
+                                  <div className="guided-answer__node__command__header">
+                                      <div className="guided-answer__node__command__header__label">{command.label}</div>
+                                  </div>
 
-                              <button
-                                  className="guided-answer__node__command__description"
-                                  onClick={(): void => {
-                                      actions.executeCommand(command);
-                                  }}>
-                                  <FocusZone
-                                      direction={FocusZoneDirection.vertical}
-                                      isCircularNavigation={true}
-                                      role="grid">
+                                  <button
+                                      className="guided-answer__node__command__description"
+                                      onClick={(): void => {
+                                          actions.executeCommand(command);
+                                      }}>
                                       {command.description}
-                                  </FocusZone>
-                              </button>
-                          </div>
-                      ))
-                    : ''}
+                                  </button>
+                              </div>
+                          ))
+                        : ''}
+                </FocusZone>
             </div>
         </div>
     );
