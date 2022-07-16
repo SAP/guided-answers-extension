@@ -16,7 +16,6 @@ import type {
     WebviewReady,
     UpdateLoading
 } from './types';
-import { UPDATE_LOADING } from './types';
 import {
     EXECUTE_COMMAND,
     GO_TO_PREVIOUS_PAGE,
@@ -28,6 +27,7 @@ import {
     SET_QUERY_VALUE,
     UPDATE_GUIDED_ANSWER_TREES,
     UPDATE_ACTIVE_NODE,
+    UPDATE_LOADING,
     WEBVIEW_READY
 } from './types';
 

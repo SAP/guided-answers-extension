@@ -1,6 +1,5 @@
 import type { ExtensionContext } from 'vscode';
-import { window } from 'vscode';
-import { commands } from 'vscode';
+import { commands, window } from 'vscode';
 import { logString } from './logger/logger';
 import { GuidedAnswersPanel } from './panel/guidedAnswersPanel';
 import type { StartOptions } from './types';
