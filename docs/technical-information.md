@@ -21,16 +21,23 @@ Here are some characteristics of the module
 - listens to messages/actions from UI and handles or dispatches them
 - uses module [`@sap/guided-answers-extension-core`](../packages/core/) to communicate with the Guided Answers REST API
 
-Command `SAP: Open Guided Answers` is registered to start the main screen which allows to search for Guided Answers. There is also a possibility to programmatically start Guided Answers from another extension with a particular Guided Answers tree id, e.g.
+Command `SAP: Open Guided Answers` is registered to start the main screen which allows to search for Guided Answers. There is also a possibility to programmatically start Guided Answers from another extension with a particular Guided Answers tree id, or a complete path to a node, e.g.
 
 ```typescript
 import { commands } from 'vscode';
 
+// (1) Call Guided Answers with a tree
 commands.executeCommand('sap.ux.guidedAnswer.openGuidedAnswer', { treeId: 3046 });
+
+// (2) Call Guided Answers with a tree and node path
+commands.executeCommand('sap.ux.guidedAnswer.openGuidedAnswer', { treeId: 3046, nodeIdPath: [45995, 45996, 46000] });
 ```
 
 The tree id can be captured from the Guide Answer's guide URL, e.g.:   
-`https://ga.support.sap.com/dtp/viewer/index.html#/tree/`**3046**`/actions/45995`
+`https://ga.support.sap.com/dtp/viewer/index.html#/tree/`**3046**`/actions/45995`.
+
+The first example will immediately show the Guided Answer tree 3046 and the first node 45995, the second example will navigate to a path including four steps, like: 
+https://ga.support.sap.com/dtp/viewer/index.html#/tree/3046/actions/45995:45996:45999:46000
 
 ### Module `@sap/guided-answers-extension-core` ([packages/core](../packages/core/)) 
 

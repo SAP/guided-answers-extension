@@ -103,7 +103,7 @@ importers:
             '@types/react': 17.0.43
             '@types/react-dom': 17.0.14
             '@types/react-redux': 7.1.23
-            '@vscode/webview-ui-toolkit': 0.9.3
+            '@vscode/webview-ui-toolkit': 1.0.0
             autoprefixer: 10.4.4
             enzyme: 3.11.0
             enzyme-adapter-react-16: 1.15.6
@@ -132,7 +132,7 @@ importers:
             '@types/react': 17.0.43
             '@types/react-dom': 17.0.14
             '@types/react-redux': 7.1.23
-            '@vscode/webview-ui-toolkit': 0.9.3_react@16.14.0
+            '@vscode/webview-ui-toolkit': 1.0.0_react@16.14.0
             autoprefixer: 10.4.4_postcss@8.4.12
             enzyme: 3.11.0
             enzyme-adapter-react-16: 1.15.6_j6bpv5pizkyfppcg2tmva6pmii
@@ -2395,10 +2395,10 @@ packages:
             eslint-visitor-keys: 3.3.0
         dev: true
 
-    /@vscode/webview-ui-toolkit/0.9.3_react@16.14.0:
+    /@vscode/webview-ui-toolkit/1.0.0_react@16.14.0:
         resolution:
             {
-                integrity: sha512-uEEpTVA21zkHtWMR8TPT7vbIZ1+tvfhQPThEdmmDjh0PulKPvaAVNqnGbQitU3F9GVqpq2AdIKAq6N1jFeBoXg==
+                integrity: sha512-/qaHYZXqvIKkao54b7bLzyNH8BC+X4rBmTUx1MvcIiCjqRMxml0BCpqJhnDpfrCb0IOxXRO8cAy1eB5ayzQfBA==
             }
         peerDependencies:
             react: '>=16.9.0'

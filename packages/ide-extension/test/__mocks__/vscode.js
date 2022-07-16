@@ -42,7 +42,8 @@ const window = {
     createTerminal: () => {
         show: jest.fn();
         sendText: jest.fn();
-    }
+    },
+    showErrorMessage: jest.fn()
 };
 
 const workspace = {

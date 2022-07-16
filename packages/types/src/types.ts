@@ -30,6 +30,7 @@ export interface GuidedAnswerAPI {
     getNodeById: (id: GuidedAnswerNodeId) => Promise<GuidedAnswerNode>;
     getTreeById: (id: GuidedAnswerTreeId) => Promise<GuidedAnswerTree>;
     getTrees: (query?: string) => Promise<GuidedAnswerTree[]>;
+    getNodePath: (nodeIdPath: GuidedAnswerNodeId[]) => Promise<GuidedAnswerNode[]>;
 }
 
 export interface VSCodeCommand {
@@ -80,6 +81,7 @@ export type GuidedAnswerActions =
     | UpdateGuidedAnserTrees
     | SelectNode
     | UpdateActiveNode
+    | UpdateLoading
     | GoToPreviousPage
     | GoToAllAnswers
     | RestartAnswer
@@ -105,6 +107,12 @@ export const UPDATE_ACTIVE_NODE = 'UPDATE_ACTIVE_NODE';
 export interface UpdateActiveNode {
     type: typeof UPDATE_ACTIVE_NODE;
     payload: GuidedAnswerNode;
+}
+
+export const UPDATE_LOADING = 'UPDATE_LOADING';
+export interface UpdateLoading {
+    type: typeof UPDATE_LOADING;
+    payload: boolean;
 }
 
 export const GO_TO_PREVIOUS_PAGE = 'GO_TO_PREVIOUS_PAGE';

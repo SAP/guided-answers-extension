@@ -25,7 +25,6 @@ jest.mock('react-redux', () => ({
     ...jest.requireActual('react-redux'),
     useSelector: jest
         .fn()
-        .mockReturnValue({ activeGuidedAnswerNode: [{ a: 0 }, { b: 0 }] })
         .mockReturnValueOnce({
             activeGuidedAnswerNode: [],
             guidedAnswerTrees: [],
@@ -46,6 +45,8 @@ jest.mock('react-redux', () => ({
             query: 'fiori tools',
             searchResultCount: 1
         })
+        .mockReturnValueOnce({ activeGuidedAnswerNode: [{ a: 0 }, { b: 0 }] })
+        .mockReturnValueOnce({ loading: true, activeGuidedAnswerNode: [] })
 }));
 
 describe('<NoAnswersFound />', () => {
@@ -89,5 +90,9 @@ describe('<NoAnswersFound />', () => {
         expect(wrapper.find('Header').length).toBe(1);
         expect(wrapper.find('.guided-answer__container').length).toBe(1);
         expect(wrapper.find('GuidedAnswerNode').length).toBe(1);
+    });
+
+    it('Should render loading indicator', () => {
+        expect(wrapper.find('#loading-indicator').length).toBe(1);
     });
 });

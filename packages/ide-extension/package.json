@@ -34,6 +34,7 @@
         "lint": "eslint . --ext .ts",
         "ide-ext:package": "vsce package",
         "test": "jest --ci --forceExit --detectOpenHandles --colors",
+        "watch": "pnpm clean && node esbuild.js --watch",
         "vscode:prepublish": "pnpm run build"
     },
     "activationEvents": [

@@ -2,6 +2,7 @@ import type { GuidedAnswerActions } from '@sap/guided-answers-extension-types';
 import {
     UPDATE_GUIDED_ANSWER_TREES,
     UPDATE_ACTIVE_NODE,
+    UPDATE_LOADING,
     GO_TO_PREVIOUS_PAGE,
     GO_TO_ALL_ANSWERS,
     RESTART_ANSWER,
@@ -18,6 +19,7 @@ import type { AppState } from '../types';
  */
 export function getInitialState(): AppState {
     return {
+        loading: true,
         query: '',
         guidedAnswerTrees: [],
         activeGuidedAnswerNode: [],
@@ -54,6 +56,10 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             } else {
                 newState.activeGuidedAnswerNode.push(action.payload);
             }
+            break;
+        }
+        case UPDATE_LOADING: {
+            newState.loading = action.payload;
             break;
         }
         case GO_TO_PREVIOUS_PAGE: {
