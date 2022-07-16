@@ -69,3 +69,33 @@ Object {
   "TITLE": "Node",
 }
 `;
+
+exports[`Guided Answers Api: getNodePath() Get node path, node enhanced, should return enhanced list of nodes 1`] = `
+Array [
+  Object {
+    "BODY": "<p>This is node Onehundredeleven</p>",
+    "EDGES": Array [
+      Object {
+        "LABEL": "Next",
+        "ORD": 1,
+        "TARGET_NODE": 112,
+      },
+      Object {
+        "LABEL": "Somewhere else",
+        "ORD": 2,
+        "TARGET_NODE": 911,
+      },
+    ],
+    "NODE_ID": 111,
+    "QUESTION": "Where next",
+    "TITLE": "Onehundredeleven",
+  },
+  Object {
+    "BODY": "<p>This is node <span data-guided-answers-command-8d98638a0304b3f13b54d885dc542121=\\"%7B%22label%22%3A%22Command%20for%20Onehundredtwelve%22%2C%22description%22%3A%22Command%20to%20enhance%20node%20in%20path%22%2C%22icon%22%3A%22%22%2C%22exec%22%3A%7B%22cwd%22%3A%22%2F%22%2C%22arguments%22%3A%5B%22TEST%22%5D%7D%7D\\">Onehundredtwelve</span></p>",
+    "EDGES": Array [],
+    "NODE_ID": 112,
+    "QUESTION": "Nowhere else to go",
+    "TITLE": "Onehundredtwelve",
+  },
+]
+`;

@@ -278,3 +278,66 @@ describe('Guided Answers Api: getNodeById()', () => {
         expect(result.COMMANDS).toEqual(options.enhancements.nodeEnhancements.map((ne) => ne.command));
     });
 });
+
+describe('Guided Answers Api: getNodePath()', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test('Get node path, node enhanced, should return list of enhanced nodes', async () => {
+        // Mock setup
+        const nodes = [
+            {
+                NODE_ID: 111,
+                TITLE: 'Onehundredeleven',
+                BODY: '<p>This is node Onehundredeleven</p>',
+                QUESTION: 'Where next',
+                EDGES: [
+                    { LABEL: 'Next', TARGET_NODE: 112, ORD: 1 },
+                    { LABEL: 'Somewhere else', TARGET_NODE: 911, ORD: 2 }
+                ]
+            },
+            {
+                NODE_ID: 112,
+                TITLE: 'Onehundredtwelve',
+                BODY: '<p>This is node Onehundredtwelve</p>',
+                QUESTION: 'Nowhere else to go',
+                EDGES: []
+            }
+        ];
+
+        const options = {
+            enhancements: {
+                nodeEnhancements: [],
+                htmlEnhancements: [
+                    {
+                        text: 'Onehundredtwelve',
+                        command: {
+                            label: 'Command for Onehundredtwelve',
+                            description: `Command to enhance node in path`,
+                            icon: '',
+                            exec: {
+                                cwd: '/',
+                                arguments: ['TEST']
+                            }
+                        }
+                    }
+                ]
+            }
+        };
+        mockedAxios.get.mockImplementation((url: string) => {
+            const data = nodes.find((n) => url.endsWith(`/${n.NODE_ID}`));
+            if (data) {
+                return Promise.resolve({ data });
+            } else {
+                return Promise.reject('node not found');
+            }
+        });
+
+        // Test execution
+        const result = await getGuidedAnswerApi(options).getNodePath([111, 112]);
+
+        // Result check
+        expect(result).toMatchSnapshot();
+    });
+});
