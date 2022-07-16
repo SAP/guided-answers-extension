@@ -1,13 +1,7 @@
 import { window, WebviewPanel, commands } from 'vscode';
 import * as apiMock from '@sap/guided-answers-extension-core';
 import {
-    Command,
     EXECUTE_COMMAND,
-    GuidedAnswerActions,
-    GuidedAnswerAPI,
-    GuidedAnswerNodeId,
-    GuidedAnswerTree,
-    GuidedAnswerTreeId,
     SEARCH_TREE,
     SELECT_NODE,
     SET_ACTIVE_TREE,
@@ -16,20 +10,29 @@ import {
     UPDATE_LOADING,
     WEBVIEW_READY
 } from '@sap/guided-answers-extension-types';
+import type {
+    Command,
+    GuidedAnswerActions,
+    GuidedAnswerAPI,
+    GuidedAnswerNodeId,
+    GuidedAnswerTree,
+    GuidedAnswerTreeId
+} from '@sap/guided-answers-extension-types';
 import { GuidedAnswersPanel } from '../../src/panel/guidedAnswersPanel';
 import * as logger from '../../src/logger/logger';
+import { StartOptions } from '../../src/types';
 
 type WebviewMessageCallback = (action: GuidedAnswerActions) => void;
 
 describe('GuidedAnswersPanel', () => {
+    let loggerMock: jest.SpyInstance;
+
     beforeEach(() => {
         jest.clearAllMocks();
+        loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
     });
 
     test('Smoketest new GuidedAnswersPanel', () => {
-        // Mock setup
-        const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
-
         // Test execution
         const gaPanel = new GuidedAnswersPanel();
 
@@ -39,7 +42,6 @@ describe('GuidedAnswersPanel', () => {
 
     test('GuidedAnswersPanel communication WEBVIEW_READY', async () => {
         // Mock setup
-        const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
         const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
             onDidReceiveMessageMock = callback;
@@ -56,7 +58,6 @@ describe('GuidedAnswersPanel', () => {
 
     test('GuidedAnswersPanel communication WEBVIEW_READY with start paramter tree id', async () => {
         // Mock setup
-        const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
         const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
             onDidReceiveMessageMock = callback;
@@ -79,7 +80,6 @@ describe('GuidedAnswersPanel', () => {
 
     test('GuidedAnswersPanel communication WEBVIEW_READY with start paramters tree id and node path', async () => {
         // Mock setup
-        const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
         const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
             onDidReceiveMessageMock = callback;
@@ -102,9 +102,48 @@ describe('GuidedAnswersPanel', () => {
         ]);
     });
 
+    test('GuidedAnswersPanel communication WEBVIEW_READY, processing start params throws exception', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        const localApiMock = getApiMock();
+        localApiMock.getTreeById = () => {
+            throw Error('MOCKED_API_ERROR');
+        };
+        jest.spyOn(apiMock, 'getGuidedAnswerApi').mockImplementation(() => localApiMock);
+
+        // Test execution
+        new GuidedAnswersPanel({ treeId: NaN });
+        await onDidReceiveMessageMock({ type: WEBVIEW_READY });
+
+        // Result check
+        const errorLog = loggerMock.mock.calls.find((e) => e[0].includes('MOCKED_API_ERROR'))[0];
+        expect(errorLog).toContain('treeId');
+        expect(webViewPanelMock.webview.postMessage).toBeCalledWith({ type: UPDATE_LOADING, payload: false });
+    });
+
+    test('GuidedAnswersPanel communication WEBVIEW_READY, invalid start params', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+
+        // Test execution
+        new GuidedAnswersPanel('INVALID_PARAM' as unknown as StartOptions);
+        await onDidReceiveMessageMock({ type: WEBVIEW_READY });
+
+        // Result check
+        expect(loggerMock.mock.calls.find((e) => e[0].includes('INVALID_PARAM'))[0]).toBeDefined();
+        expect(webViewPanelMock.webview.postMessage).toBeCalledWith({ type: UPDATE_LOADING, payload: false });
+    });
+
     test('GuidedAnswersPanel communication SELECT_NODE', async () => {
         // Mock setup
-        const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
         const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
             onDidReceiveMessageMock = callback;
@@ -123,9 +162,31 @@ describe('GuidedAnswersPanel', () => {
         });
     });
 
+    test('GuidedAnswersPanel communication SELECT_NODE throws error', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        const localApiMock = getApiMock();
+        localApiMock.getNodeById = () => {
+            throw Error('GET_NODE_API_ERROR');
+        };
+        jest.spyOn(apiMock, 'getGuidedAnswerApi').mockImplementation(() => localApiMock);
+
+        // Test execution
+        new GuidedAnswersPanel();
+        await onDidReceiveMessageMock({ type: SELECT_NODE, payload: NaN });
+
+        // Result check
+        const errorLog = loggerMock.mock.calls.find((e) => e[0].includes('GET_NODE_API_ERROR'))[0];
+        expect(errorLog).toContain(SELECT_NODE);
+        expect(webViewPanelMock.webview.postMessage).not.toBeCalled();
+    });
+
     test('GuidedAnswersPanel communication EXECUTE_COMMAND', async () => {
         // Mock setup
-        const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
         const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
             onDidReceiveMessageMock = callback;
@@ -152,7 +213,6 @@ describe('GuidedAnswersPanel', () => {
 
     test('GuidedAnswersPanel communication SEARCH_TREE', async () => {
         // Mock setup
-        const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
         const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
             onDidReceiveMessageMock = callback;
@@ -169,6 +229,22 @@ describe('GuidedAnswersPanel', () => {
             type: UPDATE_GUIDED_ANSWER_TREES,
             payload: [{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]
         });
+    });
+
+    test('GuidedAnswersPanel communication unhandled action', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+
+        // Test execution
+        new GuidedAnswersPanel();
+        await onDidReceiveMessageMock({ type: 'UNHANDLED', payload: '' } as unknown as GuidedAnswerActions);
+
+        // Result check
+        expect(webViewPanelMock.webview.postMessage).not.toBeCalled();
     });
 });
 

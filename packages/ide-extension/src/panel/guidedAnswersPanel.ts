@@ -78,6 +78,11 @@ export class GuidedAnswersPanel {
             return;
         }
         try {
+            if (typeof this.startOptions !== 'object') {
+                throw Error(
+                    `Invalid start options. Please refer to https://github.com/SAP/guided-answers-extension/blob/main/docs/technical-information.md#module-sap-guided-answer-extension-packageside-extension for valid options.`
+                );
+            }
             const tree = await this.guidedAnswerApi.getTreeById(this.startOptions.treeId);
             let nodePath;
             if (this.startOptions.nodeIdPath) {
@@ -91,8 +96,12 @@ export class GuidedAnswersPanel {
             } else {
                 this.postActionToWebview(updateActiveNode(await this.guidedAnswerApi.getNodeById(tree.FIRST_NODE_ID)));
             }
-        } catch (error) {
-            logString(`Error while processing start options`);
+        } catch (error: any) {
+            logString(
+                `Error while processing start options, error was: '${error?.message}'. Start options: \n${
+                    typeof this.startOptions === 'object' ? JSON.stringify(this.startOptions) : this.startOptions
+                }`
+            );
         }
     }
 
@@ -105,15 +114,9 @@ export class GuidedAnswersPanel {
         try {
             switch (action.type) {
                 case SELECT_NODE: {
-                    this.guidedAnswerApi
-                        .getNodeById(action.payload)
-                        .then((node) => {
-                            logString(`Node selected: ${node.NODE_ID}: ${node.TITLE}`);
-                            this.postActionToWebview(updateActiveNode(node));
-                        })
-                        .catch((error) =>
-                            logString(`Error while retrieving node ${action.payload}: ${error?.message}`)
-                        );
+                    const node = await this.guidedAnswerApi.getNodeById(action.payload);
+                    logString(`Node selected: ${node.NODE_ID}: ${node.TITLE}`);
+                    this.postActionToWebview(updateActiveNode(node));
                     break;
                 }
                 case EXECUTE_COMMAND: {
@@ -121,12 +124,8 @@ export class GuidedAnswersPanel {
                     break;
                 }
                 case SEARCH_TREE: {
-                    this.guidedAnswerApi
-                        .getTrees(action.payload)
-                        .then((trees) => this.postActionToWebview(updateGuidedAnserTrees(trees)))
-                        .catch((error) =>
-                            logString(`Error while retrieving tree ${action.payload}: ${error?.message}`)
-                        );
+                    const trees = await this.guidedAnswerApi.getTrees(action.payload);
+                    this.postActionToWebview(updateGuidedAnserTrees(trees));
                     break;
                 }
                 case WEBVIEW_READY: {
