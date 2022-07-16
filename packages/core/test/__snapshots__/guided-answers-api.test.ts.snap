@@ -70,7 +70,7 @@ Object {
 }
 `;
 
-exports[`Guided Answers Api: getNodePath() Get node path, node enhanced, should return enhanced list of nodes 1`] = `
+exports[`Guided Answers Api: getNodePath() Get node path, node enhanced, should return list of enhanced nodes 1`] = `
 Array [
   Object {
     "BODY": "<p>This is node Onehundredeleven</p>",
