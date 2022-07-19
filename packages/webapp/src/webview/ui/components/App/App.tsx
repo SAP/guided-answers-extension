@@ -35,8 +35,8 @@ export function App(): ReactElement {
                                         onClick={(): void => {
                                             actions.setActiveTree(tree);
                                             actions.selectNode(tree.FIRST_NODE_ID);
-                                        }}
-                                        tabIndex={0}>
+                                            (document.body as HTMLElement).focus();
+                                        }}>
                                         <div className="guided-answer__tree__ul">
                                             <h3
                                                 className="guided-answer__tree__title"

@@ -42,22 +42,16 @@ export function Header(props: {
 
                 {props.showNavButons === true ? (
                     <>
-                        <div className="guided-answer__header__allAnswersButton">
-                            {/* <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid"> */}
-                            <AllAnswersButton />
-                            {/* </FocusZone> */}
-                        </div>
+                        <FocusZone isCircularNavigation={true} role="grid" className="guided-answer__header">
+                            <div className="guided-answer__header__allAnswersButton">
+                                <AllAnswersButton />
+                            </div>
 
-                        <div className="guided-answer__header__back-restart-buttons">
-                            {/* <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid"> */}
-                            <BackButton />
-                            {/* </FocusZone> */}
-                            {appState.activeGuidedAnswerNode.length > 1 && (
-                                // <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
-                                <RestartButton />
-                                // </FocusZone>
-                            )}
-                        </div>
+                            <div className="guided-answer__header__back-restart-buttons">
+                                <BackButton />
+                                {appState.activeGuidedAnswerNode.length > 1 && <RestartButton />}
+                            </div>
+                        </FocusZone>
                     </>
                 ) : (
                     <></>

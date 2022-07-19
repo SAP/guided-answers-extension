@@ -118,6 +118,15 @@ button:focus {
     &__edge:hover {
         background-color: var(--vscode-button-hoverBackground);
     }
+    &__edge:focus {
+        border: none;
+        outline-style: solid;
+        outline-width: 2px;
+        z-index: 1;
+        outline-color: black;
+        outline-offset: -4px;
+    }
+
     &__commands {
         position: fixed;
         margin-top: 18px;
