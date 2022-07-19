@@ -9,7 +9,8 @@
                 "exec": {
                     "extensionId": "sapse.sap-ux-application-modeler-extension",
                     "commandId": "sap.ux.environmentcheck.archiveProject"
-                }
+                },
+                "env": ["VSCODE", "BAS"]
             }
         },
         {
@@ -20,7 +21,8 @@
                 "exec": {
                     "extensionId": "sapse.sap-ux-application-modeler-extension",
                     "commandId": "sap.ux.environmentcheck.open"
-                }
+                },
+                "env": ["BAS"]
             }
         }
     ]

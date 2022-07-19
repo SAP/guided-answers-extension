@@ -1,9 +1,34 @@
 import { extensions } from 'vscode';
 import { isVSCodeCommand } from '@sap/guided-answers-extension-types';
+import type { IDE } from '@sap/guided-answers-extension-types';
 import type { HTMLEnhancement, NodeEnhancement } from '@sap/guided-answers-extension-types';
 import { logString } from '../logger/logger';
 
 import enhancementsJson from './enhancements.json';
+
+/**
+ * Enumeration of environment variable used in AppStudio
+ */
+enum ENV {
+    H2O_URL = 'H2O_URL'
+}
+
+/**
+ * Enumeration of ide types
+ */
+enum IDE_PLATFORMS {
+    VSCODE = 'VSCODE',
+    BAS = 'BAS'
+}
+
+/**
+ * Return the user development platform
+ *
+ * @returns - IDE type
+ */
+function getIde(): IDE {
+    return process.env[ENV.H2O_URL] ? IDE_PLATFORMS.BAS : IDE_PLATFORMS.VSCODE;
+}
 
 /**
  * Classifies enhancements as applicable and inapplicable. There can be different reasons for a command to be
@@ -20,7 +45,10 @@ function classifyEnhancements<T extends HTMLEnhancement | NodeEnhancement>(
 
     for (const enhancement of enhancements) {
         if (isVSCodeCommand(enhancement.command.exec)) {
-            if (extensions.getExtension(enhancement.command.exec.extensionId)) {
+            if (
+                extensions.getExtension(enhancement.command.exec.extensionId) &&
+                enhancement.command.env.includes(getIde())
+            ) {
                 applicable.push(enhancement);
             } else {
                 inapplicable.push(enhancement);
@@ -41,8 +69,12 @@ export function getEnhancements(): {
     nodeEnhancements: NodeEnhancement[];
     htmlEnhancements: HTMLEnhancement[];
 } {
-    const htmlEnhancements = classifyEnhancements<HTMLEnhancement>(enhancementsJson.htmlEnhancements);
-    const nodeEnhancements = classifyEnhancements<NodeEnhancement>(enhancementsJson.nodeEnhancements);
+    const htmlEnhancements = classifyEnhancements<HTMLEnhancement>(
+        enhancementsJson.htmlEnhancements as HTMLEnhancement[]
+    );
+    const nodeEnhancements = classifyEnhancements<NodeEnhancement>(
+        enhancementsJson.nodeEnhancements as NodeEnhancement[]
+    );
 
     if (htmlEnhancements.applicable.length > 0) {
         logString(`Applicable html enhancements:\n${JSON.stringify(htmlEnhancements.applicable, null, 2)}`);
