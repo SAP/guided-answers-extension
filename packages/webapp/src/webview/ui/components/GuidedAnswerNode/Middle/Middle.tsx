@@ -18,6 +18,12 @@ export function Middle(props: {
         <div id="middle" className="column">
             <h1>{props.activeNode.TITLE}</h1>
             <div id="hr"></div>
+            {requestAnimationFrame(() => {
+                const firstLink = document.body.querySelector('a') as HTMLElement;
+                if (firstLink) {
+                    firstLink.focus();
+                }
+            })}
             {props.enhancedBody ? (
                 <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
                     {props.enhancedBody}
