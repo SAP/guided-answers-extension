@@ -7,14 +7,14 @@ import { logString } from '../logger/logger';
 import enhancementsJson from './enhancements.json';
 
 /**
- * Enumeration of environment variable used in AppStudio
+ * Enumeration of environment variable used in AppStudio.
  */
 enum ENV {
     H2O_URL = 'H2O_URL'
 }
 
 /**
- * Enumeration of ide platform types
+ * Enumeration of ide platform types.
  */
 enum IDE_PLATFORMS {
     VSCODE = 'VSCODE',
@@ -22,7 +22,7 @@ enum IDE_PLATFORMS {
 }
 
 /**
- * Return the user development platform
+ * Return the user development platform.
  *
  * @returns - IDE type
  */
