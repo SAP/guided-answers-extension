@@ -49,7 +49,7 @@ export interface Command {
     label: string;
     description: string;
     exec: TerminalCommand | VSCodeCommand;
-    env: IDE[];
+    platforms: IDE[];
 }
 
 export interface NodeEnhancement {

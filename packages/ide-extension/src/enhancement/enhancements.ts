@@ -14,7 +14,7 @@ enum ENV {
 }
 
 /**
- * Enumeration of ide types
+ * Enumeration of ide platform types
  */
 enum IDE_PLATFORMS {
     VSCODE = 'VSCODE',
@@ -47,7 +47,7 @@ function classifyEnhancements<T extends HTMLEnhancement | NodeEnhancement>(
         if (isVSCodeCommand(enhancement.command.exec)) {
             if (
                 extensions.getExtension(enhancement.command.exec.extensionId) &&
-                enhancement.command.env.includes(getIde())
+                enhancement.command.platforms.includes(getIde())
             ) {
                 applicable.push(enhancement);
             } else {
