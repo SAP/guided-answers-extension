@@ -47,7 +47,7 @@ function classifyEnhancements<T extends HTMLEnhancement | NodeEnhancement>(
         if (isVSCodeCommand(enhancement.command.exec)) {
             if (
                 extensions.getExtension(enhancement.command.exec.extensionId) &&
-                enhancement.command.platforms.includes(getIde())
+                enhancement.command.platforms?.includes(getIde())
             ) {
                 applicable.push(enhancement);
             } else {
