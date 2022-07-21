@@ -25,7 +25,7 @@ export function App(): ReactElement {
             appState.searchResultCount === 0 ? (
                 <NoAnswersFound />
             ) : (
-                <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true} role="grid">
+                <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
                     <ul className="striped-list">
                         {appState.guidedAnswerTrees.map((tree, index) => {
                             return (

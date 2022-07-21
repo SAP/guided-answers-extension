@@ -5,7 +5,7 @@ import { AllAnswersButton, BackButton, RestartButton } from './NavigationButtons
 import { Logo } from './Logo';
 import './Header.scss';
 import { SearchField } from './SearchField';
-import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
+import { FocusZone } from '@fluentui/react-focus';
 
 /**
  * Renders and returns the header section.
@@ -25,38 +25,34 @@ export function Header(props: {
 }): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
     return (
-        <header>
-            <div
-                className="guided-answer__header"
-                style={{ paddingBottom: props.showNavButons === true ? '0' : '20px' }}>
-                {props.showSub === true ? (
-                    <>
-                        <div className="guided-answer__header__sub">
-                            {!!props.showLogo && <Logo />}
-                            {!!props.showSearch && <SearchField />}
-                        </div>{' '}
-                    </>
-                ) : (
-                    <></>
-                )}
+        <div className="guided-answer__header" style={{ paddingBottom: props.showNavButons === true ? '0' : '20px' }}>
+            {props.showSub === true ? (
+                <>
+                    <div className="guided-answer__header__sub">
+                        {!!props.showLogo && <Logo />}
+                        {!!props.showSearch && <SearchField />}
+                    </div>{' '}
+                </>
+            ) : (
+                <></>
+            )}
 
-                {props.showNavButons === true ? (
-                    <>
-                        <FocusZone isCircularNavigation={true} role="grid" className="guided-answer__header">
-                            <div className="guided-answer__header__allAnswersButton">
-                                <AllAnswersButton />
-                            </div>
+            {props.showNavButons === true ? (
+                <>
+                    <FocusZone isCircularNavigation={true} className="guided-answer__header">
+                        <div className="guided-answer__header__allAnswersButton">
+                            <AllAnswersButton />
+                        </div>
 
-                            <div className="guided-answer__header__back-restart-buttons">
-                                <BackButton />
-                                {appState.activeGuidedAnswerNode.length > 1 && <RestartButton />}
-                            </div>
-                        </FocusZone>
-                    </>
-                ) : (
-                    <></>
-                )}
-            </div>
-        </header>
+                        <div className="guided-answer__header__back-restart-buttons">
+                            <BackButton />
+                            {appState.activeGuidedAnswerNode.length > 1 && <RestartButton />}
+                        </div>
+                    </FocusZone>
+                </>
+            ) : (
+                <></>
+            )}
+        </div>
     );
 }

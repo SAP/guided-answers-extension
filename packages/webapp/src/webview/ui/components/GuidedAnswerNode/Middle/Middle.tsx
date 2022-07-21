@@ -14,27 +14,33 @@ export function Middle(props: {
     activeNode: GuidedAnswerNodeType;
     enhancedBody: ReactElement | undefined | null;
 }): ReactElement {
+    const focusToAnchor = () => {
+        requestAnimationFrame(() => {
+            const firstLink = document.body.querySelector('a') as HTMLElement;
+            const firstCommand = document.body.querySelector('strong') as HTMLElement;
+            if (firstLink) {
+                firstLink.focus();
+            } else if (firstCommand) {
+                firstCommand.focus();
+            }
+        });
+    };
     return (
         <div id="middle" className="column">
             <h1>{props.activeNode.TITLE}</h1>
             <div id="hr"></div>
-            {requestAnimationFrame(() => {
-                const firstLink = document.body.querySelector('a') as HTMLElement;
-                if (firstLink) {
-                    firstLink.focus();
-                }
-            })}
+            {focusToAnchor()}
             {props.enhancedBody ? (
-                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
+                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
                     {props.enhancedBody}
                 </FocusZone>
             ) : (
-                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
+                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
                     <div className="content" dangerouslySetInnerHTML={{ __html: props.activeNode.BODY }}></div>
                 </FocusZone>
             )}
             <p className="guided-answer__node__question">{props.activeNode.QUESTION}</p>
-            <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true} role="grid">
+            <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
                 <div className="guided-answer__node">
                     {props.activeNode.EDGES.map((edge, index) => (
                         <button

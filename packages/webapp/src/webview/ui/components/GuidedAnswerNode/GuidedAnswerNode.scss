@@ -178,6 +178,11 @@ button:focus {
     text-decoration: underline;
 }
 
+.enhancement-link:focus {
+    outline: 1px solid var(--vscode-focusBorder, #007fd4);
+}
+
+
 @media only screen and (max-width: 625px) {
     #middle {
         width: 100%;

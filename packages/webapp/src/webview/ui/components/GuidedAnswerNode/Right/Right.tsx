@@ -13,7 +13,7 @@ export function Right(props: { activeNode: GuidedAnswerNodeType }): ReactElement
     return (
         <div id="right" className="column">
             <div className="guided-answer__node__commands">
-                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
+                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
                     {props.activeNode.COMMANDS
                         ? props.activeNode.COMMANDS.map((command, index) => (
                               <div className="guided-answer__node__command" key={`command-${index}`}>

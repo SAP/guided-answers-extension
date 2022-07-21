@@ -19,7 +19,7 @@ export function GuidedAnswerNavPath(): ReactElement {
     if (activeNode) {
         return (
             <nav className="container">
-                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true} role="grid">
+                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
                     {nodes.map((node, i) => {
                         return (
                             <div key={`timeline-block-${i}`} className="timeline-block">
