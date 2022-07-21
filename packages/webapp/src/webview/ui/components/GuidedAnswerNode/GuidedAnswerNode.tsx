@@ -29,14 +29,14 @@ function replace(domNode: DOMNode): ReactElement | undefined {
                 const textContent = domElement?.firstChild?.type === 'text' ? (domElement.firstChild as Text).data : '';
                 if (command) {
                     result = (
-                        <span
+                        <button
                             title={command.description}
                             className="enhancement-link"
                             onClick={(): void => {
                                 actions.executeCommand(command);
                             }}>
                             {textContent}
-                        </span>
+                        </button>
                     );
                 }
             } catch (error) {

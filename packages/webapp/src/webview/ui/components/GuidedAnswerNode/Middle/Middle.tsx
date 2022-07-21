@@ -16,12 +16,12 @@ export function Middle(props: {
 }): ReactElement {
     const focusToAnchor = () => {
         requestAnimationFrame(() => {
-            const firstLink = document.body.querySelector('a') as HTMLElement;
-            const firstCommand = document.body.querySelector('strong') as HTMLElement;
-            if (firstLink) {
-                firstLink.focus();
-            } else if (firstCommand) {
-                firstCommand.focus();
+            const elements = document.querySelector('#middle');
+            const container: any = elements?.querySelectorAll('a, button');
+            const firstElement = container[0] as HTMLElement;
+
+            if (firstElement) {
+                firstElement.focus();
             }
         });
     };
