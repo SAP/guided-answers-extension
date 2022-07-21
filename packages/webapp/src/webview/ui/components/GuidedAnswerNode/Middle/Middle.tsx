@@ -27,7 +27,7 @@ export function Middle(props: {
     };
     return (
         <div id="middle" className="column">
-            <h1>{props.activeNode.TITLE}</h1>
+            <header>{props.activeNode.TITLE}</header>
             <div id="hr"></div>
             {focusToAnchor()}
             {props.enhancedBody ? (

@@ -52,7 +52,7 @@
                 text-decoration: none;
             }
         }
-        &__navButtons:focus {
+        &__navButtons:focus-visible {
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
         }
 

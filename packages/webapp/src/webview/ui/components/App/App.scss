@@ -31,7 +31,7 @@ h1 {
         &:hover {
             background-color: var(--vscode-list-hoverBackground);
         }
-        button:focus {
+        button:focus-visible {
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
         }
         &__ul {
