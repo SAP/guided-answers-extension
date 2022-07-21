@@ -25,7 +25,7 @@ enum IDE_PLATFORMS {
  *
  * @returns - IDE type
  */
-function getIde(): IDE {
+export function getIde(): IDE {
     return process.env[ENV.H2O_URL] ? IDE_PLATFORMS.BAS : IDE_PLATFORMS.VSCODE;
 }
 
