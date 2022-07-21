@@ -1,7 +1,6 @@
 import { extensions } from 'vscode';
 import { isVSCodeCommand } from '@sap/guided-answers-extension-types';
-import type { IDE } from '@sap/guided-answers-extension-types';
-import type { HTMLEnhancement, NodeEnhancement } from '@sap/guided-answers-extension-types';
+import type { HTMLEnhancement, NodeEnhancement, IDE } from '@sap/guided-answers-extension-types';
 import { logString } from '../logger/logger';
 
 import enhancementsJson from './enhancements.json';
