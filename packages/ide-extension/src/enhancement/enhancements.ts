@@ -15,9 +15,9 @@ enum ENV {
 /**
  * Enumeration of ide platform types.
  */
-enum IDE_PLATFORMS {
+enum IDE_ENVIRONMENT {
     VSCODE = 'VSCODE',
-    BAS = 'BAS'
+    SBAS = 'SBAS'
 }
 
 /**
@@ -26,7 +26,7 @@ enum IDE_PLATFORMS {
  * @returns - IDE type
  */
 export function getIde(): IDE {
-    return process.env[ENV.H2O_URL] ? IDE_PLATFORMS.BAS : IDE_PLATFORMS.VSCODE;
+    return process.env[ENV.H2O_URL] ? IDE_ENVIRONMENT.SBAS : IDE_ENVIRONMENT.VSCODE;
 }
 
 /**
@@ -46,7 +46,7 @@ function classifyEnhancements<T extends HTMLEnhancement | NodeEnhancement>(
         if (isVSCodeCommand(enhancement.command.exec)) {
             if (
                 extensions.getExtension(enhancement.command.exec.extensionId) &&
-                enhancement.command.platforms?.includes(getIde())
+                enhancement.command.environment?.includes(getIde())
             ) {
                 applicable.push(enhancement);
             } else {

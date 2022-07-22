@@ -115,6 +115,6 @@ describe('Test for handleCommand()', () => {
         // getIde()
         expect(getIde()).toEqual('VSCODE');
         process.env['H2O_URL'] = 'https://sap-ux-stage.cry10cf.int.applicationstudio.cloud.sap/';
-        expect(getIde()).toEqual('BAS');
+        expect(getIde()).toEqual('SBAS');
     });
 });
