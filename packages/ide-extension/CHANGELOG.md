@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.6.0
+
+### Minor Changes
+
+-   f8ed704: New version for CW 27 28
+
 ## 0.5.0
 
 ### Minor Changes
