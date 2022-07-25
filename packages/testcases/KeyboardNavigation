@@ -55,17 +55,12 @@ Keyboard Navigation to be tested
 **WHEN** the user uses the up, down, left and right arrow keys 
 **THEN** the user is navigated through the different links/buttons of the content area 
 
-**GIVEN** the user has focus on the content are of the Details page
-**WHEN** the user uses the up, down, left and right arrow keys 
-**THEN** the user is navigated through the different links/buttons of the content area 
-
 **GIVEN** the user has focus on a button/outcome on the content area 
 **WHEN** the user uses hits enter 
-**THEN** the user is navigated to the content area for next node in the Guided Answer Tree with focus given to the first link/button.
+**THEN** the user is navigated to the content area for next node in the Guided Answer Tree with focus given to the first home button
 
-
-**GIVEN** the user has focus on a link/button on the content area 
-**WHEN** the user uses hits shit tab
+**GIVEN** the user has focus on a home on the content area 
+**WHEN** the user uses hits tab
 **THEN** the user is navigated back to the tree component
 
 **GIVEN** the user has focus on the tree component
@@ -83,3 +78,12 @@ Keyboard Navigation to be tested
 **GIVEN** the user has focus on the header bar 
 **WHEN** the user uses the up, down, left and right arrow keys
 **THEN** the user is navigated the user is navigated between the Home and Step Back and Restart keys
+
+**GIVEN** the user has focus on the header bar 
+**WHEN** the user uses the up, down, left and right arrow keys
+**THEN** the user is navigated the user is navigated between the Home and Step Back and Restart keys
+
+**GIVEN** the user has focus on the header bar 
+**WHEN** the user shift tab
+**THEN** the user is navigated back to the content area with focus on the first link/button. The first link/button is scrolled into view. 
+
