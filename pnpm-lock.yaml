@@ -1208,10 +1208,10 @@ packages:
             tslib: 2.4.0
         dev: false
 
-    /@fluentui/react-portal-compat-context/9.0.0_jjcubslaw3srjyc3uporvmhana:
+    /@fluentui/react-portal-compat-context/9.0.1_jjcubslaw3srjyc3uporvmhana:
         resolution:
             {
-                integrity: sha512-EEDKfiJNKWwAKGNHHFq7cUgyYWkzCMGETE4t06aQG6cjDEnBb4fxiApOyb3Gtg/2lmUZt8GA4PXx1yc3qVewfg==
+                integrity: sha512-KhOcXy2tvzNoAqFowkaRGFiLuRuPjzn6i1W30iMkhgsSVKxa/9jxso86Z8R0eZwA+16RNO/Ia2nX1gqfUac9mw==
             }
         peerDependencies:
             '@types/react': '>=16.8.0 <18.0.0'
@@ -1254,13 +1254,13 @@ packages:
             '@fluentui/merge-styles': 8.5.2
             '@fluentui/react-focus': 8.7.3_jjcubslaw3srjyc3uporvmhana
             '@fluentui/react-hooks': 8.6.1_jjcubslaw3srjyc3uporvmhana
-            '@fluentui/react-portal-compat-context': 9.0.0_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/react-portal-compat-context': 9.0.1_jjcubslaw3srjyc3uporvmhana
             '@fluentui/react-window-provider': 2.2.1_jjcubslaw3srjyc3uporvmhana
             '@fluentui/set-version': 8.2.1
             '@fluentui/style-utilities': 8.7.2_jjcubslaw3srjyc3uporvmhana
             '@fluentui/theme': 2.6.7_jjcubslaw3srjyc3uporvmhana
             '@fluentui/utilities': 8.9.0_jjcubslaw3srjyc3uporvmhana
-            '@microsoft/load-themed-styles': 1.10.280
+            '@microsoft/load-themed-styles': 1.10.283
             '@types/react': 17.0.43
             '@types/react-dom': 17.0.14
             react: 16.14.0
@@ -1287,7 +1287,7 @@ packages:
             '@fluentui/set-version': 8.2.1
             '@fluentui/theme': 2.6.7_jjcubslaw3srjyc3uporvmhana
             '@fluentui/utilities': 8.9.0_jjcubslaw3srjyc3uporvmhana
-            '@microsoft/load-themed-styles': 1.10.280
+            '@microsoft/load-themed-styles': 1.10.283
             tslib: 2.4.0
         transitivePeerDependencies:
             - '@types/react'
@@ -1729,10 +1729,10 @@ packages:
             exenv-es6: 1.0.0
         dev: true
 
-    /@microsoft/load-themed-styles/1.10.280:
+    /@microsoft/load-themed-styles/1.10.283:
         resolution:
             {
-                integrity: sha512-86+9ZKUb8Lg7c7tDFu8jgnU7AWIj+HWHAuGEvUb2TU2njbsS/0eFZLmwW1+dDWD5Xsw8cdokeHBl8IORW9osbg==
+                integrity: sha512-6bx7s83hKmgVOXKVjEUzIZSBncJwz6L+jPC3aXDJ9HqVrV2fjL1KQ+yREUHjA34qea40KtvuzZmbxCxgJAYiZQ==
             }
         dev: false
 
