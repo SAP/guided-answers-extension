@@ -43,10 +43,13 @@ export interface TerminalCommand {
     arguments: string[];
 }
 
+export type IDE = 'VSCODE' | 'SBAS';
+
 export interface Command {
     label: string;
     description: string;
     exec: TerminalCommand | VSCodeCommand;
+    environment?: IDE[];
 }
 
 export interface NodeEnhancement {
