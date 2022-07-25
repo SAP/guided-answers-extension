@@ -5,6 +5,10 @@ section.answer__node__body {
     box-sizing: border-box;
 }
 
+.body_container {
+    overflow: auto;
+}
+
 header {
     font-weight: 700;
     font-size: 24px;
@@ -27,7 +31,6 @@ button:focus-visible {
 
 .column {
     flex-direction: column;
-    overflow: auto;
     box-sizing: border-box;
     justify-content: flex-start;
     align-items: stretch;

@@ -14,31 +14,28 @@ export function Middle(props: {
     activeNode: GuidedAnswerNodeType;
     enhancedBody: ReactElement | undefined | null;
 }): ReactElement {
-    const focusToAnchor = () => {
-        requestAnimationFrame(() => {
-            const elements = document.querySelector('.content');
-            const container: any = elements?.querySelectorAll('a, button');
-            const firstElement = container[0] as HTMLElement;
-
-            if (firstElement) {
-                firstElement.focus();
-            }
-        });
+    const focusToHome = () => {
+        const homeButton = document.body.querySelector('.home-icon') as HTMLElement;
+        if (homeButton) {
+            homeButton.focus();
+        }
     };
     return (
         <div id="middle" className="column">
-            <header>{props.activeNode.TITLE}</header>
-            <div id="hr"></div>
-            {props.enhancedBody ? (
-                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
-                    {props.enhancedBody}
-                </FocusZone>
-            ) : (
-                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
-                    <div className="content" dangerouslySetInnerHTML={{ __html: props.activeNode.BODY }}></div>
-                </FocusZone>
-            )}
-            <p className="guided-answer__node__question">{props.activeNode.QUESTION}</p>
+            <div className="body_container">
+                <header>{props.activeNode.TITLE}</header>
+                <div id="hr"></div>
+                {props.enhancedBody ? (
+                    <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
+                        {props.enhancedBody}
+                    </FocusZone>
+                ) : (
+                    <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
+                        <div className="content" dangerouslySetInnerHTML={{ __html: props.activeNode.BODY }}></div>
+                    </FocusZone>
+                )}
+                <p className="guided-answer__node__question">{props.activeNode.QUESTION}</p>
+            </div>
             <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
                 <div className="guided-answer__node">
                     {props.activeNode.EDGES.map((edge, index) => (
@@ -47,7 +44,7 @@ export function Middle(props: {
                             className="guided-answer__node__edge"
                             onClick={(): void => {
                                 actions.selectNode(edge.TARGET_NODE);
-                                focusToAnchor();
+                                focusToHome();
                             }}>
                             {edge.LABEL}
                         </button>
