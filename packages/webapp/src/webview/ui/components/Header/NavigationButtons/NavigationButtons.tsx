@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { actions } from '../../../../state';
 import { VscHome, VscRefresh, VscArrowLeft } from 'react-icons/vsc';
 import i18next from 'i18next';

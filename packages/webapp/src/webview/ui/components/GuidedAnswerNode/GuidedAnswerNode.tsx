@@ -9,7 +9,6 @@ import './GuidedAnswerNode.scss';
 import { GuidedAnswerNavPath } from '../GuidedAnswerNavPath';
 import { Middle } from './Middle';
 import { Right } from './Right';
-import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
 /**
  * Replacer function for html-react-parser's replace function. If an element was marked, replace it with  link <a>
