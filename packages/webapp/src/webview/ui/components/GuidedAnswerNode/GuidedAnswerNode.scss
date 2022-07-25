@@ -27,7 +27,7 @@ button:focus-visible {
 
 .column {
     flex-direction: column;
-    overflow-y: auto;
+    overflow: auto;
     box-sizing: border-box;
     justify-content: flex-start;
     align-items: stretch;
@@ -139,6 +139,7 @@ button:focus-visible {
         // outline-offset: 2px;
         border: 1px solid var(--vscode-contrastBorder);
         outline: 1px solid var(--vscode-focusBorder);
+        outline-offset: 2px;
     }
 
     &__commands {
@@ -195,7 +196,6 @@ button:focus-visible {
 .enhancement-link:focus-visible {
     outline: 1px solid var(--vscode-focusBorder, #007fd4);
 }
-
 
 @media only screen and (max-width: 625px) {
     #middle {

@@ -16,7 +16,7 @@ export function Middle(props: {
 }): ReactElement {
     const focusToAnchor = () => {
         requestAnimationFrame(() => {
-            const elements = document.querySelector('#middle');
+            const elements = document.querySelector('.content');
             const container: any = elements?.querySelectorAll('a, button');
             const firstElement = container[0] as HTMLElement;
 
@@ -29,7 +29,6 @@ export function Middle(props: {
         <div id="middle" className="column">
             <header>{props.activeNode.TITLE}</header>
             <div id="hr"></div>
-            {focusToAnchor()}
             {props.enhancedBody ? (
                 <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
                     {props.enhancedBody}
@@ -48,6 +47,7 @@ export function Middle(props: {
                             className="guided-answer__node__edge"
                             onClick={(): void => {
                                 actions.selectNode(edge.TARGET_NODE);
+                                focusToAnchor();
                             }}>
                             {edge.LABEL}
                         </button>
