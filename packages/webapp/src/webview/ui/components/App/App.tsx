@@ -1,6 +1,7 @@
 import type { ReactElement } from 'react';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { VSCodeProgressRing } from '@vscode/webview-ui-toolkit/react';
 import { AppState } from '../../../types';
 import { actions } from '../../../state';
 import { GuidedAnswerNode } from '../GuidedAnswerNode';
@@ -17,7 +18,9 @@ export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
 
     let content;
-    if (appState.activeGuidedAnswerNode.length > 0) {
+    if (appState.loading) {
+        content = <VSCodeProgressRing id="loading-indicator" />;
+    } else if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
     } else if (appState.guidedAnswerTrees) {
         content =

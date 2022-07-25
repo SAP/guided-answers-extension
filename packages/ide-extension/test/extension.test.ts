@@ -5,6 +5,10 @@ import * as logger from '../src/logger/logger';
 import { activate } from '../src/extension';
 
 describe('Extension test', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
     test('activate is function', () => {
         expect(typeof activate === 'function').toBeTruthy();
     });
@@ -58,5 +62,40 @@ describe('Extension test', () => {
         ).toMatchSnapshot();
         expect(webViewPanelMock.reveal).toBeCalled();
         expect(loggerMock).toBeCalled();
+    });
+
+    test('execute command with parameters', () => {
+        // Mock setup
+        const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
+        const subscriptionsMock = jest.spyOn(commands, 'registerCommand');
+        const context = {
+            subscriptions: []
+        };
+
+        // Test execution
+        activate(context as unknown as ExtensionContext);
+        subscriptionsMock.mock.calls[0][1]({ treeId: 0, nodeIdPath: [1, 2, 3] });
+
+        // Result check
+        expect(loggerMock.mock.calls[0][0]).toContain('{"treeId":0,"nodeIdPath":[1,2,3]}');
+    });
+
+    test('execute command error occurs', () => {
+        // Mock setup
+        const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => {
+            throw Error('ERROR');
+        });
+        const showErrorMessageMock = jest.spyOn(window, 'showErrorMessage');
+        const subscriptionsMock = jest.spyOn(commands, 'registerCommand');
+        const context = {
+            subscriptions: []
+        };
+
+        // Test execution
+        activate(context as unknown as ExtensionContext);
+        subscriptionsMock.mock.calls[0][1]();
+
+        // Result check
+        expect(showErrorMessageMock.mock.calls[0][0]).toContain('ERROR');
     });
 });
