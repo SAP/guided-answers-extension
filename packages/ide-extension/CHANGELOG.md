@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.7.0
+
+### Minor Changes
+
+-   cc3d9f7: Adding functionality to call Guided Answers command with node path
+
 ## 0.6.0
 
 ### Minor Changes

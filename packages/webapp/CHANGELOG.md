@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.5.0
+
+### Minor Changes
+
+-   cc3d9f7: Adding functionality to call Guided Answers command with node path
+
 ## 0.4.0
 
 ### Minor Changes
