@@ -3,10 +3,19 @@ import type { Terminal } from 'vscode';
 import { Command } from '@sap/guided-answers-extension-types';
 import { handleCommand } from '../../src/enhancement';
 import * as loggerMock from '../../src/logger/logger';
+import { getIde } from '../../src/enhancement/enhancements';
 
 describe('Test for handleCommand()', () => {
+    const env = process.env;
+
     beforeEach(() => {
         jest.clearAllMocks();
+        jest.resetModules();
+        process.env = { ...env };
+    });
+
+    afterEach(() => {
+        process.env = env;
     });
 
     test('Execute VSCode command', () => {
@@ -100,5 +109,12 @@ describe('Test for handleCommand()', () => {
             // Check results
             expect(error).toBeDefined();
         }
+    });
+
+    test('Test helper functions for enhancements', () => {
+        // getIde()
+        expect(getIde()).toEqual('VSCODE');
+        process.env['H2O_URL'] = 'https://sap-ux-stage.cry10cf.int.applicationstudio.cloud.sap/';
+        expect(getIde()).toEqual('SBAS');
     });
 });

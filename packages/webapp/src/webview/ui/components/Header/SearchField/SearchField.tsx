@@ -16,6 +16,7 @@ export function SearchField() {
             <VSCodeTextField
                 className="tree-search-field"
                 value={appState.query}
+                readOnly={appState.loading}
                 placeholder="Search Guided Answers"
                 id="search-field"
                 onInput={(e: any) => {

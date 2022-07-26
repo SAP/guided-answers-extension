@@ -13,7 +13,8 @@ import type {
     SetQueryValue,
     UpdateGuidedAnserTrees,
     UpdateActiveNode,
-    WebviewReady
+    WebviewReady,
+    UpdateLoading
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -26,6 +27,7 @@ import {
     SET_QUERY_VALUE,
     UPDATE_GUIDED_ANSWER_TREES,
     UPDATE_ACTIVE_NODE,
+    UPDATE_LOADING,
     WEBVIEW_READY
 } from './types';
 
@@ -38,6 +40,11 @@ export const selectNode = (payload: GuidedAnswerNodeId): SelectNode => ({ type: 
 
 export const updateActiveNode = (payload: GuidedAnswerNode): UpdateActiveNode => ({
     type: UPDATE_ACTIVE_NODE,
+    payload
+});
+
+export const updateLoading = (payload: boolean): UpdateLoading => ({
+    type: UPDATE_LOADING,
     payload
 });
 

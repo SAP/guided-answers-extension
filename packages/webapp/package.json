@@ -1,7 +1,7 @@
 {
     "name": "@sap/guided-answers-extension-webapp",
     "description": "Guided Answers extension webview module",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "author": "SAP SE",
     "main": "dist/index.js",
     "private": true,
@@ -24,7 +24,7 @@
         "@types/react": "17.0.43",
         "@types/react-dom": "17.0.14",
         "@types/react-redux": "7.1.23",
-        "@vscode/webview-ui-toolkit": "0.9.3",
+        "@vscode/webview-ui-toolkit": "1.0.0",
         "autoprefixer": "10.4.4",
         "enzyme": "3.11.0",
         "enzyme-adapter-react-16": "1.15.6",

@@ -33,7 +33,12 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
         getNodeById: async (id: GuidedAnswerNodeId): Promise<GuidedAnswerNode> =>
             enhanceNode(await getNodeById(apiHost, id), nodeEnhancements, htmlEnhancements),
         getTreeById: async (id: GuidedAnswerTreeId): Promise<GuidedAnswerTree> => getTreeById(apiHost, id),
-        getTrees: async (query?: string): Promise<GuidedAnswerTree[]> => getTrees(apiHost, query)
+        getTrees: async (query?: string): Promise<GuidedAnswerTree[]> => getTrees(apiHost, query),
+        getNodePath: async (nodeIdPath: GuidedAnswerNodeId[]): Promise<GuidedAnswerNode[]> => {
+            let nodes = await getNodePath(apiHost, nodeIdPath);
+            nodes = nodes.map((node) => enhanceNode(node, nodeEnhancements, htmlEnhancements));
+            return nodes;
+        }
     };
 }
 
@@ -144,4 +149,19 @@ function enhanceNode(
         }
     }
     return node;
+}
+
+/**
+ * Get an array of nodes from an array of node ids.
+ *
+ * @param host - Guided Answer API host
+ * @param nodeIdPath - node path as array of node ids
+ */
+async function getNodePath(host: string, nodeIdPath: GuidedAnswerNodeId[]): Promise<GuidedAnswerNode[]> {
+    const resolvedNodes: GuidedAnswerNode[] = [];
+    for (const nodeId of nodeIdPath) {
+        const node = await getNodeById(host, nodeId);
+        resolvedNodes.push(node);
+    }
+    return resolvedNodes;
 }

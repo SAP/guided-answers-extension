@@ -5,6 +5,7 @@ import {
     SELECT_NODE,
     updateGuidedAnserTrees,
     updateActiveNode,
+    updateLoading,
     EXECUTE_COMMAND,
     SEARCH_TREE,
     WEBVIEW_READY,
@@ -14,6 +15,7 @@ import { getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
 import { getEnhancements, handleCommand } from '../enhancement';
 import { logString } from '../logger/logger';
+import type { StartOptions } from '../types';
 
 /**
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
@@ -21,16 +23,15 @@ import { logString } from '../logger/logger';
 export class GuidedAnswersPanel {
     public readonly panel: WebviewPanel;
     private guidedAnswerApi: GuidedAnswerAPI;
-    private readonly initialTree: number | undefined;
+    private readonly startOptions: StartOptions | undefined;
 
     /**
      * Constructor.
      *
-     * @param [treeId] - optional tree id to start with
+     * @param [options] - optional options for startup like tree id or tree id + node id path
      */
-    constructor(treeId?: number) {
-        logString(`Starting Guided Answers extension webview, treeId: ${treeId}`);
-        this.initialTree = treeId;
+    constructor(options?: StartOptions) {
+        this.startOptions = options;
         const config = workspace.getConfiguration('sap.ux.guidedAnswer');
         const apiHost = config.get('apiHost') as string;
         const enhancements = getEnhancements();
@@ -67,25 +68,55 @@ export class GuidedAnswersPanel {
         );
         this.panel.webview.html = html;
     }
+    /**
+     * Process startup parameters like initial tree id and node path.
+     *
+     * @returns - void
+     */
+    private async processStartOptions(): Promise<void> {
+        if (!this.startOptions) {
+            return;
+        }
+        try {
+            if (typeof this.startOptions !== 'object') {
+                throw Error(
+                    `Invalid start options. Please refer to https://github.com/SAP/guided-answers-extension/blob/main/docs/technical-information.md#module-sap-guided-answer-extension-packageside-extension for valid options.`
+                );
+            }
+            const tree = await this.guidedAnswerApi.getTreeById(this.startOptions.treeId);
+            let nodePath;
+            if (this.startOptions.nodeIdPath) {
+                nodePath = await this.guidedAnswerApi.getNodePath(this.startOptions.nodeIdPath);
+            }
+            this.postActionToWebview(setActiveTree(tree));
+            if (nodePath && nodePath.length > 0) {
+                for (const node of nodePath) {
+                    this.postActionToWebview(updateActiveNode(node));
+                }
+            } else {
+                this.postActionToWebview(updateActiveNode(await this.guidedAnswerApi.getNodeById(tree.FIRST_NODE_ID)));
+            }
+        } catch (error: any) {
+            logString(
+                `Error while processing start options, error was: '${error?.message}'. Start options: \n${
+                    typeof this.startOptions === 'object' ? JSON.stringify(this.startOptions) : this.startOptions
+                }`
+            );
+        }
+    }
 
     /**
      * Handler for actions coming from webview. This should be primaraly commands with arguments.
      *
      * @param action - action to execute
      */
-    private onWebviewMessage(action: GuidedAnswerActions): void {
+    private async onWebviewMessage(action: GuidedAnswerActions): Promise<void> {
         try {
             switch (action.type) {
                 case SELECT_NODE: {
-                    this.guidedAnswerApi
-                        .getNodeById(action.payload)
-                        .then((node) => {
-                            logString(`Node selected: ${node.NODE_ID}: ${node.TITLE}`);
-                            this.postActionToWebview(updateActiveNode(node));
-                        })
-                        .catch((error) =>
-                            logString(`Error while retrieving node ${action.payload}: ${error?.message}`)
-                        );
+                    const node = await this.guidedAnswerApi.getNodeById(action.payload);
+                    logString(`Node selected: ${node.NODE_ID}: ${node.TITLE}`);
+                    this.postActionToWebview(updateActiveNode(node));
                     break;
                 }
                 case EXECUTE_COMMAND: {
@@ -93,28 +124,14 @@ export class GuidedAnswersPanel {
                     break;
                 }
                 case SEARCH_TREE: {
-                    this.guidedAnswerApi
-                        .getTrees(action.payload)
-                        .then((trees) => this.postActionToWebview(updateGuidedAnserTrees(trees)))
-                        .catch((error) =>
-                            logString(`Error while retrieving tree ${action.payload}: ${error?.message}`)
-                        );
+                    const trees = await this.guidedAnswerApi.getTrees(action.payload);
+                    this.postActionToWebview(updateGuidedAnserTrees(trees));
                     break;
                 }
                 case WEBVIEW_READY: {
                     logString(`Webview is ready to receive actions`);
-                    if (this.initialTree) {
-                        this.guidedAnswerApi
-                            .getTreeById(this.initialTree)
-                            .then(async (tree) => {
-                                const node = await this.guidedAnswerApi.getNodeById(tree.FIRST_NODE_ID);
-                                this.postActionToWebview(setActiveTree(tree));
-                                this.postActionToWebview(updateActiveNode(node));
-                            })
-                            .catch((error) =>
-                                logString(`Error while retrieving tree ${this.initialTree}: ${error?.message}`)
-                            );
-                    }
+                    await this.processStartOptions();
+                    this.postActionToWebview(updateLoading(false));
                     break;
                 }
                 default: {

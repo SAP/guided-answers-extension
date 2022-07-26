@@ -1,7 +1,8 @@
 import type { ExtensionContext } from 'vscode';
-import { commands } from 'vscode';
+import { commands, window } from 'vscode';
 import { logString } from './logger/logger';
 import { GuidedAnswersPanel } from './panel/guidedAnswersPanel';
+import type { StartOptions } from './types';
 
 /**
  *  Activate function is called by VSCode when the extension gets active.
@@ -10,11 +11,14 @@ import { GuidedAnswersPanel } from './panel/guidedAnswersPanel';
  */
 export function activate(context: ExtensionContext): void {
     context.subscriptions.push(
-        commands.registerCommand('sap.ux.guidedAnswer.openGuidedAnswer', (options?: { treeId: number }) => {
-            const treeId = options?.treeId;
-            logString(`Guided Answers command called. (TreeId: ${treeId})`);
-            const guidedAnswersPanel = new GuidedAnswersPanel(treeId);
-            guidedAnswersPanel.show();
+        commands.registerCommand('sap.ux.guidedAnswer.openGuidedAnswer', (options?: StartOptions) => {
+            try {
+                logString(`Guided Answers command called. ${options ? '\nOptions: ' + JSON.stringify(options) : ''}`);
+                const guidedAnswersPanel = new GuidedAnswersPanel(options);
+                guidedAnswersPanel.show();
+            } catch (error) {
+                window.showErrorMessage(`Error while starting Guided Answers: ${(error as Error).message}`);
+            }
         })
     );
 }
