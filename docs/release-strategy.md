@@ -4,6 +4,7 @@ Development is completed in two week sprints followed by one of week of testing 
 
 The Stabilization phase is overlapped with the next sprint. New features, updates and fixes are released every two weeks. This means that from start of development until the code is delivered is 3 weeks 
 
+<img width="955" alt="Screenshot 2022-07-27 at 15 36 26" src="https://user-images.githubusercontent.com/9609226/181275281-86d487bc-9121-46d6-8bf6-048ce60d1494.png">
 
 
 During the stabilisation, a full regression must be completed before the publishing of the Guided Answer extension.
