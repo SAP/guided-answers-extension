@@ -1,5 +1,14 @@
 
+Associated user stories [#60](https://github.com/SAP/guided-answers-extension/issues/60),
+[#89](https://github.wdf.sap.corp/ux-engineering/tools-suite/issues/89),
+[#90](https://github.wdf.sap.corp/ux-engineering/tools-suite/issues/90),
+[#91](https://github.wdf.sap.corp/ux-engineering/tools-suite/issues/91),
+[#143](https://github.wdf.sap.corp/ux-engineering/tools-suite/issues/143),
+[#164](https://github.wdf.sap.corp/ux-engineering/tools-suite/issues/164)
+
+
 Pre Req: Guided Answers Extension is installed
+
 
 
 ### Open Guided Answers (SBAS and VSCODE)
@@ -33,7 +42,6 @@ Pre Req: Guided Answers Extension is installed
     b. The description of the Guided Answer  should appear in the list
 
 
-
 ### Open Guided Answers Content 
 
 **GIVEN** the user has searched Guided Answers content
@@ -56,6 +64,10 @@ Note: Check the content matches the content in the web application e.g. headers 
     b. 'Step back' and 'Restart' Link 
     c. Guided Answers content tree showing the first node of the Guided Answer Tree and the outcome the user selected is underlined in blue 
     c. The contents of the Guided Answer
+           1. Images
+           2. Bullet points
+           3. Paragraphs
+           4. Videos
     d. The content of the first Guided Answer content 
     e. The outcomes of the Guided Answer content 
     
@@ -78,3 +90,14 @@ Note: Check the content matches the content in the web application e.g. headers 
 **THEN** the user is navigated to the Guided Answers home page
     
     a. an empty search 
+    
+ 
+### Displaying enhancements specific to VSCode or SAP Business Application Studio
+
+**GIVEN** the user has opened Guided Answers, searched and selected Fiori Tools in VSCODE
+**WHEN** the user clicks on 'Fior Generator' **AND** 'In SAP Business Application Studio - Services unavailable, All catalog service requests failed'
+**THEN** the "Fiori: Open Environment Check" does not appear as a clickable link in VSCODE
+
+**GIVEN** the user has opened Guided Answers, searched and selected Fiori Tools in SBAS
+**WHEN** the user clicks on 'Fior Generator' **AND THEN** 'In SAP Business Application Studio - Services unavailable, All catalog service requests failed'
+**THEN** the "Fiori: Open Environment Check" appears as a clickable link in the SBAS
