@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.6.0
+
+### Minor Changes
+
+-   73a261e: keyboard accessibility support added
+
 ## 0.5.0
 
 ### Minor Changes
