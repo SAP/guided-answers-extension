@@ -1,10 +1,9 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { actions } from '../../src/webview/state';
 import { AllAnswersButton, BackButton, RestartButton } from '../../src/webview/ui/components/Header/NavigationButtons';
 import i18next from 'i18next';
 import { initI18n } from '../../src/webview/i18n';
-import { JSDOM } from 'react-jsdom';
 
 jest.mock('../../src/webview/state', () => {
     return {
@@ -15,29 +14,6 @@ jest.mock('../../src/webview/state', () => {
         }
     };
 });
-
-//Mock dom setup
-const dom = new JSDOM();
-global.document = dom.window.document;
-global.window = dom.window;
-
-describe('<AllAnswersButton /> focus', () => {
-    let wrapper: any;
-    beforeEach(() => {
-        wrapper = mount(<AllAnswersButton />);
-    });
-
-    afterEach(() => {
-        jest.clearAllMocks();
-        wrapper.unmount();
-    });
-
-    it('Check focus', () => {
-        const focusedElement = document.activeElement;
-        expect(wrapper.node.matchesElement(focusedElement)).toBe(true);
-    });
-});
-
 describe('<AllAnswersButton />', () => {
     let wrapper: any;
     initI18n();
