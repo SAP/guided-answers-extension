@@ -97,10 +97,6 @@ button:focus-visible {
 }
 
 .guided-answer__node {
-    & {
-        display: flex;
-        flex-direction: column;
-    }
     &__body {
         color: var(--vscode-foreground);
         display: flex;
@@ -134,13 +130,6 @@ button:focus-visible {
         background-color: var(--vscode-button-hoverBackground);
     }
     &__edge:focus-visible {
-        // border: none;
-        // outline-style: solid;
-        // outline-width: 2px;
-        // z-index: 1;
-        // outline-color: black;
-        // outline-offset: -4px;
-        // outline-offset: 2px;
         border: 1px solid var(--vscode-contrastBorder);
         outline: 1px solid var(--vscode-focusBorder);
         outline-offset: 2px;
