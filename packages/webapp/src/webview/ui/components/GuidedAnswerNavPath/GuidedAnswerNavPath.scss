@@ -11,7 +11,7 @@ h1 span {
     width: 25%;
     margin-top: 10px;
     position: fixed;
-    overflow: hidden;
+    overflow: initial;
 }
 
 .vertical-line {
@@ -67,9 +67,11 @@ h1 span {
 
 .timeline-content-title-large {
     display: block;
+    text-align: left;
 }
 .timeline-content-title-small {
     display: none;
+    text-align: left;
 }
 
 @media only screen and (max-width: 625px) {

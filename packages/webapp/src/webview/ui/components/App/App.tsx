@@ -7,6 +7,7 @@ import { actions } from '../../../state';
 import { GuidedAnswerNode } from '../GuidedAnswerNode';
 import { Header } from '../Header';
 import { NoAnswersFound } from '../NoAnswersFound';
+import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './App.scss';
 
 /**
@@ -27,31 +28,34 @@ export function App(): ReactElement {
             appState.searchResultCount === 0 ? (
                 <NoAnswersFound />
             ) : (
-                <ul className="striped-list">
-                    {appState.guidedAnswerTrees.map((tree, index) => {
-                        return (
-                            <li key={`tree-item-${index}`} className="tree-item">
-                                <div
-                                    className="guided-answer__tree"
-                                    onClick={(): void => {
-                                        actions.setActiveTree(tree);
-                                        actions.selectNode(tree.FIRST_NODE_ID);
-                                    }}>
-                                    <div className="guided-answer__tree__ul">
-                                        <h3
-                                            className="guided-answer__tree__title"
-                                            style={{ marginTop: tree.DESCRIPTION ? '0' : '10px' }}>
-                                            {tree.TITLE}
-                                        </h3>
-                                        {tree.DESCRIPTION && (
-                                            <span className="guided-answer__tree__desc">{tree.DESCRIPTION}</span>
-                                        )}
-                                    </div>
-                                </div>
-                            </li>
-                        );
-                    })}
-                </ul>
+                <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
+                    <ul className="striped-list">
+                        {appState.guidedAnswerTrees.map((tree, index) => {
+                            return (
+                                <li key={`tree-item-${index}`} className="tree-item">
+                                    <button
+                                        className="guided-answer__tree"
+                                        onClick={(): void => {
+                                            actions.setActiveTree(tree);
+                                            actions.selectNode(tree.FIRST_NODE_ID);
+                                            (document.body as HTMLElement).focus();
+                                        }}>
+                                        <div className="guided-answer__tree__ul">
+                                            <h3
+                                                className="guided-answer__tree__title"
+                                                style={{ marginTop: tree.DESCRIPTION ? '0' : '10px' }}>
+                                                {tree.TITLE}
+                                            </h3>
+                                            {tree.DESCRIPTION && (
+                                                <span className="guided-answer__tree__desc">{tree.DESCRIPTION}</span>
+                                            )}
+                                        </div>
+                                    </button>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </FocusZone>
             );
     }
     return (
