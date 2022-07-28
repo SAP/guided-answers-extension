@@ -95,7 +95,7 @@ Note: Check the content matches the content in the web application e.g. headers 
 ### Displaying enhancements specific to VSCode or SAP Business Application Studio
 
 **GIVEN** the user has opened Guided Answers, searched and selected Fiori Tools in VSCODE
-**WHEN** the user clicks on 'Fior Generator' **AND** 'In SAP Business Application Studio - Services unavailable, All catalog service requests failed'
+**WHEN** the user clicks on 'Fiori Generator' **AND** 'In SAP Business Application Studio - Services unavailable, All catalog service requests failed'
 **THEN** the "Fiori: Open Environment Check" does not appear as a clickable link in VSCODE
 
 **GIVEN** the user has opened Guided Answers, searched and selected Fiori Tools in SBAS
