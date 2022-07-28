@@ -9,7 +9,6 @@ import i18next from 'i18next';
  */
 const AllAnswersButton = React.memo(function AllAnswersButton() {
     requestAnimationFrame(() => {
-        //(document.body.querySelector('button') as HTMLElement).focus();
         const button = document.body.querySelector('.home-icon') as HTMLElement;
         if (button) {
             button.focus();

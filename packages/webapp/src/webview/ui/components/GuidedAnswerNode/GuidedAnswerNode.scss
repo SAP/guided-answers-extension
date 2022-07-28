@@ -97,6 +97,10 @@ button:focus-visible {
 }
 
 .guided-answer__node {
+    & {
+        display: flex;
+        flex-direction: column;
+    }
     &__body {
         color: var(--vscode-foreground);
         display: flex;
