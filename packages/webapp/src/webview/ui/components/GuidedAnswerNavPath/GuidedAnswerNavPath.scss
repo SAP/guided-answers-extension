@@ -56,7 +56,11 @@ h1 span {
 }
 
 .timeline-content-bottom-border:hover {
+    border-top: 1px solid var(--button-border);
+    border-right: 1px solid var(--button-border);
+    border-left: 1px solid var(--button-border);
     border-bottom: 3px solid var(--vscode-focusBorder, #007fd4);
+    cursor: default;
 }
 
 .timeline__path {

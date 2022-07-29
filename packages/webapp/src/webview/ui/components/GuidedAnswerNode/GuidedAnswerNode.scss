@@ -15,7 +15,7 @@ section.answer__node__body {
 }
 
 a:hover {
-    outline: 1px solid var(--vscode-focusBorder, #007fd4);
+    outline: 1px solid var(--vscode-contrastActiveBorder);
 }
 
 #left {
@@ -99,7 +99,7 @@ a:hover {
     }
     &__edge:hover {
         background-color: var(--vscode-button-hoverBackground);
-        outline: 1px solid var(--vscode-focusBorder, #007fd4);
+        outline: 1px solid var(--vscode-contrastActiveBorder);
     }
     &__commands {
         position: fixed;
@@ -142,7 +142,7 @@ a:hover {
     }
     &__command:hover {
         background-color: var(--vscode-list-hoverBackground);
-        outline: 1px solid var(--vscode-focusBorder, #007fd4);
+        outline: 1px solid var(--vscode-contrastActiveBorder);
         cursor: pointer;
     }
 }
@@ -154,7 +154,7 @@ a:hover {
 }
 
 .enhancement-link:hover {
-    outline: 1px solid var(--vscode-focusBorder, #007fd4);
+    outline: 1px solid var(--vscode-contrastActiveBorder);
 }
 @media only screen and (max-width: 625px) {
     #middle {
