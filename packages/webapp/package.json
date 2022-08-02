@@ -48,6 +48,8 @@
     },
     "dependencies": {
         "@fluentui/react": "8.80.0",
-        "@fluentui/react-focus": "8.7.3"
+        "@fluentui/react-focus": "8.7.3",
+        "@fluentui/style-utilities": "8.7.4",
+        "@fluentui/utilities": "8.10.1"
     }
 }
