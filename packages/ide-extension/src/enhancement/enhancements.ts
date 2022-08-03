@@ -43,17 +43,18 @@ function classifyEnhancements<T extends HTMLEnhancement | NodeEnhancement>(
     const inapplicable: T[] = [];
 
     for (const enhancement of enhancements) {
-        if (isVSCodeCommand(enhancement.command.exec)) {
-            if (
-                extensions.getExtension(enhancement.command.exec.extensionId) &&
-                enhancement.command.environment?.includes(getIde())
-            ) {
-                applicable.push(enhancement);
+        if (enhancement.command.environment.includes(getIde())) {
+            if (isVSCodeCommand(enhancement.command.exec)) {
+                if (extensions.getExtension(enhancement.command.exec.extensionId)) {
+                    applicable.push(enhancement);
+                } else {
+                    inapplicable.push(enhancement);
+                }
             } else {
-                inapplicable.push(enhancement);
+                applicable.push(enhancement);
             }
         } else {
-            applicable.push(enhancement);
+            inapplicable.push(enhancement);
         }
     }
     return { applicable, inapplicable };
