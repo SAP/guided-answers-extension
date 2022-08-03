@@ -71,13 +71,9 @@ Keyboard Navigation to be tested
 **WHEN** the user hits tab
 **THEN** the user is navigated  to the content area for that node in the Guided Answers Tree
 
-**GIVEN** the user has focus on athe content area for that node in the Guided Answer
+**GIVEN** the user has focus on the content area for that node in the Guided Answer
 **WHEN** the user hits tab
 **THEN** the user is navigated to the Home link in the Details page header bar
-
-**GIVEN** the user has focus on the header bar 
-**WHEN** the user uses the up, down, left and right arrow keys
-**THEN** the user is navigated the user is navigated between the Home and Step Back and Restart keys
 
 **GIVEN** the user has focus on the header bar 
 **WHEN** the user uses the up, down, left and right arrow keys
