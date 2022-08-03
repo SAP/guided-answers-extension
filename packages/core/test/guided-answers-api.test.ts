@@ -219,7 +219,8 @@ describe('Guided Answers Api: getNodeById()', () => {
                             exec: {
                                 cwd: '.',
                                 arguments: ['launch', 'Infinite', 'Improbability', 'Drive']
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     },
                     {
@@ -232,7 +233,8 @@ describe('Guided Answers Api: getNodeById()', () => {
                                 extensionId: 'full speed',
                                 commandId: 'SPEED',
                                 argument: { fsPath: '' }
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     }
                 ],
@@ -246,7 +248,8 @@ describe('Guided Answers Api: getNodeById()', () => {
                             exec: {
                                 cwd: '.',
                                 arguments: ['echo', '42']
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     },
                     {
@@ -259,7 +262,8 @@ describe('Guided Answers Api: getNodeById()', () => {
                                 extensionId: 'terry.exxt',
                                 commandId: 'Knock kock',
                                 argument: { fsPath: 'whos/there/body/of' }
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     }
                 ]
@@ -271,7 +275,7 @@ describe('Guided Answers Api: getNodeById()', () => {
             return Promise.resolve({ data });
         });
         // Test execution
-        const result = await getGuidedAnswerApi(options).getNodeById(-1);
+        const result = await getGuidedAnswerApi(options as any).getNodeById(-1);
 
         // Result check
         expect(result).toMatchSnapshot();
@@ -319,7 +323,8 @@ describe('Guided Answers Api: getNodePath()', () => {
                             exec: {
                                 cwd: '/',
                                 arguments: ['TEST']
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     }
                 ]
@@ -335,7 +340,7 @@ describe('Guided Answers Api: getNodePath()', () => {
         });
 
         // Test execution
-        const result = await getGuidedAnswerApi(options).getNodePath([111, 112]);
+        const result = await getGuidedAnswerApi(options as any).getNodePath([111, 112]);
 
         // Result check
         expect(result).toMatchSnapshot();
