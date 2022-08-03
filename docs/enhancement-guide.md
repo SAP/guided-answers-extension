@@ -15,7 +15,8 @@ Here is a sample enhancement configuration:
         "exec": {
           "extensionId": "sapse.sap-ux-application-modeler-extension",
           "commandId": "sap.ux.application.info",
-        }
+        },
+        "environment": ["VSCODE", "SBAS"]
       }
     },
     {
@@ -26,7 +27,8 @@ Here is a sample enhancement configuration:
         "exec": {
           "cwd": "",
           "arguments": ["code", "--version"]
-        }
+        },
+        "environment": ["VSCODE"]
       }
     }
   ],
@@ -39,7 +41,8 @@ Here is a sample enhancement configuration:
         "exec": {
           "extensionId": "sapse.sap-ux-application-modeler-extension",
           "commandId": "sap.ux.fioriTools.showReleaseNotes"
-        }
+        },
+        "environment": ["VSCODE", "SBAS"]
       }
     }
   ]
@@ -62,7 +65,8 @@ The first node enhancement is:
     "exec": {
       "extensionId": "sapse.sap-ux-application-modeler-extension",
       "commandId": "sap.ux.application.info",
-    }
+    },
+    "environment": ["VSCODE", "SBAS"]
   }
 }
 ```
@@ -74,6 +78,7 @@ This means, whenever the Guided Answers node `48366` is displayed, there will be
 
 Additionally, if the command accepts arguments they can be passed using the property `argument`.
 
+The `environment` property tells the extension, that these node enhancement should be applied if this extension runs in Microsoft Visual Studio Code (`VSCODE`) or SAP Business Application Studio (`SBAS`).
 
 The second node enhancement:
 ```
@@ -85,7 +90,8 @@ The second node enhancement:
     "exec": {
       "cwd": "",
       "arguments": ["code", "--version"]
-    }
+    },
+    "environment": ["VSCODE"]
   }
 }
 ```
@@ -96,6 +102,8 @@ is for node `48364`. Same as before, a button is rendered showing the text from 
 `arguments`: is a string array that contains the terminal command. The parts will be concatenated with a whitespace (' ').
 
 The exact definition of the properties of `exec` can be found in [packages/types/src/types.ts](../packages/types/src/types.ts).
+
+This node enhancement will be visible in Microsoft Visual Studio Code only, as the `environment` is set to `VSCODE` only.
 
 There can be multiple node enhancements for a single node.
 
@@ -119,7 +127,8 @@ The second type of enhancements, html enhancements, are independent of the node 
     "exec": {
       "extensionId": "sapse.sap-ux-application-modeler-extension",
       "commandId": "sap.ux.fioriTools.showReleaseNotes"
-    }
+    },
+    "environment": ["VSCODE", "SBAS"]
   }
 }
 ```

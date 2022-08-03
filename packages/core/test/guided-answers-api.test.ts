@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { APIOptions } from '@sap/guided-answers-extension-types';
 import { getGuidedAnswerApi } from '../src';
 
 jest.mock('axios');
@@ -207,7 +208,7 @@ describe('Guided Answers Api: getNodeById()', () => {
                 }
             ]
         };
-        const options = {
+        const options: APIOptions = {
             enhancements: {
                 nodeEnhancements: [
                     {
@@ -215,11 +216,11 @@ describe('Guided Answers Api: getNodeById()', () => {
                         command: {
                             label: 'terminal command enhancement',
                             description: 'Node enhancement with terminal command',
-                            icon: '',
                             exec: {
                                 cwd: '.',
                                 arguments: ['launch', 'Infinite', 'Improbability', 'Drive']
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     },
                     {
@@ -227,12 +228,12 @@ describe('Guided Answers Api: getNodeById()', () => {
                         command: {
                             label: 'vscode command enhancement',
                             description: 'Node enhancement with VSCode command',
-                            icon: '',
                             exec: {
                                 extensionId: 'full speed',
                                 commandId: 'SPEED',
                                 argument: { fsPath: '' }
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     }
                 ],
@@ -242,11 +243,11 @@ describe('Guided Answers Api: getNodeById()', () => {
                         command: {
                             label: 'of course, 42',
                             description: `Text 'solution to all questions' decorated as link to terminal command`,
-                            icon: '',
                             exec: {
                                 cwd: '.',
                                 arguments: ['echo', '42']
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     },
                     {
@@ -254,12 +255,12 @@ describe('Guided Answers Api: getNodeById()', () => {
                         command: {
                             label: 'what does that even mean',
                             description: `we decorate 'Body of' with a link to vscode command`,
-                            icon: 'icon',
                             exec: {
                                 extensionId: 'terry.exxt',
                                 commandId: 'Knock kock',
                                 argument: { fsPath: 'whos/there/body/of' }
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     }
                 ]
@@ -275,7 +276,7 @@ describe('Guided Answers Api: getNodeById()', () => {
 
         // Result check
         expect(result).toMatchSnapshot();
-        expect(result.COMMANDS).toEqual(options.enhancements.nodeEnhancements.map((ne) => ne.command));
+        expect(result.COMMANDS).toEqual(options.enhancements?.nodeEnhancements?.map((ne) => ne.command));
     });
 });
 
@@ -306,7 +307,7 @@ describe('Guided Answers Api: getNodePath()', () => {
             }
         ];
 
-        const options = {
+        const options: APIOptions = {
             enhancements: {
                 nodeEnhancements: [],
                 htmlEnhancements: [
@@ -315,11 +316,11 @@ describe('Guided Answers Api: getNodePath()', () => {
                         command: {
                             label: 'Command for Onehundredtwelve',
                             description: `Command to enhance node in path`,
-                            icon: '',
                             exec: {
                                 cwd: '/',
                                 arguments: ['TEST']
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     }
                 ]
