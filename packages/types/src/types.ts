@@ -50,7 +50,7 @@ export interface Command {
     label: string;
     description: string;
     exec: TerminalCommand | VSCodeCommand;
-    environment?: IDE[];
+    environment: IDE[];
 }
 
 export interface NodeEnhancement {
