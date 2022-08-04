@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-types
 
+## 0.4.0
+
+### Minor Changes
+
+-   348e502: Filter enhancements based on environment
+
 ## 0.3.0
 
 ### Minor Changes

@@ -114,7 +114,7 @@ describe('Test for handleCommand()', () => {
     test('Test helper functions for enhancements', () => {
         // getIde()
         expect(getIde()).toEqual('VSCODE');
-        process.env['H2O_URL'] = 'https://sap-ux-stage.cry10cf.int.applicationstudio.cloud.sap/';
+        process.env['H2O_URL'] = 'PRETEND_SBAS';
         expect(getIde()).toEqual('SBAS');
     });
 });

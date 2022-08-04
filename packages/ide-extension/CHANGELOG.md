@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.8.0
+
+### Minor Changes
+
+-   348e502: Filter enhancements based on environment
+
 ## 0.7.0
 
 ### Minor Changes
