@@ -24,7 +24,6 @@ export function GuidedAnswerNavPath(): ReactElement {
                         return (
                             <div key={`timeline-block-${i}`} className="timeline-block">
                                 <button
-                                    disabled={i === lastIndex ? true : false}
                                     className={`timeline-content ${
                                         i === lastIndex ? 'timeline-content-bottom-border' : ''
                                     }`}
