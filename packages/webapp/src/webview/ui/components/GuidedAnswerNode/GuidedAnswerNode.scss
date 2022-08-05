@@ -38,6 +38,10 @@ button:focus-visible {
     flex-wrap: nowrap;
 }
 
+a:hover {
+    outline: 1px solid var(--vscode-contrastActiveBorder);
+}
+
 #left {
     height: 100%;
     width: 25%;
@@ -128,10 +132,11 @@ button:focus-visible {
         padding: 10px;
         text-align: center;
         outline-offset: -1px;
-        outline: 1px solid var(--vscode-contrastBorder);
+        border: 1px solid var(--vscode-contrastBorder);
     }
     &__edge:hover {
         background-color: var(--vscode-button-hoverBackground);
+        outline: 1px solid var(--vscode-contrastActiveBorder);
     }
     &__edge:focus-visible {
         border: 1px solid var(--vscode-contrastBorder);
@@ -180,6 +185,7 @@ button:focus-visible {
     }
     &__command:hover {
         background-color: var(--vscode-list-hoverBackground);
+        outline: 1px solid var(--vscode-contrastActiveBorder);
         cursor: pointer;
     }
 }

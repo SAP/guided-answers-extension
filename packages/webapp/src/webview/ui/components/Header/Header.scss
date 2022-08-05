@@ -47,6 +47,7 @@
         }
         &__navButtons:hover {
             background: var(--vscode-menubar-selectionBackground);
+            outline: 1px solid var(--vscode-contrastActiveBorder);
             border-radius: 3px;
             > span {
                 text-decoration: none;
