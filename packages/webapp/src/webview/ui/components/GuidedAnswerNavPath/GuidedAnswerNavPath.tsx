@@ -32,12 +32,7 @@ export function GuidedAnswerNavPath(): ReactElement {
                                     }}>
                                     <div className="timeline__path" title={node.TITLE}>
                                         <span className="timeline-content-title-small bold-text">{i + 1}</span>
-                                        <span
-                                            className={`timeline-content-title-large ${
-                                                i === nodes.length - 1 ? 'bold-text' : ''
-                                            }`}>
-                                            {node.TITLE}
-                                        </span>
+                                        <span className={`timeline-content-title-large`}>{node.TITLE}</span>
                                     </div>
                                 </button>
                                 {i !== lastIndex ? <div className="vertical-line"></div> : <></>}
