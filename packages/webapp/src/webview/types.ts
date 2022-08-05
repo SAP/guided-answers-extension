@@ -1,10 +1,13 @@
-import type { GuidedAnswerNode, GuidedAnswerTree } from '@sap/guided-answers-extension-types';
+import type {
+    GuidedAnswerNode,
+    GuidedAnswerTree,
+    GuidedAnswerTreeSearchResult
+} from '@sap/guided-answers-extension-types';
 
 export interface AppState {
     loading: boolean;
     query: string;
-    guidedAnswerTrees: GuidedAnswerTree[];
+    guidedAnswerTreeSearchResult: GuidedAnswerTreeSearchResult;
     activeGuidedAnswerNode: GuidedAnswerNode[];
     activeGuidedAnswer?: GuidedAnswerTree;
-    searchResultCount: number;
 }

@@ -14,7 +14,9 @@ import type {
     UpdateGuidedAnserTrees,
     UpdateActiveNode,
     WebviewReady,
-    UpdateLoading
+    UpdateLoading,
+    GuidedAnswerTreeSearchResult,
+    GuidedAnswersQueryOptions
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -31,7 +33,7 @@ import {
     WEBVIEW_READY
 } from './types';
 
-export const updateGuidedAnserTrees = (payload: GuidedAnswerTree[]): UpdateGuidedAnserTrees => ({
+export const updateGuidedAnserTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnserTrees => ({
     type: UPDATE_GUIDED_ANSWER_TREES,
     payload
 });
@@ -70,7 +72,7 @@ export const setActiveTree = (payload: GuidedAnswerTree): SetActiveTree => ({
     payload
 });
 
-export const searchTree = (payload: string): SearchTree => ({
+export const searchTree = (payload: GuidedAnswersQueryOptions): SearchTree => ({
     type: SEARCH_TREE,
     payload
 });

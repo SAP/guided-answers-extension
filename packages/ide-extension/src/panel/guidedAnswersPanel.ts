@@ -33,7 +33,7 @@ export class GuidedAnswersPanel {
     constructor(options?: StartOptions) {
         this.startOptions = options;
         const config = workspace.getConfiguration('sap.ux.guidedAnswer');
-        const apiHost = config.get('apiHost') as string;
+        const apiHost = 'https://gad5158842f.us2.hana.ondemand.com'; //<--TODO: REMOVE|config.get('apiHost') as string;
         const enhancements = getEnhancements();
 
         this.guidedAnswerApi = getGuidedAnswerApi({ apiHost, enhancements });

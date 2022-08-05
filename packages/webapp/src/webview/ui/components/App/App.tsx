@@ -26,14 +26,14 @@ export function App(): ReactElement {
         content = <VSCodeProgressRing id="loading-indicator" />;
     } else if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
-    } else if (appState.guidedAnswerTrees) {
+    } else if (appState.guidedAnswerTreeSearchResult.resultSize > 0) {
         content =
-            appState.searchResultCount === 0 ? (
+            appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (
                 <NoAnswersFound />
             ) : (
                 <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
                     <ul className="striped-list">
-                        {appState.guidedAnswerTrees.map((tree, index) => {
+                        {appState.guidedAnswerTreeSearchResult.trees.map((tree, index) => {
                             return (
                                 <li key={`tree-item-${index}`} className="tree-item">
                                     <button

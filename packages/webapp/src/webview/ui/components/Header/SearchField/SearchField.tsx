@@ -40,7 +40,7 @@ export function SearchField() {
                         clearTimeout(timer);
                         actions.setQueryValue(newValue);
                         timer = setTimeout(() => {
-                            actions.searchTree(newValue);
+                            actions.searchTree({ query: newValue });
                         }, 400);
                     }
                 }}></VSCodeTextField>

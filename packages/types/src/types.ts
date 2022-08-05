@@ -8,6 +8,27 @@ export interface GuidedAnswerTree {
     AVAILABILITY: string;
     DESCRIPTION: string;
     FIRST_NODE_ID: GuidedAnswerNodeId;
+    PRODUCT: string;
+    COMPONENT: string;
+}
+
+export interface GuidedAnswersQueryOptions {
+    query?: string;
+    filters?: GuidedAnswersQueryFilterOptions;
+}
+
+export interface GuidedAnswersQueryFilterOptions {
+    component?: string[];
+    product?: string[];
+}
+
+export type GuidedAnswerTreeSearchHit = GuidedAnswerTree & { SCORE: number };
+
+export interface GuidedAnswerTreeSearchResult {
+    resultSize: number;
+    trees: GuidedAnswerTreeSearchHit[];
+    productFilters: { PRODUCT: string; COUNT: string };
+    componentFilters: { COMPONENT: string; COUNT: string };
 }
 
 export type GuidedAnswerNodeId = number;
@@ -29,7 +50,7 @@ export interface GuidedAnswerEdge {
 export interface GuidedAnswerAPI {
     getNodeById: (id: GuidedAnswerNodeId) => Promise<GuidedAnswerNode>;
     getTreeById: (id: GuidedAnswerTreeId) => Promise<GuidedAnswerTree>;
-    getTrees: (query?: string) => Promise<GuidedAnswerTree[]>;
+    getTrees: (queryOptions?: GuidedAnswersQueryOptions) => Promise<GuidedAnswerTreeSearchResult>;
     getNodePath: (nodeIdPath: GuidedAnswerNodeId[]) => Promise<GuidedAnswerNode[]>;
 }
 
@@ -97,7 +118,7 @@ export type GuidedAnswerActions =
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnserTrees {
     type: typeof UPDATE_GUIDED_ANSWER_TREES;
-    payload: GuidedAnswerTree[];
+    payload: GuidedAnswerTreeSearchResult;
 }
 
 export const SELECT_NODE = 'SELECT_NODE';
@@ -151,7 +172,7 @@ export interface SetActiveTree {
 export const SEARCH_TREE = 'SEARCH_TREE';
 export interface SearchTree {
     type: typeof SEARCH_TREE;
-    payload: string;
+    payload: GuidedAnswersQueryOptions;
 }
 
 export const SET_QUERY_VALUE = 'SET_QUERY_VALUE';

@@ -21,9 +21,13 @@ export function getInitialState(): AppState {
     return {
         loading: true,
         query: '',
-        guidedAnswerTrees: [],
-        activeGuidedAnswerNode: [],
-        searchResultCount: -1
+        guidedAnswerTreeSearchResult: {
+            resultSize: -1,
+            componentFilters: { COMPONENT: '', COUNT: '' },
+            productFilters: { PRODUCT: '', COUNT: '' },
+            trees: []
+        },
+        activeGuidedAnswerNode: []
     };
 }
 
@@ -41,8 +45,7 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
     const newState: AppState = JSON.parse(JSON.stringify(state)) as AppState;
     switch (action.type) {
         case UPDATE_GUIDED_ANSWER_TREES: {
-            newState.guidedAnswerTrees = action.payload;
-            newState.searchResultCount = newState.guidedAnswerTrees.length;
+            newState.guidedAnswerTreeSearchResult = action.payload;
             delete newState.activeGuidedAnswer;
             break;
         }
