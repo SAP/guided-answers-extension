@@ -26,7 +26,7 @@ export function App(): ReactElement {
         content = <VSCodeProgressRing id="loading-indicator" />;
     } else if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
-    } else if (appState.guidedAnswerTreeSearchResult.resultSize > 0) {
+    } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
         content =
             appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (
                 <NoAnswersFound />

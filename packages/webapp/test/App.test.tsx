@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import { App } from '../src/webview/ui/components/App';
 import { initI18n } from '../src/webview/i18n';
 import { actions } from '../src/webview/state';
+import { AppState } from '../src/webview/types';
 
 jest.mock('@vscode/webview-ui-toolkit/react', () => ({
     VSCodeTextField: () => (
@@ -26,24 +27,34 @@ jest.mock('react-redux', () => ({
     useSelector: jest
         .fn()
         .mockReturnValueOnce({
-            activeGuidedAnswerNode: [],
-            guidedAnswerTrees: [],
+            loading: false,
             query: '',
-            searchResultCount: 0
-        })
+            guidedAnswerTreeSearchResult: {
+                trees: [],
+                resultSize: 0,
+                productFilters: [],
+                componentFilters: []
+            },
+            activeGuidedAnswerNode: [],
+            activeGuidedAnswer: undefined
+        } as AppState)
         .mockReturnValueOnce({
             activeGuidedAnswerNode: [],
-            guidedAnswerTrees: [
-                {
-                    AVAILABILITY: 'PUBLIC',
-                    DESCRIPTION: 'This is a troubleshooting guide to solve the issues while using SAP Fiori tools',
-                    FIRST_NODE_ID: 45995,
-                    TITLE: 'SAP Fiori tools',
-                    TREE_ID: 3046
-                }
-            ],
-            query: 'fiori tools',
-            searchResultCount: 1
+            guidedAnswerTreeSearchResult: {
+                trees: [
+                    {
+                        AVAILABILITY: 'PUBLIC',
+                        DESCRIPTION: 'This is a troubleshooting guide to solve the issues while using SAP Fiori tools',
+                        FIRST_NODE_ID: 45995,
+                        TITLE: 'SAP Fiori tools',
+                        TREE_ID: 3046
+                    }
+                ],
+                resultSize: 1,
+                productFilters: [],
+                componentFilters: []
+            },
+            query: 'fiori tools'
         })
         .mockReturnValueOnce({ activeGuidedAnswerNode: [{ a: 0 }, { b: 0 }] })
         .mockReturnValueOnce({ loading: true, activeGuidedAnswerNode: [] })

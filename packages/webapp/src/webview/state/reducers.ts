@@ -23,8 +23,8 @@ export function getInitialState(): AppState {
         query: '',
         guidedAnswerTreeSearchResult: {
             resultSize: -1,
-            componentFilters: { COMPONENT: '', COUNT: '' },
-            productFilters: { PRODUCT: '', COUNT: '' },
+            componentFilters: [],
+            productFilters: [],
             trees: []
         },
         activeGuidedAnswerNode: []

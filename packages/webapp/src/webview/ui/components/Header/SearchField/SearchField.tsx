@@ -71,7 +71,7 @@ export function SearchField() {
                     id="dialog-filter-field"></VSCodeTextField>
                 <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
                     {['Component1', 'Component2', 'Component3', 'Component4', 'Component5'].map((c) => (
-                        <li style={{ marginBottom: '10px' }}>
+                        <li key={`${c}`} style={{ marginBottom: '10px' }}>
                             <UICheckbox label={c} />
                         </li>
                     ))}
