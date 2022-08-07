@@ -222,7 +222,7 @@ describe('GuidedAnswersPanel', () => {
 
         // Test execution
         new GuidedAnswersPanel();
-        await onDidReceiveMessageMock({ type: SEARCH_TREE, payload: '' });
+        await onDidReceiveMessageMock({ type: SEARCH_TREE, payload: {} });
 
         // Result check
         expect(webViewPanelMock.webview.postMessage).toBeCalledWith({
