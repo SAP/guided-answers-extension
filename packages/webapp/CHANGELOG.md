@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.7.0
+
+### Minor Changes
+
+-   c927ec4: added minimum contrast support
+
 ## 0.6.0
 
 ### Minor Changes

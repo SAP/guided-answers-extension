@@ -11,7 +11,7 @@ h1 span {
     width: 25%;
     margin-top: 10px;
     position: fixed;
-    overflow: initial;
+    overflow: visible;
 }
 
 .vertical-line {
@@ -48,11 +48,19 @@ h1 span {
 
 .timeline-content:hover {
     cursor: pointer;
-    background: var(--vscode-list-hoverBackground);
+    border: 1px solid var(--vscode-focusBorder, #007fd4);
 }
 
 .timeline-content-bottom-border {
     border-bottom: 3px solid var(--vscode-focusBorder, #007fd4);
+}
+
+.timeline-content-bottom-border:hover {
+    border-top: 1px solid var(--button-border);
+    border-right: 1px solid var(--button-border);
+    border-left: 1px solid var(--button-border);
+    border-bottom: 3px solid var(--vscode-focusBorder, #007fd4);
+    cursor: default;
 }
 
 .timeline__path {
