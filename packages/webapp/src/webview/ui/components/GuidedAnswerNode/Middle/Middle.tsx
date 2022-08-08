@@ -10,6 +10,7 @@ import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
  * @param props.enhancedBody - a react element that is rendered if enhancements are present in the node
  * @returns - The middle react element
  */
+let firstTimeFocus = true;
 export function Middle(props: {
     activeNode: GuidedAnswerNodeType;
     enhancedBody: ReactElement | undefined | null;
@@ -20,6 +21,7 @@ export function Middle(props: {
             homeButton.focus();
         }
     };
+    firstTimeFocus = true;
     return (
         <div id="middle" className="column">
             <div className="body_container">
@@ -36,7 +38,22 @@ export function Middle(props: {
                 )}
                 <p className="guided-answer__node__question">{props.activeNode.QUESTION}</p>
             </div>
-            <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
+            <FocusZone
+                onFocus={() => {
+                    requestAnimationFrame(() => {
+                        if (firstTimeFocus) {
+                            const button = document.querySelector(
+                                '.guided-answer__node__edge:first-child'
+                            ) as HTMLElement;
+                            if (button) {
+                                button.focus();
+                            }
+                            firstTimeFocus = false;
+                        }
+                    });
+                }}
+                direction={FocusZoneDirection.bidirectional}
+                isCircularNavigation={true}>
                 <div className="guided-answer__node">
                     {props.activeNode.EDGES.map((edge, index) => (
                         <button
