@@ -2,7 +2,7 @@ import React from 'react';
 import type { IDialogProps, IDialogFooterProps } from '@fluentui/react';
 import { Dialog as BaseDialog, DialogFooter } from '@fluentui/react';
 import { UIDefaultButton } from '../UIButton';
-import { deepMerge } from '../../../utilities/DeepMerge';
+import { deepMerge } from '../../../../utilities/DeepMerge';
 
 /**
  * UIDialog component

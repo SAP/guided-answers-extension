@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import { VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
-import { UIIconButton } from '../../UIButton';
+import { UIIconButton } from '../../UIComponentsLib/UIButton';
 import { UiIcons } from '../../Icons';
-import { UIDialog } from '../../UIDialog';
-import { UICheckbox } from '../../UICheckbox';
+import { UIDialog } from '../../UIComponentsLib/UIDialog';
+import { UICheckbox } from '../../UIComponentsLib/UICheckbox';
 
 let timer: NodeJS.Timeout;
 /**
