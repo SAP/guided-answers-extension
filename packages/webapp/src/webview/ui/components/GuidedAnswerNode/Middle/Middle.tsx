@@ -3,7 +3,7 @@ import { actions } from '../../../../state';
 import type { GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
 import '../GuidedAnswerNode.scss';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-
+import { focusOnElement } from '../../utils';
 /**
  * @param props - props for middle component
  * @param props.activeNode - array that stores GuidedAnswers node objects
@@ -15,12 +15,6 @@ export function Middle(props: {
     activeNode: GuidedAnswerNodeType;
     enhancedBody: ReactElement | undefined | null;
 }): ReactElement {
-    const focusToHome = () => {
-        const homeButton = document.body.querySelector('.home-icon') as HTMLElement;
-        if (homeButton) {
-            homeButton.focus();
-        }
-    };
     firstTimeFocus = true;
     return (
         <div id="middle" className="column">
@@ -40,17 +34,10 @@ export function Middle(props: {
             </div>
             <FocusZone
                 onFocus={() => {
-                    requestAnimationFrame(() => {
-                        if (firstTimeFocus) {
-                            const button = document.querySelector(
-                                '.guided-answer__node__edge:first-child'
-                            ) as HTMLElement;
-                            if (button) {
-                                button.focus();
-                            }
-                            firstTimeFocus = false;
-                        }
-                    });
+                    if (firstTimeFocus) {
+                        focusOnElement('.guided-answer__node__edge:first-child');
+                        firstTimeFocus = false;
+                    }
                 }}
                 direction={FocusZoneDirection.bidirectional}
                 isCircularNavigation={true}>
@@ -61,7 +48,7 @@ export function Middle(props: {
                             className="guided-answer__node__edge"
                             onClick={(): void => {
                                 actions.selectNode(edge.TARGET_NODE);
-                                focusToHome();
+                                focusOnElement('.home-icon');
                             }}>
                             {edge.LABEL}
                         </button>
