@@ -8,7 +8,8 @@ import {
     UPDATE_ACTIVE_NODE,
     UPDATE_GUIDED_ANSWER_TREES,
     UPDATE_LOADING,
-    WEBVIEW_READY
+    WEBVIEW_READY,
+    BETA_FEATURES
 } from '@sap/guided-answers-extension-types';
 import type {
     Command,
@@ -74,6 +75,7 @@ describe('GuidedAnswersPanel', () => {
         expect((webViewPanelMock.webview.postMessage as jest.Mock).mock.calls).toEqual([
             [{ type: SET_ACTIVE_TREE, payload: { TREE_ID: 1, FIRST_NODE_ID: 1234 } }],
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 1234, TITLE: 'Node 1234' } }],
+            [{ type: BETA_FEATURES, payload: false }],
             [{ type: UPDATE_LOADING, payload: false }]
         ]);
     });
@@ -98,6 +100,7 @@ describe('GuidedAnswersPanel', () => {
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 100 } }],
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 200 } }],
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 300 } }],
+            [{ type: BETA_FEATURES, payload: false }],
             [{ type: UPDATE_LOADING, payload: false }]
         ]);
     });

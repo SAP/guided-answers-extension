@@ -134,7 +134,7 @@ export class GuidedAnswersPanel {
                     await this.processStartOptions();
                     this.postActionToWebview(
                         getBetaFeatures(
-                            workspace.getConfiguration('sap.ux.guidedAnswer').get('betaFeatures') as boolean
+                            (workspace.getConfiguration('sap.ux.guidedAnswer').get('betaFeatures') as boolean) || false
                         )
                     );
                     this.postActionToWebview(updateLoading(false));
