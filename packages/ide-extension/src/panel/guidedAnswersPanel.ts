@@ -9,7 +9,8 @@ import {
     EXECUTE_COMMAND,
     SEARCH_TREE,
     WEBVIEW_READY,
-    setActiveTree
+    setActiveTree,
+    getBetaFeatures
 } from '@sap/guided-answers-extension-types';
 import { getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
@@ -131,6 +132,11 @@ export class GuidedAnswersPanel {
                 case WEBVIEW_READY: {
                     logString(`Webview is ready to receive actions`);
                     await this.processStartOptions();
+                    this.postActionToWebview(
+                        getBetaFeatures(
+                            workspace.getConfiguration('sap.ux.guidedAnswer').get('betaFeatures') as boolean
+                        )
+                    );
                     this.postActionToWebview(updateLoading(false));
                     break;
                 }

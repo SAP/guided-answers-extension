@@ -9,5 +9,6 @@ export {
     setActiveTree,
     searchTree,
     setQueryValue,
-    webviewReady
+    webviewReady,
+    getBetaFeatures
 } from '@sap/guided-answers-extension-types';
