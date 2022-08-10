@@ -13,7 +13,7 @@ A Visual Studio Code extension for accessing SAP's Guided Answers.
 <br/>
 
 ## About this project
-<kbd><img src="./docs/resources/sap-guided-answers.gif" align="center" style="margin-top:10px;margin-bottom:10px"/><kbd>
+<kbd><img src="./docs/resources/sap-guided-answers.gif" align="center" style="margin-top:10px;margin-bottom:10px"/></kbd>
 
 Enable community collaboration to jointly promote, develop and consume a VSCode extension which provides a simple interactive way to show the developers how to troubleshoot issues, navigate processes and guide through tasks via the content published to SAP's Guided Answers (https://ga.support.sap.com/dtp/viewer/)
 
