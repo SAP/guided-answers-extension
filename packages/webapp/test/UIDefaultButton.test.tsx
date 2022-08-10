@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Enzyme from 'enzyme';
 import type { IButtonProps } from '@fluentui/react';
 import { DefaultButton } from '@fluentui/react';
-import { UIDefaultButton } from '../src/webview/ui/components/UIButton/UIDefaultButton';
+import { UIDefaultButton } from '../src/webview/ui/components/UIComponentsLib/UIButton/UIDefaultButton';
 
 describe('<UIDefaultButton />', () => {
     let wrapper: Enzyme.ReactWrapper<IButtonProps>;
