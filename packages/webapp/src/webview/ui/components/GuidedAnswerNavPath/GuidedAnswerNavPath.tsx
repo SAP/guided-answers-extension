@@ -5,6 +5,7 @@ import { actions } from '../../../state';
 import { AppState } from '../../../types';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './GuidedAnswerNavPath.scss';
+import { focusOnElement } from '../utils';
 
 /**
  * Renders and return the navigation section.
@@ -12,14 +13,24 @@ import './GuidedAnswerNavPath.scss';
  * @returns - react element for navigation section
  */
 export function GuidedAnswerNavPath(): ReactElement {
+    let firstTimeFocus: boolean;
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
     const activeNode = nodes[nodes.length - 1];
     const lastIndex = nodes.length - 1;
 
     if (activeNode) {
+        firstTimeFocus = true;
         return (
             <nav className="container">
-                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
+                <FocusZone
+                    direction={FocusZoneDirection.vertical}
+                    onFocus={() => {
+                        if (firstTimeFocus) {
+                            focusOnElement('.timeline-content');
+                            firstTimeFocus = false;
+                        }
+                    }}
+                    isCircularNavigation={true}>
                     {nodes.map((node, i) => {
                         return (
                             <div key={`timeline-block-${i}`} className="timeline-block">
