@@ -5,6 +5,7 @@
     },
     "plugins": ["promise", "prettier", "jsdoc", "@typescript-eslint", "import"],
     "extends": ["plugin:jsdoc/recommended", "plugin:prettier/recommended"],
+    "ignorePatterns": ["packages/webapp/src/webview/ui/components/UIComponentsLib/*"],
     "overrides": [
         {
             "parser": "@typescript-eslint/parser",

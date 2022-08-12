@@ -4,7 +4,7 @@ import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import { VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
 import { UIIconButton } from '../../UIComponentsLib/UIButton';
-import { UiIcons } from '../../Icons';
+import { UiIcons } from '../../UIComponentsLib/Icons';
 import { UIDialog } from '../../UIComponentsLib/UIDialog';
 import { UICheckbox } from '../../UIComponentsLib/UICheckbox';
 

@@ -4,13 +4,17 @@ import type { GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answe
 import '../GuidedAnswerNode.scss';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { focusOnElement } from '../../utils';
+
+let firstTimeFocus = true;
+
 /**
+ * The middle column copoment of the app in the UI.
+ *
  * @param props - props for middle component
  * @param props.activeNode - array that stores GuidedAnswers node objects
  * @param props.enhancedBody - a react element that is rendered if enhancements are present in the node
  * @returns - The middle react element
  */
-let firstTimeFocus = true;
 export function Middle(props: {
     activeNode: GuidedAnswerNodeType;
     enhancedBody: ReactElement | undefined | null;
