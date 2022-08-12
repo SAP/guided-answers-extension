@@ -132,16 +132,7 @@ async function getTrees(host: string, queryOptions?: GuidedAnswersQueryOptions):
     const url = `${host}${TREE_PATH}${query}${urlGetParamString}`;
     const response: AxiosResponse<GuidedAnswerTreeSearchResult> = await axios.get<GuidedAnswerTreeSearchResult>(url);
     const searchResult = response.data;
-    if (Array.isArray(searchResult?.trees)) {
-        // when we get data as search results, TREE_ID and NODE_ID are string. When we get a single tree, both are numbers.
-        // generalize to number here
-        searchResult.trees = searchResult.trees.map((treeItem) => {
-            treeItem.TREE_ID = parseInt(treeItem.TREE_ID as unknown as string, 10);
-            treeItem.FIRST_NODE_ID = parseInt(treeItem.FIRST_NODE_ID as unknown as string, 10);
-            treeItem.SCORE = parseFloat(treeItem.SCORE as unknown as string);
-            return treeItem;
-        });
-    } else {
+    if (!Array.isArray(searchResult?.trees)) {
         throw Error(
             `Query result from call '${url}' does not contain property 'trees' as array. Received response: '${searchResult}'`
         );

@@ -27,8 +27,8 @@ export type GuidedAnswerTreeSearchHit = GuidedAnswerTree & { SCORE: number };
 export interface GuidedAnswerTreeSearchResult {
     resultSize: number;
     trees: GuidedAnswerTreeSearchHit[];
-    productFilters: { PRODUCT: string; COUNT: string }[];
-    componentFilters: { COMPONENT: string; COUNT: string }[];
+    productFilters: { PRODUCT: string; COUNT: number }[];
+    componentFilters: { COMPONENT: string; COUNT: number }[];
 }
 
 export type GuidedAnswerNodeId = number;
