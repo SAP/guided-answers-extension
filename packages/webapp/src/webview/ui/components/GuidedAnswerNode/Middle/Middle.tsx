@@ -33,6 +33,7 @@ export function Middle(props: {
                 <p className="guided-answer__node__question">{props.activeNode.QUESTION}</p>
             </div>
             <FocusZone
+                role="listbox"
                 onFocus={() => {
                     if (firstTimeFocus) {
                         focusOnElement('.guided-answer__node__edge:first-child');
@@ -44,6 +45,7 @@ export function Middle(props: {
                 <div className="guided-answer__node">
                     {props.activeNode.EDGES.map((edge, index) => (
                         <button
+                            role="option"
                             key={`edge_button${index}`}
                             className="guided-answer__node__edge"
                             onClick={(): void => {
