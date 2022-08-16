@@ -54,9 +54,9 @@ export function SearchField() {
                         title="Filter"
                         style={{ width: '26px', height: '20px' }}></UIIconButton>
                     <UIDialog
+                        dialogContentProps={{ title: 'Filter Product' }}
                         isOpen={isVisible}
                         isBlocking={true}
-                        title={'Filter Product'}
                         acceptButtonText={'Apply Filter'}
                         cancelButtonText={'Cancel'}
                         styles={{
