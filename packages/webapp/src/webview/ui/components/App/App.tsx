@@ -9,7 +9,7 @@ import { Header } from '../Header';
 import { NoAnswersFound } from '../NoAnswersFound';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './App.scss';
-import { initIcons } from '../Icons';
+import { initIcons } from '../UIComponentsLib/Icons';
 
 initIcons();
 

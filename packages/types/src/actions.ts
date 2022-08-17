@@ -16,7 +16,8 @@ import type {
     WebviewReady,
     UpdateLoading,
     GuidedAnswerTreeSearchResult,
-    GuidedAnswersQueryOptions
+    GuidedAnswersQueryOptions,
+    BetaFeatures
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -30,7 +31,8 @@ import {
     UPDATE_GUIDED_ANSWER_TREES,
     UPDATE_ACTIVE_NODE,
     UPDATE_LOADING,
-    WEBVIEW_READY
+    WEBVIEW_READY,
+    BETA_FEATURES
 } from './types';
 
 export const updateGuidedAnserTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnserTrees => ({
@@ -79,6 +81,11 @@ export const searchTree = (payload: GuidedAnswersQueryOptions): SearchTree => ({
 
 export const setQueryValue = (payload: string): SetQueryValue => ({
     type: SET_QUERY_VALUE,
+    payload
+});
+
+export const getBetaFeatures = (payload: boolean): BetaFeatures => ({
+    type: BETA_FEATURES,
     payload
 });
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {
+import type {
     APIOptions,
     GuidedAnswersQueryOptions,
     GuidedAnswerTreeSearchResult
@@ -23,8 +23,8 @@ describe('Guided Answers Api: getTrees()', () => {
                     TITLE: 'One',
                     DESCRIPTION: 'First tree',
                     AVAILABILITY: 'PUBLIC',
-                    FIRST_NODE_ID: '100' as unknown as number,
-                    SCORE: '0.1' as unknown as number,
+                    FIRST_NODE_ID: 100,
+                    SCORE: 0.1,
                     COMPONENT: 'C1',
                     PRODUCT: 'P_one'
                 },
@@ -39,19 +39,19 @@ describe('Guided Answers Api: getTrees()', () => {
                     PRODUCT: 'P_two'
                 },
                 {
-                    TREE_ID: '3' as unknown as number,
+                    TREE_ID: 3,
                     TITLE: 'Three',
                     DESCRIPTION: 'Third tree',
                     AVAILABILITY: 'PUBLIC',
-                    FIRST_NODE_ID: '300' as unknown as number,
+                    FIRST_NODE_ID: 300,
                     SCORE: 0.3,
                     COMPONENT: 'C3',
                     PRODUCT: 'P_three'
                 }
             ],
             resultSize: 3,
-            componentFilters: { COMPONENT: 'C1', COUNT: '1' },
-            productFilters: { PRODUCT: 'P_one', COUNT: '1' }
+            componentFilters: [{ COMPONENT: 'C1', COUNT: 1 }],
+            productFilters: [{ PRODUCT: 'P_one', COUNT: 1 }]
         };
         let requestUrl = '';
         mockedAxios.get.mockImplementation((url) => {
@@ -98,8 +98,8 @@ describe('Guided Answers Api: getTrees()', () => {
                 }
             ],
             resultSize: 3,
-            componentFilters: { COMPONENT: 'C1', COUNT: '1' },
-            productFilters: { PRODUCT: 'P_one', COUNT: '1' }
+            componentFilters: [{ COMPONENT: 'C1', COUNT: 1 }],
+            productFilters: [{ PRODUCT: 'P_one', COUNT: 1 }]
         });
     });
 
@@ -144,9 +144,7 @@ describe('Guided Answers Api: getTrees()', () => {
 
     test('Test non compliant response', async () => {
         // Mock setup
-        let requestUrl = '';
-        mockedAxios.get.mockImplementation((url) => {
-            requestUrl = url;
+        mockedAxios.get.mockImplementation(() => {
             return Promise.resolve({});
         });
 
@@ -188,7 +186,7 @@ describe('Guided Answers Api: getTrees()', () => {
         });
 
         // Test execution
-        const result = await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
+        await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
 
         // Result check
         expect(requestUrl).toEqual(
@@ -211,7 +209,7 @@ describe('Guided Answers Api: getTrees()', () => {
         });
 
         // Test execution
-        const result = await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
+        await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
 
         // Result check
         expect(requestUrl).toEqual(
@@ -233,7 +231,7 @@ describe('Guided Answers Api: getTrees()', () => {
         });
 
         // Test execution
-        const result = await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
+        await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
 
         // Result check
         expect(requestUrl).toEqual('anyhost/dtp/api/v2/trees/*?product=%22PRODUCT%22');
@@ -253,7 +251,7 @@ describe('Guided Answers Api: getTrees()', () => {
         });
 
         // Test execution
-        const result = await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
+        await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
 
         // Result check
         expect(requestUrl).toEqual(

@@ -4,7 +4,7 @@ import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import { VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
 import { UIIconButton } from '../../UIComponentsLib/UIButton';
-import { UiIcons } from '../../Icons';
+import { UiIcons } from '../../UIComponentsLib/Icons';
 import { UIDialog } from '../../UIComponentsLib/UIDialog';
 import { UICheckbox } from '../../UIComponentsLib/UICheckbox';
 
@@ -44,39 +44,43 @@ export function SearchField() {
                         }, 400);
                     }
                 }}></VSCodeTextField>
-            <UIIconButton
-                id="undo-button-action"
-                iconProps={{ iconName: UiIcons.Table }}
-                onClick={toggle}
-                primary
-                title="Filter"
-                style={{ width: '26px', height: '20px' }}></UIIconButton>
-            <UIDialog
-                isOpen={isVisible}
-                isBlocking={true}
-                title={'Filter Product'}
-                acceptButtonText={'Apply Filter'}
-                cancelButtonText={'Cancel'}
-                styles={{
-                    main
-                }}
-                onAccept={toggle}
-                onCancel={toggle}
-                onDismiss={toggle}>
-                <VSCodeTextField
-                    style={{ width: '100%' }}
-                    value={appState.query}
-                    readOnly={appState.loading}
-                    placeholder="Search"
-                    id="dialog-filter-field"></VSCodeTextField>
-                <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
-                    {['Component1', 'Component2', 'Component3', 'Component4', 'Component5'].map((c) => (
-                        <li key={`${c}`} style={{ marginBottom: '10px' }}>
-                            <UICheckbox label={c} />
-                        </li>
-                    ))}
-                </ul>
-            </UIDialog>
+            {appState.betaFeatures && (
+                <>
+                    <UIIconButton
+                        id="undo-button-action"
+                        iconProps={{ iconName: UiIcons.Table }}
+                        onClick={toggle}
+                        primary
+                        title="Filter"
+                        style={{ width: '26px', height: '20px' }}></UIIconButton>
+                    <UIDialog
+                        dialogContentProps={{ title: 'Filter Product' }}
+                        isOpen={isVisible}
+                        isBlocking={true}
+                        acceptButtonText={'Apply Filter'}
+                        cancelButtonText={'Cancel'}
+                        styles={{
+                            main
+                        }}
+                        onAccept={toggle}
+                        onCancel={toggle}
+                        onDismiss={toggle}>
+                        <VSCodeTextField
+                            style={{ width: '100%' }}
+                            value={appState.query}
+                            readOnly={appState.loading}
+                            placeholder="Search"
+                            id="dialog-filter-field"></VSCodeTextField>
+                        <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
+                            {['Component1', 'Component2', 'Component3', 'Component4', 'Component5'].map((c) => (
+                                <li key={`${c}`} style={{ marginBottom: '10px' }}>
+                                    <UICheckbox label={c} />
+                                </li>
+                            ))}
+                        </ul>
+                    </UIDialog>
+                </>
+            )}
         </div>
     );
 }

@@ -231,7 +231,7 @@ export class UIDialog extends React.Component<DialogProps, DialogState> {
                 }
             },
             dialogContentProps: {
-                title: this.props.title,
+                title: this.props.dialogContentProps?.title,
                 titleProps: {
                     className: 'ui-medium-header',
                     style: {

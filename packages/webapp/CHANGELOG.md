@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.8.0
+
+### Minor Changes
+
+-   69962eb: fixed keyboard navigation
+
 ## 0.7.0
 
 ### Minor Changes

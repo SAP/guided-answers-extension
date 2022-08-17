@@ -27,8 +27,8 @@ export type GuidedAnswerTreeSearchHit = GuidedAnswerTree & { SCORE: number };
 export interface GuidedAnswerTreeSearchResult {
     resultSize: number;
     trees: GuidedAnswerTreeSearchHit[];
-    productFilters: { PRODUCT: string; COUNT: string }[];
-    componentFilters: { COMPONENT: string; COUNT: string }[];
+    productFilters: { PRODUCT: string; COUNT: number }[];
+    componentFilters: { COMPONENT: string; COUNT: number }[];
 }
 
 export type GuidedAnswerNodeId = number;
@@ -113,7 +113,8 @@ export type GuidedAnswerActions =
     | SetActiveTree
     | SearchTree
     | SetQueryValue
-    | WebviewReady;
+    | WebviewReady
+    | BetaFeatures;
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnserTrees {
@@ -184,4 +185,10 @@ export interface SetQueryValue {
 export const WEBVIEW_READY = 'WEBVIEW_READY';
 export interface WebviewReady {
     type: typeof WEBVIEW_READY;
+}
+
+export const BETA_FEATURES = 'BETA_FEATURES';
+export interface BetaFeatures {
+    type: typeof BETA_FEATURES;
+    payload: boolean;
 }
