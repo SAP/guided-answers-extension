@@ -49,12 +49,15 @@ describe('<SearchField />', () => {
     it('Should render a SearchField component', () => {
         expect(wrapper.find('.guided-answer__header__searchField').length).toBe(1);
         expect(wrapper.find('VSCodeTextField').length).toBe(1);
-        expect(wrapper.find('VSCodeTextField').props().onInput).toBeDefined();
-        expect(wrapper.find('VSCodeTextField').props().id).toBe('search-field');
-        expect(wrapper.find('VSCodeTextField').props().placeholder).toBe(i18next.t('SEARCH_GUIDED_ANSWERS'));
+        expect(wrapper.find('VSCodeTextField').at(0).props().onInput).toBeDefined();
+        expect(wrapper.find('VSCodeTextField').at(0).props().id).toBe('search-field');
+        expect(wrapper.find('VSCodeTextField').at(0).props().placeholder).toBe(i18next.t('SEARCH_GUIDED_ANSWERS'));
 
         //Test input event
-        wrapper.find('VSCodeTextField').simulate('input', { target: { value: 'Fiori Tools' } });
+        wrapper
+            .find('VSCodeTextField')
+            .at(0)
+            .simulate('input', { target: { value: 'Fiori Tools' } });
         expect(actions.setQueryValue).toBeCalled();
         expect(setTimeout).toHaveBeenCalledTimes(1);
 

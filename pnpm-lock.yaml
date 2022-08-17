@@ -13,7 +13,7 @@ importers:
             '@commitlint/cli': 17.0.3
             '@commitlint/config-conventional': 17.0.3
             '@types/jest': 28.1.6
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             '@typescript-eslint/eslint-plugin': 5.31.0
             '@typescript-eslint/parser': 5.31.0
             eslint: 8.20.0
@@ -39,7 +39,7 @@ importers:
             '@commitlint/cli': 17.0.3
             '@commitlint/config-conventional': 17.0.3
             '@types/jest': 28.1.6
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             '@typescript-eslint/eslint-plugin': 5.31.0_mbsh6mba5h4m4yzmvykpxv5dru
             '@typescript-eslint/parser': 5.31.0_ith3vvxmtodwupiz76r7ntm5fq
             eslint: 8.20.0
@@ -52,13 +52,13 @@ importers:
             eslint-plugin-react: 7.30.1_eslint@8.20.0
             eslint-plugin-sonarjs: 0.14.0_eslint@8.20.0
             husky: 8.0.1
-            jest: 28.1.3_dobax465qlpmm3ytbhr3y6wpsq
+            jest: 28.1.3_3j2lmr7awddambgr5ngk3asip4
             jest-sonar: 0.2.12
             prettier: 2.7.1
             pretty-quick: 3.1.3_prettier@2.7.1
             rimraf: 3.0.2
             ts-jest: 28.0.7_rt7dujtf25gsn4kgvq5pbniuny
-            ts-node: 10.9.1_5cc54w5mhss54wzdmyugyon5g4
+            ts-node: 10.9.1_a73udvw5escozcxeg5bptihzka
             typescript: 4.5.5
 
     packages/core:
@@ -98,6 +98,8 @@ importers:
         specifiers:
             '@fluentui/react': 8.80.0
             '@fluentui/react-focus': 8.7.3
+            '@fluentui/style-utilities': 8.7.4
+            '@fluentui/utilities': 8.10.1
             '@reduxjs/toolkit': 1.6.1
             '@sap/guided-answers-extension-types': workspace:*
             '@types/enzyme': 3.10.12
@@ -129,6 +131,8 @@ importers:
         dependencies:
             '@fluentui/react': 8.80.0_4m2wvydqs44ynq5jn47t4o4iju
             '@fluentui/react-focus': 8.7.3_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/style-utilities': 8.7.4_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/utilities': 8.10.1_jjcubslaw3srjyc3uporvmhana
         devDependencies:
             '@reduxjs/toolkit': 1.6.1_skbaxytftew6n6o3a7teolroom
             '@sap/guided-answers-extension-types': link:../types
@@ -956,10 +960,10 @@ packages:
             '@commitlint/execute-rule': 17.0.0
             '@commitlint/resolve-extends': 17.0.3
             '@commitlint/types': 17.0.0
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             chalk: 4.1.2
             cosmiconfig: 7.0.1
-            cosmiconfig-typescript-loader: 2.0.2_3y4hcbujswftuqnuxnz3ziv5f4
+            cosmiconfig-typescript-loader: 2.0.2_cuixiqdly2qsnbfra3iilcxefe
             lodash: 4.17.21
             resolve-from: 5.0.0
             typescript: 4.7.4
@@ -1127,8 +1131,8 @@ packages:
             }
         dependencies:
             '@fluentui/set-version': 8.2.1
-            '@fluentui/style-utilities': 8.7.2_jjcubslaw3srjyc3uporvmhana
-            '@fluentui/utilities': 8.9.0_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/style-utilities': 8.7.4_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/utilities': 8.10.1_jjcubslaw3srjyc3uporvmhana
             tslib: 2.4.0
         transitivePeerDependencies:
             - '@types/react'
@@ -1146,8 +1150,8 @@ packages:
         dependencies:
             '@fluentui/merge-styles': 8.5.2
             '@fluentui/set-version': 8.2.1
-            '@fluentui/style-utilities': 8.7.2_jjcubslaw3srjyc3uporvmhana
-            '@fluentui/utilities': 8.9.0_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/style-utilities': 8.7.4_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/utilities': 8.10.1_jjcubslaw3srjyc3uporvmhana
             '@types/react': 17.0.43
             react: 16.14.0
             tslib: 2.4.0
@@ -1184,8 +1188,8 @@ packages:
             '@fluentui/keyboard-key': 0.4.1
             '@fluentui/merge-styles': 8.5.2
             '@fluentui/set-version': 8.2.1
-            '@fluentui/style-utilities': 8.7.2_jjcubslaw3srjyc3uporvmhana
-            '@fluentui/utilities': 8.9.0_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/style-utilities': 8.7.4_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/utilities': 8.10.1_jjcubslaw3srjyc3uporvmhana
             '@types/react': 17.0.43
             react: 16.14.0
             tslib: 2.4.0
@@ -1202,7 +1206,7 @@ packages:
         dependencies:
             '@fluentui/react-window-provider': 2.2.1_jjcubslaw3srjyc3uporvmhana
             '@fluentui/set-version': 8.2.1
-            '@fluentui/utilities': 8.9.0_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/utilities': 8.10.1_jjcubslaw3srjyc3uporvmhana
             '@types/react': 17.0.43
             react: 16.14.0
             tslib: 2.4.0
@@ -1257,9 +1261,9 @@ packages:
             '@fluentui/react-portal-compat-context': 9.0.1_jjcubslaw3srjyc3uporvmhana
             '@fluentui/react-window-provider': 2.2.1_jjcubslaw3srjyc3uporvmhana
             '@fluentui/set-version': 8.2.1
-            '@fluentui/style-utilities': 8.7.2_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/style-utilities': 8.7.4_jjcubslaw3srjyc3uporvmhana
             '@fluentui/theme': 2.6.7_jjcubslaw3srjyc3uporvmhana
-            '@fluentui/utilities': 8.9.0_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/utilities': 8.10.1_jjcubslaw3srjyc3uporvmhana
             '@microsoft/load-themed-styles': 1.10.283
             '@types/react': 17.0.43
             '@types/react-dom': 17.0.14
@@ -1277,16 +1281,16 @@ packages:
             tslib: 2.4.0
         dev: false
 
-    /@fluentui/style-utilities/8.7.2_jjcubslaw3srjyc3uporvmhana:
+    /@fluentui/style-utilities/8.7.4_jjcubslaw3srjyc3uporvmhana:
         resolution:
             {
-                integrity: sha512-sDNsXUXdk4qAllADH46o0Fq1VOgWCDS+J/t3UFc6DA4a0R3J/M0o5COAh+S4/kLkJoKBQ+T+TqZJmA+Cj+hlCA==
+                integrity: sha512-2JhRJ1ftgrdh5h4vowK3KxGmCQphRQmHzfpOK6hHdePexVUN3iaudQZLaWFQryeDdaxlNgxiIgc0dWE9Q30SAw==
             }
         dependencies:
             '@fluentui/merge-styles': 8.5.2
             '@fluentui/set-version': 8.2.1
-            '@fluentui/theme': 2.6.7_jjcubslaw3srjyc3uporvmhana
-            '@fluentui/utilities': 8.9.0_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/theme': 2.6.9_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/utilities': 8.10.1_jjcubslaw3srjyc3uporvmhana
             '@microsoft/load-themed-styles': 1.10.283
             tslib: 2.4.0
         transitivePeerDependencies:
@@ -1305,16 +1309,33 @@ packages:
         dependencies:
             '@fluentui/merge-styles': 8.5.2
             '@fluentui/set-version': 8.2.1
-            '@fluentui/utilities': 8.9.0_jjcubslaw3srjyc3uporvmhana
+            '@fluentui/utilities': 8.10.1_jjcubslaw3srjyc3uporvmhana
             '@types/react': 17.0.43
             react: 16.14.0
             tslib: 2.4.0
         dev: false
 
-    /@fluentui/utilities/8.9.0_jjcubslaw3srjyc3uporvmhana:
+    /@fluentui/theme/2.6.9_jjcubslaw3srjyc3uporvmhana:
         resolution:
             {
-                integrity: sha512-fK3GjWygRhKDuVxIAMqcfP0UZGhnifygzhrZDIanKc4/+9CoIY/BVtHryRF+zF0sGEXF5kDarsMsLAeCnB2YhA==
+                integrity: sha512-XM1kDLvbSQdoM9MPBLbUp6t+KMrs8VlUrC0ryQBxVOMIbSbpNKm6W5MsxT/lYFQhJAHk0JziojRAR9WLzUiWvA==
+            }
+        peerDependencies:
+            '@types/react': '>=16.8.0 <18.0.0'
+            react: '>=16.8.0 <18.0.0'
+        dependencies:
+            '@fluentui/merge-styles': 8.5.2
+            '@fluentui/set-version': 8.2.1
+            '@fluentui/utilities': 8.10.1_jjcubslaw3srjyc3uporvmhana
+            '@types/react': 17.0.43
+            react: 16.14.0
+            tslib: 2.4.0
+        dev: false
+
+    /@fluentui/utilities/8.10.1_jjcubslaw3srjyc3uporvmhana:
+        resolution:
+            {
+                integrity: sha512-ga2XTNljIXBKoWrwAdf4bdCVB+Yvtx/fvrmucmhSf4eskXYCn6x2s21OswVkVfTt5r5pK6uiMHhHCnheLoiEyw==
             }
         peerDependencies:
             '@types/react': '>=16.8.0 <18.0.0'
@@ -1379,7 +1400,7 @@ packages:
         engines: { node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0 }
         dependencies:
             '@jest/types': 28.1.3
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             chalk: 4.1.2
             jest-message-util: 28.1.3
             jest-util: 28.1.3
@@ -1403,14 +1424,14 @@ packages:
             '@jest/test-result': 28.1.3
             '@jest/transform': 28.1.3
             '@jest/types': 28.1.3
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             ansi-escapes: 4.3.2
             chalk: 4.1.2
             ci-info: 3.3.0
             exit: 0.1.2
             graceful-fs: 4.2.9
             jest-changed-files: 28.1.3
-            jest-config: 28.1.3_dobax465qlpmm3ytbhr3y6wpsq
+            jest-config: 28.1.3_3j2lmr7awddambgr5ngk3asip4
             jest-haste-map: 28.1.3
             jest-message-util: 28.1.3
             jest-regex-util: 28.0.2
@@ -1454,7 +1475,7 @@ packages:
         dependencies:
             '@jest/fake-timers': 28.1.3
             '@jest/types': 28.1.3
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             jest-mock: 28.1.3
         dev: true
 
@@ -1505,7 +1526,7 @@ packages:
         dependencies:
             '@jest/types': 28.1.3
             '@sinonjs/fake-timers': 9.1.2
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             jest-message-util: 28.1.3
             jest-mock: 28.1.3
             jest-util: 28.1.3
@@ -1543,7 +1564,7 @@ packages:
             '@jest/transform': 28.1.3
             '@jest/types': 28.1.3
             '@jridgewell/trace-mapping': 0.3.14
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             chalk: 4.1.2
             collect-v8-coverage: 1.0.1
             exit: 0.1.2
@@ -1660,7 +1681,7 @@ packages:
             '@jest/schemas': 28.0.2
             '@types/istanbul-lib-coverage': 2.0.4
             '@types/istanbul-reports': 3.0.1
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             '@types/yargs': 17.0.10
             chalk: 4.1.2
         dev: true
@@ -1675,7 +1696,7 @@ packages:
             '@jest/schemas': 28.1.3
             '@types/istanbul-lib-coverage': 2.0.4
             '@types/istanbul-reports': 3.0.1
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             '@types/yargs': 17.0.10
             chalk: 4.1.2
         dev: true
@@ -2273,7 +2294,7 @@ packages:
                 integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==
             }
         dependencies:
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
         dev: true
 
     /@types/hoist-non-react-statics/3.3.1:
@@ -2370,6 +2391,13 @@ packages:
         resolution:
             {
                 integrity: sha512-CFMnEPkSXWALI73t1oIWyb8QOmVrp6RruAqIx349sd+1ImaFwzlKcz55mwrx/yLyOyz1gkq/UKuNOigt27PXqg==
+            }
+        dev: true
+
+    /@types/node/14.18.24:
+        resolution:
+            {
+                integrity: sha512-aJdn8XErcSrfr7k8ZDDfU6/2OgjZcB2Fu9d+ESK8D7Oa5mtsv8Fa8GpcwTA0v60kuZBaalKPzuzun4Ov1YWO/w==
             }
         dev: true
 
@@ -3639,7 +3667,7 @@ packages:
             }
         dev: true
 
-    /cosmiconfig-typescript-loader/2.0.2_3y4hcbujswftuqnuxnz3ziv5f4:
+    /cosmiconfig-typescript-loader/2.0.2_cuixiqdly2qsnbfra3iilcxefe:
         resolution:
             {
                 integrity: sha512-KmE+bMjWMXJbkWCeY4FJX/npHuZPNr9XF9q9CIQ/bpFwi1qHfCmSiKarrCcRa0LO4fWjk93pVoeRtJAkTGcYNw==
@@ -3649,9 +3677,9 @@ packages:
             '@types/node': '*'
             typescript: '>=3'
         dependencies:
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             cosmiconfig: 7.0.1
-            ts-node: 10.9.1_3y4hcbujswftuqnuxnz3ziv5f4
+            ts-node: 10.9.1_cuixiqdly2qsnbfra3iilcxefe
             typescript: 4.7.4
         transitivePeerDependencies:
             - '@swc/core'
@@ -6472,7 +6500,7 @@ packages:
             '@jest/expect': 28.1.3
             '@jest/test-result': 28.1.3
             '@jest/types': 28.1.3
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             chalk: 4.1.2
             co: 4.6.0
             dedent: 0.7.0
@@ -6491,7 +6519,7 @@ packages:
             - supports-color
         dev: true
 
-    /jest-cli/28.1.3_dobax465qlpmm3ytbhr3y6wpsq:
+    /jest-cli/28.1.3_3j2lmr7awddambgr5ngk3asip4:
         resolution:
             {
                 integrity: sha512-roY3kvrv57Azn1yPgdTebPAXvdR2xfezaKKYzVxZ6It/5NCxzJym6tUI5P1zkdWhfUYkxEI9uZWcQdaFLo8mJQ==
@@ -6511,7 +6539,7 @@ packages:
             exit: 0.1.2
             graceful-fs: 4.2.9
             import-local: 3.1.0
-            jest-config: 28.1.3_dobax465qlpmm3ytbhr3y6wpsq
+            jest-config: 28.1.3_3j2lmr7awddambgr5ngk3asip4
             jest-util: 28.1.3
             jest-validate: 28.1.3
             prompts: 2.4.2
@@ -6522,7 +6550,7 @@ packages:
             - ts-node
         dev: true
 
-    /jest-config/28.1.3_dobax465qlpmm3ytbhr3y6wpsq:
+    /jest-config/28.1.3_3j2lmr7awddambgr5ngk3asip4:
         resolution:
             {
                 integrity: sha512-MG3INjByJ0J4AsNBm7T3hsuxKQqFIiRo/AUqb1q9LRKI5UU6Aar9JHbr9Ivn1TVwfUD9KirRoM/T6u8XlcQPHQ==
@@ -6540,7 +6568,7 @@ packages:
             '@babel/core': 7.17.8
             '@jest/test-sequencer': 28.1.3
             '@jest/types': 28.1.3
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             babel-jest: 28.1.3_@babel+core@7.17.8
             chalk: 4.1.2
             ci-info: 3.3.0
@@ -6560,7 +6588,7 @@ packages:
             pretty-format: 28.1.3
             slash: 3.0.0
             strip-json-comments: 3.1.1
-            ts-node: 10.9.1_5cc54w5mhss54wzdmyugyon5g4
+            ts-node: 10.9.1_a73udvw5escozcxeg5bptihzka
         transitivePeerDependencies:
             - supports-color
         dev: true
@@ -6659,7 +6687,7 @@ packages:
             '@jest/environment': 28.1.3
             '@jest/fake-timers': 28.1.3
             '@jest/types': 28.1.3
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             jest-mock: 28.1.3
             jest-util: 28.1.3
         dev: true
@@ -6681,7 +6709,7 @@ packages:
         dependencies:
             '@jest/types': 28.1.3
             '@types/graceful-fs': 4.1.5
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             anymatch: 3.1.2
             fb-watchman: 2.0.1
             graceful-fs: 4.2.9
@@ -6786,7 +6814,7 @@ packages:
         engines: { node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0 }
         dependencies:
             '@jest/types': 28.1.3
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
         dev: true
 
     /jest-pnp-resolver/1.2.2_jest-resolve@28.1.3:
@@ -6855,7 +6883,7 @@ packages:
             '@jest/test-result': 28.1.3
             '@jest/transform': 28.1.3
             '@jest/types': 28.1.3
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             chalk: 4.1.2
             emittery: 0.10.2
             graceful-fs: 4.2.9
@@ -6960,7 +6988,7 @@ packages:
         engines: { node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0 }
         dependencies:
             '@jest/types': 28.1.1
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             chalk: 4.1.2
             ci-info: 3.3.0
             graceful-fs: 4.2.9
@@ -6975,7 +7003,7 @@ packages:
         engines: { node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0 }
         dependencies:
             '@jest/types': 28.1.3
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             chalk: 4.1.2
             ci-info: 3.3.0
             graceful-fs: 4.2.9
@@ -7006,7 +7034,7 @@ packages:
         dependencies:
             '@jest/test-result': 28.1.3
             '@jest/types': 28.1.3
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             ansi-escapes: 4.3.2
             chalk: 4.1.2
             emittery: 0.10.2
@@ -7021,12 +7049,12 @@ packages:
             }
         engines: { node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0 }
         dependencies:
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             merge-stream: 2.0.0
             supports-color: 8.1.1
         dev: true
 
-    /jest/28.1.3_dobax465qlpmm3ytbhr3y6wpsq:
+    /jest/28.1.3_3j2lmr7awddambgr5ngk3asip4:
         resolution:
             {
                 integrity: sha512-N4GT5on8UkZgH0O5LUavMRV1EDEhNTL0KEfRmDIeZHSV7p2XgLoY9t9VDUgL6o+yfdgYHVxuz81G8oB9VG5uyA==
@@ -7042,7 +7070,7 @@ packages:
             '@jest/core': 28.1.3_ts-node@10.9.1
             '@jest/types': 28.1.3
             import-local: 3.1.0
-            jest-cli: 28.1.3_dobax465qlpmm3ytbhr3y6wpsq
+            jest-cli: 28.1.3_3j2lmr7awddambgr5ngk3asip4
         transitivePeerDependencies:
             - '@types/node'
             - supports-color
@@ -9900,7 +9928,7 @@ packages:
         dependencies:
             bs-logger: 0.2.6
             fast-json-stable-stringify: 2.1.0
-            jest: 28.1.3_dobax465qlpmm3ytbhr3y6wpsq
+            jest: 28.1.3_3j2lmr7awddambgr5ngk3asip4
             jest-util: 28.1.1
             json5: 2.2.1
             lodash.memoize: 4.1.2
@@ -9910,7 +9938,7 @@ packages:
             yargs-parser: 21.0.1
         dev: true
 
-    /ts-node/10.9.1_3y4hcbujswftuqnuxnz3ziv5f4:
+    /ts-node/10.9.1_a73udvw5escozcxeg5bptihzka:
         resolution:
             {
                 integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==
@@ -9932,41 +9960,7 @@ packages:
             '@tsconfig/node12': 1.0.9
             '@tsconfig/node14': 1.0.1
             '@tsconfig/node16': 1.0.2
-            '@types/node': 12.20.54
-            acorn: 8.7.1
-            acorn-walk: 8.2.0
-            arg: 4.1.3
-            create-require: 1.1.1
-            diff: 4.0.2
-            make-error: 1.3.6
-            typescript: 4.7.4
-            v8-compile-cache-lib: 3.0.1
-            yn: 3.1.1
-        dev: true
-
-    /ts-node/10.9.1_5cc54w5mhss54wzdmyugyon5g4:
-        resolution:
-            {
-                integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==
-            }
-        hasBin: true
-        peerDependencies:
-            '@swc/core': '>=1.2.50'
-            '@swc/wasm': '>=1.2.50'
-            '@types/node': '*'
-            typescript: '>=2.7'
-        peerDependenciesMeta:
-            '@swc/core':
-                optional: true
-            '@swc/wasm':
-                optional: true
-        dependencies:
-            '@cspotcode/source-map-support': 0.8.1
-            '@tsconfig/node10': 1.0.8
-            '@tsconfig/node12': 1.0.9
-            '@tsconfig/node14': 1.0.1
-            '@tsconfig/node16': 1.0.2
-            '@types/node': 12.20.54
+            '@types/node': 14.18.24
             acorn: 8.7.1
             acorn-walk: 8.2.0
             arg: 4.1.3
@@ -9974,6 +9968,40 @@ packages:
             diff: 4.0.2
             make-error: 1.3.6
             typescript: 4.5.5
+            v8-compile-cache-lib: 3.0.1
+            yn: 3.1.1
+        dev: true
+
+    /ts-node/10.9.1_cuixiqdly2qsnbfra3iilcxefe:
+        resolution:
+            {
+                integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==
+            }
+        hasBin: true
+        peerDependencies:
+            '@swc/core': '>=1.2.50'
+            '@swc/wasm': '>=1.2.50'
+            '@types/node': '*'
+            typescript: '>=2.7'
+        peerDependenciesMeta:
+            '@swc/core':
+                optional: true
+            '@swc/wasm':
+                optional: true
+        dependencies:
+            '@cspotcode/source-map-support': 0.8.1
+            '@tsconfig/node10': 1.0.8
+            '@tsconfig/node12': 1.0.9
+            '@tsconfig/node14': 1.0.1
+            '@tsconfig/node16': 1.0.2
+            '@types/node': 14.18.24
+            acorn: 8.7.1
+            acorn-walk: 8.2.0
+            arg: 4.1.3
+            create-require: 1.1.1
+            diff: 4.0.2
+            make-error: 1.3.6
+            typescript: 4.7.4
             v8-compile-cache-lib: 3.0.1
             yn: 3.1.1
         dev: true

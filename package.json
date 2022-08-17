@@ -8,7 +8,7 @@
         "@commitlint/cli": "17.0.3",
         "@commitlint/config-conventional": "17.0.3",
         "@types/jest": "28.1.6",
-        "@types/node": "12.20.54",
+        "@types/node": "14.18.24",
         "@typescript-eslint/eslint-plugin": "5.31.0",
         "@typescript-eslint/parser": "5.31.0",
         "eslint": "8.20.0",
@@ -45,7 +45,7 @@
         "npm": "please-use-pnpm",
         "yarn": "please-use-pnpm",
         "pnpm": ">=7.1.0",
-        "node": ">= 14.16.0 < 15.0.0 || >=16.1.0 < 17.0.0 || >=18.0.0 < 19.0.0"
+        "node": ">= 14.18.0 < 15.0.0 || >=16.1.0 < 17.0.0 || >=18.0.0 < 19.0.0"
     },
     "pnpm": {
         "overrides": {

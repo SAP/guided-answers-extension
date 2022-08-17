@@ -6,16 +6,20 @@ import type {
     GuidedAnswerAPI,
     GuidedAnswerNode,
     GuidedAnswerNodeId,
+    GuidedAnswersQueryFilterOptions,
+    GuidedAnswersQueryOptions,
     GuidedAnswerTree,
     GuidedAnswerTreeId,
+    GuidedAnswerTreeSearchResult,
     HTMLEnhancement,
     NodeEnhancement
 } from '@sap/guided-answers-extension-types';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 
 const API_HOST = 'https://ga.support.sap.com';
-const NODE_PATH = '/dtp/api/nodes/';
-const TREE_PATH = '/dtp/api/trees/';
+const VERSION = 'v2';
+const NODE_PATH = `/dtp/api/${VERSION}/nodes/`;
+const TREE_PATH = `/dtp/api/${VERSION}/trees/`;
 const IMG_PREFIX = '/dtp/viewer/';
 
 /**
@@ -33,7 +37,8 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
         getNodeById: async (id: GuidedAnswerNodeId): Promise<GuidedAnswerNode> =>
             enhanceNode(await getNodeById(apiHost, id), nodeEnhancements, htmlEnhancements),
         getTreeById: async (id: GuidedAnswerTreeId): Promise<GuidedAnswerTree> => getTreeById(apiHost, id),
-        getTrees: async (query?: string): Promise<GuidedAnswerTree[]> => getTrees(apiHost, query),
+        getTrees: async (queryOptions?: GuidedAnswersQueryOptions): Promise<GuidedAnswerTreeSearchResult> =>
+            getTrees(apiHost, queryOptions),
         getNodePath: async (nodeIdPath: GuidedAnswerNodeId[]): Promise<GuidedAnswerNode[]> => {
             let nodes = await getNodePath(apiHost, nodeIdPath);
             nodes = nodes.map((node) => enhanceNode(node, nodeEnhancements, htmlEnhancements));
@@ -51,6 +56,25 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
  */
 function convertImageSrc(body: string, host: string): string {
     return body.replace(/<img src="services\/backend\.xsjs/gi, `<img src="${host}${IMG_PREFIX}services/backend.xsjs`);
+}
+
+/**
+ * Convert query filter options to URL get paramter string.
+ *
+ * @param filters - optional filters
+ * @param filters.component - optional component filter
+ * @param filters.product - optional product filter
+ * @returns - URL get parameters as string
+ */
+function convertQueryOptionsToGetParams(filters: GuidedAnswersQueryFilterOptions = {}): string {
+    return Object.keys(filters)
+        .map(
+            (filterName) =>
+                `${filterName}=${filters[filterName as keyof typeof filters]
+                    ?.map((filterValue) => encodeURIComponent(`"${filterValue}"`))
+                    .join(',')}`
+        )
+        .join('&');
 }
 
 /**
@@ -93,21 +117,27 @@ async function getTreeById(host: string, id: GuidedAnswerTreeId): Promise<Guided
  * Returns an array of Guided Answers trees.
  *
  * @param host - Guided Answer API host
- * @param query - query string
+ * @param queryOptions - options like query string, filters
  * @returns - Array of Guided Answer trees
  */
-async function getTrees(host: string, query?: string): Promise<GuidedAnswerTree[]> {
-    const url = `${host}${TREE_PATH}${query ? query : ''}`;
-    const response: AxiosResponse<GuidedAnswerTree[]> = await axios.get<GuidedAnswerTree[]>(url);
-    const treesRaw = Array.isArray(response.data) ? response.data : [response.data];
-
-    // when we get data as search results, TREE_ID and NODE_ID are string. When we get a single tree, both are numbers.
-    // generalize to number here
-    return treesRaw.map((treeItem) => {
-        treeItem.TREE_ID = parseInt(treeItem.TREE_ID as unknown as string, 10);
-        treeItem.FIRST_NODE_ID = parseInt(treeItem.FIRST_NODE_ID as unknown as string, 10);
-        return treeItem;
-    });
+async function getTrees(host: string, queryOptions?: GuidedAnswersQueryOptions): Promise<GuidedAnswerTreeSearchResult> {
+    if (typeof queryOptions?.query === 'number') {
+        throw Error(
+            `Invalid search for tree with number. Please use string or function getTreeById() to get a tree by id`
+        );
+    }
+    const query = queryOptions?.query ? encodeURIComponent(`"${queryOptions.query}"`) : '*';
+    const filterString = convertQueryOptionsToGetParams(queryOptions?.filters);
+    const urlGetParamString = filterString ? `?${filterString}` : '';
+    const url = `${host}${TREE_PATH}${query}${urlGetParamString}`;
+    const response: AxiosResponse<GuidedAnswerTreeSearchResult> = await axios.get<GuidedAnswerTreeSearchResult>(url);
+    const searchResult = response.data;
+    if (!Array.isArray(searchResult?.trees)) {
+        throw Error(
+            `Query result from call '${url}' does not contain property 'trees' as array. Received response: '${searchResult}'`
+        );
+    }
+    return searchResult;
 }
 
 /**

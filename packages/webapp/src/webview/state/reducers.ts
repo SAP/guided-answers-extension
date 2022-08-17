@@ -7,7 +7,8 @@ import {
     GO_TO_ALL_ANSWERS,
     RESTART_ANSWER,
     SET_ACTIVE_TREE,
-    SET_QUERY_VALUE
+    SET_QUERY_VALUE,
+    BETA_FEATURES
 } from '@sap/guided-answers-extension-types';
 import type { Reducer } from 'redux';
 import type { AppState } from '../types';
@@ -21,9 +22,14 @@ export function getInitialState(): AppState {
     return {
         loading: true,
         query: '',
-        guidedAnswerTrees: [],
+        guidedAnswerTreeSearchResult: {
+            resultSize: -1,
+            componentFilters: [],
+            productFilters: [],
+            trees: []
+        },
         activeGuidedAnswerNode: [],
-        searchResultCount: -1
+        betaFeatures: false
     };
 }
 
@@ -41,8 +47,7 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
     const newState: AppState = JSON.parse(JSON.stringify(state)) as AppState;
     switch (action.type) {
         case UPDATE_GUIDED_ANSWER_TREES: {
-            newState.guidedAnswerTrees = action.payload;
-            newState.searchResultCount = newState.guidedAnswerTrees.length;
+            newState.guidedAnswerTreeSearchResult = action.payload;
             delete newState.activeGuidedAnswer;
             break;
         }
@@ -83,6 +88,10 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         }
         case SET_QUERY_VALUE: {
             newState.query = action.payload;
+            break;
+        }
+        case BETA_FEATURES: {
+            newState.betaFeatures = action.payload;
             break;
         }
         default: {
