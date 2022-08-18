@@ -32,10 +32,10 @@ export function App(): ReactElement {
                 <NoAnswersFound />
             ) : (
                 <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
-                    <ul className="striped-list">
+                    <ul className="striped-list" role="listbox">
                         {appState.guidedAnswerTreeSearchResult.trees.map((tree, index) => {
                             return (
-                                <li key={`tree-item-${index}`} className="tree-item">
+                                <li key={`tree-item-${index}`} className="tree-item" role="option">
                                     <button
                                         className="guided-answer__tree"
                                         onClick={(): void => {
