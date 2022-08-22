@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.9.0
+
+### Minor Changes
+
+-   e25c511: Adding HTML role attributes for accessibility
+
 ## 0.8.0
 
 ### Minor Changes
