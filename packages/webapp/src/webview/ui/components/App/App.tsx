@@ -58,14 +58,14 @@ export function App(): ReactElement {
                                                 <div className="comonent-and-product-container">
                                                     {tree.PRODUCT && (
                                                         <div className="guided-answer__tree__product">
-                                                            <span className="bottom-title"> Product: </span>
-                                                            {tree.PRODUCT}
+                                                            <span className="bottom-title">Product: </span>
+                                                            {tree.PRODUCT.split(',')[0].trim()}
                                                         </div>
                                                     )}
                                                     {tree.COMPONENT && (
                                                         <div className="guided-answer__tree__component">
                                                             <span className="bottom-title">Component:</span>
-                                                            {tree.COMPONENT}
+                                                            {tree.COMPONENT.split(',')[0].trim()}
                                                         </div>
                                                     )}
                                                 </div>
