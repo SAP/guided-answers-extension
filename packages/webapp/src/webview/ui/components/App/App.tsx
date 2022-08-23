@@ -55,7 +55,7 @@ export function App(): ReactElement {
                                                         {tree.DESCRIPTION}
                                                     </span>
                                                 )}
-                                                <div className="comonent-and-product-container">
+                                                <div className="component-and-product-container">
                                                     {tree.PRODUCT && (
                                                         <div className="guided-answer__tree__product">
                                                             <span className="bottom-title">Product: </span>
