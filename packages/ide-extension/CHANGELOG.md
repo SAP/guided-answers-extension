@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.10.0
+
+### Minor Changes
+
+-   c9353d8: Consumption of API v2 which gives more information about Guided Answers trees, like product or component info
+
 ## 0.9.0
 
 ### Minor Changes
