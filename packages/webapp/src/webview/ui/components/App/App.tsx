@@ -64,7 +64,7 @@ export function App(): ReactElement {
                                                     )}
                                                     {tree.COMPONENT && (
                                                         <div className="guided-answer__tree__component">
-                                                            <span className="bottom-title">Component:</span>
+                                                            <span className="bottom-title">Component: </span>
                                                             {tree.COMPONENT.split(',')[0].trim()}
                                                         </div>
                                                     )}

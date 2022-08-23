@@ -37,7 +37,7 @@ jest.mock('react-redux', () => ({
             },
             activeGuidedAnswerNode: [],
             activeGuidedAnswer: undefined
-        } as AppState)
+        } as unknown as AppState)
         .mockReturnValueOnce({
             activeGuidedAnswerNode: [],
             guidedAnswerTreeSearchResult: {
@@ -47,7 +47,9 @@ jest.mock('react-redux', () => ({
                         DESCRIPTION: 'This is a troubleshooting guide to solve the issues while using SAP Fiori tools',
                         FIRST_NODE_ID: 45995,
                         TITLE: 'SAP Fiori tools',
-                        TREE_ID: 3046
+                        TREE_ID: 3046,
+                        PRODUCT: 'Product A, Product B',
+                        COMPONENT: 'comp-a, comp-b'
                     }
                 ],
                 resultSize: 1,
@@ -90,6 +92,8 @@ describe('<NoAnswersFound />', () => {
         expect(wrapper.find('.guided-answer__tree__desc').text()).toBe(
             'This is a troubleshooting guide to solve the issues while using SAP Fiori tools'
         );
+        expect(wrapper.find('.guided-answer__tree__product').text()).toBe('Product: Product A');
+        expect(wrapper.find('.guided-answer__tree__component').text()).toBe('Component: comp-a');
         //Test click event
         wrapper.find('.guided-answer__tree').simulate('click');
         expect(actions.setActiveTree).toBeCalled();
