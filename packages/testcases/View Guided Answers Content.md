@@ -1,4 +1,6 @@
 
+### Associated user stories:  [#199](https://github.com/SAP/guided-answers-extension/issues/199),
+
 Pre Req: Guided Answers Extension is installed
 
 
@@ -31,6 +33,8 @@ Pre Req: Guided Answers Extension is installed
     a. A list containing guides that are related to the 'SAP Fiori Tools' search criteria.
     b. The name of the Guided Answer should appear in the list 
     b. The description of the Guided Answer  should appear in the list
+    c. The Product the Guided Answer is associated to
+    d. The Component the Guided Answer is associated to
 
 
 
