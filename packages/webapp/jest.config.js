@@ -4,7 +4,7 @@ module.exports = {
     clearMocks: true,
     collectCoverage: true,
     collectCoverageFrom: ['src/**/*.{ts,tsx}'],
-    testPathIgnorePatterns: ['<rootDir>/node_modules/'],
+    testPathIgnorePatterns: ['<rootDir>/node_modules/,<rootDir>/test/'],
     errorOnDeprecated: true,
     globals: {
         'ts-jest': {
