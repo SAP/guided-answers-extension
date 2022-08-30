@@ -1,3 +1,4 @@
+// mock
 export const activeGuidedAnswerNodeMock = [
     {
         BODY: '<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p>',
