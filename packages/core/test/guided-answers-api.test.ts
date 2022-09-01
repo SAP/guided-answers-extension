@@ -1,4 +1,9 @@
 import axios from 'axios';
+import type {
+    APIOptions,
+    GuidedAnswersQueryOptions,
+    GuidedAnswerTreeSearchResult
+} from '@sap/guided-answers-extension-types';
 import { getGuidedAnswerApi } from '../src';
 
 jest.mock('axios');
@@ -9,31 +14,45 @@ describe('Guided Answers Api: getTrees()', () => {
         jest.clearAllMocks();
     });
 
-    test('Default host, should build correct request URL and convert node id string to number', async () => {
+    test('Default host, should build correct request URL and convert node id, score string to number', async () => {
         // Mock setup
-        const data = [
-            {
-                TREE_ID: '1',
-                TITLE: 'One',
-                DESCRIPTION: 'First tree',
-                AVAILABILITY: 'PUBLIC',
-                FIRST_NODE_ID: '100'
-            },
-            {
-                TREE_ID: '2',
-                TITLE: 'Two',
-                DESCRIPTION: 'Second tree',
-                AVAILABILITY: 'PUBLIC',
-                FIRST_NODE_ID: '200'
-            },
-            {
-                TREE_ID: '3',
-                TITLE: 'Three',
-                DESCRIPTION: 'Third tree',
-                AVAILABILITY: 'PUBLIC',
-                FIRST_NODE_ID: '300'
-            }
-        ];
+        const data: GuidedAnswerTreeSearchResult = {
+            trees: [
+                {
+                    TREE_ID: 1,
+                    TITLE: 'One',
+                    DESCRIPTION: 'First tree',
+                    AVAILABILITY: 'PUBLIC',
+                    FIRST_NODE_ID: 100,
+                    SCORE: 0.1,
+                    COMPONENT: 'C1',
+                    PRODUCT: 'P_one'
+                },
+                {
+                    TREE_ID: 2,
+                    TITLE: 'Two',
+                    DESCRIPTION: 'Second tree',
+                    AVAILABILITY: 'PUBLIC',
+                    FIRST_NODE_ID: 200,
+                    SCORE: 0.2,
+                    COMPONENT: 'C2',
+                    PRODUCT: 'P_two'
+                },
+                {
+                    TREE_ID: 3,
+                    TITLE: 'Three',
+                    DESCRIPTION: 'Third tree',
+                    AVAILABILITY: 'PUBLIC',
+                    FIRST_NODE_ID: 300,
+                    SCORE: 0.3,
+                    COMPONENT: 'C3',
+                    PRODUCT: 'P_three'
+                }
+            ],
+            resultSize: 3,
+            componentFilters: [{ COMPONENT: 'C1', COUNT: 1 }],
+            productFilters: [{ PRODUCT: 'P_one', COUNT: 1 }]
+        };
         let requestUrl = '';
         mockedAxios.get.mockImplementation((url) => {
             requestUrl = url;
@@ -44,40 +63,59 @@ describe('Guided Answers Api: getTrees()', () => {
         const result = await getGuidedAnswerApi().getTrees();
 
         // Result check
-        expect(requestUrl).toBe('https://ga.support.sap.com/dtp/api/trees/');
-        expect(result).toEqual([
-            {
-                TREE_ID: 1,
-                TITLE: 'One',
-                DESCRIPTION: 'First tree',
-                AVAILABILITY: 'PUBLIC',
-                FIRST_NODE_ID: 100
-            },
-            {
-                TREE_ID: 2,
-                TITLE: 'Two',
-                DESCRIPTION: 'Second tree',
-                AVAILABILITY: 'PUBLIC',
-                FIRST_NODE_ID: 200
-            },
-            {
-                TREE_ID: 3,
-                TITLE: 'Three',
-                DESCRIPTION: 'Third tree',
-                AVAILABILITY: 'PUBLIC',
-                FIRST_NODE_ID: 300
-            }
-        ]);
+        expect(requestUrl).toBe('https://ga.support.sap.com/dtp/api/v2/trees/*');
+        expect(result).toEqual({
+            trees: [
+                {
+                    TREE_ID: 1,
+                    TITLE: 'One',
+                    DESCRIPTION: 'First tree',
+                    AVAILABILITY: 'PUBLIC',
+                    FIRST_NODE_ID: 100,
+                    SCORE: 0.1,
+                    COMPONENT: 'C1',
+                    PRODUCT: 'P_one'
+                },
+                {
+                    TREE_ID: 2,
+                    TITLE: 'Two',
+                    DESCRIPTION: 'Second tree',
+                    AVAILABILITY: 'PUBLIC',
+                    FIRST_NODE_ID: 200,
+                    SCORE: 0.2,
+                    COMPONENT: 'C2',
+                    PRODUCT: 'P_two'
+                },
+                {
+                    TREE_ID: 3,
+                    TITLE: 'Three',
+                    DESCRIPTION: 'Third tree',
+                    AVAILABILITY: 'PUBLIC',
+                    FIRST_NODE_ID: 300,
+                    SCORE: 0.3,
+                    COMPONENT: 'C3',
+                    PRODUCT: 'P_three'
+                }
+            ],
+            resultSize: 3,
+            componentFilters: [{ COMPONENT: 'C1', COUNT: 1 }],
+            productFilters: [{ PRODUCT: 'P_one', COUNT: 1 }]
+        });
     });
 
     test('Custom host with query, returns single entry, should build correct query and convert to array', async () => {
         // Mock setup
         const data = {
-            TREE_ID: 1,
-            TITLE: 'One',
-            DESCRIPTION: 'First tree',
-            AVAILABILITY: 'PUBLIC',
-            FIRST_NODE_ID: 100
+            trees: [
+                {
+                    TREE_ID: 1,
+                    TITLE: 'One',
+                    DESCRIPTION: 'First tree',
+                    AVAILABILITY: 'PUBLIC',
+                    FIRST_NODE_ID: 100,
+                    SCORE: 0.999
+                }
+            ]
         };
         let requestUrl = '';
         mockedAxios.get.mockImplementation((url) => {
@@ -86,19 +124,139 @@ describe('Guided Answers Api: getTrees()', () => {
         });
 
         // Test execution
-        const result = await getGuidedAnswerApi({ apiHost: 'https://my.custom.host' }).getTrees('ONE');
+        const result = await getGuidedAnswerApi({ apiHost: 'https://my.custom.host' }).getTrees({ query: 'ONE' });
 
         // Result check
-        expect(requestUrl).toBe('https://my.custom.host/dtp/api/trees/ONE');
-        expect(result).toEqual([
-            {
-                TREE_ID: 1,
-                TITLE: 'One',
-                DESCRIPTION: 'First tree',
-                AVAILABILITY: 'PUBLIC',
-                FIRST_NODE_ID: 100
+        expect(requestUrl).toBe('https://my.custom.host/dtp/api/v2/trees/%22ONE%22');
+        expect(result).toEqual({
+            trees: [
+                {
+                    TREE_ID: 1,
+                    TITLE: 'One',
+                    DESCRIPTION: 'First tree',
+                    AVAILABILITY: 'PUBLIC',
+                    FIRST_NODE_ID: 100,
+                    SCORE: 0.999
+                }
+            ]
+        });
+    });
+
+    test('Test non compliant response', async () => {
+        // Mock setup
+        mockedAxios.get.mockImplementation(() => {
+            return Promise.resolve({});
+        });
+
+        try {
+            // Test execution
+            await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees();
+            fail('function getTrees() should have thrown an error because wrong response format, but did not.');
+        } catch (error: any) {
+            // Result check
+            expect(error.message).toContain('anyhost');
+        }
+    });
+    test('Test non compliant request where query is of type number)', async () => {
+        try {
+            // Test execution
+            await getGuidedAnswerApi({ apiHost: 'other:host' }).getTrees({
+                query: 1
+            } as unknown as GuidedAnswersQueryOptions);
+            fail('function getTrees() should have thrown an error because called with number query instead of string');
+        } catch (error: any) {
+            // Result check
+            expect(error.message).toContain('getTreeById()');
+        }
+    });
+
+    test('Test with filter and query', async () => {
+        // Mock setup
+        const options: GuidedAnswersQueryOptions = {
+            query: 'QUERY',
+            filters: {
+                component: ['COMP-1`', 'COMP-2'],
+                product: ['P1', 'P2']
             }
-        ]);
+        };
+        let requestUrl = '';
+        mockedAxios.get.mockImplementation((url) => {
+            requestUrl = url;
+            return Promise.resolve({ data: { trees: [] } });
+        });
+
+        // Test execution
+        await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
+
+        // Result check
+        expect(requestUrl).toEqual(
+            'anyhost/dtp/api/v2/trees/%22QUERY%22?component=%22COMP-1%60%22,%22COMP-2%22&product=%22P1%22,%22P2%22'
+        );
+    });
+
+    test('Test with filter no query', async () => {
+        // Mock setup
+        const options: GuidedAnswersQueryOptions = {
+            filters: {
+                component: ['COMP-1`', 'COMP-2'],
+                product: ['P1', 'P2']
+            }
+        };
+        let requestUrl = '';
+        mockedAxios.get.mockImplementation((url) => {
+            requestUrl = url;
+            return Promise.resolve({ data: { trees: [] } });
+        });
+
+        // Test execution
+        await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
+
+        // Result check
+        expect(requestUrl).toEqual(
+            'anyhost/dtp/api/v2/trees/*?component=%22COMP-1%60%22,%22COMP-2%22&product=%22P1%22,%22P2%22'
+        );
+    });
+
+    test('Test product filter only', async () => {
+        // Mock setup
+        const options: GuidedAnswersQueryOptions = {
+            filters: {
+                product: ['PRODUCT']
+            }
+        };
+        let requestUrl = '';
+        mockedAxios.get.mockImplementation((url) => {
+            requestUrl = url;
+            return Promise.resolve({ data: { trees: [] } });
+        });
+
+        // Test execution
+        await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
+
+        // Result check
+        expect(requestUrl).toEqual('anyhost/dtp/api/v2/trees/*?product=%22PRODUCT%22');
+    });
+
+    test('Test component filter only (also lot of speacial chars)', async () => {
+        // Mock setup
+        const options: GuidedAnswersQueryOptions = {
+            filters: {
+                component: ['COMPONENT`', '1-COMPONENT"!@#$%^&*()_+<>,.?/|{}[];\':"+_with special chars']
+            }
+        };
+        let requestUrl = '';
+        mockedAxios.get.mockImplementation((url) => {
+            requestUrl = url;
+            return Promise.resolve({ data: { trees: [] } });
+        });
+
+        // Test execution
+        await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
+
+        // Result check
+        expect(requestUrl).toEqual(
+            "anyhost/dtp/api/v2/trees/*?component=%22COMPONENT%60%22,%221-COMPONENT%22!%40%23%24%25%5E%26*()_%2B%3C%3E%2C.%3F%2F%7C%7B%7D%5B%5D%3B'%3A%22%2B_with%20special%20chars%22"
+        );
     });
 });
 
@@ -128,7 +286,7 @@ describe('Guided Answers Api: getTreeById()', () => {
         const result = await getGuidedAnswerApi().getTreeById(1);
 
         // Result check
-        expect(requestUrl).toBe('https://ga.support.sap.com/dtp/api/trees/1');
+        expect(requestUrl).toBe('https://ga.support.sap.com/dtp/api/v2/trees/1');
         expect(result).toEqual({
             TREE_ID: 1,
             TITLE: 'Single',
@@ -207,7 +365,7 @@ describe('Guided Answers Api: getNodeById()', () => {
                 }
             ]
         };
-        const options = {
+        const options: APIOptions = {
             enhancements: {
                 nodeEnhancements: [
                     {
@@ -215,11 +373,11 @@ describe('Guided Answers Api: getNodeById()', () => {
                         command: {
                             label: 'terminal command enhancement',
                             description: 'Node enhancement with terminal command',
-                            icon: '',
                             exec: {
                                 cwd: '.',
                                 arguments: ['launch', 'Infinite', 'Improbability', 'Drive']
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     },
                     {
@@ -227,12 +385,12 @@ describe('Guided Answers Api: getNodeById()', () => {
                         command: {
                             label: 'vscode command enhancement',
                             description: 'Node enhancement with VSCode command',
-                            icon: '',
                             exec: {
                                 extensionId: 'full speed',
                                 commandId: 'SPEED',
                                 argument: { fsPath: '' }
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     }
                 ],
@@ -242,11 +400,11 @@ describe('Guided Answers Api: getNodeById()', () => {
                         command: {
                             label: 'of course, 42',
                             description: `Text 'solution to all questions' decorated as link to terminal command`,
-                            icon: '',
                             exec: {
                                 cwd: '.',
                                 arguments: ['echo', '42']
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     },
                     {
@@ -254,12 +412,12 @@ describe('Guided Answers Api: getNodeById()', () => {
                         command: {
                             label: 'what does that even mean',
                             description: `we decorate 'Body of' with a link to vscode command`,
-                            icon: 'icon',
                             exec: {
                                 extensionId: 'terry.exxt',
                                 commandId: 'Knock kock',
                                 argument: { fsPath: 'whos/there/body/of' }
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     }
                 ]
@@ -275,7 +433,7 @@ describe('Guided Answers Api: getNodeById()', () => {
 
         // Result check
         expect(result).toMatchSnapshot();
-        expect(result.COMMANDS).toEqual(options.enhancements.nodeEnhancements.map((ne) => ne.command));
+        expect(result.COMMANDS).toEqual(options.enhancements?.nodeEnhancements?.map((ne) => ne.command));
     });
 });
 
@@ -306,7 +464,7 @@ describe('Guided Answers Api: getNodePath()', () => {
             }
         ];
 
-        const options = {
+        const options: APIOptions = {
             enhancements: {
                 nodeEnhancements: [],
                 htmlEnhancements: [
@@ -315,11 +473,11 @@ describe('Guided Answers Api: getNodePath()', () => {
                         command: {
                             label: 'Command for Onehundredtwelve',
                             description: `Command to enhance node in path`,
-                            icon: '',
                             exec: {
                                 cwd: '/',
                                 arguments: ['TEST']
-                            }
+                            },
+                            environment: ['VSCODE', 'SBAS']
                         }
                     }
                 ]

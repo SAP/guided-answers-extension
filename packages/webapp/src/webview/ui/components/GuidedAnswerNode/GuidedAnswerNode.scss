@@ -5,13 +5,41 @@ section.answer__node__body {
     box-sizing: border-box;
 }
 
+.body_container {
+    overflow: auto;
+    overflow-wrap: anywhere;
+}
+
+header {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+button:focus-visible {
+    outline: 1px solid var(--vscode-focusBorder, #007fd4);
+}
+
 .column {
     flex-direction: column;
-    overflow-y: auto;
     box-sizing: border-box;
     justify-content: flex-start;
     align-items: stretch;
     flex-wrap: nowrap;
+}
+
+a:hover {
+    outline: 1px solid var(--vscode-contrastActiveBorder);
 }
 
 #left {
@@ -32,6 +60,15 @@ section.answer__node__body {
 
     .content > * {
         line-height: 18px;
+    }
+
+    .content > h1 {
+        font-size: 20px;
+        margin-top: 15px;
+    }
+
+    a:focus-visible {
+        outline: 1px solid var(--vscode-focusBorder, #007fd4);
     }
 }
 
@@ -64,6 +101,10 @@ section.answer__node__body {
 }
 
 .guided-answer__node {
+    & {
+        display: flex;
+        flex-direction: column;
+    }
     &__body {
         color: var(--vscode-foreground);
         display: flex;
@@ -91,11 +132,18 @@ section.answer__node__body {
         padding: 10px;
         text-align: center;
         outline-offset: -1px;
-        outline: 1px solid var(--vscode-contrastBorder);
+        border: 1px solid var(--vscode-contrastBorder);
     }
     &__edge:hover {
         background-color: var(--vscode-button-hoverBackground);
+        outline: 1px solid var(--vscode-contrastActiveBorder);
     }
+    &__edge:focus-visible {
+        border: 1px solid var(--vscode-contrastBorder);
+        outline: 1px solid var(--vscode-focusBorder);
+        outline-offset: 2px;
+    }
+
     &__commands {
         position: fixed;
         margin-top: 18px;
@@ -137,6 +185,7 @@ section.answer__node__body {
     }
     &__command:hover {
         background-color: var(--vscode-list-hoverBackground);
+        outline: 1px solid var(--vscode-contrastActiveBorder);
         cursor: pointer;
     }
 }
@@ -145,6 +194,10 @@ section.answer__node__body {
     color: var(--vscode-textLink-foreground);
     cursor: pointer;
     text-decoration: underline;
+}
+
+.enhancement-link:focus-visible {
+    outline: 1px solid var(--vscode-focusBorder, #007fd4);
 }
 
 @media only screen and (max-width: 625px) {

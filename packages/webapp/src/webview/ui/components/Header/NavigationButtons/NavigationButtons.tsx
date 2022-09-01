@@ -7,7 +7,14 @@ import i18next from 'i18next';
  *
  * @returns A button component navigating to all answers.
  */
-export function AllAnswersButton() {
+const AllAnswersButton = React.memo(function AllAnswersButton() {
+    requestAnimationFrame(() => {
+        const button = document.body.querySelector('.home-icon') as HTMLElement;
+        if (button) {
+            button.focus();
+        }
+    });
+
     return (
         <button
             className="guided-answer__header__navButtons home-icon"
@@ -21,7 +28,7 @@ export function AllAnswersButton() {
             </span>
         </button>
     );
-}
+});
 
 /**
  *
@@ -62,3 +69,5 @@ export function RestartButton() {
         </button>
     );
 }
+
+export { AllAnswersButton };

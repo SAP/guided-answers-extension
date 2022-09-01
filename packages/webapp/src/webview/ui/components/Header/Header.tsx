@@ -5,6 +5,7 @@ import { AllAnswersButton, BackButton, RestartButton } from './NavigationButtons
 import { Logo } from './Logo';
 import './Header.scss';
 import { SearchField } from './SearchField';
+import { FocusZone } from '@fluentui/react-focus';
 
 /**
  * Renders and returns the header section.
@@ -38,14 +39,16 @@ export function Header(props: {
 
             {props.showNavButons === true ? (
                 <>
-                    <div className="guided-answer__header__allAnswersButton">
-                        <AllAnswersButton />
-                    </div>
+                    <FocusZone isCircularNavigation={true} className="guided-answer__header">
+                        <div className="guided-answer__header__allAnswersButton">
+                            <AllAnswersButton />
+                        </div>
 
-                    <div className="guided-answer__header__back-restart-buttons">
-                        <BackButton />
-                        {appState.activeGuidedAnswerNode.length > 1 && <RestartButton />}
-                    </div>
+                        <div className="guided-answer__header__back-restart-buttons">
+                            <BackButton />
+                            {appState.activeGuidedAnswerNode.length > 1 && <RestartButton />}
+                        </div>
+                    </FocusZone>
                 </>
             ) : (
                 <></>

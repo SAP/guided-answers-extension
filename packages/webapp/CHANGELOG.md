@@ -1,5 +1,35 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.10.0
+
+### Minor Changes
+
+-   c9353d8: Consumption of API v2 which gives more information about Guided Answers trees, like product or component info
+
+## 0.9.0
+
+### Minor Changes
+
+-   e25c511: Adding HTML role attributes for accessibility
+
+## 0.8.0
+
+### Minor Changes
+
+-   69962eb: fixed keyboard navigation
+
+## 0.7.0
+
+### Minor Changes
+
+-   c927ec4: added minimum contrast support
+
+## 0.6.0
+
+### Minor Changes
+
+-   73a261e: keyboard accessibility support added
+
 ## 0.5.0
 
 ### Minor Changes

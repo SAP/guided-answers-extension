@@ -50,7 +50,7 @@ describe('<Middle />', () => {
         wrapper = shallow(<Middle activeNode={activeNodeMock} enhancedBody={null} />);
         const component = wrapper.html();
         expect(component).toMatchInlineSnapshot(
-            `"<div id=\\"middle\\" class=\\"column\\"><h1>SAP Fiori Tools</h1><div id=\\"hr\\"></div><div class=\\"content\\"><p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p></div><p class=\\"guided-answer__node__question\\">I have a problem with</p><div class=\\"guided-answer__node\\"><div class=\\"guided-answer__node__edge\\">Deployment</div><div class=\\"guided-answer__node__edge\\">Fiori Generator</div></div></div>"`
+            `"<div id=\\"middle\\" class=\\"column\\"><div class=\\"body_container\\"><header>SAP Fiori Tools</header><div id=\\"hr\\"></div><div class=\\"ms-FocusZone css-101\\" data-focuszone-id=\\"FocusZone0\\"><div class=\\"content\\"><p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p></div></div><p class=\\"guided-answer__node__question\\">I have a problem with</p></div><div role=\\"listbox\\" class=\\"ms-FocusZone css-101\\" data-focuszone-id=\\"FocusZone1\\"><div class=\\"guided-answer__node\\"><button role=\\"option\\" class=\\"guided-answer__node__edge\\">Deployment</button><button role=\\"option\\" class=\\"guided-answer__node__edge\\">Fiori Generator</button></div></div></div>"`
         );
 
         //Test click event

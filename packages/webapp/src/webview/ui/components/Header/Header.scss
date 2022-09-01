@@ -47,11 +47,16 @@
         }
         &__navButtons:hover {
             background: var(--vscode-menubar-selectionBackground);
+            outline: 1px solid var(--vscode-contrastActiveBorder);
             border-radius: 3px;
             > span {
                 text-decoration: none;
             }
         }
+        &__navButtons:focus-visible {
+            outline: 1px solid var(--vscode-focusBorder, #007fd4);
+        }
+
         &__allAnswersButton {
             width: 25%;
             margin-right: 80px;
@@ -72,7 +77,7 @@
         &__searchField {
             display: flex;
             align-items: start;
-            flex-direction: column;
+            flex-direction: row;
             margin-top: 30px;
             width: 66%;
         }
