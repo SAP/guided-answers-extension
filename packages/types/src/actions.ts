@@ -17,7 +17,11 @@ import type {
     UpdateLoading,
     GuidedAnswerTreeSearchResult,
     GuidedAnswersQueryOptions,
-    BetaFeatures
+    BetaFeatures,
+    ProductFilter,
+    ComponentFilter,
+    SetProductFilters,
+    SetComponentFilters
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -32,7 +36,9 @@ import {
     UPDATE_ACTIVE_NODE,
     UPDATE_LOADING,
     WEBVIEW_READY,
-    BETA_FEATURES
+    BETA_FEATURES,
+    SET_PRODUCT_FILTERS,
+    SET_COMPONENT_FILTERS
 } from './types';
 
 export const updateGuidedAnserTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnserTrees => ({
@@ -86,6 +92,16 @@ export const setQueryValue = (payload: string): SetQueryValue => ({
 
 export const getBetaFeatures = (payload: boolean): BetaFeatures => ({
     type: BETA_FEATURES,
+    payload
+});
+
+export const setProductFilters = (payload: string[]): SetProductFilters => ({
+    type: SET_PRODUCT_FILTERS,
+    payload
+});
+
+export const setComponentFilters = (payload: string[]): SetComponentFilters => ({
+    type: SET_COMPONENT_FILTERS,
     payload
 });
 

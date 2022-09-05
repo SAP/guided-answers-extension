@@ -8,7 +8,9 @@ import {
     RESTART_ANSWER,
     SET_ACTIVE_TREE,
     SET_QUERY_VALUE,
-    BETA_FEATURES
+    BETA_FEATURES,
+    SET_PRODUCT_FILTERS,
+    SET_COMPONENT_FILTERS
 } from '@sap/guided-answers-extension-types';
 import type { Reducer } from 'redux';
 import type { AppState } from '../types';
@@ -26,7 +28,9 @@ export function getInitialState(): AppState {
             resultSize: -1,
             componentFilters: [],
             productFilters: [],
-            trees: []
+            trees: [],
+            selectedProductFilters: [],
+            selectedComponentFilters: []
         },
         activeGuidedAnswerNode: [],
         betaFeatures: false
@@ -94,9 +98,18 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             newState.betaFeatures = action.payload;
             break;
         }
+        case SET_PRODUCT_FILTERS: {
+            newState.guidedAnswerTreeSearchResult.selectedProductFilters = action.payload;
+            break;
+        }
+        case SET_COMPONENT_FILTERS: {
+            newState.guidedAnswerTreeSearchResult.selectedComponentFilters = action.payload;
+            break;
+        }
         default: {
             // Do nothing, newState is cloned old state
         }
     }
+    console.log('Global state: ', newState);
     return newState;
 };

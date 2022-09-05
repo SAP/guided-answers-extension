@@ -7,6 +7,7 @@ import { actions } from '../../../state';
 import { GuidedAnswerNode } from '../GuidedAnswerNode';
 import { Header } from '../Header';
 import { NoAnswersFound } from '../NoAnswersFound';
+import { FiltersRibbon } from '../Header/Filters';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './App.scss';
 import { initIcons } from '../UIComponentsLib/Icons';
@@ -32,6 +33,7 @@ export function App(): ReactElement {
                 <NoAnswersFound />
             ) : (
                 <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
+                    <FiltersRibbon />
                     <ul className="striped-list" role="listbox">
                         {appState.guidedAnswerTreeSearchResult.trees.map((tree, index) => {
                             return (
