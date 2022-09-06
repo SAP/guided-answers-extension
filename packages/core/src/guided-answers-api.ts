@@ -21,6 +21,8 @@ const VERSION = 'v2';
 const NODE_PATH = `/dtp/api/${VERSION}/nodes/`;
 const TREE_PATH = `/dtp/api/${VERSION}/trees/`;
 const IMG_PREFIX = '/dtp/viewer/';
+const FEEDBACK_COMMENT = `dtp/api/${VERSION}/feedback/comment`;
+const FEEDBACK_OUTCOME = `dtp/api/${VERSION}/feedback/outcome`;
 
 /**
  * Returns API to programmatically access Guided Answers.
@@ -43,7 +45,11 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
             let nodes = await getNodePath(apiHost, nodeIdPath);
             nodes = nodes.map((node) => enhanceNode(node, nodeEnhancements, htmlEnhancements));
             return nodes;
-        }
+        },
+        sendFeedbackComment: async (treeId: GuidedAnswerTreeId, nodeId: GuidedAnswerNodeId, comment: string) =>
+            sendFeedbackComment(apiHost, treeId, nodeId, comment),
+        sendFeedbackOutcome: async (treeId: GuidedAnswerTreeId, nodeId: GuidedAnswerNodeId, solved: boolean) =>
+            sendFeedbackOutcome(apiHost, treeId, nodeId, solved)
     };
 }
 
@@ -194,4 +200,41 @@ async function getNodePath(host: string, nodeIdPath: GuidedAnswerNodeId[]): Prom
         resolvedNodes.push(node);
     }
     return resolvedNodes;
+}
+
+/**
+ *
+ * @param host - Guided Answers API host
+ * @param treeId - Guided Answers tree id
+ * @param nodeId - Guided Answers node id
+ * @param comment - Feedback comment
+ * @returns - true: feedback sent successful; false: feedback not sent
+ */
+async function sendFeedbackComment(
+    host: string,
+    treeId: GuidedAnswerTreeId,
+    nodeId: GuidedAnswerNodeId,
+    comment: string
+): Promise<boolean> {
+    //const url = `${host}${FEEDBACK_COMMENT}`;
+    throw Error(`Not implemented! host: ${host}, treeId: ${treeId}, nodeId: ${nodeId}, comment: ${comment}`);
+    // return true;
+}
+
+/**
+ *
+ * @param host - Guided Answer API host
+ * @param treeId - Guided Answers tree id
+ * @param nodeId - Guided Answers node id
+ * @param solved - true: tree solved the problem; false: tree did not solve the problem
+ * @returns - true: outcome sent successful; false: outcome not sent
+ */
+async function sendFeedbackOutcome(
+    host: string,
+    treeId: GuidedAnswerTreeId,
+    nodeId: GuidedAnswerNodeId,
+    solved: boolean
+): Promise<boolean> {
+    throw Error(`Not implemented! host: ${host}, treeId: ${treeId}, nodeId: ${nodeId}, solved: ${solved}`);
+    // return true;
 }

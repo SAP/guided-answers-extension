@@ -52,6 +52,14 @@ export interface GuidedAnswerAPI {
     getTreeById: (id: GuidedAnswerTreeId) => Promise<GuidedAnswerTree>;
     getTrees: (queryOptions?: GuidedAnswersQueryOptions) => Promise<GuidedAnswerTreeSearchResult>;
     getNodePath: (nodeIdPath: GuidedAnswerNodeId[]) => Promise<GuidedAnswerNode[]>;
+    sendFeedbackComment: (treeId: GuidedAnswerTreeId, nodeId: GuidedAnswerNodeId, comment: string) => Promise<boolean>;
+    sendFeedbackOutcome: (treeId: GuidedAnswerTreeId, nodeId: GuidedAnswerNodeId, solved: boolean) => Promise<boolean>;
+}
+
+export interface GuidedAnswersFeedback {
+    treeId: GuidedAnswerTreeId;
+    nodeId: GuidedAnswerNodeId;
+    message: 'Solved' | 'Not Solved' | string;
 }
 
 export interface VSCodeCommand {
