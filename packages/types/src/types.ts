@@ -33,8 +33,6 @@ export interface GuidedAnswerTreeSearchResult {
     trees: GuidedAnswerTreeSearchHit[];
     productFilters: ProductFilter[];
     componentFilters: ComponentFilter[];
-    selectedProductFilters: string[];
-    selectedComponentFilters: string[];
 }
 
 export type GuidedAnswerNodeId = number;
@@ -122,7 +120,8 @@ export type GuidedAnswerActions =
     | WebviewReady
     | BetaFeatures
     | SetProductFilters
-    | SetComponentFilters;
+    | SetComponentFilters
+    | ResetFilters;
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnserTrees {
@@ -211,4 +210,9 @@ export const SET_COMPONENT_FILTERS = 'SET_COMPONENT_FILTERS';
 export interface SetComponentFilters {
     type: typeof SET_COMPONENT_FILTERS;
     payload: string[];
+}
+
+export const RESET_FILTERS = 'RESET_FILTERS';
+export interface ResetFilters {
+    type: typeof RESET_FILTERS;
 }

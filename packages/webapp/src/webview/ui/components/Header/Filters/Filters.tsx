@@ -21,12 +21,8 @@ export function Filters() {
     const [productFilters, setProductFilters] = useState(appState.guidedAnswerTreeSearchResult.productFilters);
     const [componentFilters, setComponentFilters] = useState(appState.guidedAnswerTreeSearchResult.componentFilters);
     const [query, setQuery] = useState('');
-    const [selectedProductFilters, setSelectedProductFilters] = useState(
-        appState.guidedAnswerTreeSearchResult.selectedProductFilters
-    );
-    const [selectedComponentFilters, setSelectedComponentFilters] = useState(
-        appState.guidedAnswerTreeSearchResult.selectedComponentFilters
-    );
+    const [selectedProductFilters, setSelectedProductFilters] = useState(appState.selectedProductFilters);
+    const [selectedComponentFilters, setSelectedComponentFilters] = useState(appState.selectedProductFilters);
     const isFilterProducts = filter === 'products';
 
     const applyProductsFilter = (): void => {
@@ -93,7 +89,10 @@ export function Filters() {
         }
     };
 
-    useEffect(() => {}, [selectedProductFilters, selectedComponentFilters]);
+    useEffect(() => {
+        setSelectedProductFilters(appState.selectedProductFilters);
+        setSelectedComponentFilters(appState.selectedComponentFilters);
+    }, [appState.selectedProductFilters, appState.selectedComponentFilters]);
 
     const filterType: any = {
         products: {

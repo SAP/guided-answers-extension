@@ -10,7 +10,8 @@ import {
     SET_QUERY_VALUE,
     BETA_FEATURES,
     SET_PRODUCT_FILTERS,
-    SET_COMPONENT_FILTERS
+    SET_COMPONENT_FILTERS,
+    RESET_FILTERS
 } from '@sap/guided-answers-extension-types';
 import type { Reducer } from 'redux';
 import type { AppState } from '../types';
@@ -28,12 +29,12 @@ export function getInitialState(): AppState {
             resultSize: -1,
             componentFilters: [],
             productFilters: [],
-            trees: [],
-            selectedProductFilters: [],
-            selectedComponentFilters: []
+            trees: []
         },
         activeGuidedAnswerNode: [],
-        betaFeatures: false
+        betaFeatures: false,
+        selectedProductFilters: [],
+        selectedComponentFilters: []
     };
 }
 
@@ -99,17 +100,21 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             break;
         }
         case SET_PRODUCT_FILTERS: {
-            newState.guidedAnswerTreeSearchResult.selectedProductFilters = action.payload;
+            newState.selectedProductFilters = action.payload;
             break;
         }
         case SET_COMPONENT_FILTERS: {
-            newState.guidedAnswerTreeSearchResult.selectedComponentFilters = action.payload;
+            newState.selectedComponentFilters = action.payload;
+            break;
+        }
+        case RESET_FILTERS: {
+            newState.selectedProductFilters = [];
+            newState.selectedComponentFilters = [];
             break;
         }
         default: {
             // Do nothing, newState is cloned old state
         }
     }
-    console.log('Global state: ', newState);
     return newState;
 };

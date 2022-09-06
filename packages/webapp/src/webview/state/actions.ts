@@ -12,5 +12,6 @@ export {
     webviewReady,
     getBetaFeatures,
     setProductFilters,
-    setComponentFilters
+    setComponentFilters,
+    resetFilters
 } from '@sap/guided-answers-extension-types';

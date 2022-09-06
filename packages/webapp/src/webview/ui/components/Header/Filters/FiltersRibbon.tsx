@@ -11,23 +11,29 @@ import { UIActionButton } from '../../UIComponentsLib/UIButton/UIActionButton';
  */
 export function FiltersRibbon() {
     const appState = useSelector<AppState, AppState>((state) => state);
-    const selectedProductFilters = appState.guidedAnswerTreeSearchResult.selectedProductFilters || [];
-    const selectedComponentFilters = appState.guidedAnswerTreeSearchResult.selectedComponentFilters || [];
+    const selectedProductFilters = appState.selectedProductFilters || [];
+    const selectedComponentFilters = appState.selectedComponentFilters || [];
     const hasProductsFilter = selectedProductFilters.length > 0;
     const hasComponentsFilter = selectedComponentFilters.length > 0;
     const hasFilters = hasProductsFilter || hasComponentsFilter;
     const hasBothFilters = hasProductsFilter && hasComponentsFilter;
+    const resetFilters = () => {
+        actions.resetFilters();
+    };
 
     return (
         <>
             {hasFilters && (
                 <p style={{ display: 'flex', alignItems: 'center' }}>
-                    Searching in: {`${hasProductsFilter ? 'Product' : ''}`}{' '}
+                    Searching in {hasProductsFilter ? 'Product' : ''}
+                    {((hasProductsFilter && !hasComponentsFilter) || hasBothFilters) && <strong>&nbsp;</strong>}
                     <strong>
-                        {selectedProductFilters && selectedProductFilters.map((pf: string) => pf).join(', ')}{' '}
+                        {selectedProductFilters && selectedProductFilters.map((pf: string) => pf).join(', ')}
                     </strong>
-                    {hasBothFilters ? 'and ' : ''}
-                    {`${hasComponentsFilter ? 'Component' : ''}`}{' '}
+                    &nbsp;
+                    {hasBothFilters ? 'and' : ''}
+                    {hasBothFilters && <strong>&nbsp;</strong>}
+                    {hasComponentsFilter ? 'Component' : ''}&nbsp;
                     <strong>
                         {selectedComponentFilters && selectedComponentFilters.map((cf: string) => cf).join(', ')}
                     </strong>
@@ -35,7 +41,9 @@ export function FiltersRibbon() {
                         iconProps={{
                             iconName: UiIcons.Clear
                         }}
-                        style={{ color: 'var(--vscode-textLink-foreground)', paddingLeft: '10px' }}>
+                        id="clear-filters"
+                        onClick={resetFilters}
+                        style={{ color: 'var(--vscode-textLink-foreground)', paddingLeft: '5px' }}>
                         Clear filters
                     </UIActionButton>
                 </p>

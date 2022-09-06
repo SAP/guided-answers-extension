@@ -18,10 +18,9 @@ import type {
     GuidedAnswerTreeSearchResult,
     GuidedAnswersQueryOptions,
     BetaFeatures,
-    ProductFilter,
-    ComponentFilter,
     SetProductFilters,
-    SetComponentFilters
+    SetComponentFilters,
+    ResetFilters
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -38,7 +37,8 @@ import {
     WEBVIEW_READY,
     BETA_FEATURES,
     SET_PRODUCT_FILTERS,
-    SET_COMPONENT_FILTERS
+    SET_COMPONENT_FILTERS,
+    RESET_FILTERS
 } from './types';
 
 export const updateGuidedAnserTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnserTrees => ({
@@ -103,6 +103,10 @@ export const setProductFilters = (payload: string[]): SetProductFilters => ({
 export const setComponentFilters = (payload: string[]): SetComponentFilters => ({
     type: SET_COMPONENT_FILTERS,
     payload
+});
+
+export const resetFilters = (): ResetFilters => ({
+    type: RESET_FILTERS
 });
 
 export const webviewReady = (): WebviewReady => ({ type: WEBVIEW_READY });
