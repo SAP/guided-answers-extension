@@ -7,6 +7,9 @@
 [#143](https://github.wdf.sap.corp/ux-engineering/tools-suite/issues/143),
 [#164](https://github.wdf.sap.corp/ux-engineering/tools-suite/issues/164)
 [#199](https://github.com/SAP/guided-answers-extension/issues/199),
+[#39](https://github.com/SAP/guided-answers-extension/issues/39),
+[#40](https://github.com/SAP/guided-answers-extension/issues/40),
+[#96](https://github.com/SAP/guided-answers-extension/issues/96),
 
 Prerequisites: Guided Answers Extension is installed in either SAP Business Application Studio (SBAS) or Microsoft Visual Studio Code (VSCODE)
 
@@ -25,13 +28,16 @@ Prerequisites: Guided Answers Extension is installed in either SAP Business Appl
 
     a. A blank home page 
     b. Empty search input field
+    c. A grid icon for the Product filter
+    d. A tag icon for the Component filter
 
 **GIVEN** the Guided Answer Extension is opened  
 **WHEN** the user makes the view port smaller  
 **THEN** the Guided Answers Extension adapts:  
   
     a.The search input field falls under the SAP Guided Answers Extension 
-
+    
+ 
 ### Search Guided Answers Content
 
 **GIVEN** the Guided Answer Extension is opened  
@@ -43,6 +49,74 @@ Prerequisites: Guided Answers Extension is installed in either SAP Business Appl
     b. The description of the Guided Answer  should appear in the list
     c. The Product the Guided Answer is associated to
     d. The Component the Guided Answer is associated to
+
+
+### Filtering Guided Answers Content on Product 
+
+**GIVEN** the Guided Answer Extension is opened 
+**WHEN** the user clicks on the Product Filter
+**THEN** a pop up appears listing all products that the returned Guided Answers list are associated to
+
+**GIVEN** the product filter pop up appears
+**WHEN** the user enters 'Fiori Tools' in the search input bar
+**THEN** the product list appearing is filtered down to show all products that match the users input 'SAP Fiori Tools'
+
+**GIVEN** the product filter pop up displays products matching the users search input
+**WHEN** the user selects 'SAP Fiori Tools' AND clicks 'Apply Filter'
+**THEN** text appears inform  informing the user that the outcomes list has been filtered on product 'SAP Fiori Tools' and the outcomes appearing in the list are associated to the product 'SAP Fiori Tools' 
+
+Note: The user can cancel out of the filter pop causing the filter not to be applied
+
+**GIVEN** the a product filter has been applied 
+**WHEN** the user clicks 'Clear Filter'
+**THEN** the outcome list is refreshed displaying all Guided Answers closely mathcing the Guided Answers search input
+
+### Filtering Guided Answers Content on Components 
+
+**GIVEN** the Guided Answer Extension is opened 
+**WHEN** the user clicks on the Component Filter
+**THEN** a pop up appears listing all components that the returned outcome list are associated to
+
+**GIVEN** the component filter pop up appears
+**WHEN** the user enters 'CA-UX-IDE' in the search input bar
+**THEN** the component list appearing is filtered down to show all components that match the users input 'CA-UX-IDE'
+
+**GIVEN** the component filter pop up displays components matching the users search input
+**WHEN** the user selects 'CA-UX-IDE' AND clicks 'Apply Filter'
+**THEN** the outcomes displayed in the outcome list are associated to the component 'CA-UX-IDE'
+
+Note: The user can cancel out of the filter pop causing the filter not to be applied
+
+**GIVEN** the a component filter has been applied 
+**WHEN** the clicks 'Clear Filter'
+**THEN** the returned list is refreshed displaying all Guided Answers 
+
+### Filtering Guided Answers Content on Products and Components 
+
+**GIVEN** the Guided Answer Extension is opened 
+**WHEN** the user clicks on the Product Filter
+**THEN** a pop up appears listing all products that the outcome list are associated to
+
+**GIVEN** the product filter pop up appears
+**WHEN** the user enters 'SAP Business Application Studio' in the search input bar
+**THEN** the product list appearing is filtered down to all products that match the users input 
+
+**GIVEN** the product filter pop up displays products matching the users search input 'SAP Buisness Application Studio'
+**WHEN** the user selects 'SAP Business Application Studio' AND clicks 'Apply Filter'
+**THEN** text appears informing the user the the product filter 'SAP Business Application Studio' has been applied to the list and the outcomes appearing in the list are associated to the product 'SAP Business Application Studio' 
+
+**GIVEN** the a product filter has been applied e.g 'SAP Business Application Studio'
+**WHEN** the user clicks on Component Filter 
+**THEN** the Component Filter pop up opens displaying all the components associated to the outcomes list that is filtered on 'SAP Business Application Studio. This list contains 
+        1. CA-WDE
+        2. BC-NEO-CPT
+        3. HAN-WDE-DOC
+        
+Note: This list is subject to change based on Guided Answers being continually added for different products and components
+
+**GIVEN** the component filter pop up displays components associated to the outcomes list that is filtered on 'SAP Business Application Studio'
+**WHEN** the user selects 'CA-WDE
+**THEN** text appears informing the user that the outcomes list is now filtered on the product 'SAP Business Application Studio' and the component 'CA-WDE'. The outcomes list displays outcomes associated to 'SAP Business Application Studio' and components 'CA_WDE' 
 
 
 ### Open Guided Answers Content 
@@ -93,8 +167,7 @@ Note: Check the content matches the content in the web application e.g. headers 
 **THEN** the user is navigated to the Guided Answers home page  
     
     a. an empty search 
-    
- 
+  
 ### Displaying enhancements specific to VSCode or SAP Business Application Studio
 
 **GIVEN** the user has opened Guided Answers, searched and selected Fiori Tools in VSCODE  
