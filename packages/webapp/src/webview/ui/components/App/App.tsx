@@ -3,6 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { VSCodeProgressRing } from '@vscode/webview-ui-toolkit/react';
 import { AppState } from '../../../types';
+import type { GuidedAnswerTreeSearchHit } from '@sap/guided-answers-extension-types';
 import { actions } from '../../../state';
 import { GuidedAnswerNode } from '../GuidedAnswerNode';
 import { Header } from '../Header';
@@ -13,6 +14,30 @@ import './App.scss';
 import { initIcons } from '../UIComponentsLib/Icons';
 
 initIcons();
+
+/**
+ * Filters the query results based on the selected filters
+ *
+ * @param trees
+ * @param selectedProductFilters
+ * @param selectedComponentFilters
+ * @returns
+ */
+const filterResults = (
+    trees: GuidedAnswerTreeSearchHit[],
+    selectedProductFilters: string[],
+    selectedComponentFilters: string[]
+) => {
+    let filteredTrees = trees;
+    if (selectedProductFilters.length > 0) {
+        filteredTrees = trees.filter((t) => selectedProductFilters.some((f) => t.PRODUCT.includes(f)));
+    }
+
+    if (selectedComponentFilters.length > 0) {
+        filteredTrees = trees.filter((t) => selectedComponentFilters.some((f) => t.COMPONENT.includes(f)));
+    }
+    return filteredTrees;
+};
 
 /**
  * Start element for Guided Answers Extension app.
@@ -35,7 +60,11 @@ export function App(): ReactElement {
                 <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
                     <FiltersRibbon />
                     <ul className="striped-list" role="listbox">
-                        {appState.guidedAnswerTreeSearchResult.trees.map((tree, index) => {
+                        {filterResults(
+                            appState.guidedAnswerTreeSearchResult.trees,
+                            appState.selectedProductFilters,
+                            appState.selectedComponentFilters
+                        ).map((tree, index) => {
                             return (
                                 <li key={`tree-item-${index}`} className="tree-item" role="option">
                                     <button
