@@ -80,12 +80,10 @@ export function Filters() {
             } else {
                 setSelectedProductFilters(selectedProductFilters.filter((e) => e !== filter));
             }
+        } else if (checked) {
+            setSelectedComponentFilters([...selectedComponentFilters, filter]);
         } else {
-            if (checked) {
-                setSelectedComponentFilters([...selectedComponentFilters, filter]);
-            } else {
-                setSelectedComponentFilters(selectedComponentFilters.filter((e) => e !== filter));
-            }
+            setSelectedComponentFilters(selectedComponentFilters.filter((e) => e !== filter));
         }
     };
 

@@ -1,0 +1,38 @@
+.clear-filters {
+    height: 25px;
+    color: var(--vscode-textLink-foreground);
+    padding: 0 5px 2px 3px;
+    text-align: start;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    &__content {
+        vertical-align: middle;
+        display: inline-block;
+        &__text {
+            margin-left: 3px;
+        }
+    }
+    display: flex;
+    align-items: center;
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+.clear-filters:hover {
+    background: var(--vscode-menubar-selectionBackground);
+    outline: 1px solid var(--vscode-contrastActiveBorder);
+    color: var(--vscode-foreground);
+    border-radius: 3px;
+    > span {
+        text-decoration: none;
+    }
+}
+.clear-filters:focus-visible {
+    outline: 1px solid var(--vscode-focusBorder, #007fd4);
+}
+
+.clear-filters-icon {
+    width: 100px;
+}

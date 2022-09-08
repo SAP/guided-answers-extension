@@ -16,12 +16,12 @@ import { initIcons } from '../UIComponentsLib/Icons';
 initIcons();
 
 /**
- * Filters the query results based on the selected filters
+ * Filters the query results based on the selected filters.
  *
- * @param trees
- * @param selectedProductFilters
- * @param selectedComponentFilters
- * @returns
+ * @param trees - results passed from global state
+ * @param selectedProductFilters - selected product filters
+ * @param selectedComponentFilters - selected component filters
+ * @returns - returns a filtered list if filters have been selected
  */
 const filterResults = (
     trees: GuidedAnswerTreeSearchHit[],

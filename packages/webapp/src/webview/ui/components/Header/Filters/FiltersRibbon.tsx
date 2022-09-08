@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
-import { UiIcons } from '../../UIComponentsLib/Icons';
-import { UIActionButton } from '../../UIComponentsLib/UIButton/UIActionButton';
+import { VscClose } from 'react-icons/vsc';
+import './FiltersRibbon.scss';
 
 /**
  *
@@ -24,7 +24,7 @@ export function FiltersRibbon() {
     return (
         <>
             {hasFilters && (
-                <p style={{ display: 'flex', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', flexFlow: 'wrap' }}>
                     Searching in {hasProductsFilter ? 'Product' : ''}
                     {((hasProductsFilter && !hasComponentsFilter) || hasBothFilters) && <strong>&nbsp;</strong>}
                     <strong>
@@ -37,16 +37,11 @@ export function FiltersRibbon() {
                     <strong>
                         {selectedComponentFilters && selectedComponentFilters.map((cf: string) => cf).join(', ')}
                     </strong>
-                    <UIActionButton
-                        iconProps={{
-                            iconName: UiIcons.Clear
-                        }}
-                        id="clear-filters"
-                        onClick={resetFilters}
-                        style={{ color: 'var(--vscode-textLink-foreground)', paddingLeft: '5px' }}>
-                        Clear filters
-                    </UIActionButton>
-                </p>
+                    <button className="clear-filters clear-filters-icon" onClick={resetFilters} title="Clear filters">
+                        <VscClose className="clear-filters__content" />{' '}
+                        <span className="text-underline">Clear filters</span>
+                    </button>
+                </div>
             )}
         </>
     );
