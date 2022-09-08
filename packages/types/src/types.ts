@@ -52,8 +52,8 @@ export interface GuidedAnswerAPI {
     getTreeById: (id: GuidedAnswerTreeId) => Promise<GuidedAnswerTree>;
     getTrees: (queryOptions?: GuidedAnswersQueryOptions) => Promise<GuidedAnswerTreeSearchResult>;
     getNodePath: (nodeIdPath: GuidedAnswerNodeId[]) => Promise<GuidedAnswerNode[]>;
-    sendFeedbackComment: (treeId: GuidedAnswerTreeId, nodeId: GuidedAnswerNodeId, comment: string) => Promise<boolean>;
-    sendFeedbackOutcome: (treeId: GuidedAnswerTreeId, nodeId: GuidedAnswerNodeId, solved: boolean) => Promise<boolean>;
+    sendFeedbackComment: (treeId: GuidedAnswerTreeId, nodeId: GuidedAnswerNodeId, comment: string) => Promise<void>;
+    sendFeedbackOutcome: (treeId: GuidedAnswerTreeId, nodeId: GuidedAnswerNodeId, solved: boolean) => Promise<void>;
 }
 
 export interface GuidedAnswersFeedback {

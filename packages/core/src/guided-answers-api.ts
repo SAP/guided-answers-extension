@@ -6,6 +6,7 @@ import type {
     GuidedAnswerAPI,
     GuidedAnswerNode,
     GuidedAnswerNodeId,
+    GuidedAnswersFeedback,
     GuidedAnswersQueryFilterOptions,
     GuidedAnswersQueryOptions,
     GuidedAnswerTree,
@@ -203,38 +204,51 @@ async function getNodePath(host: string, nodeIdPath: GuidedAnswerNodeId[]): Prom
 }
 
 /**
+ * Post feedback for tree and node. In case posting feedback is not successful, this function
+ * throws an error.
+ *
+ * @param url - url to post feedback
+ * @param feedback - feedback structure
+ */
+async function postFeedback(url: string, feedback: GuidedAnswersFeedback): Promise<void> {
+    const response = await axios.post(url, feedback);
+    if (response.status !== 200) {
+        throw Error(`Could not send feedback. ${response.statusText} (${response.status})`);
+    }
+}
+
+/**
+ * Send comment for a tree/node combination.
  *
  * @param host - Guided Answers API host
  * @param treeId - Guided Answers tree id
  * @param nodeId - Guided Answers node id
  * @param comment - Feedback comment
- * @returns - true: feedback sent successful; false: feedback not sent
  */
 async function sendFeedbackComment(
     host: string,
     treeId: GuidedAnswerTreeId,
     nodeId: GuidedAnswerNodeId,
     comment: string
-): Promise<boolean> {
-    //const url = `${host}${FEEDBACK_COMMENT}`;
-    throw Error(`Not implemented! host: ${host}, treeId: ${treeId}, nodeId: ${nodeId}, comment: ${comment}`);
-    // return true;
+): Promise<void> {
+    const message = comment;
+    return await postFeedback(`${host}/${FEEDBACK_COMMENT}`, { treeId, nodeId, message });
 }
 
 /**
+ * Send feedback about the outcome: solved/not solved.
  *
  * @param host - Guided Answer API host
  * @param treeId - Guided Answers tree id
  * @param nodeId - Guided Answers node id
  * @param solved - true: tree solved the problem; false: tree did not solve the problem
- * @returns - true: outcome sent successful; false: outcome not sent
  */
 async function sendFeedbackOutcome(
     host: string,
     treeId: GuidedAnswerTreeId,
     nodeId: GuidedAnswerNodeId,
     solved: boolean
-): Promise<boolean> {
-    throw Error(`Not implemented! host: ${host}, treeId: ${treeId}, nodeId: ${nodeId}, solved: ${solved}`);
-    // return true;
+): Promise<void> {
+    const message = solved ? 'Solved' : 'Not Solved';
+    return postFeedback(`${host}/${FEEDBACK_OUTCOME}`, { treeId, nodeId, message });
 }
