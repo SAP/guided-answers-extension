@@ -8,6 +8,7 @@ import type {
     GuidedAnswerNodeId,
     GuidedAnswersQueryFilterOptions,
     GuidedAnswersQueryOptions,
+    GuidedAnswersQueryPagingOptions,
     GuidedAnswerTree,
     GuidedAnswerTreeId,
     GuidedAnswerTreeSearchResult,
@@ -21,6 +22,7 @@ const VERSION = 'v2';
 const NODE_PATH = `/dtp/api/${VERSION}/nodes/`;
 const TREE_PATH = `/dtp/api/${VERSION}/trees/`;
 const IMG_PREFIX = '/dtp/viewer/';
+const DEFAULT_MAX_RESULTS = 9999;
 
 /**
  * Returns API to programmatically access Guided Answers.
@@ -59,22 +61,30 @@ function convertImageSrc(body: string, host: string): string {
 }
 
 /**
- * Convert query filter options to URL get paramter string.
+ * Convert query filter options to URL get parameter string.
  *
  * @param filters - optional filters
  * @param filters.component - optional component filter
  * @param filters.product - optional product filter
+ * @param paging - optional paging, if not provided set to high response size with 0 offset
  * @returns - URL get parameters as string
  */
-function convertQueryOptionsToGetParams(filters: GuidedAnswersQueryFilterOptions = {}): string {
-    return Object.keys(filters)
-        .map(
+function convertQueryOptionsToGetParams(
+    filters: GuidedAnswersQueryFilterOptions = {},
+    paging: GuidedAnswersQueryPagingOptions = { responseSize: DEFAULT_MAX_RESULTS, offset: 0 }
+): string {
+    const parameters = [
+        // Filter parameters
+        ...Object.keys(filters).map(
             (filterName) =>
                 `${filterName}=${filters[filterName as keyof typeof filters]
                     ?.map((filterValue) => encodeURIComponent(`"${filterValue}"`))
                     .join(',')}`
-        )
-        .join('&');
+        ),
+        // Paging parameters
+        ...Object.keys(paging).map((pagingName) => `${pagingName}=${paging[pagingName as keyof typeof paging]}`)
+    ];
+    return `?${parameters.join('&')}`;
 }
 
 /**
@@ -127,8 +137,7 @@ async function getTrees(host: string, queryOptions?: GuidedAnswersQueryOptions):
         );
     }
     const query = queryOptions?.query ? encodeURIComponent(`"${queryOptions.query}"`) : '*';
-    const filterString = convertQueryOptionsToGetParams(queryOptions?.filters);
-    const urlGetParamString = filterString ? `?${filterString}` : '';
+    const urlGetParamString = convertQueryOptionsToGetParams(queryOptions?.filters, queryOptions?.paging);
     const url = `${host}${TREE_PATH}${query}${urlGetParamString}`;
     const response: AxiosResponse<GuidedAnswerTreeSearchResult> = await axios.get<GuidedAnswerTreeSearchResult>(url);
     const searchResult = response.data;
