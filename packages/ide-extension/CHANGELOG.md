@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.10.1
+
+### Patch Changes
+
+-   61a5cb2: Fix to show more than 20 results
+
 ## 0.10.0
 
 ### Minor Changes
