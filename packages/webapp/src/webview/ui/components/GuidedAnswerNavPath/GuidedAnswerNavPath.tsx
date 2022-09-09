@@ -6,6 +6,7 @@ import { AppState } from '../../../types';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './GuidedAnswerNavPath.scss';
 import { focusOnElement } from '../utils';
+import i18next from 'i18next';
 
 /**
  * Renders and return the navigation section.
@@ -15,8 +16,17 @@ import { focusOnElement } from '../utils';
 export function GuidedAnswerNavPath(): ReactElement {
     let firstTimeFocus: boolean;
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
-    const activeNode = nodes[nodes.length - 1];
-    const lastIndex = nodes.length - 1;
+    const isSolved = useSelector<AppState, boolean | null>((state) => state.guideFeedback);
+    let activeNode = nodes[nodes.length - 1];
+    let lastIndex = nodes.length - 1;
+    let lastBlockBorderStyle = 'timeline-content-bottom-border';
+
+    if (isSolved === false && isSolved !== null) {
+        nodes.push({ NODE_ID: 99999, TITLE: i18next.t('ISSUE_IS_NOT_RESOLVED'), BODY: '', QUESTION: '', EDGES: [] });
+        activeNode = nodes[nodes.length - 1];
+        lastIndex = nodes.length - 1;
+        lastBlockBorderStyle = 'timeline-content-bottom-border-not-solved';
+    }
 
     if (activeNode) {
         firstTimeFocus = true;
@@ -36,9 +46,7 @@ export function GuidedAnswerNavPath(): ReactElement {
                         return (
                             <div key={`timeline-block-${i}`} className="timeline-block" role="treeitem">
                                 <button
-                                    className={`timeline-content ${
-                                        i === lastIndex ? 'timeline-content-bottom-border' : ''
-                                    }`}
+                                    className={`timeline-content ${i === lastIndex ? lastBlockBorderStyle : ''}`}
                                     onClick={(): void => {
                                         actions.updateActiveNode(node);
                                     }}>

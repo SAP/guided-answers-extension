@@ -28,7 +28,7 @@ export const SolvedMessage: React.FunctionComponent = () => {
 
     return (
         <>
-            <Dialog hidden={isHidden} dialogContentProps={dialogContentProps} modalProps={modalProps} styles={}>
+            <Dialog hidden={isHidden} dialogContentProps={dialogContentProps} modalProps={modalProps}>
                 <DialogFooter>
                     <PrimaryButton text={i18next.t('HOME')} onClick={actions.goToAllAnswers} />
                     <DefaultButton text={i18next.t('CLOSE')} onClick={toggleHidden} />

@@ -95,6 +95,7 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         }
         case RESTART_ANSWER: {
             newState.activeGuidedAnswerNode = [newState.activeGuidedAnswerNode[0]];
+            newState.guideFeedback = null;
             break;
         }
         case SET_ACTIVE_TREE: {

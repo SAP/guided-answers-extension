@@ -82,6 +82,10 @@ h1 span {
     text-align: left;
 }
 
+.timeline-content-bottom-border-not-solved {
+    border-bottom: 3px solid var(--vscode-notificationsErrorIcon-foreground, #f14c4c);
+}
+
 @media only screen and (max-width: 625px) {
     .timeline-content-title-large {
         display: none;

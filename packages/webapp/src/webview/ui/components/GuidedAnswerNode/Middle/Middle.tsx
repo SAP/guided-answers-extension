@@ -7,6 +7,7 @@ import { focusOnElement } from '../../utils';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { FeedbackSection } from '../../FeedbackSection/FeedbackSection';
+import NotSolvedMessage from '../../NotSolvedMessage/NotSolvedMessage';
 
 let firstTimeFocus = true;
 
@@ -24,7 +25,9 @@ export function Middle(props: {
 }): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
     firstTimeFocus = true;
-    return (
+    return appState.guideFeedback === false ? (
+        <NotSolvedMessage />
+    ) : (
         <div id="middle" className="column">
             <div className="body_container">
                 <header>{props.activeNode.TITLE}</header>
