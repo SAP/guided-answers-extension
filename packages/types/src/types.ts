@@ -122,6 +122,7 @@ export type GuidedAnswerActions =
     | SearchTree
     | SetQueryValue
     | WebviewReady
+    | GuideFeedback
     | BetaFeatures;
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
@@ -199,4 +200,10 @@ export const BETA_FEATURES = 'BETA_FEATURES';
 export interface BetaFeatures {
     type: typeof BETA_FEATURES;
     payload: boolean;
+}
+
+export const GUIDE_FEEDBACK = 'GUIDE_FEEDBACK';
+export interface GuideFeedback {
+    type: typeof GUIDE_FEEDBACK;
+    payload: boolean | null;
 }

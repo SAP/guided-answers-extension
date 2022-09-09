@@ -11,4 +11,6 @@ export interface AppState {
     activeGuidedAnswerNode: GuidedAnswerNode[];
     activeGuidedAnswer?: GuidedAnswerTree;
     betaFeatures: boolean;
+    searchResultCount: number;
+    guideFeedback: null | boolean;
 }

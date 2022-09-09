@@ -1,3 +1,4 @@
+import { guideFeedback } from './../../../../types/src/actions';
 import type { GuidedAnswerActions } from '@sap/guided-answers-extension-types';
 import {
     UPDATE_GUIDED_ANSWER_TREES,
@@ -8,6 +9,7 @@ import {
     RESTART_ANSWER,
     SET_ACTIVE_TREE,
     SET_QUERY_VALUE,
+    GUIDE_FEEDBACK,
     BETA_FEATURES
 } from '@sap/guided-answers-extension-types';
 import type { Reducer } from 'redux';
@@ -29,7 +31,9 @@ export function getInitialState(): AppState {
             trees: []
         },
         activeGuidedAnswerNode: [],
-        betaFeatures: false
+        betaFeatures: false,
+        searchResultCount: -1,
+        guideFeedback: null
     };
 }
 
@@ -53,6 +57,10 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         }
         case UPDATE_ACTIVE_NODE: {
             const node = newState.activeGuidedAnswerNode.find((n) => n.NODE_ID === action.payload.NODE_ID);
+            if (newState.guideFeedback === false) {
+                newState.guideFeedback = null;
+                newState.activeGuidedAnswerNode.pop();
+            }
             if (node) {
                 newState.activeGuidedAnswerNode = newState.activeGuidedAnswerNode.slice(
                     0,
@@ -68,12 +76,19 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             break;
         }
         case GO_TO_PREVIOUS_PAGE: {
-            if (newState.activeGuidedAnswerNode.length > 0) {
+            if (newState.activeGuidedAnswerNode.length > 0 && newState.guideFeedback !== false) {
+                newState.activeGuidedAnswerNode.pop();
+            }
+            if (newState.guideFeedback === false) {
+                newState.guideFeedback = null;
                 newState.activeGuidedAnswerNode.pop();
             }
             break;
         }
         case GO_TO_ALL_ANSWERS: {
+            if (newState.guideFeedback !== null) {
+                newState.guideFeedback = null;
+            }
             newState.activeGuidedAnswerNode = [];
             delete newState.activeGuidedAnswer;
             break;
@@ -92,6 +107,10 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         }
         case BETA_FEATURES: {
             newState.betaFeatures = action.payload;
+            break;
+        }
+        case GUIDE_FEEDBACK: {
+            newState.guideFeedback = action.payload;
             break;
         }
         default: {

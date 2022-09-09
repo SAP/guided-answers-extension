@@ -4,6 +4,9 @@ import type { GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answe
 import '../GuidedAnswerNode.scss';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { focusOnElement } from '../../utils';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../../types';
+import { FeedbackSection } from '../../FeedbackSection/FeedbackSection';
 
 let firstTimeFocus = true;
 
@@ -19,6 +22,7 @@ export function Middle(props: {
     activeNode: GuidedAnswerNodeType;
     enhancedBody: ReactElement | undefined | null;
 }): ReactElement {
+    const appState = useSelector<AppState, AppState>((state) => state);
     firstTimeFocus = true;
     return (
         <div id="middle" className="column">
@@ -47,18 +51,22 @@ export function Middle(props: {
                 direction={FocusZoneDirection.bidirectional}
                 isCircularNavigation={true}>
                 <div className="guided-answer__node">
-                    {props.activeNode.EDGES.map((edge, index) => (
-                        <button
-                            role="option"
-                            key={`edge_button${index}`}
-                            className="guided-answer__node__edge"
-                            onClick={(): void => {
-                                actions.selectNode(edge.TARGET_NODE);
-                                focusOnElement('.home-icon');
-                            }}>
-                            {edge.LABEL}
-                        </button>
-                    ))}
+                    {props.activeNode.EDGES.length > 0 ? (
+                        props.activeNode.EDGES.map((edge, index) => (
+                            <button
+                                role="option"
+                                key={`edge_button${index}`}
+                                className="guided-answer__node__edge"
+                                onClick={(): void => {
+                                    actions.selectNode(edge.TARGET_NODE);
+                                    focusOnElement('.home-icon');
+                                }}>
+                                {edge.LABEL}
+                            </button>
+                        ))
+                    ) : (
+                        <FeedbackSection />
+                    )}
                 </div>
             </FocusZone>
         </div>
