@@ -162,6 +162,10 @@ export function Filters() {
                         id="filter-products"
                         iconProps={{ iconName: UiIcons.Table }}
                         onClick={() => toggleFilters(PRODUCTS)}
+                        style={{
+                            marginLeft: '8px',
+                            backgroundColor: selectedProductFilters.length > 0 ? 'var(--vscode-button-background)' : ''
+                        }}
                         primary
                         title="Filter Products"
                         className="filter-button"></UIIconButton>
@@ -169,6 +173,11 @@ export function Filters() {
                         id="filter-components"
                         iconProps={{ iconName: UiIcons.IdTag }}
                         onClick={() => toggleFilters(COMPONENTS)}
+                        style={{
+                            marginLeft: '5px',
+                            backgroundColor:
+                                selectedComponentFilters.length > 0 ? 'var(--vscode-button-background)' : ''
+                        }}
                         primary
                         title="Filter Components"
                         className="filter-button"></UIIconButton>
