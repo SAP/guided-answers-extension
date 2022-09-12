@@ -14,7 +14,7 @@ describe('Guided Answers Api: getTrees()', () => {
         jest.clearAllMocks();
     });
 
-    test('Default host, should build correct request URL and convert node id, score string to number', async () => {
+    test('Default host, should build correct request URL and return results', async () => {
         // Mock setup
         const data: GuidedAnswerTreeSearchResult = {
             trees: [
@@ -63,7 +63,7 @@ describe('Guided Answers Api: getTrees()', () => {
         const result = await getGuidedAnswerApi().getTrees();
 
         // Result check
-        expect(requestUrl).toBe('https://ga.support.sap.com/dtp/api/v2/trees/*');
+        expect(requestUrl).toBe('https://ga.support.sap.com/dtp/api/v2/trees/*?responseSize=9999&offset=0');
         expect(result).toEqual({
             trees: [
                 {
@@ -127,7 +127,7 @@ describe('Guided Answers Api: getTrees()', () => {
         const result = await getGuidedAnswerApi({ apiHost: 'https://my.custom.host' }).getTrees({ query: 'ONE' });
 
         // Result check
-        expect(requestUrl).toBe('https://my.custom.host/dtp/api/v2/trees/%22ONE%22');
+        expect(requestUrl).toBe('https://my.custom.host/dtp/api/v2/trees/%22ONE%22?responseSize=9999&offset=0');
         expect(result).toEqual({
             trees: [
                 {
@@ -157,6 +157,7 @@ describe('Guided Answers Api: getTrees()', () => {
             expect(error.message).toContain('anyhost');
         }
     });
+
     test('Test non compliant request where query is of type number)', async () => {
         try {
             // Test execution
@@ -190,7 +191,7 @@ describe('Guided Answers Api: getTrees()', () => {
 
         // Result check
         expect(requestUrl).toEqual(
-            'anyhost/dtp/api/v2/trees/%22QUERY%22?component=%22COMP-1%60%22,%22COMP-2%22&product=%22P1%22,%22P2%22'
+            'anyhost/dtp/api/v2/trees/%22QUERY%22?component=%22COMP-1%60%22,%22COMP-2%22&product=%22P1%22,%22P2%22&responseSize=9999&offset=0'
         );
     });
 
@@ -213,7 +214,7 @@ describe('Guided Answers Api: getTrees()', () => {
 
         // Result check
         expect(requestUrl).toEqual(
-            'anyhost/dtp/api/v2/trees/*?component=%22COMP-1%60%22,%22COMP-2%22&product=%22P1%22,%22P2%22'
+            'anyhost/dtp/api/v2/trees/*?component=%22COMP-1%60%22,%22COMP-2%22&product=%22P1%22,%22P2%22&responseSize=9999&offset=0'
         );
     });
 
@@ -234,10 +235,10 @@ describe('Guided Answers Api: getTrees()', () => {
         await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
 
         // Result check
-        expect(requestUrl).toEqual('anyhost/dtp/api/v2/trees/*?product=%22PRODUCT%22');
+        expect(requestUrl).toEqual('anyhost/dtp/api/v2/trees/*?product=%22PRODUCT%22&responseSize=9999&offset=0');
     });
 
-    test('Test component filter only (also lot of speacial chars)', async () => {
+    test('Test component filter only (also lot of special chars)', async () => {
         // Mock setup
         const options: GuidedAnswersQueryOptions = {
             filters: {
@@ -255,8 +256,29 @@ describe('Guided Answers Api: getTrees()', () => {
 
         // Result check
         expect(requestUrl).toEqual(
-            "anyhost/dtp/api/v2/trees/*?component=%22COMPONENT%60%22,%221-COMPONENT%22!%40%23%24%25%5E%26*()_%2B%3C%3E%2C.%3F%2F%7C%7B%7D%5B%5D%3B'%3A%22%2B_with%20special%20chars%22"
+            "anyhost/dtp/api/v2/trees/*?component=%22COMPONENT%60%22,%221-COMPONENT%22!%40%23%24%25%5E%26*()_%2B%3C%3E%2C.%3F%2F%7C%7B%7D%5B%5D%3B'%3A%22%2B_with%20special%20chars%22&responseSize=9999&offset=0"
         );
+    });
+
+    test('Test paging parameters', async () => {
+        // Mock setup
+        const options: GuidedAnswersQueryOptions = {
+            paging: {
+                responseSize: 2,
+                offset: 1
+            }
+        };
+        let requestUrl = '';
+        mockedAxios.get.mockImplementation((url) => {
+            requestUrl = url;
+            return Promise.resolve({ data: { trees: [] } });
+        });
+
+        // Test execution
+        await getGuidedAnswerApi({ apiHost: 'otherhost' }).getTrees(options);
+
+        // Result check
+        expect(requestUrl).toEqual('otherhost/dtp/api/v2/trees/*?responseSize=2&offset=1');
     });
 });
 

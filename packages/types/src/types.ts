@@ -15,11 +15,17 @@ export interface GuidedAnswerTree {
 export interface GuidedAnswersQueryOptions {
     query?: string;
     filters?: GuidedAnswersQueryFilterOptions;
+    paging?: GuidedAnswersQueryPagingOptions;
 }
 
 export interface GuidedAnswersQueryFilterOptions {
     component?: string[];
     product?: string[];
+}
+
+export interface GuidedAnswersQueryPagingOptions {
+    responseSize: number;
+    offset: number;
 }
 
 export type GuidedAnswerTreeSearchHit = GuidedAnswerTree & { SCORE: number };
