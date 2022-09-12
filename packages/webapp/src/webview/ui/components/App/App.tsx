@@ -30,11 +30,13 @@ const filterResults = (
 ) => {
     let filteredTrees = trees;
     if (selectedProductFilters.length > 0) {
-        filteredTrees = trees.filter((t) => selectedProductFilters.some((f) => t.PRODUCT.includes(f)));
+        filteredTrees = trees.filter((t) => selectedProductFilters.some((f) => t.PRODUCT && t.PRODUCT.includes(f)));
     }
 
     if (selectedComponentFilters.length > 0) {
-        filteredTrees = trees.filter((t) => selectedComponentFilters.some((f) => t.COMPONENT.includes(f)));
+        filteredTrees = trees.filter((t) =>
+            selectedComponentFilters.some((f) => t.COMPONENT && t.COMPONENT.includes(f))
+        );
     }
     return filteredTrees;
 };
