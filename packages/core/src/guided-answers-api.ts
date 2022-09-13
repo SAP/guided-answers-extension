@@ -3,6 +3,8 @@ import axios from 'axios';
 import { default as xss } from 'xss';
 import type {
     APIOptions,
+    FeedbackCommentPayload,
+    FeedbackOutcomePayload,
     GuidedAnswerAPI,
     GuidedAnswerNode,
     GuidedAnswerNodeId,
@@ -49,10 +51,10 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
             nodes = nodes.map((node) => enhanceNode(node, nodeEnhancements, htmlEnhancements));
             return nodes;
         },
-        sendFeedbackComment: async (treeId: GuidedAnswerTreeId, nodeId: GuidedAnswerNodeId, comment: string) =>
-            sendFeedbackComment(apiHost, treeId, nodeId, comment),
-        sendFeedbackOutcome: async (treeId: GuidedAnswerTreeId, nodeId: GuidedAnswerNodeId, solved: boolean) =>
-            sendFeedbackOutcome(apiHost, treeId, nodeId, solved)
+        sendFeedbackComment: async (payload: FeedbackCommentPayload) =>
+            sendFeedbackComment(apiHost, payload.treeId, payload.nodeId, payload.comment),
+        sendFeedbackOutcome: async (payload: FeedbackOutcomePayload) =>
+            sendFeedbackOutcome(apiHost, payload.treeId, payload.nodeId, payload.solved)
     };
 }
 

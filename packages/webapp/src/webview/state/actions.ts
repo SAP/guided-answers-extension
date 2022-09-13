@@ -11,5 +11,7 @@ export {
     setQueryValue,
     webviewReady,
     getBetaFeatures,
+    sendFeedbackOutcome,
+    sendFeedbackComment,
     guideFeedback
 } from '@sap/guided-answers-extension-types';

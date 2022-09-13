@@ -18,7 +18,11 @@ import type {
     GuidedAnswerTreeSearchResult,
     GuidedAnswersQueryOptions,
     BetaFeatures,
-    GuideFeedback
+    GuideFeedback,
+    FeedbackOutcomePayload,
+    SendFeedbackOutcome,
+    FeedbackCommentPayload,
+    SendFeedbackComment
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -34,7 +38,9 @@ import {
     UPDATE_LOADING,
     WEBVIEW_READY,
     BETA_FEATURES,
-    GUIDE_FEEDBACK
+    GUIDE_FEEDBACK,
+    SEND_FEEDBACK_OUTCOME,
+    SEND_FEEDBACK_COMMENT
 } from './types';
 
 export const updateGuidedAnserTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnserTrees => ({
@@ -95,5 +101,15 @@ export const webviewReady = (): WebviewReady => ({ type: WEBVIEW_READY });
 
 export const guideFeedback = (payload: boolean | null): GuideFeedback => ({
     type: GUIDE_FEEDBACK,
+    payload
+});
+
+export const sendFeedbackOutcome = (payload: FeedbackOutcomePayload): SendFeedbackOutcome => ({
+    type: SEND_FEEDBACK_OUTCOME,
+    payload
+});
+
+export const sendFeedbackComment = (payload: FeedbackCommentPayload): SendFeedbackComment => ({
+    type: SEND_FEEDBACK_COMMENT,
     payload
 });
