@@ -1,5 +1,13 @@
 # @sap/guided-answers-extension-core
 
+## 0.2.1
+
+### Patch Changes
+
+-   61a5cb2: Fix to show more than 20 results
+-   Updated dependencies [61a5cb2]
+    -   @sap/guided-answers-extension-types@0.5.1
+
 ## 0.2.0
 
 ### Minor Changes
