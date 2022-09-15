@@ -53,8 +53,6 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
     switch (action.type) {
         case UPDATE_GUIDED_ANSWER_TREES: {
             newState.guidedAnswerTreeSearchResult = action.payload;
-            newState.selectedProductFilters = [];
-            newState.selectedComponentFilters = [];
             delete newState.activeGuidedAnswer;
             break;
         }

@@ -16,34 +16,6 @@ import { initIcons } from '../UIComponentsLib/Icons';
 initIcons();
 
 /**
- * Filters the query results based on the selected filters.
- *
- * @param trees - results passed from global state
- * @param selectedProductFilters - selected product filters
- * @param selectedComponentFilters - selected component filters
- * @returns - returns a filtered list if filters have been selected
- */
-const filterResults = (
-    trees: GuidedAnswerTreeSearchHit[],
-    selectedProductFilters: string[],
-    selectedComponentFilters: string[]
-) => {
-    let filteredTrees = trees;
-    if (selectedProductFilters.length > 0) {
-        filteredTrees = (selectedComponentFilters.length > 0 ? filteredTrees : trees).filter((t) =>
-            selectedProductFilters.some((f) => t.PRODUCT && t.PRODUCT.includes(f))
-        );
-    }
-
-    if (selectedComponentFilters.length > 0) {
-        filteredTrees = (selectedProductFilters.length > 0 ? filteredTrees : trees).filter((t) =>
-            selectedComponentFilters.some((f) => t.COMPONENT && t.COMPONENT.includes(f))
-        );
-    }
-    return filteredTrees;
-};
-
-/**
  * Start element for Guided Answers Extension app.
  *
  * @returns - react elements for this app
@@ -64,11 +36,7 @@ export function App(): ReactElement {
                 <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
                     <FiltersRibbon />
                     <ul className="striped-list" role="listbox">
-                        {filterResults(
-                            appState.guidedAnswerTreeSearchResult.trees,
-                            appState.selectedProductFilters,
-                            appState.selectedComponentFilters
-                        ).map((tree, index) => {
+                        {appState.guidedAnswerTreeSearchResult.trees.map((tree, index) => {
                             return (
                                 <li key={`tree-item-${index}`} className="tree-item" role="option">
                                     <button

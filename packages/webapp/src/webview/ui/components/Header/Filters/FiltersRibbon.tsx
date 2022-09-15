@@ -19,6 +19,13 @@ export function FiltersRibbon() {
     const hasBothFilters = hasProductsFilter && hasComponentsFilter;
     const resetFilters = () => {
         actions.resetFilters();
+        actions.searchTree({
+            query: appState.query,
+            filters: {
+                product: [],
+                component: []
+            }
+        });
     };
 
     return (

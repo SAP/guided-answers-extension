@@ -26,7 +26,13 @@ export function SearchField() {
                         clearTimeout(timer);
                         actions.setQueryValue(newValue);
                         timer = setTimeout(() => {
-                            actions.searchTree({ query: newValue });
+                            actions.searchTree({
+                                query: newValue,
+                                filters: {
+                                    product: [],
+                                    component: []
+                                }
+                            });
                         }, 400);
                     }
                 }}></VSCodeTextField>

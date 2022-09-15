@@ -54,8 +54,20 @@ export function Filters() {
         toggleVisibility(type);
         if (type === PRODUCTS) {
             actions.setProductFilters(selectedProductFilters);
+            actions.searchTree({
+                query: appState.query,
+                filters: {
+                    product: selectedProductFilters
+                }
+            });
         } else {
             actions.setComponentFilters(selectedComponentFilters);
+            actions.searchTree({
+                query: appState.query,
+                filters: {
+                    component: selectedComponentFilters
+                }
+            });
         }
     };
 
@@ -72,8 +84,22 @@ export function Filters() {
         setQuery('');
         if (isFilterProducts) {
             actions.setProductFilters([]);
+            actions.searchTree({
+                query: appState.query,
+                filters: {
+                    product: [],
+                    component: appState.selectedComponentFilters.length > 0 ? appState.selectedComponentFilters : []
+                }
+            });
         } else {
             actions.setComponentFilters([]);
+            actions.searchTree({
+                query: appState.query,
+                filters: {
+                    product: appState.selectedProductFilters.length > 0 ? appState.selectedProductFilters : [],
+                    component: []
+                }
+            });
         }
         setDialogVisible(!isDialogVisible);
     };
@@ -162,6 +188,7 @@ export function Filters() {
                         id="filter-products"
                         iconProps={{ iconName: UiIcons.Table }}
                         onClick={() => toggleFilters(PRODUCTS)}
+                        disabled={appState.guidedAnswerTreeSearchResult.productFilters.length === 0}
                         style={{
                             marginLeft: '8px',
                             backgroundColor: selectedProductFilters.length > 0 ? 'var(--vscode-button-background)' : ''
@@ -173,6 +200,7 @@ export function Filters() {
                         id="filter-components"
                         iconProps={{ iconName: UiIcons.IdTag }}
                         onClick={() => toggleFilters(COMPONENTS)}
+                        disabled={appState.guidedAnswerTreeSearchResult.componentFilters.length === 0}
                         style={{
                             marginLeft: '5px',
                             backgroundColor:
