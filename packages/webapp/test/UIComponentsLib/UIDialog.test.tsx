@@ -9,8 +9,49 @@ import {
 import { UIDefaultButton } from '../../../webapp/src/webview/ui/components/UIComponentsLib/UIButton';
 import type { IDialogStyles, IDialogContentStyles, IDialogFooterStyles } from '@fluentui/react';
 import { Dialog, DialogFooter, ContextualMenu } from '@fluentui/react';
-import type { DOMEventListenerMock } from '../utils';
-import { mockDomEventListener } from '../utils';
+
+export interface DOMEventListenerMock {
+    simulateEvent: (name: string, value: object) => void;
+    cleanDomEventListeners: () => void;
+    domEventListeners: { [k: string]: Array<Function> };
+}
+
+export const mockDomEventListener = (handler: Document | Window | Element = document): DOMEventListenerMock => {
+    const domEventListeners: { [k: string]: Array<Function> } = {};
+    // Mock for add event listener
+    handler.addEventListener = jest.fn((event, cb) => {
+        if (!domEventListeners[event]) {
+            domEventListeners[event] = [];
+        }
+        domEventListeners[event].push(cb as Function);
+    });
+    handler.removeEventListener = jest.fn((event, cb) => {
+        if (domEventListeners[event]) {
+            const index = domEventListeners[event].findIndex((storedCb) => storedCb === cb);
+            if (index !== -1) {
+                domEventListeners[event].splice(index, 1);
+            }
+            if (domEventListeners[event].length === 0) {
+                delete domEventListeners[event];
+            }
+        }
+    });
+    return {
+        simulateEvent: (name: string, value: object): void => {
+            if (domEventListeners[name]) {
+                for (const cb of domEventListeners[name]) {
+                    cb(value);
+                }
+            }
+        },
+        cleanDomEventListeners: (): void => {
+            for (const eventName in domEventListeners) {
+                delete domEventListeners[eventName];
+            }
+        },
+        domEventListeners
+    };
+};
 
 describe('<UIDialog />', () => {
     const windowHeight = 300;
