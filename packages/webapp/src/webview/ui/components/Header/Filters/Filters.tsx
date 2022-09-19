@@ -10,6 +10,21 @@ import { VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
 import type { ProductFilter, ComponentFilter } from '@sap/guided-answers-extension-types';
 
 /**
+ * Sorts products array.
+ *
+ * @param filters A products array
+ * @returns A sorted list of products
+ */
+export const sortProductFilters = (filters: ProductFilter[]) => {
+    return filters.sort((a: ProductFilter, b: ProductFilter) => {
+        return a.PRODUCT.localeCompare(b.PRODUCT, undefined, {
+            numeric: true,
+            sensitivity: 'base'
+        });
+    });
+};
+
+/**
  *
  * @returns Filters for the header
  */
@@ -25,14 +40,6 @@ export function Filters() {
     const [selectedProductFilters, setSelectedProductFilters] = useState(appState.selectedProductFilters);
     const [selectedComponentFilters, setSelectedComponentFilters] = useState(appState.selectedProductFilters);
     const isFilterProducts = filter === PRODUCTS;
-    const sortProductFilters = (filters: ProductFilter[]) => {
-        return filters.sort((a: ProductFilter, b: ProductFilter) => {
-            return a.PRODUCT.localeCompare(b.PRODUCT, undefined, {
-                numeric: true,
-                sensitivity: 'base'
-            });
-        });
-    };
     const main = {
         ['.ms-TextField-wrapper > .ms-Label']: {
             margin: 0
@@ -183,7 +190,7 @@ export function Filters() {
     return (
         <>
             {appState.betaFeatures && (
-                <>
+                <div id="filters">
                     <UIIconButton
                         id="filter-products"
                         iconProps={{ iconName: UiIcons.Table }}
@@ -210,6 +217,7 @@ export function Filters() {
                         title="Filter Components"
                         className="filter-button"></UIIconButton>
                     <UIDialog
+                        className="dialog-filter"
                         dialogContentProps={{ title: filterType[filter].title }}
                         isOpen={filterType[filter].visibility}
                         isBlocking={true}
@@ -228,7 +236,7 @@ export function Filters() {
                             id="dialog-filter-field"></VSCodeTextField>
                         <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>{filterType[filter].listItems}</ul>
                     </UIDialog>
-                </>
+                </div>
             )}
         </>
     );
