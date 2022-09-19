@@ -3,7 +3,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { VSCodeProgressRing } from '@vscode/webview-ui-toolkit/react';
 import { AppState } from '../../../types';
-import type { GuidedAnswerTreeSearchHit } from '@sap/guided-answers-extension-types';
 import { actions } from '../../../state';
 import { GuidedAnswerNode } from '../GuidedAnswerNode';
 import { Header } from '../Header';
