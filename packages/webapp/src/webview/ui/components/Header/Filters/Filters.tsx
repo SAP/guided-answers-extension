@@ -189,55 +189,52 @@ export function Filters() {
 
     return (
         <>
-            {appState.betaFeatures && (
-                <div id="filters">
-                    <UIIconButton
-                        id="filter-products"
-                        iconProps={{ iconName: UiIcons.Table }}
-                        onClick={() => toggleFilters(PRODUCTS)}
-                        disabled={appState.guidedAnswerTreeSearchResult.productFilters.length === 0}
-                        style={{
-                            marginLeft: '8px',
-                            backgroundColor: selectedProductFilters.length > 0 ? 'var(--vscode-button-background)' : ''
-                        }}
-                        primary
-                        title="Filter Products"
-                        className="filter-button"></UIIconButton>
-                    <UIIconButton
-                        id="filter-components"
-                        iconProps={{ iconName: UiIcons.IdTag }}
-                        onClick={() => toggleFilters(COMPONENTS)}
-                        disabled={appState.guidedAnswerTreeSearchResult.componentFilters.length === 0}
-                        style={{
-                            marginLeft: '5px',
-                            backgroundColor:
-                                selectedComponentFilters.length > 0 ? 'var(--vscode-button-background)' : ''
-                        }}
-                        primary
-                        title="Filter Components"
-                        className="filter-button"></UIIconButton>
-                    <UIDialog
-                        className="dialog-filter"
-                        dialogContentProps={{ title: filterType[filter].title }}
-                        isOpen={filterType[filter].visibility}
-                        isBlocking={true}
-                        acceptButtonText={'Apply Filter'}
-                        cancelButtonText={'Cancel'}
-                        styles={{ main }}
-                        onAccept={() => filterType[filter].apply()}
-                        onCancel={resetFilter}
-                        onDismiss={resetFilter}>
-                        <VSCodeTextField
-                            style={{ width: '100%' }}
-                            value={query}
-                            onInput={searchFilter}
-                            readOnly={appState.loading}
-                            placeholder="Search"
-                            id="dialog-filter-field"></VSCodeTextField>
-                        <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>{filterType[filter].listItems}</ul>
-                    </UIDialog>
-                </div>
-            )}
+            <div id="filters">
+                <UIIconButton
+                    id="filter-products"
+                    iconProps={{ iconName: UiIcons.Table }}
+                    onClick={() => toggleFilters(PRODUCTS)}
+                    disabled={appState.guidedAnswerTreeSearchResult.productFilters.length === 0}
+                    style={{
+                        marginLeft: '8px',
+                        backgroundColor: selectedProductFilters.length > 0 ? 'var(--vscode-button-background)' : ''
+                    }}
+                    primary
+                    title="Filter Products"
+                    className="filter-button"></UIIconButton>
+                <UIIconButton
+                    id="filter-components"
+                    iconProps={{ iconName: UiIcons.IdTag }}
+                    onClick={() => toggleFilters(COMPONENTS)}
+                    disabled={appState.guidedAnswerTreeSearchResult.componentFilters.length === 0}
+                    style={{
+                        marginLeft: '5px',
+                        backgroundColor: selectedComponentFilters.length > 0 ? 'var(--vscode-button-background)' : ''
+                    }}
+                    primary
+                    title="Filter Components"
+                    className="filter-button"></UIIconButton>
+                <UIDialog
+                    className="dialog-filter"
+                    dialogContentProps={{ title: filterType[filter].title }}
+                    isOpen={filterType[filter].visibility}
+                    isBlocking={true}
+                    acceptButtonText={'Apply Filter'}
+                    cancelButtonText={'Cancel'}
+                    styles={{ main }}
+                    onAccept={() => filterType[filter].apply()}
+                    onCancel={resetFilter}
+                    onDismiss={resetFilter}>
+                    <VSCodeTextField
+                        style={{ width: '100%' }}
+                        value={query}
+                        onInput={searchFilter}
+                        readOnly={appState.loading}
+                        placeholder="Search"
+                        id="dialog-filter-field"></VSCodeTextField>
+                    <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>{filterType[filter].listItems}</ul>
+                </UIDialog>
+            </div>
         </>
     );
 }

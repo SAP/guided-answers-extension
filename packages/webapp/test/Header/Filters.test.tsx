@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Filters, sortProductFilters } from '../../src/webview/ui/components/Header/Filters/Filters';
-import { actions } from '../../src/webview/state';
 
 jest.mock('@vscode/webview-ui-toolkit/react', () => ({
     VSCodeTextField: () => (
@@ -46,8 +45,7 @@ jest.mock('react-redux', () => {
             },
             query: 'fiori tools',
             selectedProductFilters: ['Product A'],
-            selectedComponentFilters: ['comp-a'],
-            betaFeatures: true
+            selectedComponentFilters: ['comp-a']
         })
     };
 });

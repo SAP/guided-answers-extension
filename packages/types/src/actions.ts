@@ -11,7 +11,7 @@ import type {
     SelectNode,
     SetActiveTree,
     SetQueryValue,
-    UpdateGuidedAnserTrees,
+    UpdateGuidedAnswerTrees,
     UpdateActiveNode,
     WebviewReady,
     UpdateLoading,
@@ -41,7 +41,7 @@ import {
     RESET_FILTERS
 } from './types';
 
-export const updateGuidedAnserTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnserTrees => ({
+export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
     type: UPDATE_GUIDED_ANSWER_TREES,
     payload
 });

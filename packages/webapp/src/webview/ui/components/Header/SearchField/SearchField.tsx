@@ -36,7 +36,7 @@ export function SearchField() {
                         }, 400);
                     }
                 }}></VSCodeTextField>
-            {appState.betaFeatures && <Filters />}
+            <Filters />
         </div>
     );
 }

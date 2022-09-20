@@ -3,7 +3,7 @@ import { Uri, ViewColumn, window, workspace } from 'vscode';
 import type { GuidedAnswerActions, GuidedAnswerAPI } from '@sap/guided-answers-extension-types';
 import {
     SELECT_NODE,
-    updateGuidedAnserTrees,
+    updateGuidedAnswerTrees,
     updateActiveNode,
     updateLoading,
     EXECUTE_COMMAND,
@@ -126,7 +126,7 @@ export class GuidedAnswersPanel {
                 }
                 case SEARCH_TREE: {
                     const trees = await this.guidedAnswerApi.getTrees(action.payload);
-                    this.postActionToWebview(updateGuidedAnserTrees(trees));
+                    this.postActionToWebview(updateGuidedAnswerTrees(trees));
                     break;
                 }
                 case WEBVIEW_READY: {

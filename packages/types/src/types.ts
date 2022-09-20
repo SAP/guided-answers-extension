@@ -112,7 +112,7 @@ export const HTML_ENHANCEMENT_DATA_ATTR_MARKER = 'data-guided-answers-command-8d
  * Action types for redux
  */
 export type GuidedAnswerActions =
-    | UpdateGuidedAnserTrees
+    | UpdateGuidedAnswerTrees
     | SelectNode
     | UpdateActiveNode
     | UpdateLoading
@@ -130,7 +130,7 @@ export type GuidedAnswerActions =
     | ResetFilters;
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
-export interface UpdateGuidedAnserTrees {
+export interface UpdateGuidedAnswerTrees {
     type: typeof UPDATE_GUIDED_ANSWER_TREES;
     payload: GuidedAnswerTreeSearchResult;
 }

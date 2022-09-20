@@ -1,5 +1,5 @@
 export {
-    updateGuidedAnserTrees,
+    updateGuidedAnswerTrees,
     updateActiveNode,
     selectNode,
     goToPreviousPage,
