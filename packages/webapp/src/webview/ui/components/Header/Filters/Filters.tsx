@@ -64,7 +64,8 @@ export function Filters() {
             actions.searchTree({
                 query: appState.query,
                 filters: {
-                    product: selectedProductFilters
+                    product: selectedProductFilters,
+                    component: selectedComponentFilters
                 }
             });
         } else {
@@ -72,6 +73,7 @@ export function Filters() {
             actions.searchTree({
                 query: appState.query,
                 filters: {
+                    product: selectedProductFilters,
                     component: selectedComponentFilters
                 }
             });

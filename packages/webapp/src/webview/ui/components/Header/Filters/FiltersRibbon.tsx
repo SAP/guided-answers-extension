@@ -37,13 +37,15 @@ export function FiltersRibbon() {
                     <strong>
                         {selectedProductFilters && selectedProductFilters.map((pf: string) => pf).join(', ')}
                     </strong>
-                    &nbsp;
+                    {hasBothFilters && <strong>&nbsp;</strong>}
                     {hasBothFilters ? 'and' : ''}
                     {hasBothFilters && <strong>&nbsp;</strong>}
+                    {hasComponentsFilter && !hasProductsFilter && <strong>&nbsp;</strong>}
                     {hasComponentsFilter ? 'Component' : ''}&nbsp;
                     <strong>
                         {selectedComponentFilters && selectedComponentFilters.map((cf: string) => cf).join(', ')}
                     </strong>
+                    {hasBothFilters && <strong>&nbsp;</strong>}
                     <button className="clear-filters clear-filters-icon" onClick={resetFilters} title="Clear filters">
                         <VscClose className="clear-filters__content" />{' '}
                         <span className="text-underline">Clear filters</span>
