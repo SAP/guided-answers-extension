@@ -37,9 +37,7 @@ export function FiltersRibbon() {
                     <strong>
                         {selectedProductFilters && selectedProductFilters.map((pf: string) => pf).join(', ')}
                     </strong>
-                    {hasBothFilters && <strong>&nbsp;</strong>}
-                    {hasBothFilters ? 'and' : ''}
-                    {hasBothFilters && <strong>&nbsp;</strong>}
+                    {hasBothFilters && <strong>&nbsp; and &nbsp;</strong>}
                     {hasComponentsFilter && !hasProductsFilter && <strong>&nbsp;</strong>}
                     {hasComponentsFilter ? 'Component' : ''}&nbsp;
                     <strong>

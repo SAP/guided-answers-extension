@@ -40,9 +40,7 @@ describe('<FiltersRibbon />', () => {
 
     it('Should render a FiltersRibbon component', () => {
         const component = wrapper.html();
-        expect(component).toMatchInlineSnapshot(
-            `"<div style=\\"display:flex;align-items:center;flex-flow:wrap\\">Searching in Product<strong> </strong><strong>ProductFilter1, ProductFilter2</strong><strong> </strong>and<strong> </strong>Component <strong>ComponentFilter1, ComponentFilter2</strong><strong> </strong><button class=\\"clear-filters clear-filters-icon\\" title=\\"Clear filters\\"><svg stroke=\\"currentColor\\" fill=\\"currentColor\\" stroke-width=\\"0\\" viewBox=\\"0 0 16 16\\" class=\\"clear-filters__content\\" height=\\"1em\\" width=\\"1em\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path fill-rule=\\"evenodd\\" clip-rule=\\"evenodd\\" d=\\"M8 8.707l3.646 3.647.708-.707L8.707 8l3.647-3.646-.707-.708L8 7.293 4.354 3.646l-.707.708L7.293 8l-3.646 3.646.707.708L8 8.707z\\"></path></svg> <span class=\\"text-underline\\">Clear filters</span></button></div>"`
-        );
+        expect(component).toMatchInlineSnapshot(`"<div style=\\"display:flex;align-items:center;flex-flow:wrap\\">Searching in Product<strong> </strong><strong>ProductFilter1, ProductFilter2</strong><strong>  and  </strong>Component <strong>ComponentFilter1, ComponentFilter2</strong><strong> </strong><button class=\\"clear-filters clear-filters-icon\\" title=\\"Clear filters\\"><svg stroke=\\"currentColor\\" fill=\\"currentColor\\" stroke-width=\\"0\\" viewBox=\\"0 0 16 16\\" class=\\"clear-filters__content\\" height=\\"1em\\" width=\\"1em\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path fill-rule=\\"evenodd\\" clip-rule=\\"evenodd\\" d=\\"M8 8.707l3.646 3.647.708-.707L8.707 8l3.647-3.646-.707-.708L8 7.293 4.354 3.646l-.707.708L7.293 8l-3.646 3.646.707.708L8 8.707z\\"></path></svg> <span class=\\"text-underline\\">Clear filters</span></button></div>"`);
 
         wrapper.find('.clear-filters').simulate('click');
         expect(actions.resetFilters).toBeCalled();
