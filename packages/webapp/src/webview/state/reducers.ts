@@ -9,6 +9,7 @@ import {
     SET_ACTIVE_TREE,
     SET_QUERY_VALUE,
     BETA_FEATURES,
+    SEARCH_TREE,
     SET_PRODUCT_FILTERS,
     SET_COMPONENT_FILTERS,
     RESET_FILTERS
@@ -110,6 +111,13 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         case RESET_FILTERS: {
             newState.selectedProductFilters = [];
             newState.selectedComponentFilters = [];
+            break;
+        }
+        case SEARCH_TREE: {
+            const selectedComponentFilters = action.payload?.filters?.component;
+            newState.selectedComponentFilters = Array.isArray(selectedComponentFilters) ? selectedComponentFilters : [];
+            const selectedProductFilters = action.payload?.filters?.product;
+            newState.selectedProductFilters = Array.isArray(selectedProductFilters) ? selectedProductFilters : [];
             break;
         }
         default: {
