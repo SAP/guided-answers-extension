@@ -31,12 +31,6 @@ export const sortComponentFilters = (filters: ComponentFilter[]) => {
     };
     type ComponentFilterWithNoHyphens = ComponentFilter & WithNoHyphens;
 
-    const unSortedComponents = filters.map((f: ComponentFilter) => {
-        let filter: ComponentFilterWithNoHyphens = f;
-        filter.NOHYPHENS = f.COMPONENT.replace(/-/g, '');
-        return filter;
-    });
-
     const sorting = (a: ComponentFilterWithNoHyphens, b: ComponentFilterWithNoHyphens): any => {
         if (a.NOHYPHENS !== undefined && b.NOHYPHENS !== undefined) {
             return a.NOHYPHENS.localeCompare(b.NOHYPHENS, undefined, {
@@ -46,10 +40,17 @@ export const sortComponentFilters = (filters: ComponentFilter[]) => {
         }
     };
 
-    return unSortedComponents.sort(sorting).map((c: ComponentFilterWithNoHyphens): ComponentFilter => {
-        delete c.NOHYPHENS;
-        return c;
-    });
+    return filters
+        .map((f: ComponentFilter) => {
+            let filter: ComponentFilterWithNoHyphens = f;
+            filter.NOHYPHENS = f.COMPONENT.replace(/-/g, '');
+            return filter;
+        })
+        .sort(sorting)
+        .map((c: ComponentFilterWithNoHyphens): ComponentFilter => {
+            delete c.NOHYPHENS;
+            return c;
+        });
 };
 
 /**
