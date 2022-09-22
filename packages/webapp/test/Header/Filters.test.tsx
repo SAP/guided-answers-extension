@@ -1,6 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Filters, sortProductFilters } from '../../src/webview/ui/components/Header/Filters/Filters';
+import {
+    Filters,
+    sortProductFilters,
+    sortComponentFilters
+} from '../../src/webview/ui/components/Header/Filters/Filters';
 
 jest.mock('@vscode/webview-ui-toolkit/react', () => ({
     VSCodeTextField: () => (
@@ -93,6 +97,24 @@ describe('<Filters />', () => {
         ).toEqual([
             { PRODUCT: 'Product A', COUNT: 1 },
             { PRODUCT: 'Product B', COUNT: 1 }
+        ]);
+
+        expect(
+            sortComponentFilters([
+                { COMPONENT: 'LOD-BPM-WFS', COUNT: 1 },
+                { COMPONENT: 'CA-UX-IDE', COUNT: 2 },
+                { COMPONENT: 'BI-BIP-DEP', COUNT: 1 },
+                { COMPONENT: 'BI-BIP-INV', COUNT: 1 },
+                { COMPONENT: 'EP-PIN-AI', COUNT: 1 },
+                { COMPONENT: 'GRC-SAC-ARQ', COUNT: 1 }
+            ])
+        ).toEqual([
+            { COMPONENT: 'BI-BIP-DEP', COUNT: 1 },
+            { COMPONENT: 'BI-BIP-INV', COUNT: 1 },
+            { COMPONENT: 'CA-UX-IDE', COUNT: 2 },
+            { COMPONENT: 'EP-PIN-AI', COUNT: 1 },
+            { COMPONENT: 'GRC-SAC-ARQ', COUNT: 1 },
+            { COMPONENT: 'LOD-BPM-WFS', COUNT: 1 }
         ]);
     });
 

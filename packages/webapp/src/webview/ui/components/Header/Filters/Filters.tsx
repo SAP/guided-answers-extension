@@ -25,6 +25,33 @@ export const sortProductFilters = (filters: ProductFilter[]) => {
     });
 };
 
+export const sortComponentFilters = (filters: ComponentFilter[]) => {
+    type WithNoHyphens = {
+        NOHYPHENS?: string;
+    };
+    type ComponentFilterWithNoHyphens = ComponentFilter & WithNoHyphens;
+
+    const unSortedComponents = filters.map((f: ComponentFilter) => {
+        let filter: ComponentFilterWithNoHyphens = f;
+        filter.NOHYPHENS = f.COMPONENT.replace(/-/g, '');
+        return filter;
+    });
+
+    const sorting = (a: ComponentFilterWithNoHyphens, b: ComponentFilterWithNoHyphens): any => {
+        if (a.NOHYPHENS !== undefined && b.NOHYPHENS !== undefined) {
+            return a.NOHYPHENS.localeCompare(b.NOHYPHENS, undefined, {
+                numeric: true,
+                sensitivity: 'base'
+            });
+        }
+    };
+
+    return unSortedComponents.sort(sorting).map((c: ComponentFilterWithNoHyphens): ComponentFilter => {
+        delete c.NOHYPHENS;
+        return c;
+    });
+};
+
 /**
  *
  * @returns Filters for the header
@@ -86,7 +113,7 @@ export function Filters() {
         if (type === PRODUCTS) {
             setProductFilters(sortProductFilters(appState.guidedAnswerTreeSearchResult.productFilters));
         } else {
-            setComponentFilters(appState.guidedAnswerTreeSearchResult.componentFilters);
+            setComponentFilters(sortComponentFilters(appState.guidedAnswerTreeSearchResult.componentFilters));
         }
     };
 
@@ -181,12 +208,12 @@ export function Filters() {
             if (isFilterProducts) {
                 setProductFilters(sortProductFilters(filters as ProductFilter[]));
             } else {
-                setComponentFilters(filters as ComponentFilter[]);
+                setComponentFilters(sortComponentFilters(filters as ComponentFilter[]));
             }
         } else {
             setQuery('');
             setProductFilters(sortProductFilters(appState.guidedAnswerTreeSearchResult.productFilters));
-            setComponentFilters(appState.guidedAnswerTreeSearchResult.componentFilters);
+            setComponentFilters(sortComponentFilters(appState.guidedAnswerTreeSearchResult.componentFilters));
         }
     };
 
