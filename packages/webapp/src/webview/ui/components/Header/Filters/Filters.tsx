@@ -8,6 +8,7 @@ import { UIDialog } from '../../UIComponentsLib/UIDialog';
 import { UICheckbox } from '../../UIComponentsLib/UICheckbox';
 import { VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
 import type { ProductFilter, ComponentFilter } from '@sap/guided-answers-extension-types';
+import './Filters.scss';
 
 /**
  * Sorts products array.
@@ -234,7 +235,7 @@ export function Filters() {
                         readOnly={appState.loading}
                         placeholder="Search"
                         id="dialog-filter-field"></VSCodeTextField>
-                    <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>{filterType[filter].listItems}</ul>
+                    <ul className="filter-list">{filterType[filter].listItems}</ul>
                 </UIDialog>
             </div>
         </>
