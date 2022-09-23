@@ -38,6 +38,7 @@ export const sortComponentFilters = (filters: ComponentFilter[]) => {
                 sensitivity: 'base'
             });
         }
+        return undefined;
     };
 
     return filters
