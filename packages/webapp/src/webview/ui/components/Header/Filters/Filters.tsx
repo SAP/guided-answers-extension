@@ -118,30 +118,6 @@ export function Filters() {
         }
     };
 
-    const resetFilter = (): void => {
-        setQuery('');
-        if (isFilterProducts) {
-            actions.setProductFilters([]);
-            actions.searchTree({
-                query: appState.query,
-                filters: {
-                    product: [],
-                    component: appState.selectedComponentFilters.length > 0 ? appState.selectedComponentFilters : []
-                }
-            });
-        } else {
-            actions.setComponentFilters([]);
-            actions.searchTree({
-                query: appState.query,
-                filters: {
-                    product: appState.selectedProductFilters.length > 0 ? appState.selectedProductFilters : [],
-                    component: []
-                }
-            });
-        }
-        setDialogVisible(!isDialogVisible);
-    };
-
     const onChange = (filter: string) => (ev?: any, checked?: boolean) => {
         if (isFilterProducts) {
             if (checked) {
@@ -254,8 +230,8 @@ export function Filters() {
                     cancelButtonText={'Cancel'}
                     styles={{ main }}
                     onAccept={() => filterType[filter].apply()}
-                    onCancel={resetFilter}
-                    onDismiss={resetFilter}>
+                    onCancel={() => setDialogVisible(!isDialogVisible)}
+                    onDismiss={() => setDialogVisible(!isDialogVisible)}>
                     <VSCodeTextField
                         style={{ width: '100%' }}
                         value={query}
