@@ -1,5 +1,5 @@
 export {
-    updateGuidedAnserTrees,
+    updateGuidedAnswerTrees,
     updateActiveNode,
     selectNode,
     goToPreviousPage,
@@ -10,5 +10,8 @@ export {
     searchTree,
     setQueryValue,
     webviewReady,
-    getBetaFeatures
+    getBetaFeatures,
+    setProductFilters,
+    setComponentFilters,
+    resetFilters
 } from '@sap/guided-answers-extension-types';

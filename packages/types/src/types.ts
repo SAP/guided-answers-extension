@@ -30,11 +30,15 @@ export interface GuidedAnswersQueryPagingOptions {
 
 export type GuidedAnswerTreeSearchHit = GuidedAnswerTree & { SCORE: number };
 
+export type ProductFilter = { PRODUCT: string; COUNT: number };
+
+export type ComponentFilter = { COMPONENT: string; COUNT: number };
+
 export interface GuidedAnswerTreeSearchResult {
     resultSize: number;
     trees: GuidedAnswerTreeSearchHit[];
-    productFilters: { PRODUCT: string; COUNT: number }[];
-    componentFilters: { COMPONENT: string; COUNT: number }[];
+    productFilters: ProductFilter[];
+    componentFilters: ComponentFilter[];
 }
 
 export type GuidedAnswerNodeId = number;
@@ -108,7 +112,7 @@ export const HTML_ENHANCEMENT_DATA_ATTR_MARKER = 'data-guided-answers-command-8d
  * Action types for redux
  */
 export type GuidedAnswerActions =
-    | UpdateGuidedAnserTrees
+    | UpdateGuidedAnswerTrees
     | SelectNode
     | UpdateActiveNode
     | UpdateLoading
@@ -120,10 +124,13 @@ export type GuidedAnswerActions =
     | SearchTree
     | SetQueryValue
     | WebviewReady
-    | BetaFeatures;
+    | BetaFeatures
+    | SetProductFilters
+    | SetComponentFilters
+    | ResetFilters;
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
-export interface UpdateGuidedAnserTrees {
+export interface UpdateGuidedAnswerTrees {
     type: typeof UPDATE_GUIDED_ANSWER_TREES;
     payload: GuidedAnswerTreeSearchResult;
 }
@@ -197,4 +204,21 @@ export const BETA_FEATURES = 'BETA_FEATURES';
 export interface BetaFeatures {
     type: typeof BETA_FEATURES;
     payload: boolean;
+}
+
+export const SET_PRODUCT_FILTERS = 'SET_PRODUCT_FILTERS';
+export interface SetProductFilters {
+    type: typeof SET_PRODUCT_FILTERS;
+    payload: string[];
+}
+
+export const SET_COMPONENT_FILTERS = 'SET_COMPONENT_FILTERS';
+export interface SetComponentFilters {
+    type: typeof SET_COMPONENT_FILTERS;
+    payload: string[];
+}
+
+export const RESET_FILTERS = 'RESET_FILTERS';
+export interface ResetFilters {
+    type: typeof RESET_FILTERS;
 }
