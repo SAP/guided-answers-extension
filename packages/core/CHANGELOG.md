@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-core
 
+## 0.3.0
+
+### Minor Changes
+
+-   fb158c0: Add product and component filtering
+
+### Patch Changes
+
+-   Updated dependencies [fb158c0]
+    -   @sap/guided-answers-extension-types@0.6.0
+
 ## 0.2.1
 
 ### Patch Changes
