@@ -1,38 +1,63 @@
 import React, { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
 import NotSolved from './images/not-solved.svg';
 import Solved from './images/solved.svg';
 import i18next from 'i18next';
 import { actions } from '../../../state';
 import './FeedbackSection.scss';
-import { SolvedMessage } from '../SolvedMessage';
+import { MessageDialogBox } from '../MessageDialogBox';
+import type { AppState } from '../../../types';
+import type { GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
+import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
 /**
  * @returns - react element with the feedback section
  */
 export function FeedbackSection(): ReactElement {
+    const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!.TREE_ID);
+    const nodeId = useSelector<AppState, GuidedAnswerNodeId>((state) => state.activeGuidedAnswerNode[0].NODE_ID);
+    let guideFeedback = useSelector<AppState, boolean | null>((state) => state.guideFeedback);
+    const closeDialogBox = () => {
+        guideFeedback = null;
+    };
+    const returnToHome = () => {
+        actions.goToAllAnswers();
+    };
     return (
         <div className="feedback-container">
             <h3>{i18next.t('PLEASE_TELL_US_IF_THIS_ANSWER_WAS_HELPFUL')}</h3>
             <div className="feedback-subcontainer">
-                <div
-                    className="feedback-box solved-hover"
-                    onClick={(): void => {
-                        actions.guideFeedback(true);
-                    }}>
-                    <Solved />
-                    <h3>{i18next.t('THIS_SOLVED_MY_ISSUE')}</h3>
-                </div>
-                <div
-                    className="feedback-box not-solved-hover"
-                    style={{ border: '2px solid var(--vscode-terminal-ansiRed)' }}
-                    onClick={(): void => {
-                        actions.guideFeedback(false);
-                    }}>
-                    <NotSolved />
-                    <h3>{i18next.t('THIS_DID_NOT_SOLVED_MY_ISSUE')}</h3>
-                </div>
+                <FocusZone direction={FocusZoneDirection.vertical} className="feedback-subcontainer" role="tree">
+                    <div
+                        className="feedback-box solved-hover"
+                        onClick={(): void => {
+                            actions.guideFeedback(true);
+                            // actions.sendFeedbackOutcome({ treeId, nodeId, solved: true });
+                        }}>
+                        <Solved />
+                        <h3>{i18next.t('THIS_SOLVED_MY_ISSUE')}</h3>
+                    </div>
+                    <div
+                        className="feedback-box not-solved-hover"
+                        style={{ border: '2px solid var(--vscode-terminal-ansiRed)' }}
+                        onClick={(): void => {
+                            actions.guideFeedback(false);
+                            // actions.sendFeedbackOutcome({ treeId, nodeId, solved: false });
+                        }}>
+                        <NotSolved />
+                        <h3>{i18next.t('THIS_DID_NOT_SOLVED_MY_ISSUE')}</h3>
+                    </div>
+                </FocusZone>
             </div>
-            <SolvedMessage />
+            <MessageDialogBox
+                dialogTitle={i18next.t('THANKS')}
+                dialogText={i18next.t('THANK_YOU_TEXT')}
+                dialogVisible={guideFeedback === true ? true : false}
+                primaryButtonAction={closeDialogBox}
+                defaultButtonAction={returnToHome}
+                stylingClassName="solved-message-dialog"
+            />
+            {console.log(MessageDialogBox)}
         </div>
     );
 }
