@@ -44,7 +44,7 @@ The search input field falls under the SAP Guided Answers Extension
 ### Search Guided Answers Content
 
 1. Open Guided Answers Extension
-2. Enter 'SAP Fiori Tools' in serch fields (See expected result 1)
+2. Enter 'SAP Fiori Tools' in search fields (See expected result 1)
 
 
 **Expected Results 1**
@@ -147,7 +147,7 @@ Text informing the user the outcomes list is filtered on 'SAP Business Applicati
 
 ### Open Guided Answers Content 
 
-1. Open GA
+1. Open Guided Answers Extension
 2. Enter SAP Fiori Tools in search
 3. Select SAP Fiori Tools Guided Answer in the list ( See expected result 1)
 4. Select an outcome of the first node of the Guided Answer (See expected result 2)
