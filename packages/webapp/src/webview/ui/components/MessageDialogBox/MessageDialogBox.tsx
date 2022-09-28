@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 import './MessageDialogBox.scss';
 import { Dialog, DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
 import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
@@ -24,18 +24,9 @@ export function MessageDialogBox(props: {
 }): ReactElement {
     const [isVisible, setVisible] = useState(props.dialogVisible);
 
-    // const primaryButtonFunc = () => props.primaryButtonAction();
-    // const toggleDialog = (): void => {
-    // setVisible(!isVisible);
-    // if (isVisible === false) {
-    //     primaryButtonFunc();
-    // }
-    // };
-
-    const toggle = (): void => {
-        console.log(isVisible);
-        setVisible(!isVisible);
-    };
+    useEffect(() => {
+        setVisible(props.dialogVisible);
+    }, [props.dialogVisible]);
 
     const dialogContentProps = {
         type: DialogType.normal,
@@ -53,7 +44,7 @@ export function MessageDialogBox(props: {
             <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
                 <DialogFooter>
                     <PrimaryButton text={i18next.t('HOME')} onClick={() => props.defaultButtonAction()} />
-                    <DefaultButton text={i18next.t('CLOSE')} onClick={toggle} />
+                    <DefaultButton text={i18next.t('CLOSE')} onClick={() => setVisible(!isVisible)} />
                     {/* <DefaultButton text={i18next.t('CLOSE')} /> */}
                 </DialogFooter>
             </Dialog>

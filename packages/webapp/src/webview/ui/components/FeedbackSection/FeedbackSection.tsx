@@ -57,7 +57,6 @@ export function FeedbackSection(): ReactElement {
                 defaultButtonAction={returnToHome}
                 stylingClassName="solved-message-dialog"
             />
-            {console.log(MessageDialogBox)}
         </div>
     );
 }
