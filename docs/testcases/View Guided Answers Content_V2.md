@@ -21,7 +21,7 @@ Prerequisites: Guided Answers Extension is installed in either SAP Business Appl
 
 1. Open VSCode or SAP Business Application Studio
 1. Open the 'Command Palette'
-2. Eneter 'SAP: Open Guided Answers'
+2. Enter 'SAP: Open Guided Answers'
 3. Select 'SAP: Open Guided Answers' ( See expected result 1 ) 
 4. Make view port smaller ( See expected results 2 ) 
 
