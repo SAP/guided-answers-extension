@@ -13,4 +13,6 @@ export interface AppState {
     betaFeatures: boolean;
     searchResultCount: number;
     guideFeedback: null | boolean;
+    selectedProductFilters: string[];
+    selectedComponentFilters: string[];
 }

@@ -11,7 +11,7 @@ import type {
     SelectNode,
     SetActiveTree,
     SetQueryValue,
-    UpdateGuidedAnserTrees,
+    UpdateGuidedAnswerTrees,
     UpdateActiveNode,
     WebviewReady,
     UpdateLoading,
@@ -22,7 +22,10 @@ import type {
     FeedbackOutcomePayload,
     SendFeedbackOutcome,
     FeedbackCommentPayload,
-    SendFeedbackComment
+    SendFeedbackComment,
+    SetProductFilters,
+    SetComponentFilters,
+    ResetFilters
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -40,10 +43,13 @@ import {
     BETA_FEATURES,
     GUIDE_FEEDBACK,
     SEND_FEEDBACK_OUTCOME,
-    SEND_FEEDBACK_COMMENT
+    SEND_FEEDBACK_COMMENT,
+    SET_PRODUCT_FILTERS,
+    SET_COMPONENT_FILTERS,
+    RESET_FILTERS
 } from './types';
 
-export const updateGuidedAnserTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnserTrees => ({
+export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
     type: UPDATE_GUIDED_ANSWER_TREES,
     payload
 });
@@ -95,6 +101,20 @@ export const setQueryValue = (payload: string): SetQueryValue => ({
 export const getBetaFeatures = (payload: boolean): BetaFeatures => ({
     type: BETA_FEATURES,
     payload
+});
+
+export const setProductFilters = (payload: string[]): SetProductFilters => ({
+    type: SET_PRODUCT_FILTERS,
+    payload
+});
+
+export const setComponentFilters = (payload: string[]): SetComponentFilters => ({
+    type: SET_COMPONENT_FILTERS,
+    payload
+});
+
+export const resetFilters = (): ResetFilters => ({
+    type: RESET_FILTERS
 });
 
 export const webviewReady = (): WebviewReady => ({ type: WEBVIEW_READY });

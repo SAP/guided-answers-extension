@@ -10,7 +10,11 @@ import {
     SET_ACTIVE_TREE,
     SET_QUERY_VALUE,
     GUIDE_FEEDBACK,
-    BETA_FEATURES
+    BETA_FEATURES,
+    SEARCH_TREE,
+    SET_PRODUCT_FILTERS,
+    SET_COMPONENT_FILTERS,
+    RESET_FILTERS
 } from '@sap/guided-answers-extension-types';
 import type { Reducer } from 'redux';
 import type { AppState } from '../types';
@@ -33,7 +37,9 @@ export function getInitialState(): AppState {
         activeGuidedAnswerNode: [],
         betaFeatures: false,
         searchResultCount: -1,
-        guideFeedback: null
+        guideFeedback: null,
+        selectedProductFilters: [],
+        selectedComponentFilters: []
     };
 }
 
@@ -112,6 +118,26 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         }
         case GUIDE_FEEDBACK: {
             newState.guideFeedback = action.payload;
+            break;
+        }
+        case SET_PRODUCT_FILTERS: {
+            newState.selectedProductFilters = action.payload;
+            break;
+        }
+        case SET_COMPONENT_FILTERS: {
+            newState.selectedComponentFilters = action.payload;
+            break;
+        }
+        case RESET_FILTERS: {
+            newState.selectedProductFilters = [];
+            newState.selectedComponentFilters = [];
+            break;
+        }
+        case SEARCH_TREE: {
+            const selectedComponentFilters = action.payload?.filters?.component;
+            newState.selectedComponentFilters = Array.isArray(selectedComponentFilters) ? selectedComponentFilters : [];
+            const selectedProductFilters = action.payload?.filters?.product;
+            newState.selectedProductFilters = Array.isArray(selectedProductFilters) ? selectedProductFilters : [];
             break;
         }
         default: {

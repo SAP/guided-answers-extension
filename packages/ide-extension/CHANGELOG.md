@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.11.0
+
+### Minor Changes
+
+-   fb158c0: Add product and component filtering
+
 ## 0.10.1
 
 ### Patch Changes

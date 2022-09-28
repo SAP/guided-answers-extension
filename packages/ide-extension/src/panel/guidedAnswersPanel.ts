@@ -5,7 +5,7 @@ import {
     SELECT_NODE,
     SEND_FEEDBACK_OUTCOME,
     SEND_FEEDBACK_COMMENT,
-    updateGuidedAnserTrees,
+    updateGuidedAnswerTrees,
     updateActiveNode,
     updateLoading,
     EXECUTE_COMMAND,
@@ -136,7 +136,7 @@ export class GuidedAnswersPanel {
                 }
                 case SEARCH_TREE: {
                     const trees = await this.guidedAnswerApi.getTrees(action.payload);
-                    this.postActionToWebview(updateGuidedAnserTrees(trees));
+                    this.postActionToWebview(updateGuidedAnswerTrees(trees));
                     break;
                 }
                 case WEBVIEW_READY: {

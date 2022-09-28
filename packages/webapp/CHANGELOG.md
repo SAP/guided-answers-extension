@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.11.0
+
+### Minor Changes
+
+-   fb158c0: Add product and component filtering
+
 ## 0.10.0
 
 ### Minor Changes
