@@ -1,6 +1,6 @@
 .clear-filters {
     height: 25px;
-    color: var(--vscode-textLink-foreground);
+    color: var(--vscode-foreground);
     padding: 0 5px 2px 3px;
     text-align: start;
     cursor: pointer;
@@ -23,7 +23,6 @@
 .clear-filters:hover {
     background: var(--vscode-menubar-selectionBackground);
     outline: 1px solid var(--vscode-contrastActiveBorder);
-    color: var(--vscode-foreground);
     border-radius: 3px;
     > span {
         text-decoration: none;
@@ -33,12 +32,12 @@
     outline: 1px solid var(--vscode-focusBorder, #007fd4);
 }
 
-.clear-filters-icon {
-    width: 100px;
+.text-underline {
+    text-decoration: underline;
 }
 
 .filter-button {
-    width: 24px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 2px;
 }

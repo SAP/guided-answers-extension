@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
-import { UIIconButton } from '../../UIComponentsLib/UIButton';
 import { UiIcons } from '../../UIComponentsLib/Icons';
-import { UIDialog } from '../../UIComponentsLib/UIDialog';
-import { UICheckbox } from '../../UIComponentsLib/UICheckbox';
+import { UIIconButton, UIDialog, UICheckbox } from '@sap-ux/ui-components';
 import { VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
 import type { ProductFilter, ComponentFilter } from '@sap/guided-answers-extension-types';
+import { Stack, IStackTokens } from '@fluentui/react';
 import './Filters.scss';
 
 /**
@@ -75,6 +74,11 @@ export function Filters() {
             margin: 0
         },
         height: '400px'
+    };
+
+    const verticalGapStackTokens: IStackTokens = {
+        childrenGap: 10,
+        padding: '10px 0'
     };
 
     const toggleVisibility = (type: string): void => {
@@ -156,13 +160,12 @@ export function Filters() {
             visibility: isDialogVisible,
             apply: () => applyFilters(PRODUCTS),
             listItems: productFilters.map((productFilter: { PRODUCT: string }) => (
-                <li key={`${productFilter.PRODUCT}`} style={{ marginBottom: '10px' }}>
-                    <UICheckbox
-                        label={productFilter.PRODUCT}
-                        checked={selectedProductFilters.includes(productFilter.PRODUCT)}
-                        onChange={onChange(productFilter.PRODUCT)}
-                    />
-                </li>
+                <UICheckbox
+                    key={`${productFilter.PRODUCT}`}
+                    label={productFilter.PRODUCT}
+                    checked={selectedProductFilters.includes(productFilter.PRODUCT)}
+                    onChange={onChange(productFilter.PRODUCT)}
+                />
             ))
         },
         Components: {
@@ -170,13 +173,12 @@ export function Filters() {
             visibility: isDialogVisible,
             apply: () => applyFilters(COMPONENTS),
             listItems: componentFilters.map((componentFilter: { COMPONENT: string }) => (
-                <li key={`${componentFilter.COMPONENT}`} style={{ marginBottom: '10px' }}>
-                    <UICheckbox
-                        label={componentFilter.COMPONENT}
-                        checked={selectedComponentFilters.includes(componentFilter.COMPONENT)}
-                        onChange={onChange(componentFilter.COMPONENT)}
-                    />
-                </li>
+                <UICheckbox
+                    key={`${componentFilter.COMPONENT}`}
+                    label={componentFilter.COMPONENT}
+                    checked={selectedComponentFilters.includes(componentFilter.COMPONENT)}
+                    onChange={onChange(componentFilter.COMPONENT)}
+                />
             ))
         }
     };
@@ -252,7 +254,7 @@ export function Filters() {
                         readOnly={appState.loading}
                         placeholder="Search"
                         id="dialog-filter-field"></VSCodeTextField>
-                    <ul className="filter-list">{filterType[filter].listItems}</ul>
+                    <Stack tokens={verticalGapStackTokens}>{filterType[filter].listItems}</Stack>
                 </UIDialog>
             </div>
         </>

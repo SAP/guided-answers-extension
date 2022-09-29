@@ -50,6 +50,7 @@
         "@fluentui/react": "8.80.0",
         "@fluentui/react-focus": "8.7.3",
         "@fluentui/style-utilities": "8.7.4",
-        "@fluentui/utilities": "8.10.1"
+        "@fluentui/utilities": "8.10.1",
+        "@sap-ux/ui-components": "1.0.2"
     }
 }

@@ -44,9 +44,13 @@ export function FiltersRibbon() {
                         {selectedComponentFilters && selectedComponentFilters.map((cf: string) => cf).join(', ')}
                     </strong>
                     {hasBothFilters && <strong>&nbsp;</strong>}
-                    <button className="clear-filters clear-filters-icon" onClick={resetFilters} title="Clear filters">
+                    {/* <button className="clear-filters clear-filters-icon" onClick={resetFilters} title="Clear filters">
                         <VscClose className="clear-filters__content" />{' '}
                         <span className="text-underline">Clear filters</span>
+                    </button> */}
+                    <button className="clear-filters" onClick={resetFilters} title="Clear filters">
+                        <VscClose className="clear-filters__content" />{' '}
+                        <span className="clear-filters__content__text text-underline">Clear filters</span>
                     </button>
                 </div>
             )}
