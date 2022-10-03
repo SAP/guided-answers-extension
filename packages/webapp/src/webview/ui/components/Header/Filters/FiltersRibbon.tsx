@@ -31,22 +31,22 @@ export function FiltersRibbon() {
     return (
         <>
             {hasFilters && (
-                <div style={{ display: 'flex', alignItems: 'center', flexFlow: 'wrap' }}>
+                <div style={{ lineHeight: '18px' }}>
                     Searching in {hasProductsFilter ? 'Product' : ''}
                     {((hasProductsFilter && !hasComponentsFilter) || hasBothFilters) && <strong>&nbsp;</strong>}
                     <strong>
                         {selectedProductFilters && selectedProductFilters.map((pf: string) => pf).join(', ')}
                     </strong>
-                    {hasBothFilters && <strong>&nbsp; and &nbsp;</strong>}
+                    {hasBothFilters && <span>&nbsp; and &nbsp;</span>}
                     {hasComponentsFilter && !hasProductsFilter && <strong>&nbsp;</strong>}
                     {hasComponentsFilter ? 'Component' : ''}&nbsp;
                     <strong>
                         {selectedComponentFilters && selectedComponentFilters.map((cf: string) => cf).join(', ')}
                     </strong>
                     {hasBothFilters && <strong>&nbsp;</strong>}
-                    <button className="clear-filters clear-filters-icon" onClick={resetFilters} title="Clear filters">
+                    <button className="clear-filters" onClick={resetFilters} title="Clear filters">
                         <VscClose className="clear-filters__content" />{' '}
-                        <span className="text-underline">Clear filters</span>
+                        <span className="clear-filters__content__text text-underline">Clear filters</span>
                     </button>
                 </div>
             )}

@@ -1,10 +1,20 @@
-.dialog-filter .ms-Dialog-content {
-    overflow: hidden;
-}
-
 ul.filter-list {
     list-style-type: none;
     padding-left: 0px;
     overflow: auto;
     height: 100%;
+}
+
+.filter-button {
+    width: 18px;
+    height: 18px;
+    border-radius: 2px;
+    margin-left: 8px;
+}
+
+.filter-button-selected {
+    background-color: var(--vscode-button-background);
+    &:hover {
+        background-color: var(--vscode-button-hoverBackground);
+    }
 }
