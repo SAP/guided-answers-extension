@@ -16,6 +16,10 @@
     margin-top: 20px;
 }
 
+button:focus-visible {
+    outline: 1px solid var(--vscode-focusBorder, #007fd4);
+}
+
 .feedback-box {
     border: 2px solid var(--vscode-terminal-ansiGreen);
     border-radius: 3px;

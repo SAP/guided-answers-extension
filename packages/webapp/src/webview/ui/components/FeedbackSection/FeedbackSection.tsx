@@ -21,8 +21,8 @@ export function FeedbackSection(): ReactElement {
         <div className="feedback-container">
             <h3>{i18next.t('PLEASE_TELL_US_IF_THIS_ANSWER_WAS_HELPFUL')}</h3>
             <div className="feedback-subcontainer">
-                <FocusZone direction={FocusZoneDirection.vertical} className="feedback-subcontainer" role="tree">
-                    <div
+                <FocusZone direction={FocusZoneDirection.horizontal} className="feedback-subcontainer" role="tree">
+                    <button
                         className="feedback-box solved-hover"
                         onClick={(): void => {
                             actions.guideFeedback(true);
@@ -30,8 +30,8 @@ export function FeedbackSection(): ReactElement {
                         }}>
                         <Solved />
                         <h3>{i18next.t('THIS_SOLVED_MY_ISSUE')}</h3>
-                    </div>
-                    <div
+                    </button>
+                    <button
                         className="feedback-box not-solved-hover"
                         style={{ border: '2px solid var(--vscode-terminal-ansiRed)' }}
                         onClick={(): void => {
@@ -40,7 +40,7 @@ export function FeedbackSection(): ReactElement {
                         }}>
                         <NotSolved />
                         <h3>{i18next.t('THIS_DID_NOT_SOLVED_MY_ISSUE')}</h3>
-                    </div>
+                    </button>
                 </FocusZone>
             </div>
             <MessageDialogBox

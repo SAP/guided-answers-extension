@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import i18next from 'i18next';
 import '../../GuidedAnswerNode/GuidedAnswerNode.scss';
+import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
 const options = [
     { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Start an Expert Chat' },
@@ -26,14 +27,19 @@ export default function NotSolvedMessage(): ReactElement {
                 </p>
             </div>
             <div className="guided-answer__node">
-                {options.map((btn, i) => (
-                    <button
-                        key={i}
-                        className="guided-answer__node__edge"
-                        onClick={() => window.open(btn.link, '_blank', 'noopener,noreferrer')}>
-                        {btn.text}
-                    </button>
-                ))}
+                <FocusZone
+                    direction={FocusZoneDirection.vertical}
+                    className="guided-answer__node"
+                    isCircularNavigation={true}>
+                    {options.map((btn, i) => (
+                        <button
+                            key={i}
+                            className="guided-answer__node__edge"
+                            onClick={() => window.open(btn.link, '_blank', 'noopener,noreferrer')}>
+                            {btn.text}
+                        </button>
+                    ))}
+                </FocusZone>
             </div>
         </div>
     );

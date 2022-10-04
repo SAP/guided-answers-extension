@@ -3,6 +3,7 @@ import './MessageDialogBox.scss';
 import { Dialog, DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
 import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
 import i18next from 'i18next';
+import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
 /**
  * @param props props for Message Dialog Box component
@@ -42,13 +43,15 @@ export function MessageDialogBox(props: {
         <>
             <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
                 <DialogFooter>
-                    <PrimaryButton text={i18next.t('HOME')} onClick={() => props.defaultButtonAction()} />
-                    <DefaultButton
-                        text={i18next.t('CLOSE')}
-                        onClick={() => {
-                            props.primaryButtonAction();
-                        }}
-                    />
+                    <FocusZone direction={FocusZoneDirection.horizontal} role="tree">
+                        <PrimaryButton text={i18next.t('HOME')} onClick={() => props.defaultButtonAction()} />
+                        <DefaultButton
+                            text={i18next.t('CLOSE')}
+                            onClick={() => {
+                                props.primaryButtonAction();
+                            }}
+                        />
+                    </FocusZone>
                 </DialogFooter>
             </Dialog>
         </>
