@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
@@ -11,8 +11,8 @@ import './FiltersRibbon.scss';
  */
 export function FiltersRibbon() {
     const appState = useSelector<AppState, AppState>((state) => state);
-    const selectedProductFilters = appState.selectedProductFilters || [];
-    const selectedComponentFilters = appState.selectedComponentFilters || [];
+    const [selectedProductFilters, setSelectedProductFilters] = useState(appState.selectedProductFilters);
+    const [selectedComponentFilters, setSelectedComponentFilters] = useState(appState.selectedProductFilters);
     const hasProductsFilter = selectedProductFilters.length > 0;
     const hasComponentsFilter = selectedComponentFilters.length > 0;
     const hasFilters = hasProductsFilter || hasComponentsFilter;
@@ -27,6 +27,19 @@ export function FiltersRibbon() {
             }
         });
     };
+
+    useEffect(() => {
+        setSelectedProductFilters(
+            appState.guidedAnswerTreeSearchResult.productFilters
+                .filter((v: { PRODUCT: string }) => appState.selectedProductFilters.includes(v.PRODUCT))
+                .map((v: { PRODUCT: any }) => v.PRODUCT)
+        );
+        setSelectedComponentFilters(
+            appState.guidedAnswerTreeSearchResult.componentFilters
+                .filter((v: { COMPONENT: string }) => appState.selectedComponentFilters.includes(v.COMPONENT))
+                .map((v: { COMPONENT: any }) => v.COMPONENT)
+        );
+    }, [appState.selectedProductFilters, appState.selectedComponentFilters]);
 
     return (
         <>
