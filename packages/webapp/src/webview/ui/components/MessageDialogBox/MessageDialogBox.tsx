@@ -23,7 +23,6 @@ export function MessageDialogBox(props: {
     defaultButtonAction: Function;
 }): ReactElement {
     const [isVisible, setVisible] = useState(props.dialogVisible);
-
     useEffect(() => {
         setVisible(props.dialogVisible);
     }, [props.dialogVisible]);
@@ -44,8 +43,12 @@ export function MessageDialogBox(props: {
             <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
                 <DialogFooter>
                     <PrimaryButton text={i18next.t('HOME')} onClick={() => props.defaultButtonAction()} />
-                    <DefaultButton text={i18next.t('CLOSE')} onClick={() => setVisible(!isVisible)} />
-                    {/* <DefaultButton text={i18next.t('CLOSE')} /> */}
+                    <DefaultButton
+                        text={i18next.t('CLOSE')}
+                        onClick={() => {
+                            props.primaryButtonAction();
+                        }}
+                    />
                 </DialogFooter>
             </Dialog>
         </>

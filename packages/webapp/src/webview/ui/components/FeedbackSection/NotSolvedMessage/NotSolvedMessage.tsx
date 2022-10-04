@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import i18next from 'i18next';
-import '../GuidedAnswerNode/GuidedAnswerNode.scss';
+import '../../GuidedAnswerNode/GuidedAnswerNode.scss';
 
 const options = [
     { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Start an Expert Chat' },
@@ -28,6 +28,7 @@ export default function NotSolvedMessage(): ReactElement {
             <div className="guided-answer__node">
                 {options.map((btn, i) => (
                     <button
+                        key={i}
                         className="guided-answer__node__edge"
                         onClick={() => window.open(btn.link, '_blank', 'noopener,noreferrer')}>
                         {btn.text}

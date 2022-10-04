@@ -7,7 +7,7 @@ import { focusOnElement } from '../../utils';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { FeedbackSection } from '../../FeedbackSection/FeedbackSection';
-import NotSolvedMessage from '../../NotSolvedMessage/NotSolvedMessage';
+import NotSolvedMessage from '../../FeedbackSection/NotSolvedMessage/NotSolvedMessage';
 
 let firstTimeFocus = true;
 
