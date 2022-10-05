@@ -259,7 +259,7 @@ export function Filters() {
                         onAccept={() => filterType[filter].apply()}
                         onCancel={resetFilter}
                         onDismiss={resetFilter}>
-                        <UITextInput placeholder="Search!" value={query} onChange={searchFilter} />
+                        <UITextInput placeholder="Search" value={query} onChange={searchFilter} />
                         <Stack
                             style={{ overflowY: 'scroll', height: '90%', padding: 0, marginTop: '10px' }}
                             tokens={verticalGapStackTokens}>
