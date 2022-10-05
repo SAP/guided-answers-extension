@@ -1,4 +1,3 @@
-import { guideFeedback } from './../../../../types/src/actions';
 import type { GuidedAnswerActions } from '@sap/guided-answers-extension-types';
 import {
     UPDATE_GUIDED_ANSWER_TREES,
