@@ -6,8 +6,11 @@ import { UIIconButton } from '../../UIComponentsLib/UIButton';
 import { UiIcons } from '../../UIComponentsLib/Icons';
 import { UIDialog } from '../../UIComponentsLib/UIDialog';
 import { UICheckbox } from '../../UIComponentsLib/UICheckbox';
-import { VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
 import type { ProductFilter, ComponentFilter } from '@sap/guided-answers-extension-types';
+import { Stack, IStackTokens } from '@fluentui/react';
+import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
+import { UITextInput } from '../../UIComponentsLib/UIInput';
+
 import './Filters.scss';
 
 /**
@@ -77,6 +80,11 @@ export function Filters() {
         height: '400px'
     };
 
+    const verticalGapStackTokens: IStackTokens = {
+        childrenGap: 10,
+        padding: '10px 0'
+    };
+
     const toggleVisibility = (type: string): void => {
         if (type === PRODUCTS) {
             setFilterType(PRODUCTS);
@@ -113,8 +121,18 @@ export function Filters() {
     const toggleFilters = (type: string): void => {
         toggleVisibility(type);
         if (type === PRODUCTS) {
+            setSelectedProductFilters(
+                appState.guidedAnswerTreeSearchResult.productFilters
+                    .filter((v) => selectedProductFilters.includes(v.PRODUCT))
+                    .map((v) => v.PRODUCT)
+            );
             setProductFilters(sortProductFilters(appState.guidedAnswerTreeSearchResult.productFilters));
         } else {
+            setSelectedComponentFilters(
+                appState.guidedAnswerTreeSearchResult.componentFilters
+                    .filter((v) => selectedComponentFilters.includes(v.COMPONENT))
+                    .map((v) => v.COMPONENT)
+            );
             setComponentFilters(sortComponentFilters(appState.guidedAnswerTreeSearchResult.componentFilters));
         }
     };
@@ -156,13 +174,12 @@ export function Filters() {
             visibility: isDialogVisible,
             apply: () => applyFilters(PRODUCTS),
             listItems: productFilters.map((productFilter: { PRODUCT: string }) => (
-                <li key={`${productFilter.PRODUCT}`} style={{ marginBottom: '10px' }}>
-                    <UICheckbox
-                        label={productFilter.PRODUCT}
-                        checked={selectedProductFilters.includes(productFilter.PRODUCT)}
-                        onChange={onChange(productFilter.PRODUCT)}
-                    />
-                </li>
+                <UICheckbox
+                    key={`${productFilter.PRODUCT}`}
+                    label={productFilter.PRODUCT}
+                    checked={selectedProductFilters.includes(productFilter.PRODUCT)}
+                    onChange={onChange(productFilter.PRODUCT)}
+                />
             ))
         },
         Components: {
@@ -170,13 +187,12 @@ export function Filters() {
             visibility: isDialogVisible,
             apply: () => applyFilters(COMPONENTS),
             listItems: componentFilters.map((componentFilter: { COMPONENT: string }) => (
-                <li key={`${componentFilter.COMPONENT}`} style={{ marginBottom: '10px' }}>
-                    <UICheckbox
-                        label={componentFilter.COMPONENT}
-                        checked={selectedComponentFilters.includes(componentFilter.COMPONENT)}
-                        onChange={onChange(componentFilter.COMPONENT)}
-                    />
-                </li>
+                <UICheckbox
+                    key={`${componentFilter.COMPONENT}`}
+                    label={componentFilter.COMPONENT}
+                    checked={selectedComponentFilters.includes(componentFilter.COMPONENT)}
+                    onChange={onChange(componentFilter.COMPONENT)}
+                />
             ))
         }
     };
@@ -210,50 +226,47 @@ export function Filters() {
     return (
         <>
             <div id="filters">
-                <UIIconButton
-                    id="filter-products"
-                    iconProps={{ iconName: UiIcons.Table }}
-                    onClick={() => toggleFilters(PRODUCTS)}
-                    disabled={appState.guidedAnswerTreeSearchResult.productFilters.length === 0}
-                    style={{
-                        marginLeft: '8px',
-                        backgroundColor: selectedProductFilters.length > 0 ? 'var(--vscode-button-background)' : ''
-                    }}
-                    primary
-                    title="Filter Products"
-                    className="filter-button"></UIIconButton>
-                <UIIconButton
-                    id="filter-components"
-                    iconProps={{ iconName: UiIcons.IdTag }}
-                    onClick={() => toggleFilters(COMPONENTS)}
-                    disabled={appState.guidedAnswerTreeSearchResult.componentFilters.length === 0}
-                    style={{
-                        marginLeft: '5px',
-                        backgroundColor: selectedComponentFilters.length > 0 ? 'var(--vscode-button-background)' : ''
-                    }}
-                    primary
-                    title="Filter Components"
-                    className="filter-button"></UIIconButton>
-                <UIDialog
-                    className="dialog-filter"
-                    dialogContentProps={{ title: filterType[filter].title }}
-                    isOpen={filterType[filter].visibility}
-                    isBlocking={true}
-                    acceptButtonText={'Apply Filter'}
-                    cancelButtonText={'Cancel'}
-                    styles={{ main }}
-                    onAccept={() => filterType[filter].apply()}
-                    onCancel={resetFilter}
-                    onDismiss={resetFilter}>
-                    <VSCodeTextField
-                        style={{ width: '100%' }}
-                        value={query}
-                        onInput={searchFilter}
-                        readOnly={appState.loading}
-                        placeholder="Search"
-                        id="dialog-filter-field"></VSCodeTextField>
-                    <ul className="filter-list">{filterType[filter].listItems}</ul>
-                </UIDialog>
+                <FocusZone
+                    direction={FocusZoneDirection.horizontal}
+                    isCircularNavigation={true}
+                    style={{ display: 'flex' }}>
+                    <UIIconButton
+                        id="filter-products"
+                        iconProps={{ iconName: UiIcons.Table }}
+                        onClick={() => toggleFilters(PRODUCTS)}
+                        disabled={appState.guidedAnswerTreeSearchResult.productFilters.length === 0}
+                        className={`filter-button ${selectedProductFilters.length > 0 ? 'filter-button-selected' : ''}`}
+                        primary
+                        title="Filter Products"></UIIconButton>
+                    <UIIconButton
+                        id="filter-components"
+                        iconProps={{ iconName: UiIcons.IdTag }}
+                        onClick={() => toggleFilters(COMPONENTS)}
+                        disabled={appState.guidedAnswerTreeSearchResult.componentFilters.length === 0}
+                        primary
+                        title="Filter Components"
+                        className={`filter-button ${
+                            selectedComponentFilters.length > 0 ? 'filter-button-selected' : ''
+                        }`}></UIIconButton>
+                    <UIDialog
+                        className="dialog-filter"
+                        dialogContentProps={{ title: filterType[filter].title }}
+                        isOpen={filterType[filter].visibility}
+                        isBlocking={true}
+                        acceptButtonText={'Apply Filter'}
+                        cancelButtonText={'Cancel'}
+                        styles={{ main }}
+                        onAccept={() => filterType[filter].apply()}
+                        onCancel={resetFilter}
+                        onDismiss={resetFilter}>
+                        <UITextInput placeholder="Search" value={query} onChange={searchFilter} />
+                        <Stack
+                            style={{ overflowY: 'scroll', height: '90%', padding: 0, marginTop: '10px' }}
+                            tokens={verticalGapStackTokens}>
+                            {filterType[filter].listItems}
+                        </Stack>{' '}
+                    </UIDialog>
+                </FocusZone>
             </div>
         </>
     );
