@@ -201,6 +201,10 @@ a:hover {
     outline: 1px solid var(--vscode-focusBorder, #007fd4);
 }
 
+a:hover {
+    color: var(--vscode-button-foreground);
+}
+
 @media only screen and (max-width: 625px) {
     #middle {
         width: 100%;
