@@ -45,6 +45,7 @@ const mockedPayload = {
 const mockedInitState = {
     loading: true,
     query: '',
+    searchResultCount: -1,
     guidedAnswerTreeSearchResult: {
         resultSize: -1,
         componentFilters: [],
@@ -53,6 +54,7 @@ const mockedInitState = {
     },
     activeGuidedAnswerNode: [],
     betaFeatures: false,
+    guideFeedback: null,
     selectedProductFilters: [],
     selectedComponentFilters: []
 };
@@ -136,9 +138,11 @@ describe('Test functions in reducers', () => {
         const expected = {
             loading: true,
             query: '',
+            searchResultCount: -1,
             guidedAnswerTreeSearchResult: mockedGuidedAnswerTreeSearchResult,
             activeGuidedAnswerNode: [],
             betaFeatures: false,
+            guideFeedback: null,
             selectedProductFilters: [],
             selectedComponentFilters: []
         };
