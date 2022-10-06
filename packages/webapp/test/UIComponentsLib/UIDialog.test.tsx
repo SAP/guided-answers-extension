@@ -257,7 +257,7 @@ describe('<UIDialog />', () => {
             expect(styles).toMatchInlineSnapshot(
                 {},
                 `
-                Object {
+                {
                   "color": "var(--vscode-panelTitle-activeForeground)",
                   "overflow": "hidden",
                   "padding": "20px 45px 5px",
@@ -279,7 +279,7 @@ describe('<UIDialog />', () => {
             expect(styles).toMatchInlineSnapshot(
                 {},
                 `
-                Object {
+                {
                   "color": "var(--vscode-panelTitle-activeForeground)",
                   "padding": "20px 0  5px",
                   "textAlign": "center",
@@ -295,15 +295,15 @@ describe('<UIDialog />', () => {
             expect(styles).toMatchInlineSnapshot(
                 {},
                 `
-                Object {
-                  "action": Object {
+                {
+                  "action": {
                     "margin": "0px 5px",
                   },
-                  "actions": Object {
+                  "actions": {
                     "lineHeight": "auto",
                     "margin": "10px 0 20px",
                   },
-                  "actionsRight": Object {
+                  "actionsRight": {
                     "margin": "0px",
                     "textAlign": "center",
                     "width": "100%",
@@ -321,8 +321,8 @@ describe('<UIDialog />', () => {
             expect(dialogStyles.main).toMatchInlineSnapshot(
                 {},
                 `
-                Object {
-                  ".ms-Modal-scrollableContent": Object {
+                {
+                  ".ms-Modal-scrollableContent": {
                     "height": "100%",
                     "overflow": "hidden",
                   },
@@ -340,12 +340,12 @@ describe('<UIDialog />', () => {
             const dialogContentStyles = props.dialogContentProps.styles as IDialogContentStyles;
             expect(dialogContentStyles.header).toMatchInlineSnapshot(`undefined`);
             expect(dialogContentStyles.button).toMatchInlineSnapshot(`
-                Object {
+                {
                   "display": "none",
                 }
             `);
             expect(dialogContentStyles.inner).toMatchInlineSnapshot(`
-                Object {
+                {
                   "display": "flex",
                   "flexDirection": "column",
                   "height": "100%",
@@ -354,7 +354,7 @@ describe('<UIDialog />', () => {
                 }
             `);
             expect(dialogContentStyles.subText).toMatchInlineSnapshot(`
-                Object {
+                {
                   "color": "var(--vscode-foreground)",
                   "fontFamily": "var(--vscode-font-family)",
                   "fontSize": 13,
@@ -363,7 +363,7 @@ describe('<UIDialog />', () => {
                 }
             `);
             expect(dialogContentStyles.content).toMatchInlineSnapshot(`
-                Object {
+                {
                   "color": "var(--vscode-foreground)",
                   "display": "flex",
                   "flexDirection": "column",
@@ -374,7 +374,7 @@ describe('<UIDialog />', () => {
                 }
             `);
             expect(dialogContentStyles.innerContent).toMatchInlineSnapshot(`
-                Object {
+                {
                   "boxSizing": "border-box",
                   "height": "100%",
                   "overflow": "auto",
@@ -392,7 +392,7 @@ describe('<UIDialog />', () => {
             const dialogStyles = props.styles as IDialogStyles;
             // Dialog styles
             expect(dialogStyles.main).toMatchInlineSnapshot(`
-                Object {
+                {
                   "backgroundColor": "var(--vscode-editorWidget-background)",
                   "border": "1px solid var(--vscode-editorWidget-border)",
                   "borderRadius": 0,
@@ -405,17 +405,17 @@ describe('<UIDialog />', () => {
             const dialogContentStyles = props.dialogContentProps.styles as IDialogContentStyles;
             expect(dialogContentStyles.header).toMatchInlineSnapshot(`undefined`);
             expect(dialogContentStyles.button).toMatchInlineSnapshot(`
-                Object {
+                {
                   "display": "none",
                 }
             `);
             expect(dialogContentStyles.inner).toMatchInlineSnapshot(`
-                Object {
+                {
                   "padding": "0",
                 }
             `);
             expect(dialogContentStyles.subText).toMatchInlineSnapshot(`
-                Object {
+                {
                   "color": "var(--vscode-foreground)",
                   "fontFamily": "var(--vscode-font-family)",
                   "fontSize": 13,
@@ -426,7 +426,7 @@ describe('<UIDialog />', () => {
             expect(dialogContentStyles.content).toMatchInlineSnapshot(
                 {},
                 `
-                Object {
+                {
                   "color": "var(--vscode-foreground)",
                   "fontFamily": "var(--vscode-font-family)",
                   "fontSize": 13,
@@ -436,7 +436,7 @@ describe('<UIDialog />', () => {
             expect(dialogContentStyles.innerContent).toMatchInlineSnapshot(
                 {},
                 `
-                Object {
+                {
                   "boxSizing": "border-box",
                   "padding": "10px 45px",
                 }

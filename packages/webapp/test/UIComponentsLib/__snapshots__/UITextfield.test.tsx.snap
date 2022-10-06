@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<UIToggle /> Styles - default 1`] = `
-Object {
-  "field": Array [
-    Object {
+{
+  "field": [
+    {
       "backgroundColor": "var(--vscode-input-background)",
       "boxSizing": "border-box",
       "color": "var(--vscode-input-foreground)",
@@ -13,8 +13,8 @@ Object {
       "lineHeight": "normal",
       "maxHeight": 24,
       "minHeight": 24,
-      "selectors": Object {
-        "::placeholder": Object {
+      "selectors": {
+        "::placeholder": {
           "color": "var(--vscode-input-placeholderForeground)",
           "fontFamily": "var(--vscode-font-family)",
           "fontSize": 13,
@@ -25,8 +25,8 @@ Object {
     undefined,
     undefined,
   ],
-  "fieldGroup": Array [
-    Object {
+  "fieldGroup": [
+    {
       "backgroundColor": "var(--vscode-input-background)",
       "border": "1px solid var(--vscode-editorWidget-border)",
       "borderRadius": 0,
@@ -34,8 +34,8 @@ Object {
       "height": 24,
       "maxHeight": 24,
       "minHeight": 24,
-      "selectors": Object {
-        "&:hover": Object {
+      "selectors": {
+        "&:hover": {
           "border": "1px solid var(--vscode-focusBorder)",
         },
       },
@@ -44,19 +44,19 @@ Object {
     undefined,
     undefined,
   ],
-  "icon": Array [
-    Object {
+  "icon": [
+    {
       "bottom": 2,
     },
   ],
-  "root": Object {
+  "root": {
     "fontFamily": "var(--vscode-font-family)",
     "height": "auto",
   },
-  "subComponentStyles": Object {
-    "label": Object {
-      "root": Array [
-        Object {
+  "subComponentStyles": {
+    "label": {
+      "root": [
+        {
           "marginTop": 25,
         },
         undefined,
@@ -64,7 +64,7 @@ Object {
       ],
     },
   },
-  "suffix": Object {
+  "suffix": {
     "backgroundColor": "var(--vscode-input-background)",
   },
 }

@@ -27,7 +27,7 @@ describe('<UIDefaultButton />', () => {
         expect(styles?.root).toMatchInlineSnapshot(
             {},
             `
-            Object {
+            {
               "backgroundColor": "var(--vscode-button-background)",
               "borderColor": "var(--vscode-contrastBorder, var(--vscode-button-background))",
               "borderRadius": 0,
@@ -39,8 +39,8 @@ describe('<UIDefaultButton />', () => {
               "minWidth": "initial",
               "paddingLeft": 13,
               "paddingRight": 13,
-              "selectors": Object {
-                ".ms-Fabric--isFocusVisible &:focus:after": Object {
+              "selectors": {
+                ".ms-Fabric--isFocusVisible &:focus:after": {
                   "inset": -3,
                   "outlineColor": "var(--vscode-focusBorder)",
                 },
@@ -58,7 +58,7 @@ describe('<UIDefaultButton />', () => {
         expect(styles?.root).toMatchInlineSnapshot(
             {},
             `
-            Object {
+            {
               "backgroundColor": "var(--vscode-button-secondaryBackground, #5f6a79)",
               "borderColor": "var(--vscode-contrastBorder, var(--vscode-button-secondaryBackground, #5f6a79))",
               "borderRadius": 0,
@@ -70,8 +70,8 @@ describe('<UIDefaultButton />', () => {
               "minWidth": "initial",
               "paddingLeft": 13,
               "paddingRight": 13,
-              "selectors": Object {
-                ".ms-Fabric--isFocusVisible &:focus:after": Object {
+              "selectors": {
+                ".ms-Fabric--isFocusVisible &:focus:after": {
                   "inset": -3,
                   "outlineColor": "var(--vscode-focusBorder)",
                 },

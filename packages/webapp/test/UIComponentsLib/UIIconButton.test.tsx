@@ -27,15 +27,15 @@ describe('<UIIconButton />', () => {
         expect(styles?.root).toMatchInlineSnapshot(
             {},
             `
-            Object {
+            {
               "backgroundColor": "transparent",
               "borderRadius": 4,
               "boxSizing": "content-box",
               "height": 16,
               "minWidth": "initial",
               "padding": 3,
-              "selectors": Object {
-                ".ms-Fabric--isFocusVisible &:focus:after": Object {
+              "selectors": {
+                ".ms-Fabric--isFocusVisible &:focus:after": {
                   "outline": "1px solid var(--vscode-focusBorder)",
                 },
               },
@@ -53,15 +53,15 @@ describe('<UIIconButton />', () => {
         expect(styles?.root).toMatchInlineSnapshot(
             {},
             `
-            Object {
+            {
               "backgroundColor": "transparent",
               "borderRadius": 4,
               "boxSizing": "content-box",
               "height": 16,
               "minWidth": "initial",
               "padding": 3,
-              "selectors": Object {
-                ".ms-Fabric--isFocusVisible &:focus:after": Object {
+              "selectors": {
+                ".ms-Fabric--isFocusVisible &:focus:after": {
                   "outline": "1px solid var(--vscode-focusBorder)",
                 },
               },
