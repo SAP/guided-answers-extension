@@ -41,9 +41,9 @@ export function MessageDialogBox(props: {
 
     return (
         <>
-            <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
-                <DialogFooter>
-                    <FocusZone direction={FocusZoneDirection.horizontal} role="tree">
+            <FocusZone direction={FocusZoneDirection.horizontal}>
+                <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
+                    <DialogFooter>
                         <PrimaryButton text={i18next.t('HOME')} onClick={() => props.defaultButtonAction()} />
                         <DefaultButton
                             text={i18next.t('CLOSE')}
@@ -51,9 +51,9 @@ export function MessageDialogBox(props: {
                                 props.primaryButtonAction();
                             }}
                         />
-                    </FocusZone>
-                </DialogFooter>
-            </Dialog>
+                    </DialogFooter>
+                </Dialog>
+            </FocusZone>
         </>
     );
 }
