@@ -3,11 +3,10 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import { UiIcons } from '../../UIComponentsLib/Icons';
-import { UIIconButton, UIDialog, UICheckbox } from '@sap-ux/ui-components';
+import { UIIconButton, UIDialog, UICheckbox, UITextInput } from '@sap-ux/ui-components';
 import type { ProductFilter, ComponentFilter } from '@sap/guided-answers-extension-types';
 import { Stack, IStackTokens } from '@fluentui/react';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-import { UITextInput } from '../../UIComponentsLib/UIInput';
 
 import './Filters.scss';
 

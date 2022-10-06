@@ -115,13 +115,3 @@ ul.striped-list > li:nth-of-type(odd) {
     width: 100%;
     margin-top: 60px;
 }
-
-//TODO: Remove this when we consume open source ui-components
-.ui-medium-header {
-    font-family: var(--vscode-font-family);
-    font-weight: bold;
-    font-size: 14px;
-    font-style: normal;
-    line-height: 16px;
-    color: var(--vscode-settings-headerForeground);
-}
