@@ -13,8 +13,6 @@
             margin-left: 3px;
         }
     }
-    display: flex;
-    align-items: center;
     svg {
         width: 16px;
         height: 16px;
@@ -34,10 +32,4 @@
 
 .text-underline {
     text-decoration: underline;
-}
-
-.filter-button {
-    width: 18px;
-    height: 18px;
-    border-radius: 2px;
 }
