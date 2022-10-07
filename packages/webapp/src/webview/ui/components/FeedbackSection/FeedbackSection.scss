@@ -13,7 +13,7 @@
     justify-content: flex-start;
     flex-direction: row;
     gap: 20px;
-    margin-top: 20px;
+    width: 100%;
 }
 
 button:focus-visible {
@@ -28,6 +28,8 @@ button:focus-visible {
     padding: 20px;
     align-items: center;
     gap: 12px;
+    overflow-wrap: break-word;
+    width: 50%;
 }
 
 .solved-hover:hover {
