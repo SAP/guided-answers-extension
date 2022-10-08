@@ -42,7 +42,7 @@ export default function NotSolvedMessage(): ReactElement {
                                     onClick={(): void => {
                                         actions.goToAllAnswers();
                                     }}>
-                                    Search for another Guided Answer
+                                    {i18next.t('SEARCH_FOR_ANOTHER_GUIDED_ANSWER')}
                                 </button>
                             ) : (
                                 <a key={i} className="guided-answer__node__edge" href={btn.link} role="button">
