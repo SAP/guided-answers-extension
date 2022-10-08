@@ -30,6 +30,7 @@ button:focus-visible {
     gap: 12px;
     overflow-wrap: break-word;
     width: 50%;
+    text-align: left;
 }
 
 .solved-hover:hover {
@@ -53,5 +54,11 @@ button:focus-visible {
     svg > path,
     svg > rect {
         fill: var(--vscode-editor-background);
+    }
+}
+
+@media only screen and (max-width: 625px) {
+    .feedback-box > svg {
+        display: none;
     }
 }

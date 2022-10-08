@@ -41,19 +41,24 @@ export function MessageDialogBox(props: {
 
     return (
         <>
-            <FocusZone direction={FocusZoneDirection.horizontal}>
-                <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
-                    <DialogFooter>
-                        <PrimaryButton text={i18next.t('HOME')} onClick={() => props.defaultButtonAction()} />
+            <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
+                <DialogFooter>
+                    <FocusZone direction={FocusZoneDirection.horizontal} className="button-container">
+                        <PrimaryButton
+                            className="primary-button"
+                            text={i18next.t('HOME')}
+                            onClick={() => props.defaultButtonAction()}
+                        />
                         <DefaultButton
+                            className="default-button"
                             text={i18next.t('CLOSE')}
                             onClick={() => {
                                 props.primaryButtonAction();
                             }}
                         />
-                    </DialogFooter>
-                </Dialog>
-            </FocusZone>
+                    </FocusZone>
+                </DialogFooter>
+            </Dialog>
         </>
     );
 }

@@ -2,11 +2,13 @@ import React, { ReactElement } from 'react';
 import i18next from 'i18next';
 import '../../GuidedAnswerNode/GuidedAnswerNode.scss';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
+import { actions } from '../../../../state';
 
 const options = [
     { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Start an Expert Chat' },
     { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Schedule an Expert' },
     { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Open an Incident' },
+    { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Ask the SAP Community' },
     { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Ask the SAP Community' }
 ];
 
@@ -31,10 +33,23 @@ export default function NotSolvedMessage(): ReactElement {
                     direction={FocusZoneDirection.vertical}
                     className="guided-answer__node"
                     isCircularNavigation={true}>
-                    {options.map((btn, i) => (
-                        <a key={i} className="guided-answer__node__edge" href={btn.link} role="button">
-                            {btn.text}
-                        </a>
+                    {options.map((btn, i, key) => (
+                        <div className="guided-answer__node">
+                            {i === options.length - 1 ? (
+                                <button
+                                    className="guided-answer__node__edge"
+                                    key={i}
+                                    onClick={(): void => {
+                                        actions.goToAllAnswers();
+                                    }}>
+                                    Search for another Guided Answer
+                                </button>
+                            ) : (
+                                <a key={i} className="guided-answer__node__edge" href={btn.link} role="button">
+                                    {btn.text}
+                                </a>
+                            )}
+                        </div>
                     ))}
                 </FocusZone>
             </div>

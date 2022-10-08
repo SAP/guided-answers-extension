@@ -15,23 +15,37 @@
         font-weight: 400;
         font-size: 13px;
         line-height: 18px;
+        margin-bottom: 0;
+        padding: 0 21px 0 21px;
+        text-align: left;
+        margin-top: 0;
     }
-    .actionsRight-122 {
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: -16px 0 0 0;
+    }
+
+    .default-button {
+        background-color: var(--vscode-button-secondaryBackground);
+        color: var(--vscode-button-foreground);
+        border-color: var(--vscode-button-secondaryBackground);
         text-align: center;
     }
 
-    .root-130 {
-        background-color: var(--vscode-button-secondaryBackground);
-        border-color: var(--vscode-button-secondaryBackground);
+    .primary-button {
+        color: var(--vscode-button-foreground);
+        font-weight: 400;
+        border-color: var(--vscode-button-background);
+        background-color: var(--vscode-button-background);
+        border-style: none;
     }
 
     button:focus-visible {
         outline: 1px solid var(--vscode-focusBorder, #007fd4);
-    }
-
-    .label-126 {
-        color: var(--vscode-button-foreground);
-        font-weight: 400;
+        border-style: none;
     }
 
     button:focus-visible {
