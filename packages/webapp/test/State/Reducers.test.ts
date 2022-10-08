@@ -160,6 +160,7 @@ describe('Test functions in reducers', () => {
         expect(activeNode).toEqual({
             loading: true,
             query: '',
+            searchResultCount: -1,
             guidedAnswerTreeSearchResult: {
                 resultSize: -1,
                 componentFilters: [],
@@ -167,6 +168,7 @@ describe('Test functions in reducers', () => {
                 trees: []
             },
             activeGuidedAnswerNode: mockedActiveGuidedAnswerNode,
+            guideFeedback: null,
             betaFeatures: false,
             selectedProductFilters: [],
             selectedComponentFilters: []
@@ -183,6 +185,7 @@ describe('Test functions in reducers', () => {
         expect(hasActiveNode).toEqual({
             loading: true,
             query: '',
+            searchResultCount: -1,
             guidedAnswerTreeSearchResult: {
                 resultSize: -1,
                 componentFilters: [],
@@ -191,6 +194,7 @@ describe('Test functions in reducers', () => {
             },
             activeGuidedAnswerNode: mockedActiveGuidedAnswerNode,
             betaFeatures: false,
+            guideFeedback: null,
             selectedProductFilters: [],
             selectedComponentFilters: []
         });
