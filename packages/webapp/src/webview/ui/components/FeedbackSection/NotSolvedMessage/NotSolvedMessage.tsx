@@ -34,7 +34,7 @@ export default function NotSolvedMessage(): ReactElement {
                     className="guided-answer__node"
                     isCircularNavigation={true}>
                     {options.map((btn, i, key) => (
-                        <div className="guided-answer__node">
+                        <div className="guided-answer__node" key={i}>
                             {i === options.length - 1 ? (
                                 <button
                                     className="guided-answer__node__edge"
