@@ -12,18 +12,7 @@ const activeNodeMock = {
     ],
     NODE_ID: 45995,
     QUESTION: 'I have a problem with',
-    TITLE: 'SAP Fiori Tools',
-    COMMANDS: [
-        {
-            label: 'Label for command',
-            description: 'Description for command',
-            exec: {
-                extensionId: 'terry.exxt',
-                commandId: 'Knock kock',
-                argument: { fsPath: 'whos/there/body/of' }
-            }
-        }
-    ]
+    TITLE: 'SAP Fiori Tools'
 };
 
 jest.mock('../../src/webview/state', () => {
@@ -33,6 +22,31 @@ jest.mock('../../src/webview/state', () => {
         }
     };
 });
+
+jest.mock('react-redux', () => ({
+    ...jest.requireActual('react-redux'),
+    useSelector: jest.fn().mockReturnValue({
+        activeGuidedAnswerNode: [],
+        guidedAnswerTreeSearchResult: {
+            trees: [
+                {
+                    AVAILABILITY: 'PUBLIC',
+                    DESCRIPTION: 'This is a troubleshooting guide to solve the issues while using SAP Fiori tools',
+                    FIRST_NODE_ID: 45995,
+                    TITLE: 'SAP Fiori tools',
+                    TREE_ID: 3046,
+                    PRODUCT: 'Product A, Product B',
+                    COMPONENT: 'comp-a, comp-b'
+                }
+            ],
+            resultSize: 1,
+            productFilters: [],
+            componentFilters: []
+        },
+        query: 'fiori tools',
+        guideFeedback: true
+    })
+}));
 
 export function TestComponent(): ReactElement {
     return <span id="enhancedHtml">Test</span>;
@@ -50,7 +64,7 @@ describe('<Middle />', () => {
         wrapper = shallow(<Middle activeNode={activeNodeMock} enhancedBody={null} />);
         const component = wrapper.html();
         expect(component).toMatchInlineSnapshot(
-            `"<div id="middle" class="column"><div class="body_container"><header>SAP Fiori Tools</header><div id="hr"></div><div class="ms-FocusZone css-101" data-focuszone-id="FocusZone0"><div class="content"><p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p></div></div><p class="guided-answer__node__question">I have a problem with</p></div><div role="listbox" class="ms-FocusZone css-101" data-focuszone-id="FocusZone1"><div class="guided-answer__node"><button role="option" class="guided-answer__node__edge">Deployment</button><button role="option" class="guided-answer__node__edge">Fiori Generator</button></div></div></div>"`
+            `"<div id="middle" class="column"><div class="body_container"><header>SAP Fiori Tools</header><div id="hr"></div><div class="ms-FocusZone css-108" data-focuszone-id="FocusZone0"><div class="content"><p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p></div></div><p class="guided-answer__node__question">I have a problem with</p></div><div role="listbox" class="ms-FocusZone css-108" data-focuszone-id="FocusZone1"><div class="guided-answer__node"><button role="option" class="guided-answer__node__edge">Deployment</button><button role="option" class="guided-answer__node__edge">Fiori Generator</button></div></div></div>"`
         );
 
         //Test click event
