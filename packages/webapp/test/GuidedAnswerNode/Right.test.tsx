@@ -37,7 +37,7 @@ describe('<Right />', () => {
         wrapper = shallow(<Right activeNode={activeGuidedAnswerNodeMock[0]} />);
         const component = wrapper.html();
         expect(component).toMatchInlineSnapshot(
-            `"<div id=\\"right\\" class=\\"column\\"><div class=\\"guided-answer__node__commands\\"><div class=\\"ms-FocusZone css-101\\" data-focuszone-id=\\"FocusZone0\\"></div></div></div>"`
+            `"<div id="right" class="column"><div class="guided-answer__node__commands"><div class="ms-FocusZone css-101" data-focuszone-id="FocusZone0"></div></div></div>"`
         );
     });
 
@@ -57,7 +57,7 @@ describe('<Right />', () => {
         wrapper = shallow(<Right activeNode={activeNodeMock} />);
         const component = wrapper.html();
         expect(component).toMatchInlineSnapshot(
-            `"<div id=\\"right\\" class=\\"column\\"><div class=\\"guided-answer__node__commands\\"><div class=\\"ms-FocusZone css-101\\" data-focuszone-id=\\"FocusZone1\\"><div class=\\"guided-answer__node__command\\"><div class=\\"guided-answer__node__command__header\\"><div class=\\"guided-answer__node__command__header__label\\">Label for command</div></div><button class=\\"guided-answer__node__command__description\\">Description for command</button></div></div></div></div>"`
+            `"<div id="right" class="column"><div class="guided-answer__node__commands"><div class="ms-FocusZone css-101" data-focuszone-id="FocusZone1"><div class="guided-answer__node__command"><div class="guided-answer__node__command__header"><div class="guided-answer__node__command__header__label">Label for command</div></div><button class="guided-answer__node__command__description">Description for command</button></div></div></div></div>"`
         );
 
         //Test click event

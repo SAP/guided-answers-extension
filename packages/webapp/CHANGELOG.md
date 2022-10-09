@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.12.0
+
+### Minor Changes
+
+-   48cd27a: Use open source @sap-ux/ui-components
+
 ## 0.11.0
 
 ### Minor Changes

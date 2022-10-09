@@ -26,7 +26,8 @@ module.exports = {
         '.+\\.(css|sass|scss)$': 'jest-css-modules-transform'
     },
     moduleNameMapper: {
-        '.+\\.(svg)$': '<rootDir>/test/__mocks__/svgMock.ts'
+        '.+\\.(svg)$': '<rootDir>/test/__mocks__/svgMock.ts',
+        uuid: require.resolve('uuid')
     },
     transformIgnorePatterns: ['<rootDir>/node_modules/'],
     verbose: false,

@@ -1,7 +1,7 @@
 {
     "name": "@sap/guided-answers-extension-webapp",
     "description": "Guided Answers extension webview module",
-    "version": "0.11.0",
+    "version": "0.12.0",
     "author": "SAP SE",
     "main": "dist/index.js",
     "private": true,
@@ -50,6 +50,7 @@
         "@fluentui/react": "8.80.0",
         "@fluentui/react-focus": "8.7.3",
         "@fluentui/style-utilities": "8.7.4",
-        "@fluentui/utilities": "8.10.1"
+        "@fluentui/utilities": "8.10.1",
+        "@sap-ux/ui-components": "1.0.5"
     }
 }
