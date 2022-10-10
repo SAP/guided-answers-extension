@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 0.12.0
+
+### Minor Changes
+
+-   b013ba8: Fix issue https://github.com/SAP/guided-answers-extension/issues/256
+
 ## 0.11.0
 
 ### Minor Changes
