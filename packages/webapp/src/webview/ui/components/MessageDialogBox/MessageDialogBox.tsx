@@ -47,13 +47,13 @@ export function MessageDialogBox(props: {
                         <PrimaryButton
                             className="primary-button"
                             text={i18next.t('HOME')}
-                            onClick={() => props.defaultButtonAction()}
+                            onClick={() => props.primaryButtonAction()}
                         />
                         <DefaultButton
                             className="default-button"
                             text={i18next.t('CLOSE')}
                             onClick={() => {
-                                props.primaryButtonAction();
+                                props.defaultButtonAction();
                             }}
                         />
                     </FocusZone>

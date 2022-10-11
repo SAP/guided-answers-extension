@@ -45,8 +45,8 @@ export function FeedbackSection(): ReactElement {
                 dialogTitle={i18next.t('THANKS')}
                 dialogText={i18next.t('THANK_YOU_TEXT')}
                 dialogVisible={guideFeedback === true ? true : false}
-                primaryButtonAction={() => actions.guideFeedback(null)}
-                defaultButtonAction={() => actions.goToAllAnswers()}
+                primaryButtonAction={() => actions.goToAllAnswers()}
+                defaultButtonAction={() => actions.guideFeedback(null)}
                 stylingClassName="solved-message-dialog"
             />
         </div>
