@@ -46,7 +46,7 @@ describe('<GuidedAnswerNavPath />', () => {
     it('Should render a GuidedAnswerNavPath component', () => {
         const component = wrapper.html();
         expect(component).toMatchInlineSnapshot(
-            `"<nav class="container"><div role="tree" class="ms-FocusZone css-101" data-focuszone-id="FocusZone0"><div class="timeline-block" role="treeitem"><button class="timeline-content timeline-content-bottom-border"><div class="timeline__path" title="SAP Fiori Tools"><span class="timeline-content-title-small bold-text">1</span><span class="timeline-content-title-large">SAP Fiori Tools</span></div></button></div></div></nav>"`
+            `"<nav class=\\"container\\"><div role=\\"tree\\" class=\\"ms-FocusZone css-101\\" data-focuszone-id=\\"FocusZone0\\"><div class=\\"timeline-block\\" role=\\"treeitem\\"><button class=\\"timeline-content timeline-content-bottom-border\\"><div class=\\"timeline__path\\" title=\\"SAP Fiori Tools\\"><span class=\\"timeline-content-title-small bold-text\\">1</span><span class=\\"timeline-content-title-large\\">SAP Fiori Tools</span></div></button></div></div></nav>"`
         );
 
         //Test click event
