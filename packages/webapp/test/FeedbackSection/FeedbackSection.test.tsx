@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { actions } from '../src/webview/state';
-import { FeedbackSection } from '../src/webview/ui/components/FeedbackSection/FeedbackSection';
-import { initI18n } from '../src/webview/i18n';
+import { actions } from '../../src/webview/state';
+import { FeedbackSection } from '../../src/webview/ui/components/FeedbackSection/FeedbackSection';
+import { initI18n } from '../../src/webview/i18n';
 
-jest.mock('../src/webview/state', () => {
+jest.mock('../../src/webview/state', () => {
     return {
         actions: {
             guideFeedback: jest.fn(),
@@ -43,16 +43,11 @@ describe('Feedback Section component', () => {
     });
 
     it('clicking on not solved message should change state', () => {
-        wrapper.find('.not-solved-hover').simulate('click');
+        wrapper.find('.feedback-box').at(1).simulate('click');
         expect(actions.guideFeedback).toBeCalled();
     });
 
     it('The intial guideFeedback state is null', () => {
         // expect(useSelector).toBe(null); <-- Not sure about this? I think you want to test the state?
     });
-
-    // test if box exists - snapshot
-    // test if message dialog box apperas
-    // test if notSolved componnt shows if not solved is clicked
-    // Add snapshots for boxes
 });

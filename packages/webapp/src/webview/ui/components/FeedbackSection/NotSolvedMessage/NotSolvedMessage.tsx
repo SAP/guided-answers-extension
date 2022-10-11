@@ -6,10 +6,9 @@ import { actions } from '../../../../state';
 
 const options = [
     { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Start an Expert Chat' },
-    { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Schedule an Expert' },
-    { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Open an Incident' },
-    { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Ask the SAP Community' },
-    { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Ask the SAP Community' }
+    { link: 'https://launchpad.support.sap.com/#/sae', text: 'Schedule an Expert' },
+    { link: 'https://launchpad.support.sap.com/#/incident/create', text: 'Open an Incident' },
+    { link: 'https://answers.sap.com/index.html', text: 'Ask the SAP Community' }
 ];
 
 /**

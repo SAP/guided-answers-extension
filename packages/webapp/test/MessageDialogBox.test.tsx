@@ -32,32 +32,4 @@ describe('<MessageDialogBox />', () => {
 
         expect(component).toMatchInlineSnapshot(`"<span class="ms-layer"></span>"`);
     });
-
-    // it('Should call function when default button is pressed', () => {
-    //     const defaultButtonFunction = jest.fn();
-    //     wrapper.find('.default-button').simulate('click');
-    //     expect(defaultButtonFunction.mock.calls.length).toEqual(1);
-    // });
-
-    // it('Should call function when primary button is pressed', () => {
-    //     const defaultButtonFunction = jest.fn();
-    //     const primaryButtonFunction = jest.fn();
-    //     let wrapper = mount(
-    //         <MessageDialogBox
-    //             dialogTitle={i18next.t('THANKS')}
-    //             dialogText={i18next.t('THANK_YOU_TEXT')}
-    //             dialogVisible={true}
-    //             primaryButtonAction={defaultButtonFunction}
-    //             defaultButtonAction={primaryButtonFunction}
-    //             stylingClassName="solved-message-dialog"
-    //         />
-    //     );
-
-    //     wrapper.find('.primary-button').first().simulate('click');
-    //     expect(primaryButtonFunction.mock.calls.length).toEqual(1);
-    // });
-
-    // check if message dialog box exists - snapshot - DONE
-    // are the props passed correct or do I need to import action to pass a real function - OK
-    //test if functions are triggered when primary button and default button is clicked
 });
