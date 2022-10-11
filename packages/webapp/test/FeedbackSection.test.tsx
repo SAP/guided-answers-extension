@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { actions } from '../src/webview/state';
 import { FeedbackSection } from '../src/webview/ui/components/FeedbackSection/FeedbackSection';
 import { initI18n } from '../src/webview/i18n';
-import { actions } from '../src/webview/state';
 
 jest.mock('../src/webview/state', () => {
     return {
@@ -15,16 +15,11 @@ jest.mock('../src/webview/state', () => {
 
 jest.mock('react-redux', () => ({
     ...jest.requireActual('react-redux'),
-    useSelector: jest
-        .fn()
-        .mockReturnValue({ guideFeedback: null })
-        .mockReturnValueOnce({ guideFeedback: true })
-        .mockReturnValueOnce({ guideFeedback: false })
+    useSelector: jest.fn().mockReturnValue({ guideFeedback: null })
 }));
 
 describe('Feedback Section component', () => {
     let wrapper: any;
-    initI18n();
     beforeEach(() => {
         wrapper = shallow(<FeedbackSection />);
     });
