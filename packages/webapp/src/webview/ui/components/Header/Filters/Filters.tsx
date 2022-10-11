@@ -2,14 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
-import { UIIconButton } from '../../UIComponentsLib/UIButton';
 import { UiIcons } from '../../UIComponentsLib/Icons';
-import { UIDialog } from '../../UIComponentsLib/UIDialog';
-import { UICheckbox } from '../../UIComponentsLib/UICheckbox';
+import { UIIconButton, UIDialog, UICheckbox, UITextInput } from '@sap-ux/ui-components';
 import type { ProductFilter, ComponentFilter } from '@sap/guided-answers-extension-types';
 import { Stack, IStackTokens } from '@fluentui/react';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-import { UITextInput } from '../../UIComponentsLib/UIInput';
 
 import './Filters.scss';
 

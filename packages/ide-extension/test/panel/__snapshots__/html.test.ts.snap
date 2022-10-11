@@ -2,22 +2,22 @@
 
 exports[`Test for HTML generation Generate HTML 1`] = `
 "<!DOCTYPE html>
-<html lang=\\"en\\">
+<html lang="en">
     <head>
-        <meta charset=\\"utf-8\\">
-        <meta name=\\"google\\" content=\\"notranslate\\">
-        <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1, shrink-to-fit=no\\">
+        <meta charset="utf-8">
+        <meta name="google" content="notranslate">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>TITLE</title>
 
-        <base href=\\"./\\">
-        <link rel=\\"stylesheet\\" type=\\"text/css\\" href=\\"ROOTVENDOR_CSS_URI\\">
-        <script type=\\"text/javascript\\">
+        <base href="./">
+        <link rel="stylesheet" type="text/css" href="ROOTVENDOR_CSS_URI">
+        <script type="text/javascript">
             function onResourceLoadError() {
                 // Load failed - send command to restart webview
                 try {
                     var vscodeMessenger = window.vscode || acquireVsCodeApi();
                     if (vscodeMessenger) {
-                        vscodeMessenger.postMessage({\\"type\\": \\"RESTART_WEBVIEW\\"});
+                        vscodeMessenger.postMessage({"type": "RESTART_WEBVIEW"});
                     }
                     // Rewrite function to avoid multiple restarts - restart logic should be callod only once
                     onResourceLoadError = function(){};
@@ -26,12 +26,12 @@ exports[`Test for HTML generation Generate HTML 1`] = `
                 }
             }
         </script>
-        <script src=\\"ROOTVENDOR_URI\\" onerror=\\"onResourceLoadError()\\"></script>
+        <script src="ROOTVENDOR_URI" onerror="onResourceLoadError()"></script>
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id=\\"root\\"></div>
-        <script src=\\"ROOTBUNDLE_URI\\" onerror=\\"onResourceLoadError()\\"></script>
+        <div id="root"></div>
+        <script src="ROOTBUNDLE_URI" onerror="onResourceLoadError()"></script>
     </body>
 </html>
 "
