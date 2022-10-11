@@ -233,7 +233,7 @@ describe('Test functions in reducers', () => {
     });
 
     it('Should set GuideFeedback', () => {
-        const feedback = true;
+        const feedback = false;
         const setGuideFeedback = reducer(getInitialState(), {
             type: GUIDE_FEEDBACK,
             payload: feedback
