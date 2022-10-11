@@ -32,16 +32,4 @@ describe('<NotSolvedMessage/>', () => {
             `"<div id="middle" class="column"><h1>Issue is not resolved</h1><div id="hr"></div><div class="guided-answer__node__question"><p><strong>We are sorry to hear that your issue is not yet resolved.</strong></p><p style="font-weight:400">There are several options for getting further assistance:</p></div><div class="guided-answer__node"><div class="ms-FocusZone css-101 guided-answer__node" data-focuszone-id="FocusZone0"><div class="guided-answer__node"><a class="guided-answer__node__edge" href="https://launchpad.support.sap.com/#/expertchat/create" role="button">Start an Expert Chat</a></div><div class="guided-answer__node"><a class="guided-answer__node__edge" href="https://launchpad.support.sap.com/#/sae" role="button">Schedule an Expert</a></div><div class="guided-answer__node"><a class="guided-answer__node__edge" href="https://launchpad.support.sap.com/#/incident/create" role="button">Open an Incident</a></div><div class="guided-answer__node"><button class="guided-answer__node__edge">Search for another Guided Answer</button></div></div></div></div>"`
         );
     });
-
-    // it('Node should be a link', () => {
-    //     wrapper
-    //         .find('.guided-answer__node__edge')
-    //         .closest('a')
-    //         .toHaveAttribute('href', 'https://launchpad.support.sap.com/#/expertchat/create');
-    // });
-
-    // it('Last node should return to home', () => {
-    //     wrapper.find('.guided-answer__node__edge').at(0).simulate('click');
-    //     expect(actions.goToAllAnswers).toHaveBeenCalled();
-    // });
 });

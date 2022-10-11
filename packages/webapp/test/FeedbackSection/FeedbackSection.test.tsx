@@ -46,8 +46,4 @@ describe('Feedback Section component', () => {
         wrapper.find('.feedback-box').at(1).simulate('click');
         expect(actions.guideFeedback).toBeCalled();
     });
-
-    it('The intial guideFeedback state is null', () => {
-        // expect(useSelector).toBe(null); <-- Not sure about this? I think you want to test the state?
-    });
 });

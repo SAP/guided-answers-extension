@@ -1,3 +1,4 @@
+import { GUIDE_FEEDBACK } from './../../../types/src/types';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import {
     UPDATE_GUIDED_ANSWER_TREES,
@@ -219,6 +220,7 @@ describe('Test functions in reducers', () => {
         const goToAllAnswersState = reducer(getInitialState(), {
             type: GO_TO_ALL_ANSWERS
         });
+        expect(goToAllAnswersState.guideFeedback).toEqual(null);
         expect(goToAllAnswersState.activeGuidedAnswerNode.length).toBe(0);
     });
 
@@ -227,6 +229,16 @@ describe('Test functions in reducers', () => {
             type: RESTART_ANSWER
         });
         expect(restartAnswersState.activeGuidedAnswerNode).toStrictEqual([undefined]);
+        expect(restartAnswersState.guideFeedback).toEqual(null);
+    });
+
+    it('Should set GuideFeedback', () => {
+        const feedback = true;
+        const setGuideFeedback = reducer(getInitialState(), {
+            type: GUIDE_FEEDBACK,
+            payload: feedback
+        });
+        expect(setGuideFeedback.guideFeedback).toEqual(feedback);
     });
 
     it('Should set active tree', () => {
