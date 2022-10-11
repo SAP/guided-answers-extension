@@ -91,9 +91,7 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             break;
         }
         case GO_TO_ALL_ANSWERS: {
-            if (newState.guideFeedback !== null) {
-                newState.guideFeedback = null;
-            }
+            newState.guideFeedback = null;
             newState.activeGuidedAnswerNode = [];
             delete newState.activeGuidedAnswer;
             break;

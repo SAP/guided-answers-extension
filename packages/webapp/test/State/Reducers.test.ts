@@ -1,4 +1,4 @@
-import { GUIDE_FEEDBACK } from './../../../types/src/types';
+import { GUIDE_FEEDBACK, GuideFeedback, UpdateActiveNode } from './../../../types/src/types';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import {
     UPDATE_GUIDED_ANSWER_TREES,
@@ -150,6 +150,19 @@ describe('Test functions in reducers', () => {
 
         expect(answersWithDefaultState).toEqual(expected);
         expect(answers).toEqual(expected);
+    });
+
+    it('Should pop node when tree is updated with GuideFeedback as False', () => {
+        const treeWithGuideFeedbackFalse = reducer(getInitialState(), {
+            type: GUIDE_FEEDBACK,
+            payload: false
+        });
+        const answerwithGuidedAnswerTree = reducer(treeWithGuideFeedbackFalse, {
+            type: UPDATE_ACTIVE_NODE,
+            payload: mockedActiveGuidedAnswerNode[0]
+        });
+        expect(answerwithGuidedAnswerTree.guideFeedback).toBe(null);
+        expect(answerwithGuidedAnswerTree.activeGuidedAnswerNode.length).toBe(1);
     });
 
     it('Should return the active node', () => {
