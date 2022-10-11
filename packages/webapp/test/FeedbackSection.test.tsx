@@ -20,6 +20,7 @@ jest.mock('react-redux', () => ({
 
 describe('Feedback Section component', () => {
     let wrapper: any;
+    initI18n();
     beforeEach(() => {
         wrapper = shallow(<FeedbackSection />);
     });
