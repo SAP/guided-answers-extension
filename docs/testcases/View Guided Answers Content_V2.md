@@ -51,7 +51,7 @@ The search input field falls under the SAP Guided Answers Extension
 
 The view port displays
 
-    a. A list containing guides that are related to the 'SAP Fiori Tools' search criteria.
+    a. A list containing guides that are related to the 'SAP Fiori Tools' search criteria. 'SAP Fiori tools' and 'SAP Fiori tools - Application Preview' should appear in the list
     b. The name of the Guided Answer should appear in the list 
     b. The description of the Guided Answer  should appear in the list
     c. The Product the Guided Answer is associated to
