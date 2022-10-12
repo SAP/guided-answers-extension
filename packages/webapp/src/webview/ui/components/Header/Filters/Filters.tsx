@@ -258,10 +258,11 @@ export function Filters() {
                     onCancel={resetFilter}
                     onDismiss={resetFilter}>
                     <UITextInput placeholder="Search" value={query} onChange={searchFilter} />
-                    <FocusZone direction={FocusZoneDirection.domOrder} isCircularNavigation={true}>
-                        <Stack
-                            style={{ overflowY: 'scroll', height: '90%', padding: 0, marginTop: '10px' }}
-                            tokens={verticalGapStackTokens}>
+                    <FocusZone
+                        direction={FocusZoneDirection.domOrder}
+                        isCircularNavigation={true}
+                        style={{ overflowY: 'scroll', height: '90%', padding: 0, marginTop: '10px' }}>
+                        <Stack tokens={verticalGapStackTokens} style={{ padding: '10px 1px' }}>
                             {filterType[filter].listItems}
                         </Stack>{' '}
                     </FocusZone>
