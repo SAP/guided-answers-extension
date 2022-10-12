@@ -139,19 +139,19 @@ With this enhancement, every occurrence of the string 'SAP Fiori tools' in any b
 
 ### How to find Extension and Command Ids
  
-An enhancement can execute can start a command from VSCode's command palette  To start a command via the command palette , two things are requied
+A HTML enhancement can execute a command from VSCode's command palette. To start a command via the command palette , two things are requied
 
 1. Extension id
 2. Command id
 
 
-The extension identifier can be found in the extension about infor section
+The extension identifier can be found in the extension 'Details' section
 
 
 <img width="1129" alt="Screenshot 2022-09-27 at 15 57 20" src="https://user-images.githubusercontent.com/9609226/192562085-5fb6f893-ed17-4939-b4d9-bd45aec91e14.png">
 
 
-The command ids available to be called can be found
+The command ids available to be called can be found under 'Commands' in the 'Feature Contributions' section
 
 
 <img width="1124" alt="Screenshot 2022-09-27 at 16 01 51" src="https://user-images.githubusercontent.com/9609226/192563154-3518ee6d-8d8f-4316-9b0a-79712aa44e15.png">
