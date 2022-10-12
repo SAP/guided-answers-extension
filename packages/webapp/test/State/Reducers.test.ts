@@ -223,10 +223,20 @@ describe('Test functions in reducers', () => {
     });
 
     it('Should go to previous page', () => {
-        const prevPageState = reducer(getInitialState(), {
+        const mockedInitStateWithActiveGuidedNode: any = mockedInitState;
+        mockedInitStateWithActiveGuidedNode.activeGuidedAnswerNode = mockedActiveGuidedAnswerNode;
+        mockedInitStateWithActiveGuidedNode.guideFeedback = true;
+        let prevPageState = reducer(mockedInitStateWithActiveGuidedNode, {
             type: GO_TO_PREVIOUS_PAGE
         });
         expect(prevPageState.activeGuidedAnswerNode.length).toBe(0);
+
+        mockedInitStateWithActiveGuidedNode.guideFeedback = false;
+
+        prevPageState = reducer(mockedInitStateWithActiveGuidedNode, {
+            type: GO_TO_PREVIOUS_PAGE
+        });
+        expect(prevPageState.guideFeedback).toBe(null);
     });
 
     it('Should go to all answers', () => {
