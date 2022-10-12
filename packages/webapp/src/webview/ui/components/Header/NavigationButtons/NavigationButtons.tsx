@@ -2,18 +2,14 @@ import React from 'react';
 import { actions } from '../../../../state';
 import { VscHome, VscRefresh, VscArrowLeft } from 'react-icons/vsc';
 import i18next from 'i18next';
+import { focusOnElement } from '../../utils';
 
 /**
  *
  * @returns A button component navigating to all answers.
  */
 const AllAnswersButton = React.memo(function AllAnswersButton() {
-    requestAnimationFrame(() => {
-        const button = document.body.querySelector('.home-icon') as HTMLElement;
-        if (button) {
-            button.focus();
-        }
-    });
+    focusOnElement('.home-icon');
 
     return (
         <button
