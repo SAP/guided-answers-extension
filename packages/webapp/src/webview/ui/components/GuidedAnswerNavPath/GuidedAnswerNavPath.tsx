@@ -19,13 +19,8 @@ export function GuidedAnswerNavPath(): ReactElement {
     const isSolved = useSelector<AppState, boolean | null>((state) => state.guideFeedback);
     let activeNode = nodes[nodes.length - 1];
     let lastIndex = nodes.length - 1;
-    let lastBlockBorderStyle = 'timeline-content-bottom-border';
-
-    if (isSolved === false) {
-        activeNode = nodes[nodes.length - 1];
-        lastIndex = nodes.length - 1;
-        lastBlockBorderStyle = 'timeline-content-bottom-border-not-solved';
-    }
+    let lastBlockBorderStyle =
+        isSolved === false ? 'timeline-content-bottom-border-not-solved' : 'timeline-content-bottom-border';
 
     if (activeNode) {
         firstTimeFocus = true;
