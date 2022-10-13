@@ -22,7 +22,6 @@ export function GuidedAnswerNavPath(): ReactElement {
     let lastBlockBorderStyle = 'timeline-content-bottom-border';
 
     if (isSolved === false) {
-        nodes.push({ NODE_ID: 99999, TITLE: i18next.t('ISSUE_IS_NOT_RESOLVED'), BODY: '', QUESTION: '', EDGES: [] });
         activeNode = nodes[nodes.length - 1];
         lastIndex = nodes.length - 1;
         lastBlockBorderStyle = 'timeline-content-bottom-border-not-solved';

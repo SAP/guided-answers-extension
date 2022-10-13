@@ -15,6 +15,7 @@ import {
     SET_COMPONENT_FILTERS,
     RESET_FILTERS
 } from '@sap/guided-answers-extension-types';
+import i18next from 'i18next';
 import type { Reducer } from 'redux';
 import type { AppState } from '../types';
 
@@ -115,6 +116,15 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         }
         case GUIDE_FEEDBACK: {
             newState.guideFeedback = action.payload;
+            if (action.payload === false) {
+                newState.activeGuidedAnswerNode.push({
+                    NODE_ID: 99999,
+                    TITLE: i18next.t('ISSUE_IS_NOT_RESOLVED'),
+                    BODY: '',
+                    QUESTION: '',
+                    EDGES: []
+                });
+            }
             break;
         }
         case SET_PRODUCT_FILTERS: {
