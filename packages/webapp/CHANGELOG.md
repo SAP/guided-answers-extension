@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.13.0
+
+### Minor Changes
+
+-   3401231: fix(ga): fix a11y issues in dialog
+
 ## 0.12.0
 
 ### Minor Changes
