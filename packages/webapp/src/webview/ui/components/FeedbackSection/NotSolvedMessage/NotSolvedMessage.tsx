@@ -5,10 +5,10 @@ import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { actions } from '../../../../state';
 
 const options = [
-    { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: i18next.t('START_AN_EXPERT_CHAT') },
-    { link: 'https://launchpad.support.sap.com/#/sae', text: i18next.t('SCHUEDULE_AN_EXPERT') },
-    { link: 'https://launchpad.support.sap.com/#/incident/create', text: i18next.t('OPEN_AN_INCIDENT') },
-    { link: 'https://answers.sap.com/index.html', text: i18next.t('ASK_THE_SAP_COMMUNITY') }
+    { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Start an Expert Chat' },
+    { link: 'https://launchpad.support.sap.com/#/sae', text: 'Schedule an Expert' },
+    { link: 'https://launchpad.support.sap.com/#/incident/create', text: 'Open an Incident' },
+    { link: 'https://answers.sap.com/index.html', text: i18next.t('Ask the SAP Community') }
 ];
 
 /**
@@ -45,7 +45,7 @@ export default function NotSolvedMessage(): ReactElement {
                                 </button>
                             ) : (
                                 <a key={i} className="guided-answer__node__edge" href={btn.link} role="button">
-                                    {btn.text}
+                                    {i18next.t(btn.text)}
                                 </a>
                             )}
                         </div>
