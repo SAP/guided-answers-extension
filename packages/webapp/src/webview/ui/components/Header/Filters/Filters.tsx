@@ -245,25 +245,28 @@ export function Filters() {
                         className={`filter-button ${
                             selectedComponentFilters.length > 0 ? 'filter-button-selected' : ''
                         }`}></UIIconButton>
-                    <UIDialog
-                        className="dialog-filter"
-                        dialogContentProps={{ title: filterType[filter].title }}
-                        isOpen={filterType[filter].visibility}
-                        isBlocking={true}
-                        acceptButtonText={'Apply Filter'}
-                        cancelButtonText={'Cancel'}
-                        styles={{ main }}
-                        onAccept={() => filterType[filter].apply()}
-                        onCancel={resetFilter}
-                        onDismiss={resetFilter}>
-                        <UITextInput placeholder="Search" value={query} onChange={searchFilter} />
-                        <Stack
-                            style={{ overflowY: 'scroll', height: '90%', padding: 0, marginTop: '10px' }}
-                            tokens={verticalGapStackTokens}>
+                </FocusZone>
+                <UIDialog
+                    className="dialog-filter"
+                    dialogContentProps={{ title: filterType[filter].title }}
+                    isOpen={filterType[filter].visibility}
+                    isBlocking={true}
+                    acceptButtonText={'Apply Filter'}
+                    cancelButtonText={'Cancel'}
+                    styles={{ main }}
+                    onAccept={() => filterType[filter].apply()}
+                    onCancel={resetFilter}
+                    onDismiss={resetFilter}>
+                    <UITextInput placeholder="Search" value={query} onChange={searchFilter} />
+                    <FocusZone
+                        direction={FocusZoneDirection.domOrder}
+                        isCircularNavigation={true}
+                        style={{ overflowY: 'scroll', height: '90%', padding: 0, marginTop: '10px' }}>
+                        <Stack tokens={verticalGapStackTokens} style={{ margin: '0px 4px' }}>
                             {filterType[filter].listItems}
                         </Stack>{' '}
-                    </UIDialog>
-                </FocusZone>
+                    </FocusZone>
+                </UIDialog>
             </div>
         </>
     );
