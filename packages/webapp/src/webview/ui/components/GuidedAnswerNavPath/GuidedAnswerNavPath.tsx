@@ -6,7 +6,6 @@ import { AppState } from '../../../types';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './GuidedAnswerNavPath.scss';
 import { focusOnElement } from '../utils';
-import i18next from 'i18next';
 
 /**
  * Renders and return the navigation section.
