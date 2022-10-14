@@ -1,3 +1,4 @@
+import { GUIDE_FEEDBACK, GuideFeedback, UpdateActiveNode } from './../../../types/src/types';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import {
     UPDATE_GUIDED_ANSWER_TREES,
@@ -45,6 +46,7 @@ const mockedPayload = {
 const mockedInitState = {
     loading: true,
     query: '',
+    searchResultCount: -1,
     guidedAnswerTreeSearchResult: {
         resultSize: -1,
         componentFilters: [],
@@ -53,6 +55,7 @@ const mockedInitState = {
     },
     activeGuidedAnswerNode: [],
     betaFeatures: false,
+    guideFeedback: null,
     selectedProductFilters: [],
     selectedComponentFilters: []
 };
@@ -136,15 +139,30 @@ describe('Test functions in reducers', () => {
         const expected = {
             loading: true,
             query: '',
+            searchResultCount: -1,
             guidedAnswerTreeSearchResult: mockedGuidedAnswerTreeSearchResult,
             activeGuidedAnswerNode: [],
             betaFeatures: false,
+            guideFeedback: null,
             selectedProductFilters: [],
             selectedComponentFilters: []
         };
 
         expect(answersWithDefaultState).toEqual(expected);
         expect(answers).toEqual(expected);
+    });
+
+    it('Should pop node when tree is updated with GuideFeedback as False', () => {
+        const treeWithGuideFeedbackFalse = reducer(getInitialState(), {
+            type: GUIDE_FEEDBACK,
+            payload: false
+        });
+        const answerwithGuidedAnswerTree = reducer(treeWithGuideFeedbackFalse, {
+            type: UPDATE_ACTIVE_NODE,
+            payload: mockedActiveGuidedAnswerNode[0]
+        });
+        expect(answerwithGuidedAnswerTree.guideFeedback).toBe(null);
+        expect(answerwithGuidedAnswerTree.activeGuidedAnswerNode.length).toBe(1);
     });
 
     it('Should return the active node', () => {
@@ -156,6 +174,7 @@ describe('Test functions in reducers', () => {
         expect(activeNode).toEqual({
             loading: true,
             query: '',
+            searchResultCount: -1,
             guidedAnswerTreeSearchResult: {
                 resultSize: -1,
                 componentFilters: [],
@@ -163,6 +182,7 @@ describe('Test functions in reducers', () => {
                 trees: []
             },
             activeGuidedAnswerNode: mockedActiveGuidedAnswerNode,
+            guideFeedback: null,
             betaFeatures: false,
             selectedProductFilters: [],
             selectedComponentFilters: []
@@ -179,6 +199,7 @@ describe('Test functions in reducers', () => {
         expect(hasActiveNode).toEqual({
             loading: true,
             query: '',
+            searchResultCount: -1,
             guidedAnswerTreeSearchResult: {
                 resultSize: -1,
                 componentFilters: [],
@@ -187,6 +208,7 @@ describe('Test functions in reducers', () => {
             },
             activeGuidedAnswerNode: mockedActiveGuidedAnswerNode,
             betaFeatures: false,
+            guideFeedback: null,
             selectedProductFilters: [],
             selectedComponentFilters: []
         });
@@ -201,16 +223,27 @@ describe('Test functions in reducers', () => {
     });
 
     it('Should go to previous page', () => {
-        const prevPageState = reducer(getInitialState(), {
+        const mockedInitStateWithActiveGuidedNode: any = mockedInitState;
+        mockedInitStateWithActiveGuidedNode.activeGuidedAnswerNode = mockedActiveGuidedAnswerNode;
+        mockedInitStateWithActiveGuidedNode.guideFeedback = true;
+        let prevPageState = reducer(mockedInitStateWithActiveGuidedNode, {
             type: GO_TO_PREVIOUS_PAGE
         });
         expect(prevPageState.activeGuidedAnswerNode.length).toBe(0);
+
+        mockedInitStateWithActiveGuidedNode.guideFeedback = false;
+
+        prevPageState = reducer(mockedInitStateWithActiveGuidedNode, {
+            type: GO_TO_PREVIOUS_PAGE
+        });
+        expect(prevPageState.guideFeedback).toBe(null);
     });
 
     it('Should go to all answers', () => {
         const goToAllAnswersState = reducer(getInitialState(), {
             type: GO_TO_ALL_ANSWERS
         });
+        expect(goToAllAnswersState.guideFeedback).toEqual(null);
         expect(goToAllAnswersState.activeGuidedAnswerNode.length).toBe(0);
     });
 
@@ -219,6 +252,16 @@ describe('Test functions in reducers', () => {
             type: RESTART_ANSWER
         });
         expect(restartAnswersState.activeGuidedAnswerNode).toStrictEqual([undefined]);
+        expect(restartAnswersState.guideFeedback).toEqual(null);
+    });
+
+    it('Should set GuideFeedback', () => {
+        const feedback = false;
+        const setGuideFeedback = reducer(getInitialState(), {
+            type: GUIDE_FEEDBACK,
+            payload: feedback
+        });
+        expect(setGuideFeedback.guideFeedback).toEqual(feedback);
     });
 
     it('Should set active tree', () => {

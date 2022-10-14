@@ -3,6 +3,8 @@ import { Uri, ViewColumn, window, workspace } from 'vscode';
 import type { GuidedAnswerActions, GuidedAnswerAPI } from '@sap/guided-answers-extension-types';
 import {
     SELECT_NODE,
+    SEND_FEEDBACK_OUTCOME,
+    SEND_FEEDBACK_COMMENT,
     updateGuidedAnswerTrees,
     updateActiveNode,
     updateLoading,
@@ -118,6 +120,14 @@ export class GuidedAnswersPanel {
                     const node = await this.guidedAnswerApi.getNodeById(action.payload);
                     logString(`Node selected: ${node.NODE_ID}: ${node.TITLE}`);
                     this.postActionToWebview(updateActiveNode(node));
+                    break;
+                }
+                case SEND_FEEDBACK_OUTCOME: {
+                    await this.guidedAnswerApi.sendFeedbackOutcome(action.payload);
+                    break;
+                }
+                case SEND_FEEDBACK_COMMENT: {
+                    await this.guidedAnswerApi.sendFeedbackComment(action.payload);
                     break;
                 }
                 case EXECUTE_COMMAND: {

@@ -9,7 +9,9 @@ import {
     UPDATE_GUIDED_ANSWER_TREES,
     UPDATE_LOADING,
     WEBVIEW_READY,
-    BETA_FEATURES
+    BETA_FEATURES,
+    SEND_FEEDBACK_OUTCOME,
+    SEND_FEEDBACK_COMMENT
 } from '@sap/guided-answers-extension-types';
 import type {
     Command,
@@ -234,6 +236,43 @@ describe('GuidedAnswersPanel', () => {
         });
     });
 
+    test('GuidedAnswersPanel communication SEND_FEEDBACK_OUTCOME', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        const guidedAnswerApiSpy = jest.spyOn(apiMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
+
+        // Test execution
+        new GuidedAnswersPanel();
+        await onDidReceiveMessageMock({ type: SEND_FEEDBACK_OUTCOME, payload: { nodeId: 1, treeId: 2, solved: true } });
+
+        // Result check
+        expect(guidedAnswerApiSpy).toBeCalled();
+    });
+
+    test('GuidedAnswersPanel communication SEND_FEEDBACK_COMMENT', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        const guidedAnswerApiSpy = jest.spyOn(apiMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
+
+        // Test execution
+        new GuidedAnswersPanel();
+        await onDidReceiveMessageMock({
+            type: SEND_FEEDBACK_COMMENT,
+            payload: { nodeId: 1, treeId: 2, comment: 'test' }
+        });
+
+        // Result check
+        expect(guidedAnswerApiSpy).toBeCalled();
+    });
+
     test('GuidedAnswersPanel communication unhandled action', async () => {
         // Mock setup
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
@@ -280,5 +319,6 @@ const getApiMock = (firstNodeId?: number) =>
         getNodeById: (nodeId: GuidedAnswerNodeId) => Promise.resolve({ NODE_ID: nodeId, TITLE: `Node ${nodeId}` }),
         getNodePath: (nodeIdPath: GuidedAnswerNodeId[]) =>
             Promise.resolve(nodeIdPath.map((nodeId) => ({ NODE_ID: nodeId }))),
-        getTrees: () => Promise.resolve([{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }])
+        getTrees: () => Promise.resolve([{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]),
+        sendFeedbackOutcome: () => Promise.resolve()
     } as unknown as GuidedAnswerAPI);

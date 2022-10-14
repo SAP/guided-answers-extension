@@ -70,6 +70,14 @@ h1 {
             color: var(--vscode-foreground);
             height: auto;
             font-size: 13px;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            line-height: 18px;
+            max-height: 54px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            max-width: 700px;
         }
         &__product {
             margin-right: 15px;

@@ -57,11 +57,30 @@ export interface GuidedAnswerEdge {
     ORD: number;
 }
 
+export interface FeedbackCommentPayload {
+    treeId: GuidedAnswerTreeId;
+    nodeId: GuidedAnswerNodeId;
+    comment: string;
+}
+export interface FeedbackOutcomePayload {
+    treeId: GuidedAnswerTreeId;
+    nodeId: GuidedAnswerNodeId;
+    solved: boolean;
+}
+
 export interface GuidedAnswerAPI {
     getNodeById: (id: GuidedAnswerNodeId) => Promise<GuidedAnswerNode>;
     getTreeById: (id: GuidedAnswerTreeId) => Promise<GuidedAnswerTree>;
     getTrees: (queryOptions?: GuidedAnswersQueryOptions) => Promise<GuidedAnswerTreeSearchResult>;
     getNodePath: (nodeIdPath: GuidedAnswerNodeId[]) => Promise<GuidedAnswerNode[]>;
+    sendFeedbackComment: (payload: FeedbackCommentPayload) => Promise<void>;
+    sendFeedbackOutcome: (payload: FeedbackOutcomePayload) => Promise<void>;
+}
+
+export interface GuidedAnswersFeedback {
+    treeId: GuidedAnswerTreeId;
+    nodeId: GuidedAnswerNodeId;
+    message: 'Solved' | 'Not Solved' | string;
 }
 
 export interface VSCodeCommand {
@@ -124,6 +143,9 @@ export type GuidedAnswerActions =
     | SearchTree
     | SetQueryValue
     | WebviewReady
+    | GuideFeedback
+    | SendFeedbackOutcome
+    | SendFeedbackComment
     | BetaFeatures
     | SetProductFilters
     | SetComponentFilters
@@ -204,6 +226,24 @@ export const BETA_FEATURES = 'BETA_FEATURES';
 export interface BetaFeatures {
     type: typeof BETA_FEATURES;
     payload: boolean;
+}
+
+export const GUIDE_FEEDBACK = 'GUIDE_FEEDBACK';
+export interface GuideFeedback {
+    type: typeof GUIDE_FEEDBACK;
+    payload: boolean | null;
+}
+
+export const SEND_FEEDBACK_OUTCOME = 'SEND_FEEDBACK_OUTCOME';
+export interface SendFeedbackOutcome {
+    type: typeof SEND_FEEDBACK_OUTCOME;
+    payload: FeedbackOutcomePayload;
+}
+
+export const SEND_FEEDBACK_COMMENT = 'SEND_FEEDBACK_COMMENT';
+export interface SendFeedbackComment {
+    type: typeof SEND_FEEDBACK_COMMENT;
+    payload: FeedbackCommentPayload;
 }
 
 export const SET_PRODUCT_FILTERS = 'SET_PRODUCT_FILTERS';

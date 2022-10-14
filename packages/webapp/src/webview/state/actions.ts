@@ -11,6 +11,9 @@ export {
     setQueryValue,
     webviewReady,
     getBetaFeatures,
+    sendFeedbackOutcome,
+    sendFeedbackComment,
+    guideFeedback,
     setProductFilters,
     setComponentFilters,
     resetFilters

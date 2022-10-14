@@ -3,9 +3,12 @@ import axios from 'axios';
 import { default as xss } from 'xss';
 import type {
     APIOptions,
+    FeedbackCommentPayload,
+    FeedbackOutcomePayload,
     GuidedAnswerAPI,
     GuidedAnswerNode,
     GuidedAnswerNodeId,
+    GuidedAnswersFeedback,
     GuidedAnswersQueryFilterOptions,
     GuidedAnswersQueryOptions,
     GuidedAnswersQueryPagingOptions,
@@ -22,6 +25,8 @@ const VERSION = 'v2';
 const NODE_PATH = `/dtp/api/${VERSION}/nodes/`;
 const TREE_PATH = `/dtp/api/${VERSION}/trees/`;
 const IMG_PREFIX = '/dtp/viewer/';
+const FEEDBACK_COMMENT = `dtp/api/${VERSION}/feedback/comment`;
+const FEEDBACK_OUTCOME = `dtp/api/${VERSION}/feedback/outcome`;
 const DEFAULT_MAX_RESULTS = 9999;
 
 /**
@@ -45,7 +50,11 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
             let nodes = await getNodePath(apiHost, nodeIdPath);
             nodes = nodes.map((node) => enhanceNode(node, nodeEnhancements, htmlEnhancements));
             return nodes;
-        }
+        },
+        sendFeedbackComment: async (payload: FeedbackCommentPayload) =>
+            sendFeedbackComment(apiHost, payload.treeId, payload.nodeId, payload.comment),
+        sendFeedbackOutcome: async (payload: FeedbackOutcomePayload) =>
+            sendFeedbackOutcome(apiHost, payload.treeId, payload.nodeId, payload.solved)
     };
 }
 
@@ -203,4 +212,54 @@ async function getNodePath(host: string, nodeIdPath: GuidedAnswerNodeId[]): Prom
         resolvedNodes.push(node);
     }
     return resolvedNodes;
+}
+
+/**
+ * Post feedback for tree and node. In case posting feedback is not successful, this function
+ * throws an error.
+ *
+ * @param url - url to post feedback
+ * @param feedback - feedback structure
+ */
+async function postFeedback(url: string, feedback: GuidedAnswersFeedback): Promise<void> {
+    const response = await axios.post(url, feedback);
+    if (response.status !== 200) {
+        throw Error(`Could not send feedback. ${response.statusText} (${response.status})`);
+    }
+}
+
+/**
+ * Send comment for a tree/node combination.
+ *
+ * @param host - Guided Answers API host
+ * @param treeId - Guided Answers tree id
+ * @param nodeId - Guided Answers node id
+ * @param comment - Feedback comment
+ */
+async function sendFeedbackComment(
+    host: string,
+    treeId: GuidedAnswerTreeId,
+    nodeId: GuidedAnswerNodeId,
+    comment: string
+): Promise<void> {
+    const message = comment;
+    return await postFeedback(`${host}/${FEEDBACK_COMMENT}`, { treeId, nodeId, message });
+}
+
+/**
+ * Send feedback about the outcome: solved/not solved.
+ *
+ * @param host - Guided Answer API host
+ * @param treeId - Guided Answers tree id
+ * @param nodeId - Guided Answers node id
+ * @param solved - true: tree solved the problem; false: tree did not solve the problem
+ */
+async function sendFeedbackOutcome(
+    host: string,
+    treeId: GuidedAnswerTreeId,
+    nodeId: GuidedAnswerNodeId,
+    solved: boolean
+): Promise<void> {
+    const message = solved ? 'Solved' : 'Not Solved';
+    return postFeedback(`${host}/${FEEDBACK_OUTCOME}`, { treeId, nodeId, message });
 }
