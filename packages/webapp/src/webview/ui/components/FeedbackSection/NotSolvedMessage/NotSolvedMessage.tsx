@@ -5,10 +5,10 @@ import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { actions } from '../../../../state';
 
 const options = [
-    { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'Start an Expert Chat' },
-    { link: 'https://launchpad.support.sap.com/#/sae', text: 'Schedule an Expert' },
-    { link: 'https://launchpad.support.sap.com/#/incident/create', text: 'Open an Incident' },
-    { link: 'https://answers.sap.com/index.html', text: i18next.t('Ask the SAP Community') }
+    { link: 'https://launchpad.support.sap.com/#/expertchat/create', text: 'START_AN_EXPERT_CHAT' },
+    { link: 'https://launchpad.support.sap.com/#/sae', text: 'SCHUEDULE_AN_EXPERT' },
+    { link: 'https://launchpad.support.sap.com/#/incident/create', text: 'OPEN_AN_INCIDENT' },
+    { link: 'https://answers.sap.com/index.html', text: 'ASK_THE_SAP_COMMUNITY' }
 ];
 
 /**
