@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 0.14.0
+
+### Minor Changes
+
+-   2b297ad: solved / not solved feedback interface added
+
 ## 0.13.0
 
 ### Minor Changes
