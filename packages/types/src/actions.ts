@@ -25,7 +25,8 @@ import type {
     SendFeedbackComment,
     SetProductFilters,
     SetComponentFilters,
-    ResetFilters
+    ResetFilters,
+    FeedbackStatus
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -46,7 +47,8 @@ import {
     SEND_FEEDBACK_COMMENT,
     SET_PRODUCT_FILTERS,
     SET_COMPONENT_FILTERS,
-    RESET_FILTERS
+    RESET_FILTERS,
+    FEEDBACK_STATUS
 } from './types';
 
 export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
@@ -121,6 +123,11 @@ export const webviewReady = (): WebviewReady => ({ type: WEBVIEW_READY });
 
 export const guideFeedback = (payload: boolean | null): GuideFeedback => ({
     type: GUIDE_FEEDBACK,
+    payload
+});
+
+export const feedbackStatus = (payload: boolean): FeedbackStatus => ({
+    type: FEEDBACK_STATUS,
     payload
 });
 

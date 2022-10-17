@@ -16,5 +16,6 @@ export {
     guideFeedback,
     setProductFilters,
     setComponentFilters,
-    resetFilters
+    resetFilters,
+    feedbackStatus
 } from '@sap/guided-answers-extension-types';

@@ -13,7 +13,8 @@ import {
     SEARCH_TREE,
     SET_PRODUCT_FILTERS,
     SET_COMPONENT_FILTERS,
-    RESET_FILTERS
+    RESET_FILTERS,
+    FEEDBACK_STATUS
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -39,7 +40,8 @@ export function getInitialState(): AppState {
         searchResultCount: -1,
         guideFeedback: null,
         selectedProductFilters: [],
-        selectedComponentFilters: []
+        selectedComponentFilters: [],
+        feedbackStatus: false
     };
 }
 
@@ -146,6 +148,9 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             const selectedProductFilters = action.payload?.filters?.product;
             newState.selectedProductFilters = Array.isArray(selectedProductFilters) ? selectedProductFilters : [];
             break;
+        }
+        case FEEDBACK_STATUS: {
+            newState.feedbackStatus = action.payload;
         }
         default: {
             // Do nothing, newState is cloned old state

@@ -149,7 +149,8 @@ export type GuidedAnswerActions =
     | BetaFeatures
     | SetProductFilters
     | SetComponentFilters
-    | ResetFilters;
+    | ResetFilters
+    | FeedbackStatus;
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnswerTrees {
@@ -261,4 +262,10 @@ export interface SetComponentFilters {
 export const RESET_FILTERS = 'RESET_FILTERS';
 export interface ResetFilters {
     type: typeof RESET_FILTERS;
+}
+
+export const FEEDBACK_STATUS = 'FEEDBACK_STATUS';
+export interface FeedbackStatus {
+    type: typeof FEEDBACK_STATUS;
+    payload: boolean;
 }
