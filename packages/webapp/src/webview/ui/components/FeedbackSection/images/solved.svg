@@ -1,0 +1,6 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40ZM20 37C29.3888 37 37 29.3888 37 20C37 10.6112 29.3888 3 20 3C10.6112 3 3 10.6112 3 20C3 29.3888 10.6112 37 20 37Z" fill=var(--vscode-terminal-ansiGreen)/>
+<rect x="15" y="13" width="2" height="7" fill=var(--vscode-terminal-ansiGreen)/>
+<rect x="23" y="13" width="2" height="7" fill=var(--vscode-terminal-ansiGreen)/>
+<path d="M12.582 23C13.7688 25.9318 16.6431 28 20.0005 28C23.3579 28 26.2322 25.9318 27.419 23H25.1978C24.1604 24.7934 22.2214 26 20.0005 26C17.7797 26 15.8406 24.7934 14.8032 23H12.582Z" fill=var(--vscode-terminal-ansiGreen)/>
+</svg>

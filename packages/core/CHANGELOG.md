@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-core
 
+## 0.4.0
+
+### Minor Changes
+
+-   2b297ad: solved / not solved feedback interface added
+
+### Patch Changes
+
+-   Updated dependencies [2b297ad]
+    -   @sap/guided-answers-extension-types@0.7.0
+
 ## 0.3.0
 
 ### Minor Changes

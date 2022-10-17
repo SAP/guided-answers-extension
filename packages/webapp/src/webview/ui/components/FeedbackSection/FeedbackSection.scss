@@ -1,0 +1,64 @@
+.feedback-container {
+    h3 {
+        color: var(--vscode-settings-headerForeground);
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    margin-bottom: 15px;
+}
+
+.feedback-subcontainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+
+button:focus-visible {
+    outline: 1px solid var(--vscode-focusBorder, #007fd4);
+}
+
+.feedback-box {
+    border: 2px solid var(--vscode-terminal-ansiGreen);
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    align-items: center;
+    gap: 12px;
+    overflow-wrap: break-word;
+    width: 50%;
+    text-align: left;
+}
+
+.solved-hover:hover {
+    background-color: var(--vscode-terminal-ansiGreen);
+    cursor: pointer;
+    > h3 {
+        color: var(--vscode-editor-background);
+    }
+    svg > path,
+    svg > rect {
+        fill: var(--vscode-editor-background);
+    }
+}
+
+.not-solved-hover:hover {
+    background-color: var(--vscode-terminal-ansiRed);
+    cursor: pointer;
+    > h3 {
+        color: var(--vscode-editor-background);
+    }
+    svg > path,
+    svg > rect {
+        fill: var(--vscode-editor-background);
+    }
+}
+
+@media only screen and (max-width: 625px) {
+    .feedback-box > svg {
+        display: none;
+    }
+}

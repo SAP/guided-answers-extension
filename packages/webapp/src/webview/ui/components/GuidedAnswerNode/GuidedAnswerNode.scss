@@ -1,4 +1,4 @@
-section.answer__node__body {
+.answer__node__body {
     height: 100%;
     margin: 0px;
     display: flex;
@@ -133,6 +133,7 @@ a:hover {
         text-align: center;
         outline-offset: -1px;
         border: 1px solid var(--vscode-contrastBorder);
+        text-decoration: none;
     }
     &__edge:hover {
         background-color: var(--vscode-button-hoverBackground);
@@ -198,6 +199,10 @@ a:hover {
 
 .enhancement-link:focus-visible {
     outline: 1px solid var(--vscode-focusBorder, #007fd4);
+}
+
+a:hover {
+    color: var(--vscode-button-foreground);
 }
 
 @media only screen and (max-width: 625px) {

@@ -8,12 +8,14 @@ import {
     RESTART_ANSWER,
     SET_ACTIVE_TREE,
     SET_QUERY_VALUE,
+    GUIDE_FEEDBACK,
     BETA_FEATURES,
     SEARCH_TREE,
     SET_PRODUCT_FILTERS,
     SET_COMPONENT_FILTERS,
     RESET_FILTERS
 } from '@sap/guided-answers-extension-types';
+import i18next from 'i18next';
 import type { Reducer } from 'redux';
 import type { AppState } from '../types';
 
@@ -34,6 +36,8 @@ export function getInitialState(): AppState {
         },
         activeGuidedAnswerNode: [],
         betaFeatures: false,
+        searchResultCount: -1,
+        guideFeedback: null,
         selectedProductFilters: [],
         selectedComponentFilters: []
     };
@@ -59,6 +63,10 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         }
         case UPDATE_ACTIVE_NODE: {
             const node = newState.activeGuidedAnswerNode.find((n) => n.NODE_ID === action.payload.NODE_ID);
+            if (newState.guideFeedback === false) {
+                newState.guideFeedback = null;
+                newState.activeGuidedAnswerNode.pop();
+            }
             if (node) {
                 newState.activeGuidedAnswerNode = newState.activeGuidedAnswerNode.slice(
                     0,
@@ -74,18 +82,24 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             break;
         }
         case GO_TO_PREVIOUS_PAGE: {
-            if (newState.activeGuidedAnswerNode.length > 0) {
+            if (newState.activeGuidedAnswerNode.length > 0 && newState.guideFeedback !== false) {
+                newState.activeGuidedAnswerNode.pop();
+            }
+            if (newState.guideFeedback === false) {
+                newState.guideFeedback = null;
                 newState.activeGuidedAnswerNode.pop();
             }
             break;
         }
         case GO_TO_ALL_ANSWERS: {
+            newState.guideFeedback = null;
             newState.activeGuidedAnswerNode = [];
             delete newState.activeGuidedAnswer;
             break;
         }
         case RESTART_ANSWER: {
             newState.activeGuidedAnswerNode = [newState.activeGuidedAnswerNode[0]];
+            newState.guideFeedback = null;
             break;
         }
         case SET_ACTIVE_TREE: {
@@ -98,6 +112,19 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         }
         case BETA_FEATURES: {
             newState.betaFeatures = action.payload;
+            break;
+        }
+        case GUIDE_FEEDBACK: {
+            newState.guideFeedback = action.payload;
+            if (action.payload === false) {
+                newState.activeGuidedAnswerNode.push({
+                    NODE_ID: 99999,
+                    TITLE: i18next.t('ISSUE_IS_NOT_RESOLVED'),
+                    BODY: '',
+                    QUESTION: '',
+                    EDGES: []
+                });
+            }
             break;
         }
         case SET_PRODUCT_FILTERS: {

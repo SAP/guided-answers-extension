@@ -1,6 +1,8 @@
 import axios from 'axios';
 import type {
     APIOptions,
+    FeedbackCommentPayload,
+    FeedbackOutcomePayload,
     GuidedAnswersQueryOptions,
     GuidedAnswerTreeSearchResult
 } from '@sap/guided-answers-extension-types';
@@ -519,5 +521,115 @@ describe('Guided Answers Api: getNodePath()', () => {
 
         // Result check
         expect(result).toMatchSnapshot();
+    });
+});
+
+describe('Guided Answers Api: sendFeedbackComment()', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test('Send comment, should be successful', async () => {
+        // Mock setup
+        const feedbackCommentPayload: FeedbackCommentPayload = {
+            treeId: 1,
+            nodeId: 2,
+            comment: 'This is a mock comment'
+        };
+        const postMock = mockedAxios.post.mockImplementation(() =>
+            Promise.resolve({
+                status: 200
+            })
+        );
+
+        // Test execution
+        await getGuidedAnswerApi({ apiHost: 'any.host' }).sendFeedbackComment(feedbackCommentPayload);
+
+        // Result check
+        expect(postMock).toBeCalledWith('any.host/dtp/api/v2/feedback/comment', {
+            treeId: 1,
+            nodeId: 2,
+            message: 'This is a mock comment'
+        });
+    });
+
+    test('Send feedback, should not be successful', async () => {
+        // Mock setup
+        const feedbackCommentPayload: FeedbackCommentPayload = {
+            treeId: 9,
+            nodeId: 8,
+            comment: ''
+        };
+        mockedAxios.post.mockImplementation(() =>
+            Promise.resolve({
+                status: 404
+            })
+        );
+
+        // Test execution
+        try {
+            await getGuidedAnswerApi().sendFeedbackComment(feedbackCommentPayload);
+            fail('Function sendFeedbackComment() should have thrown error but did not');
+        } catch (error) {
+            // Result check
+            expect(error instanceof Error).toBeTruthy();
+            if (error instanceof Error) {
+                expect(error.message).toContain('404');
+            }
+        }
+    });
+});
+
+describe('Guided Answers Api: sendFeedbackOutcome()', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test('Send outcome: solved', async () => {
+        // Mock setup
+        const feedbackOutcomePayload: FeedbackOutcomePayload = {
+            treeId: 10,
+            nodeId: 20,
+            solved: true
+        };
+        const postMock = mockedAxios.post.mockImplementation(() =>
+            Promise.resolve({
+                status: 200
+            })
+        );
+
+        // Test execution
+        await getGuidedAnswerApi({ apiHost: 'mock.host' }).sendFeedbackOutcome(feedbackOutcomePayload);
+
+        // Result check
+        expect(postMock).toBeCalledWith('mock.host/dtp/api/v2/feedback/outcome', {
+            treeId: 10,
+            nodeId: 20,
+            message: 'Solved'
+        });
+    });
+
+    test('Send outcome: not solved', async () => {
+        // Mock setup
+        const feedbackOutcomePayload: FeedbackOutcomePayload = {
+            treeId: 11,
+            nodeId: 22,
+            solved: false
+        };
+        const postMock = mockedAxios.post.mockImplementation(() =>
+            Promise.resolve({
+                status: 200
+            })
+        );
+
+        // Test execution
+        await getGuidedAnswerApi({ apiHost: 'mock.host' }).sendFeedbackOutcome(feedbackOutcomePayload);
+
+        // Result check
+        expect(postMock).toBeCalledWith('mock.host/dtp/api/v2/feedback/outcome', {
+            treeId: 11,
+            nodeId: 22,
+            message: 'Not Solved'
+        });
     });
 });

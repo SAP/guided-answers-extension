@@ -53,14 +53,21 @@ h1 span {
 
 .timeline-content-bottom-border {
     border-bottom: 3px solid var(--vscode-focusBorder, #007fd4);
+    pointer-events: none;
 }
 
 .timeline-content-bottom-border:hover {
-    border-top: 1px solid var(--button-border);
-    border-right: 1px solid var(--button-border);
-    border-left: 1px solid var(--button-border);
     border-bottom: 3px solid var(--vscode-focusBorder, #007fd4);
-    cursor: default;
+    pointer-events: none;
+}
+
+.timeline-content-bottom-border-not-solved {
+    border-bottom: 3px solid var(--vscode-notificationsErrorIcon-foreground, #f14c4c);
+    pointer-events: none;
+}
+
+.timeline-content-bottom-border-not-solved :hover {
+    pointer-events: none;
 }
 
 .timeline__path {

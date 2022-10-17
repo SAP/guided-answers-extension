@@ -1,0 +1,54 @@
+.solved-message-dialog {
+    .ms-Dialog-main {
+        background-color: var(--vscode-editorWidget-background);
+    }
+    .ms-Dialog-title {
+        color: var(--vscode-settings-headerForeground);
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+    }
+    .ms-Dialog-subText {
+        color: var(--vscode-settings-headerForeground);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 18px;
+        margin-bottom: 0;
+        padding: 0 21px 0 21px;
+        text-align: left;
+        margin-top: 0;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: -16px 0 0 0;
+    }
+
+    .default-button {
+        background-color: var(--vscode-button-secondaryBackground);
+        color: var(--vscode-button-foreground);
+        border-color: var(--vscode-button-secondaryBackground);
+        text-align: center;
+    }
+
+    .primary-button {
+        color: var(--vscode-button-foreground);
+        font-weight: 400;
+        border-color: var(--vscode-button-background);
+        background-color: var(--vscode-button-background);
+        border-style: none;
+    }
+
+    button:focus-visible {
+        outline: 1px solid var(--vscode-focusBorder, #007fd4);
+        border-style: none;
+    }
+
+    button:focus-visible {
+        outline: 1px solid var(--vscode-focusBorder, #007fd4);
+    }
+}
