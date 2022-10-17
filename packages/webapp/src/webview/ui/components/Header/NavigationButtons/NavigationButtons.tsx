@@ -1,6 +1,6 @@
 import React from 'react';
 import { actions } from '../../../../state';
-import { VscHome, VscRefresh, VscArrowLeft } from 'react-icons/vsc';
+import { VscHome, VscRefresh, VscArrowLeft, VscLightbulb } from 'react-icons/vsc';
 import i18next from 'i18next';
 import { focusOnElement } from '../../utils';
 
@@ -62,6 +62,19 @@ export function RestartButton() {
             <span className="guided-answer__header__navButtons__content text-underline" style={{ marginLeft: '3px' }}>
                 {i18next.t('RESTART')}
             </span>
+        </button>
+    );
+}
+
+export function GeneralFeedbackButton() {
+    return (
+        <button
+            className="guided-answer__header__navButtons"
+            onClick={(): void => {
+                // actions.restartAnswer();
+            }}
+            title={i18next.t('RESTART')}>
+            <VscLightbulb className="guided-answer__header__navButtons__content" />
         </button>
     );
 }
