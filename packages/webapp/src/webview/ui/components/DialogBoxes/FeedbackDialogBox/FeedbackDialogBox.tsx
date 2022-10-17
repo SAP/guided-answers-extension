@@ -5,6 +5,7 @@ import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
 import i18next from 'i18next';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { TextField } from '@fluentui/react';
+import { VscInfo } from 'react-icons/vsc';
 /**
  * @param props props for Message Dialog Box component
  * @param props.dialogTitle title for dialog box
@@ -42,17 +43,22 @@ export function FeedbackDialogBox(props: {
     return (
         <>
             <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
+                <h3>Your Suggestion</h3>
                 <TextField multiline autoAdjustHeight />
+                <div className="privacy-notice">
+                    <VscInfo className="info-icon" />
+                    <p>Your feedback is anonymous, we do not collect any personal data.</p>
+                </div>
                 <DialogFooter>
                     <FocusZone direction={FocusZoneDirection.horizontal} className="button-container">
                         <PrimaryButton
                             className="primary-button"
-                            text={i18next.t('HOME')}
+                            text={'Send'}
                             onClick={() => props.primaryButtonAction()}
                         />
                         <DefaultButton
                             className="default-button"
-                            text={i18next.t('CLOSE')}
+                            text={'Close'}
                             onClick={() => {
                                 props.defaultButtonAction();
                             }}

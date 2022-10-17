@@ -71,7 +71,8 @@ export function GeneralFeedbackButton() {
         <button
             className="guided-answer__header__navButtons"
             onClick={(): void => {
-                // actions.restartAnswer
+                actions.feedbackStatus(true);
+                console.log(actions.feedbackStatus(true));
             }}
             title={i18next.t('RESTART')}>
             <VscLightbulb className="guided-answer__header__navButtons__content" />
