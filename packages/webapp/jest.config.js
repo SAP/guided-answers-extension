@@ -18,7 +18,7 @@ module.exports = {
     notify: false,
     notifyMode: 'failure',
     preset: 'ts-jest',
-    setupFilesAfterEnv: ['./test/test-setup.js'],
+    setupFilesAfterEnv: ['./test/test-setup.js', './test/jest-setup.ts'],
     testEnvironment: 'jsdom',
     testMatch: ['**/test/**/*.(test).ts(x)?'],
     transform: {
