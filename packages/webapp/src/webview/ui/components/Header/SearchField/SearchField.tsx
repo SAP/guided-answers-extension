@@ -31,6 +31,10 @@ export function SearchField() {
                                 filters: {
                                     product: [],
                                     component: []
+                                },
+                                paging: {
+                                    responseSize: 20,
+                                    offset: 0
                                 }
                             });
                         }, 400);
