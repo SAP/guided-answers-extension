@@ -22,41 +22,22 @@ initIcons();
  */
 export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
-    // const [currentOffset, setCurrentOffset] = useState(0);
-    // console.log('EEEEE', appState.guidedAnswerTreeSearchResult.resultSize);
-
     const [hasMore, setHasMore] = useState(true);
     const [guidedAnswerTreeSearchResultTrees, setGuidedAnswerTreeSearchResultTrees] = useState(
         appState.guidedAnswerTreeSearchResult.trees
     );
+    const [currentOffset, setCurrentOffset] = useState(0);
 
     useEffect(() => {
-        console.log('A1', guidedAnswerTreeSearchResultTrees);
-        console.log('A2', appState.guidedAnswerTreeSearchResult.trees);
-
-        setGuidedAnswerTreeSearchResultTrees([
+        const concatArrays = [
             ...guidedAnswerTreeSearchResultTrees,
             ...appState.guidedAnswerTreeSearchResult.trees
-        ]);
+        ].filter((value, index, self) => index === self.findIndex((t) => t.TREE_ID === value.TREE_ID));
+
+        setGuidedAnswerTreeSearchResultTrees(concatArrays);
     }, [appState.guidedAnswerTreeSearchResult.trees]);
 
-    let currentOffset = 0;
-    const fetchData = () => {
-        console.log(
-            'Scroll!0',
-            appState.guidedAnswerTreeSearchResult.resultSize,
-            currentOffset,
-            appState.guidedAnswerTreeSearchResult.resultSize >= currentOffset
-        );
-        currentOffset = currentOffset + 20;
-        console.log(
-            'Scroll!1',
-            appState.guidedAnswerTreeSearchResult.resultSize,
-            currentOffset,
-            appState.guidedAnswerTreeSearchResult.resultSize >= currentOffset
-        );
-        // setCurrentOffset(offset);
-
+    useEffect(() => {
         if (appState.guidedAnswerTreeSearchResult.resultSize > 20) {
             actions.searchTree({
                 query: appState.query,
@@ -70,9 +51,11 @@ export function App(): ReactElement {
                 }
             });
             console.log(
-                'Scroll!2',
+                'Total results: ',
                 appState.guidedAnswerTreeSearchResult.resultSize,
+                'Current offset: ',
                 currentOffset,
+                'Scroll more? ',
                 appState.guidedAnswerTreeSearchResult.resultSize >= currentOffset
             );
             if (appState.guidedAnswerTreeSearchResult.resultSize >= currentOffset) {
@@ -81,7 +64,16 @@ export function App(): ReactElement {
                 setHasMore(false);
             }
         }
+    }, [currentOffset]);
+
+    useEffect(() => {
+        setGuidedAnswerTreeSearchResultTrees([]);
+    }, [appState.query]);
+
+    const fetchData = () => {
+        setCurrentOffset(currentOffset + 20);
     };
+
     let content;
     if (appState.loading) {
         content = <VSCodeProgressRing id="loading-indicator" />;
@@ -96,15 +88,10 @@ export function App(): ReactElement {
                     <FiltersRibbon />
                     <ul className="striped-list" role="listbox">
                         <InfiniteScroll
-                            dataLength={100} //This is important field to render the next data
+                            dataLength={guidedAnswerTreeSearchResultTrees.length} //This is important field to render the next data
                             next={fetchData}
-                            loader={<h4>Loading...</h4>}
-                            hasMore={hasMore}
-                            endMessage={
-                                <p style={{ textAlign: 'center' }}>
-                                    <b>Yay! You have seen it all</b>
-                                </p>
-                            }>
+                            loader={<VSCodeProgressRing id="loading-indicator" />}
+                            hasMore={hasMore}>
                             {guidedAnswerTreeSearchResultTrees.map((tree, index) => {
                                 return (
                                     <li key={`tree-item-${index}`} className="tree-item" role="option">
