@@ -49,11 +49,8 @@
     },
     "pnpm": {
         "overrides": {
-            "ansi-regex": "^5.0.1",
-            "tmpl": "^1.0.5",
-            "vm2@<3.9.6": "^3.9.6",
-            "minimist@<1.2.6": "^1.2.6",
-            "minimatch@<3.0.5": "^3.0.5"
+            "@sap/bas-sdk@2.1.2>minimatch": "^3.0.5",
+            "strip-ansi@3.0.1>ansi-regex": "^5.0.1"
         }
     }
 }

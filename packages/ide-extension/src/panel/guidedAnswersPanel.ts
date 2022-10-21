@@ -76,51 +76,68 @@ export class GuidedAnswersPanel {
         );
         this.panel.webview.html = html;
     }
+
+    /**
+     * Process startup sequence when webview is ready. This includes start options like initial tree to show
+     * or filters that are applied depending on the environment.
+     */
+    private async handleWebViewReady(): Promise<void> {
+        if (this.startOptions) {
+            await this.processStartOptions(this.startOptions);
+        } else {
+            await this.processEnvironmentFilters(this.ide);
+        }
+    }
+
     /**
      * Process startup parameters like initial tree id and node path.
      *
+     * @param startOptions - start options, e.g. tree id or node path
      * @returns - void
      */
-    private async processStartOptions(): Promise<void> {
-        if (this.startOptions) {
-            try {
-                if (typeof this.startOptions !== 'object') {
-                    throw Error(
-                        `Invalid start options. Please refer to https://github.com/SAP/guided-answers-extension/blob/main/docs/technical-information.md#module-sap-guided-answer-extension-packageside-extension for valid options.`
-                    );
-                }
-                const tree = await this.guidedAnswerApi.getTreeById(this.startOptions.treeId);
-                let nodePath;
-                if (this.startOptions.nodeIdPath) {
-                    nodePath = await this.guidedAnswerApi.getNodePath(this.startOptions.nodeIdPath);
-                }
-                this.postActionToWebview(setActiveTree(tree));
-                if (nodePath && nodePath.length > 0) {
-                    for (const node of nodePath) {
-                        this.postActionToWebview(updateActiveNode(node));
-                    }
-                } else {
-                    this.postActionToWebview(
-                        updateActiveNode(await this.guidedAnswerApi.getNodeById(tree.FIRST_NODE_ID))
-                    );
-                }
-            } catch (error: any) {
-                logString(
-                    `Error while processing start options, error was: '${error?.message}'. Start options: \n${
-                        typeof this.startOptions === 'object' ? JSON.stringify(this.startOptions) : this.startOptions
-                    }`
+    private async processStartOptions(startOptions: StartOptions): Promise<void> {
+        try {
+            if (typeof startOptions !== 'object') {
+                throw Error(
+                    `Invalid start options. Please refer to https://github.com/SAP/guided-answers-extension/blob/main/docs/technical-information.md#module-sap-guided-answer-extension-packageside-extension for valid options.`
                 );
             }
-        } else {
-            try {
-                const filters = await getFiltersForIde(this.ide);
-                logString(`Filters for environment '${this.ide}': ${JSON.stringify(filters)}`);
-                if (Object.keys(filters).length > 0) {
-                    this.postActionToWebview(searchTree({ filters }));
-                }
-            } catch (error: any) {
-                logString(`Error while retrieving context information, error was: '${error?.message}'.`);
+            const tree = await this.guidedAnswerApi.getTreeById(startOptions.treeId);
+            let nodePath;
+            if (startOptions.nodeIdPath) {
+                nodePath = await this.guidedAnswerApi.getNodePath(startOptions.nodeIdPath);
             }
+            this.postActionToWebview(setActiveTree(tree));
+            if (nodePath && nodePath.length > 0) {
+                for (const node of nodePath) {
+                    this.postActionToWebview(updateActiveNode(node));
+                }
+            } else {
+                this.postActionToWebview(updateActiveNode(await this.guidedAnswerApi.getNodeById(tree.FIRST_NODE_ID)));
+            }
+        } catch (error: any) {
+            logString(
+                `Error while processing start options, error was: '${error?.message}'. Start options: \n${
+                    typeof this.startOptions === 'object' ? JSON.stringify(this.startOptions) : this.startOptions
+                }`
+            );
+        }
+    }
+
+    /**
+     * Check for environment specific filters and apply them.
+     *
+     * @param ide - environment like VSCODE or BAS
+     */
+    private async processEnvironmentFilters(ide: IDE): Promise<void> {
+        try {
+            const filters = await getFiltersForIde(ide);
+            logString(`Filters for environment '${ide}': ${JSON.stringify(filters)}`);
+            if (Object.keys(filters).length > 0) {
+                this.postActionToWebview(searchTree({ filters }));
+            }
+        } catch (error: any) {
+            logString(`Error while retrieving context information, error was: '${error?.message}'.`);
         }
     }
 
@@ -157,7 +174,7 @@ export class GuidedAnswersPanel {
                 }
                 case WEBVIEW_READY: {
                     logString(`Webview is ready to receive actions`);
-                    await this.processStartOptions();
+                    await this.handleWebViewReady();
                     this.postActionToWebview(
                         getBetaFeatures(
                             (workspace.getConfiguration('sap.ux.guidedAnswer').get('betaFeatures') as boolean) || false
