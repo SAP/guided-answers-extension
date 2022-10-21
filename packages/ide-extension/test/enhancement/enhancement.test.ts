@@ -77,26 +77,18 @@ jest.mock(
 );
 
 describe('Tests for getEnhancements()', () => {
-    const env = process.env;
-
     beforeEach(() => {
         jest.clearAllMocks();
         jest.resetModules();
-        process.env = { ...env };
-    });
-
-    afterEach(() => {
-        process.env = env;
     });
 
     test('Test getEnhancements() for SBAS, all extensions installed', () => {
         //  Mock setup
         const log = jest.spyOn(loggerMock, 'logString').mockImplementation(() => undefined);
-        process.env.H2O_URL = 'PRETEND_SBAS';
         jest.spyOn(extensions, 'getExtension').mockImplementation(() => true as unknown as Extension<any>);
 
         // Test execution
-        const { nodeEnhancements, htmlEnhancements } = getEnhancements();
+        const { nodeEnhancements, htmlEnhancements } = getEnhancements('SBAS');
 
         // Check results
         expect(nodeEnhancements.length).toBe(2);
@@ -112,11 +104,10 @@ describe('Tests for getEnhancements()', () => {
     test('Test getEnhancements() for VSCODE, all extensions installed', () => {
         //  Mock setup
         jest.spyOn(loggerMock, 'logString').mockImplementation(() => undefined);
-        delete process.env.H2O_URL;
         jest.spyOn(extensions, 'getExtension').mockImplementation(() => true as unknown as Extension<any>);
 
         // Test execution
-        const { nodeEnhancements, htmlEnhancements } = getEnhancements();
+        const { nodeEnhancements, htmlEnhancements } = getEnhancements('VSCODE');
 
         // Check results
         expect(nodeEnhancements.length).toBe(2);
@@ -131,7 +122,6 @@ describe('Tests for getEnhancements()', () => {
     test('Test getEnhancements() for VSCODE, extensions 1 and 2 installed', () => {
         //  Mock setup
         jest.spyOn(loggerMock, 'logString').mockImplementation(() => undefined);
-        delete process.env.H2O_URL;
         jest.spyOn(extensions, 'getExtension').mockImplementation((extensionId: string) => {
             return extensionId.endsWith('.1') || extensionId.endsWith('.2')
                 ? (true as unknown as Extension<any>)
@@ -139,7 +129,7 @@ describe('Tests for getEnhancements()', () => {
         });
 
         // Test execution
-        const { nodeEnhancements, htmlEnhancements } = getEnhancements();
+        const { nodeEnhancements, htmlEnhancements } = getEnhancements('VSCODE');
 
         // Check results
         expect(nodeEnhancements.length).toBe(2);

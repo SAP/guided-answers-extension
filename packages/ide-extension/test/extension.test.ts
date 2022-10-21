@@ -28,7 +28,7 @@ describe('Extension test', () => {
         expect(typeof context.subscriptions[0]).toBe('function');
     });
 
-    test('execute command', () => {
+    test('execute command', async () => {
         // Mock setup
         const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
         const subscriptionsMock = jest.spyOn(commands, 'registerCommand');
@@ -50,7 +50,7 @@ describe('Extension test', () => {
 
         // Test execution
         activate(context as unknown as ExtensionContext);
-        subscriptionsMock.mock.calls[0][1]();
+        await subscriptionsMock.mock.calls[0][1]();
 
         // Result check
         const replaceStr = URI.file(join(__dirname, '..')).with({ scheme: 'vscode-resource' }).toString();
@@ -64,7 +64,7 @@ describe('Extension test', () => {
         expect(loggerMock).toBeCalled();
     });
 
-    test('execute command with parameters', () => {
+    test('execute command with parameters', async () => {
         // Mock setup
         const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
         const subscriptionsMock = jest.spyOn(commands, 'registerCommand');
@@ -74,15 +74,15 @@ describe('Extension test', () => {
 
         // Test execution
         activate(context as unknown as ExtensionContext);
-        subscriptionsMock.mock.calls[0][1]({ treeId: 0, nodeIdPath: [1, 2, 3] });
+        await subscriptionsMock.mock.calls[0][1]({ treeId: 0, nodeIdPath: [1, 2, 3] });
 
         // Result check
         expect(loggerMock.mock.calls[0][0]).toContain('{"treeId":0,"nodeIdPath":[1,2,3]}');
     });
 
-    test('execute command error occurs', () => {
+    test('execute command error occurs', async () => {
         // Mock setup
-        const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => {
+        jest.spyOn(logger, 'logString').mockImplementation(() => {
             throw Error('ERROR');
         });
         const showErrorMessageMock = jest.spyOn(window, 'showErrorMessage');
@@ -93,7 +93,7 @@ describe('Extension test', () => {
 
         // Test execution
         activate(context as unknown as ExtensionContext);
-        subscriptionsMock.mock.calls[0][1]();
+        await subscriptionsMock.mock.calls[0][1]();
 
         // Result check
         expect(showErrorMessageMock.mock.calls[0][0]).toContain('ERROR');
