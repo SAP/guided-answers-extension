@@ -1,17 +1,8 @@
 import { core, devspace } from '@sap/bas-sdk';
 import type { GuidedAnswersQueryFilterOptions, IDE } from '@sap/guided-answers-extension-types';
+import environmentJson from './environment.json';
 
-const devSpaceComponentsMap: { [devspace: string]: string[] } = {
-    'SAP Fiori': [
-        'CA-UX-IDE',
-        'CA-FE-FLP-EU',
-        'CA-FE-FLP-DT',
-        'CA-FE-FAL',
-        'CA-UI2-INT-BE',
-        'CA-UI2-INT-FE',
-        'CA-UI2-THD'
-    ]
-};
+const devSpaceComponentsMap: { [devspace: string]: string[] } = environmentJson.devSpaceComponentsMap;
 
 /**
  * Return the current IDE.
