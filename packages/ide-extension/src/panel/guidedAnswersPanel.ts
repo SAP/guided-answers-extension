@@ -1,6 +1,6 @@
 import type { WebviewPanel } from 'vscode';
 import { Uri, ViewColumn, window, workspace } from 'vscode';
-import type { GuidedAnswerActions, GuidedAnswerAPI } from '@sap/guided-answers-extension-types';
+import type { GuidedAnswerActions, GuidedAnswerAPI, IDE } from '@sap/guided-answers-extension-types';
 import {
     SELECT_NODE,
     SEND_FEEDBACK_OUTCOME,
@@ -9,16 +9,17 @@ import {
     updateActiveNode,
     updateLoading,
     EXECUTE_COMMAND,
+    searchTree,
     SEARCH_TREE,
     WEBVIEW_READY,
     setActiveTree,
     getBetaFeatures
 } from '@sap/guided-answers-extension-types';
-import { getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
+import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
 import { getEnhancements, handleCommand } from '../enhancement';
 import { logString } from '../logger/logger';
-import type { StartOptions } from '../types';
+import type { Options, StartOptions } from '../types';
 
 /**
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
@@ -27,17 +28,21 @@ export class GuidedAnswersPanel {
     public readonly panel: WebviewPanel;
     private guidedAnswerApi: GuidedAnswerAPI;
     private readonly startOptions: StartOptions | undefined;
+    private readonly ide: IDE;
 
     /**
      * Constructor.
      *
-     * @param [options] - optional options for startup like tree id or tree id + node id path
+     * @param [options] - optional options to initialize the panel
+     * @param [options.ide] - optional runtime IDE (VSCODE/SBAS), default is VSCODE if not passed
+     * @param [options.startOptions] - optional startup options like tree id or tree id + node id path
      */
-    constructor(options?: StartOptions) {
-        this.startOptions = options;
+    constructor(options?: Options) {
+        this.startOptions = options?.startOptions;
+        this.ide = options?.ide || 'VSCODE';
         const config = workspace.getConfiguration('sap.ux.guidedAnswer');
         const apiHost = config.get('apiHost') as string;
-        const enhancements = getEnhancements();
+        const enhancements = getEnhancements(this.ide);
 
         this.guidedAnswerApi = getGuidedAnswerApi({ apiHost, enhancements });
         /**
@@ -77,39 +82,50 @@ export class GuidedAnswersPanel {
      * @returns - void
      */
     private async processStartOptions(): Promise<void> {
-        if (!this.startOptions) {
-            return;
-        }
-        try {
-            if (typeof this.startOptions !== 'object') {
-                throw Error(
-                    `Invalid start options. Please refer to https://github.com/SAP/guided-answers-extension/blob/main/docs/technical-information.md#module-sap-guided-answer-extension-packageside-extension for valid options.`
+        if (this.startOptions) {
+            try {
+                if (typeof this.startOptions !== 'object') {
+                    throw Error(
+                        `Invalid start options. Please refer to https://github.com/SAP/guided-answers-extension/blob/main/docs/technical-information.md#module-sap-guided-answer-extension-packageside-extension for valid options.`
+                    );
+                }
+                const tree = await this.guidedAnswerApi.getTreeById(this.startOptions.treeId);
+                let nodePath;
+                if (this.startOptions.nodeIdPath) {
+                    nodePath = await this.guidedAnswerApi.getNodePath(this.startOptions.nodeIdPath);
+                }
+                this.postActionToWebview(setActiveTree(tree));
+                if (nodePath && nodePath.length > 0) {
+                    for (const node of nodePath) {
+                        this.postActionToWebview(updateActiveNode(node));
+                    }
+                } else {
+                    this.postActionToWebview(
+                        updateActiveNode(await this.guidedAnswerApi.getNodeById(tree.FIRST_NODE_ID))
+                    );
+                }
+            } catch (error: any) {
+                logString(
+                    `Error while processing start options, error was: '${error?.message}'. Start options: \n${
+                        typeof this.startOptions === 'object' ? JSON.stringify(this.startOptions) : this.startOptions
+                    }`
                 );
             }
-            const tree = await this.guidedAnswerApi.getTreeById(this.startOptions.treeId);
-            let nodePath;
-            if (this.startOptions.nodeIdPath) {
-                nodePath = await this.guidedAnswerApi.getNodePath(this.startOptions.nodeIdPath);
-            }
-            this.postActionToWebview(setActiveTree(tree));
-            if (nodePath && nodePath.length > 0) {
-                for (const node of nodePath) {
-                    this.postActionToWebview(updateActiveNode(node));
+        } else {
+            try {
+                const filters = await getFiltersForIde(this.ide);
+                logString(`Filters for environment '${this.ide}': ${JSON.stringify(filters)}`);
+                if (Object.keys(filters).length > 0) {
+                    this.postActionToWebview(searchTree({ filters }));
                 }
-            } else {
-                this.postActionToWebview(updateActiveNode(await this.guidedAnswerApi.getNodeById(tree.FIRST_NODE_ID)));
+            } catch (error: any) {
+                logString(`Error while retrieving context information, error was: '${error?.message}'.`);
             }
-        } catch (error: any) {
-            logString(
-                `Error while processing start options, error was: '${error?.message}'. Start options: \n${
-                    typeof this.startOptions === 'object' ? JSON.stringify(this.startOptions) : this.startOptions
-                }`
-            );
         }
     }
 
     /**
-     * Handler for actions coming from webview. This should be primaraly commands with arguments.
+     * Handler for actions coming from webview. This should be primarily commands with arguments.
      *
      * @param action - action to execute
      */
