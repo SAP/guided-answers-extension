@@ -34,12 +34,14 @@ export function getInitialState(): AppState {
             productFilters: [],
             trees: []
         },
+        updatedGuidedAnswerTrees: [],
         activeGuidedAnswerNode: [],
         betaFeatures: false,
         searchResultCount: -1,
         guideFeedback: null,
         selectedProductFilters: [],
-        selectedComponentFilters: []
+        selectedComponentFilters: [],
+        currentOffset: 0
     };
 }
 
@@ -58,6 +60,13 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
     switch (action.type) {
         case UPDATE_GUIDED_ANSWER_TREES: {
             newState.guidedAnswerTreeSearchResult = action.payload;
+            newState.updatedGuidedAnswerTrees = [...newState.updatedGuidedAnswerTrees, ...action.payload.trees]
+                .filter((value, index, self) => index === self.findIndex((t) => t.TREE_ID === value.TREE_ID))
+                .sort((a, b) => {
+                    return b.SCORE - a.SCORE;
+                });
+            // newState.updatedGuidedAnswerTrees = newState.updatedGuidedAnswerTrees.concat(action.payload.trees);
+            newState.currentOffset = newState.currentOffset + 20;
             delete newState.activeGuidedAnswer;
             break;
         }
@@ -107,6 +116,8 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             break;
         }
         case SET_QUERY_VALUE: {
+            newState.updatedGuidedAnswerTrees = [];
+            newState.currentOffset = 0;
             newState.query = action.payload;
             break;
         }
@@ -129,10 +140,12 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
         }
         case SET_PRODUCT_FILTERS: {
             newState.selectedProductFilters = action.payload;
+            newState.updatedGuidedAnswerTrees = [];
             break;
         }
         case SET_COMPONENT_FILTERS: {
             newState.selectedComponentFilters = action.payload;
+            newState.updatedGuidedAnswerTrees = [];
             break;
         }
         case RESET_FILTERS: {

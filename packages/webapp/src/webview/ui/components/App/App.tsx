@@ -12,6 +12,7 @@ import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './App.scss';
 import { initIcons } from '../UIComponentsLib/Icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
+// import InfiniteScroll from 'react-infinite-scroller';
 
 initIcons();
 
@@ -22,22 +23,7 @@ initIcons();
  */
 export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
-    const [hasMore, setHasMore] = useState(true);
-    const [guidedAnswerTreeSearchResultTrees, setGuidedAnswerTreeSearchResultTrees] = useState(
-        appState.guidedAnswerTreeSearchResult.trees
-    );
-    const [currentOffset, setCurrentOffset] = useState(0);
-
-    useEffect(() => {
-        const concatArrays = [
-            ...guidedAnswerTreeSearchResultTrees,
-            ...appState.guidedAnswerTreeSearchResult.trees
-        ].filter((value, index, self) => index === self.findIndex((t) => t.TREE_ID === value.TREE_ID));
-
-        setGuidedAnswerTreeSearchResultTrees(concatArrays);
-    }, [appState.guidedAnswerTreeSearchResult.trees]);
-
-    useEffect(() => {
+    const fetchData = () => {
         if (appState.guidedAnswerTreeSearchResult.resultSize > 20) {
             actions.searchTree({
                 query: appState.query,
@@ -47,32 +33,19 @@ export function App(): ReactElement {
                 },
                 paging: {
                     responseSize: 20,
-                    offset: currentOffset
+                    offset: appState.currentOffset
                 }
             });
-            console.log(
-                'Total results: ',
-                appState.guidedAnswerTreeSearchResult.resultSize,
-                'Current offset: ',
-                currentOffset,
-                'Scroll more? ',
-                appState.guidedAnswerTreeSearchResult.resultSize >= currentOffset
-            );
-            if (appState.guidedAnswerTreeSearchResult.resultSize >= currentOffset) {
-                setHasMore(true);
-            } else {
-                setHasMore(false);
-            }
         }
-    }, [currentOffset]);
+    };
 
     useEffect(() => {
-        setGuidedAnswerTreeSearchResultTrees([]);
-    }, [appState.query]);
-
-    const fetchData = () => {
-        setCurrentOffset(currentOffset + 20);
-    };
+        console.log(
+            'Updated list length: ',
+            appState.guidedAnswerTreeSearchResult.trees.length,
+            appState.updatedGuidedAnswerTrees.length
+        );
+    }, [appState.guidedAnswerTreeSearchResult.trees]);
 
     let content;
     if (appState.loading) {
@@ -88,11 +61,14 @@ export function App(): ReactElement {
                     <FiltersRibbon />
                     <ul className="striped-list" role="listbox">
                         <InfiniteScroll
-                            dataLength={guidedAnswerTreeSearchResultTrees.length} //This is important field to render the next data
+                            dataLength={appState.updatedGuidedAnswerTrees.length} //This is important field to render the next data
                             next={fetchData}
                             loader={<VSCodeProgressRing id="loading-indicator" />}
-                            hasMore={hasMore}>
-                            {guidedAnswerTreeSearchResultTrees.map((tree, index) => {
+                            hasMore={
+                                appState.updatedGuidedAnswerTrees.length <
+                                appState.guidedAnswerTreeSearchResult.resultSize
+                            }>
+                            {appState.updatedGuidedAnswerTrees.map((tree, index) => {
                                 return (
                                     <li key={`tree-item-${index}`} className="tree-item" role="option">
                                         <button

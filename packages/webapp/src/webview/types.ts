@@ -1,7 +1,8 @@
 import type {
     GuidedAnswerNode,
     GuidedAnswerTree,
-    GuidedAnswerTreeSearchResult
+    GuidedAnswerTreeSearchResult,
+    GuidedAnswerTreeSearchHit
 } from '@sap/guided-answers-extension-types';
 
 export interface AppState {
@@ -15,4 +16,6 @@ export interface AppState {
     guideFeedback: null | boolean;
     selectedProductFilters: string[];
     selectedComponentFilters: string[];
+    updatedGuidedAnswerTrees: GuidedAnswerTreeSearchHit[];
+    currentOffset: number;
 }
