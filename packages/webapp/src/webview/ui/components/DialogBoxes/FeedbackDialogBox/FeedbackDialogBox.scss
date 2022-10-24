@@ -22,6 +22,10 @@
         padding: 0;
     }
 
+    label {
+        color: var(--vscode-editor-foreground);
+    }
+
     .button-container {
         display: flex;
         justify-content: center;

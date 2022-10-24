@@ -1,50 +1,50 @@
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement, useState, useEffect, FormEvent } from 'react';
 import './FeedbackDialogBox.scss';
 import { Dialog, DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
 import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
-import i18next from 'i18next';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { TextField } from '@fluentui/react';
 import { VscInfo } from 'react-icons/vsc';
-/**
- * @param props props for Message Dialog Box component
- * @param props.dialogTitle title for dialog box
- * @param props.dialogText text for dialog box
- * @param props.dialogVisible visability status for dialog box
- * @param props.stylingClassName classname for dialog box
- * @param props.primaryButtonAction a function that triggers a redux state change when primary button is pressed
- * @param props.defaultButtonAction a function that triggers a redux state change when default button is pressed
- * @returns - react element to show a Dialog box
- */
-export function FeedbackDialogBox(props: {
-    dialogTitle: string;
-    dialogText: string;
-    stylingClassName: string;
-    dialogVisible: boolean;
-    primaryButtonAction: Function;
-    defaultButtonAction: Function;
-}): ReactElement {
-    const [isVisible, setVisible] = useState(props.dialogVisible);
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../../types';
+import { actions } from '../../../../state';
+import type { GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
+import { FeedbackSendDialogBox } from '../FeedbackSentDialogBox/FeedbackSendDialogBox';
+
+export function FeedbackDialogBox(props: {}): ReactElement {
+    const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!.TREE_ID);
+    const nodeId = useSelector<AppState, GuidedAnswerNodeId>((state) => state.activeGuidedAnswerNode[0].NODE_ID);
+    const feedbackStatus = useSelector<AppState, boolean>((state) => state.feedbackStatus);
+    const [isVisible, setVisible] = useState(feedbackStatus);
+    const [feedback, setFeedback] = useState('');
     useEffect(() => {
-        setVisible(props.dialogVisible);
-    }, [props.dialogVisible]);
+        setVisible(feedbackStatus);
+    }, [feedbackStatus]);
 
     const dialogContentProps = {
         type: DialogType.normal,
-        title: props.dialogTitle,
-        subText: props.dialogText
+        title: 'Is this content helpful?',
+        subText: 'If you have suggestions on how to improve this content we would love to hear them!'
     };
 
     const modalProps = {
         isDarkOverlay: true,
-        className: `${props.stylingClassName}`
+        className: `feedback-section-dialog`
+    };
+
+    const onChange = (
+        event: FormEvent<HTMLInputElement | HTMLTextAreaElement>,
+        newValue?: string | undefined
+    ): void => {
+        if (newValue !== undefined) {
+            setFeedback(newValue);
+        }
     };
 
     return (
         <>
             <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
-                <h3>Your Suggestion</h3>
-                <TextField multiline autoAdjustHeight />
+                <TextField label="Your Suggestion" multiline autoAdjustHeight onChange={onChange} />
                 <div className="privacy-notice">
                     <VscInfo className="info-icon" />
                     <p>Your feedback is anonymous, we do not collect any personal data.</p>
@@ -54,13 +54,16 @@ export function FeedbackDialogBox(props: {
                         <PrimaryButton
                             className="primary-button"
                             text={'Send'}
-                            onClick={() => props.primaryButtonAction()}
+                            onClick={() => {
+                                actions.sendFeedbackComment({ treeId, nodeId, comment: feedback });
+                                actions.feedbackStatus(false);
+                            }}
                         />
                         <DefaultButton
                             className="default-button"
                             text={'Close'}
                             onClick={() => {
-                                props.defaultButtonAction();
+                                actions.feedbackStatus(false);
                             }}
                         />
                     </FocusZone>
