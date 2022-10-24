@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-core
 
+## 0.5.0
+
+### Minor Changes
+
+-   87a9f77: Show initial filter for SAP Fiori SBAS devspace
+
 ## 0.4.0
 
 ### Minor Changes
