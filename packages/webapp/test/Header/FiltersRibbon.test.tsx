@@ -51,6 +51,10 @@ describe('<FiltersRibbon />', () => {
             filters: {
                 product: [],
                 component: []
+            },
+            paging: {
+                offset: 0,
+                responseSize: 20
             }
         });
 

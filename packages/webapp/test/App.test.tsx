@@ -22,45 +22,47 @@ jest.mock('../src/webview/state', () => {
     };
 });
 
-jest.mock('react-redux', () => ({
-    ...jest.requireActual('react-redux'),
-    useSelector: jest
-        .fn()
-        .mockReturnValueOnce({
-            loading: false,
-            query: '',
-            guidedAnswerTreeSearchResult: {
-                trees: [],
-                resultSize: 0,
-                productFilters: [],
-                componentFilters: []
-            },
-            activeGuidedAnswerNode: [],
-            activeGuidedAnswer: undefined
-        } as unknown as AppState)
-        .mockReturnValueOnce({
-            activeGuidedAnswerNode: [],
-            guidedAnswerTreeSearchResult: {
-                trees: [
-                    {
-                        AVAILABILITY: 'PUBLIC',
-                        DESCRIPTION: 'This is a troubleshooting guide to solve the issues while using SAP Fiori tools',
-                        FIRST_NODE_ID: 45995,
-                        TITLE: 'SAP Fiori tools',
-                        TREE_ID: 3046,
-                        PRODUCT: 'Product A, Product B',
-                        COMPONENT: 'comp-a, comp-b'
-                    }
-                ],
-                resultSize: 1,
-                productFilters: [],
-                componentFilters: []
-            },
-            query: 'fiori tools'
-        })
-        .mockReturnValueOnce({ activeGuidedAnswerNode: [{ a: 0 }, { b: 0 }] })
-        .mockReturnValueOnce({ loading: true, activeGuidedAnswerNode: [] })
-}));
+jest.mock('react-redux', () => {
+    const mockedResult = {
+        AVAILABILITY: 'PUBLIC',
+        DESCRIPTION: 'This is a troubleshooting guide to solve the issues while using SAP Fiori tools',
+        FIRST_NODE_ID: 45995,
+        TITLE: 'SAP Fiori tools',
+        TREE_ID: 3046,
+        PRODUCT: 'Product A, Product B',
+        COMPONENT: 'comp-a, comp-b'
+    };
+    return {
+        ...jest.requireActual('react-redux'),
+        useSelector: jest
+            .fn()
+            .mockReturnValueOnce({
+                loading: false,
+                query: '',
+                guidedAnswerTreeSearchResult: {
+                    trees: [],
+                    resultSize: 0,
+                    productFilters: [],
+                    componentFilters: []
+                },
+                activeGuidedAnswerNode: [],
+                activeGuidedAnswer: undefined
+            } as unknown as AppState)
+            .mockReturnValueOnce({
+                activeGuidedAnswerNode: [],
+                guidedAnswerTreeSearchResult: {
+                    trees: [mockedResult],
+                    resultSize: 1,
+                    productFilters: [],
+                    componentFilters: []
+                },
+                updatedGuidedAnswerTrees: [mockedResult],
+                query: 'fiori tools'
+            })
+            .mockReturnValueOnce({ activeGuidedAnswerNode: [{ a: 0 }, { b: 0 }] })
+            .mockReturnValueOnce({ loading: true, activeGuidedAnswerNode: [] })
+    };
+});
 
 describe('<NoAnswersFound />', () => {
     let wrapper: any;
