@@ -149,6 +149,7 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             break;
         }
         case RESET_FILTERS: {
+            newState.currentOffset = 0;
             newState.selectedProductFilters = [];
             newState.selectedComponentFilters = [];
             break;
