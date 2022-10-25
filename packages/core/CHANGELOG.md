@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-core
 
+## 1.0.0
+
+### Major Changes
+
+-   16b5e4d: Release version 1.0
+
+### Patch Changes
+
+-   Updated dependencies [16b5e4d]
+    -   @sap/guided-answers-extension-types@1.0.0
+
 ## 0.5.0
 
 ### Minor Changes

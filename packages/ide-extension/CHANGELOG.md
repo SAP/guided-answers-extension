@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.0.0
+
+### Major Changes
+
+-   16b5e4d: Release version 1.0
+
 ## 0.14.0
 
 ### Minor Changes
