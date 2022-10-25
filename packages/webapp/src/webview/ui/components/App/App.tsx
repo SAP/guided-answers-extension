@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { VSCodeProgressRing } from '@vscode/webview-ui-toolkit/react';
 import { AppState } from '../../../types';
@@ -12,7 +12,7 @@ import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './App.scss';
 import { initIcons } from '../UIComponentsLib/Icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
-// import InfiniteScroll from 'react-infinite-scroller';
+import { PAGE_SIZE } from '@sap/guided-answers-extension-types';
 
 initIcons();
 
@@ -24,7 +24,7 @@ initIcons();
 export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
     const fetchData = () => {
-        if (appState.guidedAnswerTreeSearchResult.resultSize > 20) {
+        if (appState.guidedAnswerTreeSearchResult.resultSize > PAGE_SIZE) {
             actions.searchTree({
                 query: appState.query,
                 filters: {
@@ -32,20 +32,12 @@ export function App(): ReactElement {
                     component: appState.selectedComponentFilters
                 },
                 paging: {
-                    responseSize: 20,
+                    responseSize: PAGE_SIZE,
                     offset: appState.currentOffset
                 }
             });
         }
     };
-
-    useEffect(() => {
-        console.log(
-            'Updated list length: ',
-            appState.guidedAnswerTreeSearchResult.trees.length,
-            appState.updatedGuidedAnswerTrees.length
-        );
-    }, [appState.guidedAnswerTreeSearchResult.trees]);
 
     let content;
     if (appState.loading) {

@@ -262,3 +262,5 @@ export const RESET_FILTERS = 'RESET_FILTERS';
 export interface ResetFilters {
     type: typeof RESET_FILTERS;
 }
+
+export const PAGE_SIZE = 20;

@@ -13,7 +13,8 @@ import {
     SEARCH_TREE,
     SET_PRODUCT_FILTERS,
     SET_COMPONENT_FILTERS,
-    RESET_FILTERS
+    RESET_FILTERS,
+    PAGE_SIZE
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -60,13 +61,8 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
     switch (action.type) {
         case UPDATE_GUIDED_ANSWER_TREES: {
             newState.guidedAnswerTreeSearchResult = action.payload;
-            newState.updatedGuidedAnswerTrees = [...newState.updatedGuidedAnswerTrees, ...action.payload.trees]
-                .filter((value, index, self) => index === self.findIndex((t) => t.TREE_ID === value.TREE_ID))
-                .sort((a, b) => {
-                    return b.SCORE - a.SCORE;
-                });
-            // newState.updatedGuidedAnswerTrees = newState.updatedGuidedAnswerTrees.concat(action.payload.trees);
-            newState.currentOffset = newState.currentOffset + 20;
+            newState.updatedGuidedAnswerTrees = [...newState.updatedGuidedAnswerTrees, ...action.payload.trees];
+            newState.currentOffset = newState.currentOffset + PAGE_SIZE;
             delete newState.activeGuidedAnswer;
             break;
         }
@@ -149,7 +145,9 @@ export const reducer: Reducer<AppState, GuidedAnswerActions> = (
             break;
         }
         case RESET_FILTERS: {
+            //Reseting list of results
             newState.currentOffset = 0;
+            newState.updatedGuidedAnswerTrees = [];
             newState.selectedProductFilters = [];
             newState.selectedComponentFilters = [];
             break;
