@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-types
 
+## 1.0.0
+
+### Major Changes
+
+-   16b5e4d: Release version 1.0
+
 ## 0.7.0
 
 ### Minor Changes
