@@ -37,7 +37,7 @@ export function getInitialState(): AppState {
         guideFeedback: null,
         selectedProductFilters: [],
         selectedComponentFilters: [],
-        pageSize: 0
+        pageSize: 20
     };
 }
 

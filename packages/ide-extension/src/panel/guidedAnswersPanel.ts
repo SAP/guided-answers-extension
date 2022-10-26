@@ -168,7 +168,9 @@ export class GuidedAnswersPanel {
                     break;
                 }
                 case SEARCH_TREE: {
+                    logString(`Starting search: ${JSON.stringify(action.payload)}`);
                     const trees = await this.guidedAnswerApi.getTrees(action.payload);
+                    logString(`Found ${trees.resultSize} trees`);
                     this.postActionToWebview(updateGuidedAnswerTrees(trees));
                     break;
                 }

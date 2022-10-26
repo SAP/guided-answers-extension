@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { VSCodeProgressRing } from '@vscode/webview-ui-toolkit/react';
 import { AppState } from '../../../types';
@@ -22,21 +22,28 @@ initIcons();
  */
 export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
-    const resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
-        for (const entry of entries) {
-            //tree-item element height is ~100px, using 50px here to be on the safe side
-            const updatedPageSize = Math.ceil(entry?.contentRect?.height / 50);
-            //Sets the initial pagesize and updates only if user resizes the window e.g zoom
-            if (updatedPageSize !== appState.pageSize) {
-                actions.setPageSize(updatedPageSize);
-            }
+    useEffect(() => {
+        const resultsContainer = document.getElementById('results-container');
+        if (!resultsContainer) {
+            return undefined;
         }
-    });
-
-    const resultsContainer = document.getElementById('results-container');
-    if (resultsContainer) {
+        //tree-item element height is ~100px, using 50px here to be on the safe side.
+        const setPageSizeByContainerHeight = (pxHeight: number): void => actions.setPageSize(Math.ceil(pxHeight / 50));
+        const resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
+            const containerEntry = entries.find((entry) => entry?.target?.id === 'results-container');
+            if (containerEntry) {
+                setPageSizeByContainerHeight(containerEntry.contentRect.height);
+            }
+        });
+        // Set initial page size
+        setPageSizeByContainerHeight(resultsContainer.clientHeight);
         resizeObserver.observe(resultsContainer);
-    }
+        return () => {
+            if (resizeObserver) {
+                resizeObserver.unobserve(resultsContainer);
+            }
+        };
+    }, []);
 
     const fetchData = () => {
         if (appState.guidedAnswerTreeSearchResult.resultSize > appState.pageSize) {
@@ -59,9 +66,6 @@ export function App(): ReactElement {
         content = <VSCodeProgressRing id="loading-indicator" />;
     } else if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
-        if (resultsContainer) {
-            resizeObserver.unobserve(resultsContainer);
-        }
     } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
         content =
             appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (
