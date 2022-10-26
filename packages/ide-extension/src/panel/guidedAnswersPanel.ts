@@ -13,7 +13,8 @@ import {
     SEARCH_TREE,
     WEBVIEW_READY,
     setActiveTree,
-    getBetaFeatures
+    getBetaFeatures,
+    feedbackResponse
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
@@ -161,6 +162,7 @@ export class GuidedAnswersPanel {
                 }
                 case SEND_FEEDBACK_COMMENT: {
                     await this.guidedAnswerApi.sendFeedbackComment(action.payload);
+                    // this.postActionToWebview(feedbackResponse(commentResponse));
                     break;
                 }
                 case EXECUTE_COMMAND: {

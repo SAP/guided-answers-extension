@@ -9,7 +9,8 @@ import type {
     SetQueryValue,
     UpdateActiveNode,
     UpdateGuidedAnswerTrees,
-    UpdateLoading
+    UpdateLoading,
+    FeedbackResponse
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -36,7 +37,8 @@ export function getInitialState(): AppState {
         guideFeedback: null,
         selectedProductFilters: [],
         selectedComponentFilters: [],
-        feedbackStatus: false
+        feedbackStatus: false,
+        feedbackResponse: false
     };
 }
 
@@ -73,7 +75,8 @@ const reducers: Partial<Reducers> = {
     SET_PRODUCT_FILTERS: setProductFiltersReducer,
     SET_COMPONENT_FILTERS: setComponentFiltersReducer,
     RESET_FILTERS: resetFiltersReducer,
-    SEARCH_TREE: searchTreeReducer
+    SEARCH_TREE: searchTreeReducer,
+    FEEDBACK_RESPONSE: feedbackResponseReducer
 };
 
 /**
@@ -250,6 +253,14 @@ function GuideFeedbackReducer(newState: AppState, action: GuideFeedback): AppSta
             EDGES: []
         });
     }
+    return newState;
+}
+
+/**
+ *
+ */
+function feedbackResponseReducer(newState: AppState, action: FeedbackResponse): AppState {
+    newState.feedbackResponse = action.payload;
     return newState;
 }
 

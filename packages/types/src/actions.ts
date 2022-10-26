@@ -26,7 +26,8 @@ import type {
     SetProductFilters,
     SetComponentFilters,
     ResetFilters,
-    FeedbackStatus
+    FeedbackStatus,
+    FeedbackResponse
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -48,7 +49,8 @@ import {
     SET_PRODUCT_FILTERS,
     SET_COMPONENT_FILTERS,
     RESET_FILTERS,
-    FEEDBACK_STATUS
+    FEEDBACK_STATUS,
+    FEEDBACK_RESPONSE
 } from './types';
 
 export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
@@ -138,5 +140,10 @@ export const sendFeedbackOutcome = (payload: FeedbackOutcomePayload): SendFeedba
 
 export const sendFeedbackComment = (payload: FeedbackCommentPayload): SendFeedbackComment => ({
     type: SEND_FEEDBACK_COMMENT,
+    payload
+});
+
+export const feedbackResponse = (payload: boolean): FeedbackResponse => ({
+    type: FEEDBACK_RESPONSE,
     payload
 });

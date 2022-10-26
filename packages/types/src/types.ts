@@ -150,7 +150,8 @@ export type GuidedAnswerActions =
     | SetProductFilters
     | SetComponentFilters
     | ResetFilters
-    | FeedbackStatus;
+    | FeedbackStatus
+    | FeedbackResponse;
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnswerTrees {
@@ -267,5 +268,11 @@ export interface ResetFilters {
 export const FEEDBACK_STATUS = 'FEEDBACK_STATUS';
 export interface FeedbackStatus {
     type: typeof FEEDBACK_STATUS;
+    payload: boolean;
+}
+
+export const FEEDBACK_RESPONSE = 'FEEDBACK_RESPONSE';
+export interface FeedbackResponse {
+    type: typeof FEEDBACK_RESPONSE;
     payload: boolean;
 }
