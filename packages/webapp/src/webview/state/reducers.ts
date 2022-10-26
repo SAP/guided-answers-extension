@@ -11,7 +11,6 @@ import type {
     UpdateGuidedAnswerTrees,
     UpdateLoading
 } from '@sap/guided-answers-extension-types';
-import { PAGE_SIZE } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
 import type { AppState } from '../types';
@@ -31,14 +30,12 @@ export function getInitialState(): AppState {
             productFilters: [],
             trees: []
         },
-        updatedGuidedAnswerTrees: [],
         activeGuidedAnswerNode: [],
         betaFeatures: false,
         searchResultCount: -1,
         guideFeedback: null,
         selectedProductFilters: [],
-        selectedComponentFilters: [],
-        currentOffset: 0
+        selectedComponentFilters: []
     };
 }
 
@@ -114,9 +111,9 @@ function cloneState(state: AppState): AppState {
  * @returns new state with changes
  */
 function updateGuidedAnswerTreesReducer(newState: AppState, action: UpdateGuidedAnswerTrees): AppState {
+    const trees = newState.guidedAnswerTreeSearchResult.trees;
     newState.guidedAnswerTreeSearchResult = action.payload;
-    newState.updatedGuidedAnswerTrees = [...newState.updatedGuidedAnswerTrees, ...action.payload.trees];
-    newState.currentOffset = newState.currentOffset + PAGE_SIZE;
+    newState.guidedAnswerTreeSearchResult.trees.unshift(...trees);
     delete newState.activeGuidedAnswer;
     return newState;
 }
@@ -220,8 +217,12 @@ function setActiveTreeReducer(newState: AppState, action: SetActiveTree): AppSta
  * @returns new state with changes
  */
 function setQueryValueReducer(newState: AppState, action: SetQueryValue): AppState {
-    newState.updatedGuidedAnswerTrees = [];
-    newState.currentOffset = 0;
+    newState.guidedAnswerTreeSearchResult = {
+        resultSize: -1,
+        componentFilters: [],
+        productFilters: [],
+        trees: []
+    };
     newState.query = action.payload;
     return newState;
 }
@@ -268,7 +269,7 @@ function GuideFeedbackReducer(newState: AppState, action: GuideFeedback): AppSta
  */
 function setProductFiltersReducer(newState: AppState, action: SetProductFilters): AppState {
     newState.selectedProductFilters = action.payload;
-    newState.updatedGuidedAnswerTrees = [];
+    newState.guidedAnswerTreeSearchResult.trees = [];
     return newState;
 }
 
@@ -281,7 +282,7 @@ function setProductFiltersReducer(newState: AppState, action: SetProductFilters)
  */
 function setComponentFiltersReducer(newState: AppState, action: SetComponentFilters): AppState {
     newState.selectedComponentFilters = action.payload;
-    newState.updatedGuidedAnswerTrees = [];
+    newState.guidedAnswerTreeSearchResult.trees = [];
     return newState;
 }
 
@@ -292,10 +293,9 @@ function setComponentFiltersReducer(newState: AppState, action: SetComponentFilt
  * @returns new state with changes
  */
 function resetFiltersReducer(newState: AppState): AppState {
-    newState.currentOffset = 0;
-    newState.updatedGuidedAnswerTrees = [];
     newState.selectedProductFilters = [];
     newState.selectedComponentFilters = [];
+    newState.guidedAnswerTreeSearchResult.trees = [];
     return newState;
 }
 

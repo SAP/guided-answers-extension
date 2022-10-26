@@ -47,7 +47,6 @@ const mockedInitState = {
     loading: true,
     query: '',
     searchResultCount: -1,
-    currentOffset: 0,
     guidedAnswerTreeSearchResult: {
         resultSize: -1,
         componentFilters: [],
@@ -58,8 +57,7 @@ const mockedInitState = {
     betaFeatures: false,
     guideFeedback: null,
     selectedProductFilters: [],
-    selectedComponentFilters: [],
-    updatedGuidedAnswerTrees: []
+    selectedComponentFilters: []
 };
 
 const mockedActiveGuidedAnswerNode = [
@@ -145,32 +143,9 @@ describe('Test functions in reducers', () => {
             guidedAnswerTreeSearchResult: mockedGuidedAnswerTreeSearchResult,
             activeGuidedAnswerNode: [],
             betaFeatures: false,
-            currentOffset: 20,
             guideFeedback: null,
             selectedProductFilters: [],
-            selectedComponentFilters: [],
-            updatedGuidedAnswerTrees: [
-                {
-                    AVAILABILITY: 'PUBLIC',
-                    COMPONENT: 'C1',
-                    DESCRIPTION: 'First tree',
-                    FIRST_NODE_ID: 100,
-                    PRODUCT: 'P_one',
-                    SCORE: 0.1,
-                    TITLE: 'One',
-                    TREE_ID: 1
-                },
-                {
-                    AVAILABILITY: 'PUBLIC',
-                    COMPONENT: 'C2',
-                    DESCRIPTION: 'Second tree',
-                    FIRST_NODE_ID: 200,
-                    PRODUCT: 'P_two',
-                    SCORE: 0.2,
-                    TITLE: 'Two',
-                    TREE_ID: 2
-                }
-            ]
+            selectedComponentFilters: []
         };
 
         expect(answersWithDefaultState).toEqual(expected);
@@ -209,10 +184,8 @@ describe('Test functions in reducers', () => {
             activeGuidedAnswerNode: mockedActiveGuidedAnswerNode,
             guideFeedback: null,
             betaFeatures: false,
-            currentOffset: 0,
             selectedProductFilters: [],
-            selectedComponentFilters: [],
-            updatedGuidedAnswerTrees: []
+            selectedComponentFilters: []
         });
 
         const mockedInitStateWithActiveGuidedNode: any = mockedInitState;
@@ -235,11 +208,9 @@ describe('Test functions in reducers', () => {
             },
             activeGuidedAnswerNode: mockedActiveGuidedAnswerNode,
             betaFeatures: false,
-            currentOffset: 0,
             guideFeedback: null,
             selectedProductFilters: [],
-            selectedComponentFilters: [],
-            updatedGuidedAnswerTrees: []
+            selectedComponentFilters: []
         });
     });
 

@@ -33,7 +33,7 @@ export function App(): ReactElement {
                 },
                 paging: {
                     responseSize: PAGE_SIZE,
-                    offset: appState.currentOffset
+                    offset: appState.guidedAnswerTreeSearchResult.trees.length
                 }
             });
         }
@@ -53,14 +53,14 @@ export function App(): ReactElement {
                     <FiltersRibbon />
                     <ul className="striped-list" role="listbox">
                         <InfiniteScroll
-                            dataLength={appState.updatedGuidedAnswerTrees.length} //This is important field to render the next data
+                            dataLength={appState.guidedAnswerTreeSearchResult.trees.length} //This is important field to render the next data
                             next={fetchData}
                             loader={<VSCodeProgressRing id="loading-indicator" />}
                             hasMore={
-                                appState.updatedGuidedAnswerTrees.length <
+                                appState.guidedAnswerTreeSearchResult.trees.length <
                                 appState.guidedAnswerTreeSearchResult.resultSize
                             }>
-                            {appState.updatedGuidedAnswerTrees.map((tree, index) => {
+                            {appState.guidedAnswerTreeSearchResult.trees.map((tree, index) => {
                                 return (
                                     <li key={`tree-item-${index}`} className="tree-item" role="option">
                                         <button

@@ -56,7 +56,6 @@ jest.mock('react-redux', () => {
                     productFilters: [],
                     componentFilters: []
                 },
-                updatedGuidedAnswerTrees: [mockedResult],
                 query: 'fiori tools'
             })
             .mockReturnValueOnce({ activeGuidedAnswerNode: [{ a: 0 }, { b: 0 }] })
