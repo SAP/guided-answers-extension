@@ -9,7 +9,8 @@ import type {
     SetQueryValue,
     UpdateActiveNode,
     UpdateGuidedAnswerTrees,
-    UpdateLoading
+    UpdateLoading,
+    SetPageSize
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -35,7 +36,8 @@ export function getInitialState(): AppState {
         searchResultCount: -1,
         guideFeedback: null,
         selectedProductFilters: [],
-        selectedComponentFilters: []
+        selectedComponentFilters: [],
+        pageSize: 0
     };
 }
 
@@ -72,7 +74,8 @@ const reducers: Partial<Reducers> = {
     SET_PRODUCT_FILTERS: setProductFiltersReducer,
     SET_COMPONENT_FILTERS: setComponentFiltersReducer,
     RESET_FILTERS: resetFiltersReducer,
-    SEARCH_TREE: searchTreeReducer
+    SEARCH_TREE: searchTreeReducer,
+    SET_PAGE_SIZE: updatePageSize
 };
 
 /**
@@ -311,5 +314,17 @@ function searchTreeReducer(newState: AppState, action: SearchTree): AppState {
     newState.selectedComponentFilters = Array.isArray(selectedComponentFilters) ? selectedComponentFilters : [];
     const selectedProductFilters = action.payload?.filters?.product;
     newState.selectedProductFilters = Array.isArray(selectedProductFilters) ? selectedProductFilters : [];
+    return newState;
+}
+
+/**
+ * Update the page size.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function updatePageSize(newState: AppState, action: SetPageSize): AppState {
+    newState.pageSize = action.payload;
     return newState;
 }

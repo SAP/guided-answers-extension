@@ -149,7 +149,8 @@ export type GuidedAnswerActions =
     | BetaFeatures
     | SetProductFilters
     | SetComponentFilters
-    | ResetFilters;
+    | ResetFilters
+    | SetPageSize;
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnswerTrees {
@@ -263,4 +264,8 @@ export interface ResetFilters {
     type: typeof RESET_FILTERS;
 }
 
-export const PAGE_SIZE = 20;
+export const SET_PAGE_SIZE = 'SET_PAGE_SIZE';
+export interface SetPageSize {
+    type: typeof SET_PAGE_SIZE;
+    payload: number;
+}

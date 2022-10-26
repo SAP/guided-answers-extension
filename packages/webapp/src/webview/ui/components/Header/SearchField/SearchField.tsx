@@ -4,7 +4,6 @@ import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import { VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
 import { Filters } from '../Filters';
-import { PAGE_SIZE } from '@sap/guided-answers-extension-types';
 
 let timer: NodeJS.Timeout;
 /**
@@ -34,7 +33,7 @@ export function SearchField() {
                                     component: []
                                 },
                                 paging: {
-                                    responseSize: PAGE_SIZE,
+                                    responseSize: appState.pageSize,
                                     offset: 0
                                 }
                             });

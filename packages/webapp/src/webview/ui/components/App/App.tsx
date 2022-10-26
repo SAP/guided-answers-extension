@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { VSCodeProgressRing } from '@vscode/webview-ui-toolkit/react';
 import { AppState } from '../../../types';
@@ -12,7 +12,6 @@ import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './App.scss';
 import { initIcons } from '../UIComponentsLib/Icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { PAGE_SIZE } from '@sap/guided-answers-extension-types';
 
 initIcons();
 
@@ -23,8 +22,24 @@ initIcons();
  */
 export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
+    const resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
+        for (const entry of entries) {
+            //tree-item element height is ~100px, using 50px here to be on the safe side
+            const updatedPageSize = Math.ceil(entry?.contentRect?.height / 50);
+            //Sets the initial pagesize and updates only if user resizes the window e.g zoom
+            if (updatedPageSize !== appState.pageSize) {
+                actions.setPageSize(updatedPageSize);
+            }
+        }
+    });
+
+    const resultsContainer = document.getElementById('results-container');
+    if (resultsContainer) {
+        resizeObserver.observe(resultsContainer);
+    }
+
     const fetchData = () => {
-        if (appState.guidedAnswerTreeSearchResult.resultSize > PAGE_SIZE) {
+        if (appState.guidedAnswerTreeSearchResult.resultSize > appState.pageSize) {
             actions.searchTree({
                 query: appState.query,
                 filters: {
@@ -32,7 +47,7 @@ export function App(): ReactElement {
                     component: appState.selectedComponentFilters
                 },
                 paging: {
-                    responseSize: PAGE_SIZE,
+                    responseSize: appState.pageSize,
                     offset: appState.guidedAnswerTreeSearchResult.trees.length
                 }
             });
@@ -44,6 +59,9 @@ export function App(): ReactElement {
         content = <VSCodeProgressRing id="loading-indicator" />;
     } else if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
+        if (resultsContainer) {
+            resizeObserver.unobserve(resultsContainer);
+        }
     } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
         content =
             appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (
@@ -115,7 +133,9 @@ export function App(): ReactElement {
                 showNavButons={appState.activeGuidedAnswerNode.length !== 0}
                 showSearch={appState.activeGuidedAnswerNode.length === 0}
             />
-            <main className="guided-answer__container">{content}</main>
+            <main className="guided-answer__container" id="results-container">
+                {content}
+            </main>
         </div>
     );
 }

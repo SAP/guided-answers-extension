@@ -54,7 +54,7 @@ describe('<FiltersRibbon />', () => {
             },
             paging: {
                 offset: 0,
-                responseSize: 20
+                responseSize: undefined
             }
         });
 

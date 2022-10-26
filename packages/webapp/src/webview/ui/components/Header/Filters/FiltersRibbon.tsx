@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import { VscClose } from 'react-icons/vsc';
-import { PAGE_SIZE } from '@sap/guided-answers-extension-types';
 import './FiltersRibbon.scss';
 
 /**
@@ -27,7 +26,7 @@ export function FiltersRibbon() {
                 component: []
             },
             paging: {
-                responseSize: PAGE_SIZE,
+                responseSize: appState.pageSize,
                 offset: 0
             }
         });
