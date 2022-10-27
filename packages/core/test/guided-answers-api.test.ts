@@ -456,8 +456,28 @@ describe('Guided Answers Api: getNodeById()', () => {
         const result = await getGuidedAnswerApi(options).getNodeById(-1);
 
         // Result check
+        expect(requestUrl).toBe('https://ga.support.sap.com/dtp/api/v2/nodes/-1');
         expect(result).toMatchSnapshot();
         expect(result.COMMANDS).toEqual(options.enhancements?.nodeEnhancements?.map((ne) => ne.command));
+    });
+
+    test('Get node with different images, should add host to src where applicable', async () => {
+        // Mock setup
+        mockedAxios.get.mockImplementation(() =>
+            Promise.resolve({
+                data: {
+                    BODY: '<img src="services/backend.xsjs?no-extra-attributes" /><img width="321" src="services/backend.xsjs?with-attribute=width;height" height="123" /><img width="111" src="https://any.host/services/backend.xsjs?" height="222" />'
+                }
+            })
+        );
+
+        // Test execution
+        const result = await getGuidedAnswerApi({ apiHost: 'http://host' }).getNodeById(1);
+
+        //Result check
+        expect(result.BODY).toBe(
+            '<img src="http://host/dtp/viewer/services/backend.xsjs?no-extra-attributes" /><img width="321" src="http://host/dtp/viewer/services/backend.xsjs?with-attribute=width;height" height="123" /><img width="111" src="https://any.host/services/backend.xsjs?" height="222" />'
+        );
     });
 });
 

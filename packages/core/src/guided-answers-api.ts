@@ -66,7 +66,7 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
  * @returns - html string with converted <img>-tags
  */
 function convertImageSrc(body: string, host: string): string {
-    return body.replace(/<img src="services\/backend\.xsjs/gi, `<img src="${host}${IMG_PREFIX}services/backend.xsjs`);
+    return body.replace(/src="services\/backend\.xsjs\?/gi, `src="${host}${IMG_PREFIX}services/backend.xsjs?`);
 }
 
 /**
