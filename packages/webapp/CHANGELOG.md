@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.2.0
+
+### Minor Changes
+
+-   6cbfe96: Add inifnite scroll in results list
+
 ## 1.1.0
 
 ### Minor Changes

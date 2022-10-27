@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-core
 
+## 1.1.0
+
+### Minor Changes
+
+-   6cbfe96: Add inifnite scroll in results list
+
+### Patch Changes
+
+-   Updated dependencies [6cbfe96]
+    -   @sap/guided-answers-extension-types@1.1.0
+
 ## 1.0.1
 
 ### Patch Changes
