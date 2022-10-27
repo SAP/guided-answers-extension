@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.1.0
+
+### Minor Changes
+
+-   d2b5bf8: solved/not-solved bug fixed
+
 ## 1.0.0
 
 ### Major Changes
