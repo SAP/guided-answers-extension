@@ -107,7 +107,7 @@ h1 {
     margin-top: 20px;
 }
 
-ul.striped-list > li:nth-of-type(odd) {
+.infinite-scroll-component > li:nth-of-type(odd) {
     background-color: var(--vscode-breadcrumbPicker-background);
     padding-left: 0;
 }
