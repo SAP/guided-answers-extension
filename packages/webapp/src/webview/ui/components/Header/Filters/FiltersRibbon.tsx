@@ -24,6 +24,10 @@ export function FiltersRibbon() {
             filters: {
                 product: [],
                 component: []
+            },
+            paging: {
+                responseSize: appState.pageSize,
+                offset: 0
             }
         });
     };

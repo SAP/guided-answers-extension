@@ -15,4 +15,5 @@ export interface AppState {
     guideFeedback: null | boolean;
     selectedProductFilters: string[];
     selectedComponentFilters: string[];
+    pageSize: number;
 }
