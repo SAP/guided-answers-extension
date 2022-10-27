@@ -28,7 +28,9 @@ export function App(): ReactElement {
             return undefined;
         }
         //tree-item element height is ~100px, using 50px here to be on the safe side.
-        const setPageSizeByContainerHeight = (pxHeight: number): void => actions.setPageSize(Math.ceil(pxHeight / 50));
+        const setPageSizeByContainerHeight = (pxHeight: number): void => {
+            actions.setPageSize(Math.ceil(pxHeight / 50));
+        };
         const resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
             const containerEntry = entries.find((entry) => entry?.target?.id === 'results-container');
             if (containerEntry) {
