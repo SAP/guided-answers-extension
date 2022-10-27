@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-core
 
+## 1.0.1
+
+### Patch Changes
+
+-   72c44a2: fix for images that are not displayed
+
 ## 1.0.0
 
 ### Major Changes
