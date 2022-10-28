@@ -76,7 +76,7 @@ export function Middle(props: {
                 </div>
             </FocusZone>
             <FeedbackDialogBox />
-            <FeedbackSendDialogBox dialogVisible={appState.feedbackResponse} />;
+            {/* <FeedbackSendDialogBox dialogVisible={appState.feedbackResponse} />; */}
         </div>
     );
 }
