@@ -75,6 +75,7 @@ export function Middle(props: {
                     )}
                 </div>
             </FocusZone>
+            {/* TODO: DialogBox feedback feedback dialog box isn't rendering */}
             <FeedbackDialogBox />
             {/* <FeedbackSendDialogBox dialogVisible={appState.feedbackResponse} />; */}
         </div>

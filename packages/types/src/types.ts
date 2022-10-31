@@ -51,6 +51,11 @@ export interface GuidedAnswerNode {
     COMMANDS?: Command[];
 }
 
+export interface postResponse {
+    status: number;
+    statusText: string;
+}
+
 export interface GuidedAnswerEdge {
     LABEL: string;
     TARGET_NODE: GuidedAnswerNodeId;
@@ -73,8 +78,8 @@ export interface GuidedAnswerAPI {
     getTreeById: (id: GuidedAnswerTreeId) => Promise<GuidedAnswerTree>;
     getTrees: (queryOptions?: GuidedAnswersQueryOptions) => Promise<GuidedAnswerTreeSearchResult>;
     getNodePath: (nodeIdPath: GuidedAnswerNodeId[]) => Promise<GuidedAnswerNode[]>;
-    sendFeedbackComment: (payload: FeedbackCommentPayload) => Promise<void>;
-    sendFeedbackOutcome: (payload: FeedbackOutcomePayload) => Promise<void>;
+    sendFeedbackComment: (payload: FeedbackCommentPayload) => Promise<postResponse>;
+    sendFeedbackOutcome: (payload: FeedbackOutcomePayload) => Promise<postResponse>;
 }
 
 export interface GuidedAnswersFeedback {

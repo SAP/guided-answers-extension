@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import type { GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
-import { FeedbackSendDialogBox } from '../FeedbackSentDialogBox/FeedbackSendDialogBox';
 
 export function FeedbackDialogBox(props: {}): ReactElement {
     const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!.TREE_ID);

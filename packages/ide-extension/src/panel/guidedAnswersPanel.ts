@@ -161,8 +161,8 @@ export class GuidedAnswersPanel {
                     break;
                 }
                 case SEND_FEEDBACK_COMMENT: {
-                    await this.guidedAnswerApi.sendFeedbackComment(action.payload);
-                    // this.postActionToWebview(feedbackResponse(commentResponse));
+                    const commentResponse = await this.guidedAnswerApi.sendFeedbackComment(action.payload);
+                    this.postActionToWebview(feedbackResponse(commentResponse.status === 200));
                     break;
                 }
                 case EXECUTE_COMMAND: {

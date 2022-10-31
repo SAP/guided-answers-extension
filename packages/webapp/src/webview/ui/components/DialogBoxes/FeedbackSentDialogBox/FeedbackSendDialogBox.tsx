@@ -5,15 +5,18 @@ import { Dialog, DialogType } from '@fluentui/react/lib/Dialog';
 // import i18next from 'i18next';
 // import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { VscRefresh } from 'react-icons/vsc';
+import { AppState } from '../../../../types';
+import { useSelector } from 'react-redux';
 
 /**
  *
  */
-export function FeedbackSendDialogBox(props: { dialogVisible: boolean }): ReactElement {
-    const [isVisible, setVisible] = useState(props.dialogVisible);
+export function FeedbackSendDialogBox(): ReactElement {
+    const feedbackResponse = useSelector<AppState, boolean>((state) => state.feedbackStatus);
+    const [isVisible, setVisible] = useState(feedbackResponse);
     useEffect(() => {
-        setVisible(props.dialogVisible);
-    }, [props.dialogVisible]);
+        setVisible(feedbackResponse);
+    }, [feedbackResponse]);
 
     const dialogContentProps = {
         type: DialogType.normal,
@@ -28,6 +31,7 @@ export function FeedbackSendDialogBox(props: { dialogVisible: boolean }): ReactE
 
     console.log('feedback send dialog visible');
 
+    //Dialog box will transition out after being loaded
     setTimeout(() => {
         setVisible(false);
     }, 10000);
