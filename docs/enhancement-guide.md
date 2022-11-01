@@ -139,7 +139,7 @@ With this enhancement, every occurrence of the string 'SAP Fiori tools' in any b
 
 ### How to find Extension and Command Ids
  
-A HTML enhancement can execute a command from VSCode's command palette. To start a command via the command palette , two things are requied
+An HTML enhancement can execute a command from VSCode's command palette. To start a command via the command palette, two things are required
 
 1. Extension id
 2. Command id
