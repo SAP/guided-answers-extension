@@ -4,7 +4,7 @@
     "license": "Apache-2.0",
     "private": true,
     "devDependencies": {
-        "@changesets/cli": "2.24.4",
+        "@changesets/cli": "2.25.2",
         "@commitlint/cli": "17.1.2",
         "@commitlint/config-conventional": "17.1.0",
         "@types/jest": "29.1.1",
