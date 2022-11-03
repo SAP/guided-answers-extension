@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.1.1
+
+### Patch Changes
+
+-   90908e9: Update dependencies
+
 ## 1.1.0
 
 ### Minor Changes
