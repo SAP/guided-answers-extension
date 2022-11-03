@@ -21,7 +21,7 @@ import type {
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 
 const API_HOST = 'https://ga.support.sap.com';
-const VERSION = 'v2';
+const VERSION = 'v3';
 const NODE_PATH = `/dtp/api/${VERSION}/nodes/`;
 const TREE_PATH = `/dtp/api/${VERSION}/trees/`;
 const IMG_PREFIX = '/dtp/viewer/';
