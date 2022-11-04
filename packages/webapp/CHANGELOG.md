@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.2.1
+
+### Patch Changes
+
+-   90908e9: Update dependencies
+
 ## 1.2.0
 
 ### Minor Changes
