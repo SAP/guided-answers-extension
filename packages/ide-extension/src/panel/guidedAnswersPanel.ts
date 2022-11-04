@@ -190,7 +190,9 @@ export class GuidedAnswersPanel {
                 }
             }
         } catch (error: any) {
-            logString(`Error processing message '${action?.type}': ${error?.message}`);
+            logString(
+                `Error while processing action.\n  Action: ${JSON.stringify(action)}\n  Message: ${error?.message}`
+            );
         }
     }
 
