@@ -69,6 +69,7 @@ export interface FeedbackOutcomePayload {
 }
 
 export interface GuidedAnswerAPI {
+    getApiInfo: () => { host: string; version: string };
     getNodeById: (id: GuidedAnswerNodeId) => Promise<GuidedAnswerNode>;
     getTreeById: (id: GuidedAnswerTreeId) => Promise<GuidedAnswerTree>;
     getTrees: (queryOptions?: GuidedAnswersQueryOptions) => Promise<GuidedAnswerTreeSearchResult>;

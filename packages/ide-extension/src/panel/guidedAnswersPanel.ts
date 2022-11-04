@@ -45,6 +45,7 @@ export class GuidedAnswersPanel {
         const enhancements = getEnhancements(this.ide);
 
         this.guidedAnswerApi = getGuidedAnswerApi({ apiHost, enhancements });
+        logString(`API information: ${JSON.stringify(this.guidedAnswerApi.getApiInfo())}`);
         /**
          * vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421), therefore node_modules from same repo are missing.
          * To overcome this we copy guidedAnswers.js and guidedAnswers.css to dist/ folder in esbuild.js

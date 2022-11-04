@@ -41,6 +41,7 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
     const htmlEnhancements = options?.enhancements?.htmlEnhancements || [];
 
     return {
+        getApiInfo: () => ({ host: apiHost, version: VERSION }),
         getNodeById: async (id: GuidedAnswerNodeId): Promise<GuidedAnswerNode> =>
             enhanceNode(await getNodeById(apiHost, id), nodeEnhancements, htmlEnhancements),
         getTreeById: async (id: GuidedAnswerTreeId): Promise<GuidedAnswerTree> => getTreeById(apiHost, id),

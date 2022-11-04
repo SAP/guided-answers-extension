@@ -10,6 +10,16 @@ import { getGuidedAnswerApi } from '../src';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
+const currentVersion = getGuidedAnswerApi().getApiInfo().version;
+
+describe('Guided Answers Api: getApiInfo()', () => {
+    test('Get API information', () => {
+        expect(getGuidedAnswerApi().getApiInfo()).toEqual({
+            host: 'https://ga.support.sap.com',
+            version: currentVersion
+        });
+    });
+});
 
 describe('Guided Answers Api: getTrees()', () => {
     beforeEach(() => {
@@ -65,7 +75,9 @@ describe('Guided Answers Api: getTrees()', () => {
         const result = await getGuidedAnswerApi().getTrees();
 
         // Result check
-        expect(requestUrl).toBe(`https://ga.support.sap.com/dtp/api/v3/trees/*?responseSize=9999&offset=0`);
+        expect(requestUrl).toBe(
+            `https://ga.support.sap.com/dtp/api/${currentVersion}/trees/*?responseSize=9999&offset=0`
+        );
         expect(result).toEqual({
             trees: [
                 {
@@ -129,7 +141,9 @@ describe('Guided Answers Api: getTrees()', () => {
         const result = await getGuidedAnswerApi({ apiHost: 'https://my.custom.host' }).getTrees({ query: 'ONE' });
 
         // Result check
-        expect(requestUrl).toBe('https://my.custom.host/dtp/api/v3/trees/%22ONE%22?responseSize=9999&offset=0');
+        expect(requestUrl).toBe(
+            `https://my.custom.host/dtp/api/${currentVersion}/trees/%22ONE%22?responseSize=9999&offset=0`
+        );
         expect(result).toEqual({
             trees: [
                 {
@@ -193,7 +207,7 @@ describe('Guided Answers Api: getTrees()', () => {
 
         // Result check
         expect(requestUrl).toEqual(
-            'anyhost/dtp/api/v3/trees/%22QUERY%22?component=%22COMP-1%60%22,%22COMP-2%22&product=%22P1%22,%22P2%22&responseSize=9999&offset=0'
+            `anyhost/dtp/api/${currentVersion}/trees/%22QUERY%22?component=%22COMP-1%60%22,%22COMP-2%22&product=%22P1%22,%22P2%22&responseSize=9999&offset=0`
         );
     });
 
@@ -216,7 +230,7 @@ describe('Guided Answers Api: getTrees()', () => {
 
         // Result check
         expect(requestUrl).toEqual(
-            'anyhost/dtp/api/v3/trees/*?component=%22COMP-1%60%22,%22COMP-2%22&product=%22P1%22,%22P2%22&responseSize=9999&offset=0'
+            `anyhost/dtp/api/${currentVersion}/trees/*?component=%22COMP-1%60%22,%22COMP-2%22&product=%22P1%22,%22P2%22&responseSize=9999&offset=0`
         );
     });
 
@@ -237,7 +251,9 @@ describe('Guided Answers Api: getTrees()', () => {
         await getGuidedAnswerApi({ apiHost: 'anyhost' }).getTrees(options);
 
         // Result check
-        expect(requestUrl).toEqual('anyhost/dtp/api/v3/trees/*?product=%22PRODUCT%22&responseSize=9999&offset=0');
+        expect(requestUrl).toEqual(
+            `anyhost/dtp/api/${currentVersion}/trees/*?product=%22PRODUCT%22&responseSize=9999&offset=0`
+        );
     });
 
     test('Test component filter only (also lot of special chars)', async () => {
@@ -258,7 +274,7 @@ describe('Guided Answers Api: getTrees()', () => {
 
         // Result check
         expect(requestUrl).toEqual(
-            "anyhost/dtp/api/v3/trees/*?component=%22COMPONENT%60%22,%221-COMPONENT%22!%40%23%24%25%5E%26*()_%2B%3C%3E%2C.%3F%2F%7C%7B%7D%5B%5D%3B'%3A%22%2B_with%20special%20chars%22&responseSize=9999&offset=0"
+            `anyhost/dtp/api/${currentVersion}/trees/*?component=%22COMPONENT%60%22,%221-COMPONENT%22!%40%23%24%25%5E%26*()_%2B%3C%3E%2C.%3F%2F%7C%7B%7D%5B%5D%3B'%3A%22%2B_with%20special%20chars%22&responseSize=9999&offset=0`
         );
     });
 
@@ -280,7 +296,7 @@ describe('Guided Answers Api: getTrees()', () => {
         await getGuidedAnswerApi({ apiHost: 'otherhost' }).getTrees(options);
 
         // Result check
-        expect(requestUrl).toEqual('otherhost/dtp/api/v3/trees/*?responseSize=2&offset=1');
+        expect(requestUrl).toEqual(`otherhost/dtp/api/${currentVersion}/trees/*?responseSize=2&offset=1`);
     });
 });
 
@@ -310,7 +326,7 @@ describe('Guided Answers Api: getTreeById()', () => {
         const result = await getGuidedAnswerApi().getTreeById(1);
 
         // Result check
-        expect(requestUrl).toBe('https://ga.support.sap.com/dtp/api/v3/trees/1');
+        expect(requestUrl).toBe(`https://ga.support.sap.com/dtp/api/${currentVersion}/trees/1`);
         expect(result).toEqual({
             TREE_ID: 1,
             TITLE: 'Single',
@@ -456,7 +472,7 @@ describe('Guided Answers Api: getNodeById()', () => {
         const result = await getGuidedAnswerApi(options).getNodeById(-1);
 
         // Result check
-        expect(requestUrl).toBe('https://ga.support.sap.com/dtp/api/v3/nodes/-1');
+        expect(requestUrl).toBe(`https://ga.support.sap.com/dtp/api/${currentVersion}/nodes/-1`);
         expect(result).toMatchSnapshot();
         expect(result.COMMANDS).toEqual(options.enhancements?.nodeEnhancements?.map((ne) => ne.command));
     });
@@ -566,7 +582,7 @@ describe('Guided Answers Api: sendFeedbackComment()', () => {
         await getGuidedAnswerApi({ apiHost: 'any.host' }).sendFeedbackComment(feedbackCommentPayload);
 
         // Result check
-        expect(postMock).toBeCalledWith('any.host/dtp/api/v3/feedback/comment', {
+        expect(postMock).toBeCalledWith(`any.host/dtp/api/${currentVersion}/feedback/comment`, {
             treeId: 1,
             nodeId: 2,
             message: 'This is a mock comment'
@@ -622,7 +638,7 @@ describe('Guided Answers Api: sendFeedbackOutcome()', () => {
         await getGuidedAnswerApi({ apiHost: 'mock.host' }).sendFeedbackOutcome(feedbackOutcomePayload);
 
         // Result check
-        expect(postMock).toBeCalledWith('mock.host/dtp/api/v3/feedback/outcome', {
+        expect(postMock).toBeCalledWith(`mock.host/dtp/api/${currentVersion}/feedback/outcome`, {
             treeId: 10,
             nodeId: 20,
             message: 'Solved'
@@ -646,7 +662,7 @@ describe('Guided Answers Api: sendFeedbackOutcome()', () => {
         await getGuidedAnswerApi({ apiHost: 'mock.host' }).sendFeedbackOutcome(feedbackOutcomePayload);
 
         // Result check
-        expect(postMock).toBeCalledWith('mock.host/dtp/api/v3/feedback/outcome', {
+        expect(postMock).toBeCalledWith(`mock.host/dtp/api/${currentVersion}/feedback/outcome`, {
             treeId: 11,
             nodeId: 22,
             message: 'Not Solved'
