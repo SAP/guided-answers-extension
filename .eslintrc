@@ -32,7 +32,7 @@
                         "destructuring": "all"
                     }
                 ],
-                "sonarjs/cognitive-complexity": "warn"
+                "sonarjs/cognitive-complexity": "error"
             },
             "settings": {
                 "jsdoc": {
@@ -115,13 +115,13 @@
         "promise/param-names": "error",
         "promise/catch-or-return": "error",
         "promise/no-native": "off",
-        "promise/no-nesting": "warn",
-        "promise/no-promise-in-callback": "warn",
-        "promise/no-callback-in-promise": "warn",
+        "promise/no-nesting": "error",
+        "promise/no-promise-in-callback": "error",
+        "promise/no-callback-in-promise": "error",
         "promise/avoid-new": "off",
         "promise/no-new-statics": "error",
-        "promise/no-return-in-finally": "warn",
-        "promise/valid-params": "warn",
+        "promise/no-return-in-finally": "error",
+        "promise/valid-params": "error",
         "no-cond-assign": "error",
         "no-constant-condition": "error",
         "no-control-regex": "error",
@@ -132,7 +132,7 @@
         "no-empty-character-class": "error",
         "no-empty": "error",
         "no-ex-assign": "error",
-        "no-extra-boolean-cast": "warn",
+        "no-extra-boolean-cast": "error",
         "no-extra-parens": ["error", "functions"],
         "no-extra-semi": "error",
         "no-func-assign": "error",
@@ -147,10 +147,10 @@
         "use-isnan": "error",
         "valid-typeof": "error",
         "accessor-pairs": "error",
-        "block-scoped-var": "warn",
-        "consistent-return": "warn",
+        "block-scoped-var": "error",
+        "consistent-return": "error",
         "curly": ["error", "all"],
-        "default-case": "warn",
+        "default-case": "error",
         "no-alert": "error",
         "no-caller": "error",
         "no-div-regex": "error",
@@ -166,19 +166,19 @@
         "no-loop-func": "error",
         "no-native-reassign": "error",
         "no-new-func": "error",
-        "no-new-wrappers": "warn",
-        "no-new": "warn",
+        "no-new-wrappers": "error",
+        "no-new": "error",
         "no-octal-escape": "error",
         "no-octal": "error",
         "no-proto": "error",
-        "no-redeclare": "warn",
+        "no-redeclare": "error",
         "no-return-assign": "error",
         "no-script-url": "error",
         "no-self-compare": "error",
         "no-sequences": "error",
-        "no-unused-expressions": "warn",
+        "no-unused-expressions": "error",
         "no-void": "error",
-        "no-warning-comments": "warn",
+        "no-warning-comments": "error",
         "no-with": "error",
         "radix": "error",
         "wrap-iife": ["error", "any"],
@@ -198,13 +198,13 @@
             }
         ],
         "no-use-before-define": "off",
-        "camelcase": "warn",
-        "consistent-this": ["warn", "that"],
-        "max-nested-callbacks": ["warn", 3],
-        "new-cap": "warn",
+        "camelcase": "error",
+        "consistent-this": ["error", "that"],
+        "max-nested-callbacks": ["error", 3],
+        "new-cap": "error",
         "new-parens": "error",
         "no-array-constructor": "error",
-        "no-lonely-if": "warn",
+        "no-lonely-if": "error",
         "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
         "no-nested-ternary": "error",
         "no-new-object": "error",
@@ -218,7 +218,7 @@
             }
         ],
         "semi-spacing": [
-            "warn",
+            "error",
             {
                 "before": false,
                 "after": true
@@ -250,6 +250,15 @@
         //		"sap-no-jquery": 2
         // turn on errors for missing imports
         "import/no-unresolved": "error",
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true,
+                "optionalDependencies": true,
+                "peerDependencies": true,
+                "bundledDependencies": false
+            }
+        ],
         "prettier/prettier": [
             "error",
             {
