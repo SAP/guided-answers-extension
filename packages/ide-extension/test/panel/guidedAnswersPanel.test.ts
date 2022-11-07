@@ -1,5 +1,5 @@
 import { window, WebviewPanel, commands } from 'vscode';
-import * as apiMock from '@sap/guided-answers-extension-core';
+import * as coreMock from '@sap/guided-answers-extension-core';
 import {
     EXECUTE_COMMAND,
     SEARCH_TREE,
@@ -67,7 +67,7 @@ describe('GuidedAnswersPanel', () => {
         });
         jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
         const getFiltersForIdeSpy = jest
-            .spyOn(apiMock, 'getFiltersForIde')
+            .spyOn(coreMock, 'getFiltersForIde')
             .mockImplementation(() => Promise.resolve({ component: ['AB-CD', 'EFG-H'] }));
 
         // Test execution
@@ -90,7 +90,7 @@ describe('GuidedAnswersPanel', () => {
             onDidReceiveMessageMock = callback;
         });
         jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
-        jest.spyOn(apiMock, 'getFiltersForIde').mockImplementation(() => {
+        jest.spyOn(coreMock, 'getFiltersForIde').mockImplementation(() => {
             throw Error('GET_FILTERS_ERROR');
         });
 
@@ -110,7 +110,7 @@ describe('GuidedAnswersPanel', () => {
             onDidReceiveMessageMock = callback;
         });
         jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
-        jest.spyOn(apiMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock(1234));
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock(1234));
 
         // Test execution
         new GuidedAnswersPanel({ startOptions: { treeId: 1 } });
@@ -133,7 +133,7 @@ describe('GuidedAnswersPanel', () => {
             onDidReceiveMessageMock = callback;
         });
         jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
-        jest.spyOn(apiMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
 
         // Test execution
         new GuidedAnswersPanel({ startOptions: { treeId: 11, nodeIdPath: [100, 200, 300] } });
@@ -162,7 +162,7 @@ describe('GuidedAnswersPanel', () => {
         localApiMock.getTreeById = () => {
             throw Error('MOCKED_API_ERROR');
         };
-        jest.spyOn(apiMock, 'getGuidedAnswerApi').mockImplementation(() => localApiMock);
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => localApiMock);
 
         // Test execution
         new GuidedAnswersPanel({ startOptions: { treeId: NaN } });
@@ -198,7 +198,7 @@ describe('GuidedAnswersPanel', () => {
             onDidReceiveMessageMock = callback;
         });
         jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
-        jest.spyOn(apiMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
 
         // Test execution
         new GuidedAnswersPanel();
@@ -222,7 +222,7 @@ describe('GuidedAnswersPanel', () => {
         localApiMock.getNodeById = () => {
             throw Error('GET_NODE_API_ERROR');
         };
-        jest.spyOn(apiMock, 'getGuidedAnswerApi').mockImplementation(() => localApiMock);
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => localApiMock);
 
         // Test execution
         new GuidedAnswersPanel();
@@ -267,7 +267,7 @@ describe('GuidedAnswersPanel', () => {
             onDidReceiveMessageMock = callback;
         });
         jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
-        jest.spyOn(apiMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
 
         // Test execution
         new GuidedAnswersPanel();
@@ -288,7 +288,7 @@ describe('GuidedAnswersPanel', () => {
         });
         jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
         const localApiMock = getApiMock();
-        const guidedAnswerApiSpy = jest.spyOn(apiMock, 'getGuidedAnswerApi').mockImplementation(() => localApiMock);
+        const guidedAnswerApiSpy = jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => localApiMock);
 
         // Test execution
         new GuidedAnswersPanel();
@@ -307,7 +307,7 @@ describe('GuidedAnswersPanel', () => {
         });
         jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
         const localApiMock = getApiMock();
-        const guidedAnswerApiSpy = jest.spyOn(apiMock, 'getGuidedAnswerApi').mockImplementation(() => localApiMock);
+        const guidedAnswerApiSpy = jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => localApiMock);
 
         // Test execution
         new GuidedAnswersPanel();
@@ -355,6 +355,7 @@ const getWebViewPanelMock = (onDidReceiveMessage: (callback: WebviewMessageCallb
 
 const getApiMock = (firstNodeId?: number): GuidedAnswerAPI =>
     ({
+        getApiInfo: () => ({ host: 'HOST', version: 'VERSION' }),
         getTreeById: (treeId: GuidedAnswerTreeId) => {
             const tree = {
                 TREE_ID: treeId
