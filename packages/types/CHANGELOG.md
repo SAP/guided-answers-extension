@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-types
 
+## 1.2.0
+
+### Minor Changes
+
+-   d9db19f: Consume API version 3
+
 ## 1.1.0
 
 ### Minor Changes

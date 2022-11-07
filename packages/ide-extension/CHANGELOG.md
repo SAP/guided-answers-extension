@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.2.0
+
+### Minor Changes
+
+-   d9db19f: Consume API version 3
+
 ## 1.1.1
 
 ### Patch Changes

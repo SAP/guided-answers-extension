@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-core
 
+## 1.2.0
+
+### Minor Changes
+
+-   d9db19f: Consume API version 3
+
+### Patch Changes
+
+-   Updated dependencies [d9db19f]
+    -   @sap/guided-answers-extension-types@1.2.0
+
 ## 1.1.1
 
 ### Patch Changes
