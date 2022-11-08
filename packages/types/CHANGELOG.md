@@ -1,5 +1,23 @@
 # @sap/guided-answers-extension-types
 
+## 1.2.0
+
+### Minor Changes
+
+-   d9db19f: Consume API version 3
+
+## 1.1.0
+
+### Minor Changes
+
+-   6cbfe96: Add inifnite scroll in results list
+
+## 1.0.0
+
+### Major Changes
+
+-   16b5e4d: Release version 1.0
+
 ## 0.7.0
 
 ### Minor Changes

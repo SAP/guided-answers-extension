@@ -1,5 +1,41 @@
 # sap-guided-answer-extension
 
+## 1.2.0
+
+### Minor Changes
+
+-   d9db19f: Consume API version 3
+
+## 1.1.1
+
+### Patch Changes
+
+-   90908e9: Update dependencies
+
+## 1.1.0
+
+### Minor Changes
+
+-   6cbfe96: Add inifnite scroll in results list
+
+## 1.0.1
+
+### Patch Changes
+
+-   72c44a2: fix for images that are not displayed
+
+## 1.0.0
+
+### Major Changes
+
+-   16b5e4d: Release version 1.0
+
+## 0.14.0
+
+### Minor Changes
+
+-   87a9f77: Show initial filter for SAP Fiori SBAS devspace
+
 ## 0.13.0
 
 ### Minor Changes

@@ -69,6 +69,7 @@ export interface FeedbackOutcomePayload {
 }
 
 export interface GuidedAnswerAPI {
+    getApiInfo: () => { host: string; version: string };
     getNodeById: (id: GuidedAnswerNodeId) => Promise<GuidedAnswerNode>;
     getTreeById: (id: GuidedAnswerTreeId) => Promise<GuidedAnswerTree>;
     getTrees: (queryOptions?: GuidedAnswersQueryOptions) => Promise<GuidedAnswerTreeSearchResult>;
@@ -149,7 +150,8 @@ export type GuidedAnswerActions =
     | BetaFeatures
     | SetProductFilters
     | SetComponentFilters
-    | ResetFilters;
+    | ResetFilters
+    | SetPageSize;
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnswerTrees {
@@ -261,4 +263,10 @@ export interface SetComponentFilters {
 export const RESET_FILTERS = 'RESET_FILTERS';
 export interface ResetFilters {
     type: typeof RESET_FILTERS;
+}
+
+export const SET_PAGE_SIZE = 'SET_PAGE_SIZE';
+export interface SetPageSize {
+    type: typeof SET_PAGE_SIZE;
+    payload: number;
 }

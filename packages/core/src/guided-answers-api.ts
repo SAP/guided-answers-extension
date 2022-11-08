@@ -21,7 +21,7 @@ import type {
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 
 const API_HOST = 'https://ga.support.sap.com';
-const VERSION = 'v2';
+const VERSION = 'v3';
 const NODE_PATH = `/dtp/api/${VERSION}/nodes/`;
 const TREE_PATH = `/dtp/api/${VERSION}/trees/`;
 const IMG_PREFIX = '/dtp/viewer/';
@@ -41,6 +41,7 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
     const htmlEnhancements = options?.enhancements?.htmlEnhancements || [];
 
     return {
+        getApiInfo: () => ({ host: apiHost, version: VERSION }),
         getNodeById: async (id: GuidedAnswerNodeId): Promise<GuidedAnswerNode> =>
             enhanceNode(await getNodeById(apiHost, id), nodeEnhancements, htmlEnhancements),
         getTreeById: async (id: GuidedAnswerTreeId): Promise<GuidedAnswerTree> => getTreeById(apiHost, id),
@@ -66,7 +67,7 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
  * @returns - html string with converted <img>-tags
  */
 function convertImageSrc(body: string, host: string): string {
-    return body.replace(/<img src="services\/backend\.xsjs/gi, `<img src="${host}${IMG_PREFIX}services/backend.xsjs`);
+    return body.replace(/src="services\/backend\.xsjs\?/gi, `src="${host}${IMG_PREFIX}services/backend.xsjs?`);
 }
 
 /**
