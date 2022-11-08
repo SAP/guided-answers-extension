@@ -67,6 +67,16 @@
             width: 75%;
             max-width: 620px;
         }
+        &__restart-feedback-buttons {
+            display: flex;
+        }
+        &__divider {
+            border-left: 1px solid var(--vscode-editorWidget-border);
+            height: 18px;
+            margin-top: 35px;
+            margin-left: 12px;
+            margin-right: 10px;
+        }
         &__logoAndTitle {
             display: flex;
             align-items: center;

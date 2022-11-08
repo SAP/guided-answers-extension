@@ -10,7 +10,8 @@ import type {
     UpdateActiveNode,
     UpdateGuidedAnswerTrees,
     UpdateLoading,
-    SetPageSize
+    SetPageSize,
+    FeedbackResponse
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -37,7 +38,9 @@ export function getInitialState(): AppState {
         guideFeedback: null,
         selectedProductFilters: [],
         selectedComponentFilters: [],
-        pageSize: 20
+        pageSize: 20,
+        feedbackStatus: false,
+        feedbackResponse: false
     };
 }
 
@@ -75,7 +78,8 @@ const reducers: Partial<Reducers> = {
     SET_COMPONENT_FILTERS: setComponentFiltersReducer,
     RESET_FILTERS: resetFiltersReducer,
     SEARCH_TREE: searchTreeReducer,
-    SET_PAGE_SIZE: updatePageSize
+    SET_PAGE_SIZE: updatePageSize,
+    FEEDBACK_RESPONSE: feedbackResponseReducer
 };
 
 /**
@@ -260,6 +264,14 @@ function GuideFeedbackReducer(newState: AppState, action: GuideFeedback): AppSta
             EDGES: []
         });
     }
+    return newState;
+}
+
+/**
+ *
+ */
+function feedbackResponseReducer(newState: AppState, action: FeedbackResponse): AppState {
+    newState.feedbackResponse = action.payload;
     return newState;
 }
 

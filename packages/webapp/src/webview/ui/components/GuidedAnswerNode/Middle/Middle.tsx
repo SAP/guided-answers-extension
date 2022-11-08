@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { FeedbackSection } from '../../FeedbackSection/FeedbackSection';
 import NotSolvedMessage from '../../FeedbackSection/NotSolvedMessage/NotSolvedMessage';
+import { FeedbackDialogBox } from '../../DialogBoxes/FeedbackDialogBox';
+import { FeedbackSendDialogBox } from '../../DialogBoxes/FeedbackSentDialogBox/FeedbackSendDialogBox';
 
 let firstTimeFocus = true;
 
@@ -19,6 +21,7 @@ let firstTimeFocus = true;
  * @param props.enhancedBody - a react element that is rendered if enhancements are present in the node
  * @returns - The middle react element
  */
+
 export function Middle(props: {
     activeNode: GuidedAnswerNodeType;
     enhancedBody: ReactElement | undefined | null;
@@ -72,6 +75,9 @@ export function Middle(props: {
                     )}
                 </div>
             </FocusZone>
+            {/* TODO: DialogBox feedback feedback dialog box isn't rendering */}
+            <FeedbackDialogBox />
+            {/* <FeedbackSendDialogBox dialogVisible={appState.feedbackResponse} />; */}
         </div>
     );
 }

@@ -16,4 +16,6 @@ export interface AppState {
     selectedProductFilters: string[];
     selectedComponentFilters: string[];
     pageSize: number;
+    feedbackStatus: boolean;
+    feedbackResponse: boolean;
 }

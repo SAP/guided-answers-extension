@@ -26,7 +26,9 @@ import type {
     SetProductFilters,
     SetComponentFilters,
     ResetFilters,
-    SetPageSize
+    SetPageSize,
+    FeedbackStatus,
+    FeedbackResponse
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -48,7 +50,9 @@ import {
     SET_PRODUCT_FILTERS,
     SET_COMPONENT_FILTERS,
     RESET_FILTERS,
-    SET_PAGE_SIZE
+    SET_PAGE_SIZE,
+    FEEDBACK_STATUS,
+    FEEDBACK_RESPONSE
 } from './types';
 
 export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
@@ -126,6 +130,11 @@ export const guideFeedback = (payload: boolean | null): GuideFeedback => ({
     payload
 });
 
+export const feedbackStatus = (payload: boolean): FeedbackStatus => ({
+    type: FEEDBACK_STATUS,
+    payload
+});
+
 export const sendFeedbackOutcome = (payload: FeedbackOutcomePayload): SendFeedbackOutcome => ({
     type: SEND_FEEDBACK_OUTCOME,
     payload
@@ -138,5 +147,10 @@ export const sendFeedbackComment = (payload: FeedbackCommentPayload): SendFeedba
 
 export const setPageSize = (payload: number): SetPageSize => ({
     type: SET_PAGE_SIZE,
+    payload
+});
+
+export const feedbackResponse = (payload: boolean): FeedbackResponse => ({
+    type: FEEDBACK_RESPONSE,
     payload
 });

@@ -5,7 +5,7 @@ import Solved from './images/solved.svg';
 import i18next from 'i18next';
 import { actions } from '../../../state';
 import './FeedbackSection.scss';
-import { MessageDialogBox } from '../MessageDialogBox';
+import { MessageDialogBox } from '../DialogBoxes/MessageDialogBox';
 import type { AppState } from '../../../types';
 import type { GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
