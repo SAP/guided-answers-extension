@@ -43,7 +43,7 @@ export function FeedbackDialogBox(props: {}): ReactElement {
     return (
         <>
             <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
-                <TextField label="Your Suggestion" multiline autoAdjustHeight onChange={onChange} />
+                <TextField label="Your suggestion" multiline autoAdjustHeight onChange={onChange} />
                 <div className="privacy-notice">
                     <VscInfo className="info-icon" />
                     <p>Your feedback is anonymous, we do not collect any personal data.</p>
@@ -54,6 +54,7 @@ export function FeedbackDialogBox(props: {}): ReactElement {
                             className="primary-button"
                             text={'Send'}
                             onClick={() => {
+                                actions.feedbackResponse(false);
                                 actions.sendFeedbackComment({ treeId, nodeId, comment: feedback });
                                 actions.feedbackStatus(false);
                             }}
