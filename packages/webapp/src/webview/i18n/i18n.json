@@ -12,6 +12,7 @@
     "THANK_YOU_TEXT": "We are glad to hear that your issue has been resolved and we hope you enjoy using the Guided Answers application.",
     "THANKS": "Thanks!",
     "HOME": "Home",
+    "SEND": "Send",
     "CLOSE": "Close",
     "ISSUE_IS_NOT_RESOLVED": "Issue is not resolved",
     "WE_ARE_SORRY_TO_HEAR_THAT_YOUR_ISSUE_IS_NOT_YET_RESOLVED": "We are sorry to hear that your issue is not yet resolved.",
@@ -21,5 +22,12 @@
     "START_AN_EXPERT_CHAT": "Start an Expert Chat",
     "SCHUEDULE_AN_EXPERT": "Schedule an Expert",
     "OPEN_AN_INCIDENT": "Open an Incident",
-    "ASK_THE_SAP_COMMUNITY": "Ask the SAP Community"
+    "ASK_THE_SAP_COMMUNITY": "Ask the SAP Community",
+    "FEEDBACK": "FEEDBACK",
+    "FEEDBACK_DIALOG_TITLE": "Is this content helpful?",
+    "FEEDBACK_DIALOG_SUBTEXT": "If you have suggestions on how to improve this content we would love to hear them!",
+    "FEEDBACK_DIALOG_DISCLAIMER": "Your feedback is anonymous, we do not collect any personal data.",
+    "FEEDBACK_DIALOG_SUGGESTION": "Your suggestion",
+    "FEEDBACK_SENT_DIALOG_TITLE": "Message sent",
+    "FEEDBACK_SENT_DIALOG_SUBTEXT": "Thanks for the feedback!"
 }

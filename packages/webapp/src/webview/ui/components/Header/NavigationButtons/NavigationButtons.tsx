@@ -1,7 +1,9 @@
 import React from 'react';
 import { actions } from '../../../../state';
-import { VscHome, VscRefresh, VscArrowLeft, VscLightbulb } from 'react-icons/vsc';
+import { VscHome, VscRefresh, VscArrowLeft } from 'react-icons/vsc';
 import i18next from 'i18next';
+import { UIIcon } from '@sap-ux/ui-components';
+import { UiIcons } from '../../UIComponentsLib/Icons';
 import { focusOnElement } from '../../utils';
 
 /**
@@ -73,22 +75,8 @@ export function GeneralFeedbackButton() {
             onClick={(): void => {
                 actions.feedbackStatus(true);
             }}
-            title={i18next.t('RESTART')}>
-            <svg
-                className="guided-answer__header__navButtons__content"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 10H6V9H4.58578L3 10.5858V9H1V1H12V5H13V0H0V10H2V13L5 10Z" fill="#C5C5C5" />
-                <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M16 6V13H14V16L11 13H7V6H16ZM13 12V13.5858L11.4142 12H8V7H15V12H13Z"
-                    fill="#C5C5C5"
-                />
-            </svg>
+            title={i18next.t('FEEDBACK')}>
+            <UIIcon className="guided-answer__header__navButtons__content" iconName={UiIcons.Chat} />
         </button>
     );
 }

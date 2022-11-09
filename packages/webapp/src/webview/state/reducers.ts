@@ -270,7 +270,11 @@ function GuideFeedbackReducer(newState: AppState, action: GuideFeedback): AppSta
 }
 
 /**
+ * Set state for feedback reponse.
  *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
  */
 function feedbackResponseReducer(newState: AppState, action: FeedbackResponse): AppState {
     newState.feedbackResponse = action.payload;
@@ -278,7 +282,11 @@ function feedbackResponseReducer(newState: AppState, action: FeedbackResponse): 
 }
 
 /**
+ * Set state for feedback status.
  *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
  */
 function feedbackStatusReducer(newState: AppState, action: FeedbackStatus): AppState {
     newState.feedbackStatus = action.payload;

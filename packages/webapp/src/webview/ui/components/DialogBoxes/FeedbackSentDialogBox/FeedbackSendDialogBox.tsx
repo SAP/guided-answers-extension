@@ -1,9 +1,9 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import './FeedbackSendDialogBox.scss';
 import { Dialog, DialogType } from '@fluentui/react/lib/Dialog';
-// import i18next from 'i18next';
-// import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-import { VscRefresh } from 'react-icons/vsc';
+import i18next from 'i18next';
+import { UIIcon } from '@sap-ux/ui-components';
+import { UiIcons } from '../../UIComponentsLib/Icons';
 import { AppState } from '../../../../types';
 import { useSelector } from 'react-redux';
 
@@ -19,8 +19,8 @@ export function FeedbackSendDialogBox(): ReactElement {
 
     const dialogContentProps = {
         type: DialogType.normal,
-        title: 'Message sent',
-        subText: 'Thanks for the feedback!'
+        title: i18next.t('FEEDBACK_SENT_DIALOG_TITLE'),
+        subText: i18next.t('FEEDBACK_SENT_DIALOG_SUBTEXT')
     };
 
     const modalProps = {
@@ -31,24 +31,12 @@ export function FeedbackSendDialogBox(): ReactElement {
     //Dialog box will transition out after being loaded
     setTimeout(() => {
         setVisible(false);
-    }, 5000);
+    }, 2000);
 
     return (
         <>
             <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
-                <svg
-                    className="feedback-response-icon"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 10H6V9H4.58578L3 10.5858V9H1V1H12V5H13V0H0V10H2V13L5 10Z" fill="#C5C5C5" />
-                    <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M16 6V13H14V16L11 13H7V6H16ZM13 12V13.5858L11.4142 12H8V7H15V12H13Z"
-                        fill="#C5C5C5"
-                    />
-                </svg>
+                <UIIcon className="feedback-response-icon" iconName={UiIcons.Chat} />
             </Dialog>
         </>
     );

@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import type { GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
+import i18next from 'i18next';
 
 export function FeedbackDialogBox(props: {}): ReactElement {
     const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!.TREE_ID);
@@ -22,8 +23,8 @@ export function FeedbackDialogBox(props: {}): ReactElement {
 
     const dialogContentProps = {
         type: DialogType.normal,
-        title: 'Is this content helpful?',
-        subText: 'If you have suggestions on how to improve this content we would love to hear them!'
+        title: i18next.t('FEEDBACK_DIALOG_TITLE'),
+        subText: i18next.t('FEEDBACK_DIALOG_SUBTEXT')
     };
 
     const modalProps = {
@@ -43,16 +44,21 @@ export function FeedbackDialogBox(props: {}): ReactElement {
     return (
         <>
             <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
-                <TextField label="Your suggestion" multiline autoAdjustHeight onChange={onChange} />
+                <TextField
+                    label={i18next.t('FEEDBACK_DIALOG_SUGGESTION')}
+                    multiline
+                    autoAdjustHeight
+                    onChange={onChange}
+                />
                 <div className="privacy-notice">
                     <VscInfo className="info-icon" />
-                    <p>Your feedback is anonymous, we do not collect any personal data.</p>
+                    <p>{i18next.t('FEEDBACK_DIALOG_DISCLAIMER')}</p>
                 </div>
                 <DialogFooter>
                     <FocusZone direction={FocusZoneDirection.horizontal} className="button-container">
                         <PrimaryButton
                             className="primary-button"
-                            text={'Send'}
+                            text={i18next.t('SEND')}
                             onClick={() => {
                                 actions.feedbackResponse(false);
                                 actions.sendFeedbackComment({ treeId, nodeId, comment: feedback });
@@ -61,7 +67,7 @@ export function FeedbackDialogBox(props: {}): ReactElement {
                         />
                         <DefaultButton
                             className="default-button"
-                            text={'Close'}
+                            text={i18next.t('CLOSE')}
                             onClick={() => {
                                 actions.feedbackStatus(false);
                             }}

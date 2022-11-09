@@ -17,7 +17,7 @@ import type {
     GuidedAnswerTreeSearchResult,
     HTMLEnhancement,
     NodeEnhancement,
-    postResponse
+    PostFeedbackResponse
 } from '@sap/guided-answers-extension-types';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 
@@ -223,7 +223,7 @@ async function getNodePath(host: string, nodeIdPath: GuidedAnswerNodeId[]): Prom
  * @param url - url to post feedback
  * @param feedback - feedback structure
  */
-async function postFeedback(url: string, feedback: GuidedAnswersFeedback): Promise<postResponse> {
+async function postFeedback(url: string, feedback: GuidedAnswersFeedback): Promise<PostFeedbackResponse> {
     const response = await axios.post(url, feedback);
     if (response.status !== 200) {
         throw Error(`Could not send feedback. ${response.statusText} (${response.status})`);
@@ -244,7 +244,7 @@ async function sendFeedbackComment(
     treeId: GuidedAnswerTreeId,
     nodeId: GuidedAnswerNodeId,
     comment: string
-): Promise<postResponse> {
+): Promise<PostFeedbackResponse> {
     const message = comment;
     return await postFeedback(`${host}/${FEEDBACK_COMMENT}`, { treeId, nodeId, message });
 }
@@ -262,7 +262,7 @@ async function sendFeedbackOutcome(
     treeId: GuidedAnswerTreeId,
     nodeId: GuidedAnswerNodeId,
     solved: boolean
-): Promise<postResponse> {
+): Promise<PostFeedbackResponse> {
     const message = solved ? 'Solved' : 'Not Solved';
     return postFeedback(`${host}/${FEEDBACK_OUTCOME}`, { treeId, nodeId, message });
 }
