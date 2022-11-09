@@ -134,4 +134,12 @@ describe('<Filters />', () => {
         component = wrapper.find('UIDialog').html();
         expect(component).toMatchInlineSnapshot(`"<span class="ms-layer"></span>"`);
     });
+
+    it('Should close the dialog when cancel button is clicked', () => {
+        expect(wrapper.find('UIDialog').props().isOpen).toBe(false);
+        wrapper.find('#filter-products').simulate('click');
+        expect(wrapper.find('UIDialog').props().isOpen).toBe(true);
+        wrapper.find('UIDialog').simulate('cancel');
+        expect(wrapper.find('UIDialog').props().isOpen).toBe(false);
+    });
 });
