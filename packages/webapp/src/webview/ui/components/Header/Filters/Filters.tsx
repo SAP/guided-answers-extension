@@ -67,8 +67,8 @@ export function Filters() {
     const [productFilters, setProductFilters] = useState(appState.guidedAnswerTreeSearchResult.productFilters);
     const [componentFilters, setComponentFilters] = useState(appState.guidedAnswerTreeSearchResult.componentFilters);
     const [query, setQuery] = useState('');
-    const [selectedProductFilters, setSelectedProductFilters] = useState(appState.selectedProductFilters);
-    const [selectedComponentFilters, setSelectedComponentFilters] = useState(appState.selectedProductFilters);
+    const [selectedProductFilters, setSelectedProductFilters] = useState([...appState.selectedProductFilters]);
+    const [selectedComponentFilters, setSelectedComponentFilters] = useState([...appState.selectedProductFilters]);
     const isFilterProducts = filter === PRODUCTS;
     const main = {
         ['.ms-TextField-wrapper > .ms-Label']: {
@@ -113,6 +113,12 @@ export function Filters() {
                 }
             });
         }
+    };
+
+    const cancel = () => {
+        setSelectedComponentFilters([...appState.selectedComponentFilters]);
+        setSelectedProductFilters([...appState.selectedProductFilters]);
+        setDialogVisible(false);
     };
 
     const toggleFilters = (type: string): void => {
@@ -255,7 +261,7 @@ export function Filters() {
                     cancelButtonText={'Cancel'}
                     styles={{ main }}
                     onAccept={() => filterType[filter].apply()}
-                    onCancel={resetFilter}
+                    onCancel={cancel}
                     onDismiss={resetFilter}>
                     <UITextInput placeholder="Search" value={query} onChange={searchFilter} />
                     <FocusZone

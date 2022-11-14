@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.2.2
+
+### Patch Changes
+
+-   b8d0969: Fix for filter dialog close, caused duplicate results when canceled.
+
 ## 1.2.1
 
 ### Patch Changes
