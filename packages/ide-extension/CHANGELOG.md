@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.2.1
+
+### Patch Changes
+
+-   b8d0969: Fix for filter dialog close, caused duplicate results when canceled.
+
 ## 1.2.0
 
 ### Minor Changes
