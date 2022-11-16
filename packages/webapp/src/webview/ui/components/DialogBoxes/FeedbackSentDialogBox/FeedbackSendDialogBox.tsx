@@ -8,7 +8,9 @@ import { AppState } from '../../../../types';
 import { useSelector } from 'react-redux';
 
 /**
+ * The feedback dialog box appears that appears on api response.
  *
+ * @returns the feedback send dialog box element
  */
 export function FeedbackSendDialogBox(): ReactElement {
     const feedbackResponse = useSelector<AppState, boolean>((state) => state.feedbackResponse);

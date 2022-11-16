@@ -21,7 +21,6 @@ let firstTimeFocus = true;
  * @param props.enhancedBody - a react element that is rendered if enhancements are present in the node
  * @returns - The middle react element
  */
-
 export function Middle(props: {
     activeNode: GuidedAnswerNodeType;
     enhancedBody: ReactElement | undefined | null;

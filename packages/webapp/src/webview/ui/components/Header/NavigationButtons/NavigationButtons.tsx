@@ -68,6 +68,10 @@ export function RestartButton() {
     );
 }
 
+/**
+ *
+ * @returns A button component for feedback submission.
+ */
 export function GeneralFeedbackButton() {
     return (
         <button

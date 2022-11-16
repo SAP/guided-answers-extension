@@ -11,7 +11,12 @@ import { actions } from '../../../../state';
 import type { GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 
-export function FeedbackDialogBox(props: {}): ReactElement {
+/**
+ * The feedback dialog box for submitting comments.
+ *
+ * @returns the feedback dialog box element
+ */
+export function FeedbackDialogBox(): ReactElement {
     const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!.TREE_ID);
     const nodeId = useSelector<AppState, GuidedAnswerNodeId>(
         (state) => state.activeGuidedAnswerNode[state.activeGuidedAnswerNode.length - 1].NODE_ID
