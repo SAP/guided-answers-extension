@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.3.0
+
+### Minor Changes
+
+-   332bc0a: Incorrect padding in titles
+
 ## 1.2.2
 
 ### Patch Changes
