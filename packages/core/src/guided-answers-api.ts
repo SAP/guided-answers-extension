@@ -246,7 +246,7 @@ async function sendFeedbackComment(
     comment: string
 ): Promise<PostFeedbackResponse> {
     const message = comment;
-    return await postFeedback(`${host}/${FEEDBACK_COMMENT}`, { treeId, nodeId, message });
+    return postFeedback(`${host}/${FEEDBACK_COMMENT}`, { treeId, nodeId, message });
 }
 
 /**

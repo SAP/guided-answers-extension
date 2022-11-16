@@ -162,8 +162,12 @@ export class GuidedAnswersPanel {
                     break;
                 }
                 case SEND_FEEDBACK_COMMENT: {
-                    const commentResponse = await this.guidedAnswerApi.sendFeedbackComment(action.payload);
-                    this.postActionToWebview(feedbackResponse(commentResponse.status === 200));
+                    try {
+                        const commentResponse = await this.guidedAnswerApi.sendFeedbackComment(action.payload);
+                        this.postActionToWebview(feedbackResponse(commentResponse.status === 200));
+                    } catch (error) {
+                        throw Error(`Could not send feedback. ${error})`);
+                    }
                     break;
                 }
                 case EXECUTE_COMMAND: {

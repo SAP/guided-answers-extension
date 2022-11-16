@@ -68,7 +68,7 @@ export function FeedbackDialogBox(props: {}): ReactElement {
                             }}
                         />
                         <DefaultButton
-                            className="default-button"
+                            className="close-button"
                             text={i18next.t('CLOSE')}
                             onClick={() => {
                                 actions.feedbackStatus(false);

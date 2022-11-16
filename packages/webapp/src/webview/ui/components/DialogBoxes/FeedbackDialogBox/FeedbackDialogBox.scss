@@ -43,19 +43,30 @@
         margin-bottom: -20px;
     }
 
-    .default-button {
+    .close-button {
         background-color: var(--vscode-button-secondaryBackground);
         color: var(--vscode-button-foreground);
         border-color: var(--vscode-button-secondaryBackground);
         text-align: center;
     }
 
+    .close-button:hover {
+        background-color: var(--vscode-button-secondaryHoverBackground);
+    }
+
     .primary-button {
+        background-color: var(--vscode-button-background);
         color: var(--vscode-button-foreground);
         font-weight: 400;
         border-color: var(--vscode-button-background);
-        background-color: var(--vscode-button-background);
         border-style: none;
+        outline-offset: -1px;
+        border: 1px solid var(--vscode-contrastBorder);
+    }
+
+    .primary-button:hover {
+        background-color: var(--vscode-button-hoverBackground);
+        outline: 1px solid var(--vscode-contrastActiveBorder);
     }
 
     button:focus-visible {
