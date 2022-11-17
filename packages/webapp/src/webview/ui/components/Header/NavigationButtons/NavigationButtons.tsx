@@ -82,7 +82,7 @@ export function GeneralFeedbackButton() {
             title={i18next.t('FEEDBACK')}>
             <UIIcon
                 className="guided-answer__header__navButtons__content"
-                style={{ paddingTop: '5px' }}
+                style={{ paddingTop: '2px' }}
                 iconName={UiIcons.Chat}
             />
         </button>

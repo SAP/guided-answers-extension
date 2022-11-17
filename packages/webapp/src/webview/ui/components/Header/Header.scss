@@ -26,7 +26,7 @@
             height: 25px;
             margin-top: 30px;
             color: var(--vscode-foreground);
-            padding: 0 5px 2px 3px;
+            padding: 0 5px 0px 5px;
             text-align: start;
             cursor: pointer;
             background: none;
@@ -72,9 +72,9 @@
         }
         &__divider {
             border-left: 1px solid var(--vscode-editorWidget-border);
-            height: 18px;
+            height: 16px;
             margin-top: 35px;
-            margin-left: 12px;
+            margin-left: 10px;
             margin-right: 10px;
         }
         &__logoAndTitle {
