@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { FeedbackSection } from '../../FeedbackSection/FeedbackSection';
 import NotSolvedMessage from '../../FeedbackSection/NotSolvedMessage/NotSolvedMessage';
+import { FeedbackDialogBox } from '../../DialogBoxes/FeedbackDialogBox';
+import { FeedbackSendDialogBox } from '../../DialogBoxes/FeedbackSentDialogBox/FeedbackSendDialogBox';
 
 let firstTimeFocus = true;
 
@@ -72,6 +74,8 @@ export function Middle(props: {
                     )}
                 </div>
             </FocusZone>
+            <FeedbackDialogBox />
+            <FeedbackSendDialogBox />
         </div>
     );
 }

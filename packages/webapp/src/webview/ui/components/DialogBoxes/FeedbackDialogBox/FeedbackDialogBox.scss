@@ -1,0 +1,104 @@
+.feedback-section-dialog {
+    color: var(--vscode-editor-foreground);
+    .ms-Dialog-main {
+        background-color: var(--vscode-editorWidget-background);
+    }
+    .ms-Dialog-title {
+        color: var(--vscode-settings-headerForeground);
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+        padding: 20px;
+    }
+    .ms-Dialog-subText {
+        color: var(--vscode-settings-headerForeground);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 18px;
+        margin-bottom: 20px;
+        text-align: left;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .ms-Label {
+        font-size: 13px;
+    }
+
+    .ms-Button-label {
+        font-size: 13px;
+    }
+
+    label {
+        color: var(--vscode-editor-foreground);
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: -16px;
+        margin-bottom: -20px;
+    }
+
+    .close-button {
+        background-color: var(--vscode-button-secondaryBackground);
+        color: var(--vscode-button-foreground);
+        border-color: var(--vscode-button-secondaryBackground);
+        text-align: center;
+    }
+
+    .close-button:hover {
+        background-color: var(--vscode-button-secondaryHoverBackground);
+    }
+
+    .primary-button {
+        background-color: var(--vscode-button-background);
+        color: var(--vscode-button-foreground);
+        font-weight: 400;
+        border-color: var(--vscode-button-background);
+        border-style: none;
+        outline-offset: -1px;
+        border: 1px solid var(--vscode-contrastBorder);
+    }
+
+    .primary-button:hover {
+        background-color: var(--vscode-button-hoverBackground);
+        outline: 1px solid var(--vscode-contrastActiveBorder);
+    }
+
+    button:focus-visible {
+        outline: 1px solid var(--vscode-focusBorder, #007fd4);
+        border-style: none;
+    }
+
+    h3 {
+        font-size: 13px;
+        font-weight: 700px;
+        margin-top: 20px;
+        margin-bottom: 3px;
+    }
+    .privacy-notice {
+        display: flex;
+        font-size: 11px;
+        align-items: center;
+        font-weight: 400;
+        gap: 5px;
+    }
+    .info-icon {
+        color: var(--vscode-editorMarkerNavigationInfo-background);
+        width: 20px;
+        height: 20px;
+        margin-bottom: -1px;
+    }
+    .privacy-notice > p {
+        margin-bottom: 0;
+    }
+    textarea {
+        resize: none;
+        background-color: var(--vscode-input-background);
+        color: var(--vscode-editor-foreground);
+    }
+}

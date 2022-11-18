@@ -2,6 +2,8 @@ import React from 'react';
 import { actions } from '../../../../state';
 import { VscHome, VscRefresh, VscArrowLeft } from 'react-icons/vsc';
 import i18next from 'i18next';
+import { UIIcon } from '@sap-ux/ui-components';
+import { UiIcons } from '../../UIComponentsLib/Icons';
 import { focusOnElement } from '../../utils';
 
 /**
@@ -62,6 +64,27 @@ export function RestartButton() {
             <span className="guided-answer__header__navButtons__content text-underline" style={{ marginLeft: '3px' }}>
                 {i18next.t('RESTART')}
             </span>
+        </button>
+    );
+}
+
+/**
+ *
+ * @returns A button component for feedback submission.
+ */
+export function GeneralFeedbackButton() {
+    return (
+        <button
+            className="guided-answer__header__navButtons"
+            onClick={(): void => {
+                actions.feedbackStatus(true);
+            }}
+            title={i18next.t('FEEDBACK')}>
+            <UIIcon
+                className="guided-answer__header__navButtons__content"
+                style={{ paddingTop: '2px' }}
+                iconName={UiIcons.Chat}
+            />
         </button>
     );
 }

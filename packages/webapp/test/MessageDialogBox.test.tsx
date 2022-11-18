@@ -1,7 +1,7 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import i18next from 'i18next';
-import { MessageDialogBox } from '../src/webview/ui/components/MessageDialogBox/MessageDialogBox';
+import { MessageDialogBox } from '../src/webview/ui/components/DialogBoxes/MessageDialogBox';
 
 describe('<MessageDialogBox />', () => {
     let wrapper: any;

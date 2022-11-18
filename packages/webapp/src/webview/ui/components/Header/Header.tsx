@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../types';
-import { AllAnswersButton, BackButton, RestartButton } from './NavigationButtons';
+import { AllAnswersButton, BackButton, GeneralFeedbackButton, RestartButton } from './NavigationButtons';
 import { Logo } from './Logo';
 import './Header.scss';
 import { SearchField } from './SearchField';
@@ -46,7 +46,13 @@ export function Header(props: {
 
                         <div className="guided-answer__header__back-restart-buttons">
                             <BackButton />
-                            {appState.activeGuidedAnswerNode.length > 1 && <RestartButton />}
+                            <div className="guided-answer__header__restart-feedback-buttons">
+                                {appState.activeGuidedAnswerNode.length > 1 && <RestartButton />}
+                                {appState.activeGuidedAnswerNode.length > 1 && (
+                                    <div className="guided-answer__header__divider"></div>
+                                )}
+                                <GeneralFeedbackButton />
+                            </div>
                         </div>
                     </FocusZone>
                 </>

@@ -1,0 +1,38 @@
+.feedback-sent-dialog-box {
+    color: var(--vscode-editor-foreground);
+    .ms-Dialog-main {
+        background-color: var(--vscode-editorWidget-background);
+        width: 380px;
+        height: 300px;
+        display: flex;
+        align-items: center;
+        font-family: var(--vscode-font-family);
+    }
+    .ms-Dialog-title {
+        color: var(--vscode-settings-headerForeground);
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 29px;
+        text-align: center;
+        padding: 20px;
+    }
+    .ms-Dialog-subText {
+        color: var(--vscode-foreground);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 18px;
+        margin-bottom: 0;
+        text-align: center;
+        margin-top: 0;
+        padding: 0;
+    }
+    .feedback-response-icon {
+        width: 49px;
+        height: 46px;
+        margin-top: 20px;
+    }
+    .ms-Dialog-content {
+        text-align: center;
+    }
+}
