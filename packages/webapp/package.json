@@ -44,7 +44,8 @@
         "react-i18next": "11.10.0",
         "react-icons": "4.6.0",
         "react-redux": "7.2.8",
-        "redux": "4.2.0"
+        "redux": "4.2.0",
+        "@testing-library/react": "12.1.5"
     },
     "dependencies": {
         "@fluentui/react": "8.99.2",
@@ -52,6 +53,8 @@
         "@fluentui/style-utilities": "8.8.1",
         "@fluentui/utilities": "8.13.2",
         "@sap-ux/ui-components": "1.0.16",
-        "react-infinite-scroll-component": "6.1.0"
+        "react-infinite-scroll-component": "6.1.0",
+        "@testing-library/jest-dom": "5.16.5",
+        "@types/testing-library__jest-dom": "5.14.5"
     }
 }
