@@ -51,6 +51,11 @@ export interface GuidedAnswerNode {
     COMMANDS?: Command[];
 }
 
+export interface PostFeedbackResponse {
+    status: number;
+    statusText: string;
+}
+
 export interface GuidedAnswerEdge {
     LABEL: string;
     TARGET_NODE: GuidedAnswerNodeId;
@@ -69,12 +74,13 @@ export interface FeedbackOutcomePayload {
 }
 
 export interface GuidedAnswerAPI {
+    getApiInfo: () => { host: string; version: string };
     getNodeById: (id: GuidedAnswerNodeId) => Promise<GuidedAnswerNode>;
     getTreeById: (id: GuidedAnswerTreeId) => Promise<GuidedAnswerTree>;
     getTrees: (queryOptions?: GuidedAnswersQueryOptions) => Promise<GuidedAnswerTreeSearchResult>;
     getNodePath: (nodeIdPath: GuidedAnswerNodeId[]) => Promise<GuidedAnswerNode[]>;
-    sendFeedbackComment: (payload: FeedbackCommentPayload) => Promise<void>;
-    sendFeedbackOutcome: (payload: FeedbackOutcomePayload) => Promise<void>;
+    sendFeedbackComment: (payload: FeedbackCommentPayload) => Promise<PostFeedbackResponse>;
+    sendFeedbackOutcome: (payload: FeedbackOutcomePayload) => Promise<PostFeedbackResponse>;
 }
 
 export interface GuidedAnswersFeedback {
@@ -149,7 +155,10 @@ export type GuidedAnswerActions =
     | BetaFeatures
     | SetProductFilters
     | SetComponentFilters
-    | ResetFilters;
+    | ResetFilters
+    | SetPageSize
+    | FeedbackStatus
+    | FeedbackResponse;
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnswerTrees {
@@ -261,4 +270,21 @@ export interface SetComponentFilters {
 export const RESET_FILTERS = 'RESET_FILTERS';
 export interface ResetFilters {
     type: typeof RESET_FILTERS;
+}
+
+export const SET_PAGE_SIZE = 'SET_PAGE_SIZE';
+export interface SetPageSize {
+    type: typeof SET_PAGE_SIZE;
+    payload: number;
+}
+export const FEEDBACK_STATUS = 'FEEDBACK_STATUS';
+export interface FeedbackStatus {
+    type: typeof FEEDBACK_STATUS;
+    payload: boolean;
+}
+
+export const FEEDBACK_RESPONSE = 'FEEDBACK_RESPONSE';
+export interface FeedbackResponse {
+    type: typeof FEEDBACK_RESPONSE;
+    payload: boolean;
 }

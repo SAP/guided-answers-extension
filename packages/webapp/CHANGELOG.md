@@ -1,5 +1,47 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.4.0
+
+### Minor Changes
+
+-   cf77158: Allow users to enter general feedback about a Guided Answer.
+
+## 1.3.0
+
+### Minor Changes
+
+-   332bc0a: Incorrect padding in titles
+
+## 1.2.2
+
+### Patch Changes
+
+-   b8d0969: Fix for filter dialog close, caused duplicate results when canceled.
+
+## 1.2.1
+
+### Patch Changes
+
+-   90908e9: Update dependencies
+
+## 1.2.0
+
+### Minor Changes
+
+-   6cbfe96: Add inifnite scroll in results list
+
+## 1.1.0
+
+### Minor Changes
+
+-   d2b5bf8: solved/not-solved bug fixed
+
+## 1.0.0
+
+### Major Changes
+
+-   16b5e4d: Release version 1.0
+
 ## 0.14.0
 
 ### Minor Changes

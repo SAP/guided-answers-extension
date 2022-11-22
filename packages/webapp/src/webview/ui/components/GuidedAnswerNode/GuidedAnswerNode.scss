@@ -140,7 +140,6 @@ a:hover {
         outline: 1px solid var(--vscode-contrastActiveBorder);
     }
     &__edge:focus-visible {
-        border: 1px solid var(--vscode-contrastBorder);
         outline: 1px solid var(--vscode-focusBorder);
         outline-offset: 2px;
     }

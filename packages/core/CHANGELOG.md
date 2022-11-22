@@ -1,5 +1,67 @@
 # @sap/guided-answers-extension-core
 
+## 1.3.0
+
+### Minor Changes
+
+-   cf77158: Allow users to enter general feedback about a Guided Answer.
+
+### Patch Changes
+
+-   Updated dependencies [cf77158]
+    -   @sap/guided-answers-extension-types@1.3.0
+
+## 1.2.0
+
+### Minor Changes
+
+-   d9db19f: Consume API version 3
+
+### Patch Changes
+
+-   Updated dependencies [d9db19f]
+    -   @sap/guided-answers-extension-types@1.2.0
+
+## 1.1.1
+
+### Patch Changes
+
+-   90908e9: Update dependencies
+
+## 1.1.0
+
+### Minor Changes
+
+-   6cbfe96: Add inifnite scroll in results list
+
+### Patch Changes
+
+-   Updated dependencies [6cbfe96]
+    -   @sap/guided-answers-extension-types@1.1.0
+
+## 1.0.1
+
+### Patch Changes
+
+-   72c44a2: fix for images that are not displayed
+
+## 1.0.0
+
+### Major Changes
+
+-   16b5e4d: Release version 1.0
+
+### Patch Changes
+
+-   Updated dependencies [16b5e4d]
+    -   @sap/guided-answers-extension-types@1.0.0
+
+## 0.5.0
+
+### Minor Changes
+
+-   87a9f77: Show initial filter for SAP Fiori SBAS devspace
+
 ## 0.4.0
 
 ### Minor Changes

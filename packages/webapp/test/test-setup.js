@@ -7,6 +7,20 @@
 const enzyme = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');
 
+class ResizeObserver {
+    observe() {
+        // do nothing
+    }
+    unobserve() {
+        // do nothing
+    }
+    disconnect() {
+        // do nothing
+    }
+}
+
+window.ResizeObserver = ResizeObserver;
+
 global.vscode = { postMessage: (e) => {} };
 
 global.window = window;

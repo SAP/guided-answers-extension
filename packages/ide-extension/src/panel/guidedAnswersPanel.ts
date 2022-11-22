@@ -1,6 +1,6 @@
 import type { WebviewPanel } from 'vscode';
 import { Uri, ViewColumn, window, workspace } from 'vscode';
-import type { GuidedAnswerActions, GuidedAnswerAPI } from '@sap/guided-answers-extension-types';
+import type { GuidedAnswerActions, GuidedAnswerAPI, IDE } from '@sap/guided-answers-extension-types';
 import {
     SELECT_NODE,
     SEND_FEEDBACK_OUTCOME,
@@ -9,16 +9,18 @@ import {
     updateActiveNode,
     updateLoading,
     EXECUTE_COMMAND,
+    searchTree,
     SEARCH_TREE,
     WEBVIEW_READY,
     setActiveTree,
-    getBetaFeatures
+    getBetaFeatures,
+    feedbackResponse
 } from '@sap/guided-answers-extension-types';
-import { getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
+import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
 import { getEnhancements, handleCommand } from '../enhancement';
 import { logString } from '../logger/logger';
-import type { StartOptions } from '../types';
+import type { Options, StartOptions } from '../types';
 
 /**
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
@@ -27,19 +29,24 @@ export class GuidedAnswersPanel {
     public readonly panel: WebviewPanel;
     private guidedAnswerApi: GuidedAnswerAPI;
     private readonly startOptions: StartOptions | undefined;
+    private readonly ide: IDE;
 
     /**
      * Constructor.
      *
-     * @param [options] - optional options for startup like tree id or tree id + node id path
+     * @param [options] - optional options to initialize the panel
+     * @param [options.ide] - optional runtime IDE (VSCODE/SBAS), default is VSCODE if not passed
+     * @param [options.startOptions] - optional startup options like tree id or tree id + node id path
      */
-    constructor(options?: StartOptions) {
-        this.startOptions = options;
+    constructor(options?: Options) {
+        this.startOptions = options?.startOptions;
+        this.ide = options?.ide || 'VSCODE';
         const config = workspace.getConfiguration('sap.ux.guidedAnswer');
         const apiHost = config.get('apiHost') as string;
-        const enhancements = getEnhancements();
+        const enhancements = getEnhancements(this.ide);
 
         this.guidedAnswerApi = getGuidedAnswerApi({ apiHost, enhancements });
+        logString(`API information: ${JSON.stringify(this.guidedAnswerApi.getApiInfo())}`);
         /**
          * vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421), therefore node_modules from same repo are missing.
          * To overcome this we copy guidedAnswers.js and guidedAnswers.css to dist/ folder in esbuild.js
@@ -71,25 +78,36 @@ export class GuidedAnswersPanel {
         );
         this.panel.webview.html = html;
     }
+
+    /**
+     * Process startup sequence when webview is ready. This includes start options like initial tree to show
+     * or filters that are applied depending on the environment.
+     */
+    private async handleWebViewReady(): Promise<void> {
+        if (this.startOptions) {
+            await this.processStartOptions(this.startOptions);
+        } else {
+            await this.processEnvironmentFilters(this.ide);
+        }
+    }
+
     /**
      * Process startup parameters like initial tree id and node path.
      *
+     * @param startOptions - start options, e.g. tree id or node path
      * @returns - void
      */
-    private async processStartOptions(): Promise<void> {
-        if (!this.startOptions) {
-            return;
-        }
+    private async processStartOptions(startOptions: StartOptions): Promise<void> {
         try {
-            if (typeof this.startOptions !== 'object') {
+            if (typeof startOptions !== 'object') {
                 throw Error(
                     `Invalid start options. Please refer to https://github.com/SAP/guided-answers-extension/blob/main/docs/technical-information.md#module-sap-guided-answer-extension-packageside-extension for valid options.`
                 );
             }
-            const tree = await this.guidedAnswerApi.getTreeById(this.startOptions.treeId);
+            const tree = await this.guidedAnswerApi.getTreeById(startOptions.treeId);
             let nodePath;
-            if (this.startOptions.nodeIdPath) {
-                nodePath = await this.guidedAnswerApi.getNodePath(this.startOptions.nodeIdPath);
+            if (startOptions.nodeIdPath) {
+                nodePath = await this.guidedAnswerApi.getNodePath(startOptions.nodeIdPath);
             }
             this.postActionToWebview(setActiveTree(tree));
             if (nodePath && nodePath.length > 0) {
@@ -109,7 +127,24 @@ export class GuidedAnswersPanel {
     }
 
     /**
-     * Handler for actions coming from webview. This should be primaraly commands with arguments.
+     * Check for environment specific filters and apply them.
+     *
+     * @param ide - environment like VSCODE or BAS
+     */
+    private async processEnvironmentFilters(ide: IDE): Promise<void> {
+        try {
+            const filters = await getFiltersForIde(ide);
+            logString(`Filters for environment '${ide}': ${JSON.stringify(filters)}`);
+            if (Object.keys(filters).length > 0) {
+                this.postActionToWebview(searchTree({ filters }));
+            }
+        } catch (error: any) {
+            logString(`Error while retrieving context information, error was: '${error?.message}'.`);
+        }
+    }
+
+    /**
+     * Handler for actions coming from webview. This should be primarily commands with arguments.
      *
      * @param action - action to execute
      */
@@ -127,7 +162,12 @@ export class GuidedAnswersPanel {
                     break;
                 }
                 case SEND_FEEDBACK_COMMENT: {
-                    await this.guidedAnswerApi.sendFeedbackComment(action.payload);
+                    try {
+                        const commentResponse = await this.guidedAnswerApi.sendFeedbackComment(action.payload);
+                        this.postActionToWebview(feedbackResponse(commentResponse.status === 200));
+                    } catch (error) {
+                        throw Error(`Could not send feedback. ${error})`);
+                    }
                     break;
                 }
                 case EXECUTE_COMMAND: {
@@ -135,13 +175,15 @@ export class GuidedAnswersPanel {
                     break;
                 }
                 case SEARCH_TREE: {
+                    logString(`Starting search: ${JSON.stringify(action.payload)}`);
                     const trees = await this.guidedAnswerApi.getTrees(action.payload);
+                    logString(`Found ${trees.resultSize} trees`);
                     this.postActionToWebview(updateGuidedAnswerTrees(trees));
                     break;
                 }
                 case WEBVIEW_READY: {
                     logString(`Webview is ready to receive actions`);
-                    await this.processStartOptions();
+                    await this.handleWebViewReady();
                     this.postActionToWebview(
                         getBetaFeatures(
                             (workspace.getConfiguration('sap.ux.guidedAnswer').get('betaFeatures') as boolean) || false
@@ -155,7 +197,9 @@ export class GuidedAnswersPanel {
                 }
             }
         } catch (error: any) {
-            logString(`Error processing message '${action?.type}': ${error?.message}`);
+            logString(
+                `Error while processing action.\n  Action: ${JSON.stringify(action)}\n  Message: ${error?.message}`
+            );
         }
     }
 

@@ -55,9 +55,12 @@ const mockedInitState = {
     },
     activeGuidedAnswerNode: [],
     betaFeatures: false,
+    feedbackResponse: false,
+    feedbackStatus: false,
     guideFeedback: null,
     selectedProductFilters: [],
-    selectedComponentFilters: []
+    selectedComponentFilters: [],
+    pageSize: 20
 };
 
 const mockedActiveGuidedAnswerNode = [
@@ -143,9 +146,12 @@ describe('Test functions in reducers', () => {
             guidedAnswerTreeSearchResult: mockedGuidedAnswerTreeSearchResult,
             activeGuidedAnswerNode: [],
             betaFeatures: false,
+            feedbackResponse: false,
+            feedbackStatus: false,
             guideFeedback: null,
             selectedProductFilters: [],
-            selectedComponentFilters: []
+            selectedComponentFilters: [],
+            pageSize: 20
         };
 
         expect(answersWithDefaultState).toEqual(expected);
@@ -182,10 +188,13 @@ describe('Test functions in reducers', () => {
                 trees: []
             },
             activeGuidedAnswerNode: mockedActiveGuidedAnswerNode,
+            feedbackResponse: false,
+            feedbackStatus: false,
             guideFeedback: null,
             betaFeatures: false,
             selectedProductFilters: [],
-            selectedComponentFilters: []
+            selectedComponentFilters: [],
+            pageSize: 20
         });
 
         const mockedInitStateWithActiveGuidedNode: any = mockedInitState;
@@ -208,9 +217,12 @@ describe('Test functions in reducers', () => {
             },
             activeGuidedAnswerNode: mockedActiveGuidedAnswerNode,
             betaFeatures: false,
+            feedbackResponse: false,
+            feedbackStatus: false,
             guideFeedback: null,
             selectedProductFilters: [],
-            selectedComponentFilters: []
+            selectedComponentFilters: [],
+            pageSize: 20
         });
     });
 

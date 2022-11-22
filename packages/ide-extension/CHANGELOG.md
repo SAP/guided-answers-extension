@@ -1,5 +1,53 @@
 # sap-guided-answer-extension
 
+## 1.3.0
+
+### Minor Changes
+
+-   cf77158: Allow users to enter general feedback about a Guided Answer.
+
+## 1.2.1
+
+### Patch Changes
+
+-   b8d0969: Fix for filter dialog close, caused duplicate results when canceled.
+
+## 1.2.0
+
+### Minor Changes
+
+-   d9db19f: Consume API version 3
+
+## 1.1.1
+
+### Patch Changes
+
+-   90908e9: Update dependencies
+
+## 1.1.0
+
+### Minor Changes
+
+-   6cbfe96: Add inifnite scroll in results list
+
+## 1.0.1
+
+### Patch Changes
+
+-   72c44a2: fix for images that are not displayed
+
+## 1.0.0
+
+### Major Changes
+
+-   16b5e4d: Release version 1.0
+
+## 0.14.0
+
+### Minor Changes
+
+-   87a9f77: Show initial filter for SAP Fiori SBAS devspace
+
 ## 0.13.0
 
 ### Minor Changes

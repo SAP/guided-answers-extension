@@ -6,44 +6,22 @@ import { logString } from '../logger/logger';
 import enhancementsJson from './enhancements.json';
 
 /**
- * Enumeration of environment variable used in AppStudio.
- */
-enum ENV {
-    H2O_URL = 'H2O_URL'
-}
-
-/**
- * Enumeration of ide platform types.
- */
-enum IDE_ENVIRONMENT {
-    VSCODE = 'VSCODE',
-    SBAS = 'SBAS'
-}
-
-/**
- * Return the user development platform.
- *
- * @returns - IDE type
- */
-export function getIde(): IDE {
-    return process.env[ENV.H2O_URL] ? IDE_ENVIRONMENT.SBAS : IDE_ENVIRONMENT.VSCODE;
-}
-
-/**
  * Classifies enhancements as applicable and inapplicable. There can be different reasons for a command to be
  * inapplicable, most likely because the extension hosting the command is not installed.
  *
  * @param enhancements - array of enhancements, either HTMLEnhancement or NodeEnhancement
+ * @param ide - runtime environment like VSCODE or SBAS
  * @returns - two arrays: applicable and inapplicable extensions
  */
 function classifyEnhancements<T extends HTMLEnhancement | NodeEnhancement>(
-    enhancements: T[]
+    enhancements: T[],
+    ide: IDE
 ): { applicable: T[]; inapplicable: T[] } {
     const applicable: T[] = [];
     const inapplicable: T[] = [];
 
     for (const enhancement of enhancements) {
-        if (enhancement.command.environment.includes(getIde())) {
+        if (enhancement.command.environment.includes(ide)) {
             if (isVSCodeCommand(enhancement.command.exec)) {
                 if (extensions.getExtension(enhancement.command.exec.extensionId)) {
                     applicable.push(enhancement);
@@ -63,17 +41,20 @@ function classifyEnhancements<T extends HTMLEnhancement | NodeEnhancement>(
 /**
  * Get the applicable html and node enhancements. Inapplicable will be logged to output.
  *
+ * @param ide - runtime environment like VSCODE or SBAS
  * @returns - arrays applicable of html enhancements and node enhancements
  */
-export function getEnhancements(): {
+export function getEnhancements(ide: IDE): {
     nodeEnhancements: NodeEnhancement[];
     htmlEnhancements: HTMLEnhancement[];
 } {
     const htmlEnhancements = classifyEnhancements<HTMLEnhancement>(
-        enhancementsJson.htmlEnhancements as HTMLEnhancement[]
+        enhancementsJson.htmlEnhancements as HTMLEnhancement[],
+        ide
     );
     const nodeEnhancements = classifyEnhancements<NodeEnhancement>(
-        enhancementsJson.nodeEnhancements as NodeEnhancement[]
+        enhancementsJson.nodeEnhancements as NodeEnhancement[],
+        ide
     );
 
     if (htmlEnhancements.applicable.length > 0) {
