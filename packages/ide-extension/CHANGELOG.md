@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.3.1
+
+### Patch Changes
+
+-   03736f4: fix webview loading in BAS
+
 ## 1.3.0
 
 ### Minor Changes
