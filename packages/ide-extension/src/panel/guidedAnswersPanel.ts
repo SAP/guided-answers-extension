@@ -70,7 +70,7 @@ export class GuidedAnswersPanel {
         );
         this.panel.webview.onDidReceiveMessage(this.onWebviewMessage.bind(this));
         const html = getHtml(
-            webAppUri.with({ scheme: 'vscode-resource' }).toString(),
+            this.panel.webview.asWebviewUri(webAppUri).toString(),
             'Guided Answers',
             '/guidedAnswers.js',
             undefined,
