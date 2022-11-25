@@ -1,0 +1,400 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
+<div>
+  <div
+    class="guided-answer"
+  >
+    <div
+      class="guided-answer__header"
+      style="padding-bottom: 20px;"
+    >
+      <div
+        class="guided-answer__header__sub"
+      >
+        <div
+          class="guided-answer__header__logoAndTitle"
+        >
+          <span
+            id="sap-logo"
+          >
+            <svg />
+          </span>
+          <h1
+            class="guided-answer__header__title"
+          />
+        </div>
+      </div>
+       
+    </div>
+    <main
+      class="guided-answer__container"
+      id="results-container"
+    />
+  </div>
+</div>
+`;
+
+exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
+<div>
+  <div
+    class="guided-answer"
+  >
+    <div
+      class="guided-answer__header"
+      style="padding-bottom: 20px;"
+    >
+      <div
+        class="guided-answer__header__sub"
+      >
+        <div
+          class="guided-answer__header__logoAndTitle"
+        >
+          <span
+            id="sap-logo"
+          >
+            <svg />
+          </span>
+          <h1
+            class="guided-answer__header__title"
+          />
+        </div>
+      </div>
+       
+    </div>
+    <main
+      class="guided-answer__container"
+      id="results-container"
+    >
+      <div>
+        Loading icon
+      </div>
+    </main>
+  </div>
+</div>
+`;
+
+exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = `
+<div>
+  <div
+    class="guided-answer"
+  >
+    <div
+      class="guided-answer__header"
+      style="padding-bottom: 0px;"
+    >
+      <div
+        class="ms-FocusZone css-109 guided-answer__header"
+        data-focuszone-id="FocusZone1"
+      >
+        <div
+          class="guided-answer__header__allAnswersButton"
+        >
+          <button
+            class="guided-answer__header__navButtons home-icon"
+            tabindex="0"
+          >
+            <svg
+              class="guided-answer__header__navButtons__content"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8.36 1.37l6.36 5.8-.71.71L13 6.964v6.526l-.5.5h-3l-.5-.5v-3.5H7v3.5l-.5.5h-3l-.5-.5V6.972L2 7.88l-.71-.71 6.35-5.8h.72zM4 6.063v6.927h2v-3.5l.5-.5h3l.5.5v3.5h2V6.057L8 2.43 4 6.063z"
+                fill-rule="evenodd"
+              />
+            </svg>
+             
+            <span
+              class="guided-answer__header__navButtons__content__text text-underline"
+            />
+          </button>
+        </div>
+        <div
+          class="guided-answer__header__back-restart-buttons"
+        >
+          <button
+            class="guided-answer__header__navButtons"
+            tabindex="-1"
+          >
+            <svg
+              class="guided-answer__header__navButtons__content"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M7 3.093l-5 5V8.8l5 5 .707-.707-4.146-4.147H14v-1H3.56L7.708 3.8 7 3.093z"
+                fill-rule="evenodd"
+              />
+            </svg>
+            <span
+              class="guided-answer__header__navButtons__content text-underline"
+              style="margin-left: 3px;"
+            />
+          </button>
+          <div
+            class="guided-answer__header__restart-feedback-buttons"
+          >
+            <button
+              class="guided-answer__header__navButtons"
+              tabindex="-1"
+            >
+              <i
+                aria-hidden="true"
+                class="ts-icon guided-answer__header__navButtons__content root-101"
+                data-icon-name="Chat"
+                style="padding-top: 2px;"
+              >
+                <svg
+                  fill="none"
+                  focusable="false"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 10H6V9H4.58578L3 10.5858V9H1V1H12V5H13V0H0V10H2V13L5 10Z"
+                    fill="#C5C5C5"
+                  />
+                  <path
+                    clip-rule="evenodd"
+                    d="M16 6V13H14V16L11 13H7V6H16ZM13 12V13.5858L11.4142 12H8V7H15V12H13Z"
+                    fill="#C5C5C5"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <main
+      class="guided-answer__container"
+      id="results-container"
+    >
+      <section
+        class="guided-answer__node__body"
+      >
+        <div
+          class="column"
+          id="left"
+        >
+          <nav
+            class="container"
+          >
+            <div
+              class="ms-FocusZone css-109"
+              data-focuszone-id="FocusZone2"
+              role="tree"
+            >
+              <div
+                class="timeline-block"
+                role="treeitem"
+              >
+                <button
+                  class="timeline-content timeline-content-bottom-border"
+                  tabindex="0"
+                >
+                  <div
+                    class="timeline__path"
+                    title="SAP Fiori Tools"
+                  >
+                    <span
+                      class="timeline-content-title-small bold-text"
+                    >
+                      1
+                    </span>
+                    <span
+                      class="timeline-content-title-large"
+                    >
+                      SAP Fiori Tools
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div
+          class="column"
+          id="middle"
+        >
+          <div
+            class="body_container"
+          >
+            <header>
+              SAP Fiori Tools
+            </header>
+            <div
+              id="hr"
+            />
+            <div
+              class="ms-FocusZone css-109"
+              data-focuszone-id="FocusZone3"
+            >
+              <div
+                class="content"
+              >
+                <p>
+                  SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code
+                </p>
+              </div>
+            </div>
+            <p
+              class="guided-answer__node__question"
+            >
+              I have a problem with
+            </p>
+          </div>
+          <div
+            class="ms-FocusZone css-109"
+            data-focuszone-id="FocusZone4"
+            role="listbox"
+          >
+            <div
+              class="guided-answer__node"
+            >
+              <button
+                class="guided-answer__node__edge"
+                role="option"
+                tabindex="0"
+              >
+                Deployment
+              </button>
+              <button
+                class="guided-answer__node__edge"
+                role="option"
+                tabindex="-1"
+              >
+                Fiori Generator
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+`;
+
+exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
+<div>
+  <div
+    class="guided-answer"
+  >
+    <div
+      class="guided-answer__header"
+      style="padding-bottom: 20px;"
+    >
+      <div
+        class="guided-answer__header__sub"
+      >
+        <div
+          class="guided-answer__header__logoAndTitle"
+        >
+          <span
+            id="sap-logo"
+          >
+            <svg />
+          </span>
+          <h1
+            class="guided-answer__header__title"
+          />
+        </div>
+      </div>
+       
+    </div>
+    <main
+      class="guided-answer__container"
+      id="results-container"
+    >
+      <div
+        class="ms-FocusZone css-109"
+        data-focuszone-id="FocusZone0"
+      >
+        <ul
+          class="striped-list"
+          role="listbox"
+        >
+          <div
+            class="infinite-scroll-component__outerdiv"
+          >
+            <div
+              class="infinite-scroll-component "
+              style="height: auto; overflow: auto;"
+            >
+              <li
+                class="tree-item"
+                role="option"
+              >
+                <button
+                  class="guided-answer__tree"
+                  tabindex="0"
+                >
+                  <div
+                    class="guided-answer__tree__ul"
+                  >
+                    <h3
+                      class="guided-answer__tree__title"
+                    >
+                      SAP Fiori tools
+                    </h3>
+                    <div
+                      class="bottom-section"
+                    >
+                      <span
+                        class="guided-answer__tree__desc"
+                      >
+                        This is a troubleshooting guide to solve the issues while using SAP Fiori tools
+                      </span>
+                      <div
+                        class="component-and-product-container"
+                        style="margin-top: 10px;"
+                      >
+                        <div
+                          class="guided-answer__tree__product"
+                        >
+                          <span
+                            class="bottom-title"
+                          >
+                            Product: 
+                          </span>
+                          Product A
+                        </div>
+                        <div
+                          class="guided-answer__tree__component"
+                        >
+                          <span
+                            class="bottom-title"
+                          >
+                            Component: 
+                          </span>
+                          comp-a
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </li>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </main>
+  </div>
+</div>
+`;

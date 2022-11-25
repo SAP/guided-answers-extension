@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
@@ -32,17 +32,44 @@ export function FiltersRibbon() {
         });
     };
 
+    const usePrevious = (value: any) => {
+        const ref = useRef();
+        useEffect(() => {
+            ref.current = value;
+        });
+        return ref.current;
+    };
+
+    const previousSelectedProductFilters = usePrevious(appState.selectedProductFilters);
+    const previousSelectedComponentFilters = usePrevious(appState.selectedComponentFilters);
+
+    const compareStringArrays = (a1: string[], a2: string[]) => {
+        /* WARNING: arrays must not contain {objects} or behavior may be undefined */
+        return JSON.stringify(a1) == JSON.stringify(a2);
+    };
+
     useEffect(() => {
-        setSelectedProductFilters(
-            appState.guidedAnswerTreeSearchResult.productFilters
-                .filter((v: { PRODUCT: string }) => appState.selectedProductFilters.includes(v.PRODUCT))
-                .map((v: { PRODUCT: any }) => v.PRODUCT)
-        );
-        setSelectedComponentFilters(
-            appState.guidedAnswerTreeSearchResult.componentFilters
-                .filter((v: { COMPONENT: string }) => appState.selectedComponentFilters.includes(v.COMPONENT))
-                .map((v: { COMPONENT: any }) => v.COMPONENT)
-        );
+        if (
+            previousSelectedProductFilters &&
+            !compareStringArrays(previousSelectedProductFilters, appState.selectedProductFilters)
+        ) {
+            setSelectedProductFilters(
+                appState.guidedAnswerTreeSearchResult.productFilters
+                    .filter((v: { PRODUCT: string }) => appState.selectedProductFilters.includes(v.PRODUCT))
+                    .map((v: { PRODUCT: any }) => v.PRODUCT)
+            );
+        }
+
+        if (
+            previousSelectedComponentFilters &&
+            !compareStringArrays(previousSelectedComponentFilters, appState.selectedComponentFilters)
+        ) {
+            setSelectedComponentFilters(
+                appState.guidedAnswerTreeSearchResult.componentFilters
+                    .filter((v: { COMPONENT: string }) => appState.selectedComponentFilters.includes(v.COMPONENT))
+                    .map((v: { COMPONENT: any }) => v.COMPONENT)
+            );
+        }
     }, [appState.selectedProductFilters, appState.selectedComponentFilters]);
 
     return (

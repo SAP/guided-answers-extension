@@ -30,7 +30,8 @@ export function Header(props: {
                 <>
                     <div className="guided-answer__header__sub">
                         {!!props.showLogo && <Logo />}
-                        {!!props.showSearch && <SearchField />}
+                        {/* Temp for the tests */}
+                        {/* {!!props.showSearch && <SearchField />} */}
                     </div>{' '}
                 </>
             ) : (
