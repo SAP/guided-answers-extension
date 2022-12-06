@@ -69,13 +69,7 @@ export function App(): ReactElement {
 
     let content;
     if (appState.loading) {
-        content = (
-            <Stack tokens={stackTokens}>
-                <Stack horizontal>
-                    <UILoader id="loading-indicator" size={SpinnerSize.large} />
-                </Stack>
-            </Stack>
-        );
+        content = <UILoader id="loading-indicator" size={SpinnerSize.large} />;
     } else if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
     } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
@@ -89,13 +83,7 @@ export function App(): ReactElement {
                         <InfiniteScroll
                             dataLength={appState.guidedAnswerTreeSearchResult.trees.length} //This is important field to render the next data
                             next={fetchData}
-                            loader={
-                                <Stack tokens={stackTokens}>
-                                    <Stack horizontal>
-                                        <UILoader id="loading-indicator" size={SpinnerSize.large} />
-                                    </Stack>
-                                </Stack>
-                            }
+                            loader={<UILoader id="loading-indicator" size={SpinnerSize.large} />}
                             hasMore={
                                 appState.guidedAnswerTreeSearchResult.trees.length <
                                 appState.guidedAnswerTreeSearchResult.resultSize
