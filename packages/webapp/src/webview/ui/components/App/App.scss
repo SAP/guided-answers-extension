@@ -51,6 +51,7 @@ h1 {
         &:hover {
             background-color: var(--vscode-list-hoverBackground);
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
+            outline-offset: -1px;
         }
         button:focus-visible {
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
@@ -97,7 +98,6 @@ h1 {
 }
 
 .tree-item {
-    margin: 1px 1px 1px 1px;
     background-color: var(--vscode-editor-background);
     list-style-type: none;
 }
