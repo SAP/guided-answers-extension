@@ -12,8 +12,12 @@ import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './App.scss';
 import { initIcons } from '../UIComponentsLib/Icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { UILoader } from '@sap-ux/ui-components';
+import type { IStackTokens } from '@fluentui/react';
+import { Text, Stack, SpinnerSize } from '@fluentui/react';
 
 initIcons();
+const stackTokens: IStackTokens = { childrenGap: 40 };
 
 /**
  * Start element for Guided Answers Extension app.
@@ -65,7 +69,13 @@ export function App(): ReactElement {
 
     let content;
     if (appState.loading) {
-        content = <VSCodeProgressRing id="loading-indicator" />;
+        content = (
+            <Stack tokens={stackTokens}>
+                <Stack horizontal>
+                    <UILoader id="loading-indicator" size={SpinnerSize.large} />
+                </Stack>
+            </Stack>
+        );
     } else if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
     } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
@@ -79,7 +89,13 @@ export function App(): ReactElement {
                         <InfiniteScroll
                             dataLength={appState.guidedAnswerTreeSearchResult.trees.length} //This is important field to render the next data
                             next={fetchData}
-                            loader={<VSCodeProgressRing id="loading-indicator" />}
+                            loader={
+                                <Stack tokens={stackTokens}>
+                                    <Stack horizontal>
+                                        <UILoader id="loading-indicator" size={SpinnerSize.large} />
+                                    </Stack>
+                                </Stack>
+                            }
                             hasMore={
                                 appState.guidedAnswerTreeSearchResult.trees.length <
                                 appState.guidedAnswerTreeSearchResult.resultSize
