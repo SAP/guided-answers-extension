@@ -6,12 +6,10 @@
     cursor: pointer;
     background: none;
     border: 0;
+    margin-left: 7px;
     &__content {
         vertical-align: middle;
         display: inline-block;
-        &__text {
-            margin-left: 3px;
-        }
     }
     svg {
         width: 16px;
