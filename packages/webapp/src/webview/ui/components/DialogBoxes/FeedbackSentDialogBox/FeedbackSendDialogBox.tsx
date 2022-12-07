@@ -6,6 +6,7 @@ import { UIIcon } from '@sap-ux/ui-components';
 import { UiIcons } from '../../UIComponentsLib/Icons';
 import { AppState } from '../../../../types';
 import { useSelector } from 'react-redux';
+import { actions } from '../../../../state';
 
 /**
  * The feedback dialog box appears that appears on api response.
@@ -33,6 +34,7 @@ export function FeedbackSendDialogBox(): ReactElement {
     //Dialog box will transition out after being loaded
     setTimeout(() => {
         setVisible(false);
+        actions.feedbackResponse(false);
     }, 2000);
 
     return (
