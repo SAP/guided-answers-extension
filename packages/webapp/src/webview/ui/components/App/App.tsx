@@ -1,7 +1,6 @@
 import type { ReactElement } from 'react';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { VSCodeProgressRing } from '@vscode/webview-ui-toolkit/react';
 import { AppState } from '../../../types';
 import { actions } from '../../../state';
 import { GuidedAnswerNode } from '../GuidedAnswerNode';
@@ -13,11 +12,9 @@ import './App.scss';
 import { initIcons } from '../UIComponentsLib/Icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { UILoader } from '@sap-ux/ui-components';
-import type { IStackTokens } from '@fluentui/react';
-import { Text, Stack, SpinnerSize } from '@fluentui/react';
+import { SpinnerSize } from '@fluentui/react';
 
 initIcons();
-const stackTokens: IStackTokens = { childrenGap: 40 };
 
 /**
  * Start element for Guided Answers Extension app.
