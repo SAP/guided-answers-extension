@@ -2,7 +2,7 @@ import React from 'react';
 import { registerIcons, initializeIcons } from '@fluentui/react';
 
 const COLORS = {
-    default: 'var(--vscode-icon-foreground), var(--vscode-foreground))',
+    default: 'var(--vscode-icon-foreground, var(--vscode-foreground))',
     success: 'var(--vscode-charts-green, #84C881)',
     warning: 'var(--vscode-notificationsWarningIcon-foreground)',
     error: 'var( --vscode-notificationsErrorIcon-foreground)',
