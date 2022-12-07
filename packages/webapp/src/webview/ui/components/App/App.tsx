@@ -95,18 +95,16 @@ export function App(): ReactElement {
                                                 document.body.focus();
                                             }}>
                                             <div className="guided-answer__tree__ul">
-                                                <h3
-                                                    className="guided-answer__tree__title"
-                                                    style={{ marginTop: tree.DESCRIPTION ? '0' : '10px' }}>
-                                                    {tree.TITLE}
-                                                </h3>
+                                                <h3 className="guided-answer__tree__title">{tree.TITLE}</h3>
                                                 <div className="bottom-section">
                                                     {tree.DESCRIPTION && (
                                                         <span className="guided-answer__tree__desc">
                                                             {tree.DESCRIPTION}
                                                         </span>
                                                     )}
-                                                    <div className="component-and-product-container">
+                                                    <div
+                                                        className="component-and-product-container"
+                                                        style={{ marginTop: tree.DESCRIPTION ? '10px' : '0' }}>
                                                         {tree.PRODUCT && (
                                                             <div className="guided-answer__tree__product">
                                                                 <span className="bottom-title">Product: </span>

@@ -13,7 +13,8 @@ import {
     SEARCH_TREE,
     WEBVIEW_READY,
     setActiveTree,
-    getBetaFeatures
+    getBetaFeatures,
+    feedbackResponse
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
@@ -69,7 +70,7 @@ export class GuidedAnswersPanel {
         );
         this.panel.webview.onDidReceiveMessage(this.onWebviewMessage.bind(this));
         const html = getHtml(
-            webAppUri.with({ scheme: 'vscode-resource' }).toString(),
+            this.panel.webview.asWebviewUri(webAppUri).toString(),
             'Guided Answers',
             '/guidedAnswers.js',
             undefined,
@@ -161,7 +162,12 @@ export class GuidedAnswersPanel {
                     break;
                 }
                 case SEND_FEEDBACK_COMMENT: {
-                    await this.guidedAnswerApi.sendFeedbackComment(action.payload);
+                    try {
+                        const commentResponse = await this.guidedAnswerApi.sendFeedbackComment(action.payload);
+                        this.postActionToWebview(feedbackResponse(commentResponse.status === 200));
+                    } catch (error) {
+                        throw Error(`Could not send feedback. ${error})`);
+                    }
                     break;
                 }
                 case EXECUTE_COMMAND: {

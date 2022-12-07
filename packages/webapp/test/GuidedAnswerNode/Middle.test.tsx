@@ -64,7 +64,7 @@ describe('<Middle />', () => {
         wrapper = shallow(<Middle activeNode={activeNodeMock} enhancedBody={null} />);
         const component = wrapper.html();
         expect(component).toMatchInlineSnapshot(
-            `"<div id="middle" class="column"><div class="body_container"><header>SAP Fiori Tools</header><div id="hr"></div><div class="ms-FocusZone css-108" data-focuszone-id="FocusZone0"><div class="content"><p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p></div></div><p class="guided-answer__node__question">I have a problem with</p></div><div role="listbox" class="ms-FocusZone css-108" data-focuszone-id="FocusZone1"><div class="guided-answer__node"><button role="option" class="guided-answer__node__edge">Deployment</button><button role="option" class="guided-answer__node__edge">Fiori Generator</button></div></div></div>"`
+            `"<div id="middle" class="column"><div class="body_container"><header>SAP Fiori Tools</header><div id="hr"></div><div class="ms-FocusZone css-109" data-focuszone-id="FocusZone0"><div class="content"><p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p></div></div><p class="guided-answer__node__question">I have a problem with</p></div><div role="listbox" class="ms-FocusZone css-109" data-focuszone-id="FocusZone1"><div class="guided-answer__node"><button role="option" class="guided-answer__node__edge">Deployment</button><button role="option" class="guided-answer__node__edge">Fiori Generator</button></div></div><span class="ms-layer"></span><span class="ms-layer"></span></div>"`
         );
 
         //Test click event

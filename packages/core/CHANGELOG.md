@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-core
 
+## 1.3.0
+
+### Minor Changes
+
+-   cf77158: Allow users to enter general feedback about a Guided Answer.
+
+### Patch Changes
+
+-   Updated dependencies [cf77158]
+    -   @sap/guided-answers-extension-types@1.3.0
+
 ## 1.2.0
 
 ### Minor Changes

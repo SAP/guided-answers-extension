@@ -1,5 +1,17 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.4.0
+
+### Minor Changes
+
+-   cf77158: Allow users to enter general feedback about a Guided Answer.
+
+## 1.3.0
+
+### Minor Changes
+
+-   332bc0a: Incorrect padding in titles
+
 ## 1.2.2
 
 ### Patch Changes

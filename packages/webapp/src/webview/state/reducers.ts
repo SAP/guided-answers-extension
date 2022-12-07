@@ -10,7 +10,9 @@ import type {
     UpdateActiveNode,
     UpdateGuidedAnswerTrees,
     UpdateLoading,
-    SetPageSize
+    SetPageSize,
+    FeedbackResponse,
+    FeedbackStatus
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -37,7 +39,9 @@ export function getInitialState(): AppState {
         guideFeedback: null,
         selectedProductFilters: [],
         selectedComponentFilters: [],
-        pageSize: 20
+        pageSize: 20,
+        feedbackStatus: false,
+        feedbackResponse: false
     };
 }
 
@@ -75,7 +79,9 @@ const reducers: Partial<Reducers> = {
     SET_COMPONENT_FILTERS: setComponentFiltersReducer,
     RESET_FILTERS: resetFiltersReducer,
     SEARCH_TREE: searchTreeReducer,
-    SET_PAGE_SIZE: updatePageSize
+    SET_PAGE_SIZE: updatePageSize,
+    FEEDBACK_RESPONSE: feedbackResponseReducer,
+    FEEDBACK_STATUS: feedbackStatusReducer
 };
 
 /**
@@ -260,6 +266,30 @@ function GuideFeedbackReducer(newState: AppState, action: GuideFeedback): AppSta
             EDGES: []
         });
     }
+    return newState;
+}
+
+/**
+ * Set state for feedback reponse.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function feedbackResponseReducer(newState: AppState, action: FeedbackResponse): AppState {
+    newState.feedbackResponse = action.payload;
+    return newState;
+}
+
+/**
+ * Set state for feedback status.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function feedbackStatusReducer(newState: AppState, action: FeedbackStatus): AppState {
+    newState.feedbackStatus = action.payload;
     return newState;
 }
 
