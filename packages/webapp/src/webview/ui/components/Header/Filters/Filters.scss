@@ -18,7 +18,12 @@ ul.filter-list {
 
 .filter-button-selected {
     background-color: var(--vscode-button-background);
+
     &:hover {
         background-color: var(--vscode-button-hoverBackground);
     }
+}
+
+.filter-button-selected path {
+    fill: var(--vscode-button-foreground);
 }
