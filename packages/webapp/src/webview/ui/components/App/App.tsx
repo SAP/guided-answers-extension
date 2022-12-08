@@ -48,7 +48,7 @@ export function App(): ReactElement {
         };
     }, []);
 
-    const fetchData = () => {
+    function fetchData() {
         if (appState.guidedAnswerTreeSearchResult.resultSize > appState.pageSize) {
             actions.searchTree({
                 query: appState.query,
@@ -62,7 +62,7 @@ export function App(): ReactElement {
                 }
             });
         }
-    };
+    }
 
     let content;
     if (appState.loading) {
