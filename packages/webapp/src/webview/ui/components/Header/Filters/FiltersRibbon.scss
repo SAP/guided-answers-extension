@@ -10,16 +10,13 @@
     &__content {
         vertical-align: middle;
         display: inline-block;
+        margin-bottom: 3px;
     }
     svg {
         width: 16px;
         height: 16px;
         margin-right: -2px;
     }
-    &__content {
-        margin-bottom: 3px;
-    }
-}
 .clear-filters:hover {
     background: var(--vscode-menubar-selectionBackground);
     outline: 1px solid var(--vscode-contrastActiveBorder);
