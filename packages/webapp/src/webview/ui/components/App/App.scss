@@ -51,6 +51,7 @@ h1 {
         &:hover {
             background-color: var(--vscode-list-hoverBackground);
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
+            outline-offset: -1px;
         }
         button:focus-visible {
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
@@ -97,9 +98,9 @@ h1 {
 }
 
 .tree-item {
-    margin: 0;
     background-color: var(--vscode-editor-background);
     list-style-type: none;
+    margin: 0;
 }
 
 .striped-list {
@@ -123,4 +124,5 @@ h1 {
 #loading-indicator {
     width: 100%;
     margin-top: 60px;
+    margin-bottom: 50px;
 }

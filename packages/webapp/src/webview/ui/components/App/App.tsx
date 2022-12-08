@@ -1,7 +1,6 @@
 import type { ReactElement } from 'react';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { VSCodeProgressRing } from '@vscode/webview-ui-toolkit/react';
 import { AppState } from '../../../types';
 import { actions } from '../../../state';
 import { GuidedAnswerNode } from '../GuidedAnswerNode';
@@ -12,6 +11,8 @@ import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './App.scss';
 import { initIcons } from '../UIComponentsLib/Icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { UILoader } from '@sap-ux/ui-components';
+import { SpinnerSize } from '@fluentui/react';
 
 initIcons();
 
@@ -47,7 +48,7 @@ export function App(): ReactElement {
         };
     }, []);
 
-    const fetchData = () => {
+    function fetchData() {
         if (appState.guidedAnswerTreeSearchResult.resultSize > appState.pageSize) {
             actions.searchTree({
                 query: appState.query,
@@ -61,11 +62,11 @@ export function App(): ReactElement {
                 }
             });
         }
-    };
+    }
 
     let content;
     if (appState.loading) {
-        content = <VSCodeProgressRing id="loading-indicator" />;
+        content = <UILoader id="loading-indicator" size={SpinnerSize.large} />;
     } else if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
     } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
@@ -79,7 +80,7 @@ export function App(): ReactElement {
                         <InfiniteScroll
                             dataLength={appState.guidedAnswerTreeSearchResult.trees.length} //This is important field to render the next data
                             next={fetchData}
-                            loader={<VSCodeProgressRing id="loading-indicator" />}
+                            loader={<UILoader id="loading-indicator" size={SpinnerSize.large} />}
                             hasMore={
                                 appState.guidedAnswerTreeSearchResult.trees.length <
                                 appState.guidedAnswerTreeSearchResult.resultSize
