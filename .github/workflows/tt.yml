@@ -1,0 +1,22 @@
+name: My Workflow
+on: [workflow_dispatch]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Find and Replace
+              uses: jacobtomlinson/gha-find-replace@v2
+              with:
+                  include: packages/ide-extension/package.json
+                  find: '__dependencies'
+                  replace: 'MODIFIED'
+                  regex: false
+                        - name: Create Github Release
+              uses: softprops/action-gh-release@v1
+              with:
+                  body_path: ${{ github.workspace }}/packages/ide-extension/CHANGELOG.md
+                  draft: false
+                  files: packages/ide-extension/package.json
+                  fail_on_unmatched_files: true
+                  tag_name: sap-guided-answers-extension@${{ steps.package-version.outputs.current-version}}
