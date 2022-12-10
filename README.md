@@ -110,3 +110,8 @@ Users are currently unable to filter the Guided Answers on Products or Component
 ## Known Issues
 
 https://github.com/SAP/guided-answers-extension/issues?q=is%3Aopen+is%3Aissue+label%3Abug
+
+## Design Sources
+
+Figma file (Read Only) - https://www.figma.com/file/XSZw3w81MYY0QPe1BoUcBO/Guided-Answers?node-id=1%3A4211&t=vVdqU90dr8pTwJQP-1 
+General Design Guidelines - https://wiki.one.int.sap/wiki/display/fioritools/SAP+Fiori+tools+Home
