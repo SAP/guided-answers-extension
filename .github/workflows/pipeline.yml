@@ -130,6 +130,13 @@ jobs:
                   node-version: 14.x
             - name: Install pnpm modules
               run: pnpm install
+            - name: Replace placeholder with instrumentation key
+              uses: jacobtomlinson/gha-find-replace@v2
+              with:
+                  include: packages/core/src/telemetry.ts
+                  find: 'ApplicationInsightsInstrumentationKeyPLACEH0LDER'
+                  replace: ${{ secrets.INSTRUMENTATION_KEY }}
+                  regex: false
             - name: Run build
               run: pnpm run build
             - name: Package vsix
