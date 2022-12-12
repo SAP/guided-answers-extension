@@ -35,7 +35,7 @@ export function FeedbackSendDialogBox(): ReactElement {
     setTimeout(() => {
         setVisible(false);
         actions.feedbackResponse(false);
-    }, 2000);
+    }, 3000);
 
     return (
         <>
