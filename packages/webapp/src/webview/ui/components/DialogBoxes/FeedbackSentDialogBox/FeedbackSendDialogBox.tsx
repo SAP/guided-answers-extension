@@ -31,9 +31,14 @@ export function FeedbackSendDialogBox(): ReactElement {
     };
 
     //Dialog box will transition out after being loaded
-    setTimeout(() => {
-        setVisible(false);
-    }, 2000);
+    useEffect(() => {
+        if (isVisible) {
+            const toRef = setTimeout(() => {
+                setVisible(false);
+                clearTimeout(toRef);
+            }, 3000);
+        }
+    }, [isVisible]);
 
     return (
         <>
