@@ -1,5 +1,17 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.6.0
+
+### Minor Changes
+
+-   cdfa0d2: search page bugs fixed
+
+## 1.5.0
+
+### Minor Changes
+
+-   ca68084: Fix bug in general feedback message sent popup
+
 ## 1.4.0
 
 ### Minor Changes
