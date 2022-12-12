@@ -66,6 +66,7 @@ export function FeedbackDialogBox(): ReactElement {
                         <PrimaryButton
                             className="primary-button"
                             text={i18next.t('SEND')}
+                            disabled={feedback === ''}
                             onClick={() => {
                                 actions.feedbackResponse(false);
                                 actions.sendFeedbackComment({ treeId, nodeId, comment: feedback });
