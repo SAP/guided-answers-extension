@@ -1,5 +1,13 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.7.0
+
+### Minor Changes
+
+-   660a21a: submitting feedback is buggy
+-   660a21a: search page bugs fixed
+-   660a21a: feedback bug fixed
+
 ## 1.6.0
 
 ### Minor Changes
