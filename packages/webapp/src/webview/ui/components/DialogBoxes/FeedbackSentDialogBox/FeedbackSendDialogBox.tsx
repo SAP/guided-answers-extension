@@ -35,12 +35,12 @@ export function FeedbackSendDialogBox(): ReactElement {
     setTimeout(() => {
         setVisible(false);
         actions.feedbackResponse(false);
-    }, 3000);
+    }, 6000);
 
     return (
         <>
             <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
-                <UIIcon className="feedback-response-icon" iconName={UiIcons.Chat} />
+                <UIIcon className="feedback-response-icon" iconName={UiIcons.MessageSent} />
             </Dialog>
         </>
     );

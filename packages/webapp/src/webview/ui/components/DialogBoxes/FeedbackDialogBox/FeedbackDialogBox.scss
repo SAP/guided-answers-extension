@@ -66,6 +66,7 @@
     .info-icon {
         width: 14px;
         height: 14px;
+        min-width: 14px;
     }
     .privacy-notice > p {
         margin-bottom: 0;
@@ -85,13 +86,13 @@
     }
 }
 //  for transition wip
-.container :hover {
-    opacity: 0.01;
-}
+// .container :hover {
+//     opacity: 0.01;
+// }
 
-.ms-Dialog-main :hover {
-    opacity: 0.01;
-}
+// .ms-Dialog-main :hover {
+//     opacity: 0.01;
+// }
 
 .example-enter {
     opacity: 0.01;

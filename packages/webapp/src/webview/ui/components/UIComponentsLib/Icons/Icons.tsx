@@ -6,7 +6,8 @@ const COLORS = {
     success: 'var(--vscode-charts-green, #84C881)',
     warning: 'var(--vscode-notificationsWarningIcon-foreground)',
     error: 'var( --vscode-notificationsErrorIcon-foreground)',
-    info: 'var(--vscode-notificationsInfoIcon-foreground)'
+    info: 'var(--vscode-notificationsInfoIcon-foreground)',
+    focus: 'var(--vscode-focusBorder)'
 };
 
 export enum UiIcons {
@@ -62,6 +63,7 @@ export enum UiIcons {
     ListReportPage = 'ListReportPage',
     MainEntity = 'MainEntity',
     MeatballMenu = 'MeatballMenu',
+    MessageSent = 'MessageSent',
     NotEditable = 'NotEditable',
     ObjectPage = 'ObjectPage',
     OverviewPage = 'OverviewPage',
@@ -113,12 +115,12 @@ export const initIcons = function (): void {
         icons: {
             [UiIcons.Chat]: (
                 <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 10H6V9H4.58578L3 10.5858V9H1V1H12V5H13V0H0V10H2V13L5 10Z" fill="#C5C5C5" />
+                    <path d="M5 10H6V9H4.58578L3 10.5858V9H1V1H12V5H13V0H0V10H2V13L5 10Z" fill={COLORS.default} />
                     <path
                         fill-rule="evenodd"
                         clip-rule="evenodd"
                         d="M16 6V13H14V16L11 13H7V6H16ZM13 12V13.5858L11.4142 12H8V7H15V12H13Z"
-                        fill="#C5C5C5"
+                        fill={COLORS.default}
                     />
                 </svg>
             ),
@@ -651,6 +653,22 @@ export const initIcons = function (): void {
                         fill={COLORS.default}
                         fillRule="evenodd"
                         d="M8.0024,7 C8.5544,7 9.0024,7.447 9.0024,8 C9.0024,8.553 8.5544,9 8.0024,9 C7.4504,9 7.0024,8.553 7.0024,8 C7.0024,7.447 7.4504,7 8.0024,7 Z M13.0034,7 C13.5554,7 14.0034,7.447 14.0034,8 C14.0034,8.553 13.5554,9 13.0034,9 C12.4514,9 12.0034,8.553 12.0034,8 C12.0034,7.447 12.4514,7 13.0034,7 Z M3,7 C3.552,7 4,7.447 4,8 C4,8.553 3.552,9 3,9 C2.448,9 2,8.553 2,8 C2,7.447 2.448,7 3,7 Z"
+                    />
+                </svg>
+            ),
+            [UiIcons.MessageSent]: (
+                <svg width="50" height="46" viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M36.4142 12.4142L22.4142 26.4142C22.0237 26.8047 21.3905 26.8047 21 26.4142L15.5 20.9142L16.9142 19.5L21.7071 24.2929L35 11L36.4142 12.4142Z"
+                        fill={COLORS.default}
+                    />
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M21.5 37H5.5C2.73858 37 0.5 34.7614 0.5 32V5C0.5 2.23858 2.73858 0 5.5 0H44.5C47.2614 0 49.5 2.23858 49.5 5V32C49.5 34.7614 47.2614 37 44.5 37H30.5L21.5 46V37ZM5.5 3H44.5C45.6046 3 46.5 3.89543 46.5 5V32C46.5 33.1046 45.6046 34 44.5 34H29.2574L24.5 38.7574V34H5.5C4.39543 34 3.5 33.1046 3.5 32V5C3.5 3.89543 4.39543 3 5.5 3Z"
+                        fill={COLORS.focus}
                     />
                 </svg>
             ),
