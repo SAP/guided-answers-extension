@@ -22,10 +22,19 @@ export function FeedbackDialogBox(): ReactElement {
         (state) => state.activeGuidedAnswerNode[state.activeGuidedAnswerNode.length - 1].NODE_ID
     );
     const feedbackStatus = useSelector<AppState, boolean>((state) => state.feedbackStatus);
+    const container = document.querySelector('.feedback-section-dialog');
     const [isVisible, setVisible] = useState(feedbackStatus);
     const [feedback, setFeedback] = useState('');
+
+    useEffect(() => {
+        container?.classList.toggle('.dialog-enter');
+    }, []);
+
     useEffect(() => {
         setVisible(feedbackStatus);
+        if (feedbackStatus === false) {
+            container?.classList.toggle('.dialog-exit');
+        }
     }, [feedbackStatus]);
 
     const dialogContentProps = {
@@ -66,6 +75,7 @@ export function FeedbackDialogBox(): ReactElement {
                         <PrimaryButton
                             className="primary-button"
                             text={i18next.t('SEND')}
+                            disabled={feedback === ''}
                             onClick={() => {
                                 actions.feedbackResponse(false);
                                 actions.sendFeedbackComment({ treeId, nodeId, comment: feedback });

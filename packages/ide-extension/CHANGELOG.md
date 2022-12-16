@@ -1,5 +1,17 @@
 # sap-guided-answer-extension
 
+## 1.5.0
+
+### Minor Changes
+
+-   660a21a: feedback bug fixed
+
+## 1.4.0
+
+### Minor Changes
+
+-   4d05e5a: UI fixes for feedback popup and search page
+
 ## 1.3.1
 
 ### Patch Changes
