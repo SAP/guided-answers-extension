@@ -66,8 +66,13 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
       class="guided-answer__container"
       id="results-container"
     >
-      <div>
-        Loading icon
+      <div
+        class="ms-Spinner root-110"
+        id="loading-indicator"
+      >
+        <div
+          class="ms-Spinner-circle ms-Spinner--large circle-111"
+        />
       </div>
     </main>
   </div>
@@ -84,7 +89,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
       style="padding-bottom: 0px;"
     >
       <div
-        class="ms-FocusZone css-109 guided-answer__header"
+        class="ms-FocusZone css-114 guided-answer__header"
         data-focuszone-id="FocusZone1"
       >
         <div
@@ -197,7 +202,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
             class="container"
           >
             <div
-              class="ms-FocusZone css-109"
+              class="ms-FocusZone css-114"
               data-focuszone-id="FocusZone2"
               role="tree"
             >
@@ -243,7 +248,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
               id="hr"
             />
             <div
-              class="ms-FocusZone css-109"
+              class="ms-FocusZone css-114"
               data-focuszone-id="FocusZone3"
             >
               <div
@@ -261,7 +266,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
             </p>
           </div>
           <div
-            class="ms-FocusZone css-109"
+            class="ms-FocusZone css-114"
             data-focuszone-id="FocusZone4"
             role="listbox"
           >
@@ -323,7 +328,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
       id="results-container"
     >
       <div
-        class="ms-FocusZone css-109"
+        class="ms-FocusZone css-114"
         data-focuszone-id="FocusZone0"
       >
         <ul

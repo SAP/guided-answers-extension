@@ -103,6 +103,7 @@ importers:
       '@reduxjs/toolkit': 1.8.6
       '@sap-ux/ui-components': 1.0.16
       '@sap/guided-answers-extension-types': workspace:*
+      '@testing-library/dom': 8.19.0
       '@testing-library/jest-dom': 5.16.5
       '@testing-library/react': 12.1.5
       '@types/enzyme': 3.10.12
@@ -148,6 +149,7 @@ importers:
     devDependencies:
       '@reduxjs/toolkit': 1.8.6_skbaxytftew6n6o3a7teolroom
       '@sap/guided-answers-extension-types': link:../types
+      '@testing-library/dom': 8.19.0
       '@testing-library/react': 12.1.5_wcqkhtmu7mswc6yz4uyexck3ty
       '@types/enzyme': 3.10.12
       '@types/enzyme-adapter-react-16': 1.0.6
@@ -633,7 +635,7 @@ packages:
     resolution: {integrity: sha512-dQpEpK0O9o6lj6oPu0gRDbbnk+4LeHlNcBpspf6Olzt3GIX4P1lWF1gS+pHLDFlaJvbR6q7jCfQ08zA4QJBnmA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      regenerator-runtime: 0.13.9
+      regenerator-runtime: 0.13.10
     dev: true
 
   /@babel/runtime/7.20.1:
@@ -7279,10 +7281,6 @@ packages:
 
   /regenerator-runtime/0.13.10:
     resolution: {integrity: sha512-KepLsg4dU12hryUO7bp/axHAKvwGOCV0sGloQtpagJ12ai+ojVDqkeGSiRX1zlq+kjIMZ1t7gpze+26QqtdGqw==}
-
-  /regenerator-runtime/0.13.9:
-    resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
-    dev: true
 
   /regexp.prototype.flags/1.4.3:
     resolution: {integrity: sha512-fjggEOO3slI6Wvgjwflkc4NFRCTZAu5CnNfBd5qOMYhWdn67nJBBu34/TkD++eeFmd8C9r9jfXJ27+nSiRkSUA==}
