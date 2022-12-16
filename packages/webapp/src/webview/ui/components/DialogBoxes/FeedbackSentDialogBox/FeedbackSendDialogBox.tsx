@@ -1,6 +1,7 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import './FeedbackSendDialogBox.scss';
 import { Dialog, DialogType } from '@fluentui/react/lib/Dialog';
+import { actions } from '../../../../state';
 import i18next from 'i18next';
 import { UIIcon } from '@sap-ux/ui-components';
 import { UiIcons } from '../../UIComponentsLib/Icons';
@@ -35,7 +36,6 @@ export function FeedbackSendDialogBox(): ReactElement {
         setVisible(false);
         actions.feedbackResponse(false);
     }, 6000);
-
 
     return (
         <>

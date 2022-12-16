@@ -54,6 +54,6 @@
         "@sap-ux/ui-components": "1.0.16",
         "@types/react-transition-group": "4.4.5",
         "react-infinite-scroll-component": "6.1.0",
-        "react-transition-group": "1.x"
+        "react-transition-group": "4.4.5"
     }
 }
