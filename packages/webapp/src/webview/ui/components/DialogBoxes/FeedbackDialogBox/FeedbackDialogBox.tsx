@@ -23,12 +23,17 @@ export function FeedbackDialogBox(): ReactElement {
         (state) => state.activeGuidedAnswerNode[state.activeGuidedAnswerNode.length - 1].NODE_ID
     );
     const feedbackStatus = useSelector<AppState, boolean>((state) => state.feedbackStatus);
+    const container = document.querySelector('.feedback-section-dialog');
     const [isVisible, setVisible] = useState(feedbackStatus);
     const [feedback, setFeedback] = useState('');
     const [textFieldhasValue, setTextFieldhasValue] = useState(true);
     const nodeRef = useRef(null);
+
     useEffect(() => {
         setVisible(feedbackStatus);
+        if (feedbackStatus === false) {
+            container?.classList.toggle('.dialog-exit');
+        }
     }, [feedbackStatus]);
 
     const dialogContentProps = {
@@ -55,6 +60,7 @@ export function FeedbackDialogBox(): ReactElement {
 
     return (
         <>
+
             <CSSTransition nodeRef={nodeRef} in={isVisible} timeout={200} classNames={'example'}>
                 <UIDialog
                     modalProps={modalProps}
