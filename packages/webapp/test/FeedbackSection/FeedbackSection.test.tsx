@@ -1,5 +1,4 @@
 import React from 'react';
-// import { shallow } from 'enzyme';
 import { actions } from '../../src/webview/state';
 import { FeedbackSection } from '../../src/webview/ui/components/FeedbackSection/FeedbackSection';
 import { initI18n } from '../../src/webview/i18n';
@@ -52,7 +51,6 @@ describe('Feedback Section component', () => {
     const initialState = createState(stateWithActiveAnswer);
     const store = mockStore(initialState);
 
-    initI18n();
     it('Should render a FeedbackSection component', () => {
         const { container } = render(
             <Provider store={store}>

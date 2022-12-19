@@ -39,6 +39,7 @@ export function GuidedAnswerNavPath(): ReactElement {
                         return (
                             <div key={`timeline-block-${i}`} className="timeline-block" role="treeitem">
                                 <button
+                                    data-testid="timeline-content"
                                     className={`timeline-content ${i === lastIndex ? lastBlockBorderStyle : ''}`}
                                     onClick={(): void => {
                                         actions.updateActiveNode(node);

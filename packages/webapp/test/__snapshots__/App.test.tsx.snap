@@ -212,6 +212,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
               >
                 <button
                   class="timeline-content timeline-content-bottom-border"
+                  data-testid="timeline-content"
                   tabindex="0"
                 >
                   <div

@@ -1,7 +1,16 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, fireEvent, cleanup } from '@testing-library/react';
+import { initI18n } from '../../src/webview/i18n';
 import { FiltersRibbon } from '../../src/webview/ui/components/Header/Filters/FiltersRibbon';
 import { actions } from '../../src/webview/state';
+import { Provider } from 'react-redux';
+import { getInitialState, reducer } from '../../src/webview/state/reducers';
+import { AppState } from '../../src/webview/types';
+import configureMockStore from 'redux-mock-store';
+import { screen } from '@testing-library/dom';
+
+const createState = (initialState: AppState) => (actions: any[]) => actions.reduce(reducer, initialState);
+const mockStore = configureMockStore();
 
 let state = {
     query: 'Fiori tools',
@@ -28,23 +37,23 @@ jest.mock('react-redux', () => {
 });
 
 describe('<FiltersRibbon />', () => {
-    let wrapper: any;
-    beforeEach(() => {
-        wrapper = shallow(<FiltersRibbon />);
-    });
+    initI18n();
+    afterEach(cleanup);
 
-    afterEach(() => {
-        jest.clearAllMocks();
-        wrapper.unmount();
-    });
+    const initialState = createState(getInitialState());
+    const store = mockStore(initialState);
 
     it('Should render a FiltersRibbon component', () => {
-        const component = wrapper.html();
-        expect(component).toMatchInlineSnapshot(
-            `"<div style="line-height:18px">Searching in Product<strong> </strong><strong>ProductFilter1, ProductFilter2</strong><span>  and  </span>Component <strong>ProductFilter1, ProductFilter2</strong><strong> </strong><button class="clear-filters" title="Clear filters"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="clear-filters__content" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 8.707l3.646 3.647.708-.707L8.707 8l3.647-3.646-.707-.708L8 7.293 4.354 3.646l-.707.708L7.293 8l-3.646 3.646.707.708L8 8.707z"></path></svg> <span class="clear-filters__content__text text-underline">Clear filters</span></button></div>"`
+        const { container } = render(
+            <Provider store={store}>
+                <FiltersRibbon />
+            </Provider>
         );
+        expect(container).toMatchSnapshot();
 
-        wrapper.find('.clear-filters').simulate('click');
+        const element = screen.getByTestId('clear-filters');
+        fireEvent.click(element);
+
         expect(actions.resetFilters).toBeCalled();
         expect(actions.searchTree).toHaveBeenCalledWith({
             query: state.query,
