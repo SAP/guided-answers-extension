@@ -21,6 +21,7 @@ import { getHtml } from './html';
 import { getEnhancements, handleCommand } from '../enhancement';
 import { logString } from '../logger/logger';
 import type { Options, StartOptions } from '../types';
+import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
 
 /**
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
@@ -47,6 +48,8 @@ export class GuidedAnswersPanel {
 
         this.guidedAnswerApi = getGuidedAnswerApi({ apiHost, enhancements });
         logString(`API information: ${JSON.stringify(this.guidedAnswerApi.getApiInfo())}`);
+        setCommonProperties({ ide: this.ide, apiHost });
+        trackEvent({ name: 'GA_STARTUP' });
         /**
          * vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421), therefore node_modules from same repo are missing.
          * To overcome this we copy guidedAnswers.js and guidedAnswers.css to dist/ folder in esbuild.js
@@ -150,6 +153,7 @@ export class GuidedAnswersPanel {
      */
     private async onWebviewMessage(action: GuidedAnswerActions): Promise<void> {
         try {
+            trackAction(action);
             switch (action.type) {
                 case SELECT_NODE: {
                     const node = await this.guidedAnswerApi.getNodeById(action.payload);

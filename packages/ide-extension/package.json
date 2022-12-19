@@ -78,5 +78,9 @@
     "galleryBanner": {
         "color": "#00195A",
         "theme": "dark"
+    },
+    "dependencies": {
+        "@vscode/extension-telemetry": "0.6.2",
+        "tslib": "2.4.1"
     }
 }

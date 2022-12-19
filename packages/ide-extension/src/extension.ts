@@ -3,6 +3,7 @@ import { commands, window } from 'vscode';
 import { getIde } from '@sap/guided-answers-extension-core';
 import { logString } from './logger/logger';
 import { GuidedAnswersPanel } from './panel/guidedAnswersPanel';
+import { initTelemetry } from './telemetry';
 import type { StartOptions } from './types';
 
 /**
@@ -11,6 +12,11 @@ import type { StartOptions } from './types';
  * @param context - context from VSCode
  */
 export function activate(context: ExtensionContext): void {
+    try {
+        context.subscriptions.push(initTelemetry());
+    } catch (error) {
+        logString(`Error during initialization of telemetry: ${(error as Error)?.message}`);
+    }
     context.subscriptions.push(
         commands.registerCommand('sap.ux.guidedAnswer.openGuidedAnswer', async (startOptions?: StartOptions) => {
             try {

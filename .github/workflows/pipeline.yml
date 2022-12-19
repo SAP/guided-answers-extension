@@ -133,7 +133,7 @@ jobs:
             - name: Replace placeholder with instrumentation key
               uses: jacobtomlinson/gha-find-replace@v2
               with:
-                  include: packages/core/src/telemetry.ts
+                  include: packages/ide-extension/src/telemetry/telemetry.ts
                   find: 'ApplicationInsightsInstrumentationKeyPLACEH0LDER'
                   replace: ${{ secrets.INSTRUMENTATION_KEY }}
                   regex: false
