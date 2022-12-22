@@ -15,6 +15,7 @@ exports[`<Header /> Should render a Header component with the navigation buttons
       >
         <button
           class="guided-answer__header__navButtons home-icon"
+          data-testid="all-answers-button"
           tabindex="0"
           title="Home"
         >
@@ -48,6 +49,7 @@ exports[`<Header /> Should render a Header component with the navigation buttons
       >
         <button
           class="guided-answer__header__navButtons"
+          data-testid="back-button"
           tabindex="-1"
           title="Step back"
         >
@@ -80,6 +82,7 @@ exports[`<Header /> Should render a Header component with the navigation buttons
         >
           <button
             class="guided-answer__header__navButtons"
+            data-testid="restart-button"
             tabindex="-1"
             title="Restart"
           >

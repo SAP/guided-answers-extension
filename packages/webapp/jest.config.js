@@ -3,7 +3,7 @@ module.exports = {
     automock: false,
     clearMocks: true,
     collectCoverage: true,
-    collectCoverageFrom: ['src/**/*.{ts,tsx}'],
+    collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.d.ts'],
     testPathIgnorePatterns: ['<rootDir>/node_modules/,<rootDir>/test/'],
     errorOnDeprecated: true,
     globals: {

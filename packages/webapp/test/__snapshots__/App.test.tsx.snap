@@ -97,6 +97,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
         >
           <button
             class="guided-answer__header__navButtons home-icon"
+            data-testid="all-answers-button"
             tabindex="0"
           >
             <svg
@@ -127,6 +128,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
         >
           <button
             class="guided-answer__header__navButtons"
+            data-testid="back-button"
             tabindex="-1"
           >
             <svg
@@ -276,6 +278,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
             >
               <button
                 class="guided-answer__node__edge"
+                data-testid="edge_button"
                 role="option"
                 tabindex="0"
               >
@@ -283,6 +286,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
               </button>
               <button
                 class="guided-answer__node__edge"
+                data-testid="edge_button"
                 role="option"
                 tabindex="-1"
               >

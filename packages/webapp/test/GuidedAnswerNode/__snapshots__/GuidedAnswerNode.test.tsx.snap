@@ -55,6 +55,7 @@ exports[`<GuidedAnswerNode /> Should render a GuidedAnswerNode component 1`] = `
         >
           <button
             class="guided-answer__node__edge"
+            data-testid="edge_button"
             role="option"
             tabindex="0"
           >
@@ -62,6 +63,7 @@ exports[`<GuidedAnswerNode /> Should render a GuidedAnswerNode component 1`] = `
           </button>
           <button
             class="guided-answer__node__edge"
+            data-testid="edge_button"
             role="option"
             tabindex="-1"
           >
