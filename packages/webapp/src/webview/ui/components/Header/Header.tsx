@@ -4,7 +4,7 @@ import { AppState } from '../../../types';
 import { AllAnswersButton, BackButton, GeneralFeedbackButton, RestartButton } from './NavigationButtons';
 import { Logo } from './Logo';
 import './Header.scss';
-import { SearchField } from './SearchField';
+// import { SearchField } from './SearchField';
 import { FocusZone } from '@fluentui/react-focus';
 
 /**
