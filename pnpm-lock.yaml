@@ -61,12 +61,12 @@ importers:
 
   packages/core:
     specifiers:
-      '@sap/bas-sdk': 2.1.5
+      '@sap/bas-sdk': 3.1.0
       '@sap/guided-answers-extension-types': workspace:*
       axios: 0.26.1
       xss: 1.0.14
     dependencies:
-      '@sap/bas-sdk': 2.1.5
+      '@sap/bas-sdk': 3.1.0
       '@sap/guided-answers-extension-types': link:../types
       axios: 0.26.1
       xss: 1.0.14
@@ -1635,8 +1635,8 @@ packages:
       - '@types/react-dom'
     dev: false
 
-  /@sap/bas-sdk/2.1.5:
-    resolution: {integrity: sha512-3DupfYYLXu1yaXfWDzQ24qhkq1M/OW8u2By8X6Mz5egD+m5+15VVI3MERIe1QKgoDklB4vbHcRlNRYSn0c43Yg==, tarball: '@sap/bas-sdk/-/@sap/bas-sdk-2.1.5.tgz'}
+  /@sap/bas-sdk/3.1.0:
+    resolution: {integrity: sha512-zmChDaGXFnkAcYaXvIjEsJ5z2jmW22Pc19xTSTswpl3YlhZTLM2WzEEW//sBhV9/zoKOx2UQfODBp+EM1YghZA==, tarball: '@sap/bas-sdk/-/@sap/bas-sdk-3.1.0.tgz'}
     dependencies:
       axios: 0.21.4
       cross-spawn: 7.0.3
