@@ -10,7 +10,6 @@ import { actions } from '../../../../state';
 import type { GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import { UIDefaultButton, UIDialog } from '@sap-ux/ui-components';
-// import { CSSTransition } from 'react-transition-group';
 
 /**
  * The feedback dialog box for submitting comments.
@@ -27,7 +26,6 @@ export function FeedbackDialogBox(): ReactElement {
     const [isVisible, setVisible] = useState(feedbackStatus);
     const [feedback, setFeedback] = useState('');
     const [textFieldhasValue, setTextFieldhasValue] = useState(true);
-    // const nodeRef = useRef(null);
 
     useEffect(() => {
         setVisible(feedbackStatus);
@@ -60,7 +58,6 @@ export function FeedbackDialogBox(): ReactElement {
 
     return (
         <>
-            {/* <CSSTransition nodeRef={nodeRef} in={isVisible} timeout={200} classNames={'example'}> */}
             <UIDialog
                 modalProps={modalProps}
                 isOpen={isVisible}
@@ -100,7 +97,6 @@ export function FeedbackDialogBox(): ReactElement {
                     </FocusZone>
                 </DialogFooter>
             </UIDialog>
-            {/* </CSSTransition> */}
         </>
     );
 }

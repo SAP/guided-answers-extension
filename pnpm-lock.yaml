@@ -101,7 +101,7 @@ importers:
       '@fluentui/style-utilities': 8.8.1
       '@fluentui/utilities': 8.13.2
       '@reduxjs/toolkit': 1.8.6
-      '@sap-ux/ui-components': 1.0.16
+      '@sap-ux/ui-components': 1.1.1
       '@sap/guided-answers-extension-types': workspace:*
       '@types/enzyme': 3.10.12
       '@types/enzyme-adapter-react-16': 1.0.6
@@ -137,7 +137,7 @@ importers:
       '@fluentui/react-focus': 8.8.8_jjcubslaw3srjyc3uporvmhana
       '@fluentui/style-utilities': 8.8.1_jjcubslaw3srjyc3uporvmhana
       '@fluentui/utilities': 8.13.2_jjcubslaw3srjyc3uporvmhana
-      '@sap-ux/ui-components': 1.0.16_4m2wvydqs44ynq5jn47t4o4iju
+      '@sap-ux/ui-components': 1.1.1_4m2wvydqs44ynq5jn47t4o4iju
       '@types/react-transition-group': 4.4.5
       react-infinite-scroll-component: 6.1.0_react@16.14.0
       react-transition-group: 4.4.5_wcqkhtmu7mswc6yz4uyexck3ty
@@ -1232,13 +1232,13 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@fluentui/react/8.66.2_4m2wvydqs44ynq5jn47t4o4iju:
-    resolution: {integrity: sha512-uHCBPpMD9TD0+Aevk1ixjYuCLGdzsZbnb607sc9jjMi9yV6HgnzfMsZXiZoW0mAaHnIGdpjgjWG66iT5U3uGgw==}
+  /@fluentui/react/8.100.0_4m2wvydqs44ynq5jn47t4o4iju:
+    resolution: {integrity: sha512-zdMTJgZEg0NCDLcchlFOnDP1krm7Qel7uUSjfYm5MGS/rK08o9dgpwzjAwjEukGkIZ/Q3C4DZQablVdV/CpW+A==}
     peerDependencies:
-      '@types/react': '>=16.8.0 <18.0.0'
-      '@types/react-dom': '>=16.8.0 <18.0.0'
-      react: '>=16.8.0 <18.0.0'
-      react-dom: '>=16.8.0 <18.0.0'
+      '@types/react': '>=16.8.0 <19.0.0'
+      '@types/react-dom': '>=16.8.0 <19.0.0'
+      react: '>=16.8.0 <19.0.0'
+      react-dom: '>=16.8.0 <19.0.0'
     dependencies:
       '@fluentui/date-time-utilities': 8.5.2
       '@fluentui/font-icons-mdl2': 8.5.2_jjcubslaw3srjyc3uporvmhana
@@ -1246,6 +1246,7 @@ packages:
       '@fluentui/merge-styles': 8.5.3
       '@fluentui/react-focus': 8.8.8_jjcubslaw3srjyc3uporvmhana
       '@fluentui/react-hooks': 8.6.12_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/react-portal-compat-context': 9.0.3_jjcubslaw3srjyc3uporvmhana
       '@fluentui/react-window-provider': 2.2.3_jjcubslaw3srjyc3uporvmhana
       '@fluentui/set-version': 8.2.2
       '@fluentui/style-utilities': 8.8.1_jjcubslaw3srjyc3uporvmhana
@@ -1791,18 +1792,18 @@ packages:
       reselect: 4.1.5
     dev: true
 
-  /@sap-ux/ui-components/1.0.16_4m2wvydqs44ynq5jn47t4o4iju:
-    resolution: {integrity: sha512-wPbclyA8Y/zT6D30BqaNDZYqwxSkYVr9AVAQG1gaieLG5a9MB4AEzNFZAvoYWuDsXFBcK0P+I6pd9gtuSVYgXw==}
+  /@sap-ux/ui-components/1.1.1_4m2wvydqs44ynq5jn47t4o4iju:
+    resolution: {integrity: sha512-I0Dps74K6UgokV0wgqRyPKJ57n4jjOLCBpSWl4s0t2upo24wCn8wd0XNpbGxHVElPxVMCjStse02nE/7WGIT/w==}
     peerDependencies:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
     dependencies:
-      '@fluentui/react': 8.66.2_4m2wvydqs44ynq5jn47t4o4iju
+      '@fluentui/react': 8.100.0_4m2wvydqs44ynq5jn47t4o4iju
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
       react-movable: 2.4.0_wcqkhtmu7mswc6yz4uyexck3ty
       react-virtualized: 9.22.3_wcqkhtmu7mswc6yz4uyexck3ty
-      sanitize-html: 2.7.1
+      sanitize-html: 2.7.3
       uuid: 3.4.0
     transitivePeerDependencies:
       - '@types/react'
@@ -3073,8 +3074,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      JSONStream: 1.3.5
       is-text-path: 1.0.1
+      JSONStream: 1.3.5
       lodash: 4.17.21
       meow: 8.1.2
       split2: 3.2.2
@@ -7337,8 +7338,8 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: true
 
-  /sanitize-html/2.7.1:
-    resolution: {integrity: sha512-oOpe8l4J8CaBk++2haoN5yNI5beekjuHv3JRPKUx/7h40Rdr85pemn4NkvUB3TcBP7yjat574sPlcMAyv4UQig==}
+  /sanitize-html/2.7.3:
+    resolution: {integrity: sha512-jMaHG29ak4miiJ8wgqA1849iInqORgNv7SLfSw9LtfOhEUQ1C0YHKH73R+hgyufBW9ZFeJrb057k9hjlfBCVlw==}
     dependencies:
       deepmerge: 4.2.2
       escape-string-regexp: 4.0.0
