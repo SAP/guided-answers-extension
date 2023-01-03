@@ -1,17 +1,12 @@
 import React from 'react';
 import { App } from '../src/webview/ui/components/App';
-import { render } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
+import { initI18n } from '../src/webview/i18n';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
-import {
-    updateLoading,
-    updateGuidedAnswerTrees,
-    setActiveTree,
-    selectNode,
-    updateActiveNode
-} from '@sap/guided-answers-extension-types';
 import { getInitialState, reducer } from '../src/webview/state/reducers';
 import { AppState } from '../src/webview/types';
+import { treeMock } from './__mocks__/treeMock';
 
 jest.mock('@vscode/webview-ui-toolkit/react', () => ({
     VSCodeTextField: () => (
@@ -43,12 +38,11 @@ const createState = (initialState: AppState) => (actions: any[]) => actions.redu
 const mockStore = configureMockStore();
 
 describe('<App />', () => {
-    const initialState = createState(getInitialState());
-    const store = mockStore(initialState);
-
+    initI18n();
+    afterEach(cleanup);
     it('Match snapshot of component <App/> in loading mode', () => {
         const { container } = render(
-            <Provider store={store}>
+            <Provider store={mockStore(createState(getInitialState()))}>
                 <App />
             </Provider>
         );
@@ -56,10 +50,11 @@ describe('<App />', () => {
     });
 
     it('Match snapshot of component <App/> in initial mode', () => {
-        store.dispatch(updateLoading(false));
+        const initialState = getInitialState();
+        initialState.loading = false;
 
         const { container } = render(
-            <Provider store={store}>
+            <Provider store={mockStore(createState(initialState))}>
                 <App />
             </Provider>
         );
@@ -67,28 +62,17 @@ describe('<App />', () => {
     });
 
     it('Match snapshot of component <App/> with results list', () => {
-        const result = {
-            trees: [
-                {
-                    AVAILABILITY: 'PUBLIC',
-                    DESCRIPTION: 'This is a troubleshooting guide to solve the issues while using SAP Fiori tools',
-                    FIRST_NODE_ID: 45995,
-                    TITLE: 'SAP Fiori tools',
-                    SCORE: 0.1,
-                    TREE_ID: 3046,
-                    PRODUCT: 'Product A',
-                    COMPONENT: 'comp-a'
-                }
-            ],
+        const initialState = getInitialState();
+        initialState.loading = false;
+        initialState.guidedAnswerTreeSearchResult = {
+            trees: [treeMock],
             resultSize: 1,
             productFilters: [{ PRODUCT: 'Product A', COUNT: 1 }],
             componentFilters: [{ COMPONENT: 'comp-a', COUNT: 1 }]
         };
-        store.dispatch(updateLoading(false));
-        store.dispatch(updateGuidedAnswerTrees(result));
 
         const { container } = render(
-            <Provider store={store}>
+            <Provider store={mockStore(createState(initialState))}>
                 <App />
             </Provider>
         );
@@ -96,33 +80,22 @@ describe('<App />', () => {
     });
 
     it('Match snapshot of component <App/> with a guide selected', () => {
-        const tree = {
-            AVAILABILITY: 'PUBLIC',
-            DESCRIPTION: 'This is a troubleshooting guide to solve the issues while using SAP Fiori tools',
-            FIRST_NODE_ID: 45995,
-            TITLE: 'SAP Fiori tools',
-            SCORE: 0.1,
-            TREE_ID: 3046,
-            PRODUCT: 'Product A',
-            COMPONENT: 'comp-a'
-        };
+        const stateWithActiveAnswer = getInitialState();
 
-        store.dispatch(setActiveTree(tree));
-        store.dispatch(selectNode(tree.FIRST_NODE_ID));
-        store.dispatch(
-            updateActiveNode({
-                BODY: '<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p>',
-                EDGES: [
-                    { LABEL: 'Deployment', TARGET_NODE: 45996, ORD: 1 },
-                    { LABEL: 'Fiori Generator', TARGET_NODE: 48363, ORD: 2 }
-                ],
-                NODE_ID: 45995,
-                QUESTION: 'I have a problem with',
-                TITLE: 'SAP Fiori Tools'
-            })
-        );
+        stateWithActiveAnswer.activeGuidedAnswer = treeMock;
+        stateWithActiveAnswer.activeGuidedAnswerNode.push({
+            BODY: '<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p>',
+            EDGES: [
+                { LABEL: 'Deployment', TARGET_NODE: 45996, ORD: 1 },
+                { LABEL: 'Fiori Generator', TARGET_NODE: 48363, ORD: 2 }
+            ],
+            NODE_ID: 45995,
+            QUESTION: 'I have a problem with',
+            TITLE: 'SAP Fiori Tools'
+        });
+
         const { container } = render(
-            <Provider store={store}>
+            <Provider store={mockStore(createState(stateWithActiveAnswer))}>
                 <App />
             </Provider>
         );

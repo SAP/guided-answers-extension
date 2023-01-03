@@ -1,9 +1,9 @@
+import { treeMock } from '../__mocks__/treeMock';
 import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import { SearchField } from '../../src/webview/ui/components/Header/SearchField';
 import { initI18n } from '../../src/webview/i18n';
-import { actions } from '../../src/webview/state';
 
 jest.useFakeTimers();
 jest.spyOn(global, 'setTimeout');
@@ -32,17 +32,7 @@ jest.mock('react-redux', () => {
         useSelector: jest.fn().mockReturnValue({
             activeGuidedAnswerNode: [],
             guidedAnswerTreeSearchResult: {
-                trees: [
-                    {
-                        AVAILABILITY: 'PUBLIC',
-                        DESCRIPTION: 'This is a troubleshooting guide to solve the issues while using SAP Fiori tools',
-                        FIRST_NODE_ID: 45995,
-                        TITLE: 'SAP Fiori tools',
-                        TREE_ID: 3046,
-                        PRODUCT: 'Product A, Product B',
-                        COMPONENT: 'comp-a, comp-b'
-                    }
-                ],
+                trees: [treeMock],
                 resultSize: 1,
                 productFilters: [],
                 componentFilters: []

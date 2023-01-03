@@ -1,3 +1,4 @@
+import { treeMock } from '../__mocks__/treeMock';
 import React from 'react';
 import { Header } from '../../src/webview/ui/components/Header';
 import { render, cleanup } from '@testing-library/react';
@@ -13,7 +14,17 @@ jest.mock('@vscode/webview-ui-toolkit/react', () => ({
 
 jest.mock('react-redux', () => {
     const lib = jest.requireActual('react-redux');
-    const state = { activeGuidedAnswerNode: [{ a: 0 }, { b: 0 }] };
+    const state = {
+        activeGuidedAnswerNode: [{ a: 0 }, { b: 0 }],
+        guidedAnswerTreeSearchResult: {
+            trees: [treeMock],
+            resultSize: 1,
+            productFilters: [],
+            componentFilters: []
+        },
+        selectedProductFilters: ['Product A'],
+        selectedComponentFilters: ['comp-a']
+    };
     return {
         ...lib,
         useSelector: () => state

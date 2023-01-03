@@ -22,7 +22,121 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
           </span>
           <h1
             class="guided-answer__header__title"
-          />
+          >
+            Guided Answers
+          </h1>
+        </div>
+        <div
+          class="guided-answer__header__searchField"
+        >
+          <div>
+            SearchField
+          </div>
+          <div
+            id="filters"
+          >
+            <div
+              class="ms-FocusZone css-109"
+              data-focuszone-id="FocusZone9"
+              style="display: flex;"
+            >
+              <button
+                aria-disabled="true"
+                class="ms-Button ms-Button--icon is-disabled filter-button root-110"
+                data-is-focusable="false"
+                data-testid="filter-products"
+                disabled=""
+                id="filter-products"
+                tabindex="-1"
+                title="Filter Products"
+                type="button"
+              >
+                <span
+                  class="ms-Button-flexContainer flexContainer-111"
+                  data-automationid="splitbuttonprimary"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ms-Icon root-101 ms-Button-icon icon-113"
+                    data-icon-name="Table"
+                  >
+                    <svg
+                      focusable="false"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1,16 C0.44771525,16 0,15.5522847 0,15 L0,1 C0,0.44771525 0.44771525,0 1,0 L15,0 C15.5522847,0 16,0.44771525 16,1 L16,15 C16,15.5522847 15.5522847,16 15,16 L1,16 Z M5,11 L1,11 L1,15 L5,15 L5,11 Z M10,11 L6,11 L6,15 L10,15 L10,11 Z M15,11 L11,11 L11,15 L15,15 L15,11 Z M5,6 L1,6 L1,10 L5,10 L5,6 Z M10,6 L6,6 L6,10 L10,10 L10,6 Z M15,6 L11,6 L11,10 L15,10 L15,6 Z M5,1 L1,1 L1,5 L5,5 L5,1 Z M6,1 L6,5 L10,5 L10,1 L6,1 Z M11,5 L15,5 L15,1 L11,1 L11,5 Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                    </svg>
+                  </i>
+                </span>
+              </button>
+              <button
+                aria-disabled="true"
+                class="ms-Button ms-Button--icon is-disabled filter-button root-110"
+                data-is-focusable="false"
+                data-testid="filter-components"
+                disabled=""
+                id="filter-components"
+                tabindex="-1"
+                title="Filter Components"
+                type="button"
+              >
+                <span
+                  class="ms-Button-flexContainer flexContainer-111"
+                  data-automationid="splitbuttonprimary"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ms-Icon root-101 ms-Button-icon icon-113"
+                    data-icon-name="IdTag"
+                  >
+                    <svg
+                      fill="none"
+                      focusable="false"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M6 2C6 1.44772 6.44775 1 7 1H9C9.55225 1 10 1.44772 10 2V3.58578C10 3.85101 9.89465 4.10535 9.70715 4.29289L8.70715 5.29289C8.31653 5.68342 7.68347 5.68342 7.29285 5.29289L6.29285 4.29289C6.10535 4.10535 6 3.85101 6 3.58578V2ZM7 2.5C7 2.22385 7.22388 2 7.5 2H8.5C8.77612 2 9 2.22385 9 2.5C9 2.77615 8.77612 3 8.5 3H7.5C7.22388 3 7 2.77615 7 2.5Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                        fill-rule="evenodd"
+                      />
+                      <path
+                        d="M5.04333 4H1C0.447754 4 0 4.44772 0 5V14C0 14.5523 0.447754 15 1 15H15C15.5522 15 16 14.5523 16 14V5C16 4.44772 15.5522 4 15 4H10.9567C10.8771 4.37594 10.6901 4.72412 10.4142 5H15V14H1V5H5.58582C5.30994 4.72412 5.12292 4.37594 5.04333 4Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                      <path
+                        clip-rule="evenodd"
+                        d="M3 7C2.44775 7 2 7.44772 2 8V11C2 11.5523 2.44775 12 3 12H5C5.55225 12 6 11.5523 6 11V8C6 7.44772 5.55225 7 5 7H3ZM5 8H3V11H5V8Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                        fill-rule="evenodd"
+                      />
+                      <path
+                        d="M7 7.5C7 7.22385 7.22388 7 7.5 7H13.5C13.7761 7 14 7.22385 14 7.5C14 7.77615 13.7761 8 13.5 8H7.5C7.22388 8 7 7.77615 7 7.5Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                      <path
+                        d="M7 9.5C7 9.22385 7.22388 9 7.5 9H13.5C13.7761 9 14 9.22385 14 9.5C14 9.77615 13.7761 10 13.5 10H7.5C7.22388 10 7 9.77615 7 9.5Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                      <path
+                        d="M11 11.5C11 11.2239 11.2239 11 11.5 11H13.5C13.7761 11 14 11.2239 14 11.5C14 11.7761 13.7761 12 13.5 12H11.5C11.2239 12 11 11.7761 11 11.5Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                    </svg>
+                  </i>
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
        
@@ -57,7 +171,121 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
           </span>
           <h1
             class="guided-answer__header__title"
-          />
+          >
+            Guided Answers
+          </h1>
+        </div>
+        <div
+          class="guided-answer__header__searchField"
+        >
+          <div>
+            SearchField
+          </div>
+          <div
+            id="filters"
+          >
+            <div
+              class="ms-FocusZone css-109"
+              data-focuszone-id="FocusZone0"
+              style="display: flex;"
+            >
+              <button
+                aria-disabled="true"
+                class="ms-Button ms-Button--icon is-disabled filter-button root-110"
+                data-is-focusable="false"
+                data-testid="filter-products"
+                disabled=""
+                id="filter-products"
+                tabindex="-1"
+                title="Filter Products"
+                type="button"
+              >
+                <span
+                  class="ms-Button-flexContainer flexContainer-111"
+                  data-automationid="splitbuttonprimary"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ms-Icon root-101 ms-Button-icon icon-113"
+                    data-icon-name="Table"
+                  >
+                    <svg
+                      focusable="false"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1,16 C0.44771525,16 0,15.5522847 0,15 L0,1 C0,0.44771525 0.44771525,0 1,0 L15,0 C15.5522847,0 16,0.44771525 16,1 L16,15 C16,15.5522847 15.5522847,16 15,16 L1,16 Z M5,11 L1,11 L1,15 L5,15 L5,11 Z M10,11 L6,11 L6,15 L10,15 L10,11 Z M15,11 L11,11 L11,15 L15,15 L15,11 Z M5,6 L1,6 L1,10 L5,10 L5,6 Z M10,6 L6,6 L6,10 L10,10 L10,6 Z M15,6 L11,6 L11,10 L15,10 L15,6 Z M5,1 L1,1 L1,5 L5,5 L5,1 Z M6,1 L6,5 L10,5 L10,1 L6,1 Z M11,5 L15,5 L15,1 L11,1 L11,5 Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                    </svg>
+                  </i>
+                </span>
+              </button>
+              <button
+                aria-disabled="true"
+                class="ms-Button ms-Button--icon is-disabled filter-button root-110"
+                data-is-focusable="false"
+                data-testid="filter-components"
+                disabled=""
+                id="filter-components"
+                tabindex="-1"
+                title="Filter Components"
+                type="button"
+              >
+                <span
+                  class="ms-Button-flexContainer flexContainer-111"
+                  data-automationid="splitbuttonprimary"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ms-Icon root-101 ms-Button-icon icon-113"
+                    data-icon-name="IdTag"
+                  >
+                    <svg
+                      fill="none"
+                      focusable="false"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M6 2C6 1.44772 6.44775 1 7 1H9C9.55225 1 10 1.44772 10 2V3.58578C10 3.85101 9.89465 4.10535 9.70715 4.29289L8.70715 5.29289C8.31653 5.68342 7.68347 5.68342 7.29285 5.29289L6.29285 4.29289C6.10535 4.10535 6 3.85101 6 3.58578V2ZM7 2.5C7 2.22385 7.22388 2 7.5 2H8.5C8.77612 2 9 2.22385 9 2.5C9 2.77615 8.77612 3 8.5 3H7.5C7.22388 3 7 2.77615 7 2.5Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                        fill-rule="evenodd"
+                      />
+                      <path
+                        d="M5.04333 4H1C0.447754 4 0 4.44772 0 5V14C0 14.5523 0.447754 15 1 15H15C15.5522 15 16 14.5523 16 14V5C16 4.44772 15.5522 4 15 4H10.9567C10.8771 4.37594 10.6901 4.72412 10.4142 5H15V14H1V5H5.58582C5.30994 4.72412 5.12292 4.37594 5.04333 4Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                      <path
+                        clip-rule="evenodd"
+                        d="M3 7C2.44775 7 2 7.44772 2 8V11C2 11.5523 2.44775 12 3 12H5C5.55225 12 6 11.5523 6 11V8C6 7.44772 5.55225 7 5 7H3ZM5 8H3V11H5V8Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                        fill-rule="evenodd"
+                      />
+                      <path
+                        d="M7 7.5C7 7.22385 7.22388 7 7.5 7H13.5C13.7761 7 14 7.22385 14 7.5C14 7.77615 13.7761 8 13.5 8H7.5C7.22388 8 7 7.77615 7 7.5Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                      <path
+                        d="M7 9.5C7 9.22385 7.22388 9 7.5 9H13.5C13.7761 9 14 9.22385 14 9.5C14 9.77615 13.7761 10 13.5 10H7.5C7.22388 10 7 9.77615 7 9.5Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                      <path
+                        d="M11 11.5C11 11.2239 11.2239 11 11.5 11H13.5C13.7761 11 14 11.2239 14 11.5C14 11.7761 13.7761 12 13.5 12H11.5C11.2239 12 11 11.7761 11 11.5Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                    </svg>
+                  </i>
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
        
@@ -67,11 +295,11 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
       id="results-container"
     >
       <div
-        class="ms-Spinner root-110"
+        class="ms-Spinner root-126"
         id="loading-indicator"
       >
         <div
-          class="ms-Spinner-circle ms-Spinner--large circle-111"
+          class="ms-Spinner-circle ms-Spinner--large circle-127"
         />
       </div>
     </main>
@@ -89,8 +317,8 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
       style="padding-bottom: 0px;"
     >
       <div
-        class="ms-FocusZone css-114 guided-answer__header"
-        data-focuszone-id="FocusZone1"
+        class="ms-FocusZone css-109 guided-answer__header"
+        data-focuszone-id="FocusZone28"
       >
         <div
           class="guided-answer__header__allAnswersButton"
@@ -99,6 +327,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
             class="guided-answer__header__navButtons home-icon"
             data-testid="all-answers-button"
             tabindex="0"
+            title="Home"
           >
             <svg
               class="guided-answer__header__navButtons__content"
@@ -120,7 +349,9 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
              
             <span
               class="guided-answer__header__navButtons__content__text text-underline"
-            />
+            >
+              Home
+            </span>
           </button>
         </div>
         <div
@@ -130,6 +361,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
             class="guided-answer__header__navButtons"
             data-testid="back-button"
             tabindex="-1"
+            title="Step back"
           >
             <svg
               class="guided-answer__header__navButtons__content"
@@ -151,7 +383,9 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
             <span
               class="guided-answer__header__navButtons__content text-underline"
               style="margin-left: 3px;"
-            />
+            >
+              Step back
+            </span>
           </button>
           <div
             class="guided-answer__header__restart-feedback-buttons"
@@ -159,6 +393,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
             <button
               class="guided-answer__header__navButtons"
               tabindex="-1"
+              title="Feedback"
             >
               <i
                 aria-hidden="true"
@@ -193,109 +428,14 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
       class="guided-answer__container"
       id="results-container"
     >
-      <section
-        class="guided-answer__node__body"
+      <div
+        class="ms-Spinner root-126"
+        id="loading-indicator"
       >
         <div
-          class="column"
-          id="left"
-        >
-          <nav
-            class="container"
-          >
-            <div
-              class="ms-FocusZone css-114"
-              data-focuszone-id="FocusZone2"
-              role="tree"
-            >
-              <div
-                class="timeline-block"
-                role="treeitem"
-              >
-                <button
-                  class="timeline-content timeline-content-bottom-border"
-                  data-testid="timeline-content"
-                  tabindex="0"
-                >
-                  <div
-                    class="timeline__path"
-                    title="SAP Fiori Tools"
-                  >
-                    <span
-                      class="timeline-content-title-small bold-text"
-                    >
-                      1
-                    </span>
-                    <span
-                      class="timeline-content-title-large"
-                    >
-                      SAP Fiori Tools
-                    </span>
-                  </div>
-                </button>
-              </div>
-            </div>
-          </nav>
-        </div>
-        <div
-          class="column"
-          id="middle"
-        >
-          <div
-            class="body_container"
-          >
-            <header>
-              SAP Fiori Tools
-            </header>
-            <div
-              id="hr"
-            />
-            <div
-              class="ms-FocusZone css-114"
-              data-focuszone-id="FocusZone3"
-            >
-              <div
-                class="content"
-              >
-                <p>
-                  SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code
-                </p>
-              </div>
-            </div>
-            <p
-              class="guided-answer__node__question"
-            >
-              I have a problem with
-            </p>
-          </div>
-          <div
-            class="ms-FocusZone css-114"
-            data-focuszone-id="FocusZone4"
-            role="listbox"
-          >
-            <div
-              class="guided-answer__node"
-            >
-              <button
-                class="guided-answer__node__edge"
-                data-testid="edge_button"
-                role="option"
-                tabindex="0"
-              >
-                Deployment
-              </button>
-              <button
-                class="guided-answer__node__edge"
-                data-testid="edge_button"
-                role="option"
-                tabindex="-1"
-              >
-                Fiori Generator
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+          class="ms-Spinner-circle ms-Spinner--large circle-127"
+        />
+      </div>
     </main>
   </div>
 </div>
@@ -323,7 +463,117 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
           </span>
           <h1
             class="guided-answer__header__title"
-          />
+          >
+            Guided Answers
+          </h1>
+        </div>
+        <div
+          class="guided-answer__header__searchField"
+        >
+          <div>
+            SearchField
+          </div>
+          <div
+            id="filters"
+          >
+            <div
+              class="ms-FocusZone css-109"
+              data-focuszone-id="FocusZone18"
+              style="display: flex;"
+            >
+              <button
+                class="ms-Button ms-Button--icon filter-button root-129"
+                data-is-focusable="true"
+                data-testid="filter-products"
+                id="filter-products"
+                tabindex="0"
+                title="Filter Products"
+                type="button"
+              >
+                <span
+                  class="ms-Button-flexContainer flexContainer-111"
+                  data-automationid="splitbuttonprimary"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ms-Icon root-101 ms-Button-icon icon-130"
+                    data-icon-name="Table"
+                  >
+                    <svg
+                      focusable="false"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1,16 C0.44771525,16 0,15.5522847 0,15 L0,1 C0,0.44771525 0.44771525,0 1,0 L15,0 C15.5522847,0 16,0.44771525 16,1 L16,15 C16,15.5522847 15.5522847,16 15,16 L1,16 Z M5,11 L1,11 L1,15 L5,15 L5,11 Z M10,11 L6,11 L6,15 L10,15 L10,11 Z M15,11 L11,11 L11,15 L15,15 L15,11 Z M5,6 L1,6 L1,10 L5,10 L5,6 Z M10,6 L6,6 L6,10 L10,10 L10,6 Z M15,6 L11,6 L11,10 L15,10 L15,6 Z M5,1 L1,1 L1,5 L5,5 L5,1 Z M6,1 L6,5 L10,5 L10,1 L6,1 Z M11,5 L15,5 L15,1 L11,1 L11,5 Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                    </svg>
+                  </i>
+                </span>
+              </button>
+              <button
+                class="ms-Button ms-Button--icon filter-button root-129"
+                data-is-focusable="true"
+                data-testid="filter-components"
+                id="filter-components"
+                tabindex="-1"
+                title="Filter Components"
+                type="button"
+              >
+                <span
+                  class="ms-Button-flexContainer flexContainer-111"
+                  data-automationid="splitbuttonprimary"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ms-Icon root-101 ms-Button-icon icon-130"
+                    data-icon-name="IdTag"
+                  >
+                    <svg
+                      fill="none"
+                      focusable="false"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M6 2C6 1.44772 6.44775 1 7 1H9C9.55225 1 10 1.44772 10 2V3.58578C10 3.85101 9.89465 4.10535 9.70715 4.29289L8.70715 5.29289C8.31653 5.68342 7.68347 5.68342 7.29285 5.29289L6.29285 4.29289C6.10535 4.10535 6 3.85101 6 3.58578V2ZM7 2.5C7 2.22385 7.22388 2 7.5 2H8.5C8.77612 2 9 2.22385 9 2.5C9 2.77615 8.77612 3 8.5 3H7.5C7.22388 3 7 2.77615 7 2.5Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                        fill-rule="evenodd"
+                      />
+                      <path
+                        d="M5.04333 4H1C0.447754 4 0 4.44772 0 5V14C0 14.5523 0.447754 15 1 15H15C15.5522 15 16 14.5523 16 14V5C16 4.44772 15.5522 4 15 4H10.9567C10.8771 4.37594 10.6901 4.72412 10.4142 5H15V14H1V5H5.58582C5.30994 4.72412 5.12292 4.37594 5.04333 4Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                      <path
+                        clip-rule="evenodd"
+                        d="M3 7C2.44775 7 2 7.44772 2 8V11C2 11.5523 2.44775 12 3 12H5C5.55225 12 6 11.5523 6 11V8C6 7.44772 5.55225 7 5 7H3ZM5 8H3V11H5V8Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                        fill-rule="evenodd"
+                      />
+                      <path
+                        d="M7 7.5C7 7.22385 7.22388 7 7.5 7H13.5C13.7761 7 14 7.22385 14 7.5C14 7.77615 13.7761 8 13.5 8H7.5C7.22388 8 7 7.77615 7 7.5Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                      <path
+                        d="M7 9.5C7 9.22385 7.22388 9 7.5 9H13.5C13.7761 9 14 9.22385 14 9.5C14 9.77615 13.7761 10 13.5 10H7.5C7.22388 10 7 9.77615 7 9.5Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                      <path
+                        d="M11 11.5C11 11.2239 11.2239 11 11.5 11H13.5C13.7761 11 14 11.2239 14 11.5C14 11.7761 13.7761 12 13.5 12H11.5C11.2239 12 11 11.7761 11 11.5Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                    </svg>
+                  </i>
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
        
@@ -333,8 +583,8 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
       id="results-container"
     >
       <div
-        class="ms-FocusZone css-114"
-        data-focuszone-id="FocusZone0"
+        class="ms-FocusZone css-109"
+        data-focuszone-id="FocusZone27"
       >
         <ul
           class="striped-list"

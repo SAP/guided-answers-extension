@@ -1,3 +1,4 @@
+import { treeMock } from '../__mocks__/treeMock';
 import React, { ReactElement } from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import { Middle } from '../../src/webview/ui/components/GuidedAnswerNode/Middle';
@@ -28,17 +29,7 @@ jest.mock('react-redux', () => ({
     useSelector: jest.fn().mockReturnValue({
         activeGuidedAnswerNode: [],
         guidedAnswerTreeSearchResult: {
-            trees: [
-                {
-                    AVAILABILITY: 'PUBLIC',
-                    DESCRIPTION: 'This is a troubleshooting guide to solve the issues while using SAP Fiori tools',
-                    FIRST_NODE_ID: 45995,
-                    TITLE: 'SAP Fiori tools',
-                    TREE_ID: 3046,
-                    PRODUCT: 'Product A, Product B',
-                    COMPONENT: 'comp-a, comp-b'
-                }
-            ],
+            trees: [treeMock],
             resultSize: 1,
             productFilters: [],
             componentFilters: []

@@ -4,7 +4,7 @@ import { AppState } from '../../../types';
 import { AllAnswersButton, BackButton, GeneralFeedbackButton, RestartButton } from './NavigationButtons';
 import { Logo } from './Logo';
 import './Header.scss';
-// import { SearchField } from './SearchField';
+import { SearchField } from './SearchField';
 import { FocusZone } from '@fluentui/react-focus';
 
 /**
@@ -30,8 +30,7 @@ export function Header(props: {
                 <>
                     <div className="guided-answer__header__sub">
                         {!!props.showLogo && <Logo />}
-                        {/* Temp for the tests */}
-                        {/* {!!props.showSearch && <SearchField />} */}
+                        {!!props.showSearch && <SearchField />}
                     </div>{' '}
                 </>
             ) : (

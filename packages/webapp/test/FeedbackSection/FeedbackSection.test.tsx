@@ -8,6 +8,7 @@ import configureMockStore from 'redux-mock-store';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import { AppState } from '../../src/webview/types';
 import { Provider } from 'react-redux';
+import { treeMock } from '../__mocks__/treeMock';
 
 jest.mock('../../src/webview/state', () => {
     return {
@@ -28,15 +29,7 @@ describe('Feedback Section component', () => {
     const stateWithActiveAnswer = getInitialState();
 
     // When the FeedbackSection component is rendered we are checking for the below props in state
-    stateWithActiveAnswer.activeGuidedAnswer = {
-        AVAILABILITY: 'PUBLIC',
-        DESCRIPTION: 'This is a troubleshooting guide to solve the issues while using SAP Fiori tools',
-        FIRST_NODE_ID: 45995,
-        TITLE: 'SAP Fiori tools',
-        TREE_ID: 3046,
-        PRODUCT: 'Product A',
-        COMPONENT: 'comp-a'
-    };
+    stateWithActiveAnswer.activeGuidedAnswer = treeMock;
     stateWithActiveAnswer.activeGuidedAnswerNode.push({
         BODY: '<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p>',
         EDGES: [
