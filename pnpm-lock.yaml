@@ -1630,7 +1630,7 @@ packages:
     dev: false
 
   /@sap/bas-sdk/2.1.1:
-    resolution: {integrity: sha512-6EpF/6jY+IeDGSR/DpiIOtmld2JfAX+ybuZFMfr8ZdIK9+sxYn1TtiDxidQrs6+Wltqtd33cOnmhWy8mrQ1abg==, tarball: '@sap/bas-sdk/-/@sap/bas-sdk-2.1.1.tgz'}
+    resolution: {integrity: sha512-6EpF/6jY+IeDGSR/DpiIOtmld2JfAX+ybuZFMfr8ZdIK9+sxYn1TtiDxidQrs6+Wltqtd33cOnmhWy8mrQ1abg==, tarball: '@sap/bas-sdk/-/bas-sdk-2.1.1.tgz'}
     dependencies:
       axios: 0.21.4
       lodash: 4.17.21
