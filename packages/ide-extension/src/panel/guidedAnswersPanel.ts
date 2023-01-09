@@ -26,7 +26,7 @@ import type { Options, StartOptions } from '../types';
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
  */
 export class GuidedAnswersPanel {
-    public readonly panel: WebviewPanel;
+    public panel?: WebviewPanel;
     private guidedAnswerApi: GuidedAnswerAPI;
     private readonly startOptions: StartOptions | undefined;
     private readonly ide: IDE;
@@ -47,6 +47,12 @@ export class GuidedAnswersPanel {
 
         this.guidedAnswerApi = getGuidedAnswerApi({ apiHost, enhancements });
         logString(`API information: ${JSON.stringify(this.guidedAnswerApi.getApiInfo())}`);
+    }
+
+    /**
+     * Creates a webview panel.
+     */
+    private async createPanel(): Promise<void> {
         /**
          * vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421), therefore node_modules from same repo are missing.
          * To overcome this we copy guidedAnswers.js and guidedAnswers.css to dist/ folder in esbuild.js
@@ -77,6 +83,15 @@ export class GuidedAnswersPanel {
             '/guidedAnswers.css'
         );
         this.panel.webview.html = html;
+
+        // Reset when the current panel is closed
+        this.panel.onDidDispose(
+            () => {
+                this.panel = undefined;
+            },
+            null,
+            []
+        );
     }
 
     /**
@@ -209,13 +224,16 @@ export class GuidedAnswersPanel {
      * @param action - the action to post to application info webview
      */
     private postActionToWebview(action: GuidedAnswerActions): void {
-        this.panel.webview.postMessage(action);
+        this.panel?.webview.postMessage(action);
     }
 
     /**
      * Show Application Info panel and set application info data.
      */
-    public show(): void {
-        this.panel.reveal();
+    public async show(): Promise<void> {
+        if (this.panel === undefined) {
+            await this.createPanel();
+        }
+        this.panel?.reveal();
     }
 }

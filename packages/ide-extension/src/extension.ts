@@ -11,6 +11,7 @@ import type { StartOptions } from './types';
  * @param context - context from VSCode
  */
 export function activate(context: ExtensionContext): void {
+    let guidedAnswersPanel: GuidedAnswersPanel;
     context.subscriptions.push(
         commands.registerCommand('sap.ux.guidedAnswer.openGuidedAnswer', async (startOptions?: StartOptions) => {
             try {
@@ -19,7 +20,9 @@ export function activate(context: ExtensionContext): void {
                     ide: await getIde()
                 };
                 logString(`Guided Answers command called. Options: ${JSON.stringify(options)}`);
-                const guidedAnswersPanel = new GuidedAnswersPanel(options);
+                if (!guidedAnswersPanel) {
+                    guidedAnswersPanel = new GuidedAnswersPanel(options);
+                }
                 guidedAnswersPanel.show();
             } catch (error) {
                 window.showErrorMessage(`Error while starting Guided Answers: ${(error as Error).message}`);
