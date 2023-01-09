@@ -1,3 +1,4 @@
+import { BetaFeatures } from './../../../types/src/types';
 import type { WebviewPanel } from 'vscode';
 import { Uri, ViewColumn, window, workspace } from 'vscode';
 import type { GuidedAnswerActions, GuidedAnswerAPI, IDE } from '@sap/guided-answers-extension-types';
@@ -56,10 +57,11 @@ export class GuidedAnswersPanel {
          */
         const webappDirPath = __dirname;
         const webAppUri = Uri.file(webappDirPath);
+        const ViewColumnType = !options?.startOptions ? ViewColumn.Active : ViewColumn.Beside;
         this.panel = window.createWebviewPanel(
             'sap.ux.guidedAnswer.view',
             'Guided Answers extension by SAP',
-            ViewColumn.Beside,
+            ViewColumnType,
             {
                 enableCommandUris: true,
                 enableScripts: true,
