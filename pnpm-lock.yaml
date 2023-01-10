@@ -96,10 +96,10 @@ importers:
 
   packages/webapp:
     specifiers:
-      '@fluentui/react': 8.99.2
-      '@fluentui/react-focus': 8.8.8
-      '@fluentui/style-utilities': 8.8.1
-      '@fluentui/utilities': 8.13.2
+      '@fluentui/react': 8.103.9
+      '@fluentui/react-focus': 8.8.10
+      '@fluentui/style-utilities': 8.8.3
+      '@fluentui/utilities': 8.13.4
       '@reduxjs/toolkit': 1.8.6
       '@sap-ux/ui-components': 1.1.1
       '@sap/guided-answers-extension-types': workspace:*
@@ -131,10 +131,10 @@ importers:
       react-redux: 7.2.8
       redux: 4.2.0
     dependencies:
-      '@fluentui/react': 8.99.2_4m2wvydqs44ynq5jn47t4o4iju
-      '@fluentui/react-focus': 8.8.8_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/style-utilities': 8.8.1_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/utilities': 8.13.2_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/react': 8.103.9_4m2wvydqs44ynq5jn47t4o4iju
+      '@fluentui/react-focus': 8.8.10_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/style-utilities': 8.8.3_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/utilities': 8.13.4_jjcubslaw3srjyc3uporvmhana
       '@sap-ux/ui-components': 1.1.1_4m2wvydqs44ynq5jn47t4o4iju
       react-infinite-scroll-component: 6.1.0_react@16.14.0
     devDependencies:
@@ -1124,23 +1124,42 @@ packages:
   /@fluentui/date-time-utilities/8.5.2:
     resolution: {integrity: sha512-u540ACUdnC+Jms1DIHkho80eJmoCg/LtAzR4a/1Tum6PicxWv59UYp9Ba7qFbIw+mrjWnwX/2ZmBpqTy9Rgn7w==}
     dependencies:
-      '@fluentui/set-version': 8.2.2
+      '@fluentui/set-version': 8.2.4
       tslib: 2.4.1
     dev: false
 
-  /@fluentui/dom-utilities/2.2.2:
-    resolution: {integrity: sha512-puklLc6Jvg279OGagqkSfuHML6ckBhw3gJakdvIZHKeJiduh+34U4Finl3K24yBSXzG2WsN+LwLTd1Vcociy+g==}
+  /@fluentui/date-time-utilities/8.5.4:
+    resolution: {integrity: sha512-PHLrbKs/s80xVkvFLQkaYb78a9nRUlohj8FCDBFQ8F1qPJj3iVH1RuSLyTiCIRJy/v1hW6KMEIXqLu/EoMefXw==}
     dependencies:
-      '@fluentui/set-version': 8.2.2
+      '@fluentui/set-version': 8.2.4
+      tslib: 2.4.1
+    dev: false
+
+  /@fluentui/dom-utilities/2.2.4:
+    resolution: {integrity: sha512-X4fN5zbvAETw9LE8bw9x5otKcpS3A3cB9wn/BookbTD4hkBESx06SzmX/WdabFq7qqbDqbURiQMpmdGUUlLsqw==}
+    dependencies:
+      '@fluentui/set-version': 8.2.4
       tslib: 2.4.1
     dev: false
 
   /@fluentui/font-icons-mdl2/8.5.2_jjcubslaw3srjyc3uporvmhana:
     resolution: {integrity: sha512-qDbZNiXVPx6X/Z2MpU3Oa2kWNSrk5+mG8ZRdH/thD7iwnV4l6DtBctNyXK/Cjq4EpG3eQQra8LBVxwOyDt0GqA==}
     dependencies:
-      '@fluentui/set-version': 8.2.2
-      '@fluentui/style-utilities': 8.8.1_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/utilities': 8.13.2_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/set-version': 8.2.4
+      '@fluentui/style-utilities': 8.8.5_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/utilities': 8.13.5_jjcubslaw3srjyc3uporvmhana
+      tslib: 2.4.1
+    transitivePeerDependencies:
+      - '@types/react'
+      - react
+    dev: false
+
+  /@fluentui/font-icons-mdl2/8.5.6_jjcubslaw3srjyc3uporvmhana:
+    resolution: {integrity: sha512-6yGZcc/fIeT/HDPjnn003TNuC/EUoiZTiyZQyPSSQl5PeOzkmNOqG8nq/l8s+qXHs4uZC/FH081vxPxSwA2qWA==}
+    dependencies:
+      '@fluentui/set-version': 8.2.4
+      '@fluentui/style-utilities': 8.8.5_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/utilities': 8.13.5_jjcubslaw3srjyc3uporvmhana
       tslib: 2.4.1
     transitivePeerDependencies:
       - '@types/react'
@@ -1153,39 +1172,54 @@ packages:
       '@types/react': '>=16.8.0 <19.0.0'
       react: '>=16.8.0 <19.0.0'
     dependencies:
-      '@fluentui/merge-styles': 8.5.3
-      '@fluentui/set-version': 8.2.2
-      '@fluentui/style-utilities': 8.8.1_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/utilities': 8.13.2_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/merge-styles': 8.5.5
+      '@fluentui/set-version': 8.2.4
+      '@fluentui/style-utilities': 8.8.5_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/utilities': 8.13.5_jjcubslaw3srjyc3uporvmhana
       '@types/react': 17.0.43
       react: 16.14.0
       tslib: 2.4.1
     dev: false
 
-  /@fluentui/keyboard-key/0.4.2:
-    resolution: {integrity: sha512-6WdMrnFpY94uWefUGGRqO4WiS6R+Kso6/FR95SxXMuS6kfnjGJCHzywFGZcN5OU1fX067Zna4aPQ/nDwYMgBPw==}
-    dependencies:
-      tslib: 2.4.1
-    dev: false
-
-  /@fluentui/merge-styles/8.5.3:
-    resolution: {integrity: sha512-bHWftN3zTp1bbBfmAEH8YK9UURWj2mffw7b7VaW2Og1qxwv3GMSza1cyv/d3EVqpMJ8AVwFv3mbi9p1ieMN9mw==}
-    dependencies:
-      '@fluentui/set-version': 8.2.2
-      tslib: 2.4.1
-    dev: false
-
-  /@fluentui/react-focus/8.8.8_jjcubslaw3srjyc3uporvmhana:
-    resolution: {integrity: sha512-N4JmmduWk50tIGTH6kYTDa1HJfJ9qzGztbmo7HEh+gzHLwHDkL0GOV5+VWfwPuBcUqD1eKP4fz/e/gCBswBShg==}
+  /@fluentui/foundation-legacy/8.2.26_jjcubslaw3srjyc3uporvmhana:
+    resolution: {integrity: sha512-7XKz23HB7IeIIXORS1os2fIakYTLTTGFcs+mnK5f/b4xFJAOxxdte6i10f2WsPPFiTjW1kLOzICsRsfwuHAVRw==}
     peerDependencies:
       '@types/react': '>=16.8.0 <19.0.0'
       react: '>=16.8.0 <19.0.0'
     dependencies:
-      '@fluentui/keyboard-key': 0.4.2
-      '@fluentui/merge-styles': 8.5.3
-      '@fluentui/set-version': 8.2.2
-      '@fluentui/style-utilities': 8.8.1_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/utilities': 8.13.2_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/merge-styles': 8.5.5
+      '@fluentui/set-version': 8.2.4
+      '@fluentui/style-utilities': 8.8.5_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/utilities': 8.13.5_jjcubslaw3srjyc3uporvmhana
+      '@types/react': 17.0.43
+      react: 16.14.0
+      tslib: 2.4.1
+    dev: false
+
+  /@fluentui/keyboard-key/0.4.4:
+    resolution: {integrity: sha512-nx0bQ9B5QtUym9a21ig5eHPt2T6EWaqrleFb37d6ImikP6xVXUHrWQJFuVS1CSg0n63KOPsmh1QvAUfxfmyLhw==}
+    dependencies:
+      tslib: 2.4.1
+    dev: false
+
+  /@fluentui/merge-styles/8.5.5:
+    resolution: {integrity: sha512-+cyN28iRAn8BWlZkMSEWzXpsJJiy3wWFxdJx5UnvU3iLK1slwog94inJak/BmnQKk3dFXK9vVPtDp2s3l+2/hg==}
+    dependencies:
+      '@fluentui/set-version': 8.2.4
+      tslib: 2.4.1
+    dev: false
+
+  /@fluentui/react-focus/8.8.10_jjcubslaw3srjyc3uporvmhana:
+    resolution: {integrity: sha512-CB1/VXRCvy6qLFLY8dCxOF8PPYxM2vayTRSNva4/uDqg60jlMSsdZiPJE1PnC9FQKUKXgMZp78kak/ckGc8VZQ==}
+    peerDependencies:
+      '@types/react': '>=16.8.0 <19.0.0'
+      react: '>=16.8.0 <19.0.0'
+    dependencies:
+      '@fluentui/keyboard-key': 0.4.4
+      '@fluentui/merge-styles': 8.5.5
+      '@fluentui/set-version': 8.2.4
+      '@fluentui/style-utilities': 8.8.3_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/utilities': 8.13.4_jjcubslaw3srjyc3uporvmhana
       '@types/react': 17.0.43
       react: 16.14.0
       tslib: 2.4.1
@@ -1197,9 +1231,23 @@ packages:
       '@types/react': '>=16.8.0 <19.0.0'
       react: '>=16.8.0 <19.0.0'
     dependencies:
-      '@fluentui/react-window-provider': 2.2.3_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/set-version': 8.2.2
-      '@fluentui/utilities': 8.13.2_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/react-window-provider': 2.2.5_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/set-version': 8.2.4
+      '@fluentui/utilities': 8.13.5_jjcubslaw3srjyc3uporvmhana
+      '@types/react': 17.0.43
+      react: 16.14.0
+      tslib: 2.4.1
+    dev: false
+
+  /@fluentui/react-hooks/8.6.15_jjcubslaw3srjyc3uporvmhana:
+    resolution: {integrity: sha512-oh1OdXAUwPyhMRum8TU2/C8V4hb69qGFTh/XYzyfiAwa0UzODszq/LoaDyVThEJEi5OBPdeuXturAvgqCT8kNw==}
+    peerDependencies:
+      '@types/react': '>=16.8.0 <19.0.0'
+      react: '>=16.8.0 <19.0.0'
+    dependencies:
+      '@fluentui/react-window-provider': 2.2.5_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/set-version': 8.2.4
+      '@fluentui/utilities': 8.13.5_jjcubslaw3srjyc3uporvmhana
       '@types/react': 17.0.43
       react: 16.14.0
       tslib: 2.4.1
@@ -1216,13 +1264,36 @@ packages:
       tslib: 2.4.1
     dev: false
 
+  /@fluentui/react-portal-compat-context/9.0.4_jjcubslaw3srjyc3uporvmhana:
+    resolution: {integrity: sha512-qw2lmkxZ2TmgC0pB2dvFyrzVffxBdpCx1BdWRaF+MRGUlTxRtqfybSx3Edsqa6NMewc3J0ThLMFdVFBQ5Yafqw==}
+    peerDependencies:
+      '@types/react': '>=16.8.0 <19.0.0'
+      react: '>=16.8.0 <19.0.0'
+    dependencies:
+      '@types/react': 17.0.43
+      react: 16.14.0
+      tslib: 2.4.1
+    dev: false
+
   /@fluentui/react-window-provider/2.2.3_jjcubslaw3srjyc3uporvmhana:
     resolution: {integrity: sha512-uJztbyMu7x/cSYnJ0Rbmult/t22zFnQG20Jtlhmh5/g+M8QiF/T7xz9dkNe4Hon4KmpqnZpd8ds4nmX0fwxODg==}
     peerDependencies:
       '@types/react': '>=16.8.0 <19.0.0'
       react: '>=16.8.0 <19.0.0'
     dependencies:
-      '@fluentui/set-version': 8.2.2
+      '@fluentui/set-version': 8.2.4
+      '@types/react': 17.0.43
+      react: 16.14.0
+      tslib: 2.4.1
+    dev: false
+
+  /@fluentui/react-window-provider/2.2.5_jjcubslaw3srjyc3uporvmhana:
+    resolution: {integrity: sha512-uct8xpHLFoECeoM8xRsw98yrxLV1MY2rA/Ml0M65JSWREdDUk+btgu7HLZp4QV/GpfPvP1WiNFLSLhrZFSnIAg==}
+    peerDependencies:
+      '@types/react': '>=16.8.0 <19.0.0'
+      react: '>=16.8.0 <19.0.0'
+    dependencies:
+      '@fluentui/set-version': 8.2.4
       '@types/react': 17.0.43
       react: 16.14.0
       tslib: 2.4.1
@@ -1239,15 +1310,15 @@ packages:
       '@fluentui/date-time-utilities': 8.5.2
       '@fluentui/font-icons-mdl2': 8.5.2_jjcubslaw3srjyc3uporvmhana
       '@fluentui/foundation-legacy': 8.2.22_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/merge-styles': 8.5.3
-      '@fluentui/react-focus': 8.8.8_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/merge-styles': 8.5.5
+      '@fluentui/react-focus': 8.8.10_jjcubslaw3srjyc3uporvmhana
       '@fluentui/react-hooks': 8.6.12_jjcubslaw3srjyc3uporvmhana
       '@fluentui/react-portal-compat-context': 9.0.3_jjcubslaw3srjyc3uporvmhana
       '@fluentui/react-window-provider': 2.2.3_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/set-version': 8.2.2
-      '@fluentui/style-utilities': 8.8.1_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/theme': 2.6.17_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/utilities': 8.13.2_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/set-version': 8.2.4
+      '@fluentui/style-utilities': 8.8.3_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/theme': 2.6.21_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/utilities': 8.13.5_jjcubslaw3srjyc3uporvmhana
       '@microsoft/load-themed-styles': 1.10.283
       '@types/react': 17.0.43
       '@types/react-dom': 17.0.14
@@ -1256,26 +1327,26 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@fluentui/react/8.99.2_4m2wvydqs44ynq5jn47t4o4iju:
-    resolution: {integrity: sha512-hmRgAwbiCEJBVWUY+hEyv/E6sdXxWVJ8kclslWIQgLczwSdpLdWyXe1i1IVM0elVc1n7iq8fRySi8DCvtp5VMw==}
+  /@fluentui/react/8.103.9_4m2wvydqs44ynq5jn47t4o4iju:
+    resolution: {integrity: sha512-g+Aqu8dTFXozL8WEy+wMF7IR7aDVDI9o9z/un5f6KKW4tcbAuetvSbpN7EVDtRPu/t+f7VuwB8YVm3F88iq5Nw==}
     peerDependencies:
       '@types/react': '>=16.8.0 <19.0.0'
       '@types/react-dom': '>=16.8.0 <19.0.0'
       react: '>=16.8.0 <19.0.0'
       react-dom: '>=16.8.0 <19.0.0'
     dependencies:
-      '@fluentui/date-time-utilities': 8.5.2
-      '@fluentui/font-icons-mdl2': 8.5.2_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/foundation-legacy': 8.2.22_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/merge-styles': 8.5.3
-      '@fluentui/react-focus': 8.8.8_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/react-hooks': 8.6.12_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/react-portal-compat-context': 9.0.3_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/react-window-provider': 2.2.3_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/set-version': 8.2.2
-      '@fluentui/style-utilities': 8.8.1_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/theme': 2.6.17_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/utilities': 8.13.2_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/date-time-utilities': 8.5.4
+      '@fluentui/font-icons-mdl2': 8.5.6_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/foundation-legacy': 8.2.26_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/merge-styles': 8.5.5
+      '@fluentui/react-focus': 8.8.10_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/react-hooks': 8.6.15_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/react-portal-compat-context': 9.0.4_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/react-window-provider': 2.2.5_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/set-version': 8.2.4
+      '@fluentui/style-utilities': 8.8.3_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/theme': 2.6.21_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/utilities': 8.13.4_jjcubslaw3srjyc3uporvmhana
       '@microsoft/load-themed-styles': 1.10.283
       '@types/react': 17.0.43
       '@types/react-dom': 17.0.14
@@ -1284,19 +1355,19 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@fluentui/set-version/8.2.2:
-    resolution: {integrity: sha512-Vg20KZ0ufgWjxx6GFbqC5wiVxXZDUWgNT0r0By/Eyj4bUSb1jG6lmf5z1oY1dUX0YS6Cp5e6GnvbNdXg5E7orA==}
+  /@fluentui/set-version/8.2.4:
+    resolution: {integrity: sha512-v12VUrpThYcJESFrnu3LdL7/s957hoSCJ3t8C014Hp2IOmk3dnZRZJymf1k/RAOXztS4w9dF2Zhs8uP31qwcZw==}
     dependencies:
       tslib: 2.4.1
     dev: false
 
-  /@fluentui/style-utilities/8.8.1_jjcubslaw3srjyc3uporvmhana:
-    resolution: {integrity: sha512-asOdSI9+9qgnvpriRuAluREM94iyJJOONA+yZvJiYkVttgFRt77xWrabFjuEbX4pPCmqHhmA0d7dz8zPKgV7cA==}
+  /@fluentui/style-utilities/8.8.3_jjcubslaw3srjyc3uporvmhana:
+    resolution: {integrity: sha512-DxcCIHnKdaBpzdIawZIMcVyn8xVbK6A37J0Q7MPdjb9VV4Nsp/ohWnM9nPrPlbB+RSsKWrIssgWJdn5yZM9Wxg==}
     dependencies:
-      '@fluentui/merge-styles': 8.5.3
-      '@fluentui/set-version': 8.2.2
-      '@fluentui/theme': 2.6.17_jjcubslaw3srjyc3uporvmhana
-      '@fluentui/utilities': 8.13.2_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/merge-styles': 8.5.5
+      '@fluentui/set-version': 8.2.4
+      '@fluentui/theme': 2.6.21_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/utilities': 8.13.4_jjcubslaw3srjyc3uporvmhana
       '@microsoft/load-themed-styles': 1.10.283
       tslib: 2.4.1
     transitivePeerDependencies:
@@ -1304,29 +1375,57 @@ packages:
       - react
     dev: false
 
-  /@fluentui/theme/2.6.17_jjcubslaw3srjyc3uporvmhana:
-    resolution: {integrity: sha512-9pxMhOugX3bwY86TresiR6UQNszylD4oiVCAj5s5li7zGos+psdOMrmz9LykIEn1mbAofT/XvRCYfiKECtHEpA==}
+  /@fluentui/style-utilities/8.8.5_jjcubslaw3srjyc3uporvmhana:
+    resolution: {integrity: sha512-qUi+1a2v0nWo3LB4c13Qf81qQH1yO9YHAgfbRNLqs4w7Oie7NDBDkq7UgRmLErpSVEafvlcCZeCSKW5pvSxz5w==}
+    dependencies:
+      '@fluentui/merge-styles': 8.5.5
+      '@fluentui/set-version': 8.2.4
+      '@fluentui/theme': 2.6.21_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/utilities': 8.13.5_jjcubslaw3srjyc3uporvmhana
+      '@microsoft/load-themed-styles': 1.10.283
+      tslib: 2.4.1
+    transitivePeerDependencies:
+      - '@types/react'
+      - react
+    dev: false
+
+  /@fluentui/theme/2.6.21_jjcubslaw3srjyc3uporvmhana:
+    resolution: {integrity: sha512-jqPOo375pt1bQ4WuzP2GP5gfgeBK/PDHUf4+DxDTZ9y0TXp8KxV4jCp5Rq2rnVYlXi51JQ2Y+snFtMDcMTyfRQ==}
     peerDependencies:
       '@types/react': '>=16.8.0 <19.0.0'
       react: '>=16.8.0 <19.0.0'
     dependencies:
-      '@fluentui/merge-styles': 8.5.3
-      '@fluentui/set-version': 8.2.2
-      '@fluentui/utilities': 8.13.2_jjcubslaw3srjyc3uporvmhana
+      '@fluentui/merge-styles': 8.5.5
+      '@fluentui/set-version': 8.2.4
+      '@fluentui/utilities': 8.13.5_jjcubslaw3srjyc3uporvmhana
       '@types/react': 17.0.43
       react: 16.14.0
       tslib: 2.4.1
     dev: false
 
-  /@fluentui/utilities/8.13.2_jjcubslaw3srjyc3uporvmhana:
-    resolution: {integrity: sha512-0AHJBMyYVI7vFChXdPynFf32IYB2y6z4EB5ACzW8UkPFrwkHncbj5pPPE24MCbV7jYR49YrHn9eLY38B+H4iiw==}
+  /@fluentui/utilities/8.13.4_jjcubslaw3srjyc3uporvmhana:
+    resolution: {integrity: sha512-oJ6q8BvVdr0eEG5RgI/VBtKX2JvJV2h0AUkR7FwZoT8fvUUH/iykPZO/5CAVcQDyiXj73hmBibiEGkWNFFuPfw==}
     peerDependencies:
       '@types/react': '>=16.8.0 <19.0.0'
       react: '>=16.8.0 <19.0.0'
     dependencies:
-      '@fluentui/dom-utilities': 2.2.2
-      '@fluentui/merge-styles': 8.5.3
-      '@fluentui/set-version': 8.2.2
+      '@fluentui/dom-utilities': 2.2.4
+      '@fluentui/merge-styles': 8.5.5
+      '@fluentui/set-version': 8.2.4
+      '@types/react': 17.0.43
+      react: 16.14.0
+      tslib: 2.4.1
+    dev: false
+
+  /@fluentui/utilities/8.13.5_jjcubslaw3srjyc3uporvmhana:
+    resolution: {integrity: sha512-YusKxwTEQmsJidEWxn8blf5ehBmBDMZDrOjQkSX4piCvi/57MfigQZ57L3Bdic8kDKsabVtS1IVMHLZzGy4zcQ==}
+    peerDependencies:
+      '@types/react': '>=16.8.0 <19.0.0'
+      react: '>=16.8.0 <19.0.0'
+    dependencies:
+      '@fluentui/dom-utilities': 2.2.4
+      '@fluentui/merge-styles': 8.5.5
+      '@fluentui/set-version': 8.2.4
       '@types/react': 17.0.43
       react: 16.14.0
       tslib: 2.4.1
@@ -2911,7 +3010,7 @@ packages:
       htmlparser2: 6.1.0
       parse5: 6.0.1
       parse5-htmlparser2-tree-adapter: 6.0.1
-      tslib: 2.4.0
+      tslib: 2.4.1
     dev: true
 
   /chokidar/3.5.3:
@@ -7929,10 +8028,6 @@ packages:
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
-    dev: true
-
-  /tslib/2.4.0:
-    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
     dev: true
 
   /tslib/2.4.1:

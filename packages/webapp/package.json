@@ -47,10 +47,10 @@
         "redux": "4.2.0"
     },
     "dependencies": {
-        "@fluentui/react": "8.99.2",
-        "@fluentui/react-focus": "8.8.8",
-        "@fluentui/style-utilities": "8.8.1",
-        "@fluentui/utilities": "8.13.2",
+        "@fluentui/react": "8.103.9",
+        "@fluentui/react-focus": "8.8.10",
+        "@fluentui/style-utilities": "8.8.3",
+        "@fluentui/utilities": "8.13.4",
         "@sap-ux/ui-components": "1.1.1",
         "react-infinite-scroll-component": "6.1.0"
     }
