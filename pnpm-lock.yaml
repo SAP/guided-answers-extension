@@ -108,7 +108,6 @@ importers:
       '@types/react': 17.0.43
       '@types/react-dom': 17.0.14
       '@types/react-redux': 7.1.24
-      '@types/react-transition-group': 4.4.5
       '@vscode/webview-ui-toolkit': 1.1.0
       autoprefixer: 10.4.13
       enzyme: 3.11.0
@@ -130,7 +129,6 @@ importers:
       react-icons: 4.6.0
       react-infinite-scroll-component: 6.1.0
       react-redux: 7.2.8
-      react-transition-group: 4.4.5
       redux: 4.2.0
     dependencies:
       '@fluentui/react': 8.99.2_4m2wvydqs44ynq5jn47t4o4iju
@@ -138,9 +136,7 @@ importers:
       '@fluentui/style-utilities': 8.8.1_jjcubslaw3srjyc3uporvmhana
       '@fluentui/utilities': 8.13.2_jjcubslaw3srjyc3uporvmhana
       '@sap-ux/ui-components': 1.1.1_4m2wvydqs44ynq5jn47t4o4iju
-      '@types/react-transition-group': 4.4.5
       react-infinite-scroll-component: 6.1.0_react@16.14.0
-      react-transition-group: 4.4.5_wcqkhtmu7mswc6yz4uyexck3ty
     devDependencies:
       '@reduxjs/toolkit': 1.8.6_skbaxytftew6n6o3a7teolroom
       '@sap/guided-answers-extension-types': link:../types
@@ -2150,12 +2146,6 @@ packages:
       hoist-non-react-statics: 3.3.2
       redux: 4.2.0
     dev: true
-
-  /@types/react-transition-group/4.4.5:
-    resolution: {integrity: sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==}
-    dependencies:
-      '@types/react': 17.0.43
-    dev: false
 
   /@types/react/17.0.43:
     resolution: {integrity: sha512-8Q+LNpdxf057brvPu1lMtC5Vn7J119xrP1aq4qiaefNioQUYANF/CYeK4NsKorSZyUGJ66g0IM+4bbjwx45o2A==}
@@ -7073,20 +7063,6 @@ packages:
       react-is: 16.13.1
       scheduler: 0.19.1
     dev: true
-
-  /react-transition-group/4.4.5_wcqkhtmu7mswc6yz4uyexck3ty:
-    resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
-    peerDependencies:
-      react: '>=16.6.0'
-      react-dom: '>=16.6.0'
-    dependencies:
-      '@babel/runtime': 7.20.1
-      dom-helpers: 5.2.1
-      loose-envify: 1.4.0
-      prop-types: 15.8.1
-      react: 16.14.0
-      react-dom: 16.14.0_react@16.14.0
-    dev: false
 
   /react-virtualized/9.22.3_wcqkhtmu7mswc6yz4uyexck3ty:
     resolution: {integrity: sha512-MKovKMxWTcwPSxE1kK1HcheQTWfuCxAuBoSTf2gwyMM21NdX/PXUhnoP8Uc5dRKd+nKm8v41R36OellhdCpkrw==}

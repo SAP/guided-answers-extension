@@ -87,29 +87,3 @@
         line-height: 16px;
     }
 }
-
-// for react trasntion group
-.example-enter {
-    opacity: 0.01;
-}
-
-.example-enter.example-enter-active {
-    opacity: 1;
-    transition: opacity 2s ease-in;
-}
-
-.example-leave {
-    opacity: 1;
-}
-
-.example-leave.example-leave-active {
-    opacity: 0.01;
-    transition: opacity 2s ease-out;
-}
-.feedback-section-dialog .dialog-enter{
-    transition-timing-function: 0.5s ease-in;
-}
-
-.feedback-section-dialog .dialog-exit{
-    transition-timing-function: 0.5s ease-out;
-}
