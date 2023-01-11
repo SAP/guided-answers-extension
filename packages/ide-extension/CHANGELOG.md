@@ -1,5 +1,17 @@
 # sap-guided-answer-extension
 
+## 1.6.1
+
+### Patch Changes
+
+-   1f24fdb: Update dependencies
+
+## 1.6.0
+
+### Minor Changes
+
+-   46ca9c2: guided answers opens to the side when another window is open in the editor
+
 ## 1.5.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.7.1
+
+### Patch Changes
+
+-   1f24fdb: Update dependencies
+
 ## 1.7.0
 
 ### Minor Changes

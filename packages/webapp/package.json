@@ -1,7 +1,7 @@
 {
     "name": "@sap/guided-answers-extension-webapp",
     "description": "Guided Answers extension webview module",
-    "version": "1.7.0",
+    "version": "1.7.1",
     "author": "SAP SE",
     "main": "dist/index.js",
     "private": true,
@@ -17,32 +17,32 @@
         "test": "jest --maxWorkers=2 --silent"
     },
     "devDependencies": {
-        "@reduxjs/toolkit": "1.8.6",
+        "@reduxjs/toolkit": "1.9.1",
         "@sap/guided-answers-extension-types": "workspace:*",
         "@types/enzyme": "3.10.12",
         "@types/enzyme-adapter-react-16": "1.0.6",
-        "@types/react": "17.0.43",
-        "@types/react-dom": "17.0.14",
+        "@types/react": "17.0.52",
+        "@types/react-dom": "17.0.18",
         "@types/react-redux": "7.1.24",
-        "@vscode/webview-ui-toolkit": "1.1.0",
+        "@vscode/webview-ui-toolkit": "1.2.0",
         "autoprefixer": "10.4.13",
         "enzyme": "3.11.0",
-        "enzyme-adapter-react-16": "1.15.6",
-        "esbuild": "0.15.12",
-        "esbuild-css-modules-plugin": "2.6.2",
+        "enzyme-adapter-react-16": "1.15.7",
+        "esbuild": "0.16.10",
+        "esbuild-css-modules-plugin": "2.6.3",
         "esbuild-plugin-replace": "1.3.0",
         "esbuild-plugin-svgr": "1.0.1",
-        "esbuild-sass-plugin": "2.4.0",
+        "esbuild-sass-plugin": "2.4.4",
         "html-react-parser": "3.0.4",
-        "i18next": "21.6.14",
+        "i18next": "21.10.0",
         "jest-css-modules-transform": "4.4.2",
         "jest-environment-jsdom": "28.1.2",
         "path": "0.12.7",
-        "postcss": "8.4.18",
+        "postcss": "8.4.20",
         "react": "16.14.0",
         "react-dom": "16.14.0",
-        "react-i18next": "11.10.0",
-        "react-icons": "4.6.0",
+        "react-i18next": "11.18.6",
+        "react-icons": "4.7.1",
         "react-redux": "7.2.8",
         "redux": "4.2.0"
     },
@@ -51,7 +51,11 @@
         "@fluentui/react-focus": "8.8.10",
         "@fluentui/style-utilities": "8.8.3",
         "@fluentui/utilities": "8.13.4",
+<<<<<<< HEAD
         "@sap-ux/ui-components": "1.1.1",
+=======
+        "@sap-ux/ui-components": "1.1.0",
+>>>>>>> main
         "react-infinite-scroll-component": "6.1.0"
     }
 }
