@@ -51,11 +51,7 @@
         "@fluentui/react-focus": "8.8.10",
         "@fluentui/style-utilities": "8.8.3",
         "@fluentui/utilities": "8.13.4",
-<<<<<<< HEAD
         "@sap-ux/ui-components": "1.1.1",
-=======
-        "@sap-ux/ui-components": "1.1.0",
->>>>>>> main
         "react-infinite-scroll-component": "6.1.0"
     }
 }
