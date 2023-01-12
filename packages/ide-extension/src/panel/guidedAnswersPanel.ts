@@ -52,7 +52,7 @@ export class GuidedAnswersPanel {
     /**
      * Creates a webview panel.
      */
-    private async createPanel(): Promise<void> {
+    private createPanel(): void {
         /**
          * vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421), therefore node_modules from same repo are missing.
          * To overcome this we copy guidedAnswers.js and guidedAnswers.css to dist/ folder in esbuild.js
@@ -230,9 +230,9 @@ export class GuidedAnswersPanel {
     /**
      * Show Application Info panel and set application info data.
      */
-    public async show(): Promise<void> {
+    public show(): void {
         if (this.panel === undefined) {
-            await this.createPanel();
+            this.createPanel();
         }
         this.panel?.reveal();
     }
