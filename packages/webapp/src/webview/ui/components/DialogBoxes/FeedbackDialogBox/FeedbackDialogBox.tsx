@@ -62,10 +62,9 @@ export function FeedbackDialogBox(): ReactElement {
                 modalProps={modalProps}
                 isOpen={isVisible}
                 title={dialogContentProps.title}
-                onDismiss={ useCallback(() => {
+                onDismiss={useCallback(() => {
                     actions.feedbackStatus(false);
-                },[])
-                    }>
+                }, [])}>
                 <p className="ms-Dialog-subText">{i18next.t('FEEDBACK_DIALOG_SUBTEXT')}</p>
                 <TextField
                     label={i18next.t('FEEDBACK_DIALOG_SUGGESTION')}
