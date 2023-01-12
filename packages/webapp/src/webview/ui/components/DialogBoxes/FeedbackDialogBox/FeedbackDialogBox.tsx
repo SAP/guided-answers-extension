@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect, FormEvent } from 'react';
+import React, { ReactElement, useState, useEffect, FormEvent, useCallback } from 'react';
 import './FeedbackDialogBox.scss';
 import { DialogFooter } from '@fluentui/react/lib/Dialog';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
@@ -62,9 +62,10 @@ export function FeedbackDialogBox(): ReactElement {
                 modalProps={modalProps}
                 isOpen={isVisible}
                 title={dialogContentProps.title}
-                onDismiss={() => {
+                onDismiss={ useCallback(() => {
                     actions.feedbackStatus(false);
-                }}>
+                },[])
+                    }>
                 <p className="ms-Dialog-subText">{i18next.t('FEEDBACK_DIALOG_SUBTEXT')}</p>
                 <TextField
                     label={i18next.t('FEEDBACK_DIALOG_SUGGESTION')}
