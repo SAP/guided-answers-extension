@@ -3,7 +3,7 @@ module.exports = {
     automock: false,
     clearMocks: true,
     collectCoverage: true,
-    collectCoverageFrom: ['src/**/*.{ts,tsx}'],
+    collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.d.ts'],
     testPathIgnorePatterns: ['<rootDir>/node_modules/,<rootDir>/test/'],
     errorOnDeprecated: true,
     globals: {
@@ -18,7 +18,7 @@ module.exports = {
     notify: false,
     notifyMode: 'failure',
     preset: 'ts-jest',
-    setupFilesAfterEnv: ['./test/test-setup.js'],
+    setupFilesAfterEnv: ['./test/test-setup.js', './test/jest-setup.ts'],
     testEnvironment: 'jsdom',
     testMatch: ['**/test/**/*.(test).ts(x)?'],
     transform: {

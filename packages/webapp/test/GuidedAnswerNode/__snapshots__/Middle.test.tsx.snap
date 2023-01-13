@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Middle /> Should render a Middle component 1`] = `
+<div
+  aria-hidden="true"
+>
+  <div
+    class="column"
+    id="middle"
+  >
+    <div
+      class="body_container"
+    >
+      <header>
+        SAP Fiori Tools
+      </header>
+      <div
+        id="hr"
+      />
+      <div
+        class="ms-FocusZone css-109"
+        data-focuszone-id="FocusZone0"
+      >
+        <div
+          class="content"
+        >
+          <p>
+            SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code
+          </p>
+        </div>
+      </div>
+      <p
+        class="guided-answer__node__question"
+      >
+        I have a problem with
+      </p>
+    </div>
+    <div
+      class="ms-FocusZone css-109"
+      data-focuszone-id="FocusZone1"
+      role="listbox"
+    >
+      <div
+        class="guided-answer__node"
+      >
+        <button
+          class="guided-answer__node__edge"
+          id="edge_button"
+          role="option"
+          tabindex="0"
+        >
+          Deployment
+        </button>
+        <button
+          class="guided-answer__node__edge"
+          id="edge_button"
+          role="option"
+          tabindex="-1"
+        >
+          Fiori Generator
+        </button>
+      </div>
+    </div>
+    <span
+      class="ms-layer"
+    />
+    <span
+      class="ms-layer"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
+<div
+  aria-hidden="true"
+>
+  <div
+    class="column"
+    id="middle"
+  >
+    <div
+      class="body_container"
+    >
+      <header>
+        SAP Fiori Tools
+      </header>
+      <div
+        id="hr"
+      />
+      <div
+        class="ms-FocusZone css-109"
+        data-focuszone-id="FocusZone18"
+      >
+        <span
+          id="enhancedHtml"
+        >
+          Test
+        </span>
+      </div>
+      <p
+        class="guided-answer__node__question"
+      >
+        I have a problem with
+      </p>
+    </div>
+    <div
+      class="ms-FocusZone css-109"
+      data-focuszone-id="FocusZone19"
+      role="listbox"
+    >
+      <div
+        class="guided-answer__node"
+      >
+        <button
+          class="guided-answer__node__edge"
+          id="edge_button"
+          role="option"
+          tabindex="0"
+        >
+          Deployment
+        </button>
+        <button
+          class="guided-answer__node__edge"
+          id="edge_button"
+          role="option"
+          tabindex="-1"
+        >
+          Fiori Generator
+        </button>
+      </div>
+    </div>
+    <span
+      class="ms-layer"
+    />
+    <span
+      class="ms-layer"
+    />
+  </div>
+</div>
+`;

@@ -253,6 +253,8 @@ export function Filters() {
                         }`}></UIIconButton>
                 </FocusZone>
                 <UIDialog
+                    //@ts-ignore
+                    id="dialog-filter"
                     className="dialog-filter"
                     dialogContentProps={{ title: filterType[filter].title }}
                     isOpen={filterType[filter].visibility}

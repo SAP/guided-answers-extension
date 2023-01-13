@@ -1,8 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { actions } from '../../src/webview/state';
+import { render, fireEvent, cleanup } from '@testing-library/react';
+import { screen } from '@testing-library/dom';
 import { AllAnswersButton, BackButton, RestartButton } from '../../src/webview/ui/components/Header/NavigationButtons';
-import i18next from 'i18next';
 import { initI18n } from '../../src/webview/i18n';
 
 jest.mock('../../src/webview/state', () => {
@@ -15,80 +15,46 @@ jest.mock('../../src/webview/state', () => {
     };
 });
 describe('<AllAnswersButton />', () => {
-    let wrapper: any;
     initI18n();
-    beforeEach(() => {
-        wrapper = shallow(<AllAnswersButton />);
-    });
-
-    afterEach(() => {
-        jest.clearAllMocks();
-        wrapper.unmount();
-    });
+    afterEach(cleanup);
 
     it('Should render a AllAnswersButton component', () => {
-        //Test UI rendering
-        expect(wrapper.find('.guided-answer__header__navButtons').length).toBe(1);
-        expect(wrapper.find('.guided-answer__header__navButtons').hasClass('home-icon')).toBe(true);
-        expect(wrapper.find('.guided-answer__header__navButtons').props().onClick).toBeDefined();
-        expect(wrapper.find('VscHome').length).toBe(1);
-        expect(wrapper.find('.guided-answer__header__navButtons__content__text').hasClass('text-underline')).toBe(true);
-        expect(wrapper.find('.guided-answer__header__navButtons__content__text').text()).toBe(i18next.t('ALL_ANSWERS'));
+        const { container } = render(<AllAnswersButton />);
+        expect(container).toMatchSnapshot();
 
         //Test click event
-        wrapper.find('.guided-answer__header__navButtons').simulate('click');
+        const element = screen.getByTestId('all-answers-button');
+        fireEvent.click(element);
         expect(actions.goToAllAnswers).toBeCalled();
     });
 });
 
 describe('<BackButton />', () => {
-    let wrapper: any;
     initI18n();
-    beforeEach(() => {
-        wrapper = shallow(<BackButton />);
-    });
-
-    afterEach(() => {
-        jest.clearAllMocks();
-        wrapper.unmount();
-    });
+    afterEach(cleanup);
 
     it('Should render a BackButton component', () => {
-        //Test UI rendering
-        expect(wrapper.find('.guided-answer__header__navButtons').length).toBe(1);
-        expect(wrapper.find('.guided-answer__header__navButtons').props().onClick).toBeDefined();
-        expect(wrapper.find('VscArrowLeft').length).toBe(1);
-        expect(wrapper.find('.guided-answer__header__navButtons__content').at(1).hasClass('text-underline')).toBe(true);
-        expect(wrapper.find('.guided-answer__header__navButtons__content').at(1).text()).toBe(i18next.t('STEP_BACK'));
+        const { container } = render(<BackButton />);
+        expect(container).toMatchSnapshot();
 
         //Test click event
-        wrapper.find('.guided-answer__header__navButtons').simulate('click');
+        const element = screen.getByTestId('back-button');
+        fireEvent.click(element);
         expect(actions.goToPreviousPage).toBeCalled();
     });
 });
 
 describe('<RestartButton />', () => {
-    let wrapper: any;
     initI18n();
-    beforeEach(() => {
-        wrapper = shallow(<RestartButton />);
-    });
-
-    afterEach(() => {
-        jest.clearAllMocks();
-        wrapper.unmount();
-    });
+    afterEach(cleanup);
 
     it('Should render a RestartButton component', () => {
-        //Test UI rendering
-        expect(wrapper.find('.guided-answer__header__navButtons').length).toBe(1);
-        expect(wrapper.find('.guided-answer__header__navButtons').props().onClick).toBeDefined();
-        expect(wrapper.find('VscRefresh').length).toBe(1);
-        expect(wrapper.find('.guided-answer__header__navButtons__content').at(1).hasClass('text-underline')).toBe(true);
-        expect(wrapper.find('.guided-answer__header__navButtons__content').at(1).text()).toBe(i18next.t('RESTART'));
+        const { container } = render(<RestartButton />);
+        expect(container).toMatchSnapshot();
 
         //Test click event
-        wrapper.find('.guided-answer__header__navButtons').simulate('click');
+        const element = screen.getByTestId('restart-button');
+        fireEvent.click(element);
         expect(actions.restartAnswer).toBeCalled();
     });
 });

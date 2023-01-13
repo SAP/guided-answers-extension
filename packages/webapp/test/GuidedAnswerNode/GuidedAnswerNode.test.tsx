@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react';
-import { shallow } from 'enzyme';
+import React from 'react';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 import { GuidedAnswerNode } from '../../src/webview/ui/components/GuidedAnswerNode';
 import { initI18n } from '../../src/webview/i18n';
+import { render, cleanup } from '@testing-library/react';
 
 jest.mock('react-redux', () => ({
     ...jest.requireActual('react-redux'),
@@ -24,25 +24,16 @@ jest.mock('react-redux', () => ({
 }));
 
 describe('<GuidedAnswerNode />', () => {
-    let wrapper: any;
     initI18n();
-    beforeEach(() => {
-        wrapper = shallow(<GuidedAnswerNode />);
-    });
-
-    afterEach(() => {
-        jest.clearAllMocks();
-        wrapper.unmount();
-    });
+    afterEach(cleanup);
 
     it('Should render a GuidedAnswerNode component', () => {
-        const component = wrapper.html();
-        expect(component).toMatchInlineSnapshot(
-            `"<section class="guided-answer__node__body"><div id="left" class="column"></div><div id="middle" class="column"><div class="body_container"><header>SAP Fiori Tools</header><div id="hr"></div><div class="ms-FocusZone css-109" data-focuszone-id="FocusZone0"><p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code <button title="Run command to archive a Fiori tools project from current workspace" class="enhancement-link">Fiori: Archive Project</button></p></div><p class="guided-answer__node__question">I have a problem with</p></div><div role="listbox" class="ms-FocusZone css-109" data-focuszone-id="FocusZone1"><div class="guided-answer__node"><button role="option" class="guided-answer__node__edge">Deployment</button><button role="option" class="guided-answer__node__edge">Fiori Generator</button></div></div><span class="ms-layer"></span><span class="ms-layer"></span></div></section>"`
-        );
+        const { container } = render(<GuidedAnswerNode />);
+        expect(container).toMatchSnapshot();
     });
 
-    it('Should render an empty GuidedAnswerNode component', () => {
-        expect(wrapper.find('Fragment').length).toBe(1);
+    it('Should render a GuidedAnswerNode empty component because the activeGuidedAnswerNode array is empty', () => {
+        const { container } = render(<GuidedAnswerNode />);
+        expect(container).toMatchSnapshot();
     });
 });

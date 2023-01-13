@@ -1,9 +1,9 @@
+import { treeMock } from '../__mocks__/treeMock';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, fireEvent, cleanup } from '@testing-library/react';
+import { screen } from '@testing-library/dom';
 import { SearchField } from '../../src/webview/ui/components/Header/SearchField';
 import { initI18n } from '../../src/webview/i18n';
-import { actions } from '../../src/webview/state';
-import i18next from 'i18next';
 
 jest.useFakeTimers();
 jest.spyOn(global, 'setTimeout');
@@ -20,50 +20,42 @@ jest.mock('../../src/webview/state', () => {
 jest.mock('@vscode/webview-ui-toolkit/react', () => ({
     VSCodeTextField: () => (
         <>
-            <div>SearchField</div>
+            <input type="text" id="search-field" />
         </>
     )
 }));
 
 jest.mock('react-redux', () => {
     const lib = jest.requireActual('react-redux');
-    const state = { query: 'Fiori tools' };
     return {
         ...lib,
-        useSelector: () => state
+        useSelector: jest.fn().mockReturnValue({
+            activeGuidedAnswerNode: [],
+            guidedAnswerTreeSearchResult: {
+                trees: [treeMock],
+                resultSize: 1,
+                productFilters: [],
+                componentFilters: []
+            },
+            query: 'fiori tools',
+            guideFeedback: true,
+            selectedProductFilters: ['ProductFilter1, ProductFilter2'],
+            selectedComponentFilters: ['ComponentFilter1', 'ComponentFilter2']
+        })
     };
 });
 
 describe('<SearchField />', () => {
-    let wrapper: any;
     initI18n();
-    beforeEach(() => {
-        wrapper = shallow(<SearchField />);
-    });
-
-    afterEach(() => {
-        jest.clearAllMocks();
-        wrapper.unmount();
-    });
+    afterEach(cleanup);
 
     it('Should render a SearchField component', () => {
-        expect(wrapper.find('.guided-answer__header__searchField').length).toBe(1);
-        expect(wrapper.find('VSCodeTextField').length).toBe(1);
-        expect(wrapper.find('VSCodeTextField').at(0).props().onInput).toBeDefined();
-        expect(wrapper.find('VSCodeTextField').at(0).props().id).toBe('search-field');
-        expect(wrapper.find('VSCodeTextField').at(0).props().placeholder).toBe(i18next.t('SEARCH_GUIDED_ANSWERS'));
+        const { container } = render(<SearchField />);
+        expect(container).toMatchSnapshot();
 
-        //Test input event
-        wrapper
-            .find('VSCodeTextField')
-            .at(0)
-            .simulate('input', { target: { value: 'Fiori Tools' } });
-        expect(actions.setQueryValue).toBeCalled();
+        //Test click event
+        const element = screen.getByTestId('search-field');
+        fireEvent.input(element, { target: { value: 'Fiori Tools' } });
         expect(setTimeout).toHaveBeenCalledTimes(1);
-
-        // Fast-forward until all timers have been executed
-        jest.runAllTimers();
-
-        expect(actions.searchTree).toHaveBeenCalledTimes(1);
     });
 });

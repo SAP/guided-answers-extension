@@ -1,8 +1,14 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { actions } from '../../src/webview/state';
 import { FeedbackSection } from '../../src/webview/ui/components/FeedbackSection/FeedbackSection';
 import { initI18n } from '../../src/webview/i18n';
+import { render, fireEvent, cleanup } from '@testing-library/react';
+import { screen } from '@testing-library/dom';
+import configureMockStore from 'redux-mock-store';
+import { getInitialState, reducer } from '../../src/webview/state/reducers';
+import { AppState } from '../../src/webview/types';
+import { Provider } from 'react-redux';
+import { treeMock } from '../__mocks__/treeMock';
 
 jest.mock('../../src/webview/state', () => {
     return {
@@ -13,37 +19,61 @@ jest.mock('../../src/webview/state', () => {
     };
 });
 
-jest.mock('react-redux', () => ({
-    ...jest.requireActual('react-redux'),
-    useSelector: jest.fn().mockReturnValue({ guideFeedback: null })
-}));
+const createState = (initialState: AppState) => (actions: any[]) => actions.reduce(reducer, initialState);
+const mockStore = configureMockStore();
 
 describe('Feedback Section component', () => {
-    let wrapper: any;
     initI18n();
-    beforeEach(() => {
-        wrapper = shallow(<FeedbackSection />);
+    afterEach(cleanup);
+
+    const stateWithActiveAnswer = getInitialState();
+
+    // When the FeedbackSection component is rendered we are checking for the below props in state
+    stateWithActiveAnswer.activeGuidedAnswer = treeMock;
+    stateWithActiveAnswer.activeGuidedAnswerNode.push({
+        BODY: '<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p>',
+        EDGES: [
+            { LABEL: 'Deployment', TARGET_NODE: 45996, ORD: 1 },
+            { LABEL: 'Fiori Generator', TARGET_NODE: 48363, ORD: 2 }
+        ],
+        NODE_ID: 45995,
+        QUESTION: 'I have a problem with',
+        TITLE: 'SAP Fiori Tools'
     });
 
-    afterEach(() => {
-        jest.clearAllMocks();
-        wrapper.unmount();
-    });
+    const initialState = createState(stateWithActiveAnswer);
+    const store = mockStore(initialState);
 
-    it('render component Feedback Section', () => {
-        let component = wrapper.html();
-        expect(component).toMatchInlineSnapshot(
-            `"<div class="feedback-container"><h3>Please tell us if this answer was helpful</h3><div class="ms-FocusZone css-108 feedback-subcontainer" role="tree" data-focuszone-id="FocusZone0"><button class="feedback-box solved-hover"><svg></svg><h3>This solved my issue</h3></button><button class="feedback-box not-solved-hover" style="border:2px solid var(--vscode-terminal-ansiRed)"><svg></svg><h3>This did not solve my issue</h3></button></div></div>"`
+    it('Should render a FeedbackSection component', () => {
+        const { container } = render(
+            <Provider store={store}>
+                <FeedbackSection />
+            </Provider>
         );
+        expect(container).toMatchSnapshot();
     });
 
     it('clicking on solved message should change state', () => {
-        wrapper.find('.feedback-box').at(0).simulate('click');
-        expect(actions.guideFeedback).toBeCalled();
+        const { container } = render(
+            <Provider store={store}>
+                <FeedbackSection />
+            </Provider>
+        );
+        const element = screen.getByTestId('solved-issue-button');
+        fireEvent.click(element);
+        expect(actions.guideFeedback).toHaveBeenCalled();
+        expect(actions.sendFeedbackOutcome).toHaveBeenCalled();
     });
 
     it('clicking on not solved message should change state', () => {
-        wrapper.find('.feedback-box').at(1).simulate('click');
-        expect(actions.guideFeedback).toBeCalled();
+        const { container } = render(
+            <Provider store={store}>
+                <FeedbackSection />
+            </Provider>
+        );
+        const element = screen.getByTestId('not-solved-issue-button');
+        fireEvent.click(element);
+        expect(actions.guideFeedback).toHaveBeenCalled();
+        expect(actions.sendFeedbackOutcome).toHaveBeenCalled();
     });
 });
