@@ -20,7 +20,7 @@ jest.mock('../../src/webview/state', () => {
 jest.mock('@vscode/webview-ui-toolkit/react', () => ({
     VSCodeTextField: () => (
         <>
-            <input type="text" data-testid="search-field" />
+            <input type="text" id="search-field" />
         </>
     )
 }));

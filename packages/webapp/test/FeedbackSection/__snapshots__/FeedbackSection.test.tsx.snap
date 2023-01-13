@@ -15,7 +15,7 @@ exports[`Feedback Section component Should render a FeedbackSection component 1`
     >
       <button
         class="feedback-box solved-hover"
-        data-testid="solved-issue-button"
+        id="solved-issue-button"
         tabindex="0"
       >
         <svg
@@ -27,7 +27,7 @@ exports[`Feedback Section component Should render a FeedbackSection component 1`
       </button>
       <button
         class="feedback-box not-solved-hover"
-        data-testid="not-solved-issue-button"
+        id="not-solved-issue-button"
         tabindex="-1"
       >
         <svg

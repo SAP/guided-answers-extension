@@ -15,7 +15,7 @@ exports[`<Header /> Should render a Header component with the navigation buttons
       >
         <button
           class="guided-answer__header__navButtons home-icon"
-          data-testid="all-answers-button"
+          id="all-answers-button"
           tabindex="0"
           title="Home"
         >
@@ -49,7 +49,7 @@ exports[`<Header /> Should render a Header component with the navigation buttons
       >
         <button
           class="guided-answer__header__navButtons"
-          data-testid="back-button"
+          id="back-button"
           tabindex="-1"
           title="Step back"
         >
@@ -82,7 +82,7 @@ exports[`<Header /> Should render a Header component with the navigation buttons
         >
           <button
             class="guided-answer__header__navButtons"
-            data-testid="restart-button"
+            id="restart-button"
             tabindex="-1"
             title="Restart"
           >
@@ -173,7 +173,6 @@ exports[`<Header /> Should render a Header component without the navigation butt
               aria-disabled="true"
               class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-110"
               data-is-focusable="false"
-              data-testid="filter-products"
               disabled=""
               id="filter-products"
               tabindex="-1"
@@ -195,7 +194,6 @@ exports[`<Header /> Should render a Header component without the navigation butt
               aria-disabled="true"
               class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-110"
               data-is-focusable="false"
-              data-testid="filter-components"
               disabled=""
               id="filter-components"
               tabindex="-1"

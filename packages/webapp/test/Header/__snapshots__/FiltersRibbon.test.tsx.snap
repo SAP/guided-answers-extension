@@ -26,7 +26,7 @@ exports[`<FiltersRibbon /> Should render a FiltersRibbon component 1`] = `
     </strong>
     <button
       class="clear-filters"
-      data-testid="clear-filters"
+      id="clear-filters"
       title="Clear filters"
     >
       <svg

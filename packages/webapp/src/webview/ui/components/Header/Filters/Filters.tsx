@@ -235,7 +235,6 @@ export function Filters() {
                     style={{ display: 'flex' }}>
                     <UIIconButton
                         id="filter-products"
-                        data-testid="filter-products"
                         iconProps={{ iconName: UiIcons.Table }}
                         onClick={() => toggleFilters(PRODUCTS)}
                         disabled={appState.guidedAnswerTreeSearchResult.productFilters.length === 0}
@@ -244,7 +243,6 @@ export function Filters() {
                         title="Filter Products"></UIIconButton>
                     <UIIconButton
                         id="filter-components"
-                        data-testid="filter-components"
                         iconProps={{ iconName: UiIcons.IdTag }}
                         onClick={() => toggleFilters(COMPONENTS)}
                         disabled={appState.guidedAnswerTreeSearchResult.componentFilters.length === 0}
@@ -255,7 +253,8 @@ export function Filters() {
                         }`}></UIIconButton>
                 </FocusZone>
                 <UIDialog
-                    data-testid="dialog-filter"
+                    //@ts-ignore
+                    id="dialog-filter"
                     className="dialog-filter"
                     dialogContentProps={{ title: filterType[filter].title }}
                     isOpen={filterType[filter].visibility}

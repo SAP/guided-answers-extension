@@ -44,7 +44,6 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
                 aria-disabled="true"
                 class="ms-Button ms-Button--icon is-disabled filter-button root-110"
                 data-is-focusable="false"
-                data-testid="filter-products"
                 disabled=""
                 id="filter-products"
                 tabindex="-1"
@@ -79,7 +78,6 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
                 aria-disabled="true"
                 class="ms-Button ms-Button--icon is-disabled filter-button root-110"
                 data-is-focusable="false"
-                data-testid="filter-components"
                 disabled=""
                 id="filter-components"
                 tabindex="-1"
@@ -193,7 +191,6 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
                 aria-disabled="true"
                 class="ms-Button ms-Button--icon is-disabled filter-button root-110"
                 data-is-focusable="false"
-                data-testid="filter-products"
                 disabled=""
                 id="filter-products"
                 tabindex="-1"
@@ -228,7 +225,6 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
                 aria-disabled="true"
                 class="ms-Button ms-Button--icon is-disabled filter-button root-110"
                 data-is-focusable="false"
-                data-testid="filter-components"
                 disabled=""
                 id="filter-components"
                 tabindex="-1"
@@ -325,7 +321,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
         >
           <button
             class="guided-answer__header__navButtons home-icon"
-            data-testid="all-answers-button"
+            id="all-answers-button"
             tabindex="0"
             title="Home"
           >
@@ -359,7 +355,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
         >
           <button
             class="guided-answer__header__navButtons"
-            data-testid="back-button"
+            id="back-button"
             tabindex="-1"
             title="Step back"
           >
@@ -484,7 +480,6 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
               <button
                 class="ms-Button ms-Button--icon filter-button root-129"
                 data-is-focusable="true"
-                data-testid="filter-products"
                 id="filter-products"
                 tabindex="0"
                 title="Filter Products"
@@ -517,7 +512,6 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
               <button
                 class="ms-Button ms-Button--icon filter-button root-129"
                 data-is-focusable="true"
-                data-testid="filter-components"
                 id="filter-components"
                 tabindex="-1"
                 title="Filter Components"

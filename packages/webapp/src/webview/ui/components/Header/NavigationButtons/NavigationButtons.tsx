@@ -15,7 +15,7 @@ const AllAnswersButton = React.memo(function AllAnswersButton() {
 
     return (
         <button
-            data-testid="all-answers-button"
+            id="all-answers-button"
             className="guided-answer__header__navButtons home-icon"
             onClick={(): void => {
                 actions.goToAllAnswers();
@@ -36,7 +36,7 @@ const AllAnswersButton = React.memo(function AllAnswersButton() {
 export function BackButton() {
     return (
         <button
-            data-testid="back-button"
+            id="back-button"
             className="guided-answer__header__navButtons"
             onClick={(): void => {
                 actions.goToPreviousPage();
@@ -57,7 +57,7 @@ export function BackButton() {
 export function RestartButton() {
     return (
         <button
-            data-testid="restart-button"
+            id="restart-button"
             className="guided-answer__header__navButtons"
             onClick={(): void => {
                 actions.restartAnswer();

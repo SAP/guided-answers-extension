@@ -27,7 +27,7 @@ exports[`<Right /> Should render a Right component 1`] = `
           </div>
           <button
             class="guided-answer__node__command__description"
-            data-testid="guided-answer__node__command"
+            id="guided-answer__node__command"
             tabindex="0"
           >
             Description for command

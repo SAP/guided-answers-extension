@@ -15,7 +15,6 @@ exports[`<Filters /> Should render a Filters component - Open components filter 
       <button
         class="ms-Button ms-Button--icon filter-button root-125"
         data-is-focusable="true"
-        data-testid="filter-products"
         id="filter-products"
         tabindex="0"
         title="Filter Products"
@@ -35,7 +34,6 @@ exports[`<Filters /> Should render a Filters component - Open components filter 
       <button
         class="ms-Button ms-Button--icon filter-button root-125"
         data-is-focusable="true"
-        data-testid="filter-components"
         id="filter-components"
         tabindex="-1"
         title="Filter Components"
@@ -75,7 +73,6 @@ exports[`<Filters /> Should render a Filters component - Open products filter di
       <button
         class="ms-Button ms-Button--icon filter-button root-125"
         data-is-focusable="true"
-        data-testid="filter-products"
         id="filter-products"
         tabindex="0"
         title="Filter Products"
@@ -95,7 +92,6 @@ exports[`<Filters /> Should render a Filters component - Open products filter di
       <button
         class="ms-Button ms-Button--icon filter-button root-125"
         data-is-focusable="true"
-        data-testid="filter-components"
         id="filter-components"
         tabindex="-1"
         title="Filter Components"
@@ -134,7 +130,6 @@ exports[`<Filters /> Should render a Filters component 1`] = `
         aria-disabled="true"
         class="ms-Button ms-Button--icon is-disabled filter-button root-110"
         data-is-focusable="false"
-        data-testid="filter-products"
         disabled=""
         id="filter-products"
         tabindex="-1"
@@ -156,7 +151,6 @@ exports[`<Filters /> Should render a Filters component 1`] = `
         aria-disabled="true"
         class="ms-Button ms-Button--icon is-disabled filter-button root-110"
         data-is-focusable="false"
-        data-testid="filter-components"
         disabled=""
         id="filter-components"
         tabindex="-1"

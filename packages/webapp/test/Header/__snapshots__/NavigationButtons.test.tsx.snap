@@ -4,7 +4,7 @@ exports[`<AllAnswersButton /> Should render a AllAnswersButton component 1`] = `
 <div>
   <button
     class="guided-answer__header__navButtons home-icon"
-    data-testid="all-answers-button"
+    id="all-answers-button"
     title="Home"
   >
     <svg
@@ -37,7 +37,7 @@ exports[`<BackButton /> Should render a BackButton component 1`] = `
 <div>
   <button
     class="guided-answer__header__navButtons"
-    data-testid="back-button"
+    id="back-button"
     title="Step back"
   >
     <svg
@@ -70,7 +70,7 @@ exports[`<RestartButton /> Should render a RestartButton component 1`] = `
 <div>
   <button
     class="guided-answer__header__navButtons"
-    data-testid="restart-button"
+    id="restart-button"
     title="Restart"
   >
     <svg

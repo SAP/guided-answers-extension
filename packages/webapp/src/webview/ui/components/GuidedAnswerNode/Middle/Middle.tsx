@@ -62,7 +62,7 @@ export function Middle(props: {
                                 role="option"
                                 key={`edge_button${index}`}
                                 className="guided-answer__node__edge"
-                                data-testid="edge_button"
+                                id="edge_button"
                                 onClick={(): void => {
                                     actions.selectNode(edge.TARGET_NODE);
                                     focusOnElement('.home-icon');
