@@ -8,15 +8,7 @@ import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import { AppState } from '../../src/webview/types';
 import configureMockStore from 'redux-mock-store';
 import { screen } from '@testing-library/dom';
-
-const createState = (initialState: AppState) => (actions: any[]) => actions.reduce(reducer, initialState);
-const mockStore = configureMockStore();
-
-let state = {
-    query: 'Fiori tools',
-    selectedProductFilters: ['ProductFilter1, ProductFilter2'],
-    selectedComponentFilters: ['ComponentFilter1', 'ComponentFilter2']
-};
+import { treeMock } from '../__mocks__/treeMock';
 
 jest.mock('../../src/webview/state', () => {
     return {
@@ -27,25 +19,28 @@ jest.mock('../../src/webview/state', () => {
     };
 });
 
-jest.mock('react-redux', () => {
-    const lib = jest.requireActual('react-redux');
-
-    return {
-        ...lib,
-        useSelector: () => state
-    };
-});
+const createState = (initialState: AppState) => (actions: any[]) => actions.reduce(reducer, initialState);
+const mockStore = configureMockStore();
 
 describe('<FiltersRibbon />', () => {
     initI18n();
     afterEach(cleanup);
 
-    const initialState = createState(getInitialState());
-    const store = mockStore(initialState);
-
     it('Should render a FiltersRibbon component', () => {
+        const initialState = getInitialState();
+        initialState.loading = false;
+        initialState.query = 'Fiori tools';
+        initialState.selectedProductFilters = ['Product A'];
+        initialState.selectedComponentFilters = ['comp-a'];
+        initialState.guidedAnswerTreeSearchResult = {
+            trees: [treeMock],
+            resultSize: 1,
+            productFilters: [{ PRODUCT: 'Product A', COUNT: 1 }],
+            componentFilters: [{ COMPONENT: 'comp-a', COUNT: 1 }]
+        };
+
         const { container } = render(
-            <Provider store={store}>
+            <Provider store={mockStore(createState(initialState))}>
                 <FiltersRibbon />
             </Provider>
         );
@@ -56,14 +51,14 @@ describe('<FiltersRibbon />', () => {
 
         expect(actions.resetFilters).toBeCalled();
         expect(actions.searchTree).toHaveBeenCalledWith({
-            query: state.query,
+            query: 'Fiori tools',
             filters: {
                 product: [],
                 component: []
             },
             paging: {
                 offset: 0,
-                responseSize: undefined
+                responseSize: 20
             }
         });
 

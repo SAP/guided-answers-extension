@@ -11,7 +11,7 @@ exports[`<FiltersRibbon /> Should render a FiltersRibbon component 1`] = `
        
     </strong>
     <strong>
-      ProductFilter1, ProductFilter2
+      Product A
     </strong>
     <span>
         and  
@@ -19,7 +19,7 @@ exports[`<FiltersRibbon /> Should render a FiltersRibbon component 1`] = `
     Component
      
     <strong>
-      ProductFilter1, ProductFilter2
+      comp-a
     </strong>
     <strong>
        
