@@ -62,7 +62,7 @@ export class GuidedAnswersPanel {
         this.panel = window.createWebviewPanel(
             'sap.ux.guidedAnswer.view',
             'Guided Answers extension by SAP',
-            ViewColumn.Active,
+            ViewColumn.Beside,
             {
                 enableCommandUris: true,
                 enableScripts: true,

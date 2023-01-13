@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-core
 
+## 1.3.1
+
+### Patch Changes
+
+-   1f24fdb: Update dependencies
+
 ## 1.3.0
 
 ### Minor Changes
