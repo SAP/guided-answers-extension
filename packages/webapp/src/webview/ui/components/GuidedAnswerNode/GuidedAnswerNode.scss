@@ -40,6 +40,7 @@ button:focus-visible {
 
 a:hover {
     outline: 1px solid var(--vscode-contrastActiveBorder);
+    color: var(--vscode-button-foreground);
 }
 
 #left {
@@ -198,10 +199,6 @@ a:hover {
 
 .enhancement-link:focus-visible {
     outline: 1px solid var(--vscode-focusBorder, #007fd4);
-}
-
-a:hover {
-    color: var(--vscode-button-foreground);
 }
 
 @media only screen and (max-width: 625px) {

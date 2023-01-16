@@ -57,10 +57,10 @@ export function Middle(props: {
                 isCircularNavigation={true}>
                 <div className="guided-answer__node">
                     {props.activeNode.EDGES.length > 0 ? (
-                        props.activeNode.EDGES.map((edge, index) => (
+                        props.activeNode.EDGES.map((edge) => (
                             <button
                                 role="option"
-                                key={`edge_button${index}`}
+                                key={`edge_button${edge.TARGET_NODE}`}
                                 className="guided-answer__node__edge"
                                 id="edge_button"
                                 onClick={(): void => {
