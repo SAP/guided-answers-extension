@@ -117,8 +117,8 @@ export const initIcons = function (): void {
                 <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 10H6V9H4.58578L3 10.5858V9H1V1H12V5H13V0H0V10H2V13L5 10Z" fill={COLORS.default} />
                     <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M16 6V13H14V16L11 13H7V6H16ZM13 12V13.5858L11.4142 12H8V7H15V12H13Z"
                         fill={COLORS.default}
                     />
@@ -549,8 +549,8 @@ export const initIcons = function (): void {
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         fill={COLORS.default}
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M6 2C6 1.44772 6.44775 1 7 1H9C9.55225 1 10 1.44772 10 2V3.58578C10 3.85101 9.89465 4.10535 9.70715 4.29289L8.70715 5.29289C8.31653 5.68342 7.68347 5.68342 7.29285 5.29289L6.29285 4.29289C6.10535 4.10535 6 3.85101 6 3.58578V2ZM7 2.5C7 2.22385 7.22388 2 7.5 2H8.5C8.77612 2 9 2.22385 9 2.5C9 2.77615 8.77612 3 8.5 3H7.5C7.22388 3 7 2.77615 7 2.5Z"
                     />
                     <path
@@ -558,8 +558,8 @@ export const initIcons = function (): void {
                         fill={COLORS.default}
                     />
                     <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M3 7C2.44775 7 2 7.44772 2 8V11C2 11.5523 2.44775 12 3 12H5C5.55225 12 6 11.5523 6 11V8C6 7.44772 5.55225 7 5 7H3ZM5 8H3V11H5V8Z"
                         fill={COLORS.default}
                     />
