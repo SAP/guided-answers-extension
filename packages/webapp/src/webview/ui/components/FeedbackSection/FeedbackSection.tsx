@@ -9,7 +9,6 @@ import { MessageDialogBox } from '../DialogBoxes/MessageDialogBox';
 import type { AppState } from '../../../types';
 import type { GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-//test
 /**
  * @returns - react element with the feedback section
  */
