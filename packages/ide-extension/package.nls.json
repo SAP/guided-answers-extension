@@ -3,6 +3,7 @@
     "guidedAnswer.description": "Access SAP Guided Answers through extension",
     "configuration.title": "SAP Guided Answers extension",
     "configuration.apiHost": "SAP Guided Answers API host",
+    "configuration.reuseExtension": "SAP Guided Answers reuse extension instance",
     "commands.fiori.category": "SAP",
     "commands.guidedAnswer.openGuidedAnswer.title": "Open Guided Answers"
 }

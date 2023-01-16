@@ -51,6 +51,12 @@
                     "description": "%configuration.apiHost%",
                     "default": "https://ga.support.sap.com",
                     "scope": "window"
+                },
+                "sap.ux.guidedAnswer.reuseExtension": {
+                    "type": "boolean",
+                    "description": "%configuration.reuseExtension%",
+                    "default": true,
+                    "scope": "window"
                 }
             }
         },
