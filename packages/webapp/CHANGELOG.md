@@ -1,5 +1,17 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.8.0
+
+### Minor Changes
+
+-   2fab487: Migrate tests from enzyme to react testing library
+
+## 1.7.1
+
+### Patch Changes
+
+-   1f24fdb: Update dependencies
+
 ## 1.7.0
 
 ### Minor Changes

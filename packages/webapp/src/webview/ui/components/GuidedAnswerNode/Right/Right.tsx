@@ -23,6 +23,7 @@ export function Right(props: { activeNode: GuidedAnswerNodeType }): ReactElement
 
                                   <button
                                       className="guided-answer__node__command__description"
+                                      id="guided-answer__node__command"
                                       onClick={(): void => {
                                           actions.executeCommand(command);
                                       }}>

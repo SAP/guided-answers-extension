@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Right /> Should render a Right component 1`] = `
+<div>
+  <div
+    class="column"
+    id="right"
+  >
+    <div
+      class="guided-answer__node__commands"
+    >
+      <div
+        class="ms-FocusZone css-101"
+        data-focuszone-id="FocusZone1"
+      >
+        <div
+          class="guided-answer__node__command"
+        >
+          <div
+            class="guided-answer__node__command__header"
+          >
+            <div
+              class="guided-answer__node__command__header__label"
+            >
+              Label for command
+            </div>
+          </div>
+          <button
+            class="guided-answer__node__command__description"
+            id="guided-answer__node__command"
+            tabindex="0"
+          >
+            Description for command
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Right /> Should render a Right component without command 1`] = `
+<div>
+  <div
+    class="column"
+    id="right"
+  >
+    <div
+      class="guided-answer__node__commands"
+    >
+      <div
+        class="ms-FocusZone css-101"
+        data-focuszone-id="FocusZone0"
+      />
+    </div>
+  </div>
+</div>
+`;
