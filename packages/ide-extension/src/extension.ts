@@ -13,7 +13,7 @@ import type { StartOptions } from './types';
 export function activate(context: ExtensionContext): void {
     let guidedAnswersPanel: GuidedAnswersPanel;
     const config = workspace.getConfiguration('sap.ux.guidedAnswer');
-    const reuseExtension = config.get('reuseExtension') as boolean;
+    const openInNewTab = config.get('openInNewTab') as boolean;
     context.subscriptions.push(
         commands.registerCommand('sap.ux.guidedAnswer.openGuidedAnswer', async (startOptions?: StartOptions) => {
             try {
@@ -29,7 +29,7 @@ export function activate(context: ExtensionContext): void {
                 if (!guidedAnswersPanel) {
                     await newPanel();
                 }
-                if (!reuseExtension) {
+                if (!openInNewTab) {
                     guidedAnswersPanel.show();
                 } else {
                     await newPanel();
