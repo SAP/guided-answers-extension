@@ -55,7 +55,7 @@
                 "sap.ux.guidedAnswer.reuseExtension": {
                     "type": "boolean",
                     "description": "%configuration.reuseExtension%",
-                    "default": true,
+                    "default": false,
                     "scope": "window"
                 }
             }
