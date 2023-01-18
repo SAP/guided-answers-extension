@@ -85,9 +85,9 @@ export function App(): ReactElement {
                                 appState.guidedAnswerTreeSearchResult.trees.length <
                                 appState.guidedAnswerTreeSearchResult.resultSize
                             }>
-                            {appState.guidedAnswerTreeSearchResult.trees.map((tree, index) => {
+                            {appState.guidedAnswerTreeSearchResult.trees.map((tree) => {
                                 return (
-                                    <li key={`tree-item-${index}`} className="tree-item" role="option">
+                                    <li key={`tree-item-${tree.TITLE}`} className="tree-item" role="option">
                                         <button
                                             className="guided-answer__tree"
                                             onClick={(): void => {
