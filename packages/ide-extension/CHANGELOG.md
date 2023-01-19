@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.8.0
+
+### Minor Changes
+
+-   a0c8a15: Open/reuse existing Guided answers extension instance
+
 ## 1.7.0
 
 ### Minor Changes
