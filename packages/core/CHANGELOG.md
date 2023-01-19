@@ -1,5 +1,17 @@
 # @sap/guided-answers-extension-core
 
+## 1.4.0
+
+### Minor Changes
+
+-   2fab487: Migrate tests from enzyme to react testing library
+
+## 1.3.1
+
+### Patch Changes
+
+-   1f24fdb: Update dependencies
+
 ## 1.3.0
 
 ### Minor Changes

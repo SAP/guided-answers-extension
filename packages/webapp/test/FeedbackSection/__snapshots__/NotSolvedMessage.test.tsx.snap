@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NotSolvedMessage/> Should render a NotSolvedMessage component 1`] = `
+<div>
+  <div
+    class="column"
+    id="middle"
+  >
+    <h1>
+      Issue is not resolved
+    </h1>
+    <div
+      id="hr"
+    />
+    <div
+      class="guided-answer__node__question"
+    >
+      <p>
+        <strong>
+          We are sorry to hear that your issue is not yet resolved.
+        </strong>
+      </p>
+      <p
+        style="font-weight: 400;"
+      >
+        There are several options for getting further assistance:
+      </p>
+    </div>
+    <div
+      class="guided-answer__node"
+    >
+      <div
+        class="ms-FocusZone css-101 guided-answer__node"
+        data-focuszone-id="FocusZone0"
+      >
+        <div
+          class="guided-answer__node"
+        >
+          <a
+            class="guided-answer__node__edge"
+            href="https://launchpad.support.sap.com/#/expertchat/create"
+            role="button"
+            tabindex="0"
+          >
+            Start an Expert Chat
+          </a>
+        </div>
+        <div
+          class="guided-answer__node"
+        >
+          <a
+            class="guided-answer__node__edge"
+            href="https://launchpad.support.sap.com/#/sae"
+            role="button"
+            tabindex="-1"
+          >
+            Schedule an Expert
+          </a>
+        </div>
+        <div
+          class="guided-answer__node"
+        >
+          <a
+            class="guided-answer__node__edge"
+            href="https://launchpad.support.sap.com/#/incident/create"
+            role="button"
+            tabindex="-1"
+          >
+            Open an Incident
+          </a>
+        </div>
+        <div
+          class="guided-answer__node"
+        >
+          <a
+            class="guided-answer__node__edge"
+            href="https://answers.sap.com/index.html"
+            role="button"
+            tabindex="-1"
+          >
+            Ask the SAP Community
+          </a>
+        </div>
+        <div
+          class="guided-answer__node"
+        >
+          <button
+            class="guided-answer__node__edge"
+            tabindex="-1"
+          >
+            Search for another Guided Answer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

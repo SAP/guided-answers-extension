@@ -1,8 +1,13 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { GuidedAnswerNavPath } from '../src/webview/ui/components/GuidedAnswerNavPath';
 import { initI18n } from '../src/webview/i18n';
 import { actions } from '../src/webview/state';
+import { render, fireEvent, cleanup } from '@testing-library/react';
+import { screen } from '@testing-library/dom';
+import configureMockStore from 'redux-mock-store';
+import { getInitialState, reducer } from '../src/webview/state/reducers';
+import { AppState } from '../src/webview/types';
+import { Provider } from 'react-redux';
 
 jest.mock('react-redux', () => ({
     ...jest.requireActual('react-redux'),
@@ -31,30 +36,36 @@ jest.mock('../src/webview/state', () => {
     };
 });
 
-describe('<GuidedAnswerNavPath />', () => {
-    let wrapper: any;
-    initI18n();
-    beforeEach(() => {
-        wrapper = shallow(<GuidedAnswerNavPath />);
-    });
+const createState = (initialState: AppState) => (actions: any[]) => actions.reduce(reducer, initialState);
+const mockStore = configureMockStore();
 
-    afterEach(() => {
-        jest.clearAllMocks();
-        wrapper.unmount();
-    });
+describe('<GuidedAnswerNavPath />', () => {
+    initI18n();
+    afterEach(cleanup);
+
+    const initialState = createState(getInitialState());
+    const store = mockStore(initialState);
 
     it('Should render a GuidedAnswerNavPath component', () => {
-        const component = wrapper.html();
-        expect(component).toMatchInlineSnapshot(
-            `"<nav class="container"><div role="tree" class="ms-FocusZone css-101" data-focuszone-id="FocusZone0"><div class="timeline-block" role="treeitem"><button class="timeline-content timeline-content-bottom-border"><div class="timeline__path" title="SAP Fiori Tools"><span class="timeline-content-title-small bold-text">1</span><span class="timeline-content-title-large">SAP Fiori Tools</span></div></button></div></div></nav>"`
+        const { container } = render(
+            <Provider store={store}>
+                <GuidedAnswerNavPath />
+            </Provider>
         );
+        expect(container).toMatchSnapshot();
 
         //Test click event
-        wrapper.find('.timeline-content').simulate('click');
+        const element = screen.getByTestId('timeline-content');
+        fireEvent.click(element);
         expect(actions.updateActiveNode).toBeCalled();
     });
 
     it('Should render an empty GuidedAnswerNavPath component', () => {
-        expect(wrapper.find('Fragment').length).toBe(1);
+        const { container } = render(
+            <Provider store={store}>
+                <GuidedAnswerNavPath />
+            </Provider>
+        );
+        expect(container).toMatchSnapshot();
     });
 });

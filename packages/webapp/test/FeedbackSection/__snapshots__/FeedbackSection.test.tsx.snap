@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feedback Section component Should render a FeedbackSection component 1`] = `
+<div>
+  <div
+    class="feedback-container"
+  >
+    <h3>
+      Please tell us if this answer was helpful
+    </h3>
+    <div
+      class="ms-FocusZone css-108 feedback-subcontainer"
+      data-focuszone-id="FocusZone0"
+      role="tree"
+    >
+      <button
+        class="feedback-box solved-hover"
+        id="solved-issue-button"
+        tabindex="0"
+      >
+        <svg
+          focusable="false"
+        />
+        <h3>
+          This solved my issue
+        </h3>
+      </button>
+      <button
+        class="feedback-box not-solved-hover"
+        id="not-solved-issue-button"
+        tabindex="-1"
+      >
+        <svg
+          focusable="false"
+        />
+        <h3>
+          This did not solve my issue
+        </h3>
+      </button>
+    </div>
+  </div>
+</div>
+`;
