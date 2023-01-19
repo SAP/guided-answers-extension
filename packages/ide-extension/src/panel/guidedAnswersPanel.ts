@@ -56,8 +56,6 @@ export class GuidedAnswersPanel {
          *
          * const webappDirPath = dirname(require.resolve('@sap/guided-answers-extension-webapp'));
          */
-        const webappDirPath = __dirname;
-        const webAppUri = Uri.file(webappDirPath);
         const ViewColumnType = openToSide ? ViewColumn.Beside : ViewColumn.Active;
         this.panel = window.createWebviewPanel(
             'sap.ux.guidedAnswer.view',
