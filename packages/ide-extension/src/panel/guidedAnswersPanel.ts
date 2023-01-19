@@ -26,9 +26,9 @@ import type { Options, StartOptions } from '../types';
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
  */
 export class GuidedAnswersPanel {
-    public panel?: WebviewPanel;
+    public readonly panel: WebviewPanel;
     private guidedAnswerApi: GuidedAnswerAPI;
-    private readonly startOptions: StartOptions | undefined;
+    private startOptions: StartOptions | undefined;
     private readonly ide: IDE;
 
     /**
@@ -47,12 +47,6 @@ export class GuidedAnswersPanel {
 
         this.guidedAnswerApi = getGuidedAnswerApi({ apiHost, enhancements });
         logString(`API information: ${JSON.stringify(this.guidedAnswerApi.getApiInfo())}`);
-    }
-
-    /**
-     * Creates a webview panel.
-     */
-    private createPanel(): void {
         /**
          * vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421), therefore node_modules from same repo are missing.
          * To overcome this we copy guidedAnswers.js and guidedAnswers.css to dist/ folder in esbuild.js
@@ -60,8 +54,6 @@ export class GuidedAnswersPanel {
          *
          * const webappDirPath = dirname(require.resolve('@sap/guided-answers-extension-webapp'));
          */
-        const webappDirPath = __dirname;
-        const webAppUri = Uri.file(webappDirPath);
         this.panel = window.createWebviewPanel(
             'sap.ux.guidedAnswer.view',
             'Guided Answers extension by SAP',
@@ -70,28 +62,38 @@ export class GuidedAnswersPanel {
                 enableCommandUris: true,
                 enableScripts: true,
                 retainContextWhenHidden: true,
-                localResourceRoots: [Uri.file(webappDirPath)],
+                localResourceRoots: [Uri.file(__dirname)],
                 enableFindWidget: true
             }
         );
         this.panel.webview.onDidReceiveMessage(this.onWebviewMessage.bind(this));
-        const html = getHtml(
-            this.panel.webview.asWebviewUri(webAppUri).toString(),
+        this.panel.webview.html = this.createHtmlContent();
+    }
+
+    /**
+     * Return the HTML content for webview.
+     *
+     * @returns - HTML content for webview as string
+     */
+    private createHtmlContent(): string {
+        return getHtml(
+            this.panel.webview.asWebviewUri(Uri.file(__dirname)).toString(),
             'Guided Answers',
             '/guidedAnswers.js',
             undefined,
             '/guidedAnswers.css'
         );
-        this.panel.webview.html = html;
-
-        // Reset when the current panel is closed
-        this.panel.onDidDispose(
-            () => {
-                this.panel = undefined;
-            },
-            null,
-            []
-        );
+    }
+    /**
+     * Restart the Guided Answers, possibly with new start options.
+     *
+     * @param startOptions - optional startup options like tree id or tree id + node id path
+     */
+    restartWithOptions(startOptions: StartOptions | undefined) {
+        this.startOptions = startOptions;
+        logString(`Restarting Guided Answers...`);
+        this.panel.webview.html = '';
+        this.panel.webview.html = this.createHtmlContent();
     }
 
     /**
@@ -231,9 +233,6 @@ export class GuidedAnswersPanel {
      * Show Application Info panel and set application info data.
      */
     public show(): void {
-        if (this.panel === undefined) {
-            this.createPanel();
-        }
-        this.panel?.reveal();
+        this.panel.reveal();
     }
 }

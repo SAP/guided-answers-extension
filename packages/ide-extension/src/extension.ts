@@ -11,30 +11,26 @@ import type { StartOptions } from './types';
  * @param context - context from VSCode
  */
 export function activate(context: ExtensionContext): void {
-    let guidedAnswersPanel: GuidedAnswersPanel;
-    const config = workspace.getConfiguration('sap.ux.guidedAnswer');
-    const openInNewTab = config.get('openInNewTab') as boolean;
+    let guidedAnswersPanel: GuidedAnswersPanel | undefined;
     context.subscriptions.push(
         commands.registerCommand('sap.ux.guidedAnswer.openGuidedAnswer', async (startOptions?: StartOptions) => {
             try {
-                const newPanel = async () => {
-                    const options = {
-                        startOptions,
-                        ide: await getIde()
-                    };
-                    guidedAnswersPanel = new GuidedAnswersPanel(options);
-                    logString(`Guided Answers command called. Options: ${JSON.stringify(options)}`);
+                const config = workspace.getConfiguration('sap.ux.guidedAnswer');
+                const openInNewTab = config.get('openInNewTab') as boolean;
+                const options = {
+                    startOptions,
+                    ide: await getIde()
                 };
-
-                if (!guidedAnswersPanel) {
-                    await newPanel();
-                }
-                if (!openInNewTab) {
-                    guidedAnswersPanel.show();
+                logString(`Guided Answers command called. Options: ${JSON.stringify(options)}`);
+                if (openInNewTab || !guidedAnswersPanel) {
+                    guidedAnswersPanel = new GuidedAnswersPanel(options);
+                    guidedAnswersPanel.panel.onDidDispose(() => {
+                        guidedAnswersPanel = undefined;
+                    });
                 } else {
-                    await newPanel();
-                    guidedAnswersPanel.show();
+                    guidedAnswersPanel.restartWithOptions(startOptions);
                 }
+                guidedAnswersPanel.show();
             } catch (error) {
                 window.showErrorMessage(`Error while starting Guided Answers: ${(error as Error).message}`);
             }
