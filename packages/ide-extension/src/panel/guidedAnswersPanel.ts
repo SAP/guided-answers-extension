@@ -38,6 +38,7 @@ export class GuidedAnswersPanel {
      * @param [options] - optional options to initialize the panel
      * @param [options.ide] - optional runtime IDE (VSCODE/SBAS), default is VSCODE if not passed
      * @param [options.startOptions] - optional startup options like tree id or tree id + node id path
+     * @param [options.openToSide] - optional default is true, set to true to open the extension to the side
      */
     constructor(options?: Options) {
         this.startOptions = options?.startOptions;
@@ -45,6 +46,7 @@ export class GuidedAnswersPanel {
         const config = workspace.getConfiguration('sap.ux.guidedAnswer');
         const apiHost = config.get('apiHost') as string;
         const enhancements = getEnhancements(this.ide);
+        const openToSide = options?.openToSide || true;
 
         this.guidedAnswerApi = getGuidedAnswerApi({ apiHost, enhancements });
         logString(`API information: ${JSON.stringify(this.guidedAnswerApi.getApiInfo())}`);
@@ -57,7 +59,7 @@ export class GuidedAnswersPanel {
          */
         const webappDirPath = __dirname;
         const webAppUri = Uri.file(webappDirPath);
-        const ViewColumnType = !options?.startOptions ? ViewColumn.Active : ViewColumn.Beside;
+        const ViewColumnType = openToSide ? ViewColumn.Beside : ViewColumn.Active;
         this.panel = window.createWebviewPanel(
             'sap.ux.guidedAnswer.view',
             'Guided Answers extension by SAP',

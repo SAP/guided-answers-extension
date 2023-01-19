@@ -3,6 +3,7 @@ import type { IDE, GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-an
 export interface Options {
     startOptions?: StartOptions;
     ide?: IDE;
+    openToSide?: Boolean;
 }
 
 export interface StartOptions {
