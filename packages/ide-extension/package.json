@@ -51,6 +51,12 @@
                     "description": "%configuration.apiHost%",
                     "default": "https://ga.support.sap.com",
                     "scope": "window"
+                },
+                "sap.ux.guidedAnswer.openInNewTab": {
+                    "type": "boolean",
+                    "description": "%configuration.openInNewTab%",
+                    "default": false,
+                    "scope": "window"
                 }
             }
         },

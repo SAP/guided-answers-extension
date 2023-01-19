@@ -28,7 +28,7 @@ import type { Options, StartOptions } from '../types';
 export class GuidedAnswersPanel {
     public readonly panel: WebviewPanel;
     private guidedAnswerApi: GuidedAnswerAPI;
-    private readonly startOptions: StartOptions | undefined;
+    private startOptions: StartOptions | undefined;
     private readonly ide: IDE;
 
     /**
@@ -54,8 +54,6 @@ export class GuidedAnswersPanel {
          *
          * const webappDirPath = dirname(require.resolve('@sap/guided-answers-extension-webapp'));
          */
-        const webappDirPath = __dirname;
-        const webAppUri = Uri.file(webappDirPath);
         this.panel = window.createWebviewPanel(
             'sap.ux.guidedAnswer.view',
             'Guided Answers extension by SAP',
@@ -64,19 +62,38 @@ export class GuidedAnswersPanel {
                 enableCommandUris: true,
                 enableScripts: true,
                 retainContextWhenHidden: true,
-                localResourceRoots: [Uri.file(webappDirPath)],
+                localResourceRoots: [Uri.file(__dirname)],
                 enableFindWidget: true
             }
         );
         this.panel.webview.onDidReceiveMessage(this.onWebviewMessage.bind(this));
-        const html = getHtml(
-            this.panel.webview.asWebviewUri(webAppUri).toString(),
+        this.panel.webview.html = this.createHtmlContent();
+    }
+
+    /**
+     * Return the HTML content for webview.
+     *
+     * @returns - HTML content for webview as string
+     */
+    private createHtmlContent(): string {
+        return getHtml(
+            this.panel.webview.asWebviewUri(Uri.file(__dirname)).toString(),
             'Guided Answers',
             '/guidedAnswers.js',
             undefined,
             '/guidedAnswers.css'
         );
-        this.panel.webview.html = html;
+    }
+    /**
+     * Restart the Guided Answers, possibly with new start options.
+     *
+     * @param startOptions - optional startup options like tree id or tree id + node id path
+     */
+    restartWithOptions(startOptions: StartOptions | undefined) {
+        this.startOptions = startOptions;
+        logString(`Restarting Guided Answers...`);
+        this.panel.webview.html = '';
+        this.panel.webview.html = this.createHtmlContent();
     }
 
     /**
@@ -209,7 +226,7 @@ export class GuidedAnswersPanel {
      * @param action - the action to post to application info webview
      */
     private postActionToWebview(action: GuidedAnswerActions): void {
-        this.panel.webview.postMessage(action);
+        this.panel?.webview.postMessage(action);
     }
 
     /**
