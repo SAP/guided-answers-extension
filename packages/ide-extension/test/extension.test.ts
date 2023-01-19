@@ -75,7 +75,6 @@ describe('Extension test', () => {
         // Test execution
         activate(context as unknown as ExtensionContext);
         await subscriptionsMock.mock.calls[0][1]({ treeId: 0, nodeIdPath: [1, 2, 3] });
-
         // Result check
         expect(loggerMock.mock.calls[0][0]).toContain('{"treeId":0,"nodeIdPath":[1,2,3]}');
     });
