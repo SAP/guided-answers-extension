@@ -76,7 +76,7 @@ describe('Extension test', () => {
         activate(context as unknown as ExtensionContext);
         await subscriptionsMock.mock.calls[0][1]({ treeId: 0, nodeIdPath: [1, 2, 3] });
         // Result check
-        expect(loggerMock.mock.calls[2][0]).toContain('{"treeId":0,"nodeIdPath":[1,2,3]}');
+        expect(loggerMock.mock.calls[0][0]).toContain('{"treeId":0,"nodeIdPath":[1,2,3]}');
     });
 
     test('execute command error occurs', async () => {
