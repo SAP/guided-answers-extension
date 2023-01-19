@@ -386,4 +386,14 @@ describe('GuidedAnswersPanel', () => {
         // Result check
         expect(webViewPanelMock.webview.postMessage).not.toBeCalled();
     });
+
+    test('GuidedAnswersPanel restart with options', async () => {
+        // Test execution
+        const panel: any = new GuidedAnswersPanel();
+        expect(panel.startOptions).toBe(undefined);
+        expect(panel.webview).toBe(undefined);
+
+        panel.restartWithOptions({ treeId: 0, nodeIdPath: [1, 2, 3] });
+        expect(panel.startOptions).toStrictEqual({ treeId: 0, nodeIdPath: [1, 2, 3] });
+    });
 });
