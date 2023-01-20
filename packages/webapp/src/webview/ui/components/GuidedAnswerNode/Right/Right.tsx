@@ -15,14 +15,15 @@ export function Right(props: { activeNode: GuidedAnswerNodeType }): ReactElement
             <div className="guided-answer__node__commands">
                 <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
                     {props.activeNode.COMMANDS
-                        ? props.activeNode.COMMANDS.map((command, index) => (
-                              <div className="guided-answer__node__command" key={`command-${index}`}>
+                        ? props.activeNode.COMMANDS.map((command) => (
+                              <div className="guided-answer__node__command" key={`command-${command.label}`}>
                                   <div className="guided-answer__node__command__header">
                                       <div className="guided-answer__node__command__header__label">{command.label}</div>
                                   </div>
 
                                   <button
                                       className="guided-answer__node__command__description"
+                                      id="guided-answer__node__command"
                                       onClick={(): void => {
                                           actions.executeCommand(command);
                                       }}>

@@ -1,14 +1,22 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { App } from '../src/webview/ui/components/App';
+import { render, cleanup } from '@testing-library/react';
 import { initI18n } from '../src/webview/i18n';
-import { actions } from '../src/webview/state';
+import { Provider } from 'react-redux';
+import configureMockStore from 'redux-mock-store';
+import { getInitialState, reducer } from '../src/webview/state/reducers';
 import { AppState } from '../src/webview/types';
+import { treeMock } from './__mocks__/treeMock';
 
 jest.mock('@vscode/webview-ui-toolkit/react', () => ({
     VSCodeTextField: () => (
         <>
             <div>SearchField</div>
+        </>
+    ),
+    VSCodeProgressRing: () => (
+        <>
+            <div>Loading icon</div>
         </>
     )
 }));
@@ -17,98 +25,80 @@ jest.mock('../src/webview/state', () => {
     return {
         actions: {
             setActiveTree: jest.fn(),
-            selectNode: jest.fn()
+            selectNode: jest.fn(),
+            setPageSize: jest.fn(),
+            setQueryValue: jest.fn(),
+            searchTree: jest.fn(),
+            resetFilters: jest.fn()
         }
     };
 });
 
-jest.mock('react-redux', () => {
-    const mockedResult = {
-        AVAILABILITY: 'PUBLIC',
-        DESCRIPTION: 'This is a troubleshooting guide to solve the issues while using SAP Fiori tools',
-        FIRST_NODE_ID: 45995,
-        TITLE: 'SAP Fiori tools',
-        TREE_ID: 3046,
-        PRODUCT: 'Product A, Product B',
-        COMPONENT: 'comp-a, comp-b'
-    };
-    return {
-        ...jest.requireActual('react-redux'),
-        useSelector: jest
-            .fn()
-            .mockReturnValueOnce({
-                loading: false,
-                query: '',
-                guidedAnswerTreeSearchResult: {
-                    trees: [],
-                    resultSize: 0,
-                    productFilters: [],
-                    componentFilters: []
-                },
-                activeGuidedAnswerNode: [],
-                activeGuidedAnswer: undefined
-            } as unknown as AppState)
-            .mockReturnValueOnce({
-                activeGuidedAnswerNode: [],
-                guidedAnswerTreeSearchResult: {
-                    trees: [mockedResult],
-                    resultSize: 1,
-                    productFilters: [],
-                    componentFilters: []
-                },
-                query: 'fiori tools'
-            })
-            .mockReturnValueOnce({ activeGuidedAnswerNode: [{ a: 0 }, { b: 0 }] })
-            .mockReturnValueOnce({ loading: true, activeGuidedAnswerNode: [] })
-    };
-});
+const createState = (initialState: AppState) => (actions: any[]) => actions.reduce(reducer, initialState);
+const mockStore = configureMockStore();
 
-describe('<NoAnswersFound />', () => {
-    let wrapper: any;
+describe('<App />', () => {
     initI18n();
-    beforeEach(() => {
-        wrapper = shallow(<App />);
-    });
-
-    afterEach(() => {
-        jest.clearAllMocks();
-        wrapper.unmount();
-    });
-
-    it('Should render a App component - No Answers', () => {
-        expect(wrapper.find('.guided-answer').length).toBe(1);
-        expect(wrapper.find('Header').length).toBe(1);
-        expect(wrapper.find('.guided-answer__container').length).toBe(1);
-        expect(wrapper.find('NoAnswersFound').length).toBe(1);
-    });
-
-    it('Should render a App component with result', () => {
-        expect(wrapper.find('.guided-answer').length).toBe(1);
-        expect(wrapper.find('Header').length).toBe(1);
-        expect(wrapper.find('.guided-answer__container').length).toBe(1);
-        expect(wrapper.find('.striped-list').length).toBe(1);
-        expect(wrapper.find('.tree-item').length).toBe(1);
-        expect(wrapper.find('.guided-answer__tree__title').length).toBe(1);
-        expect(wrapper.find('.guided-answer__tree__ul').length).toBe(1);
-        expect(wrapper.find('.guided-answer__tree__desc').text()).toBe(
-            'This is a troubleshooting guide to solve the issues while using SAP Fiori tools'
+    afterEach(cleanup);
+    it('Match snapshot of component <App/> in loading mode', () => {
+        const { container } = render(
+            <Provider store={mockStore(createState(getInitialState()))}>
+                <App />
+            </Provider>
         );
-        expect(wrapper.find('.guided-answer__tree__product').text()).toBe('Product: Product A');
-        expect(wrapper.find('.guided-answer__tree__component').text()).toBe('Component: comp-a');
-        //Test click event
-        wrapper.find('.guided-answer__tree').simulate('click');
-        expect(actions.setActiveTree).toBeCalled();
-        expect(actions.selectNode).toHaveBeenCalledWith(45995);
+        expect(container).toMatchSnapshot();
     });
 
-    it('Should render a App component with GuidedAnswerNode component', () => {
-        expect(wrapper.find('.guided-answer').length).toBe(1);
-        expect(wrapper.find('Header').length).toBe(1);
-        expect(wrapper.find('.guided-answer__container').length).toBe(1);
-        expect(wrapper.find('GuidedAnswerNode').length).toBe(1);
+    it('Match snapshot of component <App/> in initial mode', () => {
+        const initialState = getInitialState();
+        initialState.loading = false;
+
+        const { container } = render(
+            <Provider store={mockStore(createState(initialState))}>
+                <App />
+            </Provider>
+        );
+        expect(container).toMatchSnapshot();
     });
 
-    it('Should render loading indicator', () => {
-        expect(wrapper.find('#loading-indicator').length).toBe(1);
+    it('Match snapshot of component <App/> with results list', () => {
+        const initialState = getInitialState();
+        initialState.loading = false;
+        initialState.guidedAnswerTreeSearchResult = {
+            trees: [treeMock],
+            resultSize: 1,
+            productFilters: [{ PRODUCT: 'Product A', COUNT: 1 }],
+            componentFilters: [{ COMPONENT: 'comp-a', COUNT: 1 }]
+        };
+
+        const { container } = render(
+            <Provider store={mockStore(createState(initialState))}>
+                <App />
+            </Provider>
+        );
+        expect(container).toMatchSnapshot();
+    });
+
+    it('Match snapshot of component <App/> with a guide selected', () => {
+        const stateWithActiveAnswer = getInitialState();
+
+        stateWithActiveAnswer.activeGuidedAnswer = treeMock;
+        stateWithActiveAnswer.activeGuidedAnswerNode.push({
+            BODY: '<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p>',
+            EDGES: [
+                { LABEL: 'Deployment', TARGET_NODE: 45996, ORD: 1 },
+                { LABEL: 'Fiori Generator', TARGET_NODE: 48363, ORD: 2 }
+            ],
+            NODE_ID: 45995,
+            QUESTION: 'I have a problem with',
+            TITLE: 'SAP Fiori Tools'
+        });
+
+        const { container } = render(
+            <Provider store={mockStore(createState(stateWithActiveAnswer))}>
+                <App />
+            </Provider>
+        );
+        expect(container).toMatchSnapshot();
     });
 });

@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, fireEvent, cleanup } from '@testing-library/react';
+import { screen } from '@testing-library/dom';
 import { Right } from '../../src/webview/ui/components/GuidedAnswerNode/Right';
 import { actions } from '../../src/webview/state';
 import { initI18n } from '../../src/webview/i18n';
@@ -13,7 +14,6 @@ jest.mock('../../src/webview/state', () => {
 });
 
 describe('<Right />', () => {
-    let wrapper: any;
     initI18n();
     const activeGuidedAnswerNodeMock = [
         {
@@ -27,18 +27,11 @@ describe('<Right />', () => {
             TITLE: 'SAP Fiori Tools'
         }
     ];
-
-    afterEach(() => {
-        jest.clearAllMocks();
-        wrapper.unmount();
-    });
+    afterEach(cleanup);
 
     it('Should render a Right component without command', () => {
-        wrapper = shallow(<Right activeNode={activeGuidedAnswerNodeMock[0]} />);
-        const component = wrapper.html();
-        expect(component).toMatchInlineSnapshot(
-            `"<div id="right" class="column"><div class="guided-answer__node__commands"><div class="ms-FocusZone css-101" data-focuszone-id="FocusZone0"></div></div></div>"`
-        );
+        const { container } = render(<Right activeNode={activeGuidedAnswerNodeMock[0]} />);
+        expect(container).toMatchSnapshot();
     });
 
     it('Should render a Right component', () => {
@@ -54,14 +47,12 @@ describe('<Right />', () => {
                 }
             }
         ];
-        wrapper = shallow(<Right activeNode={activeNodeMock} />);
-        const component = wrapper.html();
-        expect(component).toMatchInlineSnapshot(
-            `"<div id="right" class="column"><div class="guided-answer__node__commands"><div class="ms-FocusZone css-101" data-focuszone-id="FocusZone1"><div class="guided-answer__node__command"><div class="guided-answer__node__command__header"><div class="guided-answer__node__command__header__label">Label for command</div></div><button class="guided-answer__node__command__description">Description for command</button></div></div></div></div>"`
-        );
+        const { container } = render(<Right activeNode={activeNodeMock} />);
+        expect(container).toMatchSnapshot();
 
         //Test click event
-        wrapper.find('.guided-answer__node__command__description').simulate('click');
+        const element = screen.getByTestId('guided-answer__node__command');
+        fireEvent.click(element);
         expect(actions.executeCommand).toBeCalled();
     });
 });

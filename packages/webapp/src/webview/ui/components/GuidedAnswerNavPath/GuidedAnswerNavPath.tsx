@@ -37,8 +37,9 @@ export function GuidedAnswerNavPath(): ReactElement {
                     isCircularNavigation={true}>
                     {nodes.map((node, i) => {
                         return (
-                            <div key={`timeline-block-${i}`} className="timeline-block" role="treeitem">
+                            <div key={`timeline-block-${node.TITLE}`} className="timeline-block" role="treeitem">
                                 <button
+                                    id="timeline-content"
                                     className={`timeline-content ${i === lastIndex ? lastBlockBorderStyle : ''}`}
                                     onClick={(): void => {
                                         actions.updateActiveNode(node);

@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GuidedAnswerNavPath /> Should render a GuidedAnswerNavPath component 1`] = `
+<div>
+  <nav
+    class="container"
+  >
+    <div
+      class="ms-FocusZone css-101"
+      data-focuszone-id="FocusZone0"
+      role="tree"
+    >
+      <div
+        class="timeline-block"
+        role="treeitem"
+      >
+        <button
+          class="timeline-content timeline-content-bottom-border"
+          id="timeline-content"
+          tabindex="0"
+        >
+          <div
+            class="timeline__path"
+            title="SAP Fiori Tools"
+          >
+            <span
+              class="timeline-content-title-small bold-text"
+            >
+              1
+            </span>
+            <span
+              class="timeline-content-title-large"
+            >
+              SAP Fiori Tools
+            </span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </nav>
+</div>
+`;
+
+exports[`<GuidedAnswerNavPath /> Should render an empty GuidedAnswerNavPath component 1`] = `<div />`;

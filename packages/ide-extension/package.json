@@ -4,7 +4,7 @@
     "description": "%guidedAnswer.description%",
     "publisher": "SAPOSS",
     "license": "Apache-2.0",
-    "version": "1.6.1",
+    "version": "1.8.0",
     "icon": "media/guided-answers-extension.png",
     "categories": [
         "Education"
@@ -50,6 +50,12 @@
                     "type": "string",
                     "description": "%configuration.apiHost%",
                     "default": "https://ga.support.sap.com",
+                    "scope": "window"
+                },
+                "sap.ux.guidedAnswer.openInNewTab": {
+                    "type": "boolean",
+                    "description": "%configuration.openInNewTab%",
+                    "default": false,
                     "scope": "window"
                 }
             }
