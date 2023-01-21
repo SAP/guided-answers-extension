@@ -1,6 +1,6 @@
 import type { ExtensionContext } from 'vscode';
 import { commands, window, workspace } from 'vscode';
-import { getIde } from '@sap/guided-answers-extension-core';
+import { getDevSpace, getIde } from '@sap/guided-answers-extension-core';
 import { logString } from './logger/logger';
 import { GuidedAnswersPanel } from './panel/guidedAnswersPanel';
 import { initTelemetry } from './telemetry';
@@ -24,8 +24,10 @@ export function activate(context: ExtensionContext): void {
                 const config = workspace.getConfiguration('sap.ux.guidedAnswer');
                 const openInNewTab = config.get('openInNewTab') as boolean;
                 const options = {
-                    startOptions,
-                    ide: await getIde()
+                    apiHost: config.get('apiHost') as string,
+                    devSpace: await getDevSpace(),
+                    ide: await getIde(),
+                    startOptions
                 };
                 logString(`Guided Answers command called. Options: ${JSON.stringify(options)}`);
                 if (openInNewTab || !guidedAnswersPanel) {

@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { bindActionCreators } from 'redux';
-import { communicationMiddleware } from './middleware';
+import { telemetryMiddleware, communicationMiddleware } from './middleware';
 import { getInitialState, reducer } from './reducers';
 import * as AllActions from './actions';
 
@@ -8,7 +8,7 @@ export const store = configureStore({
     reducer,
     preloadedState: getInitialState(),
     devTools: false,
-    middleware: [communicationMiddleware]
+    middleware: [communicationMiddleware, telemetryMiddleware]
 });
 
 // bind actions to store

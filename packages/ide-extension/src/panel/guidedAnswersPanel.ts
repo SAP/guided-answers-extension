@@ -3,6 +3,7 @@ import { Uri, ViewColumn, window, workspace } from 'vscode';
 import type { GuidedAnswerActions, GuidedAnswerAPI, IDE } from '@sap/guided-answers-extension-types';
 import {
     SELECT_NODE,
+    SEND_TELEMETRY,
     SEND_FEEDBACK_OUTCOME,
     SEND_FEEDBACK_COMMENT,
     updateGuidedAnswerTrees,
@@ -42,14 +43,18 @@ export class GuidedAnswersPanel {
     constructor(options?: Options) {
         this.startOptions = options?.startOptions;
         this.ide = options?.ide || 'VSCODE';
-        const config = workspace.getConfiguration('sap.ux.guidedAnswer');
-        const apiHost = config.get('apiHost') as string;
         const enhancements = getEnhancements(this.ide);
-
-        this.guidedAnswerApi = getGuidedAnswerApi({ apiHost, enhancements });
-        logString(`API information: ${JSON.stringify(this.guidedAnswerApi.getApiInfo())}`);
-        setCommonProperties({ ide: this.ide, apiHost });
-        trackEvent({ name: 'GA_STARTUP' });
+        this.guidedAnswerApi = getGuidedAnswerApi({ apiHost: options?.apiHost, enhancements });
+        const { host: apiHost, version: apiVersion } = this.guidedAnswerApi.getApiInfo();
+        setCommonProperties({ ide: this.ide, devSpace: options?.devSpace || '', apiHost, apiVersion });
+        logString(`Using API host: '${apiHost}', version: '${apiVersion}'`);
+        trackEvent({
+            name: 'STARTUP',
+            properties: {
+                treeId: typeof this.startOptions?.treeId === 'number' ? this.startOptions?.treeId.toString() : '',
+                nodeIdPath: (this.startOptions?.nodeIdPath || []).join(':')
+            }
+        });
         /**
          * vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421), therefore node_modules from same repo are missing.
          * To overcome this we copy guidedAnswers.js and guidedAnswers.css to dist/ folder in esbuild.js
@@ -170,7 +175,6 @@ export class GuidedAnswersPanel {
      */
     private async onWebviewMessage(action: GuidedAnswerActions): Promise<void> {
         try {
-            trackAction(action);
             switch (action.type) {
                 case SELECT_NODE: {
                     const node = await this.guidedAnswerApi.getNodeById(action.payload);
@@ -211,6 +215,10 @@ export class GuidedAnswersPanel {
                         )
                     );
                     this.postActionToWebview(updateLoading(false));
+                    break;
+                }
+                case SEND_TELEMETRY: {
+                    trackAction(action);
                     break;
                 }
                 default: {

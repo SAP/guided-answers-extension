@@ -1,2 +1,1 @@
-export { initTelemetry, setCommonProperties, trackEvent } from './telemetry';
-export { trackAction } from './action-map';
+export { initTelemetry, setCommonProperties, trackEvent, trackAction } from './telemetry';

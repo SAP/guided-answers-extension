@@ -1,7 +1,6 @@
 import type { TelemetryEventProperties } from '@vscode/extension-telemetry';
-import type { IDE } from '@sap/guided-answers-extension-types';
 
-export type TelemetryEvent = TelemetryStartupEvent | TelemetryUserInteraction;
+export type TelemetryEvent = TelemetryStartupEvent | TelemetryUIEvent;
 
 interface TelemetryBaseEvent {
     name: string;
@@ -9,15 +8,42 @@ interface TelemetryBaseEvent {
 }
 
 export interface TelemetryCommonProperties extends TelemetryEventProperties {
-    ide: IDE;
+    'cmn.appstudio': 'true' | 'false';
+    'cmn.devspace': string;
     apiHost: string;
+    apiVersion: string;
 }
 
 export interface TelemetryStartupEvent extends TelemetryBaseEvent {
-    name: 'GA_STARTUP';
+    name: 'STARTUP';
+    properties: {
+        treeId: string;
+        nodeIdPath: string;
+    };
 }
 
-export interface TelemetryUserInteraction extends TelemetryBaseEvent {
-    name: 'GA_USER_INTERACTION';
-    properties: { action: string } & TelemetryEventProperties;
+export interface TelemetryUIEvent extends TelemetryBaseEvent {
+    name: 'USER_INTERACTION';
+    properties: TelemetryUIEventProps;
+}
+
+export interface TelemetryUIEventProps extends TelemetryEventProperties {
+    action: string;
+    [prop: string]: string;
+}
+
+export interface TelemetryUIOpenTreeEventProps extends TelemetryUIEventProps {
+    action: 'OPEN_TREE';
+    treeId: string;
+    treeTitle: string;
+}
+
+export interface TelemetryUISelectNodeEventProps extends TelemetryUIEventProps {
+    action: 'NODE_SELECTED';
+    treeId: string;
+    treeTitle: string;
+    lastNodeId: string;
+    lastNodeTitle: string;
+    nodeIdPath: string;
+    nodeLevel: string;
 }
