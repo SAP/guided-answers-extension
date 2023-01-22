@@ -1,5 +1,5 @@
 import type { WebviewPanel } from 'vscode';
-import { window, commands } from 'vscode';
+import { window, commands, ViewColumn } from 'vscode';
 import * as coreMock from '@sap/guided-answers-extension-core';
 import {
     EXECUTE_COMMAND,
@@ -395,5 +395,18 @@ describe('GuidedAnswersPanel', () => {
 
         panel.restartWithOptions({ treeId: 0, nodeIdPath: [1, 2, 3] });
         expect(panel.startOptions).toStrictEqual({ treeId: 0, nodeIdPath: [1, 2, 3] });
+    });
+    test('GuidedAnswersPanel restart with openToSide passed in options as true', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        // Test execution
+        const panel = new GuidedAnswersPanel({ startOptions: { treeId: 1 }, openToSide: true });
+        panel.show();
+        await onDidReceiveMessageMock({ type: WEBVIEW_READY });
+        expect(webViewPanelMock.viewColumn).toEqual({ type: ViewColumn.Beside });
     });
 });

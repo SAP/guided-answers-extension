@@ -45,7 +45,7 @@ export class GuidedAnswersPanel {
         const config = workspace.getConfiguration('sap.ux.guidedAnswer');
         const apiHost = config.get('apiHost') as string;
         const enhancements = getEnhancements(this.ide);
-        const openToSide = options?.openToSide || true;
+        const openToSide = options?.openToSide || false;
 
         this.guidedAnswerApi = getGuidedAnswerApi({ apiHost, enhancements });
         logString(`API information: ${JSON.stringify(this.guidedAnswerApi.getApiInfo())}`);
