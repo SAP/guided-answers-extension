@@ -398,15 +398,25 @@ describe('GuidedAnswersPanel', () => {
     });
     test('GuidedAnswersPanel restart with openToSide passed in options as true', async () => {
         // Mock setup
-        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
-        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
-            onDidReceiveMessageMock = callback;
-        });
-        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        let argViewType;
+        let argTitle;
+        let argShowOptions;
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(
+            (
+                viewType: string,
+                title: string,
+                showOptions: ViewColumn | { viewColumn: ViewColumn; preserveFocus?: boolean | undefined }
+            ) => {
+                argViewType = viewType;
+                argTitle = title;
+                argShowOptions = showOptions;
+                return getWebViewPanelMock(() => {});
+            }
+        );
         // Test execution
-        const panel = new GuidedAnswersPanel({ startOptions: { treeId: 1 }, openToSide: true });
-        panel.show();
-        await onDidReceiveMessageMock({ type: WEBVIEW_READY });
-        expect(webViewPanelMock.viewColumn).toEqual({ type: ViewColumn.Beside });
+        new GuidedAnswersPanel({ startOptions: { treeId: 1 }, openToSide: true });
+        expect(argViewType).toBe('sap.ux.guidedAnswer.view');
+        expect(argTitle).toBe('Guided Answers extension by SAP');
+        expect(argShowOptions).toBe(ViewColumn.Beside);
     });
 });
