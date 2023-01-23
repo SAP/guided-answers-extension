@@ -37,7 +37,7 @@ export class GuidedAnswersPanel {
      * @param [options] - optional options to initialize the panel
      * @param [options.ide] - optional runtime IDE (VSCODE/SBAS), default is VSCODE if not passed
      * @param [options.startOptions] - optional startup options like tree id or tree id + node id path
-     * @param [options.openToSide] - optional default is true, set to true to open the extension to the side
+     * @param [options.openToSide] - optional default is false, set to true to open the extension to the side
      */
     constructor(options?: Options) {
         this.startOptions = options?.startOptions;
