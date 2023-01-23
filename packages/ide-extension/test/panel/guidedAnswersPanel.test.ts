@@ -414,7 +414,7 @@ describe('GuidedAnswersPanel', () => {
             }
         );
         // Test execution
-        new GuidedAnswersPanel({ startOptions: { treeId: 1 }, openToSide: true });
+        new GuidedAnswersPanel({ startOptions: { treeId: 1, openToSide: true } });
         expect(argViewType).toBe('sap.ux.guidedAnswer.view');
         expect(argTitle).toBe('Guided Answers extension by SAP');
         expect(argShowOptions).toBe(ViewColumn.Beside);
