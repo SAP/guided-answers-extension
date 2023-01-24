@@ -93,6 +93,9 @@ export class GuidedAnswersPanel {
     restartWithOptions(startOptions: StartOptions | undefined) {
         this.startOptions = startOptions;
         logString(`Restarting Guided Answers...`);
+        if (startOptions?.openToSide) {
+            this.panel.reveal(ViewColumn.Beside);
+        }
         this.panel.webview.html = '';
         this.panel.webview.html = this.createHtmlContent();
     }

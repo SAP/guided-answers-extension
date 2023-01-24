@@ -396,7 +396,8 @@ describe('GuidedAnswersPanel', () => {
         panel.restartWithOptions({ treeId: 0, nodeIdPath: [1, 2, 3] });
         expect(panel.startOptions).toStrictEqual({ treeId: 0, nodeIdPath: [1, 2, 3] });
     });
-    test('GuidedAnswersPanel restart with openToSide passed in options as true', async () => {
+
+    test('GuidedAnswersPanel start with openToSide passed in options as true', async () => {
         // Mock setup
         let argViewType;
         let argTitle;
@@ -415,8 +416,25 @@ describe('GuidedAnswersPanel', () => {
         );
         // Test execution
         new GuidedAnswersPanel({ startOptions: { treeId: 1, openToSide: true } });
+
+        // Result check
         expect(argViewType).toBe('sap.ux.guidedAnswer.view');
         expect(argTitle).toBe('Guided Answers extension by SAP');
         expect(argShowOptions).toBe(ViewColumn.Beside);
+    });
+
+    test('GuidedAnswersPanel restart with openToSide passed in options as true', async () => {
+        // Mock setup
+        const mockWebviewPanel = getWebViewPanelMock(() => {});
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => mockWebviewPanel);
+
+        // Test execution
+        const panel: any = new GuidedAnswersPanel();
+        expect(panel.startOptions).toBe(undefined);
+        expect(panel.webview).toBe(undefined);
+
+        panel.restartWithOptions({ openToSide: true });
+        expect(panel.startOptions).toStrictEqual({ openToSide: true });
+        expect(mockWebviewPanel.reveal).toBeCalledWith(ViewColumn.Beside);
     });
 });
