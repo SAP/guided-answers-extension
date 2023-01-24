@@ -39,6 +39,14 @@ The tree id can be captured from the Guide Answer's guide URL, e.g.:
 The first example will immediately show the Guided Answer tree 3046 and the first node 45995, the second example will navigate to a path including four steps, like: 
 https://ga.support.sap.com/dtp/viewer/index.html#/tree/3046/actions/45995:45996:45999:46000
 
+Another startup parameter, that can be passed when Guided Answers extension is called programmatically is `openToSide`, which opens Guided Answers extension next to the currently open editor, e.g. by calling
+
+```typescript
+commands.executeCommand('sap.ux.guidedAnswer.openGuidedAnswer', { openToSide: true });
+```
+
+Parameter `openToSide` can also be combined with other startup parameters like `treeId` or `nodeIdPath`.
+
 ### Module `@sap/guided-answers-extension-core` ([packages/core](../packages/core/)) 
 
 This module provides a client to communicate with the Guided Answers REST API. 
