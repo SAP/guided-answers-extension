@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.9.0
+
+### Minor Changes
+
+-   9d84837: open to side through caller functionality added to extension
+
 ## 1.8.0
 
 ### Minor Changes
