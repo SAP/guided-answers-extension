@@ -12,7 +12,9 @@
 [#96](https://github.com/SAP/guided-answers-extension/issues/96),
 [#230](https://github.com/SAP/guided-answers-extension/issues/230),
 [#245](https://github.com/SAP/guided-answers-extension/issues/245),
-[#137](https://github.com/SAP/guided-answers-extension/issues/137)
+[#137](https://github.com/SAP/guided-answers-extension/issues/137),
+[#258](https://github.com/SAP/guided-answers-extension/issues/258)
+
 
 Prerequisites: Guided Answers Extension is installed in either SAP Business Application Studio (SBAS) or Microsoft Visual Studio Code (VSCODE)
 
@@ -25,6 +27,9 @@ Prerequisites: Guided Answers Extension is installed in either SAP Business Appl
 2. Enter 'SAP: Open Guided Answers'
 3. Select 'SAP: Open Guided Answers' ( See expected result 1 ) 
 4. Make view port smaller ( See expected results 2 ) 
+5. Open the 'Command Palette'
+6. Enter 'SAP: Open Guided Answers'
+7. Select 'SAP: Open Guided Answers' ( See expected result 4 ) 
 
 ### Open Guided Answers in SBAS
 
@@ -33,7 +38,9 @@ Prerequisites: Guided Answers Extension is installed in either SAP Business Appl
 2. Enter 'SAP: Open Guided Answers'
 3. Select 'SAP: Open Guided Answers' ( See expected result 3 ) 
 4. Make view port smaller ( See expected results 2 ) 
-
+5. Open the 'Command Palette'
+6. Enter 'SAP: Open Guided Answers'
+7. Select 'SAP: Open Guided Answers' ( See expected result 4 ) 
 
 **Expected Results 1** 
 
@@ -58,7 +65,9 @@ Guided Answers extension opens in view port
     d. A id icon for the Component filter . Id icon is highlighted in blue as Component filter is applied by default.
 
 
+**Expected Results 1** 
 
+The Guided Answers extension already open in the existing view port is given focus. A new instance of the GA extension is not opened the existing instance is re used. 
 
 
 ### Search Guided Answers Content
