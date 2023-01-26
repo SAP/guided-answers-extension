@@ -1,9 +1,10 @@
 .feedback-sent-dialog-box {
     color: var(--vscode-editor-foreground);
+    outline: 1px solid var(--vscode-editorWidget-border);
     .ms-Dialog-main {
         background-color: var(--vscode-editorWidget-background);
-        width: 380px;
-        height: 300px;
+        width: 364px;
+        height: 333px;
         display: flex;
         align-items: center;
         font-family: var(--vscode-font-family);
