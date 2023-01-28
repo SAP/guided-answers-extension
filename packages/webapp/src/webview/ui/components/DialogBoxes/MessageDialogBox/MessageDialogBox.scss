@@ -8,6 +8,7 @@
         font-size: 14px;
         line-height: 16px;
         text-align: center;
+        margin: 5px 0px 15px 0px;
     }
     .ms-Dialog-subText {
         color: var(--vscode-settings-headerForeground);
@@ -19,7 +20,7 @@
         text-align: left;
         margin-top: 0;
     }
-    .ms-Dialog-inner{
+    .ms-Dialog-inner {
         padding-bottom: 0px;
         padding: 0px 45px;
     }
@@ -48,10 +49,15 @@
         outline: 1px solid var(--vscode-focusBorder, #007fd4);
         border-style: none;
     }
-    .ms-Dialog-actions{
+    .ms-Dialog-actions {
         margin: 25px 0px;
     }
-    .ms-Dialog-actionsRight{
+    .ms-Dialog-actionsRight {
         justify-content: center;
+    }
+
+    .ms-Dialog-content {
+        overflow: hidden;
+        padding: 0px;
     }
 }
