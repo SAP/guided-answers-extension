@@ -1,7 +1,6 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import './MessageDialogBox.scss';
-import { Dialog, DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
-import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
+import { DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
 import i18next from 'i18next';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { UIDefaultButton, UIDialog } from '@sap-ux/ui-components';

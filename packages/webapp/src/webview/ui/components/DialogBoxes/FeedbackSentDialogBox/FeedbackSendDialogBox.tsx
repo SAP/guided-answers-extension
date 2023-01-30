@@ -1,12 +1,13 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import './FeedbackSendDialogBox.scss';
-import { Dialog, DialogType } from '@fluentui/react/lib/Dialog';
+import { DialogType } from '@fluentui/react/lib/Dialog';
 import { actions } from '../../../../state';
 import i18next from 'i18next';
 import { UIIcon } from '@sap-ux/ui-components';
 import { UiIcons } from '../../UIComponentsLib/Icons';
 import { AppState } from '../../../../types';
 import { useSelector } from 'react-redux';
+import { UIDialog } from '@sap-ux/ui-components';
 
 /**
  * The feedback dialog box appears that appears on api response.
@@ -39,9 +40,9 @@ export function FeedbackSendDialogBox(): ReactElement {
 
     return (
         <>
-            <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
+            <UIDialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
                 <UIIcon className="feedback-response-icon" iconName={UiIcons.MessageSent} />
-            </Dialog>
+            </UIDialog>
         </>
     );
 }
