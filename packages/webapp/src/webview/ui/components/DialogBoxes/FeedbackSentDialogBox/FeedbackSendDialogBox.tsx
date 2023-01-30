@@ -3,11 +3,10 @@ import './FeedbackSendDialogBox.scss';
 import { DialogType } from '@fluentui/react/lib/Dialog';
 import { actions } from '../../../../state';
 import i18next from 'i18next';
-import { UIIcon } from '@sap-ux/ui-components';
+import { UIIcon, UIDialog } from '@sap-ux/ui-components';
 import { UiIcons } from '../../UIComponentsLib/Icons';
 import { AppState } from '../../../../types';
 import { useSelector } from 'react-redux';
-import { UIDialog } from '@sap-ux/ui-components';
 
 /**
  * The feedback dialog box appears that appears on api response.
