@@ -12,4 +12,5 @@ export interface Options {
 export interface StartOptions {
     treeId: GuidedAnswerTreeId;
     nodeIdPath?: GuidedAnswerNodeId[];
+    openToSide?: boolean;
 }

@@ -1,5 +1,5 @@
 import type { WebviewPanel } from 'vscode';
-import { window, commands } from 'vscode';
+import { window, commands, ViewColumn } from 'vscode';
 import * as coreMock from '@sap/guided-answers-extension-core';
 import {
     EXECUTE_COMMAND,
@@ -395,5 +395,46 @@ describe('GuidedAnswersPanel', () => {
 
         panel.restartWithOptions({ treeId: 0, nodeIdPath: [1, 2, 3] });
         expect(panel.startOptions).toStrictEqual({ treeId: 0, nodeIdPath: [1, 2, 3] });
+    });
+
+    test('GuidedAnswersPanel start with openToSide passed in options as true', async () => {
+        // Mock setup
+        let argViewType;
+        let argTitle;
+        let argShowOptions;
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(
+            (
+                viewType: string,
+                title: string,
+                showOptions: ViewColumn | { viewColumn: ViewColumn; preserveFocus?: boolean | undefined }
+            ) => {
+                argViewType = viewType;
+                argTitle = title;
+                argShowOptions = showOptions;
+                return getWebViewPanelMock(() => {});
+            }
+        );
+        // Test execution
+        new GuidedAnswersPanel({ startOptions: { treeId: 1, openToSide: true } });
+
+        // Result check
+        expect(argViewType).toBe('sap.ux.guidedAnswer.view');
+        expect(argTitle).toBe('Guided Answers extension by SAP');
+        expect(argShowOptions).toBe(ViewColumn.Beside);
+    });
+
+    test('GuidedAnswersPanel restart with openToSide passed in options as true', async () => {
+        // Mock setup
+        const mockWebviewPanel = getWebViewPanelMock(() => {});
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => mockWebviewPanel);
+
+        // Test execution
+        const panel: any = new GuidedAnswersPanel();
+        expect(panel.startOptions).toBe(undefined);
+        expect(panel.webview).toBe(undefined);
+
+        panel.restartWithOptions({ openToSide: true });
+        expect(panel.startOptions).toStrictEqual({ openToSide: true });
+        expect(mockWebviewPanel.reveal).toBeCalledWith(ViewColumn.Beside);
     });
 });
