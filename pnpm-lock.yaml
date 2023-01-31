@@ -84,17 +84,16 @@ importers:
       jsdom: 20.0.3
       tslib: 2.4.1
       vscode-uri: 3.0.7
-    dependencies:
-      '@vscode/extension-telemetry': 0.6.2_tslib@2.4.1
-      tslib: 2.4.1
     devDependencies:
       '@sap/guided-answers-extension-core': link:../core
       '@sap/guided-answers-extension-types': link:../types
       '@types/vscode': 1.39.0
+      '@vscode/extension-telemetry': 0.6.2_tslib@2.4.1
       '@vscode/vsce': 2.15.0
       esbuild: 0.16.10
       esbuild-plugin-copy: 2.0.1_esbuild@0.16.10
       jsdom: 20.0.3
+      tslib: 2.4.1
       vscode-uri: 3.0.7
 
   packages/types:
@@ -1734,7 +1733,7 @@ packages:
       '@microsoft/dynamicproto-js': 1.1.7
     transitivePeerDependencies:
       - tslib
-    dev: false
+    dev: true
 
   /@microsoft/1ds-post-js/3.2.8_tslib@2.4.1:
     resolution: {integrity: sha512-SjlRoNcXcXBH6WQD/5SkkaCHIVqldH3gDu+bI7YagrOVJ5APxwT1Duw9gm3L1FjFa9S2i81fvJ3EVSKpp9wULA==}
@@ -1744,7 +1743,7 @@ packages:
       '@microsoft/dynamicproto-js': 1.1.7
     transitivePeerDependencies:
       - tslib
-    dev: false
+    dev: true
 
   /@microsoft/applicationinsights-core-js/2.8.9_tslib@2.4.1:
     resolution: {integrity: sha512-HRuIuZ6aOWezcg/G5VyFDDWGL8hDNe/ljPP01J7ImH2kRPEgbtcfPSUMjkamGMefgdq81GZsSoC/NNGTP4pp2w==}
@@ -1754,15 +1753,15 @@ packages:
       '@microsoft/applicationinsights-shims': 2.0.2
       '@microsoft/dynamicproto-js': 1.1.7
       tslib: 2.4.1
-    dev: false
+    dev: true
 
   /@microsoft/applicationinsights-shims/2.0.2:
     resolution: {integrity: sha512-PoHEgsnmcqruLNHZ/amACqdJ6YYQpED0KSRe6J7gIJTtpZC1FfFU9b1fmDKDKtFoUSrPzEh1qzO3kmRZP0betg==}
-    dev: false
+    dev: true
 
   /@microsoft/dynamicproto-js/1.1.7:
     resolution: {integrity: sha512-SK3D3aVt+5vOOccKPnGaJWB5gQ8FuKfjboUJHedMP7gu54HqSCXX5iFXhktGD8nfJb0Go30eDvs/UDoTnR2kOA==}
-    dev: false
+    dev: true
 
   /@microsoft/fast-element/1.11.0:
     resolution: {integrity: sha512-VKJYMkS5zgzHHb66sY7AFpYv6IfFhXrjQcAyNgi2ivD65My1XOhtjfKez5ELcLFRJfgZNAxvI8kE69apXERTkw==}
@@ -2426,7 +2425,7 @@ packages:
       '@microsoft/1ds-post-js': 3.2.8_tslib@2.4.1
     transitivePeerDependencies:
       - tslib
-    dev: false
+    dev: true
 
   /@vscode/vsce/2.15.0:
     resolution: {integrity: sha512-c+qS5KSX4jO3RuGqeNQHqci4+WrcmLxHAwiWTR3PDR6wXzV1fQJxybueUOojXcqvsJR3W2AeROrpf+302ZkTfg==}
