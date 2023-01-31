@@ -76,17 +76,16 @@
         "@sap/guided-answers-extension-types": "workspace:*",
         "@types/vscode": "1.39.0",
         "@vscode/vsce": "2.15.0",
+        "@vscode/extension-telemetry": "0.6.2",
         "esbuild": "0.16.10",
         "esbuild-plugin-copy": "2.0.1",
         "jsdom": "20.0.3",
+        "tslib": "2.4.1",
         "vscode-uri": "3.0.7"
     },
     "galleryBanner": {
         "color": "#00195A",
         "theme": "dark"
     },
-    "dependencies": {
-        "@vscode/extension-telemetry": "0.6.2",
-        "tslib": "2.4.1"
-    }
+    "dependencies": {}
 }
