@@ -1,1 +1,1 @@
-export { initTelemetry, setCommonProperties, trackEvent, trackAction } from './telemetry';
+export { initTelemetry, setCommonProperties, trackAction, trackEvent } from './telemetry';

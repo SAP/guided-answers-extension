@@ -1,22 +1,16 @@
 import TelemetryReporter from '@vscode/extension-telemetry';
-import { SELECT_NODE, SET_ACTIVE_TREE } from '@sap/guided-answers-extension-types';
 import type { IDE, SendTelemetry } from '@sap/guided-answers-extension-types';
 import { logString } from '../logger/logger';
 import packageJson from '../../package.json';
-import type {
-    TelemetryEvent,
-    TelemetryCommonProperties,
-    TelemetryUIOpenTreeEventProps,
-    TelemetryUIEventProps,
-    TelemetryUISelectNodeEventProps
-} from '../types';
+import type { TelemetryEvent, TelemetryCommonProperties } from '../types';
+import { actionMap } from './action-map';
 
 const key = 'ApplicationInsightsInstrumentationKeyPLACEH0LDER';
 
 // Telemetry reporter client
 let reporter: TelemetryReporter;
 
-// Common properties that will be included with every event
+// Common properties that do not change and will be add to each event
 let commonProperties: TelemetryCommonProperties;
 
 /**
@@ -65,6 +59,18 @@ export async function trackEvent(event: TelemetryEvent): Promise<void> {
 }
 
 /**
+ * Map specified redux actions to to telemetry events and track them.
+ *
+ * @param action - action that occurred
+ */
+export async function trackAction(action: SendTelemetry): Promise<void> {
+    if (actionMap[action.payload.action.type]) {
+        const properties = actionMap[action.payload.action.type](action);
+        trackEvent({ name: 'USER_INTERACTION', properties });
+    }
+}
+
+/**
  * Ensure all property values are strings. While type TelemetryEventProperties defines the values
  * as string | number | any, the call sendTelemetryEvent() throws an exception if a non-string
  * property value is passed.
@@ -79,38 +85,4 @@ function propertyValuesToString(properties: { [key: string]: any }): { [key: str
         }
     }
     return properties;
-}
-
-/**
- * Map redux action -> telemetry event properties
- */
-const actionMap: {
-    [action: string]: (action: SendTelemetry) => TelemetryUIEventProps;
-} = {
-    [SET_ACTIVE_TREE]: (action: SendTelemetry): TelemetryUIOpenTreeEventProps => ({
-        action: 'OPEN_TREE',
-        treeId: action.payload.action.type === SET_ACTIVE_TREE ? action.payload.action.payload.TREE_ID.toString() : '',
-        treeTitle: action.payload.state.activeGuidedAnswer?.TITLE || ''
-    }),
-    [SELECT_NODE]: (action: SendTelemetry): TelemetryUISelectNodeEventProps => ({
-        action: 'NODE_SELECTED',
-        treeId: action.payload.action.type === SELECT_NODE ? action.payload.action.payload.toString() : '',
-        treeTitle: action.payload.state.activeGuidedAnswer?.TITLE || '',
-        lastNodeId: action.payload.state.activeGuidedAnswerNode.slice(-1)[0].NODE_ID.toString(),
-        lastNodeTitle: action.payload.state.activeGuidedAnswerNode.slice(-1)[0].TITLE,
-        nodeIdPath: action.payload.state.activeGuidedAnswerNode.map((node) => node.NODE_ID.toString()).join(':'),
-        nodeLevel: action.payload.state.activeGuidedAnswerNode.length.toString()
-    })
-};
-
-/**
- * Map specified redux actions to to telemetry events and track them.
- *
- * @param action - action that occurred
- */
-export async function trackAction(action: SendTelemetry): Promise<void> {
-    if (actionMap[action.payload.action.type]) {
-        const properties = actionMap[action.payload.action.type](action);
-        trackEvent({ name: 'USER_INTERACTION', properties });
-    }
 }

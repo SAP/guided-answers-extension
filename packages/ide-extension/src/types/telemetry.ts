@@ -47,3 +47,13 @@ export interface TelemetryUISelectNodeEventProps extends TelemetryUIEventProps {
     nodeIdPath: string;
     nodeLevel: string;
 }
+
+export interface TelemetryUIGoToPreviousPage extends TelemetryUIEventProps {
+    action: 'GO_BACK_IN_TREE';
+    treeId: string;
+    treeTitle: string;
+    lastNodeId: string;
+    lastNodeTitle: string;
+    nodeIdPath: string;
+    nodeLevel: string;
+}

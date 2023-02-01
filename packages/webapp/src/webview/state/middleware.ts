@@ -1,7 +1,12 @@
 import i18next from 'i18next';
 import type { Middleware, MiddlewareAPI, Dispatch, Action } from 'redux';
 import type { GuidedAnswerActions } from '@sap/guided-answers-extension-types';
-import { SELECT_NODE, SEND_TELEMETRY, SET_ACTIVE_TREE } from '@sap/guided-answers-extension-types';
+import {
+    GO_TO_PREVIOUS_PAGE,
+    SEND_TELEMETRY,
+    SET_ACTIVE_TREE,
+    UPDATE_ACTIVE_NODE
+} from '@sap/guided-answers-extension-types';
 import type { AppState } from '../types';
 
 declare let window: Window;
@@ -47,7 +52,7 @@ export const communicationMiddleware: Middleware<
         };
 };
 
-const allowedTelemetryActions = new Set([SELECT_NODE, SET_ACTIVE_TREE]);
+const allowedTelemetryActions = new Set([GO_TO_PREVIOUS_PAGE, SET_ACTIVE_TREE, UPDATE_ACTIVE_NODE]);
 export const telemetryMiddleware: Middleware<
     Dispatch<GuidedAnswerActions>,
     AppState,

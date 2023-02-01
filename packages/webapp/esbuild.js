@@ -17,7 +17,7 @@ require('esbuild')
         format: 'cjs',
         bundle: true,
         metafile: true,
-        sourcemap: true, // .vscodeignore ignores .map files when bundling!!
+        sourcemap: process.argv.includes('--watch') ? 'inline' : true, // .vscodeignore ignores .map files when bundling!!
         mainFields: ['module', 'main'], // https://stackoverflow.com/a/69352281
         minify: true,
         loader: {

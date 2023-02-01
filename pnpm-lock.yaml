@@ -4,6 +4,11 @@ overrides:
   strip-ansi@3.0.1>ansi-regex: ^5.0.1
   generic-names@4.0.0>loader-utils: ^3.2.1
 
+patchedDependencies:
+  '@vscode/extension-telemetry@0.6.2':
+    hash: pup67pqt4f46737bpso4uq2qsu
+    path: patches/@vscode__extension-telemetry@0.6.2.patch
+
 importers:
 
   .:
@@ -83,18 +88,16 @@ importers:
       esbuild-plugin-copy: 2.0.1
       jsdom: 20.0.3
       tslib: 2.4.1
-      vscode-uri: 3.0.7
     devDependencies:
       '@sap/guided-answers-extension-core': link:../core
       '@sap/guided-answers-extension-types': link:../types
       '@types/vscode': 1.39.0
-      '@vscode/extension-telemetry': 0.6.2_tslib@2.4.1
+      '@vscode/extension-telemetry': 0.6.2_pup67pqt4f46737bpso4uq2qsu_tslib@2.4.1
       '@vscode/vsce': 2.15.0
       esbuild: 0.16.10
       esbuild-plugin-copy: 2.0.1_esbuild@0.16.10
       jsdom: 20.0.3
       tslib: 2.4.1
-      vscode-uri: 3.0.7
 
   packages/types:
     specifiers: {}
@@ -2417,7 +2420,7 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vscode/extension-telemetry/0.6.2_tslib@2.4.1:
+  /@vscode/extension-telemetry/0.6.2_pup67pqt4f46737bpso4uq2qsu_tslib@2.4.1:
     resolution: {integrity: sha512-yb/wxLuaaCRcBAZtDCjNYSisAXz3FWsSqAha5nhHcYxx2ZPdQdWuZqVXGKq0ZpHVndBWWtK6XqtpCN2/HB4S1w==}
     engines: {vscode: ^1.60.0}
     dependencies:
@@ -2426,6 +2429,7 @@ packages:
     transitivePeerDependencies:
       - tslib
     dev: true
+    patched: true
 
   /@vscode/vsce/2.15.0:
     resolution: {integrity: sha512-c+qS5KSX4jO3RuGqeNQHqci4+WrcmLxHAwiWTR3PDR6wXzV1fQJxybueUOojXcqvsJR3W2AeROrpf+302ZkTfg==}
@@ -8056,10 +8060,6 @@ packages:
   /void-elements/3.1.0:
     resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
     engines: {node: '>=0.10.0'}
-    dev: true
-
-  /vscode-uri/3.0.7:
-    resolution: {integrity: sha512-eOpPHogvorZRobNqJGhapa0JdwaxpjVvyBp0QIUMRMSf8ZAlqOdEquKuRmw9Qwu0qXtJIWqFtMkmvJjUZmMjVA==}
     dev: true
 
   /w3c-hr-time/1.0.2:

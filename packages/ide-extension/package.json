@@ -80,8 +80,7 @@
         "esbuild": "0.16.10",
         "esbuild-plugin-copy": "2.0.1",
         "jsdom": "20.0.3",
-        "tslib": "2.4.1",
-        "vscode-uri": "3.0.7"
+        "tslib": "2.4.1"
     },
     "galleryBanner": {
         "color": "#00195A",
