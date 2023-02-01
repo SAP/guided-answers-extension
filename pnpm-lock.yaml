@@ -88,6 +88,7 @@ importers:
       esbuild-plugin-copy: 2.0.1
       jsdom: 20.0.3
       tslib: 2.4.1
+      vscode-uri: 3.0.7
     devDependencies:
       '@sap/guided-answers-extension-core': link:../core
       '@sap/guided-answers-extension-types': link:../types
@@ -98,6 +99,7 @@ importers:
       esbuild-plugin-copy: 2.0.1_esbuild@0.16.10
       jsdom: 20.0.3
       tslib: 2.4.1
+      vscode-uri: 3.0.7
 
   packages/types:
     specifiers: {}
@@ -8060,6 +8062,10 @@ packages:
   /void-elements/3.1.0:
     resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /vscode-uri/3.0.7:
+    resolution: {integrity: sha512-eOpPHogvorZRobNqJGhapa0JdwaxpjVvyBp0QIUMRMSf8ZAlqOdEquKuRmw9Qwu0qXtJIWqFtMkmvJjUZmMjVA==}
     dev: true
 
   /w3c-hr-time/1.0.2:
