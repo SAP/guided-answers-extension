@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FeedbackDialogBox /> Should not render a FeedbackSendDialogBox component 1`] = `
+<div
+  aria-hidden="true"
+>
+  <span
+    class="ms-layer"
+  />
+</div>
+`;
+
+exports[`<FeedbackDialogBox /> Should render a FeedbackSendDialogBox component 1`] = `
+<div
+  aria-hidden="true"
+>
+  <span
+    class="ms-layer"
+  />
+</div>
+`;

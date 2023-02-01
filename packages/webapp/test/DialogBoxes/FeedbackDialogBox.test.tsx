@@ -11,7 +11,7 @@ jest.mock('react-redux', () => ({
     useSelector: jest.fn().mockReturnValue({ feedbackStatus: true }).mockReturnValueOnce({ feedbackStatus: false })
 }));
 
-jest.mock('../src/webview/state', () => {
+jest.mock('../../src/webview/state', () => {
     return {
         actions: {
             feedbackStatus: jest.fn()
@@ -19,7 +19,7 @@ jest.mock('../src/webview/state', () => {
     };
 });
 
-const createState = (initialState: AppState) => (actions: any[]) => actions.reduce(reducer, initialState);
+const createState = (initialState: AppState) => (actions: any) => actions.reduce(reducer, initialState);
 const mockStore = configureMockStore();
 
 describe('<FeedbackDialogBox />', () => {
@@ -29,6 +29,15 @@ describe('<FeedbackDialogBox />', () => {
     const store = mockStore(initialState);
 
     it('Should render a FeedbackSendDialogBox component', () => {
+        const { container } = render(
+            <Provider store={store}>
+                <FeedbackDialogBox />
+            </Provider>
+        );
+        expect(container).toMatchSnapshot();
+    });
+
+    it('Should not render a FeedbackSendDialogBox component', () => {
         const { container } = render(
             <Provider store={store}>
                 <FeedbackDialogBox />

@@ -2,7 +2,6 @@ import React, { ReactElement, useState, useEffect, FormEvent, useCallback } from
 import './FeedbackDialogBox.scss';
 import { DialogFooter } from '@fluentui/react/lib/Dialog';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-import { TextField } from '@fluentui/react';
 import { VscInfo } from 'react-icons/vsc';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
