@@ -9,7 +9,7 @@ import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import type { GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
-import { UIDefaultButton, UIDialog } from '@sap-ux/ui-components';
+import { UIDefaultButton, UIDialog, UITextInput } from '@sap-ux/ui-components';
 
 /**
  * The feedback dialog box for submitting comments.
@@ -66,7 +66,7 @@ export function FeedbackDialogBox(): ReactElement {
                     actions.feedbackStatus(false);
                 }, [])}>
                 <p className="ms-Dialog-subText">{i18next.t('FEEDBACK_DIALOG_SUBTEXT')}</p>
-                <TextField
+                <UITextInput
                     label={i18next.t('FEEDBACK_DIALOG_SUGGESTION')}
                     multiline
                     style={{ height: '85px' }}
