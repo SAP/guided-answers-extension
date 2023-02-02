@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.9.1
+
+### Patch Changes
+
+-   5da27ac: Fix for re-opening 'Message sent' popup dialog
+
 ## 1.9.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.10.1
+
+### Patch Changes
+
+-   5da27ac: Fix for re-opening 'Message sent' popup dialog
+
 ## 1.10.0
 
 ### Minor Changes
