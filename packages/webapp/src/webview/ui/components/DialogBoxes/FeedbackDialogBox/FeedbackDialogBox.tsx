@@ -66,6 +66,7 @@ export function FeedbackDialogBox(): ReactElement {
                 }, [])}>
                 <p className="ms-Dialog-subText">{i18next.t('FEEDBACK_DIALOG_SUBTEXT')}</p>
                 <UITextInput
+                    id="feedbackDialogTextArea"
                     label={i18next.t('FEEDBACK_DIALOG_SUGGESTION')}
                     multiline
                     style={{ height: '85px' }}

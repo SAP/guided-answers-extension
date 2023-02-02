@@ -9,13 +9,15 @@ import { actions } from '../../src/webview/state';
 
 jest.mock('react-redux', () => ({
     ...jest.requireActual('react-redux'),
-    useSelector: jest.fn().mockReturnValue({ feedbackStatus: true }).mockReturnValueOnce({ feedbackStatus: false })
+    useSelector: jest.fn().mockReturnValue({ feedbackStatus: true })
 }));
 
 jest.mock('../../src/webview/state', () => {
     return {
         actions: {
-            feedbackStatus: jest.fn()
+            feedbackStatus: jest.fn(),
+            feedbackResponse: jest.fn(),
+            sendFeedbackComment: jest.fn()
         }
     };
 });
@@ -62,6 +64,7 @@ describe('<FeedbackDialogBox />', () => {
         fireEvent.click(element);
         expect(actions.feedbackStatus).toBeCalled();
     });
+
     it('Send button should be disabled if value is empty', () => {
         const { container } = render(
             <Provider store={store}>
@@ -69,6 +72,29 @@ describe('<FeedbackDialogBox />', () => {
             </Provider>
         );
         expect(container).toMatchSnapshot();
+        const textArea = screen.getByTestId('feedbackDialogTextArea') as HTMLInputElement;
+        expect(textArea.value).toEqual('');
         expect(screen.getByTestId('sendFeedbackBtn')).toBeDisabled();
+
+        fireEvent.change(textArea, { target: { value: 'test' } });
+        expect(screen.getByTestId('sendFeedbackBtn')).toBeEnabled();
+    });
+
+    it('Should sennd feedback comment and feedback status', () => {
+        const { container } = render(
+            <Provider store={store}>
+                <FeedbackDialogBox />
+            </Provider>
+        );
+        expect(container).toMatchSnapshot();
+
+        //Test click event
+        const textArea = screen.getByTestId('feedbackDialogTextArea') as HTMLInputElement;
+        fireEvent.change(textArea, { target: { value: 'test' } });
+        const element = screen.getByTestId('sendFeedbackBtn');
+        fireEvent.click(element);
+        expect(actions.feedbackResponse).toBeCalled();
+        expect(actions.sendFeedbackComment).toBeCalled();
+        expect(actions.feedbackStatus).toBeCalled();
     });
 });
