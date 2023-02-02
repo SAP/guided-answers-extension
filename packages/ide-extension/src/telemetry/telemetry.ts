@@ -10,8 +10,8 @@ const key = 'ApplicationInsightsInstrumentationKeyPLACEH0LDER';
 // Telemetry reporter client
 let reporter: TelemetryReporter;
 
-// Common properties that do not change and will be add to each event
-let commonProperties: TelemetryCommonProperties;
+// Common properties that will be added to each event
+let commonProperties: TelemetryCommonProperties | undefined;
 
 /**
  * Initialize telemetry.
@@ -20,6 +20,7 @@ let commonProperties: TelemetryCommonProperties;
  */
 export function initTelemetry(): TelemetryReporter {
     if (!reporter) {
+        commonProperties = undefined;
         reporter = new TelemetryReporter('ga', packageJson.version, key);
     }
     return reporter;
@@ -27,20 +28,23 @@ export function initTelemetry(): TelemetryReporter {
 
 /**
  * Set common properties which will be added to every telemetry event.
+ * If called without properties, all common properties are removed.
  *
- * @param properties - name/value pair of  properties
+ * @param properties - name/value pair of properties (optional)
  * @param properties.ide - development environment VSCODE or SBAS
  * @param properties.devSpace - SBAS devspace
  * @param properties.apiHost - host for Guided Answers API
  * @param properties.apiVersion - version of Guided Answers API
  */
-export function setCommonProperties(properties: { ide: IDE; devSpace: string; apiHost: string; apiVersion: string }) {
-    commonProperties = {
-        'cmn.appstudio': properties.ide === 'SBAS' ? 'true' : 'false',
-        'cmn.devspace': properties.devSpace,
-        apiHost: properties.apiHost,
-        apiVersion: properties.apiVersion
-    };
+export function setCommonProperties(properties?: { ide: IDE; devSpace: string; apiHost: string; apiVersion: string }) {
+    commonProperties = properties
+        ? {
+              'cmn.appstudio': properties.ide === 'SBAS' ? 'true' : 'false',
+              'cmn.devspace': properties.devSpace,
+              apiHost: properties.apiHost,
+              apiVersion: properties.apiVersion
+          }
+        : undefined;
 }
 
 /**

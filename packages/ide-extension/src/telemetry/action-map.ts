@@ -1,5 +1,5 @@
 import { GO_TO_PREVIOUS_PAGE, SET_ACTIVE_TREE, UPDATE_ACTIVE_NODE } from '@sap/guided-answers-extension-types';
-import type { AppState, SendTelemetry } from '@sap/guided-answers-extension-types';
+import type { AppState, SendTelemetry, SetActiveTree } from '@sap/guided-answers-extension-types';
 import type {
     TelemetryUIEventProps,
     TelemetryUIGoToPreviousPage,
@@ -16,8 +16,8 @@ export const actionMap: {
 } = {
     [SET_ACTIVE_TREE]: (action: SendTelemetry): TelemetryUIOpenTreeEventProps => ({
         action: 'OPEN_TREE',
-        treeId: action.payload.action.type === SET_ACTIVE_TREE ? action.payload.action.payload.TREE_ID.toString() : '',
-        treeTitle: action.payload.state.activeGuidedAnswer?.TITLE || ''
+        treeId: (action.payload.action as SetActiveTree).payload.TREE_ID.toString(),
+        treeTitle: getTreeNodeInfo(action.payload.state).treeTitle
     }),
     [UPDATE_ACTIVE_NODE]: (action: SendTelemetry): TelemetryUISelectNodeEventProps => ({
         action: 'NODE_SELECTED',
