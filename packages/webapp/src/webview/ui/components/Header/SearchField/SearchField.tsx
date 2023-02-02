@@ -2,7 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
-import { VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
+import { UITextInput } from '@sap-ux/ui-components';
+
 import { Filters } from '../Filters';
 
 let timer: NodeJS.Timeout;
@@ -14,13 +15,13 @@ export function SearchField() {
     const appState = useSelector<AppState, AppState>((state) => state);
     return (
         <div className="guided-answer__header__searchField">
-            <VSCodeTextField
+            <UITextInput
                 className="tree-search-field"
                 value={appState.query}
                 readOnly={appState.loading}
                 placeholder="Search Guided Answers"
                 id="search-field"
-                onInput={(e: any) => {
+                onChange={(e: any) => {
                     const newValue = e?.target?.value;
                     if (newValue !== undefined) {
                         clearTimeout(timer);
@@ -39,7 +40,7 @@ export function SearchField() {
                             });
                         }, 400);
                     }
-                }}></VSCodeTextField>
+                }}></UITextInput>
             <Filters />
         </div>
     );

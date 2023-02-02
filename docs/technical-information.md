@@ -58,7 +58,7 @@ Characteristics include
 
 ### Module `@sap/guided-answers-extension-webapp` ([packages/webapp](../packages/webapp/))
 
-The UI part is developed using React. As state container we use Redux. Communication between webapp UI and ide extension is done within a middleware and uses iframe `postMessage()` calls. As control library Microsoft's module `@vscode/webview-ui-toolkit` is used, which also provides controls as React elements.
+The UI part is developed using React. As state container we use Redux. Communication between webapp UI and ide extension is done within a middleware and uses iframe `postMessage()` calls. As control library SAP's module `@sap-ux/ui-components` is used, which also provides controls as React elements.
 
 This module is responsible to 
 

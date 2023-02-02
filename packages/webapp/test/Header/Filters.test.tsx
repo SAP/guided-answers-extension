@@ -16,14 +16,6 @@ import {
 const createState = (initialState: AppState) => (actions: any[]) => actions.reduce(reducer, initialState);
 const mockStore = configureMockStore();
 
-jest.mock('@vscode/webview-ui-toolkit/react', () => ({
-    VSCodeTextField: () => (
-        <>
-            <div>SearchField</div>
-        </>
-    )
-}));
-
 jest.mock('../../src/webview/state', () => {
     return {
         actions: {

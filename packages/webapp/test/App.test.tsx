@@ -8,19 +8,6 @@ import { getInitialState, reducer } from '../src/webview/state/reducers';
 import { AppState } from '../src/webview/types';
 import { treeMock } from './__mocks__/treeMock';
 
-jest.mock('@vscode/webview-ui-toolkit/react', () => ({
-    VSCodeTextField: () => (
-        <>
-            <div>SearchField</div>
-        </>
-    ),
-    VSCodeProgressRing: () => (
-        <>
-            <div>Loading icon</div>
-        </>
-    )
-}));
-
 jest.mock('../src/webview/state', () => {
     return {
         actions: {
