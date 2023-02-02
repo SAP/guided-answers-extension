@@ -1,7 +1,6 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import './FeedbackSendDialogBox.scss';
 import { DialogType } from '@fluentui/react/lib/Dialog';
-import { actions } from '../../../../state';
 import i18next from 'i18next';
 import { UIIcon, UIDialog } from '@sap-ux/ui-components';
 import { UiIcons } from '../../UIComponentsLib/Icons';
