@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.10.0
+
+### Minor Changes
+
+-   c82c610: Replace input control from @vscode/webview-ui-toolkit with input control from @sap-ux/ui-components
+
 ## 1.9.0
 
 ### Minor Changes
