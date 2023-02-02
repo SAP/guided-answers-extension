@@ -20,7 +20,6 @@ let commonProperties: TelemetryCommonProperties | undefined;
  */
 export function initTelemetry(): TelemetryReporter {
     if (!reporter) {
-        commonProperties = undefined;
         reporter = new TelemetryReporter('ga', packageJson.version, key);
     }
     return reporter;
