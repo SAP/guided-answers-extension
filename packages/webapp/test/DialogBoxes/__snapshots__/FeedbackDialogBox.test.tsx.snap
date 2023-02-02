@@ -20,16 +20,6 @@ exports[`<FeedbackDialogBox /> Should close FeedbackSendDialogBox component 1`] 
 </div>
 `;
 
-exports[`<FeedbackDialogBox /> Should not render a FeedbackSendDialogBox component 1`] = `
-<div
-  aria-hidden="true"
->
-  <span
-    class="ms-layer"
-  />
-</div>
-`;
-
 exports[`<FeedbackDialogBox /> Should render a FeedbackSendDialogBox component 1`] = `
 <div
   aria-hidden="true"
