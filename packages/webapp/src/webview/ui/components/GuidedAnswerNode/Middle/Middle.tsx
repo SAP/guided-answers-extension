@@ -9,7 +9,7 @@ import { AppState } from '../../../../types';
 import { FeedbackSection } from '../../FeedbackSection/FeedbackSection';
 import NotSolvedMessage from '../../FeedbackSection/NotSolvedMessage/NotSolvedMessage';
 import { FeedbackDialogBox } from '../../DialogBoxes/FeedbackDialogBox';
-import { FeedbackSendDialogBox } from '../../DialogBoxes/FeedbackSentDialogBox/FeedbackSendDialogBox';
+import { FeedbackSentDialogBox } from '../../DialogBoxes/FeedbackSentDialogBox/FeedbackSentDialogBox';
 
 let firstTimeFocus = true;
 
@@ -76,7 +76,7 @@ export function Middle(props: {
                 </div>
             </FocusZone>
             <FeedbackDialogBox />
-            <FeedbackSendDialogBox />
+            <FeedbackSentDialogBox />
         </div>
     );
 }

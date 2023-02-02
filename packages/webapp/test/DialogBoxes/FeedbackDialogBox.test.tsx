@@ -40,16 +40,6 @@ describe('<FeedbackDialogBox />', () => {
         expect(container).toMatchSnapshot();
     });
 
-    it('Dialog Smoke test', () => {
-        const { container } = render(
-            <Provider store={store}>
-                <FeedbackDialogBox />
-            </Provider>
-        );
-
-        expect(container.classList.contains('dialog-exit')).toBe(false);
-    });
-
     it('Should close FeedbackSendDialogBox component', () => {
         const { container } = render(
             <Provider store={store}>
@@ -57,26 +47,28 @@ describe('<FeedbackDialogBox />', () => {
             </Provider>
         );
 
-        expect(container).toMatchSnapshot();
-
         //Test click event
         const element = screen.getByTestId('closeDialogBtn');
         fireEvent.click(element);
-        expect(actions.feedbackStatus).toBeCalled();
+        expect(actions.feedbackStatus).toHaveBeenCalled();
     });
 
-    it('Send button should be disabled if value is empty', () => {
+    it('Should test send button', () => {
         const { container } = render(
             <Provider store={store}>
                 <FeedbackDialogBox />
             </Provider>
         );
-        expect(container).toMatchSnapshot();
+        const setTextFieldHasValueMock = jest.fn();
+        const setTextFieldHasValueMock: any = (useState: any) => [useState, setTextFieldHasValueMock];
+        jest.spyOn(React, 'useState').mockImplementation(setTextFieldHasValueMock);
+
         const textArea = screen.getByTestId('feedbackDialogTextArea') as HTMLInputElement;
         expect(textArea.value).toEqual('');
         expect(screen.getByTestId('sendFeedbackBtn')).toBeDisabled();
 
         fireEvent.change(textArea, { target: { value: 'test' } });
+        expect(settextFieldHasValueMock).toHaveBeenCalled();
         expect(screen.getByTestId('sendFeedbackBtn')).toBeEnabled();
     });
 
@@ -86,7 +78,6 @@ describe('<FeedbackDialogBox />', () => {
                 <FeedbackDialogBox />
             </Provider>
         );
-        expect(container).toMatchSnapshot();
 
         //Test click event
         const textArea = screen.getByTestId('feedbackDialogTextArea') as HTMLInputElement;

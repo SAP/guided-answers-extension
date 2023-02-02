@@ -39,3 +39,13 @@ exports[`<FeedbackDialogBox /> Should sennd feedback comment and feedback status
   />
 </div>
 `;
+
+exports[`<FeedbackDialogBox /> Should test send button 1`] = `
+<div
+  aria-hidden="true"
+>
+  <span
+    class="ms-layer"
+  />
+</div>
+`;

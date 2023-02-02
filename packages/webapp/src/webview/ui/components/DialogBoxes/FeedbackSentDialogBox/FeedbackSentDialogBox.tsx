@@ -13,7 +13,7 @@ import { actions } from '../../../../state';
  *
  * @returns the feedback send dialog box element
  */
-export function FeedbackSendDialogBox(): ReactElement {
+export function FeedbackSentDialogBox(): ReactElement {
     const feedbackResponse = useSelector<AppState, boolean>((state) => state.feedbackResponse);
     const [isVisible, setVisible] = useState(feedbackResponse);
     useEffect(() => {
