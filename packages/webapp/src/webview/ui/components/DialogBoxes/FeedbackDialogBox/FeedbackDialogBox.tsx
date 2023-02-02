@@ -81,6 +81,7 @@ export function FeedbackDialogBox(): ReactElement {
                             primary
                             text={i18next.t('SEND')}
                             disabled={textFieldhasValue}
+                            id="sendFeedbackBtn"
                             onClick={() => {
                                 actions.feedbackResponse(false);
                                 actions.sendFeedbackComment({ treeId, nodeId, comment: feedback });
@@ -89,6 +90,7 @@ export function FeedbackDialogBox(): ReactElement {
                         />
                         <UIDefaultButton
                             text={i18next.t('CLOSE')}
+                            id="closeDialogBtn"
                             onClick={() => {
                                 actions.feedbackStatus(false);
                             }}

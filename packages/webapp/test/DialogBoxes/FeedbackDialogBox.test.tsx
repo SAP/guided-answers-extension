@@ -1,10 +1,11 @@
 import React from 'react';
 import { FeedbackDialogBox } from '../../src/webview/ui/components/DialogBoxes/FeedbackDialogBox';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import { AppState } from '../../src/webview/types';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
+import { actions } from '../../src/webview/state';
 
 jest.mock('react-redux', () => ({
     ...jest.requireActual('react-redux'),
@@ -37,12 +38,37 @@ describe('<FeedbackDialogBox />', () => {
         expect(container).toMatchSnapshot();
     });
 
-    it('Should not render a FeedbackSendDialogBox component', () => {
+    it('Dialog Smoke test', () => {
+        const { container } = render(
+            <Provider store={store}>
+                <FeedbackDialogBox />
+            </Provider>
+        );
+
+        expect(container.classList.contains('dialog-exit')).toBe(false);
+    });
+
+    it('Should close FeedbackSendDialogBox component', () => {
+        const { container } = render(
+            <Provider store={store}>
+                <FeedbackDialogBox />
+            </Provider>
+        );
+
+        expect(container).toMatchSnapshot();
+
+        //Test click event
+        const element = screen.getByTestId('closeDialogBtn');
+        fireEvent.click(element);
+        expect(actions.feedbackStatus).toBeCalled();
+    });
+    it('Send button should be disabled if value is empty', () => {
         const { container } = render(
             <Provider store={store}>
                 <FeedbackDialogBox />
             </Provider>
         );
         expect(container).toMatchSnapshot();
+        expect(screen.getByTestId('sendFeedbackBtn')).toBeDisabled();
     });
 });
