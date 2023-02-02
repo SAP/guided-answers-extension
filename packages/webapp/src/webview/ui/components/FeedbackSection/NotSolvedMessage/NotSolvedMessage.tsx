@@ -32,9 +32,9 @@ export default function NotSolvedMessage(): ReactElement {
                     direction={FocusZoneDirection.vertical}
                     className="guided-answer__node"
                     isCircularNavigation={true}>
-                    {options.map((btn, i, key) => (
-                        <div className="guided-answer__node" key={i}>
-                            <a key={i} className="guided-answer__node__edge" href={btn.link} role="button">
+                    {options.map((btn) => (
+                        <div className="guided-answer__node" key={btn.link}>
+                            <a className="guided-answer__node__edge" href={btn.link} role="button">
                                 {i18next.t(btn.text)}
                             </a>
                         </div>
