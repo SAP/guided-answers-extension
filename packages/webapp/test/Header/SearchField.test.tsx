@@ -17,14 +17,6 @@ jest.mock('../../src/webview/state', () => {
     };
 });
 
-jest.mock('@vscode/webview-ui-toolkit/react', () => ({
-    VSCodeTextField: () => (
-        <>
-            <input type="text" id="search-field" />
-        </>
-    )
-}));
-
 jest.mock('react-redux', () => {
     const lib = jest.requireActual('react-redux');
     return {
@@ -56,6 +48,6 @@ describe('<SearchField />', () => {
         //Test click event
         const element = screen.getByTestId('search-field');
         fireEvent.input(element, { target: { value: 'Fiori Tools' } });
-        expect(setTimeout).toHaveBeenCalledTimes(1);
+        expect(setTimeout).toHaveBeenCalledTimes(2);
     });
 });
