@@ -21,7 +21,7 @@
         "eslint-plugin-react": "7.31.11",
         "eslint-plugin-sonarjs": "0.17.0",
         "husky": "8.0.2",
-        "jest": "29.3.1",
+        "jest": "29.4.1",
         "jest-sonar": "0.2.15",
         "prettier": "2.8.1",
         "pretty-quick": "3.1.3",
