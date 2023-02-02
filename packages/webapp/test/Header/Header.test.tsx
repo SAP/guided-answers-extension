@@ -4,14 +4,6 @@ import { Header } from '../../src/webview/ui/components/Header';
 import { render, cleanup } from '@testing-library/react';
 import { initI18n } from '../../src/webview/i18n';
 
-jest.mock('@vscode/webview-ui-toolkit/react', () => ({
-    VSCodeTextField: () => (
-        <>
-            <div>SearchField</div>
-        </>
-    )
-}));
-
 jest.mock('react-redux', () => {
     const lib = jest.requireActual('react-redux');
     const state = {

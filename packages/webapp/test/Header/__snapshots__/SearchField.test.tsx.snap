@@ -5,21 +5,37 @@ exports[`<SearchField /> Should render a SearchField component 1`] = `
   <div
     class="guided-answer__header__searchField"
   >
-    <input
-      id="search-field"
-      type="text"
-    />
+    <div
+      class="ms-TextField tree-search-field root-110"
+    >
+      <div
+        class="ms-TextField-wrapper"
+      >
+        <div
+          class="ms-TextField-fieldGroup fieldGroup-111"
+        >
+          <input
+            aria-invalid="false"
+            class="ms-TextField-field field-112"
+            id="search-field"
+            placeholder="Search Guided Answers"
+            type="text"
+            value="fiori tools"
+          />
+        </div>
+      </div>
+    </div>
     <div
       id="filters"
     >
       <div
-        class="ms-FocusZone css-109"
-        data-focuszone-id="FocusZone0"
+        class="ms-FocusZone css-121"
+        data-focuszone-id="FocusZone5"
         style="display: flex;"
       >
         <button
           aria-disabled="true"
-          class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-110"
+          class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-122"
           data-is-focusable="false"
           disabled=""
           id="filter-products"
@@ -28,19 +44,19 @@ exports[`<SearchField /> Should render a SearchField component 1`] = `
           type="button"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-111"
+            class="ms-Button-flexContainer flexContainer-123"
             data-automationid="splitbuttonprimary"
           >
             <i
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon icon-113"
+              class="ms-Icon root-105 ms-Button-icon icon-125"
               data-icon-name="Table"
             />
           </span>
         </button>
         <button
           aria-disabled="true"
-          class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-110"
+          class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-122"
           data-is-focusable="false"
           disabled=""
           id="filter-components"
@@ -49,12 +65,12 @@ exports[`<SearchField /> Should render a SearchField component 1`] = `
           type="button"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-111"
+            class="ms-Button-flexContainer flexContainer-123"
             data-automationid="splitbuttonprimary"
           >
             <i
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon icon-113"
+              class="ms-Icon root-105 ms-Button-icon icon-125"
               data-icon-name="IdTag"
             />
           </span>

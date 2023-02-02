@@ -112,7 +112,6 @@ importers:
       '@types/react-redux': 7.1.24
       '@types/redux-mock-store': 1.0.3
       '@types/testing-library__jest-dom': 5.14.5
-      '@vscode/webview-ui-toolkit': 1.2.0
       autoprefixer: 10.4.13
       esbuild: 0.16.10
       esbuild-css-modules-plugin: 2.6.3
@@ -152,7 +151,6 @@ importers:
       '@types/react-redux': 7.1.24
       '@types/redux-mock-store': 1.0.3
       '@types/testing-library__jest-dom': 5.14.5
-      '@vscode/webview-ui-toolkit': 1.2.0_react@16.14.0
       autoprefixer: 10.4.13_postcss@8.4.20
       esbuild: 0.16.10
       esbuild-css-modules-plugin: 2.6.3_esbuild@0.16.10
@@ -1957,37 +1955,37 @@ packages:
       read-yaml-file: 1.1.0
     dev: true
 
-  /@microsoft/fast-element/1.8.0:
-    resolution: {integrity: sha512-92GhkCYcay+vcI2yE+P1yD+v59u8Thprmaqg9PgTstf8jLOrevW/6Hna76tMioQQOFtZ8wm2NiiMHD/4sjrfhQ==}
+  /@microsoft/fast-element/1.11.0:
+    resolution: {integrity: sha512-VKJYMkS5zgzHHb66sY7AFpYv6IfFhXrjQcAyNgi2ivD65My1XOhtjfKez5ELcLFRJfgZNAxvI8kE69apXERTkw==}
     dev: true
 
-  /@microsoft/fast-foundation/2.38.0:
-    resolution: {integrity: sha512-jD907wwTMJzXltch234GFHKxnn+ycbZQor7kFolb3Ij6PXqGTUotUEqRrZpiECp7T522t5pYxi305cYc7HQ/ZA==}
+  /@microsoft/fast-foundation/2.47.0:
+    resolution: {integrity: sha512-EyFuioaZQ9ngjUNRQi8R3dIPPsaNQdUOS+tP0G7b1MJRhXmQWIitBM6IeveQA6ZvXG6H21dqgrfEWlsYrUZ2sw==}
     dependencies:
-      '@microsoft/fast-element': 1.8.0
-      '@microsoft/fast-web-utilities': 5.1.0
-      tabbable: 5.2.1
+      '@microsoft/fast-element': 1.11.0
+      '@microsoft/fast-web-utilities': 5.4.1
+      tabbable: 5.3.3
       tslib: 1.14.1
     dev: true
 
-  /@microsoft/fast-react-wrapper/0.1.44_react@16.14.0:
-    resolution: {integrity: sha512-zsvInnvT8QEvsTtuA2Fx26OGzX9VIg+YeuY3otOYW2hMFc6IzY4ZRpJP5lhaE+CRDmbDnQ9fpilYeJbjMkySnQ==}
+  /@microsoft/fast-react-wrapper/0.1.48_react@16.14.0:
+    resolution: {integrity: sha512-9NvEjru9Kn5ZKjomAMX6v+eF0DR+eDkxKDwDfi+Wb73kTbrNzcnmlwd4diN15ygH97kldgj2+lpvI4CKLQQWLg==}
     peerDependencies:
       react: '>=16.9.0'
     dependencies:
-      '@microsoft/fast-element': 1.8.0
-      '@microsoft/fast-foundation': 2.38.0
+      '@microsoft/fast-element': 1.11.0
+      '@microsoft/fast-foundation': 2.47.0
       react: 16.14.0
     dev: true
 
-  /@microsoft/fast-web-utilities/5.1.0:
-    resolution: {integrity: sha512-S2PCxI4XqtIxLM1N7i/NuIAgx+mJM01+mDzyB3vZlYibAkOT0bzp5YZCp+coXowokSin/nK5T2kqShMXEzI6Jg==}
+  /@microsoft/fast-web-utilities/5.4.1:
+    resolution: {integrity: sha512-ReWYncndjV3c8D8iq9tp7NcFNc1vbVHvcBFPME2nNFKNbS1XCesYZGlIlf3ot5EmuOXPlrzUHOWzQ2vFpIkqDg==}
     dependencies:
-      exenv-es6: 1.0.0
+      exenv-es6: 1.1.1
     dev: true
 
-  /@microsoft/load-themed-styles/1.10.283:
-    resolution: {integrity: sha512-6bx7s83hKmgVOXKVjEUzIZSBncJwz6L+jPC3aXDJ9HqVrV2fjL1KQ+yREUHjA34qea40KtvuzZmbxCxgJAYiZQ==}
+  /@microsoft/load-themed-styles/1.10.295:
+    resolution: {integrity: sha512-W+IzEBw8a6LOOfRJM02dTT7BDZijxm+Z7lhtOAz1+y9vQm1Kdz9jlAO+qCEKsfxtUOmKilW8DIRqFw2aUgKeGg==}
     dev: false
 
   /@nodelib/fs.scandir/2.1.5:
@@ -2644,9 +2642,9 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
     dependencies:
-      '@microsoft/fast-element': 1.8.0
-      '@microsoft/fast-foundation': 2.38.0
-      '@microsoft/fast-react-wrapper': 0.1.44_react@16.14.0
+      '@microsoft/fast-element': 1.11.0
+      '@microsoft/fast-foundation': 2.47.0
+      '@microsoft/fast-react-wrapper': 0.1.48_react@16.14.0
       react: 16.14.0
     dev: true
 
@@ -4578,8 +4576,8 @@ packages:
       strip-final-newline: 2.0.0
     dev: true
 
-  /exenv-es6/1.0.0:
-    resolution: {integrity: sha512-fcG/TX8Ruv9Ma6PBaiNsUrHRJzVzuFMP6LtPn/9iqR+nr9mcLeEOGzXQGLC5CVQSXGE98HtzW2mTZkrCA3XrDg==}
+  /exenv-es6/1.1.1:
+    resolution: {integrity: sha512-vlVu3N8d6yEMpMsEm+7sUBAI81aqYYuEvfK0jNqmdb/OPXzzH7QWDDnVjMvDSY47JdHEqx/dfC/q8WkfoTmpGQ==}
     dev: true
 
   /exit/0.1.2:
@@ -8086,10 +8084,6 @@ packages:
     dependencies:
       '@pkgr/utils': 2.3.1
       tslib: 2.4.1
-    dev: true
-
-  /tabbable/5.2.1:
-    resolution: {integrity: sha512-40pEZ2mhjaZzK0BnI+QGNjJO8UYx9pP5v7BGe17SORTO0OEuuaAwQTkAp8whcZvqon44wKFOikD+Al11K3JICQ==}
     dev: true
 
   /tapable/2.2.1:
