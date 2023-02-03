@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect, FormEvent, useCallback } from 'react';
+import React, { ReactElement, useState, useEffect, FormEvent } from 'react';
 import './FeedbackDialogBox.scss';
 import { DialogFooter } from '@fluentui/react/lib/Dialog';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
