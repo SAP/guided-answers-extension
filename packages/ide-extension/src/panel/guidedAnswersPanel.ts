@@ -18,9 +18,10 @@ import {
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
-import { getEnhancements, handleCommand } from '../enhancement';
+import { getHtmlEnhancements, handleCommand } from '../enhancement';
 import { logString } from '../logger/logger';
 import type { Options, StartOptions } from '../types';
+import { getInstalledExtensionIds } from '../enhancement/enhancements';
 
 /**
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
@@ -43,9 +44,15 @@ export class GuidedAnswersPanel {
         this.ide = options?.ide || 'VSCODE';
         const config = workspace.getConfiguration('sap.ux.guidedAnswer');
         const apiHost = config.get('apiHost') as string;
-        const enhancements = getEnhancements(this.ide);
+        const htmlEnhancements = getHtmlEnhancements(this.ide);
+        const extensions = getInstalledExtensionIds();
 
-        this.guidedAnswerApi = getGuidedAnswerApi({ apiHost, enhancements });
+        this.guidedAnswerApi = getGuidedAnswerApi({
+            apiHost,
+            htmlEnhancements,
+            ide: this.ide,
+            extensions
+        });
         logString(`API information: ${JSON.stringify(this.guidedAnswerApi.getApiInfo())}`);
         /**
          * vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421), therefore node_modules from same repo are missing.

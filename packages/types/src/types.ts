@@ -48,9 +48,25 @@ export interface GuidedAnswerNode {
     BODY: string;
     QUESTION: string;
     EDGES: GuidedAnswerEdge[];
+    EXTENSIONS?: GuidedAnswerNodeExtension[];
     COMMANDS?: Command[];
 }
 
+export interface GuidedAnswerNodeExtension {
+    TYPE: 'Extension Command' | 'Terminal Command';
+    LABEL: string;
+    DESCRIPTION: string;
+    ARG1: {
+        NAME: string;
+        VALUE: string;
+    };
+    ARG2: {
+        NAME: string;
+        VALUE: string;
+    };
+    ENV_VSCODE: 0 | 1;
+    ENV_SBAS: 0 | 1;
+}
 export interface PostFeedbackResponse {
     status: number;
     statusText: string;
@@ -106,12 +122,7 @@ export interface Command {
     label: string;
     description: string;
     exec: TerminalCommand | VSCodeCommand;
-    environment: IDE[];
-}
-
-export interface NodeEnhancement {
-    nodeId: number;
-    command: Command;
+    environment?: IDE[];
 }
 
 export interface HTMLEnhancement {
@@ -121,10 +132,9 @@ export interface HTMLEnhancement {
 
 export interface APIOptions {
     apiHost?: string;
-    enhancements?: {
-        nodeEnhancements?: NodeEnhancement[];
-        htmlEnhancements?: HTMLEnhancement[];
-    };
+    ide?: IDE;
+    extensions?: Set<string>;
+    htmlEnhancements?: HTMLEnhancement[];
 }
 
 /**
