@@ -121,7 +121,7 @@ exports[`<Header /> Should render a Header component with the navigation buttons
             <i
               aria-hidden="true"
               class="ts-icon guided-answer__header__navButtons__content root-105"
-              data-icon-name="Chat"
+              data-icon-name="ChatBubbles"
               style="padding-top: 2px;"
             />
           </button>

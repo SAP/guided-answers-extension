@@ -9,9 +9,8 @@ import { NoAnswersFound } from '../NoAnswersFound';
 import { FiltersRibbon } from '../Header/Filters';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './App.scss';
-import { initIcons } from '../UIComponentsLib/Icons';
+import { initIcons, UILoader } from '@sap-ux/ui-components';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { UILoader } from '@sap-ux/ui-components';
 import { SpinnerSize } from '@fluentui/react';
 
 initIcons();
