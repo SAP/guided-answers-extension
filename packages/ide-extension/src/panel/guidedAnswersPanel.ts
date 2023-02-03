@@ -19,11 +19,10 @@ import {
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
-import { getHtmlEnhancements, handleCommand } from '../enhancement';
+import { getHtmlEnhancements, getInstalledExtensionIds, handleCommand } from '../enhancement';
 import { logString } from '../logger/logger';
 import type { Options, StartOptions } from '../types';
 import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
-import { getInstalledExtensionIds } from '../enhancement/enhancements';
 
 /**
  *  Class that represents the Guided Answers panel, which hosts the webview UI.

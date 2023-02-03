@@ -1,2 +1,2 @@
 export { handleCommand } from './commandHandler';
-export { getHtmlEnhancements } from './enhancements';
+export { getHtmlEnhancements, getInstalledExtensionIds } from './enhancements';

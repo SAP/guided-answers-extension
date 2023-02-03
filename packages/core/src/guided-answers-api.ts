@@ -173,7 +173,7 @@ async function getTrees(host: string, queryOptions?: GuidedAnswersQueryOptions):
  */
 function isExtensionApplicable(ide: IDE, extension: GuidedAnswerNodeExtension, extensions: Set<string>): boolean {
     return (ide === 'VSCODE' && extension.ENV_VSCODE !== 1) ||
-        (ide === 'SBAS' && extension.ENV_VSCODE !== 1) ||
+        (ide === 'SBAS' && extension.ENV_SBAS !== 1) ||
         (extension.TYPE === 'Extension Command' && !extensions.has(extension.ARG1.VALUE.toLocaleLowerCase()))
         ? false
         : true;
