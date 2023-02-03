@@ -1,46 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FeedbackDialogBox /> Send button should be disabled if value is empty 1`] = `
-<div
-  aria-hidden="true"
->
-  <span
-    class="ms-layer"
-  />
-</div>
-`;
-
 exports[`<FeedbackDialogBox /> Should close FeedbackSendDialogBox component 1`] = `
-<div
-  aria-hidden="true"
->
-  <span
-    class="ms-layer"
-  />
-</div>
-`;
-
-exports[`<FeedbackDialogBox /> Should render a FeedbackSendDialogBox component 1`] = `
-<div
-  aria-hidden="true"
->
-  <span
-    class="ms-layer"
-  />
-</div>
-`;
-
-exports[`<FeedbackDialogBox /> Should sennd feedback comment and feedback status 1`] = `
-<div
-  aria-hidden="true"
->
-  <span
-    class="ms-layer"
-  />
-</div>
-`;
-
-exports[`<FeedbackDialogBox /> Should test send button 1`] = `
 <div
   aria-hidden="true"
 >

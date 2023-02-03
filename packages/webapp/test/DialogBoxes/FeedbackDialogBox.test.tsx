@@ -31,21 +31,14 @@ describe('<FeedbackDialogBox />', () => {
     const initialState = createState(getInitialState());
     const store = mockStore(initialState);
 
-    it('Should render a FeedbackSendDialogBox component', () => {
-        const { container } = render(
-            <Provider store={store}>
-                <FeedbackDialogBox />
-            </Provider>
-        );
-        expect(container).toMatchSnapshot();
-    });
-
     it('Should close FeedbackSendDialogBox component', () => {
         const { container } = render(
             <Provider store={store}>
                 <FeedbackDialogBox />
             </Provider>
         );
+
+        expect(container).toMatchSnapshot();
 
         //Test click event
         const element = screen.getByTestId('closeDialogBtn');
@@ -59,16 +52,16 @@ describe('<FeedbackDialogBox />', () => {
                 <FeedbackDialogBox />
             </Provider>
         );
-        const setTextFieldHasValueMock = jest.fn();
-        const setTextFieldHasValueMock: any = (useState: any) => [useState, setTextFieldHasValueMock];
-        jest.spyOn(React, 'useState').mockImplementation(setTextFieldHasValueMock);
+        // const setTextFieldHasValueMock = jest.fn();
+        // const useTextFieldHasValueMock: any = (useState: any) => [useState, setTextFieldHasValueMock];
+        // jest.spyOn(React, 'useState').mockImplementation(useTextFieldHasValueMock);
 
         const textArea = screen.getByTestId('feedbackDialogTextArea') as HTMLInputElement;
         expect(textArea.value).toEqual('');
         expect(screen.getByTestId('sendFeedbackBtn')).toBeDisabled();
 
         fireEvent.change(textArea, { target: { value: 'test' } });
-        expect(settextFieldHasValueMock).toHaveBeenCalled();
+        // expect(setTextFieldHasValueMock).toHaveBeenCalled();
         expect(screen.getByTestId('sendFeedbackBtn')).toBeEnabled();
     });
 

@@ -57,13 +57,7 @@ export function FeedbackDialogBox(): ReactElement {
 
     return (
         <>
-            <UIDialog
-                modalProps={modalProps}
-                isOpen={isVisible}
-                title={dialogContentProps.title}
-                onDismiss={useCallback(() => {
-                    actions.feedbackStatus(false);
-                }, [])}>
+            <UIDialog modalProps={modalProps} isOpen={isVisible} title={dialogContentProps.title}>
                 <p className="ms-Dialog-subText">{i18next.t('FEEDBACK_DIALOG_SUBTEXT')}</p>
                 <UITextInput
                     id="feedbackDialogTextArea"
