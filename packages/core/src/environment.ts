@@ -20,6 +20,21 @@ export async function getIde(): Promise<IDE> {
 }
 
 /**
+ * Return devspace name.
+ *
+ * @returns - devspace, empty string in case it can not be resolved
+ */
+export async function getDevSpace(): Promise<string> {
+    let devSpace = '';
+    try {
+        devSpace = (await devspace.getDevspaceInfo())?.pack;
+    } catch {
+        // Ignore exceptions and return empty string
+    }
+    return devSpace ? devSpace : '';
+}
+
+/**
  * Return filter query for development environment (ide). This is usually used to set an
  * initial filter for Guided Answers trees.
  * Written this way to make it easy to extend. The new Set() ensures a unique list.
@@ -33,7 +48,7 @@ export async function getFiltersForIde(ide: IDE): Promise<GuidedAnswersQueryFilt
     let basDevSpace;
 
     if (ide === 'SBAS') {
-        basDevSpace = (await devspace.getDevspaceInfo())?.pack;
+        basDevSpace = await getDevSpace();
     }
     if (basDevSpace) {
         components = new Set(...components, getComponentsForDevSpace(basDevSpace));

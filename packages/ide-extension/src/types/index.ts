@@ -1,8 +1,12 @@
 import type { IDE, GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
 
+export * from './telemetry';
+
 export interface Options {
-    startOptions?: StartOptions;
+    apiHost?: string;
+    devSpace?: string;
     ide?: IDE;
+    startOptions?: StartOptions;
 }
 
 export interface StartOptions {

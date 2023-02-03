@@ -89,6 +89,11 @@ export interface GuidedAnswersFeedback {
     message: 'Solved' | 'Not Solved' | string;
 }
 
+export interface GuidedAnswersTelemetryPayload {
+    action: GuidedAnswerActions;
+    state: AppState;
+}
+
 export interface VSCodeCommand {
     extensionId: string;
     commandId: string;
@@ -137,28 +142,45 @@ export const HTML_ENHANCEMENT_DATA_ATTR_MARKER = 'data-guided-answers-command-8d
  * Action types for redux
  */
 export type GuidedAnswerActions =
-    | UpdateGuidedAnswerTrees
-    | SelectNode
-    | UpdateActiveNode
-    | UpdateLoading
-    | GoToPreviousPage
-    | GoToAllAnswers
-    | RestartAnswer
-    | ExecuteCommand
-    | SetActiveTree
-    | SearchTree
-    | SetQueryValue
-    | WebviewReady
-    | GuideFeedback
-    | SendFeedbackOutcome
-    | SendFeedbackComment
     | BetaFeatures
-    | SetProductFilters
-    | SetComponentFilters
-    | ResetFilters
-    | SetPageSize
+    | ExecuteCommand
+    | FeedbackResponse
     | FeedbackStatus
-    | FeedbackResponse;
+    | GoToAllAnswers
+    | GoToPreviousPage
+    | GuideFeedback
+    | SearchTree
+    | SelectNode
+    | SendFeedbackComment
+    | SendFeedbackOutcome
+    | SendTelemetry
+    | SetActiveTree
+    | SetComponentFilters
+    | SetPageSize
+    | SetProductFilters
+    | SetQueryValue
+    | ResetFilters
+    | RestartAnswer
+    | UpdateActiveNode
+    | UpdateGuidedAnswerTrees
+    | UpdateLoading
+    | WebviewReady;
+
+export interface AppState {
+    loading: boolean;
+    query: string;
+    guidedAnswerTreeSearchResult: GuidedAnswerTreeSearchResult;
+    activeGuidedAnswerNode: GuidedAnswerNode[];
+    activeGuidedAnswer?: GuidedAnswerTree;
+    betaFeatures: boolean;
+    searchResultCount: number;
+    guideFeedback: null | boolean;
+    selectedProductFilters: string[];
+    selectedComponentFilters: string[];
+    pageSize: number;
+    feedbackStatus: boolean;
+    feedbackResponse: boolean;
+}
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnswerTrees {
@@ -287,4 +309,10 @@ export const FEEDBACK_RESPONSE = 'FEEDBACK_RESPONSE';
 export interface FeedbackResponse {
     type: typeof FEEDBACK_RESPONSE;
     payload: boolean;
+}
+
+export const SEND_TELEMETRY = 'SEND_TELEMETRY';
+export interface SendTelemetry {
+    type: typeof SEND_TELEMETRY;
+    payload: GuidedAnswersTelemetryPayload;
 }

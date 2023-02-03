@@ -1,6 +1,8 @@
 import { join } from 'path';
 import { URI } from 'vscode-uri';
 import { ExtensionContext, commands, window, WebviewPanel } from 'vscode';
+import type TelemetryReporter from '@vscode/extension-telemetry';
+import * as telemetry from '../src/telemetry/telemetry';
 import * as logger from '../src/logger/logger';
 import { activate } from '../src/extension';
 
@@ -25,7 +27,30 @@ describe('Extension test', () => {
 
         // Result check
         expect(subscriptionsMock.mock.calls[0][0]).toBe('sap.ux.guidedAnswer.openGuidedAnswer');
-        expect(typeof context.subscriptions[0]).toBe('function');
+        expect(context.subscriptions.length).toBe(2);
+        // First subscription should be telemetry
+        expect(typeof (context.subscriptions[0] as TelemetryReporter).sendTelemetryEvent).toBe('function');
+        // Second subscription should be start command handler
+        expect(typeof context.subscriptions[1]).toBe('function');
+    });
+
+    test('activate extension even if telemetry throws error', () => {
+        // Mock setup
+        const subscriptionsMock = jest.spyOn(commands, 'registerCommand');
+        const context = {
+            subscriptions: []
+        };
+        jest.spyOn(logger, 'logString').mockImplementation(() => null);
+        jest.spyOn(telemetry, 'initTelemetry').mockImplementationOnce(() => {
+            throw Error();
+        });
+
+        // Test execution
+        activate(context as unknown as ExtensionContext);
+
+        // Result check
+        expect(subscriptionsMock.mock.calls[0][0]).toBe('sap.ux.guidedAnswer.openGuidedAnswer');
+        expect(context.subscriptions.length).toBe(1);
     });
 
     test('execute command', async () => {
