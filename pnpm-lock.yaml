@@ -77,19 +77,23 @@ importers:
       '@sap/guided-answers-extension-core': workspace:*
       '@sap/guided-answers-extension-types': workspace:*
       '@types/vscode': 1.39.0
+      '@vscode/extension-telemetry': 0.6.2
       '@vscode/vsce': 2.15.0
       esbuild: 0.16.10
       esbuild-plugin-copy: 2.0.1
       jsdom: 20.0.3
+      tslib: 2.4.1
       vscode-uri: 3.0.7
     devDependencies:
       '@sap/guided-answers-extension-core': link:../core
       '@sap/guided-answers-extension-types': link:../types
       '@types/vscode': 1.39.0
+      '@vscode/extension-telemetry': 0.6.2_tslib@2.4.1
       '@vscode/vsce': 2.15.0
       esbuild: 0.16.10
       esbuild-plugin-copy: 2.0.1_esbuild@0.16.10
       jsdom: 20.0.3
+      tslib: 2.4.1
       vscode-uri: 3.0.7
 
   packages/types:
@@ -1719,6 +1723,44 @@ packages:
       read-yaml-file: 1.1.0
     dev: true
 
+  /@microsoft/1ds-core-js/3.2.8_tslib@2.4.1:
+    resolution: {integrity: sha512-9o9SUAamJiTXIYwpkQDuueYt83uZfXp8zp8YFix1IwVPwC9RmE36T2CX9gXOeq1nDckOuOduYpA8qHvdh5BGfQ==}
+    dependencies:
+      '@microsoft/applicationinsights-core-js': 2.8.9_tslib@2.4.1
+      '@microsoft/applicationinsights-shims': 2.0.2
+      '@microsoft/dynamicproto-js': 1.1.7
+    transitivePeerDependencies:
+      - tslib
+    dev: true
+
+  /@microsoft/1ds-post-js/3.2.8_tslib@2.4.1:
+    resolution: {integrity: sha512-SjlRoNcXcXBH6WQD/5SkkaCHIVqldH3gDu+bI7YagrOVJ5APxwT1Duw9gm3L1FjFa9S2i81fvJ3EVSKpp9wULA==}
+    dependencies:
+      '@microsoft/1ds-core-js': 3.2.8_tslib@2.4.1
+      '@microsoft/applicationinsights-shims': 2.0.2
+      '@microsoft/dynamicproto-js': 1.1.7
+    transitivePeerDependencies:
+      - tslib
+    dev: true
+
+  /@microsoft/applicationinsights-core-js/2.8.9_tslib@2.4.1:
+    resolution: {integrity: sha512-HRuIuZ6aOWezcg/G5VyFDDWGL8hDNe/ljPP01J7ImH2kRPEgbtcfPSUMjkamGMefgdq81GZsSoC/NNGTP4pp2w==}
+    peerDependencies:
+      tslib: '*'
+    dependencies:
+      '@microsoft/applicationinsights-shims': 2.0.2
+      '@microsoft/dynamicproto-js': 1.1.7
+      tslib: 2.4.1
+    dev: true
+
+  /@microsoft/applicationinsights-shims/2.0.2:
+    resolution: {integrity: sha512-PoHEgsnmcqruLNHZ/amACqdJ6YYQpED0KSRe6J7gIJTtpZC1FfFU9b1fmDKDKtFoUSrPzEh1qzO3kmRZP0betg==}
+    dev: true
+
+  /@microsoft/dynamicproto-js/1.1.7:
+    resolution: {integrity: sha512-SK3D3aVt+5vOOccKPnGaJWB5gQ8FuKfjboUJHedMP7gu54HqSCXX5iFXhktGD8nfJb0Go30eDvs/UDoTnR2kOA==}
+    dev: true
+
   /@microsoft/load-themed-styles/1.10.295:
     resolution: {integrity: sha512-W+IzEBw8a6LOOfRJM02dTT7BDZijxm+Z7lhtOAz1+y9vQm1Kdz9jlAO+qCEKsfxtUOmKilW8DIRqFw2aUgKeGg==}
     dev: false
@@ -2346,6 +2388,16 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.47.0
       eslint-visitor-keys: 3.3.0
+    dev: true
+
+  /@vscode/extension-telemetry/0.6.2_tslib@2.4.1:
+    resolution: {integrity: sha512-yb/wxLuaaCRcBAZtDCjNYSisAXz3FWsSqAha5nhHcYxx2ZPdQdWuZqVXGKq0ZpHVndBWWtK6XqtpCN2/HB4S1w==}
+    engines: {vscode: ^1.60.0}
+    dependencies:
+      '@microsoft/1ds-core-js': 3.2.8_tslib@2.4.1
+      '@microsoft/1ds-post-js': 3.2.8_tslib@2.4.1
+    transitivePeerDependencies:
+      - tslib
     dev: true
 
   /@vscode/vsce/2.15.0:
@@ -7347,6 +7399,7 @@ packages:
   /source-map/0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dev: true
 
   /sourcemap-codec/1.4.8:
@@ -8263,3 +8316,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+patchedDependencies:
+  '@vscode/extension-telemetry@0.6.2':
+    hash: pup67pqt4f46737bpso4uq2qsu
+    path: patches/@vscode__extension-telemetry@0.6.2.patch

@@ -3,6 +3,7 @@ import { Uri, ViewColumn, window, workspace } from 'vscode';
 import type { GuidedAnswerActions, GuidedAnswerAPI, IDE } from '@sap/guided-answers-extension-types';
 import {
     SELECT_NODE,
+    SEND_TELEMETRY,
     SEND_FEEDBACK_OUTCOME,
     SEND_FEEDBACK_COMMENT,
     updateGuidedAnswerTrees,
@@ -21,6 +22,7 @@ import { getHtml } from './html';
 import { getHtmlEnhancements, handleCommand } from '../enhancement';
 import { logString } from '../logger/logger';
 import type { Options, StartOptions } from '../types';
+import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
 import { getInstalledExtensionIds } from '../enhancement/enhancements';
 
 /**
@@ -42,18 +44,25 @@ export class GuidedAnswersPanel {
     constructor(options?: Options) {
         this.startOptions = options?.startOptions;
         this.ide = options?.ide || 'VSCODE';
-        const config = workspace.getConfiguration('sap.ux.guidedAnswer');
-        const apiHost = config.get('apiHost') as string;
         const htmlEnhancements = getHtmlEnhancements(this.ide);
         const extensions = getInstalledExtensionIds();
 
         this.guidedAnswerApi = getGuidedAnswerApi({
-            apiHost,
+            apiHost: options?.apiHost,
             htmlEnhancements,
             ide: this.ide,
             extensions
         });
-        logString(`API information: ${JSON.stringify(this.guidedAnswerApi.getApiInfo())}`);
+        const { host: apiHost, version: apiVersion } = this.guidedAnswerApi.getApiInfo();
+        setCommonProperties({ ide: this.ide, devSpace: options?.devSpace || '', apiHost, apiVersion });
+        logString(`Using API host: '${apiHost}', version: '${apiVersion}'`);
+        trackEvent({
+            name: 'STARTUP',
+            properties: {
+                treeId: typeof this.startOptions?.treeId === 'number' ? this.startOptions?.treeId.toString() : '',
+                nodeIdPath: (this.startOptions?.nodeIdPath || []).join(':')
+            }
+        });
         /**
          * vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421), therefore node_modules from same repo are missing.
          * To overcome this we copy guidedAnswers.js and guidedAnswers.css to dist/ folder in esbuild.js
@@ -218,6 +227,10 @@ export class GuidedAnswersPanel {
                         )
                     );
                     this.postActionToWebview(updateLoading(false));
+                    break;
+                }
+                case SEND_TELEMETRY: {
+                    trackAction(action);
                     break;
                 }
                 default: {

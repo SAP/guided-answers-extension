@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.9.2
+
+### Patch Changes
+
+-   0d5eb00: Setup telemetry for product improvement
+
 ## 1.9.1
 
 ### Patch Changes

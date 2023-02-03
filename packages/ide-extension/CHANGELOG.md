@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.10.2
+
+### Patch Changes
+
+-   0d5eb00: Setup telemetry for product improvement
+
 ## 1.10.1
 
 ### Patch Changes

@@ -4,7 +4,7 @@
     "description": "%guidedAnswer.description%",
     "publisher": "SAPOSS",
     "license": "Apache-2.0",
-    "version": "1.10.1",
+    "version": "1.10.2",
     "icon": "media/guided-answers-extension.png",
     "categories": [
         "Education"
@@ -75,10 +75,12 @@
         "@sap/guided-answers-extension-core": "workspace:*",
         "@sap/guided-answers-extension-types": "workspace:*",
         "@types/vscode": "1.39.0",
+        "@vscode/extension-telemetry": "0.6.2",
         "@vscode/vsce": "2.15.0",
         "esbuild": "0.16.10",
         "esbuild-plugin-copy": "2.0.1",
         "jsdom": "20.0.3",
+        "tslib": "2.4.1",
         "vscode-uri": "3.0.7"
     },
     "galleryBanner": {
