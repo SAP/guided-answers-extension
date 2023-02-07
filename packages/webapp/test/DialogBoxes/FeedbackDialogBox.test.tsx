@@ -52,16 +52,12 @@ describe('<FeedbackDialogBox />', () => {
                 <FeedbackDialogBox />
             </Provider>
         );
-        // const setTextFieldHasValueMock = jest.fn();
-        // const useTextFieldHasValueMock: any = (useState: any) => [useState, setTextFieldHasValueMock];
-        // jest.spyOn(React, 'useState').mockImplementation(useTextFieldHasValueMock);
 
         const textArea = screen.getByTestId('feedbackDialogTextArea') as HTMLInputElement;
         expect(textArea.value).toEqual('');
         expect(screen.getByTestId('sendFeedbackBtn')).toBeDisabled();
 
         fireEvent.change(textArea, { target: { value: 'test' } });
-        // expect(setTextFieldHasValueMock).toHaveBeenCalled();
         expect(screen.getByTestId('sendFeedbackBtn')).toBeEnabled();
     });
 
