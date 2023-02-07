@@ -2,8 +2,7 @@ import React from 'react';
 import { actions } from '../../../../state';
 import { VscHome, VscRefresh, VscArrowLeft } from 'react-icons/vsc';
 import i18next from 'i18next';
-import { UIIcon } from '@sap-ux/ui-components';
-import { UiIcons } from '../../UIComponentsLib/Icons';
+import { UIIcon, UiIcons } from '@sap-ux/ui-components';
 import { focusOnElement } from '../../utils';
 
 /**
@@ -86,7 +85,7 @@ export function GeneralFeedbackButton() {
             <UIIcon
                 className="guided-answer__header__navButtons__content"
                 style={{ paddingTop: '2px' }}
-                iconName={UiIcons.Chat}
+                iconName={UiIcons.ChatBubbles}
             />
         </button>
     );
