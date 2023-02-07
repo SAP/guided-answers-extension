@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.11.0
+
+### Minor Changes
+
+-   bc56f93: Use icons from @sap-ux/ui-components
+
 ## 1.10.2
 
 ### Patch Changes

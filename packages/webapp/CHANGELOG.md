@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.10.0
+
+### Minor Changes
+
+-   bc56f93: Use icons from @sap-ux/ui-components
+
 ## 1.9.2
 
 ### Patch Changes
