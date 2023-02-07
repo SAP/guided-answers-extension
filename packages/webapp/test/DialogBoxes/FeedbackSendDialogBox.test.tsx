@@ -36,7 +36,5 @@ describe('<FeedbackDialogBox />', () => {
             </Provider>
         );
         expect(container).toMatchSnapshot();
-        // jest.runAllTimers();
-        // expect(actions.feedbackResponse).toHaveBeenCalled();
     });
 });
