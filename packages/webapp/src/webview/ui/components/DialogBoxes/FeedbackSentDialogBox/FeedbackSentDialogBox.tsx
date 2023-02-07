@@ -2,8 +2,7 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import './FeedbackSendDialogBox.scss';
 import { DialogType } from '@fluentui/react/lib/Dialog';
 import i18next from 'i18next';
-import { UIIcon, UIDialog } from '@sap-ux/ui-components';
-import { UiIcons } from '../../UIComponentsLib/Icons';
+import { UIIcon, UiIcons } from '@sap-ux/ui-components';
 import { AppState } from '../../../../types';
 import { useSelector } from 'react-redux';
 import { actions } from '../../../../state';
@@ -40,7 +39,7 @@ export function FeedbackSentDialogBox(): ReactElement {
     return (
         <>
             <UIDialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
-                <UIIcon className="feedback-response-icon" iconName={UiIcons.MessageSent} />
+                <UIIcon className="feedback-response-icon" iconName={UiIcons.ChatBubbles} />
             </UIDialog>
         </>
     );
