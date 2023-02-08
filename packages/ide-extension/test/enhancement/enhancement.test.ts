@@ -1,46 +1,22 @@
 import { Extension, extensions } from 'vscode';
-import { getEnhancements } from '../../src/enhancement/enhancements';
+import { getHtmlEnhancements } from '../../src/enhancement/enhancements';
 import * as loggerMock from '../../src/logger/logger';
 
 jest.mock(
     '../../src/enhancement/enhancements.json',
     () => ({
-        nodeEnhancements: [
+        htmlEnhancements: [
             {
-                nodeId: 1,
-                command: {
-                    label: 'Command for node in VSCODE and SBAS',
-                    exec: {
-                        extensionId: 'extension.1',
-                        commandId: 'command.sbasvscode'
-                    },
-                    environment: ['VSCODE', 'SBAS']
-                }
-            },
-            {
-                nodeId: 2,
+                text: 'Replace in SBAS with terminal command',
                 command: {
                     label: 'Command for node in VSCODE',
                     exec: {
                         cwd: '',
-                        arguments: ['code', '--version']
-                    },
-                    environment: ['VSCODE']
-                }
-            },
-            {
-                nodeId: 3,
-                command: {
-                    label: 'Command for node in SBAS',
-                    exec: {
-                        cwd: '',
-                        arguments: ['pwd']
+                        arguments: ['node', '--version']
                     },
                     environment: ['SBAS']
                 }
-            }
-        ],
-        htmlEnhancements: [
+            },
             {
                 text: 'Replace in VSCODE and SBAS',
                 command: {
@@ -76,26 +52,23 @@ jest.mock(
     { virtual: true }
 );
 
-describe('Tests for getEnhancements()', () => {
+describe('Tests for getHtmlEnhancements()', () => {
     beforeEach(() => {
         jest.clearAllMocks();
         jest.resetModules();
     });
 
-    test('Test getEnhancements() for SBAS, all extensions installed', () => {
+    test('Test getHtmlEnhancements() for SBAS, all extensions installed', () => {
         //  Mock setup
         const log = jest.spyOn(loggerMock, 'logString').mockImplementation(() => undefined);
         jest.spyOn(extensions, 'getExtension').mockImplementation(() => true as unknown as Extension<any>);
 
         // Test execution
-        const { nodeEnhancements, htmlEnhancements } = getEnhancements('SBAS');
+        const htmlEnhancements = getHtmlEnhancements('SBAS');
 
         // Check results
-        expect(nodeEnhancements.length).toBe(2);
-        expect(nodeEnhancements.find((n) => n.nodeId === 1)).toBeDefined();
-        expect(nodeEnhancements.find((n) => n.nodeId === 2)).toBeUndefined();
-        expect(nodeEnhancements.find((n) => n.nodeId === 3)).toBeDefined();
-        expect(htmlEnhancements.length).toBe(2);
+        expect(htmlEnhancements.length).toBe(3);
+        expect(htmlEnhancements.find((h) => h.text === 'Replace in SBAS with terminal command')).toBeDefined();
         expect(htmlEnhancements.find((h) => h.text === 'Replace in VSCODE and SBAS')).toBeDefined();
         expect(htmlEnhancements.find((h) => h.text === 'Replace in SBAS')).toBeDefined();
         expect(log).toBeCalled();
@@ -107,13 +80,9 @@ describe('Tests for getEnhancements()', () => {
         jest.spyOn(extensions, 'getExtension').mockImplementation(() => true as unknown as Extension<any>);
 
         // Test execution
-        const { nodeEnhancements, htmlEnhancements } = getEnhancements('VSCODE');
+        const htmlEnhancements = getHtmlEnhancements('VSCODE');
 
         // Check results
-        expect(nodeEnhancements.length).toBe(2);
-        expect(nodeEnhancements.find((n) => n.nodeId === 1)).toBeDefined();
-        expect(nodeEnhancements.find((n) => n.nodeId === 2)).toBeDefined();
-        expect(nodeEnhancements.find((n) => n.nodeId === 3)).toBeUndefined();
         expect(htmlEnhancements.length).toBe(2);
         expect(htmlEnhancements.find((h) => h.text === 'Replace in VSCODE and SBAS')).toBeDefined();
         expect(htmlEnhancements.find((h) => h.text === 'Replace in VSCODE')).toBeDefined();
@@ -129,12 +98,9 @@ describe('Tests for getEnhancements()', () => {
         });
 
         // Test execution
-        const { nodeEnhancements, htmlEnhancements } = getEnhancements('VSCODE');
+        const htmlEnhancements = getHtmlEnhancements('VSCODE');
 
         // Check results
-        expect(nodeEnhancements.length).toBe(2);
-        expect(nodeEnhancements.find((n) => n.nodeId === 1)).toBeDefined();
-        expect(nodeEnhancements.find((n) => n.nodeId === 2)).toBeDefined();
         expect(htmlEnhancements.length).toBe(1);
         expect(htmlEnhancements.find((h) => h.text === 'Replace in VSCODE and SBAS')).toBeDefined();
     });

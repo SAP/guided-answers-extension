@@ -6,6 +6,7 @@ const commands = {
 };
 
 const extensions = {
+    all: [{ id: 'Extension1' }, { id: 'Extension2' }],
     getExtension: jest.fn()
 };
 

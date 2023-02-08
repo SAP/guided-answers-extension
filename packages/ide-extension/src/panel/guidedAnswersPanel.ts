@@ -19,7 +19,7 @@ import {
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
-import { getEnhancements, handleCommand } from '../enhancement';
+import { getHtmlEnhancements, getInstalledExtensionIds, handleCommand } from '../enhancement';
 import { logString } from '../logger/logger';
 import type { Options, StartOptions } from '../types';
 import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
@@ -43,8 +43,15 @@ export class GuidedAnswersPanel {
     constructor(options?: Options) {
         this.startOptions = options?.startOptions;
         this.ide = options?.ide || 'VSCODE';
-        const enhancements = getEnhancements(this.ide);
-        this.guidedAnswerApi = getGuidedAnswerApi({ apiHost: options?.apiHost, enhancements });
+        const htmlEnhancements = getHtmlEnhancements(this.ide);
+        const extensions = getInstalledExtensionIds();
+
+        this.guidedAnswerApi = getGuidedAnswerApi({
+            apiHost: options?.apiHost,
+            htmlEnhancements,
+            ide: this.ide,
+            extensions
+        });
         const { host: apiHost, version: apiVersion } = this.guidedAnswerApi.getApiInfo();
         setCommonProperties({ ide: this.ide, devSpace: options?.devSpace || '', apiHost, apiVersion });
         logString(`Using API host: '${apiHost}', version: '${apiVersion}'`);

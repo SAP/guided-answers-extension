@@ -3,10 +3,12 @@ import axios from 'axios';
 import { default as xss } from 'xss';
 import type {
     APIOptions,
+    Command,
     FeedbackCommentPayload,
     FeedbackOutcomePayload,
     GuidedAnswerAPI,
     GuidedAnswerNode,
+    GuidedAnswerNodeExtension,
     GuidedAnswerNodeId,
     GuidedAnswersFeedback,
     GuidedAnswersQueryFilterOptions,
@@ -16,13 +18,13 @@ import type {
     GuidedAnswerTreeId,
     GuidedAnswerTreeSearchResult,
     HTMLEnhancement,
-    NodeEnhancement,
+    IDE,
     PostFeedbackResponse
 } from '@sap/guided-answers-extension-types';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 
 const API_HOST = 'https://ga.support.sap.com';
-const VERSION = 'v3';
+const VERSION = 'v4';
 const NODE_PATH = `/dtp/api/${VERSION}/nodes/`;
 const TREE_PATH = `/dtp/api/${VERSION}/trees/`;
 const IMG_PREFIX = '/dtp/viewer/';
@@ -38,19 +40,20 @@ const DEFAULT_MAX_RESULTS = 9999;
  */
 export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
     const apiHost = options?.apiHost || API_HOST;
-    const nodeEnhancements = options?.enhancements?.nodeEnhancements || [];
-    const htmlEnhancements = options?.enhancements?.htmlEnhancements || [];
+    const htmlEnhancements = options?.htmlEnhancements || [];
+    const ide = options?.ide;
+    const extensions = options?.extensions || new Set<string>();
 
     return {
         getApiInfo: () => ({ host: apiHost, version: VERSION }),
         getNodeById: async (id: GuidedAnswerNodeId): Promise<GuidedAnswerNode> =>
-            enhanceNode(await getNodeById(apiHost, id), nodeEnhancements, htmlEnhancements),
+            enhanceNode(await getNodeById(apiHost, id), htmlEnhancements, extensions, ide),
         getTreeById: async (id: GuidedAnswerTreeId): Promise<GuidedAnswerTree> => getTreeById(apiHost, id),
         getTrees: async (queryOptions?: GuidedAnswersQueryOptions): Promise<GuidedAnswerTreeSearchResult> =>
             getTrees(apiHost, queryOptions),
         getNodePath: async (nodeIdPath: GuidedAnswerNodeId[]): Promise<GuidedAnswerNode[]> => {
             let nodes = await getNodePath(apiHost, nodeIdPath);
-            nodes = nodes.map((node) => enhanceNode(node, nodeEnhancements, htmlEnhancements));
+            nodes = nodes.map((node) => enhanceNode(node, htmlEnhancements, extensions, ide));
             return nodes;
         },
         sendFeedbackComment: async (payload: FeedbackCommentPayload) =>
@@ -161,24 +164,64 @@ async function getTrees(host: string, queryOptions?: GuidedAnswersQueryOptions):
 }
 
 /**
- * Enhance a standard node from Guided Answers with commands. This can be commands added to the node or text replaced
+ * Check if a node extension is applicable in the current environment.
+ *
+ * @param ide - development environment 'VSCODE' or 'SBAS'
+ * @param extension - node extension
+ * @param extensions - list of installed extension ids
+ * @returns - boolean, true: is applicable; false: not applicable
+ */
+function isExtensionApplicable(ide: IDE, extension: GuidedAnswerNodeExtension, extensions: Set<string>): boolean {
+    return (ide === 'VSCODE' && extension.ENV_VSCODE !== 1) ||
+        (ide === 'SBAS' && extension.ENV_SBAS !== 1) ||
+        (extension.TYPE === 'Extension Command' && !extensions.has(extension.ARG1.VALUE.toLocaleLowerCase()))
+        ? false
+        : true;
+}
+
+/**
+ * Convert an node.EXTENSION to COMMAND.
+ *
+ * @param extension - node extension
+ * @returns - command
+ */
+function convertExtensionToCommand(extension: GuidedAnswerNodeExtension): Command {
+    return {
+        label: extension.LABEL,
+        description: extension.DESCRIPTION,
+        exec:
+            extension.TYPE === 'Extension Command'
+                ? { extensionId: extension.ARG1.VALUE, commandId: extension.ARG2.VALUE }
+                : { cwd: extension.ARG1.VALUE, arguments: extension.ARG2.VALUE.split(' ') }
+    };
+}
+
+/**
+ * Enhance a standard node from Guided Answers with commands. This can be commands added to the node as extensions or text replaced
  * by links. For the later, we just set a marker by embedding the text in <span>-tag with the command as JSON. The
  * actual replacement to a link needs to happen in an consuming UI.
  *
  * @param node - node data from Guided Answer
- * @param nodeEnhancements - commands added to the node (usually rendered on the side)
  * @param htmlEnhancements - enhancements that change text to link
+ * @param extensions - all installed extensions
+ * @param [ide] - optional, IDE environment, SBAS or VSCODE. If not provided no enhancements will be applied
  * @returns - the enhanced Guided Answers node
  */
 function enhanceNode(
     node: GuidedAnswerNode,
-    nodeEnhancements: NodeEnhancement[],
-    htmlEnhancements: HTMLEnhancement[]
+    htmlEnhancements: HTMLEnhancement[],
+    extensions: Set<string>,
+    ide?: IDE
 ): GuidedAnswerNode {
-    // Check for enhancements of the Guided Answers node
-    const nodeCommands = nodeEnhancements.filter((c) => c.nodeId === node.NODE_ID).map((enh) => enh.command);
-    if (nodeCommands.length > 0) {
-        node.COMMANDS = nodeCommands;
+    if (!ide) {
+        return node;
+    }
+    const applicableNodeExtensions = (node.EXTENSIONS || []).filter((nodeExt) =>
+        isExtensionApplicable(ide, nodeExt, extensions)
+    );
+    for (const nodeExtension of applicableNodeExtensions) {
+        node.COMMANDS = node.COMMANDS || [];
+        node.COMMANDS.push(convertExtensionToCommand(nodeExtension));
     }
 
     // Check for enhancements of the HTML text. If found, embed text in <span>-tag with command as data-* attribute.
