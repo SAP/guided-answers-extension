@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-core
 
+## 1.5.0
+
+### Minor Changes
+
+-   49496ff: Ability to show node extensions (need to be maintained in the Guided Answers editor)
+
+### Patch Changes
+
+-   Updated dependencies [49496ff]
+    -   @sap/guided-answers-extension-types@1.4.0
+
 ## 1.4.1
 
 ### Patch Changes
