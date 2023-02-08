@@ -6,36 +6,58 @@ exports[`<SearchField /> Should render a SearchField component 1`] = `
     class="guided-answer__header__searchField"
   >
     <div
-      class="ms-TextField tree-search-field root-110"
+      class="ms-SearchBox can-clear tree-search-field root-109"
     >
       <div
-        class="ms-TextField-wrapper"
+        aria-hidden="true"
+        class="ms-SearchBox-iconContainer iconContainer-110"
       >
-        <div
-          class="ms-TextField-fieldGroup fieldGroup-111"
+        <i
+          aria-hidden="true"
+          class="ms-SearchBox-icon icon-114"
+          data-icon-name="Search"
+        />
+      </div>
+      <input
+        class="ms-SearchBox-field field-113"
+        id="search-field"
+        placeholder="Search Guided Answers"
+        role="searchbox"
+        value="fiori tools"
+      />
+      <div
+        class="ms-SearchBox-clearButton clearButton-112"
+      >
+        <button
+          aria-label="Clear text"
+          class="ms-Button ms-Button--icon root-115"
+          data-is-focusable="true"
+          type="button"
         >
-          <input
-            aria-invalid="false"
-            class="ms-TextField-field field-112"
-            id="search-field"
-            placeholder="Search Guided Answers"
-            type="text"
-            value="fiori tools"
-          />
-        </div>
+          <span
+            class="ms-Button-flexContainer flexContainer-116"
+            data-automationid="splitbuttonprimary"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-105 ms-Button-icon icon-118"
+              data-icon-name="Clear"
+            />
+          </span>
+        </button>
       </div>
     </div>
     <div
       id="filters"
     >
       <div
-        class="ms-FocusZone css-121"
-        data-focuszone-id="FocusZone5"
+        class="ms-FocusZone css-123"
+        data-focuszone-id="FocusZone3"
         style="display: flex;"
       >
         <button
           aria-disabled="true"
-          class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-122"
+          class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-124"
           data-is-focusable="false"
           disabled=""
           id="filter-products"
@@ -44,19 +66,19 @@ exports[`<SearchField /> Should render a SearchField component 1`] = `
           type="button"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-123"
+            class="ms-Button-flexContainer flexContainer-125"
             data-automationid="splitbuttonprimary"
           >
             <i
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon icon-125"
+              class="ms-Icon root-105 ms-Button-icon icon-126"
               data-icon-name="Table"
             />
           </span>
         </button>
         <button
           aria-disabled="true"
-          class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-122"
+          class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-124"
           data-is-focusable="false"
           disabled=""
           id="filter-components"
@@ -65,12 +87,12 @@ exports[`<SearchField /> Should render a SearchField component 1`] = `
           type="button"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-123"
+            class="ms-Button-flexContainer flexContainer-125"
             data-automationid="splitbuttonprimary"
           >
             <i
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon icon-125"
+              class="ms-Icon root-105 ms-Button-icon icon-126"
               data-icon-name="IdTag"
             />
           </span>

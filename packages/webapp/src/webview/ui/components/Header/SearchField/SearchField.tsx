@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
-import { UITextInput } from '@sap-ux/ui-components';
+import { UISearchBox } from '@sap-ux/ui-components';
 
 import { Filters } from '../Filters';
 
@@ -13,14 +13,18 @@ let timer: NodeJS.Timeout;
  */
 export function SearchField() {
     const appState = useSelector<AppState, AppState>((state) => state);
+    const onSearchClear = (): void => {
+        actions.setQueryValue('');
+    };
     return (
         <div className="guided-answer__header__searchField">
-            <UITextInput
+            <UISearchBox
                 className="tree-search-field"
                 value={appState.query}
                 readOnly={appState.loading}
                 placeholder="Search Guided Answers"
                 id="search-field"
+                onClear={onSearchClear}
                 onChange={(e: any) => {
                     const newValue = e?.target?.value;
                     if (newValue !== undefined) {
@@ -40,7 +44,7 @@ export function SearchField() {
                             });
                         }, 400);
                     }
-                }}></UITextInput>
+                }}></UISearchBox>
             <Filters />
         </div>
     );

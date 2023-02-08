@@ -1,5 +1,23 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.10.0
+
+### Minor Changes
+
+-   bc56f93: Use icons from @sap-ux/ui-components
+
+## 1.9.2
+
+### Patch Changes
+
+-   0d5eb00: Setup telemetry for product improvement
+
+## 1.9.1
+
+### Patch Changes
+
+-   5da27ac: Fix for re-opening 'Message sent' popup dialog
+
 ## 1.9.0
 
 ### Minor Changes

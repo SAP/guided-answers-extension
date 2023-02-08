@@ -48,9 +48,25 @@ export interface GuidedAnswerNode {
     BODY: string;
     QUESTION: string;
     EDGES: GuidedAnswerEdge[];
+    EXTENSIONS?: GuidedAnswerNodeExtension[];
     COMMANDS?: Command[];
 }
 
+export interface GuidedAnswerNodeExtension {
+    TYPE: 'Extension Command' | 'Terminal Command';
+    LABEL: string;
+    DESCRIPTION: string;
+    ARG1: {
+        NAME: string;
+        VALUE: string;
+    };
+    ARG2: {
+        NAME: string;
+        VALUE: string;
+    };
+    ENV_VSCODE: 0 | 1;
+    ENV_SBAS: 0 | 1;
+}
 export interface PostFeedbackResponse {
     status: number;
     statusText: string;
@@ -89,6 +105,11 @@ export interface GuidedAnswersFeedback {
     message: 'Solved' | 'Not Solved' | string;
 }
 
+export interface GuidedAnswersTelemetryPayload {
+    action: GuidedAnswerActions;
+    state: AppState;
+}
+
 export interface VSCodeCommand {
     extensionId: string;
     commandId: string;
@@ -106,12 +127,7 @@ export interface Command {
     label: string;
     description: string;
     exec: TerminalCommand | VSCodeCommand;
-    environment: IDE[];
-}
-
-export interface NodeEnhancement {
-    nodeId: number;
-    command: Command;
+    environment?: IDE[];
 }
 
 export interface HTMLEnhancement {
@@ -121,10 +137,9 @@ export interface HTMLEnhancement {
 
 export interface APIOptions {
     apiHost?: string;
-    enhancements?: {
-        nodeEnhancements?: NodeEnhancement[];
-        htmlEnhancements?: HTMLEnhancement[];
-    };
+    ide?: IDE;
+    extensions?: Set<string>;
+    htmlEnhancements?: HTMLEnhancement[];
 }
 
 /**
@@ -137,28 +152,45 @@ export const HTML_ENHANCEMENT_DATA_ATTR_MARKER = 'data-guided-answers-command-8d
  * Action types for redux
  */
 export type GuidedAnswerActions =
-    | UpdateGuidedAnswerTrees
-    | SelectNode
-    | UpdateActiveNode
-    | UpdateLoading
-    | GoToPreviousPage
-    | GoToAllAnswers
-    | RestartAnswer
-    | ExecuteCommand
-    | SetActiveTree
-    | SearchTree
-    | SetQueryValue
-    | WebviewReady
-    | GuideFeedback
-    | SendFeedbackOutcome
-    | SendFeedbackComment
     | BetaFeatures
-    | SetProductFilters
-    | SetComponentFilters
-    | ResetFilters
-    | SetPageSize
+    | ExecuteCommand
+    | FeedbackResponse
     | FeedbackStatus
-    | FeedbackResponse;
+    | GoToAllAnswers
+    | GoToPreviousPage
+    | GuideFeedback
+    | SearchTree
+    | SelectNode
+    | SendFeedbackComment
+    | SendFeedbackOutcome
+    | SendTelemetry
+    | SetActiveTree
+    | SetComponentFilters
+    | SetPageSize
+    | SetProductFilters
+    | SetQueryValue
+    | ResetFilters
+    | RestartAnswer
+    | UpdateActiveNode
+    | UpdateGuidedAnswerTrees
+    | UpdateLoading
+    | WebviewReady;
+
+export interface AppState {
+    loading: boolean;
+    query: string;
+    guidedAnswerTreeSearchResult: GuidedAnswerTreeSearchResult;
+    activeGuidedAnswerNode: GuidedAnswerNode[];
+    activeGuidedAnswer?: GuidedAnswerTree;
+    betaFeatures: boolean;
+    searchResultCount: number;
+    guideFeedback: null | boolean;
+    selectedProductFilters: string[];
+    selectedComponentFilters: string[];
+    pageSize: number;
+    feedbackStatus: boolean;
+    feedbackResponse: boolean;
+}
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnswerTrees {
@@ -287,4 +319,10 @@ export const FEEDBACK_RESPONSE = 'FEEDBACK_RESPONSE';
 export interface FeedbackResponse {
     type: typeof FEEDBACK_RESPONSE;
     payload: boolean;
+}
+
+export const SEND_TELEMETRY = 'SEND_TELEMETRY';
+export interface SendTelemetry {
+    type: typeof SEND_TELEMETRY;
+    payload: GuidedAnswersTelemetryPayload;
 }

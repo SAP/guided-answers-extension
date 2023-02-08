@@ -1,5 +1,17 @@
 # @sap/guided-answers-extension-types
 
+## 1.4.0
+
+### Minor Changes
+
+-   49496ff: Ability to show node extensions (need to be maintained in the Guided Answers editor)
+
+## 1.3.1
+
+### Patch Changes
+
+-   0d5eb00: Setup telemetry for product improvement
+
 ## 1.3.0
 
 ### Minor Changes

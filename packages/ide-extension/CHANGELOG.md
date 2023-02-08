@@ -1,5 +1,29 @@
 # sap-guided-answer-extension
 
+## 1.12.0
+
+### Minor Changes
+
+-   49496ff: Ability to show node extensions (need to be maintained in the Guided Answers editor)
+
+## 1.11.0
+
+### Minor Changes
+
+-   bc56f93: Use icons from @sap-ux/ui-components
+
+## 1.10.2
+
+### Patch Changes
+
+-   0d5eb00: Setup telemetry for product improvement
+
+## 1.10.1
+
+### Patch Changes
+
+-   5da27ac: Fix for re-opening 'Message sent' popup dialog
+
 ## 1.10.0
 
 ### Minor Changes

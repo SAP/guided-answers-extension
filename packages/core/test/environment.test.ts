@@ -1,4 +1,4 @@
-import { getFiltersForIde, getIde } from '../src';
+import { getDevSpace, getFiltersForIde, getIde } from '../src';
 import { core, devspace } from '@sap/bas-sdk';
 import { IDE } from '@sap/guided-answers-extension-types';
 
@@ -91,5 +91,25 @@ describe('Test function getIde()', () => {
         // Result check
         expect(ide).toBe('SBAS');
         expect(coreMock).toBeCalled();
+    });
+});
+
+describe('Test function getDevSpace()', () => {
+    test('Valid devspace returned', async () => {
+        // Mock setup
+        jest.spyOn(devspace, 'getDevspaceInfo').mockImplementation(() =>
+            Promise.resolve({ pack: 'DEVSPACE' } as unknown as devspace.DevspaceInfo)
+        );
+
+        // Test execution and result check
+        expect(await getDevSpace()).toBe('DEVSPACE');
+    });
+
+    test('Invalid devspace, should return empty string', async () => {
+        // Mock setup
+        jest.spyOn(devspace, 'getDevspaceInfo').mockImplementation(() => Promise.reject());
+
+        // Test execution and result check
+        expect(await getDevSpace()).toBe('');
     });
 });

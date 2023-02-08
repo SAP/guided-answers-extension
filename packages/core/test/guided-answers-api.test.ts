@@ -3,6 +3,7 @@ import type {
     APIOptions,
     FeedbackCommentPayload,
     FeedbackOutcomePayload,
+    GuidedAnswerNode,
     GuidedAnswersQueryOptions,
     GuidedAnswerTreeSearchResult
 } from '@sap/guided-answers-extension-types';
@@ -387,7 +388,7 @@ describe('Guided Answers Api: getNodeById()', () => {
 
     test('Get node by id, node enhanced, should return enhanced node', async () => {
         // Mock setup
-        const data = {
+        const data: GuidedAnswerNode = {
             NODE_ID: -1,
             TITLE: 'Forty-two',
             BODY: `<p>Body of solution to all questions <img src="services/backend.xsjs?cmd=viewImage&amp;id=1" width="200" height="100" /><script>alert("evil");</script></p>`,
@@ -403,65 +404,59 @@ describe('Guided Answers Api: getNodeById()', () => {
                     TARGET_NODE: Infinity,
                     ORD: 2
                 }
+            ],
+            EXTENSIONS: [
+                {
+                    TYPE: 'Terminal Command',
+                    LABEL: 'terminal command enhancement',
+                    DESCRIPTION: 'Node enhancement with terminal command',
+                    ARG1: { NAME: 'cwd', VALUE: '.' },
+                    ARG2: { NAME: 'argument', VALUE: 'launch Infinite Improbability Drive' },
+                    ENV_VSCODE: 1,
+                    ENV_SBAS: 1
+                },
+                {
+                    TYPE: 'Extension Command',
+                    LABEL: 'vscode command enhancement',
+                    DESCRIPTION: 'Node enhancement with VSCode command',
+                    ARG1: { NAME: 'extensionId', VALUE: 'full speed' },
+                    ARG2: { NAME: 'commandId', VALUE: 'SPEED' },
+                    ENV_VSCODE: 1,
+                    ENV_SBAS: 1
+                }
             ]
         };
+
         const options: APIOptions = {
-            enhancements: {
-                nodeEnhancements: [
-                    {
-                        nodeId: -1,
-                        command: {
-                            label: 'terminal command enhancement',
-                            description: 'Node enhancement with terminal command',
-                            exec: {
-                                cwd: '.',
-                                arguments: ['launch', 'Infinite', 'Improbability', 'Drive']
-                            },
-                            environment: ['VSCODE', 'SBAS']
-                        }
-                    },
-                    {
-                        nodeId: -1,
-                        command: {
-                            label: 'vscode command enhancement',
-                            description: 'Node enhancement with VSCode command',
-                            exec: {
-                                extensionId: 'full speed',
-                                commandId: 'SPEED',
-                                argument: { fsPath: '' }
-                            },
-                            environment: ['VSCODE', 'SBAS']
-                        }
+            ide: 'VSCODE',
+            extensions: new Set(['full speed']),
+            htmlEnhancements: [
+                {
+                    text: 'solution to all questions',
+                    command: {
+                        label: 'of course, 42',
+                        description: `Text 'solution to all questions' decorated as link to terminal command`,
+                        exec: {
+                            cwd: '.',
+                            arguments: ['echo', '42']
+                        },
+                        environment: ['VSCODE', 'SBAS']
                     }
-                ],
-                htmlEnhancements: [
-                    {
-                        text: 'solution to all questions',
-                        command: {
-                            label: 'of course, 42',
-                            description: `Text 'solution to all questions' decorated as link to terminal command`,
-                            exec: {
-                                cwd: '.',
-                                arguments: ['echo', '42']
-                            },
-                            environment: ['VSCODE', 'SBAS']
-                        }
-                    },
-                    {
-                        text: 'Body of',
-                        command: {
-                            label: 'what does that even mean',
-                            description: `we decorate 'Body of' with a link to vscode command`,
-                            exec: {
-                                extensionId: 'terry.exxt',
-                                commandId: 'Knock kock',
-                                argument: { fsPath: 'whos/there/body/of' }
-                            },
-                            environment: ['VSCODE', 'SBAS']
-                        }
+                },
+                {
+                    text: 'Body of',
+                    command: {
+                        label: 'what does that even mean',
+                        description: `we decorate 'Body of' with a link to vscode command`,
+                        exec: {
+                            extensionId: 'terry.exxt',
+                            commandId: 'Knock kock',
+                            argument: { fsPath: 'whos/there/body/of' }
+                        },
+                        environment: ['VSCODE', 'SBAS']
                     }
-                ]
-            }
+                }
+            ]
         };
         let requestUrl = '';
         mockedAxios.get.mockImplementation((url) => {
@@ -474,7 +469,110 @@ describe('Guided Answers Api: getNodeById()', () => {
         // Result check
         expect(requestUrl).toBe(`https://ga.support.sap.com/dtp/api/${currentVersion}/nodes/-1`);
         expect(result).toMatchSnapshot();
-        expect(result.COMMANDS).toEqual(options.enhancements?.nodeEnhancements?.map((ne) => ne.command));
+        expect(result.COMMANDS).toEqual([
+            {
+                label: 'terminal command enhancement',
+                description: 'Node enhancement with terminal command',
+                exec: {
+                    cwd: '.',
+                    arguments: ['launch', 'Infinite', 'Improbability', 'Drive']
+                }
+            },
+            {
+                label: 'vscode command enhancement',
+                description: 'Node enhancement with VSCode command',
+                exec: {
+                    extensionId: 'full speed',
+                    commandId: 'SPEED'
+                }
+            }
+        ]);
+    });
+
+    test('Get node by id, no IDE provided so no commands for extensions should be set', async () => {
+        // Mock setup
+        const data: GuidedAnswerNode = getMockNodeWithEnhancements();
+        mockedAxios.get.mockImplementation(() => Promise.resolve({ data }));
+
+        // Test execution
+        const result = await getGuidedAnswerApi().getNodeById(1);
+
+        // Result check
+        expect(result.COMMANDS).toBeUndefined();
+    });
+
+    test('Get node by id, IDE provided but extension not installed. No commands for extensions should be set', async () => {
+        // Mock setup
+        const data: GuidedAnswerNode = getMockNodeWithEnhancements();
+        mockedAxios.get.mockImplementation(() => Promise.resolve({ data }));
+        const options: APIOptions = {
+            ide: 'VSCODE',
+            extensions: new Set(['wrong-extension'])
+        };
+
+        // Test execution
+        const result = await getGuidedAnswerApi(options).getNodeById(1);
+
+        // Result check
+        expect(result.COMMANDS).toBeUndefined();
+    });
+
+    test('Get node by id, enhancements for VSCODE applicable', async () => {
+        // Mock setup
+        const data: GuidedAnswerNode = getMockNodeWithEnhancements();
+        const options: APIOptions = {
+            ide: 'VSCODE',
+            extensions: new Set(['vscode.ext'])
+        };
+        mockedAxios.get.mockImplementation(() => Promise.resolve({ data }));
+
+        // Test execution
+        const result = await getGuidedAnswerApi(options).getNodeById(1);
+
+        // Result check
+        expect(result.COMMANDS).toEqual([
+            {
+                label: 'vscode command enhancement',
+                description: 'Node enhancement with VSCode command',
+                exec: {
+                    extensionId: 'vscode.ext',
+                    commandId: 'commandVscode'
+                }
+            }
+        ]);
+    });
+
+    test('Get node by id, enhancements for SBAS applicable', async () => {
+        // Mock setup
+        const data: GuidedAnswerNode = getMockNodeWithEnhancements();
+        const options: APIOptions = {
+            ide: 'SBAS',
+            extensions: new Set(['sbas.ext', 'both.ext'])
+        };
+        mockedAxios.get.mockImplementation(() => Promise.resolve({ data }));
+
+        // Test execution
+        const result = await getGuidedAnswerApi(options).getNodeById(1);
+
+        // Result check
+        expect(result.COMMANDS).toEqual([
+            {
+                label: 'vscode and sbas command enhancement',
+                description: 'Node enhancement command',
+                exec: {
+                    extensionId: 'both.ext',
+                    commandId: 'commandBoth'
+                }
+            },
+            {
+                label: 'sbas command enhancement',
+                description: 'Node enhancement with SBAS command',
+                exec: {
+                    extensionId: 'sbas.ext',
+                    commandId: 'commandSbas'
+                }
+            }
+        ]);
     });
 
     test('Get node with different images, should add host to src where applicable', async () => {
@@ -494,6 +592,52 @@ describe('Guided Answers Api: getNodeById()', () => {
         expect(result.BODY).toBe(
             '<img src="http://host/dtp/viewer/services/backend.xsjs?no-extra-attributes" /><img width="321" src="http://host/dtp/viewer/services/backend.xsjs?with-attribute=width;height" height="123" /><img width="111" src="https://any.host/services/backend.xsjs?" height="222" />'
         );
+    });
+
+    const getMockNodeWithEnhancements = (): GuidedAnswerNode => ({
+        NODE_ID: 1,
+        TITLE: 'Node One',
+        BODY: `<p>N1</p>`,
+        QUESTION: '?',
+        EDGES: [],
+        EXTENSIONS: [
+            {
+                TYPE: 'Extension Command',
+                LABEL: 'vscode and sbas command enhancement',
+                DESCRIPTION: 'Node enhancement command',
+                ARG1: { NAME: 'extensionId', VALUE: 'both.ext' },
+                ARG2: { NAME: 'commandId', VALUE: 'commandBoth' },
+                ENV_VSCODE: 1,
+                ENV_SBAS: 1
+            },
+            {
+                TYPE: 'Extension Command',
+                LABEL: 'vscode command enhancement',
+                DESCRIPTION: 'Node enhancement with VSCode command',
+                ARG1: { NAME: 'extensionId', VALUE: 'vscode.ext' },
+                ARG2: { NAME: 'commandId', VALUE: 'commandVscode' },
+                ENV_VSCODE: 1,
+                ENV_SBAS: 0
+            },
+            {
+                TYPE: 'Extension Command',
+                LABEL: 'sbas command enhancement',
+                DESCRIPTION: 'Node enhancement with SBAS command',
+                ARG1: { NAME: 'extensionId', VALUE: 'sbas.ext' },
+                ARG2: { NAME: 'commandId', VALUE: 'commandSbas' },
+                ENV_VSCODE: 0,
+                ENV_SBAS: 1
+            },
+            {
+                TYPE: 'Extension Command',
+                LABEL: 'command for no IDE',
+                DESCRIPTION: 'Should not be apply on any IDE',
+                ARG1: { NAME: 'extensionId', VALUE: 'extension' },
+                ARG2: { NAME: 'commandId', VALUE: 'invalidcommand' },
+                ENV_VSCODE: 0,
+                ENV_SBAS: 0
+            }
+        ]
     });
 });
 
@@ -525,23 +669,21 @@ describe('Guided Answers Api: getNodePath()', () => {
         ];
 
         const options: APIOptions = {
-            enhancements: {
-                nodeEnhancements: [],
-                htmlEnhancements: [
-                    {
-                        text: 'Onehundredtwelve',
-                        command: {
-                            label: 'Command for Onehundredtwelve',
-                            description: `Command to enhance node in path`,
-                            exec: {
-                                cwd: '/',
-                                arguments: ['TEST']
-                            },
-                            environment: ['VSCODE', 'SBAS']
-                        }
+            ide: 'VSCODE',
+            htmlEnhancements: [
+                {
+                    text: 'Onehundredtwelve',
+                    command: {
+                        label: 'Command for Onehundredtwelve',
+                        description: `Command to enhance node in path`,
+                        exec: {
+                            cwd: '/',
+                            arguments: ['TEST']
+                        },
+                        environment: ['VSCODE', 'SBAS']
                     }
-                ]
-            }
+                }
+            ]
         };
         mockedAxios.get.mockImplementation((url: string) => {
             const data = nodes.find((n) => url.endsWith(`/${n.NODE_ID}`));

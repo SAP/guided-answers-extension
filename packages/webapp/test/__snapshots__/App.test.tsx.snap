@@ -30,36 +30,50 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
           class="guided-answer__header__searchField"
         >
           <div
-            class="ms-TextField tree-search-field root-110"
+            class="ms-SearchBox tree-search-field root-109"
           >
             <div
-              class="ms-TextField-wrapper"
+              aria-hidden="true"
+              class="ms-SearchBox-iconContainer iconContainer-110"
             >
-              <div
-                class="ms-TextField-fieldGroup fieldGroup-111"
+              <i
+                aria-hidden="true"
+                class="ms-SearchBox-icon icon-114"
+                data-icon-name="Search"
               >
-                <input
-                  aria-invalid="false"
-                  class="ms-TextField-field field-112"
-                  id="search-field"
-                  placeholder="Search Guided Answers"
-                  type="text"
-                  value=""
-                />
-              </div>
+                <svg
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.5024,9.9999 C7.0214,9.9999 5.0024,7.9809 5.0024,5.4999 C5.0024,3.0189 7.0214,0.9999 9.5024,0.9999 C11.9834,0.9999 14.0024,3.0189 14.0024,5.4999 C14.0024,7.9809 11.9834,9.9999 9.5024,9.9999 M9.5024,-0.0001 C6.4704,-0.0001 4.0024,2.4679 4.0024,5.4999 C4.0024,6.9469 4.5684,8.2609 5.4854,9.2439 L0.0004,15.3309 L0.7434,16.0009 L6.2314,9.9109 C7.1474,10.5919 8.2764,10.9999 9.5024,10.9999 C12.5354,10.9999 15.0024,8.5319 15.0024,5.4999 C15.0024,2.4679 12.5354,-0.0001 9.5024,-0.0001"
+                    fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </i>
             </div>
+            <input
+              class="ms-SearchBox-field field-113"
+              id="search-field"
+              placeholder="Search Guided Answers"
+              role="searchbox"
+              value=""
+            />
           </div>
           <div
             id="filters"
           >
             <div
-              class="ms-FocusZone css-121"
-              data-focuszone-id="FocusZone19"
+              class="ms-FocusZone css-115"
+              data-focuszone-id="FocusZone9"
               style="display: flex;"
             >
               <button
                 aria-disabled="true"
-                class="ms-Button ms-Button--icon is-disabled filter-button root-122"
+                class="ms-Button ms-Button--icon is-disabled filter-button root-116"
                 data-is-focusable="false"
                 disabled=""
                 id="filter-products"
@@ -68,12 +82,12 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
                 type="button"
               >
                 <span
-                  class="ms-Button-flexContainer flexContainer-123"
+                  class="ms-Button-flexContainer flexContainer-117"
                   data-automationid="splitbuttonprimary"
                 >
                   <i
                     aria-hidden="true"
-                    class="ms-Icon root-101 ms-Button-icon icon-125"
+                    class="ms-Icon root-101 ms-Button-icon icon-119"
                     data-icon-name="Table"
                   >
                     <svg
@@ -93,7 +107,7 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
               </button>
               <button
                 aria-disabled="true"
-                class="ms-Button ms-Button--icon is-disabled filter-button root-122"
+                class="ms-Button ms-Button--icon is-disabled filter-button root-116"
                 data-is-focusable="false"
                 disabled=""
                 id="filter-components"
@@ -102,12 +116,12 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
                 type="button"
               >
                 <span
-                  class="ms-Button-flexContainer flexContainer-123"
+                  class="ms-Button-flexContainer flexContainer-117"
                   data-automationid="splitbuttonprimary"
                 >
                   <i
                     aria-hidden="true"
-                    class="ms-Icon root-101 ms-Button-icon icon-125"
+                    class="ms-Icon root-101 ms-Button-icon icon-119"
                     data-icon-name="IdTag"
                   >
                     <svg
@@ -194,37 +208,51 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
           class="guided-answer__header__searchField"
         >
           <div
-            class="ms-TextField tree-search-field root-110"
+            class="ms-SearchBox tree-search-field root-109"
           >
             <div
-              class="ms-TextField-wrapper"
+              aria-hidden="true"
+              class="ms-SearchBox-iconContainer iconContainer-110"
             >
-              <div
-                class="ms-TextField-fieldGroup fieldGroup-111"
+              <i
+                aria-hidden="true"
+                class="ms-SearchBox-icon icon-114"
+                data-icon-name="Search"
               >
-                <input
-                  aria-invalid="false"
-                  class="ms-TextField-field field-112"
-                  id="search-field"
-                  placeholder="Search Guided Answers"
-                  readonly=""
-                  type="text"
-                  value=""
-                />
-              </div>
+                <svg
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.5024,9.9999 C7.0214,9.9999 5.0024,7.9809 5.0024,5.4999 C5.0024,3.0189 7.0214,0.9999 9.5024,0.9999 C11.9834,0.9999 14.0024,3.0189 14.0024,5.4999 C14.0024,7.9809 11.9834,9.9999 9.5024,9.9999 M9.5024,-0.0001 C6.4704,-0.0001 4.0024,2.4679 4.0024,5.4999 C4.0024,6.9469 4.5684,8.2609 5.4854,9.2439 L0.0004,15.3309 L0.7434,16.0009 L6.2314,9.9109 C7.1474,10.5919 8.2764,10.9999 9.5024,10.9999 C12.5354,10.9999 15.0024,8.5319 15.0024,5.4999 C15.0024,2.4679 12.5354,-0.0001 9.5024,-0.0001"
+                    fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </i>
             </div>
+            <input
+              class="ms-SearchBox-field field-113"
+              id="search-field"
+              placeholder="Search Guided Answers"
+              readonly=""
+              role="searchbox"
+              value=""
+            />
           </div>
           <div
             id="filters"
           >
             <div
-              class="ms-FocusZone css-121"
-              data-focuszone-id="FocusZone5"
+              class="ms-FocusZone css-115"
+              data-focuszone-id="FocusZone0"
               style="display: flex;"
             >
               <button
                 aria-disabled="true"
-                class="ms-Button ms-Button--icon is-disabled filter-button root-122"
+                class="ms-Button ms-Button--icon is-disabled filter-button root-116"
                 data-is-focusable="false"
                 disabled=""
                 id="filter-products"
@@ -233,12 +261,12 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
                 type="button"
               >
                 <span
-                  class="ms-Button-flexContainer flexContainer-123"
+                  class="ms-Button-flexContainer flexContainer-117"
                   data-automationid="splitbuttonprimary"
                 >
                   <i
                     aria-hidden="true"
-                    class="ms-Icon root-101 ms-Button-icon icon-125"
+                    class="ms-Icon root-101 ms-Button-icon icon-119"
                     data-icon-name="Table"
                   >
                     <svg
@@ -258,7 +286,7 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
               </button>
               <button
                 aria-disabled="true"
-                class="ms-Button ms-Button--icon is-disabled filter-button root-122"
+                class="ms-Button ms-Button--icon is-disabled filter-button root-116"
                 data-is-focusable="false"
                 disabled=""
                 id="filter-components"
@@ -267,12 +295,12 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
                 type="button"
               >
                 <span
-                  class="ms-Button-flexContainer flexContainer-123"
+                  class="ms-Button-flexContainer flexContainer-117"
                   data-automationid="splitbuttonprimary"
                 >
                   <i
                     aria-hidden="true"
-                    class="ms-Icon root-101 ms-Button-icon icon-125"
+                    class="ms-Icon root-101 ms-Button-icon icon-119"
                     data-icon-name="IdTag"
                   >
                     <svg
@@ -326,11 +354,11 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
       id="results-container"
     >
       <div
-        class="ms-Spinner root-138"
+        class="ms-Spinner root-132"
         id="loading-indicator"
       >
         <div
-          class="ms-Spinner-circle ms-Spinner--large circle-139"
+          class="ms-Spinner-circle ms-Spinner--large circle-133"
         />
       </div>
     </main>
@@ -348,8 +376,8 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
       style="padding-bottom: 0px;"
     >
       <div
-        class="ms-FocusZone css-121 guided-answer__header"
-        data-focuszone-id="FocusZone43"
+        class="ms-FocusZone css-115 guided-answer__header"
+        data-focuszone-id="FocusZone28"
       >
         <div
           class="guided-answer__header__allAnswersButton"
@@ -429,13 +457,15 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
               <i
                 aria-hidden="true"
                 class="ts-icon guided-answer__header__navButtons__content root-101"
-                data-icon-name="Chat"
+                data-icon-name="ChatBubbles"
                 style="padding-top: 2px;"
               >
                 <svg
                   fill="none"
                   focusable="false"
+                  height="16"
                   viewBox="0 0 16 16"
+                  width="16"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
@@ -460,11 +490,11 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
       id="results-container"
     >
       <div
-        class="ms-Spinner root-138"
+        class="ms-Spinner root-132"
         id="loading-indicator"
       >
         <div
-          class="ms-Spinner-circle ms-Spinner--large circle-139"
+          class="ms-Spinner-circle ms-Spinner--large circle-133"
         />
       </div>
     </main>
@@ -502,35 +532,49 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
           class="guided-answer__header__searchField"
         >
           <div
-            class="ms-TextField tree-search-field root-110"
+            class="ms-SearchBox tree-search-field root-109"
           >
             <div
-              class="ms-TextField-wrapper"
+              aria-hidden="true"
+              class="ms-SearchBox-iconContainer iconContainer-110"
             >
-              <div
-                class="ms-TextField-fieldGroup fieldGroup-111"
+              <i
+                aria-hidden="true"
+                class="ms-SearchBox-icon icon-114"
+                data-icon-name="Search"
               >
-                <input
-                  aria-invalid="false"
-                  class="ms-TextField-field field-112"
-                  id="search-field"
-                  placeholder="Search Guided Answers"
-                  type="text"
-                  value=""
-                />
-              </div>
+                <svg
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.5024,9.9999 C7.0214,9.9999 5.0024,7.9809 5.0024,5.4999 C5.0024,3.0189 7.0214,0.9999 9.5024,0.9999 C11.9834,0.9999 14.0024,3.0189 14.0024,5.4999 C14.0024,7.9809 11.9834,9.9999 9.5024,9.9999 M9.5024,-0.0001 C6.4704,-0.0001 4.0024,2.4679 4.0024,5.4999 C4.0024,6.9469 4.5684,8.2609 5.4854,9.2439 L0.0004,15.3309 L0.7434,16.0009 L6.2314,9.9109 C7.1474,10.5919 8.2764,10.9999 9.5024,10.9999 C12.5354,10.9999 15.0024,8.5319 15.0024,5.4999 C15.0024,2.4679 12.5354,-0.0001 9.5024,-0.0001"
+                    fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </i>
             </div>
+            <input
+              class="ms-SearchBox-field field-113"
+              id="search-field"
+              placeholder="Search Guided Answers"
+              role="searchbox"
+              value=""
+            />
           </div>
           <div
             id="filters"
           >
             <div
-              class="ms-FocusZone css-121"
-              data-focuszone-id="FocusZone33"
+              class="ms-FocusZone css-115"
+              data-focuszone-id="FocusZone18"
               style="display: flex;"
             >
               <button
-                class="ms-Button ms-Button--icon filter-button root-141"
+                class="ms-Button ms-Button--icon filter-button root-135"
                 data-is-focusable="true"
                 id="filter-products"
                 tabindex="0"
@@ -538,12 +582,12 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
                 type="button"
               >
                 <span
-                  class="ms-Button-flexContainer flexContainer-123"
+                  class="ms-Button-flexContainer flexContainer-117"
                   data-automationid="splitbuttonprimary"
                 >
                   <i
                     aria-hidden="true"
-                    class="ms-Icon root-101 ms-Button-icon icon-142"
+                    class="ms-Icon root-101 ms-Button-icon icon-136"
                     data-icon-name="Table"
                   >
                     <svg
@@ -562,7 +606,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
                 </span>
               </button>
               <button
-                class="ms-Button ms-Button--icon filter-button root-141"
+                class="ms-Button ms-Button--icon filter-button root-135"
                 data-is-focusable="true"
                 id="filter-components"
                 tabindex="-1"
@@ -570,12 +614,12 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
                 type="button"
               >
                 <span
-                  class="ms-Button-flexContainer flexContainer-123"
+                  class="ms-Button-flexContainer flexContainer-117"
                   data-automationid="splitbuttonprimary"
                 >
                   <i
                     aria-hidden="true"
-                    class="ms-Icon root-101 ms-Button-icon icon-142"
+                    class="ms-Icon root-101 ms-Button-icon icon-136"
                     data-icon-name="IdTag"
                   >
                     <svg
@@ -629,8 +673,8 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
       id="results-container"
     >
       <div
-        class="ms-FocusZone css-121"
-        data-focuszone-id="FocusZone42"
+        class="ms-FocusZone css-115"
+        data-focuszone-id="FocusZone27"
       >
         <ul
           class="striped-list"

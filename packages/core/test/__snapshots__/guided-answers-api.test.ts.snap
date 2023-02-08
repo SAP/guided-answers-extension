@@ -6,10 +6,6 @@ exports[`Guided Answers Api: getNodeById() Get node by id, node enhanced, should
   "COMMANDS": [
     {
       "description": "Node enhancement with terminal command",
-      "environment": [
-        "VSCODE",
-        "SBAS",
-      ],
       "exec": {
         "arguments": [
           "launch",
@@ -23,14 +19,7 @@ exports[`Guided Answers Api: getNodeById() Get node by id, node enhanced, should
     },
     {
       "description": "Node enhancement with VSCode command",
-      "environment": [
-        "VSCODE",
-        "SBAS",
-      ],
       "exec": {
-        "argument": {
-          "fsPath": "",
-        },
         "commandId": "SPEED",
         "extensionId": "full speed",
       },
@@ -47,6 +36,38 @@ exports[`Guided Answers Api: getNodeById() Get node by id, node enhanced, should
       "LABEL": "No",
       "ORD": 2,
       "TARGET_NODE": Infinity,
+    },
+  ],
+  "EXTENSIONS": [
+    {
+      "ARG1": {
+        "NAME": "cwd",
+        "VALUE": ".",
+      },
+      "ARG2": {
+        "NAME": "argument",
+        "VALUE": "launch Infinite Improbability Drive",
+      },
+      "DESCRIPTION": "Node enhancement with terminal command",
+      "ENV_SBAS": 1,
+      "ENV_VSCODE": 1,
+      "LABEL": "terminal command enhancement",
+      "TYPE": "Terminal Command",
+    },
+    {
+      "ARG1": {
+        "NAME": "extensionId",
+        "VALUE": "full speed",
+      },
+      "ARG2": {
+        "NAME": "commandId",
+        "VALUE": "SPEED",
+      },
+      "DESCRIPTION": "Node enhancement with VSCode command",
+      "ENV_SBAS": 1,
+      "ENV_VSCODE": 1,
+      "LABEL": "vscode command enhancement",
+      "TYPE": "Extension Command",
     },
   ],
   "NODE_ID": -1,
