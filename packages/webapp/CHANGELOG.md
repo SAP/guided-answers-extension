@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.10.1
+
+### Patch Changes
+
+-   9801f9a: Several user interface fixes
+
 ## 1.10.0
 
 ### Minor Changes

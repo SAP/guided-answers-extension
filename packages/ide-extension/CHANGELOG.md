@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.12.1
+
+### Patch Changes
+
+-   9801f9a: Several user interface fixes
+
 ## 1.12.0
 
 ### Minor Changes
