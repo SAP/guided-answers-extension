@@ -1,8 +1,8 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import './FeedbackSendDialogBox.scss';
-import { Dialog, DialogType } from '@fluentui/react/lib/Dialog';
+import { DialogType } from '@fluentui/react/lib/Dialog';
 import i18next from 'i18next';
-import { UIIcon, UiIcons } from '@sap-ux/ui-components';
+import { UIIcon, UiIcons, UIDialog } from '@sap-ux/ui-components';
 import { AppState } from '../../../../types';
 import { useSelector } from 'react-redux';
 import { actions } from '../../../../state';
@@ -12,7 +12,7 @@ import { actions } from '../../../../state';
  *
  * @returns the feedback send dialog box element
  */
-export function FeedbackSendDialogBox(): ReactElement {
+export function FeedbackSentDialogBox(): ReactElement {
     const feedbackResponse = useSelector<AppState, boolean>((state) => state.feedbackResponse);
     const [isVisible, setVisible] = useState(feedbackResponse);
     useEffect(() => {
@@ -31,21 +31,16 @@ export function FeedbackSendDialogBox(): ReactElement {
     };
 
     //Dialog box will transition out after being loaded
-    useEffect(() => {
-        if (isVisible) {
-            const toRef = setTimeout(() => {
-                actions.feedbackResponse(false);
-                setVisible(false);
-                clearTimeout(toRef);
-            }, 3000);
-        }
-    }, [isVisible]);
+    setTimeout(() => {
+        setVisible(false);
+        actions.feedbackResponse(false);
+    }, 6000);
 
     return (
         <>
-            <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
+            <UIDialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
                 <UIIcon className="feedback-response-icon" iconName={UiIcons.ChatBubbles} />
-            </Dialog>
+            </UIDialog>
         </>
     );
 }

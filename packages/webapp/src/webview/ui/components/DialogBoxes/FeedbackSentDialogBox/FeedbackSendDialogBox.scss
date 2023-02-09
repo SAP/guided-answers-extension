@@ -1,12 +1,15 @@
 .feedback-sent-dialog-box {
     color: var(--vscode-editor-foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .ms-Dialog-main {
         background-color: var(--vscode-editorWidget-background);
-        width: 380px;
-        height: 300px;
         display: flex;
         align-items: center;
         font-family: var(--vscode-font-family);
+        min-width: 380px;
+        min-height: 350px;
     }
     .ms-Dialog-title {
         color: var(--vscode-settings-headerForeground);

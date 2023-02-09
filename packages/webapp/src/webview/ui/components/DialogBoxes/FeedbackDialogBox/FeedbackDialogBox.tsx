@@ -1,15 +1,14 @@
 import React, { ReactElement, useState, useEffect, FormEvent } from 'react';
 import './FeedbackDialogBox.scss';
-import { Dialog, DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
-import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
+import { DialogFooter } from '@fluentui/react/lib/Dialog';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-import { TextField } from '@fluentui/react';
 import { VscInfo } from 'react-icons/vsc';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import type { GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
+import { UIDefaultButton, UIDialog, UITextInput } from '@sap-ux/ui-components';
 
 /**
  * The feedback dialog box for submitting comments.
@@ -25,10 +24,7 @@ export function FeedbackDialogBox(): ReactElement {
     const container = document.querySelector('.feedback-section-dialog');
     const [isVisible, setVisible] = useState(feedbackStatus);
     const [feedback, setFeedback] = useState('');
-
-    useEffect(() => {
-        container?.classList.toggle('.dialog-enter');
-    }, []);
+    const [textFieldhasValue, setTextFieldhasValue] = useState(true);
 
     useEffect(() => {
         setVisible(feedbackStatus);
@@ -38,7 +34,6 @@ export function FeedbackDialogBox(): ReactElement {
     }, [feedbackStatus]);
 
     const dialogContentProps = {
-        type: DialogType.normal,
         title: i18next.t('FEEDBACK_DIALOG_TITLE'),
         subText: i18next.t('FEEDBACK_DIALOG_SUBTEXT')
     };
@@ -52,18 +47,23 @@ export function FeedbackDialogBox(): ReactElement {
         event: FormEvent<HTMLInputElement | HTMLTextAreaElement>,
         newValue?: string | undefined
     ): void => {
-        if (newValue !== undefined) {
+        if (newValue !== undefined && newValue !== '') {
             setFeedback(newValue);
+            setTextFieldhasValue(false);
+        } else {
+            setTextFieldhasValue(true);
         }
     };
 
     return (
         <>
-            <Dialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
-                <TextField
+            <UIDialog modalProps={modalProps} isOpen={isVisible} title={dialogContentProps.title}>
+                <p className="ms-Dialog-subText">{i18next.t('FEEDBACK_DIALOG_SUBTEXT')}</p>
+                <UITextInput
+                    id="feedbackDialogTextArea"
                     label={i18next.t('FEEDBACK_DIALOG_SUGGESTION')}
                     multiline
-                    autoAdjustHeight
+                    style={{ height: '85px' }}
                     onChange={onChange}
                 />
                 <div className="privacy-notice">
@@ -72,26 +72,27 @@ export function FeedbackDialogBox(): ReactElement {
                 </div>
                 <DialogFooter>
                     <FocusZone direction={FocusZoneDirection.horizontal} className="button-container">
-                        <PrimaryButton
-                            className="primary-button"
+                        <UIDefaultButton
+                            primary
                             text={i18next.t('SEND')}
-                            disabled={feedback === ''}
+                            disabled={textFieldhasValue}
+                            id="sendFeedbackBtn"
                             onClick={() => {
                                 actions.feedbackResponse(false);
                                 actions.sendFeedbackComment({ treeId, nodeId, comment: feedback });
                                 actions.feedbackStatus(false);
                             }}
                         />
-                        <DefaultButton
-                            className="close-button"
+                        <UIDefaultButton
                             text={i18next.t('CLOSE')}
+                            id="closeDialogBtn"
                             onClick={() => {
                                 actions.feedbackStatus(false);
                             }}
                         />
                     </FocusZone>
                 </DialogFooter>
-            </Dialog>
+            </UIDialog>
         </>
     );
 }

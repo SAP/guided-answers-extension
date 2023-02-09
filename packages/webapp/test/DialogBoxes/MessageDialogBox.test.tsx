@@ -1,8 +1,8 @@
 import React from 'react';
 import i18next from 'i18next';
-import { MessageDialogBox } from '../src/webview/ui/components/DialogBoxes/MessageDialogBox';
+import { MessageDialogBox } from '../../src/webview/ui/components/DialogBoxes/MessageDialogBox';
 import { render, cleanup } from '@testing-library/react';
-import { initI18n } from '../src/webview/i18n';
+import { initI18n } from '../../src/webview/i18n';
 
 describe('<MessageDialogBox />', () => {
     initI18n();

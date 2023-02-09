@@ -3,6 +3,8 @@
     color: var(--vscode-editor-foreground);
     .ms-Dialog-main {
         background-color: var(--vscode-editorWidget-background);
+        min-width: 380px;
+        max-width: 380px;
     }
     .ms-Dialog-title {
         color: var(--vscode-settings-headerForeground);
@@ -10,7 +12,7 @@
         font-size: 14px;
         line-height: 16px;
         text-align: center;
-        padding: 20px;
+        padding: 25px;
     }
     .ms-Dialog-subText {
         color: var(--vscode-settings-headerForeground);
@@ -18,63 +20,28 @@
         font-weight: 400;
         font-size: 13px;
         line-height: 18px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         text-align: left;
-        margin-top: 0;
+        margin-top: 5px;
         padding: 0;
     }
-
+    .ms-Dialog-content{
+        padding: 0px 45px;
+    }
     .ms-Label {
         font-size: 13px;
     }
-
     .ms-Button-label {
         font-size: 13px;
     }
-
     label {
         color: var(--vscode-editor-foreground);
-    }
-
-    .button-container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: -16px;
-        margin-bottom: -20px;
-    }
-
-    .close-button {
-        background-color: var(--vscode-button-secondaryBackground);
-        color: var(--vscode-button-foreground);
-        border-color: var(--vscode-button-secondaryBackground);
-        text-align: center;
-    }
-
-    .close-button:hover {
-        background-color: var(--vscode-button-secondaryHoverBackground);
-    }
-
-    .primary-button {
-        background-color: var(--vscode-button-background);
-        color: var(--vscode-button-foreground);
-        font-weight: 400;
-        border-color: var(--vscode-button-background);
-        border-style: none;
-        outline-offset: -1px;
-        border: 1px solid var(--vscode-contrastBorder);
-    }
-
-    .primary-button:hover {
-        background-color: var(--vscode-button-hoverBackground);
-        outline: 1px solid var(--vscode-contrastActiveBorder);
     }
 
     button:focus-visible {
         outline: 1px solid var(--vscode-focusBorder, #007fd4);
         border-style: none;
     }
-
     h3 {
         font-size: 13px;
         font-weight: 700px;
@@ -89,10 +56,10 @@
         gap: 5px;
     }
     .info-icon {
-        color: var(--vscode-editorMarkerNavigationInfo-background);
-        width: 20px;
-        height: 20px;
-        margin-bottom: -1px;
+        width: 14px;
+        height: 14px;
+        min-width: 16px;
+        min-height: 16px;
     }
     .privacy-notice > p {
         margin-bottom: 0;
@@ -102,11 +69,26 @@
         background-color: var(--vscode-input-background);
         color: var(--vscode-editor-foreground);
     }
-}
-.feedback-section-dialog .dialog-enter{
-    transition-timing-function: 0.5s ease-in;
+    .ms-TextField-wrapper > .ms-Label {
+        font-family: var(--vscode-font-family);
+        font-weight: 700;
+        font-size: 14px;
+        font-style: normal;
+        line-height: 16px;
+    }
+
+    .ms-Dialog-actions{
+        margin: 25px 0px;
+    }
+
+    .ms-Dialog-actionsRight{
+        justify-content: center;
+        margin-right: 0px;
+    }
 }
 
-.feedback-section-dialog .dialog-exit{
-    transition-timing-function: 0.5s ease-out;
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }

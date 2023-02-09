@@ -8,6 +8,7 @@
         font-size: 14px;
         line-height: 16px;
         text-align: center;
+        margin: 5px 0px 15px 0px;
     }
     .ms-Dialog-subText {
         color: var(--vscode-settings-headerForeground);
@@ -16,16 +17,16 @@
         font-size: 13px;
         line-height: 18px;
         margin-bottom: 0;
-        padding: 0 21px 0 21px;
         text-align: left;
         margin-top: 0;
     }
-
+    .ms-Dialog-inner {
+        padding: 0px 45px;
+    }
     .button-container {
         display: flex;
         justify-content: center;
         gap: 10px;
-        margin: -16px 0 0 0;
     }
 
     .default-button {
@@ -46,5 +47,16 @@
     button:focus-visible {
         outline: 1px solid var(--vscode-focusBorder, #007fd4);
         border-style: none;
+    }
+    .ms-Dialog-actions {
+        margin: 25px 0px;
+    }
+    .ms-Dialog-actionsRight {
+        justify-content: center;
+    }
+
+    .ms-Dialog-content {
+        overflow: hidden;
+        padding: 0px;
     }
 }
