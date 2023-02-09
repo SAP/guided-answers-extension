@@ -38,7 +38,8 @@
         "vscode:prepublish": "pnpm run build"
     },
     "activationEvents": [
-        "onCommand:sap.ux.guidedAnswer.openGuidedAnswer"
+        "onCommand:sap.ux.guidedAnswer.openGuidedAnswer",
+        "onUri"
     ],
     "contributes": {
         "configuration": {

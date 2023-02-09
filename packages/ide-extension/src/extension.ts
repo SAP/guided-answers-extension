@@ -4,6 +4,7 @@ import { getDevSpace, getIde } from '@sap/guided-answers-extension-core';
 import { logString } from './logger/logger';
 import { GuidedAnswersPanel } from './panel/guidedAnswersPanel';
 import { initTelemetry } from './telemetry';
+import { GuidedAnswersUriHandler } from './links';
 import type { StartOptions } from './types';
 
 /**
@@ -44,4 +45,5 @@ export function activate(context: ExtensionContext): void {
             }
         })
     );
+    context.subscriptions.push(window.registerUriHandler(new GuidedAnswersUriHandler()));
 }
