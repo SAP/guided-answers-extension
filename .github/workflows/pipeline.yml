@@ -131,7 +131,7 @@ jobs:
             - name: Install pnpm modules
               run: pnpm install
             - name: Replace placeholder with instrumentation key
-              uses: jacobtomlinson/gha-find-replace@v2
+              uses: jacobtomlinson/gha-find-replace@v3
               with:
                   include: packages/ide-extension/src/telemetry/telemetry.ts
                   find: 'ApplicationInsightsInstrumentationKeyPLACEH0LDER'
