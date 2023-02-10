@@ -39,7 +39,7 @@ export function FeedbackSentDialogBox(): ReactElement {
     return (
         <>
             <UIDialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
-                <UIIcon className="feedback-response-icon" iconName={UiIcons.ChatBubbles} />
+                <UIIcon className="feedback-response-icon" iconName={UiIcons.MessageSent} />
             </UIDialog>
         </>
     );
