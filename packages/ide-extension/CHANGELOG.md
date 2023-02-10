@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.12.2
+
+### Patch Changes
+
+-   fbdcc28: feedback sent component icon replaced
+
 ## 1.12.1
 
 ### Patch Changes
