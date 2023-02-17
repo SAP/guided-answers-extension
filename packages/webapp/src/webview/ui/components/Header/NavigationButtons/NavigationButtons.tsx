@@ -122,7 +122,9 @@ export function ShareButton() {
                     <div>
                         <div className="sharable-link__title">Share this guide</div>
                         <div className="sharable-link__body">
-                            {!isCopiedVisible && <UITextInput value={link} className="sharable-link__input-field" />}
+                            {!isCopiedVisible && (
+                                <UITextInput disabled={true} value={link} className="sharable-link__input-field" />
+                            )}
                             {isCopiedVisible && (
                                 <div className="sharable-link__copied">
                                     <UIIcon

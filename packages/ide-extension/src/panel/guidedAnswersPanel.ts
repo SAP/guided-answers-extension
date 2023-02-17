@@ -6,6 +6,7 @@ import {
     SEND_TELEMETRY,
     SEND_FEEDBACK_OUTCOME,
     SEND_FEEDBACK_COMMENT,
+    PARSE_URL,
     updateGuidedAnswerTrees,
     updateActiveNode,
     updateLoading,
@@ -15,7 +16,8 @@ import {
     WEBVIEW_READY,
     setActiveTree,
     getBetaFeatures,
-    feedbackResponse
+    feedbackResponse,
+    urlUsedInSearch
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
@@ -23,6 +25,7 @@ import { getHtmlEnhancements, getInstalledExtensionIds, handleCommand } from '..
 import { logString } from '../logger/logger';
 import type { Options, StartOptions } from '../types';
 import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
+import { extractLinkInfo } from '../links/link-info';
 
 /**
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
@@ -191,6 +194,19 @@ export class GuidedAnswersPanel {
                     const node = await this.guidedAnswerApi.getNodeById(action.payload);
                     logString(`Node selected: ${node.NODE_ID}: ${node.TITLE}`);
                     this.postActionToWebview(updateActiveNode(node));
+                    break;
+                }
+                case PARSE_URL: {
+                    const parsedUrlObj = extractLinkInfo(action.payload);
+                    if (parsedUrlObj !== undefined) {
+                        this.postActionToWebview(updateLoading(true));
+                        await this.processStartOptions(parsedUrlObj);
+                        this.postActionToWebview(updateLoading(false));
+                        this.postActionToWebview(urlUsedInSearch(true));
+                    } else {
+                        this.postActionToWebview(urlUsedInSearch(false));
+                    }
+
                     break;
                 }
                 case SEND_FEEDBACK_OUTCOME: {

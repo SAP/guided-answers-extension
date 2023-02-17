@@ -12,7 +12,8 @@ import type {
     UpdateLoading,
     SetPageSize,
     FeedbackResponse,
-    FeedbackStatus
+    FeedbackStatus,
+    UrlUsedInSearch
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -41,7 +42,8 @@ export function getInitialState(): AppState {
         selectedComponentFilters: [],
         pageSize: 20,
         feedbackStatus: false,
-        feedbackResponse: false
+        feedbackResponse: false,
+        urlUsedInSearch: false
     };
 }
 
@@ -81,7 +83,8 @@ const reducers: Partial<Reducers> = {
     SEARCH_TREE: searchTreeReducer,
     SET_PAGE_SIZE: updatePageSize,
     FEEDBACK_RESPONSE: feedbackResponseReducer,
-    FEEDBACK_STATUS: feedbackStatusReducer
+    FEEDBACK_STATUS: feedbackStatusReducer,
+    URL_USED_IN_SEARCH: urlUsedInSearchReducer
 };
 
 /**
@@ -290,6 +293,27 @@ function feedbackResponseReducer(newState: AppState, action: FeedbackResponse): 
  */
 function feedbackStatusReducer(newState: AppState, action: FeedbackStatus): AppState {
     newState.feedbackStatus = action.payload;
+    return newState;
+}
+
+/**
+ * Set state for urlUsedInSearch.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function urlUsedInSearchReducer(newState: AppState, action: UrlUsedInSearch): AppState {
+    newState.urlUsedInSearch = action.payload;
+    if (newState.urlUsedInSearch === true) {
+        newState.query = '';
+        newState.guidedAnswerTreeSearchResult = {
+            resultSize: -1,
+            componentFilters: [],
+            productFilters: [],
+            trees: []
+        };
+    }
     return newState;
 }
 

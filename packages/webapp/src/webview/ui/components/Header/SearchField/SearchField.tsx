@@ -28,6 +28,7 @@ export function SearchField() {
                 onChange={(e: any) => {
                     const newValue = e?.target?.value;
                     if (newValue !== undefined) {
+                        actions.parseUrl(newValue);
                         clearTimeout(timer);
                         actions.setQueryValue(newValue);
                         timer = setTimeout(() => {

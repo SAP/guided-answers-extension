@@ -19,5 +19,7 @@ export {
     resetFilters,
     setPageSize,
     feedbackStatus,
-    feedbackResponse
+    feedbackResponse,
+    parseUrl,
+    urlUsedInSearch
 } from '@sap/guided-answers-extension-types';
