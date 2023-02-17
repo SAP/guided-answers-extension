@@ -120,37 +120,26 @@ export function ShareButton() {
                     calloutWidth={230}
                     calloutMinWidth={230}>
                     <div>
-                        <div style={{ margin: '10px 0 0 10px', fontSize: '13px', fontWeight: '700' }}>
-                            Share this answer
-                        </div>
-                        <div style={{ display: 'flex', margin: '10px' }}>
-                            {!isCopiedVisible && <UITextInput value={link} style={{ width: '184px' }} />}
+                        <div className="sharable-link__title">Share this guide</div>
+                        <div className="sharable-link__body">
+                            {!isCopiedVisible && <UITextInput value={link} className="sharable-link__input-field" />}
                             {isCopiedVisible && (
-                                <div
-                                    style={{
-                                        width: '186px',
-                                        border: '1px solid var(--vscode-terminal-ansiGreen)',
-                                        lineHeight: '22px',
-                                        paddingLeft: '6px',
-                                        fontSize: '13px',
-                                        display: 'inline-block'
-                                    }}>
+                                <div className="sharable-link__copied">
                                     <UIIcon
                                         iconName={UiIcons.ConfirmationCheckSymbol}
-                                        style={{ marginRight: '5px', verticalAlign: 'middle' }}
+                                        className="sharable-link__copied-icon"
                                     />
                                     Copied to clipboard
                                 </div>
                             )}
                             <CopyToClipboard text={link} onCopy={toggleCopied}>
                                 <UIIcon
-                                    className="copy-to-clipboard"
-                                    iconName={UiIcons.Copy}
-                                    style={{ padding: '5px 0 0 10px', cursor: 'pointer' }}
+                                    className="sharable-link__copy-to-clipboard"
+                                    iconName={UiIcons.CopyToClipboard}
                                 />
                             </CopyToClipboard>
                         </div>
-                        <p style={{ padding: '0 10px 0 10px', fontSize: '11px' }}>
+                        <p className="sharable-link__footer">
                             Paste this code into search field on the home page to get back here.
                         </p>
                     </div>

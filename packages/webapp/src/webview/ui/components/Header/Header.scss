@@ -94,10 +94,50 @@
     }
 }
 
-.copy-to-clipboard {
-    svg {
-        width: 14px;
-        height: 14px;
+.sharable-link {
+    &__title {
+        margin: 10px 0 0 10px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    &__body {
+        display: flex;
+        margin: 10px;
+    }
+
+    &__input-field {
+        width: 184px;
+    }
+
+    &__copied {
+        width: 186px;
+        border: 1px solid var(--vscode-terminal-ansiGreen);
+        line-height: 22px;
+        padding-left: 6px;
+        font-size: 13px;
+        display: inline-block;
+        i {
+            svg {
+                width: 14px;
+                height: 14px;
+            }
+        }
+    }
+
+    &__copied-icon {
+        margin-right: 5px;
+        vertical-align: middle;
+    }
+
+    &__copy-to-clipboard {
+        padding: 5px 0 0 10px;
+        cursor: pointer;
+    }
+
+    &__footer {
+        padding: 0 10px;
+        font-size: 11px;
     }
 }
 
