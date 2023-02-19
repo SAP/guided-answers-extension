@@ -53,9 +53,9 @@ h1 {
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
             outline-offset: -1px;
         }
-        button:focus-visible {
+        &:focus-visible {
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
-            outline-offset: -1px;
+            outline-offset: -2px;
         }
         &__ul {
             padding: 15px;
