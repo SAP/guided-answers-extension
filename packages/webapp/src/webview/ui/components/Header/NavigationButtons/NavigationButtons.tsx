@@ -9,6 +9,7 @@ import { focusOnElement } from '../../utils';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { AppState } from '../../../../types';
 import { GuidedAnswerNode, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
+import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
 /**
  *
@@ -112,34 +113,44 @@ export function ShareButton() {
                 onClick={toggleCallout}></UIIconButton>
             {isCalloutVisible && (
                 <UICallout
+                    role="alertdialog"
                     target={`#${id}`}
                     isBeakVisible={true}
                     beakWidth={10}
                     directionalHint={DirectionalHint.bottomCenter}
                     onDismiss={() => toggleCallout()}
                     calloutWidth={230}
-                    calloutMinWidth={230}>
+                    calloutMinWidth={230}
+                    layerProps={{
+                        eventBubblingEnabled: true
+                    }}
+                    setInitialFocus>
                     <div>
                         <div className="sharable-link__title">Share this guide</div>
                         <div className="sharable-link__body">
-                            {!isCopiedVisible && (
-                                <UITextInput disabled={true} value={link} className="sharable-link__input-field" />
-                            )}
-                            {isCopiedVisible && (
-                                <div className="sharable-link__copied">
-                                    <UIIcon
-                                        iconName={UiIcons.ConfirmationCheckSymbol}
-                                        className="sharable-link__copied-icon"
-                                    />
-                                    Copied to clipboard
-                                </div>
-                            )}
-                            <CopyToClipboard text={link} onCopy={toggleCopied}>
-                                <UIIcon
-                                    className="sharable-link__copy-to-clipboard"
-                                    iconName={UiIcons.CopyToClipboard}
-                                />
-                            </CopyToClipboard>
+                            <FocusZone direction={FocusZoneDirection.horizontal} style={{ display: 'flex' }}>
+                                {!isCopiedVisible && (
+                                    <UITextInput disabled={true} value={link} className="sharable-link__input-field" />
+                                )}
+                                {isCopiedVisible && (
+                                    <div className="sharable-link__copied">
+                                        <UIIconButton
+                                            iconProps={{ iconName: UiIcons.ConfirmationCheckSymbol }}
+                                            className="sharable-link__copied-icon"
+                                        />
+                                        Copied to clipboard
+                                    </div>
+                                )}
+
+                                <CopyToClipboard text={link} onCopy={toggleCopied}>
+                                    <button>
+                                        <UIIcon
+                                            className="sharable-link__copy-to-clipboard"
+                                            iconName={UiIcons.CopyToClipboard}
+                                        />
+                                    </button>
+                                </CopyToClipboard>
+                            </FocusZone>
                         </div>
                         <p className="sharable-link__footer">
                             Paste this code into search field on the home page to get back here.
