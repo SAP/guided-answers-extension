@@ -50,54 +50,46 @@ exports[`<SearchField /> Should render a SearchField component 1`] = `
     <div
       id="filters"
     >
-      <div
-        class="ms-FocusZone css-123"
-        data-focuszone-id="FocusZone3"
-        style="display: flex;"
+      <button
+        aria-disabled="true"
+        class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-123"
+        data-is-focusable="false"
+        disabled=""
+        id="filter-products"
+        title="Filter Products"
+        type="button"
       >
-        <button
-          aria-disabled="true"
-          class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-124"
-          data-is-focusable="false"
-          disabled=""
-          id="filter-products"
-          tabindex="-1"
-          title="Filter Products"
-          type="button"
+        <span
+          class="ms-Button-flexContainer flexContainer-124"
+          data-automationid="splitbuttonprimary"
         >
-          <span
-            class="ms-Button-flexContainer flexContainer-125"
-            data-automationid="splitbuttonprimary"
-          >
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon icon-126"
-              data-icon-name="Table"
-            />
-          </span>
-        </button>
-        <button
-          aria-disabled="true"
-          class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-124"
-          data-is-focusable="false"
-          disabled=""
-          id="filter-components"
-          tabindex="-1"
-          title="Filter Components"
-          type="button"
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon icon-125"
+            data-icon-name="Table"
+          />
+        </span>
+      </button>
+      <button
+        aria-disabled="true"
+        class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-123"
+        data-is-focusable="false"
+        disabled=""
+        id="filter-components"
+        title="Filter Components"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-124"
+          data-automationid="splitbuttonprimary"
         >
-          <span
-            class="ms-Button-flexContainer flexContainer-125"
-            data-automationid="splitbuttonprimary"
-          >
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon icon-126"
-              data-icon-name="IdTag"
-            />
-          </span>
-        </button>
-      </div>
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon icon-125"
+            data-icon-name="IdTag"
+          />
+        </span>
+      </button>
     </div>
   </div>
 </div>
