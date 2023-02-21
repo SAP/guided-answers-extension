@@ -1,5 +1,0 @@
----
-
----
-
-Updated the icon
