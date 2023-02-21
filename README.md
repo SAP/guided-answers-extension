@@ -7,7 +7,7 @@
 
 
 # Guided Answers extension by SAP
-<img align="left" style="padding-right:10px" src="./docs/resources/guided-answers-logo.svg"/> 
+<img align="left" style="padding-right:10px; width:64px" src="./docs/resources/guided-answers-logo.svg"/> 
 A Visual Studio Code extension for accessing SAP's Guided Answers.
 <br clear="left"/>
 <br/>
