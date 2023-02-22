@@ -17,6 +17,15 @@ export function FeedbackSentDialogBox(): ReactElement {
     const [isVisible, setVisible] = useState(feedbackResponse);
     useEffect(() => {
         setVisible(feedbackResponse);
+
+        //Dialog box will transition out after being loaded
+        const timer = setTimeout(() => {
+            setVisible(false);
+            actions.feedbackResponse(false);
+        }, 4000);
+        return () => {
+            clearTimeout(timer);
+        };
     }, [feedbackResponse]);
 
     const dialogContentProps = {
@@ -29,12 +38,6 @@ export function FeedbackSentDialogBox(): ReactElement {
         isDarkOverlay: true,
         className: `feedback-sent-dialog-box`
     };
-
-    //Dialog box will transition out after being loaded
-    setTimeout(() => {
-        setVisible(false);
-        actions.feedbackResponse(false);
-    }, 6000);
 
     return (
         <>
