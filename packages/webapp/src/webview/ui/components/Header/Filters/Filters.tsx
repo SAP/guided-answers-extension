@@ -228,29 +228,24 @@ export function Filters() {
     return (
         <>
             <div id="filters">
-                <FocusZone
-                    direction={FocusZoneDirection.horizontal}
-                    isCircularNavigation={true}
-                    style={{ display: 'flex' }}>
-                    <UIIconButton
-                        id="filter-products"
-                        iconProps={{ iconName: UiIcons.Table }}
-                        onClick={() => toggleFilters(PRODUCTS)}
-                        disabled={appState.guidedAnswerTreeSearchResult.productFilters.length === 0}
-                        className={`filter-button ${selectedProductFilters.length > 0 ? 'filter-button-selected' : ''}`}
-                        primary
-                        title="Filter Products"></UIIconButton>
-                    <UIIconButton
-                        id="filter-components"
-                        iconProps={{ iconName: UiIcons.IdTag }}
-                        onClick={() => toggleFilters(COMPONENTS)}
-                        disabled={appState.guidedAnswerTreeSearchResult.componentFilters.length === 0}
-                        primary
-                        title="Filter Components"
-                        className={`filter-button ${
-                            selectedComponentFilters.length > 0 ? 'filter-button-selected' : ''
-                        }`}></UIIconButton>
-                </FocusZone>
+                <UIIconButton
+                    id="filter-products"
+                    iconProps={{ iconName: UiIcons.Table }}
+                    onClick={() => toggleFilters(PRODUCTS)}
+                    disabled={appState.guidedAnswerTreeSearchResult.productFilters.length === 0}
+                    className={`filter-button ${selectedProductFilters.length > 0 ? 'filter-button-selected' : ''}`}
+                    primary
+                    title="Filter Products"></UIIconButton>
+                <UIIconButton
+                    id="filter-components"
+                    iconProps={{ iconName: UiIcons.IdTag }}
+                    onClick={() => toggleFilters(COMPONENTS)}
+                    disabled={appState.guidedAnswerTreeSearchResult.componentFilters.length === 0}
+                    primary
+                    title="Filter Components"
+                    className={`filter-button ${
+                        selectedComponentFilters.length > 0 ? 'filter-button-selected' : ''
+                    }`}></UIIconButton>
                 <UIDialog
                     //@ts-ignore
                     id="dialog-filter"
