@@ -7,7 +7,7 @@ import { initI18n } from '../../src/webview/i18n';
 jest.mock('react-redux', () => {
     const lib = jest.requireActual('react-redux');
     const state = {
-        activeGuidedAnswerNode: [{ a: 0 }, { b: 0 }],
+        activeGuidedAnswerNode: [{ NODE_ID: 2 }, { NODE_ID: 3, TITLE: 'last node' }],
         guidedAnswerTreeSearchResult: {
             trees: [treeMock],
             resultSize: 1,
@@ -15,7 +15,9 @@ jest.mock('react-redux', () => {
             componentFilters: []
         },
         selectedProductFilters: ['Product A'],
-        selectedComponentFilters: ['comp-a']
+        selectedComponentFilters: ['comp-a'],
+        urlUsedInSearch: false,
+        activeGuidedAnswer: { TREE_ID: 1, TITLE: 'Title' } as unknown
     };
     return {
         ...lib,

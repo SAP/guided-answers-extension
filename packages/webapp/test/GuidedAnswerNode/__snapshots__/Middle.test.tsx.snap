@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Middle /> Should render a Middle component 1`] = `
-<div
-  aria-hidden="true"
->
+<div>
   <div
     class="column"
     id="middle"
@@ -61,20 +59,12 @@ exports[`<Middle /> Should render a Middle component 1`] = `
         </button>
       </div>
     </div>
-    <span
-      class="ms-layer"
-    />
-    <span
-      class="ms-layer"
-    />
   </div>
 </div>
 `;
 
 exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
-<div
-  aria-hidden="true"
->
+<div>
   <div
     class="column"
     id="middle"
@@ -90,7 +80,7 @@ exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
       />
       <div
         class="ms-FocusZone css-109"
-        data-focuszone-id="FocusZone18"
+        data-focuszone-id="FocusZone2"
       >
         <span
           id="enhancedHtml"
@@ -106,7 +96,7 @@ exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
     </div>
     <div
       class="ms-FocusZone css-109"
-      data-focuszone-id="FocusZone19"
+      data-focuszone-id="FocusZone3"
       role="listbox"
     >
       <div
@@ -130,12 +120,6 @@ exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
         </button>
       </div>
     </div>
-    <span
-      class="ms-layer"
-    />
-    <span
-      class="ms-layer"
-    />
   </div>
 </div>
 `;
