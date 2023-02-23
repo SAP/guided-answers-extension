@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.12.3
+
+### Patch Changes
+
+-   051b5e5: minor bug fix accessability on answers list and filters
+
 ## 1.12.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.10.3
+
+### Patch Changes
+
+-   051b5e5: minor bug fix accessability on answers list and filters
+
 ## 1.10.2
 
 ### Patch Changes
