@@ -91,74 +91,81 @@ export function ShareButton() {
     const toggleCopied = (): void => {
         setCopiedVisible(!isCopiedVisible);
     };
+    const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!?.TREE_ID);
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
-    const appState = useSelector<AppState, AppState>((state) => state);
-
     const [link, setLink] = useState('');
 
     useEffect(() => {
         setLink(
-            `vscode://saposs.sap-guided-answers-extension#/tree/${appState.activeGuidedAnswer?.TREE_ID}/actions/${nodes
+            `vscode://saposs.sap-guided-answers-extension#/tree/${treeId}/actions/${nodes
                 .map((n) => n.NODE_ID)
                 .join(':')}`
         );
-    }, [nodes, appState]);
+    }, [nodes, treeId]);
 
     return (
-        <div>
-            <UIIconButton
-                className="guided-answer__header__navButtons guided-answer__header__navButtons__content"
-                id={id}
-                title={i18next.t('SHARE_THIS_GUIDE')}
-                iconProps={{ iconName: UiIcons.Link }}
-                checked={isCalloutVisible}
-                onClick={toggleCallout}></UIIconButton>
-            {isCalloutVisible && (
-                <UICallout
-                    role="alertdialog"
-                    target={`#${id}`}
-                    isBeakVisible={true}
-                    beakWidth={10}
-                    directionalHint={DirectionalHint.bottomCenter}
-                    onDismiss={() => toggleCallout()}
-                    calloutWidth={230}
-                    calloutMinWidth={230}
-                    layerProps={{
-                        eventBubblingEnabled: true
-                    }}
-                    setInitialFocus>
-                    <div>
-                        <div className="sharable-link__title">{i18next.t('SHARE_THIS_GUIDE')}</div>
-                        <div className="sharable-link__body">
-                            <FocusZone direction={FocusZoneDirection.horizontal} style={{ display: 'flex' }}>
-                                {!isCopiedVisible && (
-                                    <UITextInput disabled={true} value={link} className="sharable-link__input-field" />
-                                )}
-                                {isCopiedVisible && (
-                                    <div className="sharable-link__copied">
-                                        <UIIconButton
-                                            iconProps={{ iconName: UiIcons.ConfirmationCheckSymbol }}
-                                            className="sharable-link__copied-icon"
-                                        />
-                                        {i18next.t('COPIED_TO_CLIPBOARD')}
-                                    </div>
-                                )}
+        <>
+            {treeId && (
+                <div>
+                    <UIIconButton
+                        className="guided-answer__header__navButtons guided-answer__header__navButtons__content"
+                        id={id}
+                        title={i18next.t('SHARE_THIS_GUIDE')}
+                        iconProps={{ iconName: UiIcons.Link }}
+                        checked={isCalloutVisible}
+                        onClick={toggleCallout}></UIIconButton>
+                    {isCalloutVisible && (
+                        <UICallout
+                            role="alertdialog"
+                            target={`#${id}`}
+                            isBeakVisible={true}
+                            beakWidth={10}
+                            directionalHint={DirectionalHint.bottomCenter}
+                            onDismiss={() => toggleCallout()}
+                            calloutWidth={230}
+                            calloutMinWidth={230}
+                            layerProps={{
+                                eventBubblingEnabled: true
+                            }}
+                            setInitialFocus>
+                            <div>
+                                <div className="sharable-link__title">{i18next.t('SHARE_THIS_GUIDE')}</div>
+                                <div className="sharable-link__body">
+                                    <FocusZone direction={FocusZoneDirection.horizontal} style={{ display: 'flex' }}>
+                                        {!isCopiedVisible && (
+                                            <UITextInput
+                                                disabled={true}
+                                                value={link}
+                                                className="sharable-link__input-field"
+                                            />
+                                        )}
+                                        {isCopiedVisible && (
+                                            <div className="sharable-link__copied">
+                                                <UIIconButton
+                                                    iconProps={{ iconName: UiIcons.ConfirmationCheckSymbol }}
+                                                    className="sharable-link__copied-icon"
+                                                />
+                                                {i18next.t('COPIED_TO_CLIPBOARD')}
+                                            </div>
+                                        )}
 
-                                <CopyToClipboard text={link} onCopy={toggleCopied}>
-                                    <button title={i18next.t('COPY_THIS_LINK')}>
-                                        <UIIcon
-                                            className="sharable-link__copy-to-clipboard"
-                                            iconName={UiIcons.CopyToClipboard}
-                                        />
-                                    </button>
-                                </CopyToClipboard>
-                            </FocusZone>
-                        </div>
-                        <p className="sharable-link__footer">{i18next.t('COPIED_TO_CLIPBOARD_DESC')}</p>
-                    </div>
-                </UICallout>
+                                        <CopyToClipboard text={link} onCopy={toggleCopied}>
+                                            <button title={i18next.t('COPY_THIS_LINK')}>
+                                                <UIIcon
+                                                    className="sharable-link__copy-to-clipboard"
+                                                    iconName={UiIcons.CopyToClipboard}
+                                                />
+                                            </button>
+                                        </CopyToClipboard>
+                                    </FocusZone>
+                                </div>
+                                <p className="sharable-link__footer">{i18next.t('COPIED_TO_CLIPBOARD_DESC')}</p>
+                            </div>
+                        </UICallout>
+                    )}
+                </div>
             )}
-        </div>
+        </>
     );
 }
 
