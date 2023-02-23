@@ -25,7 +25,7 @@
         margin-top: 5px;
         padding: 0;
     }
-    .ms-Dialog-content{
+    .ms-Dialog-content {
         padding: 0px 45px;
     }
     .ms-Label {
@@ -54,6 +54,7 @@
         align-items: center;
         font-weight: 400;
         gap: 5px;
+        margin-top: 20px;
     }
     .info-icon {
         width: 14px;
@@ -63,6 +64,7 @@
     }
     .privacy-notice > p {
         margin-bottom: 0;
+        margin-top: 0;
     }
     textarea {
         resize: none;
@@ -77,11 +79,11 @@
         line-height: 16px;
     }
 
-    .ms-Dialog-actions{
+    .ms-Dialog-actions {
         margin: 25px 0px;
     }
 
-    .ms-Dialog-actionsRight{
+    .ms-Dialog-actionsRight {
         justify-content: center;
         margin-right: 0px;
     }
