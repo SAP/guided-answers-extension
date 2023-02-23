@@ -70,7 +70,7 @@ export function App(): ReactElement {
         content = <GuidedAnswerNode />;
     } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
         content =
-            appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (
+            appState.guidedAnswerTreeSearchResult.resultSize === 0 && !appState.urlUsedInSearch ? (
                 <NoAnswersFound />
             ) : (
                 <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>

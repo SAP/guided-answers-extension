@@ -92,22 +92,24 @@ export function ShareButton() {
         setCopiedVisible(!isCopiedVisible);
     };
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
-    const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!.TREE_ID);
+    const appState = useSelector<AppState, AppState>((state) => state);
+
     const [link, setLink] = useState('');
 
     useEffect(() => {
         setLink(
-            `vscode://saposs.sap-guided-answers-extension#/tree/${treeId}/actions/${nodes
+            `vscode://saposs.sap-guided-answers-extension#/tree/${appState.activeGuidedAnswer?.TREE_ID}/actions/${nodes
                 .map((n) => n.NODE_ID)
                 .join(':')}`
         );
-    }, [nodes, treeId]);
+    }, [nodes, appState]);
 
     return (
         <div>
             <UIIconButton
                 className="guided-answer__header__navButtons guided-answer__header__navButtons__content"
                 id={id}
+                title={i18next.t('SHARE_THIS_GUIDE')}
                 iconProps={{ iconName: UiIcons.Link }}
                 checked={isCalloutVisible}
                 onClick={toggleCallout}></UIIconButton>
@@ -126,7 +128,7 @@ export function ShareButton() {
                     }}
                     setInitialFocus>
                     <div>
-                        <div className="sharable-link__title">Share this guide</div>
+                        <div className="sharable-link__title">{i18next.t('SHARE_THIS_GUIDE')}</div>
                         <div className="sharable-link__body">
                             <FocusZone direction={FocusZoneDirection.horizontal} style={{ display: 'flex' }}>
                                 {!isCopiedVisible && (
@@ -138,12 +140,12 @@ export function ShareButton() {
                                             iconProps={{ iconName: UiIcons.ConfirmationCheckSymbol }}
                                             className="sharable-link__copied-icon"
                                         />
-                                        Copied to clipboard
+                                        {i18next.t('COPIED_TO_CLIPBOARD')}
                                     </div>
                                 )}
 
                                 <CopyToClipboard text={link} onCopy={toggleCopied}>
-                                    <button>
+                                    <button title={i18next.t('COPY_THIS_LINK')}>
                                         <UIIcon
                                             className="sharable-link__copy-to-clipboard"
                                             iconName={UiIcons.CopyToClipboard}
@@ -152,9 +154,7 @@ export function ShareButton() {
                                 </CopyToClipboard>
                             </FocusZone>
                         </div>
-                        <p className="sharable-link__footer">
-                            Paste this code into search field on the home page to get back here.
-                        </p>
+                        <p className="sharable-link__footer">{i18next.t('COPIED_TO_CLIPBOARD_DESC')}</p>
                     </div>
                 </UICallout>
             )}
