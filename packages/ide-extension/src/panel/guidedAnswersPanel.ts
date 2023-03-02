@@ -6,7 +6,6 @@ import {
     SEND_TELEMETRY,
     SEND_FEEDBACK_OUTCOME,
     SEND_FEEDBACK_COMMENT,
-    PARSE_URL,
     updateGuidedAnswerTrees,
     updateActiveNode,
     updateLoading,
@@ -16,8 +15,7 @@ import {
     WEBVIEW_READY,
     setActiveTree,
     getBetaFeatures,
-    feedbackResponse,
-    urlUsedInSearch
+    feedbackResponse
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
@@ -134,9 +132,9 @@ export class GuidedAnswersPanel {
      * Process startup parameters like initial tree id and node path.
      *
      * @param startOptions - start options, e.g. tree id or node path
-     * @returns - void
+     * @returns - boolean, true: start options applied; false: start options not applied
      */
-    private async processStartOptions(startOptions: StartOptions): Promise<void> {
+    private async processStartOptions(startOptions: StartOptions): Promise<boolean> {
         try {
             if (typeof startOptions !== 'object') {
                 throw Error(
@@ -162,7 +160,9 @@ export class GuidedAnswersPanel {
                     typeof this.startOptions === 'object' ? JSON.stringify(this.startOptions) : this.startOptions
                 }`
             );
+            return false;
         }
+        return true;
     }
 
     /**
@@ -196,19 +196,6 @@ export class GuidedAnswersPanel {
                     this.postActionToWebview(updateActiveNode(node));
                     break;
                 }
-                case PARSE_URL: {
-                    const parsedUrlObj = extractLinkInfo(action.payload);
-                    if (parsedUrlObj !== undefined) {
-                        this.postActionToWebview(updateLoading(true));
-                        await this.processStartOptions(parsedUrlObj);
-                        this.postActionToWebview(updateLoading(false));
-                        this.postActionToWebview(urlUsedInSearch(true));
-                    } else {
-                        this.postActionToWebview(urlUsedInSearch(false));
-                    }
-
-                    break;
-                }
                 case SEND_FEEDBACK_OUTCOME: {
                     await this.guidedAnswerApi.sendFeedbackOutcome(action.payload);
                     break;
@@ -228,7 +215,21 @@ export class GuidedAnswersPanel {
                 }
                 case SEARCH_TREE: {
                     logString(`Starting search: ${JSON.stringify(action.payload)}`);
+                    if (typeof action.payload.query === 'string') {
+                        const start = extractLinkInfo(action.payload.query);
+                        if (start) {
+                            logString(`Found possible startup options: ${JSON.stringify(start)}`);
+                            this.postActionToWebview(updateLoading(true));
+                            const startOptionsApplied = await this.processStartOptions(start);
+                            this.postActionToWebview(updateLoading(false));
+                            if (startOptionsApplied) {
+                                return;
+                            }
+                        }
+                    }
+                    this.postActionToWebview(updateLoading(true));
                     const trees = await this.guidedAnswerApi.getTrees(action.payload);
+                    this.postActionToWebview(updateLoading(false));
                     logString(`Found ${trees.resultSize} trees`);
                     this.postActionToWebview(updateGuidedAnswerTrees(trees));
                     break;
