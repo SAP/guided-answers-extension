@@ -251,12 +251,11 @@ function enhanceNode(
  * @param nodeIdPath - node path as array of node ids
  */
 async function getNodePath(host: string, nodeIdPath: GuidedAnswerNodeId[]): Promise<GuidedAnswerNode[]> {
-    const resolvedNodes: GuidedAnswerNode[] = [];
+    const promises: Promise<GuidedAnswerNode>[] = [];
     for (const nodeId of nodeIdPath) {
-        const node = await getNodeById(host, nodeId);
-        resolvedNodes.push(node);
+        promises.push(getNodeById(host, nodeId));
     }
-    return resolvedNodes;
+    return Promise.all(promises);
 }
 
 /**
