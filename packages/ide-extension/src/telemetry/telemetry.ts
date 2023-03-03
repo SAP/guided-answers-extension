@@ -57,7 +57,7 @@ export async function trackEvent(event: TelemetryEvent): Promise<void> {
         reporter.sendTelemetryEvent(event.name, properties);
         logString(`Telemetry event '${event.name}': ${JSON.stringify(properties)}`);
     } catch (error) {
-        logString(`Error sending telemetry event ${(error as Error).message}`);
+        logString(`Error sending telemetry event '${event.name}': ${(error as Error).message}`);
     }
 }
 
@@ -68,8 +68,12 @@ export async function trackEvent(event: TelemetryEvent): Promise<void> {
  */
 export async function trackAction(action: SendTelemetry): Promise<void> {
     if (actionMap[action.payload.action.type]) {
-        const properties = actionMap[action.payload.action.type](action);
-        trackEvent({ name: 'USER_INTERACTION', properties });
+        try {
+            const properties = actionMap[action.payload.action.type](action);
+            trackEvent({ name: 'USER_INTERACTION', properties });
+        } catch (error) {
+            logString(`Error sending telemetry action '${action.payload.action.type}': ${(error as Error).message}`);
+        }
     }
 }
 
