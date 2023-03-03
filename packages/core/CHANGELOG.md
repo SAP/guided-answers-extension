@@ -1,5 +1,13 @@
 # @sap/guided-answers-extension-core
 
+## 1.13.1
+
+### Patch Changes
+
+-   9b1ea1f: New pipeline settings that among others, produce shorter release description, meaning only what changed is in the description, not the whole changelog
+-   Updated dependencies [9b1ea1f]
+    -   @sap/guided-answers-extension-types@1.13.1
+
 ## 1.13.0
 
 ### Minor Changes
