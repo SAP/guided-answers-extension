@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-core
 
+## 1.13.0
+
+### Minor Changes
+
+-   0b2b1da: Telemetry fixes, private module consolidation
+
+### Patch Changes
+
+-   Updated dependencies [0b2b1da]
+    -   @sap/guided-answers-extension-types@1.13.0
+
 ## 1.5.0
 
 ### Minor Changes

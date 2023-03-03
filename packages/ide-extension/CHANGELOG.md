@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.13.0
+
+### Minor Changes
+
+-   0b2b1da: Telemetry fixes, private module consolidation
+
 ## 1.12.3
 
 ### Patch Changes
