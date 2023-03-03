@@ -25,7 +25,7 @@ function replace(domNode: DOMNode): ReactElement | undefined {
         if (dataCommandString) {
             try {
                 const command = JSON.parse(decodeURIComponent(dataCommandString)) as Command;
-                const textContent = domElement?.firstChild?.type === 'text' ? (domElement.firstChild as Text).data : '';
+                const textContent = domElement?.firstChild?.type === 'text' ? domElement.firstChild.data : '';
                 if (command) {
                     result = (
                         <button
