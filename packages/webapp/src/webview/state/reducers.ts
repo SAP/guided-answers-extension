@@ -41,8 +41,7 @@ export function getInitialState(): AppState {
         selectedComponentFilters: [],
         pageSize: 20,
         feedbackStatus: false,
-        feedbackResponse: false,
-        urlUsedInSearch: false
+        feedbackResponse: false
     };
 }
 
