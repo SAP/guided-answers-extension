@@ -140,7 +140,7 @@ export function ShareButton() {
                                             />
                                         )}
                                         {isCopiedVisible && (
-                                            <div className="sharable-link__copied">
+                                            <div id="sharable-link-copied" className="sharable-link__copied">
                                                 <UIIconButton
                                                     iconProps={{ iconName: UiIcons.ConfirmationCheckSymbol }}
                                                     className="sharable-link__copied-icon"
@@ -150,7 +150,7 @@ export function ShareButton() {
                                         )}
 
                                         <CopyToClipboard text={link} onCopy={toggleCopied}>
-                                            <button title={i18next.t('COPY_THIS_LINK')}>
+                                            <button title={i18next.t('COPY_THIS_LINK')} id="copy-btn">
                                                 <UIIcon
                                                     className="sharable-link__copy-to-clipboard"
                                                     iconName={UiIcons.CopyToClipboard}
