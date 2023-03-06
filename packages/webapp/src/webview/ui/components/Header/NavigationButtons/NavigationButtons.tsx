@@ -105,7 +105,7 @@ export function ShareButton() {
 
     return (
         <>
-            {treeId && (
+            {!!treeId && (
                 <div>
                     <UIIconButton
                         className="guided-answer__header__navButtons guided-answer__header__navButtons__content"
