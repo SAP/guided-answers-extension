@@ -2,7 +2,7 @@ import { extractLinkInfo, generateExtensionLink } from '../../src/links/link-inf
 
 describe('Test extractLinkInfo()', () => {
     test('Valid link with information', () => {
-        expect(extractLinkInfo('https://host.domain/any/path/index.html#/tree/1/actions/2:3:4:5:6')).toEqual({
+        expect(extractLinkInfo('https://host.domain/any/path/index.html#/tree/1/actions/2:3:4:5:6 ')).toEqual({
             treeId: 1,
             nodeIdPath: [2, 3, 4, 5, 6]
         });

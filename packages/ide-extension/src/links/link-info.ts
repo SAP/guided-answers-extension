@@ -1,7 +1,7 @@
 import type { GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
 import type { StartOptions } from '../types';
 
-const fragmentRegExp = new RegExp('#/tree/([0-9]*)($|/$|/actions/([0-9:]*))$');
+const fragmentRegExp = /#\/tree\/(\d*)($|\/$|\/actions\/([\d:]*))$/;
 
 /**
  * Extract tree id and node path from link.
@@ -13,7 +13,7 @@ export function extractLinkInfo(link: string): StartOptions | undefined {
     let treeId: GuidedAnswerTreeId | undefined;
     let nodeIdPath: GuidedAnswerNodeId[] | undefined;
     try {
-        const match = link.match(fragmentRegExp);
+        const match = link.trim().match(fragmentRegExp);
         if (Array.isArray(match) && match.length > 1 && typeof match[1] === 'string') {
             treeId = parseInt(match[1], 10);
             nodeIdPath =
