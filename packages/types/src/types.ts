@@ -174,9 +174,7 @@ export type GuidedAnswerActions =
     | UpdateActiveNode
     | UpdateGuidedAnswerTrees
     | UpdateLoading
-    | WebviewReady
-    | ParseUrl
-    | UrlUsedInSearch;
+    | WebviewReady;
 
 export interface AppState {
     loading: boolean;
@@ -328,16 +326,4 @@ export const SEND_TELEMETRY = 'SEND_TELEMETRY';
 export interface SendTelemetry {
     type: typeof SEND_TELEMETRY;
     payload: GuidedAnswersTelemetryPayload;
-}
-
-export const PARSE_URL = 'PARSE_URL';
-export interface ParseUrl {
-    type: typeof PARSE_URL;
-    payload: string;
-}
-
-export const URL_USED_IN_SEARCH = 'URL_USED_IN_SEARCH';
-export interface UrlUsedInSearch {
-    type: typeof URL_USED_IN_SEARCH;
-    payload: boolean;
 }

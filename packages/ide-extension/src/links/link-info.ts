@@ -14,9 +14,12 @@ export function extractLinkInfo(link: string): StartOptions | undefined {
     let nodeIdPath: GuidedAnswerNodeId[] | undefined;
     try {
         const match = link.match(fragmentRegExp);
-        if (match) {
-            treeId = match.length > 1 ? parseInt(match[1], 10) : undefined;
-            nodeIdPath = match.length > 3 ? match[3].split(':').map((node) => parseInt(node, 10)) : undefined;
+        if (Array.isArray(match) && match.length > 1 && typeof match[1] === 'string') {
+            treeId = parseInt(match[1], 10);
+            nodeIdPath =
+                match.length > 3 && typeof match[3] === 'string'
+                    ? match[3].split(':').map((node) => parseInt(node, 10))
+                    : undefined;
         }
     } catch {
         // if information can't be extracted we return undefined

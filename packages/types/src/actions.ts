@@ -29,8 +29,7 @@ import type {
     SetPageSize,
     FeedbackStatus,
     FeedbackResponse,
-    GuidedAnswersTelemetryPayload,
-    UrlUsedInSearch
+    GuidedAnswersTelemetryPayload
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -55,9 +54,7 @@ import {
     SET_PAGE_SIZE,
     FEEDBACK_STATUS,
     FEEDBACK_RESPONSE,
-    SEND_TELEMETRY,
-    PARSE_URL,
-    URL_USED_IN_SEARCH
+    SEND_TELEMETRY
 } from './types';
 
 export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
@@ -162,15 +159,5 @@ export const feedbackResponse = (payload: boolean): FeedbackResponse => ({
 
 export const sendTelemetry = (payload: GuidedAnswersTelemetryPayload) => ({
     type: SEND_TELEMETRY,
-    payload
-});
-
-export const parseUrl = (payload: string) => ({
-    type: PARSE_URL,
-    payload
-});
-
-export const urlUsedInSearch = (payload: boolean): UrlUsedInSearch => ({
-    type: URL_USED_IN_SEARCH,
     payload
 });
