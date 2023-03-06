@@ -20,6 +20,7 @@ importers:
       '@types/node': 14.18.32
       '@typescript-eslint/eslint-plugin': 5.47.0
       '@typescript-eslint/parser': 5.47.0
+      changelog-parser: 3.0.1
       eslint: 8.30.0
       eslint-config-prettier: 8.5.0
       eslint-import-resolver-typescript: 3.5.2
@@ -46,6 +47,7 @@ importers:
       '@types/node': 14.18.32
       '@typescript-eslint/eslint-plugin': 5.47.0_5u3jvyfb72rymd44dmiw2z5cbe
       '@typescript-eslint/parser': 5.47.0_d6qaxtm4z57fslwcbi4d5wrunu
+      changelog-parser: 3.0.1
       eslint: 8.30.0
       eslint-config-prettier: 8.5.0_eslint@8.30.0
       eslint-import-resolver-typescript: 3.5.2_2lbwmhbr7bncddqbzzpg77o75m
@@ -2242,12 +2244,6 @@ packages:
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
 
-  /@types/react-copy-to-clipboard/5.0.4:
-    resolution: {integrity: sha512-otTJsJpofYAeaIeOwV5xBUGpo6exXG2HX7X4nseToCB2VgPEBxGBHCm/FecZ676doNR7HCSTVtmohxfG2b3/yQ==}
-    dependencies:
-      '@types/react': 17.0.52
-    dev: true
-
   /@types/react-dom/17.0.18:
     resolution: {integrity: sha512-rLVtIfbwyur2iFKykP2w0pl/1unw26b5td16d5xMgp7/yjTHomkyxPYChFoCr/FtEX1lN9wY6lFj1qvKdS5kDw==}
     dependencies:
@@ -2966,6 +2962,15 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+    dev: true
+
+  /changelog-parser/3.0.1:
+    resolution: {integrity: sha512-1AEVJgnFEO4v5ukfEH/j9cr2Z39Y/GCieNi605azhufAolXF4vQAwZBY8BrUVRkvlI3gwe3i621/PIAW0zmmEQ==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      line-reader: 0.2.4
+      remove-markdown: 0.5.0
     dev: true
 
   /char-regex/1.0.2:
@@ -6179,6 +6184,10 @@ packages:
       lightningcss-win32-x64-msvc: 1.18.0
     dev: true
 
+  /line-reader/0.2.4:
+    resolution: {integrity: sha512-342xzyZZS9uTiKwHJcMacopVl/WjrMMCZS1Qg4Uhl/WBknWRrGFdKOIS1Kec6SaiTcZMtmuxWvvIbPXj/+FMjA==}
+    dev: true
+
   /lines-and-columns/1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
@@ -7329,6 +7338,10 @@ packages:
   /regexpp/3.2.0:
     resolution: {integrity: sha512-pq2bWo9mVD43nbts2wGv17XLiNLya+GklZ8kaDLV2Z08gDCsGpnKn9BFMepvWuHCbyVvY7J5o5+BVvoQbmlJLg==}
     engines: {node: '>=8'}
+    dev: true
+
+  /remove-markdown/0.5.0:
+    resolution: {integrity: sha512-x917M80K97K5IN1L8lUvFehsfhR8cYjGQ/yAMRI9E7JIKivtl5Emo5iD13DhMr+VojzMCiYk8V2byNPwT/oapg==}
     dev: true
 
   /require-directory/2.1.1:

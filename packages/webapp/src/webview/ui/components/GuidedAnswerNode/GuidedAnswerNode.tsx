@@ -1,4 +1,4 @@
-import { default as parse, DOMNode, Element, Text } from 'html-react-parser';
+import { default as parse, DOMNode, Element } from 'html-react-parser';
 import React, { ReactElement } from 'react';
 import type { Command, GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
@@ -25,7 +25,7 @@ function replace(domNode: DOMNode): ReactElement | undefined {
         if (dataCommandString) {
             try {
                 const command = JSON.parse(decodeURIComponent(dataCommandString)) as Command;
-                const textContent = domElement?.firstChild?.type === 'text' ? (domElement.firstChild as Text).data : '';
+                const textContent = domElement?.firstChild?.type === 'text' ? domElement.firstChild.data : '';
                 if (command) {
                     result = (
                         <button

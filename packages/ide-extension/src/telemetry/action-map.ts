@@ -46,8 +46,8 @@ function getTreeNodeInfo(state: AppState): {
     return {
         treeId: state.activeGuidedAnswer?.TREE_ID.toString() || '',
         treeTitle: state.activeGuidedAnswer?.TITLE || '',
-        lastNodeId: state.activeGuidedAnswerNode.slice(-1)[0].NODE_ID.toString(),
-        lastNodeTitle: state.activeGuidedAnswerNode.slice(-1)[0].TITLE,
+        lastNodeId: state.activeGuidedAnswerNode.slice(-1)[0]?.NODE_ID.toString(),
+        lastNodeTitle: state.activeGuidedAnswerNode.slice(-1)[0]?.TITLE,
         nodeIdPath: state.activeGuidedAnswerNode.map((node) => node.NODE_ID.toString()).join(':'),
         nodeLevel: state.activeGuidedAnswerNode.length.toString()
     };

@@ -1,5 +1,21 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.13.1
+
+### Patch Changes
+
+-   9b1ea1f: New pipeline settings that among others, produce shorter release description, meaning only what changed is in the description, not the whole changelog
+
+## 1.13.0
+
+### Minor Changes
+
+-   0b2b1da: Telemetry fixes, private module consolidation
+
+### Patch Changes
+
+-   19208e6: Sonarqube fix
+
 ## 1.10.3
 
 ### Patch Changes
