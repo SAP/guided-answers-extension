@@ -98,3 +98,28 @@ exports[`<RestartButton /> Should render a RestartButton component 1`] = `
   </button>
 </div>
 `;
+
+exports[`<ShareButton /> Should render a RestartButton component 1`] = `
+<div>
+  <div>
+    <button
+      class="ms-Button ms-Button--icon guided-answer__header__navButtons guided-answer__header__navButtons__content root-109"
+      data-is-focusable="true"
+      id="callout-test-id"
+      title="Share this guide"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-icon icon-112"
+          data-icon-name="Link"
+        />
+      </span>
+    </button>
+  </div>
+</div>
+`;

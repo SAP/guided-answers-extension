@@ -12,7 +12,8 @@ jest.mock('../../src/webview/state', () => {
     return {
         actions: {
             searchTree: jest.fn(),
-            setQueryValue: jest.fn()
+            setQueryValue: jest.fn(),
+            parseUrl: jest.fn()
         }
     };
 });
