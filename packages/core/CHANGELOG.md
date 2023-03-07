@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-core
 
+## 1.14.0
+
+### Minor Changes
+
+-   d3fa72a: Shareable link functionality added
+
+### Patch Changes
+
+-   Updated dependencies [d3fa72a]
+    -   @sap/guided-answers-extension-types@1.14.0
+
 ## 1.13.1
 
 ### Patch Changes
