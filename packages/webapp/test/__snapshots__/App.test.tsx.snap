@@ -461,6 +461,48 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
                 </svg>
               </i>
             </button>
+            <div
+              class="guided-answer__header__divider"
+            />
+            <div>
+              <button
+                class="ms-Button ms-Button--icon guided-answer__header__navButtons guided-answer__header__navButtons__content root-134"
+                data-is-focusable="true"
+                id="callout-test-id"
+                tabindex="-1"
+                title="Share this guide"
+                type="button"
+              >
+                <span
+                  class="ms-Button-flexContainer flexContainer-116"
+                  data-automationid="splitbuttonprimary"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ms-Icon root-101 ms-Button-icon icon-135"
+                    data-icon-name="Link"
+                  >
+                    <svg
+                      fill="none"
+                      focusable="false"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M7.82375 2.58623L10.4138 5.17625C11.3078 6.07027 11.3078 7.51976 10.4138 8.41378C9.51976 9.30779 8.07027 9.30779 7.17625 8.41378L6.55194 7.76627L5.90444 8.41378L6.52874 9.06128C7.78037 10.3129 9.80965 10.3129 11.0613 9.06128C12.3129 7.80966 12.3129 5.78037 11.0613 4.52874L8.47126 1.93872C7.21963 0.687093 5.19035 0.687093 3.93872 1.93872C2.68709 3.19035 2.68709 5.21963 3.93872 6.47126L4.58623 5.82375C3.69221 4.92973 3.69221 3.48024 4.58623 2.58623C5.48024 1.69221 6.92973 1.69221 7.82375 2.58623Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                      <path
+                        d="M8.17625 13.4138L5.58622 10.8238C4.69221 9.92973 4.69221 8.48024 5.58622 7.58622C6.48024 6.69221 7.92973 6.69221 8.82375 7.58622L9.35249 8.14751L10 7.5L9.47126 6.93872C8.21963 5.68709 6.19034 5.68709 4.93872 6.93872C3.68709 8.19035 3.68709 10.2196 4.93872 11.4713L7.52874 14.0613C8.78037 15.3129 10.8097 15.3129 12.0613 14.0613C13.3129 12.8097 13.3129 10.7804 12.0613 9.52874L11.4138 10.1762C12.3078 11.0703 12.3078 12.5198 11.4138 13.4138C10.5198 14.3078 9.07027 14.3078 8.17625 13.4138Z"
+                        fill="var(--vscode-icon-foreground, var(--vscode-foreground))"
+                      />
+                    </svg>
+                  </i>
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

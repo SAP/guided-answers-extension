@@ -23,6 +23,7 @@ import { getHtmlEnhancements, getInstalledExtensionIds, handleCommand } from '..
 import { logString } from '../logger/logger';
 import type { Options, StartOptions } from '../types';
 import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
+import { extractLinkInfo } from '../links/link-info';
 
 /**
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
@@ -131,9 +132,9 @@ export class GuidedAnswersPanel {
      * Process startup parameters like initial tree id and node path.
      *
      * @param startOptions - start options, e.g. tree id or node path
-     * @returns - void
+     * @returns - boolean, true: start options applied; false: start options not applied
      */
-    private async processStartOptions(startOptions: StartOptions): Promise<void> {
+    private async processStartOptions(startOptions: StartOptions): Promise<boolean> {
         try {
             if (typeof startOptions !== 'object') {
                 throw Error(
@@ -159,7 +160,9 @@ export class GuidedAnswersPanel {
                     typeof this.startOptions === 'object' ? JSON.stringify(this.startOptions) : this.startOptions
                 }`
             );
+            return false;
         }
+        return true;
     }
 
     /**
@@ -212,7 +215,21 @@ export class GuidedAnswersPanel {
                 }
                 case SEARCH_TREE: {
                     logString(`Starting search: ${JSON.stringify(action.payload)}`);
+                    if (typeof action.payload.query === 'string') {
+                        const start = extractLinkInfo(action.payload.query);
+                        if (start) {
+                            logString(`Found possible startup options: ${JSON.stringify(start)}`);
+                            this.postActionToWebview(updateLoading(true));
+                            const startOptionsApplied = await this.processStartOptions(start);
+                            this.postActionToWebview(updateLoading(false));
+                            if (startOptionsApplied) {
+                                return;
+                            }
+                        }
+                    }
+                    this.postActionToWebview(updateLoading(true));
                     const trees = await this.guidedAnswerApi.getTrees(action.payload);
+                    this.postActionToWebview(updateLoading(false));
                     logString(`Found ${trees.resultSize} trees`);
                     this.postActionToWebview(updateGuidedAnswerTrees(trees));
                     break;

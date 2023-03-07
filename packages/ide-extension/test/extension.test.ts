@@ -27,11 +27,13 @@ describe('Extension test', () => {
 
         // Result check
         expect(subscriptionsMock.mock.calls[0][0]).toBe('sap.ux.guidedAnswer.openGuidedAnswer');
-        expect(context.subscriptions.length).toBe(2);
+        expect(context.subscriptions.length).toBe(3);
         // First subscription should be telemetry
         expect(typeof (context.subscriptions[0] as TelemetryReporter).sendTelemetryEvent).toBe('function');
         // Second subscription should be start command handler
         expect(typeof context.subscriptions[1]).toBe('function');
+        // Third subscription should be Uri handler
+        expect(typeof (context.subscriptions[2] as any).handleUri).toBe('function');
     });
 
     test('activate extension even if telemetry throws error', () => {
@@ -50,7 +52,7 @@ describe('Extension test', () => {
 
         // Result check
         expect(subscriptionsMock.mock.calls[0][0]).toBe('sap.ux.guidedAnswer.openGuidedAnswer');
-        expect(context.subscriptions.length).toBe(1);
+        expect(context.subscriptions.length).toBe(2);
     });
 
     test('execute command', async () => {

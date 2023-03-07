@@ -4,7 +4,7 @@
     "description": "%guidedAnswer.description%",
     "publisher": "SAPOSS",
     "license": "Apache-2.0",
-    "version": "1.13.1",
+    "version": "1.14.0",
     "icon": "media/guided-answers-extension.png",
     "categories": [
         "Education"
@@ -38,7 +38,8 @@
         "vscode:prepublish": "pnpm run build"
     },
     "activationEvents": [
-        "onCommand:sap.ux.guidedAnswer.openGuidedAnswer"
+        "onCommand:sap.ux.guidedAnswer.openGuidedAnswer",
+        "onUri"
     ],
     "contributes": {
         "configuration": {

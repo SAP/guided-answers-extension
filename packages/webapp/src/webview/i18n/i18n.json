@@ -29,5 +29,9 @@
     "FEEDBACK_DIALOG_DISCLAIMER": "Your feedback is anonymous, we do not collect any personal data.",
     "FEEDBACK_DIALOG_SUGGESTION": "Your suggestion",
     "FEEDBACK_SENT_DIALOG_TITLE": "Message sent",
-    "FEEDBACK_SENT_DIALOG_SUBTEXT": "Thanks for the feedback!"
+    "FEEDBACK_SENT_DIALOG_SUBTEXT": "Thanks for the feedback!",
+    "SHARE_THIS_GUIDE": "Share this guide",
+    "COPY_THIS_LINK": "Copy this link",
+    "COPIED_TO_CLIPBOARD": "Copied to clipboard",
+    "COPIED_TO_CLIPBOARD_DESC": "Paste this code into search field on the home page to get back here."
 }

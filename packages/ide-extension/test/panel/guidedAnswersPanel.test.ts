@@ -327,6 +327,44 @@ describe('GuidedAnswersPanel', () => {
         });
     });
 
+    test('GuidedAnswersPanel communication SEARCH_TREE with URL', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({ type: SEARCH_TREE, payload: { query: '#/tree/12/actions/34:56' } });
+
+        // Result check
+        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(5);
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
+            type: UPDATE_LOADING,
+            payload: true
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {
+            type: SET_ACTIVE_TREE,
+            payload: { TREE_ID: 12 }
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(3, {
+            type: UPDATE_ACTIVE_NODE,
+            payload: { NODE_ID: 34 }
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(4, {
+            type: UPDATE_ACTIVE_NODE,
+            payload: { NODE_ID: 56 }
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(5, {
+            type: UPDATE_LOADING,
+            payload: false
+        });
+    });
+
     test('GuidedAnswersPanel communication SEND_FEEDBACK_OUTCOME', async () => {
         // Mock setup
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};

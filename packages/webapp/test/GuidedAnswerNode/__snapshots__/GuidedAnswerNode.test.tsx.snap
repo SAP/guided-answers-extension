@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<GuidedAnswerNode /> Should render a GuidedAnswerNode component 1`] = `
-<div
-  aria-hidden="true"
->
+<div>
   <section
     class="guided-answer__node__body"
   >
@@ -71,12 +69,6 @@ exports[`<GuidedAnswerNode /> Should render a GuidedAnswerNode component 1`] = `
           </button>
         </div>
       </div>
-      <span
-        class="ms-layer"
-      />
-      <span
-        class="ms-layer"
-      />
     </div>
   </section>
 </div>

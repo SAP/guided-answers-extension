@@ -44,7 +44,8 @@ const window = {
         show: jest.fn();
         sendText: jest.fn();
     },
-    showErrorMessage: jest.fn()
+    showErrorMessage: jest.fn(),
+    registerUriHandler: (handler) => handler
 };
 
 const workspace = {
