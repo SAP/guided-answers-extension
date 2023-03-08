@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.15.0
+
+### Minor Changes
+
+-   eb5b429: Fix feedback confirmation dialog delay
+
 ## 1.14.0
 
 ### Minor Changes
