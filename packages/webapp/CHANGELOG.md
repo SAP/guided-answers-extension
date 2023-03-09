@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.16.0
+
+### Minor Changes
+
+-   476fbcb: Message change in Shareble link Callout
+
 ## 1.15.0
 
 ### Minor Changes
