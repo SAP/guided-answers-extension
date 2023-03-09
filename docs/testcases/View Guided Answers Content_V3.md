@@ -348,7 +348,7 @@ Notification appears that the link was copied to the clipboard
 **Expected result 3**
 Node for that tree opens automatically. 'Request failed with status code - Archive not okay' 
 
-**Expected result 3**
+**Expected result 4**
 Node for that tree opens automatically.
 
 **Expected result 5**
