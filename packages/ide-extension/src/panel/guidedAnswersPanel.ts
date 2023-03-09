@@ -1,6 +1,12 @@
 import type { WebviewPanel } from 'vscode';
 import { Uri, ViewColumn, window, workspace } from 'vscode';
-import type { GuidedAnswerActions, GuidedAnswerAPI, IDE } from '@sap/guided-answers-extension-types';
+import type {
+    GuidedAnswerActions,
+    GuidedAnswerAPI,
+    GuidedAnswersQueryOptions,
+    GuidedAnswerTreeSearchResult,
+    IDE
+} from '@sap/guided-answers-extension-types';
 import {
     SELECT_NODE,
     SEND_TELEMETRY,
@@ -183,6 +189,24 @@ export class GuidedAnswersPanel {
     }
 
     /**
+     * Return trees by given options, which include: search query, filtering, paging.
+     *
+     * @param queryOptions - options for query trees, like the search query and paging and filtering options
+     * @returns - search result including trees
+     */
+    private async getTrees(queryOptions: GuidedAnswersQueryOptions): Promise<GuidedAnswerTreeSearchResult> {
+        const showLoadingAnimation = queryOptions.paging?.offset === 0;
+        if (showLoadingAnimation) {
+            this.postActionToWebview(updateLoading(true));
+        }
+        const trees = await this.guidedAnswerApi.getTrees(queryOptions);
+        if (showLoadingAnimation) {
+            this.postActionToWebview(updateLoading(false));
+        }
+        return trees;
+    }
+
+    /**
      * Handler for actions coming from webview. This should be primarily commands with arguments.
      *
      * @param action - action to execute
@@ -227,14 +251,7 @@ export class GuidedAnswersPanel {
                             }
                         }
                     }
-                    const showLoadingAnimation = action.payload.paging?.offset === 0;
-                    if (showLoadingAnimation) {
-                        this.postActionToWebview(updateLoading(true));
-                    }
-                    const trees = await this.guidedAnswerApi.getTrees(action.payload);
-                    if (showLoadingAnimation) {
-                        this.postActionToWebview(updateLoading(false));
-                    }
+                    const trees = await this.getTrees(action.payload);
                     logString(`Found ${trees.resultSize} trees`);
                     this.postActionToWebview(updateGuidedAnswerTrees(trees));
                     break;
