@@ -365,6 +365,64 @@ describe('GuidedAnswersPanel', () => {
         });
     });
 
+    test('GuidedAnswersPanel communication SEARCH_TREE with paging offset = 0, should trigger animation', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({
+            type: SEARCH_TREE,
+            payload: { query: 'any', paging: { responseSize: 5, offset: 0 } }
+        });
+
+        // Result check
+        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(3);
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
+            type: UPDATE_LOADING,
+            payload: true
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {
+            type: UPDATE_LOADING,
+            payload: false
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(3, {
+            type: 'UPDATE_GUIDED_ANSWER_TREES',
+            payload: [{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]
+        });
+    });
+
+    test('GuidedAnswersPanel communication SEARCH_TREE with paging offset > 0, should not trigger animation', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({
+            type: SEARCH_TREE,
+            payload: { query: 'any', paging: { responseSize: 5, offset: 10 } }
+        });
+
+        // Result check
+        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(1);
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
+            type: 'UPDATE_GUIDED_ANSWER_TREES',
+            payload: [{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]
+        });
+    });
+
     test('GuidedAnswersPanel communication SEND_FEEDBACK_OUTCOME', async () => {
         // Mock setup
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};

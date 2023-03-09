@@ -227,9 +227,14 @@ export class GuidedAnswersPanel {
                             }
                         }
                     }
-                    this.postActionToWebview(updateLoading(true));
+                    const showLoadingAnimation = action.payload.paging?.offset === 0;
+                    if (showLoadingAnimation) {
+                        this.postActionToWebview(updateLoading(true));
+                    }
                     const trees = await this.guidedAnswerApi.getTrees(action.payload);
-                    this.postActionToWebview(updateLoading(false));
+                    if (showLoadingAnimation) {
+                        this.postActionToWebview(updateLoading(false));
+                    }
                     logString(`Found ${trees.resultSize} trees`);
                     this.postActionToWebview(updateGuidedAnswerTrees(trees));
                     break;
