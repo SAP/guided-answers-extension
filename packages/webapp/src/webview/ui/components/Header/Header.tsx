@@ -48,14 +48,20 @@ export function Header(props: {
                             <BackButton />
                             <div className="guided-answer__header__restart-feedback-buttons">
                                 {appState.activeGuidedAnswerNode.length > 1 && <RestartButton />}
-                                {appState.activeGuidedAnswerNode.length > 1 && (
-                                    <div className="guided-answer__header__divider"></div>
+                                {appState.guideFeedback !== false ? (
+                                    <>
+                                        {appState.activeGuidedAnswerNode.length > 1 && (
+                                            <div className="guided-answer__header__divider"></div>
+                                        )}
+                                        <GeneralFeedbackButton />
+                                        <>
+                                            <div className="guided-answer__header__divider"></div>
+                                            <ShareButton />
+                                        </>
+                                    </>
+                                ) : (
+                                    <></>
                                 )}
-                                <GeneralFeedbackButton />
-                                <>
-                                    <div className="guided-answer__header__divider"></div>
-                                    <ShareButton />
-                                </>
                             </div>
                         </div>
                     </FocusZone>
