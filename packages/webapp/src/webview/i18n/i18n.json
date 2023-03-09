@@ -33,5 +33,5 @@
     "SHARE_THIS_GUIDE": "Share this guide",
     "COPY_THIS_LINK": "Copy this link",
     "COPIED_TO_CLIPBOARD": "Copied to clipboard",
-    "COPIED_TO_CLIPBOARD_DESC": "This link can be shared with colleagues via email or messages. When pasted into the search input field of the Guided Answers extension, it will navigate you straight to the Guided Answers content."
+    "COPIED_TO_CLIPBOARD_DESC": "Copy this link to share via email or messages. When pasted into the search input field of the Guided Answers extension, it will navigate you straight to this content."
 }
