@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.16.1
+
+### Patch Changes
+
+-   2de5336: Change back to smooth scrolling in result list
+
 ## 1.16.0
 
 ### Minor Changes
