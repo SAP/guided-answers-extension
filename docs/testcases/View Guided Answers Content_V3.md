@@ -12,7 +12,8 @@
 [#96](https://github.com/SAP/guided-answers-extension/issues/96),
 [#230](https://github.com/SAP/guided-answers-extension/issues/230),
 [#245](https://github.com/SAP/guided-answers-extension/issues/245),
-[#137](https://github.com/SAP/guided-answers-extension/issues/137)
+[#137](https://github.com/SAP/guided-answers-extension/issues/137),
+[#311](https://github.com/SAP/guided-answers-extension/issues/311)
 
 Prerequisites: Guided Answers Extension is installed in either SAP Business Application Studio (SBAS) or Microsoft Visual Studio Code (VSCODE)
 
@@ -316,6 +317,45 @@ The text submitted, the node in the Guided Answer Tree the feedback was submitte
 Gemeral Feedback pop up closes.
 
 
+### Sharing Guided Answer content
+
+1. Open GA extension in VSCode/SBAS  
+2. Search for SAP Fiori Tools
+3. Select a SAP Fiori Tools Guided Answer in the returned ist
+4. Navgate through a Guided Answer ( Fiori Tools - > Deployment ->SBAS -> ABAP -> Request failed with status code 400 - Archive not okay) 
+5. Click on link icon (See expected results 2)
+6. Click on copy to clipboard icon (See expected results 2)
+7. Click on Home icon
+8. Paste link in the search input field (See expected results 3)
+9. Navigate to another node in the tree
+10. Click on link icon
+11. Highlight the link in the text input field and press Ctrl+C / Command+C
+12. Click on Home icon
+13. Paste link in the search input field (See expected results 4)
+
+_VSCode environment_
+1. Paste link in a notepad
+2. Click on the link (See expected results 5) 
+3. Click Open (See expected results 6) 
+
+**Expected result 1**
+'Share this guide' pop up appears displaying Guided Answer link in text input field, a copy to clipboard icon.
+The following description text will also be displayed - 'This link can be pasted into the search input field of the Guided Answers extension. It will navigate you straight to this Guided Answers content’ 
+
+**Expected result 2**
+Notification appears that the link was copied to the clipboard
+
+**Expected result 3**
+Node for that tree opens automatically. 'Request failed with status code - Archive not okay' 
+
+**Expected result 4**
+Node for that tree opens automatically.
+
+**Expected result 5**
+VSCode will be launched
+
+**Expected result 6**
+The Guided Answer extension will be open displaying the content that was shared 
 
 
 
