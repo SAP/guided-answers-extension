@@ -395,7 +395,7 @@ Node Enhancment reduce in size showing just the node enhancment icon.
 Label of Node Enhancement appears in tooltip on hover. 
 
 **Expected result 4**
-The "Fiori: Archive Project" appears doesnot appear as a clickable link in the SBAS  
+The "Fiori: Archive Project" does not appear as a clickable link in the SBAS  
 Node enhancements do not appear  as  Application modeler is not installed
 
 **Expected result 5**
