@@ -1,4 +1,6 @@
-import type { TelemetryEventProperties } from '@vscode/extension-telemetry';
+export interface TelemetryEventProperties {
+    readonly [key: string]: string;
+}
 
 export type TelemetryEvent = TelemetryStartupEvent | TelemetryUIEvent;
 

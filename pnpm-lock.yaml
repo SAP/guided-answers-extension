@@ -84,23 +84,21 @@ importers:
       '@sap/guided-answers-extension-core': workspace:*
       '@sap/guided-answers-extension-types': workspace:*
       '@types/vscode': 1.39.0
-      '@vscode/extension-telemetry': 0.6.2
       '@vscode/vsce': 2.15.0
+      applicationinsights: 2.5.0
       esbuild: 0.16.10
       esbuild-plugin-copy: 2.0.1
       jsdom: 20.0.3
-      tslib: 2.4.1
       vscode-uri: 3.0.7
     devDependencies:
       '@sap/guided-answers-extension-core': link:../core
       '@sap/guided-answers-extension-types': link:../types
       '@types/vscode': 1.39.0
-      '@vscode/extension-telemetry': 0.6.2_pup67pqt4f46737bpso4uq2qsu_tslib@2.4.1
       '@vscode/vsce': 2.15.0
+      applicationinsights: 2.5.0
       esbuild: 0.16.10
       esbuild-plugin-copy: 2.0.1_esbuild@0.16.10
       jsdom: 20.0.3
-      tslib: 2.4.1
       vscode-uri: 3.0.7
 
   packages/types:
@@ -199,6 +197,61 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.1.1
       '@jridgewell/trace-mapping': 0.3.17
+    dev: true
+
+  /@azure/abort-controller/1.1.0:
+    resolution: {integrity: sha512-TrRLIoSQVzfAJX9H1JeFjzAoDGcoK1IYX1UImfceTZpsyYfWr09Ss1aHW1y5TrrR3iq6RZLBwJ3E24uwPhwahw==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      tslib: 2.4.1
+    dev: true
+
+  /@azure/core-auth/1.4.0:
+    resolution: {integrity: sha512-HFrcTgmuSuukRf/EdPmqBrc5l6Q5Uu+2TbuhaKbgaCpP2TfAeiNaQPAadxO+CYBRHGUzIDteMAjFspFLDLnKVQ==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      '@azure/abort-controller': 1.1.0
+      tslib: 2.4.1
+    dev: true
+
+  /@azure/core-rest-pipeline/1.10.2:
+    resolution: {integrity: sha512-e3WzAsRKLor5EgK2bQqR1OY5D7VBqzORHtlqtygZZQGCYOIBsynqrZBa8MFD1Ue9r8TPtofOLditalnlQHS45Q==}
+    engines: {node: '>=14.0.0'}
+    dependencies:
+      '@azure/abort-controller': 1.1.0
+      '@azure/core-auth': 1.4.0
+      '@azure/core-tracing': 1.0.1
+      '@azure/core-util': 1.2.0
+      '@azure/logger': 1.0.4
+      form-data: 4.0.0
+      http-proxy-agent: 5.0.0
+      https-proxy-agent: 5.0.1
+      tslib: 2.4.1
+      uuid: 8.3.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@azure/core-tracing/1.0.1:
+    resolution: {integrity: sha512-I5CGMoLtX+pI17ZdiFJZgxMJApsK6jjfm85hpgp3oazCdq5Wxgh4wMr7ge/TTWW1B5WBuvIOI1fMU/FrOAMKrw==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      tslib: 2.4.1
+    dev: true
+
+  /@azure/core-util/1.2.0:
+    resolution: {integrity: sha512-ffGIw+Qs8bNKNLxz5UPkz4/VBM/EZY07mPve1ZYFqYUdPwFqRj0RPk0U7LZMOfT7GCck9YjuT1Rfp1PApNl1ng==}
+    engines: {node: '>=14.0.0'}
+    dependencies:
+      '@azure/abort-controller': 1.1.0
+      tslib: 2.4.1
+    dev: true
+
+  /@azure/logger/1.0.4:
+    resolution: {integrity: sha512-ustrPY8MryhloQj7OWGe+HrYx+aoiOxzbXTtgblbV3xwCqpzUK36phH3XNHQKj3EPonyFUuDTfR3qFhTEAuZEg==}
+    engines: {node: '>=14.0.0'}
+    dependencies:
+      tslib: 2.4.1
     dev: true
 
   /@babel/code-frame/7.18.6:
@@ -1765,42 +1818,8 @@ packages:
       read-yaml-file: 1.1.0
     dev: true
 
-  /@microsoft/1ds-core-js/3.2.9_tslib@2.4.1:
-    resolution: {integrity: sha512-3pCfM2TzHn3gU9pxHztduKcVRdb/nzruvPFfHPZD0IM0mb0h6TGo2isELF3CTMahTx50RAC51ojNIw2/7VRkOg==}
-    dependencies:
-      '@microsoft/applicationinsights-core-js': 2.8.10_tslib@2.4.1
-      '@microsoft/applicationinsights-shims': 2.0.2
-      '@microsoft/dynamicproto-js': 1.1.7
-    transitivePeerDependencies:
-      - tslib
-    dev: true
-
-  /@microsoft/1ds-post-js/3.2.9_tslib@2.4.1:
-    resolution: {integrity: sha512-D/RtqkQ2Nr4cuoGqmhi5QTmi3cBlxehIThJ1u3BaH9H/YkLNTKEcHZRWTXy14bXheCefNHciLuadg37G2Kekcg==}
-    dependencies:
-      '@microsoft/1ds-core-js': 3.2.9_tslib@2.4.1
-      '@microsoft/applicationinsights-shims': 2.0.2
-      '@microsoft/dynamicproto-js': 1.1.7
-    transitivePeerDependencies:
-      - tslib
-    dev: true
-
-  /@microsoft/applicationinsights-core-js/2.8.10_tslib@2.4.1:
-    resolution: {integrity: sha512-jQrufDW0+sV8fBhRvzIPNGiCC6dELH+Ug0DM5CfN9757TBqZJz8CSWyDjex39as8+jD0F/8HRU9QdmrVgq5vFg==}
-    peerDependencies:
-      tslib: '*'
-    dependencies:
-      '@microsoft/applicationinsights-shims': 2.0.2
-      '@microsoft/dynamicproto-js': 1.1.7
-      tslib: 2.4.1
-    dev: true
-
-  /@microsoft/applicationinsights-shims/2.0.2:
-    resolution: {integrity: sha512-PoHEgsnmcqruLNHZ/amACqdJ6YYQpED0KSRe6J7gIJTtpZC1FfFU9b1fmDKDKtFoUSrPzEh1qzO3kmRZP0betg==}
-    dev: true
-
-  /@microsoft/dynamicproto-js/1.1.7:
-    resolution: {integrity: sha512-SK3D3aVt+5vOOccKPnGaJWB5gQ8FuKfjboUJHedMP7gu54HqSCXX5iFXhktGD8nfJb0Go30eDvs/UDoTnR2kOA==}
+  /@microsoft/applicationinsights-web-snippet/1.0.1:
+    resolution: {integrity: sha512-2IHAOaLauc8qaAitvWS+U931T+ze+7MNWrDHY47IENP5y2UA0vqJDu67kWZDdpCN1fFC77sfgfB+HV7SrKshnQ==}
     dev: true
 
   /@microsoft/load-themed-styles/1.10.295:
@@ -1826,6 +1845,49 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+    dev: true
+
+  /@opentelemetry/api/1.4.0:
+    resolution: {integrity: sha512-IgMK9i3sFGNUqPMbjABm0G26g0QCKCUBfglhQ7rQq6WcxbKfEHRcmwsoER4hZcuYqJgkYn2OeuoJIv7Jsftp7g==}
+    engines: {node: '>=8.0.0'}
+    dev: true
+
+  /@opentelemetry/core/1.9.1_@opentelemetry+api@1.4.0:
+    resolution: {integrity: sha512-6/qon6tw2I8ZaJnHAQUUn4BqhTbTNRS0WP8/bA0ynaX+Uzp/DDbd0NS0Cq6TMlh8+mrlsyqDE7mO50nmv2Yvlg==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      '@opentelemetry/api': '>=1.0.0 <1.5.0'
+    dependencies:
+      '@opentelemetry/api': 1.4.0
+      '@opentelemetry/semantic-conventions': 1.9.1
+    dev: true
+
+  /@opentelemetry/resources/1.9.1_@opentelemetry+api@1.4.0:
+    resolution: {integrity: sha512-VqBGbnAfubI+l+yrtYxeLyOoL358JK57btPMJDd3TCOV3mV5TNBmzvOfmesM4NeTyXuGJByd3XvOHvFezLn3rQ==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      '@opentelemetry/api': '>=1.0.0 <1.5.0'
+    dependencies:
+      '@opentelemetry/api': 1.4.0
+      '@opentelemetry/core': 1.9.1_@opentelemetry+api@1.4.0
+      '@opentelemetry/semantic-conventions': 1.9.1
+    dev: true
+
+  /@opentelemetry/sdk-trace-base/1.9.1_@opentelemetry+api@1.4.0:
+    resolution: {integrity: sha512-Y9gC5M1efhDLYHeeo2MWcDDMmR40z6QpqcWnPCm4Dmh+RHAMf4dnEBBntIe1dDpor686kyU6JV1D29ih1lZpsQ==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      '@opentelemetry/api': '>=1.0.0 <1.5.0'
+    dependencies:
+      '@opentelemetry/api': 1.4.0
+      '@opentelemetry/core': 1.9.1_@opentelemetry+api@1.4.0
+      '@opentelemetry/resources': 1.9.1_@opentelemetry+api@1.4.0
+      '@opentelemetry/semantic-conventions': 1.9.1
+    dev: true
+
+  /@opentelemetry/semantic-conventions/1.9.1:
+    resolution: {integrity: sha512-oPQdbFDmZvjXk5ZDoBGXG8B4tSB/qW5vQunJWQMFUBp7Xe8O1ByPANueJ+Jzg58esEBegyyxZ7LRmfJr7kFcFg==}
+    engines: {node: '>=14'}
     dev: true
 
   /@pkgr/utils/2.3.1:
@@ -2455,17 +2517,6 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vscode/extension-telemetry/0.6.2_pup67pqt4f46737bpso4uq2qsu_tslib@2.4.1:
-    resolution: {integrity: sha512-yb/wxLuaaCRcBAZtDCjNYSisAXz3FWsSqAha5nhHcYxx2ZPdQdWuZqVXGKq0ZpHVndBWWtK6XqtpCN2/HB4S1w==}
-    engines: {vscode: ^1.60.0}
-    dependencies:
-      '@microsoft/1ds-core-js': 3.2.9_tslib@2.4.1
-      '@microsoft/1ds-post-js': 3.2.9_tslib@2.4.1
-    transitivePeerDependencies:
-      - tslib
-    dev: true
-    patched: true
-
   /@vscode/vsce/2.15.0:
     resolution: {integrity: sha512-c+qS5KSX4jO3RuGqeNQHqci4+WrcmLxHAwiWTR3PDR6wXzV1fQJxybueUOojXcqvsJR3W2AeROrpf+302ZkTfg==}
     engines: {node: '>= 14'}
@@ -2620,6 +2671,30 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /applicationinsights/2.5.0:
+    resolution: {integrity: sha512-6kIFmpANRok+6FhCOmO7ZZ/mh7fdNKn17BaT13cg/RV5roLPJlA6q8srWexayHd3MPcwMb9072e8Zp0P47s/pw==}
+    engines: {node: '>=8.0.0'}
+    peerDependencies:
+      applicationinsights-native-metrics: '*'
+    peerDependenciesMeta:
+      applicationinsights-native-metrics:
+        optional: true
+    dependencies:
+      '@azure/core-auth': 1.4.0
+      '@azure/core-rest-pipeline': 1.10.2
+      '@microsoft/applicationinsights-web-snippet': 1.0.1
+      '@opentelemetry/api': 1.4.0
+      '@opentelemetry/core': 1.9.1_@opentelemetry+api@1.4.0
+      '@opentelemetry/sdk-trace-base': 1.9.1_@opentelemetry+api@1.4.0
+      '@opentelemetry/semantic-conventions': 1.9.1
+      cls-hooked: 4.2.2
+      continuation-local-storage: 3.2.1
+      diagnostic-channel: 1.1.0
+      diagnostic-channel-publishers: 1.0.5_diagnostic-channel@1.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /arg/4.1.3:
     resolution: {integrity: sha512-58S9QDqG0Xx27YwPSt9fJxivjYl432YCwfDMfZ+71RAqUrZef7LrKQZ3LHLOwCS4FLNBplP533Zx895SeOCHvA==}
     dev: true
@@ -2703,6 +2778,21 @@ packages:
   /arrify/2.0.1:
     resolution: {integrity: sha512-3duEwti880xqi4eAMN8AyR4a0ByT90zoYdLlevfrvU43vb0YZwZVfxOgxWrLXXXpyugL0hNZc9G6BiB5B3nUug==}
     engines: {node: '>=8'}
+    dev: true
+
+  /async-hook-jl/1.7.6:
+    resolution: {integrity: sha512-gFaHkFfSxTjvoxDMYqDuGHlcRyUuamF8s+ZTtJdDzqjws4mCt7v0vuV79/E2Wr2/riMQgtG4/yUtXWs1gZ7JMg==}
+    engines: {node: ^4.7 || >=6.9 || >=7.3}
+    dependencies:
+      stack-chain: 1.3.7
+    dev: true
+
+  /async-listener/0.6.10:
+    resolution: {integrity: sha512-gpuo6xOyF4D5DE5WvyqZdPA3NGhiT6Qf07l7DCB0wwDEsLvDIbCr6j9S5aj5Ch96dLace5tXVzWBZkxU/c5ohw==}
+    engines: {node: <=0.11.8 || >0.11.10}
+    dependencies:
+      semver: 5.7.1
+      shimmer: 1.2.1
     dev: true
 
   /asynckit/0.4.0:
@@ -3078,6 +3168,15 @@ packages:
     engines: {node: '>=0.8'}
     dev: true
 
+  /cls-hooked/4.2.2:
+    resolution: {integrity: sha512-J4Xj5f5wq/4jAvcdgoGsL3G103BtWpZrMo8NEinRltN+xpTZdI+M38pyQqhuFU/P792xkMFvnKSf+Lm81U1bxw==}
+    engines: {node: ^4.7 || >=6.9 || >=7.3 || >=8.2.1}
+    dependencies:
+      async-hook-jl: 1.7.6
+      emitter-listener: 1.1.2
+      semver: 5.7.1
+    dev: true
+
   /clsx/1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
     engines: {node: '>=6'}
@@ -3143,6 +3242,13 @@ packages:
 
   /concat-map/0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+    dev: true
+
+  /continuation-local-storage/3.2.1:
+    resolution: {integrity: sha512-jx44cconVqkCEEyLSKWwkvUXwO561jXMa3LPjTPsm5QR22PA0/mhe33FT4Xb5y74JDvt/Cq+5lm8S8rskLv9ZA==}
+    dependencies:
+      async-listener: 0.6.10
+      emitter-listener: 1.1.2
     dev: true
 
   /conventional-changelog-angular/5.0.13:
@@ -3459,6 +3565,20 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /diagnostic-channel-publishers/1.0.5_diagnostic-channel@1.1.0:
+    resolution: {integrity: sha512-dJwUS0915pkjjimPJVDnS/QQHsH0aOYhnZsLJdnZIMOrB+csj8RnZhWTuwnm8R5v3Z7OZs+ksv5luC14DGB7eg==}
+    peerDependencies:
+      diagnostic-channel: '*'
+    dependencies:
+      diagnostic-channel: 1.1.0
+    dev: true
+
+  /diagnostic-channel/1.1.0:
+    resolution: {integrity: sha512-fwujyMe1gj6rk6dYi9hMZm0c8Mz8NDMVl2LB4iaYh3+LIAThZC8RKFGXWG0IML2OxAit/ZFRgZhMkhQ3d/bobQ==}
+    dependencies:
+      semver: 5.7.1
+    dev: true
+
   /diff-sequences/29.3.1:
     resolution: {integrity: sha512-hlM3QR272NXCi4pq+N4Kok4kOp6EsgOM3ZSpJI7Da3UAs+Ttsi8MRmB6trM/lhyzUxGfOgnpkHtgqm5Q/CTcfQ==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -3571,6 +3691,12 @@ packages:
 
   /electron-to-chromium/1.4.284:
     resolution: {integrity: sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==}
+    dev: true
+
+  /emitter-listener/1.1.2:
+    resolution: {integrity: sha512-Bt1sBAGFHY9DKY+4/2cV6izcKJUf5T7/gkdmkxzX/qv9CcGH8xSwVRW5mtX03SWJtRTWSOpzCuWN9rBFYZepZQ==}
+    dependencies:
+      shimmer: 1.2.1
     dev: true
 
   /emittery/0.13.1:
@@ -7559,6 +7685,10 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
+  /shimmer/1.2.1:
+    resolution: {integrity: sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==}
+    dev: true
+
   /side-channel/1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
     dependencies:
@@ -7669,6 +7799,10 @@ packages:
 
   /sprintf-js/1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
+    dev: true
+
+  /stack-chain/1.3.7:
+    resolution: {integrity: sha512-D8cWtWVdIe/jBA7v5p5Hwl5yOSOrmZPWDPe2KxQ5UAGD+nxbxU0lKXA4h85Ta6+qgdKVL3vUxsbIZjc1kBG7ug==}
     dev: true
 
   /stack-utils/2.0.6:
@@ -8222,6 +8356,11 @@ packages:
     resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
     deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
     hasBin: true
+
+  /uuid/8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
+    dev: true
 
   /v8-compile-cache-lib/3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
