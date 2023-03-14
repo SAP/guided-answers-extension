@@ -4,6 +4,7 @@
     "configuration.title": "SAP Guided Answers extension",
     "configuration.apiHost": "SAP Guided Answers API host",
     "configuration.openInNewTab": "If enabled, on activation Guided Answers will open in a new tab instead of reusing an existing one",
+    "configuration.telemetryEnabled": "If enabled, telemetry events to improve extension quality will be recorded",
     "commands.fiori.category": "SAP",
     "commands.guidedAnswer.openGuidedAnswer.title": "Open Guided Answers"
 }

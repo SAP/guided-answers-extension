@@ -1,4 +1,15 @@
-import type { TelemetryEventProperties } from '@vscode/extension-telemetry';
+import type { Disposable } from 'vscode';
+import type { TelemetryClient } from 'applicationinsights';
+
+export interface TelemetryReporter extends Disposable {
+    client: TelemetryClient;
+    commonProperties?: TelemetryCommonProperties;
+    enabled: boolean;
+}
+
+export interface TelemetryEventProperties {
+    readonly [key: string]: string;
+}
 
 export type TelemetryEvent = TelemetryStartupEvent | TelemetryUIEvent;
 
@@ -12,6 +23,11 @@ export interface TelemetryCommonProperties extends TelemetryEventProperties {
     'cmn.devspace': string;
     apiHost: string;
     apiVersion: string;
+    'common.os': string;
+    'common.nodeArch': string;
+    'common.platformversion': string;
+    'common.extname': string;
+    'common.extversion': string;
 }
 
 export interface TelemetryStartupEvent extends TelemetryBaseEvent {

@@ -1,7 +1,6 @@
 import { join } from 'path';
 import { URI } from 'vscode-uri';
 import { ExtensionContext, commands, window, WebviewPanel } from 'vscode';
-import type TelemetryReporter from '@vscode/extension-telemetry';
 import * as telemetry from '../src/telemetry/telemetry';
 import * as logger from '../src/logger/logger';
 import { activate } from '../src/extension';
@@ -21,6 +20,12 @@ describe('Extension test', () => {
         const context = {
             subscriptions: []
         };
+        jest.spyOn(telemetry, 'initTelemetry').mockImplementationOnce(
+            () =>
+                ({
+                    client: 'mocked'
+                } as any)
+        );
 
         // Test execution
         activate(context as unknown as ExtensionContext);
@@ -29,7 +34,7 @@ describe('Extension test', () => {
         expect(subscriptionsMock.mock.calls[0][0]).toBe('sap.ux.guidedAnswer.openGuidedAnswer');
         expect(context.subscriptions.length).toBe(3);
         // First subscription should be telemetry
-        expect(typeof (context.subscriptions[0] as TelemetryReporter).sendTelemetryEvent).toBe('function');
+        expect((context.subscriptions[0] as any).client).toBe('mocked');
         // Second subscription should be start command handler
         expect(typeof context.subscriptions[1]).toBe('function');
         // Third subscription should be Uri handler
@@ -59,6 +64,7 @@ describe('Extension test', () => {
         // Mock setup
         const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
         const subscriptionsMock = jest.spyOn(commands, 'registerCommand');
+        jest.spyOn(telemetry, 'initTelemetry').mockImplementationOnce(() => ({} as any));
         const webViewPanelMock = {
             webview: {
                 html: '',
@@ -95,6 +101,7 @@ describe('Extension test', () => {
         // Mock setup
         const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
         const subscriptionsMock = jest.spyOn(commands, 'registerCommand');
+        jest.spyOn(telemetry, 'initTelemetry').mockImplementationOnce(() => ({} as any));
         const context = {
             subscriptions: []
         };
@@ -111,6 +118,7 @@ describe('Extension test', () => {
         jest.spyOn(logger, 'logString').mockImplementation(() => {
             throw Error('ERROR');
         });
+        jest.spyOn(telemetry, 'initTelemetry').mockImplementationOnce(() => ({} as any));
         const showErrorMessageMock = jest.spyOn(window, 'showErrorMessage');
         const subscriptionsMock = jest.spyOn(commands, 'registerCommand');
         const context = {

@@ -1,6 +1,8 @@
-import type TelemetryReporter from '@vscode/extension-telemetry';
-import { ExtensionContext, commands } from 'vscode';
-import { setCommonProperties, trackAction, trackEvent } from '../../src/telemetry/telemetry';
+import * as os from 'os';
+import { commands, workspace } from 'vscode';
+import type { ConfigurationChangeEvent, Disposable, ExtensionContext } from 'vscode';
+import { initTelemetry, setCommonProperties, trackAction, trackEvent } from '../../src/telemetry/telemetry';
+import type { Contracts } from 'applicationinsights';
 import * as logger from '../../src/logger/logger';
 import { activate } from '../../src/extension';
 import {
@@ -10,38 +12,97 @@ import {
     SendTelemetry,
     UpdateActiveNode
 } from '@sap/guided-answers-extension-types';
-import { TelemetryEvent } from '../../src/types';
+import { TelemetryEvent, TelemetryReporter } from '../../src/types';
+import packageJson from '../../package.json';
+
+jest.mock('applicationinsights', () => ({
+    TelemetryClient: jest.fn().mockImplementation((key) => ({
+        addTelemetryProcessor: jest.fn(),
+        channel: { setUseDiskRetryCaching: jest.fn() },
+        context: { tags: {}, keys: {} },
+        key,
+        trackEvent: jest.fn()
+    }))
+}));
+jest.mock('os');
+jest.spyOn(os, 'arch').mockImplementation(() => 'arch' as any);
+jest.spyOn(os, 'platform').mockImplementation(() => 'platform' as any);
+jest.spyOn(os, 'release').mockImplementation(() => '1.2.3release' as any);
+
+describe('Test for initTelemetry()', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test('Init telemetry, enabled in config', () => {
+        // Mock setup
+        jest.spyOn(workspace, 'getConfiguration').mockReturnValue({ get: () => true } as any);
+        let envelope = {
+            tags: { ['ai.location.ip']: '1.2.3.4', ['ai.cloud.roleInstance']: 'role-instance' }
+        } as Partial<Contracts.Envelope>;
+
+        // Test execution
+        const reporter = initTelemetry();
+        (reporter.client.addTelemetryProcessor as jest.Mock).mock.calls[0][0](envelope as Contracts.Envelope);
+
+        // Result check
+        expect(envelope).toEqual({ tags: { ['ai.location.ip']: '0.0.0.0', ['ai.cloud.roleInstance']: 'masked' } });
+        expect(reporter.enabled).toBe(true);
+        expect(typeof reporter.dispose).toBe('function');
+    });
+});
 
 describe('Telemetry trackEvent() tests', () => {
-    let telemetryReporter: TelemetryReporter;
+    let reporter: TelemetryReporter;
 
     beforeEach(() => {
         jest.clearAllMocks();
         jest.spyOn(commands, 'registerCommand');
         jest.spyOn(logger, 'logString').mockImplementation(() => null);
+        jest.spyOn(workspace, 'getConfiguration').mockReturnValue({ get: () => true } as any);
+
         const context = {
             subscriptions: []
         };
         activate(context as unknown as ExtensionContext);
-        telemetryReporter = context.subscriptions[0] as TelemetryReporter;
+        reporter = context.subscriptions[0] as TelemetryReporter;
     });
 
-    test('set common properties and track event', () => {
-        // Mock setup
-
+    test('set common properties and track event, telemetry enabled', () => {
         // Test execution
         setCommonProperties({ ide: 'SBAS', devSpace: 'DevSpace', apiHost: 'any:host', apiVersion: 'v1' });
         trackEvent({ name: 'STARTUP', properties: { treeId: 1, nodeIdPath: '2:3:4' } } as unknown as TelemetryEvent);
 
         // Result check
-        expect(telemetryReporter.sendTelemetryEvent).toBeCalledWith('STARTUP', {
-            apiHost: 'any:host',
-            apiVersion: 'v1',
-            'cmn.appstudio': 'true',
-            'cmn.devspace': 'DevSpace',
-            nodeIdPath: '2:3:4',
-            treeId: '1'
+        expect(reporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/STARTUP',
+            properties: {
+                apiHost: 'any:host',
+                apiVersion: 'v1',
+                'cmn.appstudio': 'true',
+                'cmn.devspace': 'DevSpace',
+                'common.os': 'platform',
+                'common.nodeArch': 'arch',
+                'common.platformversion': '1.2.3',
+                'common.extname': packageJson.name,
+                'common.extversion': packageJson.version,
+                nodeIdPath: '2:3:4',
+                treeId: '1'
+            }
         });
+    });
+
+    test('error handling when track event throws error', () => {
+        // Mock setup
+        jest.spyOn(reporter.client, 'trackEvent').mockImplementationOnce(() => {
+            throw Error('TRACK_EVENT_ERROR');
+        });
+
+        // Test execution
+        trackEvent({ name: 'STARTUP', properties: { treeId: 1, nodeIdPath: '2:3:4' } } as unknown as TelemetryEvent);
+
+        // Result check
+        expect(logger.logString).toHaveBeenCalledWith(expect.stringContaining('TRACK_EVENT_ERROR'));
     });
 });
 
@@ -73,10 +134,13 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.sendTelemetryEvent).toBeCalledWith('USER_INTERACTION', {
-            action: 'OPEN_TREE',
-            treeId: '10',
-            treeTitle: 'Title'
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'OPEN_TREE',
+                treeId: '10',
+                treeTitle: 'Title'
+            }
         });
     });
 
@@ -88,14 +152,17 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.sendTelemetryEvent).toBeCalledWith('USER_INTERACTION', {
-            action: 'NODE_SELECTED',
-            treeId: '1',
-            treeTitle: 'Title',
-            lastNodeId: '3',
-            lastNodeTitle: 'last node',
-            nodeIdPath: '2:3',
-            nodeLevel: '2'
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'NODE_SELECTED',
+                treeId: '1',
+                treeTitle: 'Title',
+                lastNodeId: '3',
+                lastNodeTitle: 'last node',
+                nodeIdPath: '2:3',
+                nodeLevel: '2'
+            }
         });
     });
 
@@ -108,14 +175,125 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.sendTelemetryEvent).toBeCalledWith('USER_INTERACTION', {
-            action: 'GO_BACK_IN_TREE',
-            treeId: '',
-            treeTitle: '',
-            lastNodeId: '3',
-            lastNodeTitle: 'last node',
-            nodeIdPath: '2:3',
-            nodeLevel: '2'
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'GO_BACK_IN_TREE',
+                treeId: '',
+                treeTitle: '',
+                lastNodeId: '3',
+                lastNodeTitle: 'last node',
+                nodeIdPath: '2:3',
+                nodeLevel: '2'
+            }
+        });
+    });
+
+    test('error handling when track action throws error', () => {
+        // Mock setup
+        const mockAction = getDummyAction('SET_ACTIVE_TREE');
+        (mockAction.payload.action as any).payload = undefined;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(logger.logString).toHaveBeenCalledWith(expect.stringContaining('SET_ACTIVE_TREE'));
+    });
+});
+
+describe('Telemetry disabled', () => {
+    let reporter: TelemetryReporter;
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+        reporter = initTelemetry();
+        reporter.dispose();
+    });
+
+    test('Track event when telemetry is disabled, should not send anything', () => {
+        // Mock setup
+        jest.spyOn(workspace, 'getConfiguration').mockReturnValue({ get: () => false } as any);
+
+        // Test execution
+        reporter = initTelemetry();
+        trackEvent({ name: '', properties: {} } as unknown as TelemetryEvent);
+
+        // Result check
+        expect(reporter.client.trackEvent).not.toBeCalled();
+    });
+
+    test('Track action when telemetry is disabled, should not send anything', () => {
+        // Mock setup
+        jest.spyOn(workspace, 'getConfiguration').mockReturnValue({ get: () => false } as any);
+
+        // Test execution
+        reporter = initTelemetry();
+        trackAction(getDummyAction(''));
+
+        // Result check
+        expect(reporter.client.trackEvent).not.toBeCalled();
+    });
+
+    test('Toggle telemetry setting', () => {
+        // Mock setup
+        let enabled = false;
+        jest.spyOn(workspace, 'getConfiguration').mockReturnValue({ get: () => enabled } as any);
+
+        // Test execution
+        reporter = initTelemetry();
+        trackEvent({ name: '', properties: {} } as unknown as TelemetryEvent);
+
+        // Result check
+        expect(reporter.enabled).toBe(false);
+        expect(reporter.client.trackEvent).not.toBeCalled();
+
+        // Enable telemetry
+        reporter.dispose();
+        let changeHandler: (e: ConfigurationChangeEvent) => any = () => {};
+        jest.spyOn(workspace, 'onDidChangeConfiguration').mockImplementation(
+            (listener: (e: ConfigurationChangeEvent) => any) => {
+                changeHandler = listener;
+                return {} as Disposable;
+            }
+        );
+        reporter = initTelemetry();
+        enabled = true;
+        changeHandler({} as ConfigurationChangeEvent);
+
+        // Test again
+        trackEvent({ name: '', properties: {} } as unknown as TelemetryEvent);
+
+        // Result check
+        expect(reporter.enabled).toBe(true);
+        expect(reporter.client.trackEvent).toBeCalled();
+    });
+});
+
+describe('Test for setCommonProperties()', () => {
+    let reporter: TelemetryReporter;
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+        if (reporter) {
+            reporter.dispose();
+        }
+        reporter = initTelemetry();
+    });
+
+    test('Set common properties for VSCode, no release', () => {
+        jest.spyOn(os, 'release').mockImplementation(() => undefined as any);
+        setCommonProperties({ ide: 'VSCODE', devSpace: '', apiHost: 'host:port', apiVersion: 'v4' });
+        expect(reporter.commonProperties).toEqual({
+            apiHost: 'host:port',
+            apiVersion: 'v4',
+            'cmn.appstudio': 'false',
+            'cmn.devspace': '',
+            'common.os': 'platform',
+            'common.nodeArch': 'arch',
+            'common.platformversion': '',
+            'common.extname': packageJson.name,
+            'common.extversion': packageJson.version
         });
     });
 });
