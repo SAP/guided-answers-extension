@@ -4,11 +4,6 @@ overrides:
   strip-ansi@3.0.1>ansi-regex: ^5.0.1
   generic-names@4.0.0>loader-utils: ^3.2.1
 
-patchedDependencies:
-  '@vscode/extension-telemetry@0.6.2':
-    hash: pup67pqt4f46737bpso4uq2qsu
-    path: patches/@vscode__extension-telemetry@0.6.2.patch
-
 importers:
 
   .:
