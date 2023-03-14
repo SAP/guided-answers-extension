@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { actions } from '../../../../state';
 import type { GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
+import { UiIcons, UIIcon } from '@sap-ux/ui-components';
 import '../GuidedAnswerNode.scss';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
@@ -16,8 +17,15 @@ export function Right(props: { activeNode: GuidedAnswerNodeType }): ReactElement
                 <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
                     {props.activeNode.COMMANDS
                         ? props.activeNode.COMMANDS.map((command) => (
-                              <div className="guided-answer__node__command" key={`command-${command.label}`}>
+                              <div
+                                  className="guided-answer__node__command"
+                                  key={`command-${command.label}`}
+                                  title={command.label}>
                                   <div className="guided-answer__node__command__header">
+                                      <UIIcon
+                                          className="guided-answer__node__command__header__icon"
+                                          iconName={UiIcons.CreateMockData}
+                                      />
                                       <div className="guided-answer__node__command__header__label">{command.label}</div>
                                   </div>
 
