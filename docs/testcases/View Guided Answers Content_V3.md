@@ -359,42 +359,91 @@ The Guided Answer extension will be open displaying the content that was shared
 
 
 
-### Displaying enhancements specific to VSCode or SAP Business Application Studio
+### Displaying HTML and Node enhancements specific to VSCode or SAP Business Application Studio
 
 Pre Req Open VSCode, Install Fiori Tools Extension Pack 
 
-_VSCODE_
+_VSCODE WITH FIORI TOOLS INSTALLED_
 
-1. Open VSCode
-2. Open Guided Answer Extension
-2. Enter Fiori Tools in search input field and press enter
-3. Click on Fiori Generator outcome
-4. Click on 'In SAP Business Application Studio - Services unavailable, All catalog service requests failed' ( See expected results 1)
+Pre Req: Create or Import a project
+
+3. Open Guided Answer Extension
+4. Enter Fiori Tools in search input field and press enter
+5. Open Guided Answer Extension
+6. Click on Fiori Generator outcome
+7. Click on Services unavailable, All catalog service requests failed' outcome( See expected results 1)
+8. Click Restart
+9. Click Deployment of SAP Fiori application
+10. Click SAP Business Application Studio
+11. Click ABAP on Premise
+12. Click Request failed with status code 400 - Archive not okay ( See expected results 2)
+13. Click on 'Fiori: Archive project' link ( See expected results 3)
+14. Click on Node Enhancement ( See expected results 3)
+15. Reduce the Guided Answers extension view ( See expected results 3a)
+16. Hover mouse on Node Enhancement icon  ( See expected results 3b)
+
+
+_VSCODE WITH FIORI TOOLS NOT INSTALLED_
+
+Pre Req: Create or Import a project
+
+3. Open Guided Answer Extension
+4. Enter Fiori Tools in search input field and press enter
+5. Open Guided Answer Extension
+9. Click on Deployment of SAP Fiori application
+10. Click SAP Business Application Studio
+11. Click ABAP on Premise
+12. Click Request failed with status code 400 - Archive not okay ( See expected results 4)
+
+
+_SAP BUSINESS APPLICATION STUDIO _ FIORI DEV SPACE_
+
+1. Open SAP Business Application Studio
+2. Create Fiori Dev Space or any dev space
+3. Open Guided Answer Extension
+4. Click on Fiori Generator outcome
+5. Click on Services unavailable, All catalog service requests failed' outcome ( See expected results 5)
+6. Click on 'Fiori: Open Environment Check' ( See expected results 6) 
+7. Click on Environment Check node enhancment ( See expected results 7)
+
+
+
+_SAP BUSINESS APPLICATION STUDIO _ FIORI DEV SPACE_
+
+1. Open SAP Business Application Studio
+2. Create Fiori Dev Space or any dev space
+3. Open Guided Answer Extension
+4. Click on Fiori Generator outcome
+5. Click on Services unavailable, All catalog service requests failed' outcome ( See expected results 8)
+
 
 **Expected result 1**
-
 The "Fiori: Open Environment Check" does not appear as a clickable link in VSCODE 
+No node enhancements appear
 
-_SAP Business Appliction Studio Fiori Dev Space_
+**Expected result 2**
+'Fiori: Archive Project"  appears as a clickable link
+ Node enhancements appear Archive Project - Create a zip of your project
+ 
+**Expected result 3** 
+Imported/Created project is ziped and available for download
 
-1. Open SAP Business Application Studio
-2. Create Fiori Dev Space
-3. Open Guided Answer Extension
-4. Click on Fiori Generator outcome
-5. Click on 'In SAP Business Application Studio - Services unavailable, All catalog service requests failed' ( See expected results 2)
+**Expected result 3a** 
+Node Enhancment reduce in size showing just the node enhancment icon. 
 
-**Expected result 1**
+**Expected result 3b** 
+Label of Node Enhancement appears in tooltip on hover. 
 
- The "Fiori: Open Environment Check" appears as a clickable link in the SBAS  
+**Expected result 4**
+The "Fiori: Archive Project" does not appear as a clickable link in the SBAS  
+Node enhancements do not appear  as  Application modeler is not installed
 
-_SAP Business Appliction Studio Low Code Dev Space_
-
-1. Open SAP Business Application Studio
-2. Create Fiori Dev Space
-3. Open Guided Answer Extension
-4. Click on Fiori Generator outcome
-5. Click on 'In SAP Business Application Studio - Services unavailable, All catalog service requests failed' ( See expected results 2)
-
-**Expected result 1**
-
-The "Fiori: Open Environment Check" does not appear as a clickable link as Application Modeler is not installed in this dev space. 
+**Expected result 5**
+The "Fiori: Open Environment Check" appears as a clickable link in the SBAS  
+Node enhancements appears 
+ 
+**Expected result 6**
+The command palette open showing two options Check Destination, Gathere Development Environment information
+ 
+**Expected result 7**
+The "Fiori: Open Environment Check" does not appear as a clickable link as Application Modeler is not installed in this dev space and Environment Check node enhancement doesn't appear . 
