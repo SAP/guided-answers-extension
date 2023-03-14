@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.18.0
+
+### Minor Changes
+
+-   67435d5: Fix styling on text links
+
 ## 1.17.0
 
 ## 1.16.1
