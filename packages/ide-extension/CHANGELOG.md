@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.17.0
+
+### Minor Changes
+
+-   f020708: Configuration setting for telemetry
+
 ## 1.16.1
 
 ### Patch Changes

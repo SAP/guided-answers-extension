@@ -1,5 +1,7 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.17.0
+
 ## 1.16.1
 
 ## 1.16.0
