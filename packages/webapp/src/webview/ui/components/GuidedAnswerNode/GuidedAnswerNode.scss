@@ -40,7 +40,7 @@ button:focus-visible {
 
 a:hover {
     outline: 1px solid var(--vscode-contrastActiveBorder);
-    color: var(--vscode-button-foreground);
+    text-decoration: none;
 }
 
 #left {
