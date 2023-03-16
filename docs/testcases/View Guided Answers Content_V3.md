@@ -13,7 +13,9 @@
 [#230](https://github.com/SAP/guided-answers-extension/issues/230),
 [#245](https://github.com/SAP/guided-answers-extension/issues/245),
 [#137](https://github.com/SAP/guided-answers-extension/issues/137),
-[#311](https://github.com/SAP/guided-answers-extension/issues/311)
+[#311](https://github.com/SAP/guided-answers-extension/issues/311),
+[#258](https://github.com/SAP/guided-answers-extension/issues/258)
+
 
 Prerequisites: Guided Answers Extension is installed in either SAP Business Application Studio (SBAS) or Microsoft Visual Studio Code (VSCODE)
 
@@ -22,19 +24,24 @@ Prerequisites: Guided Answers Extension is installed in either SAP Business Appl
 ### Open Guided Answers in VSCODE
 
 1. Open VSCode
-1. Open the 'Command Palette'
-2. Enter 'SAP: Open Guided Answers'
-3. Select 'SAP: Open Guided Answers' ( See expected result 1 ) 
-4. Make view port smaller ( See expected results 2 ) 
+2. Open the 'Command Palette'
+3. Enter 'SAP: Open Guided Answers'
+4. Select 'SAP: Open Guided Answers' ( See expected result 1 ) 
+5. Make view port smaller ( See expected results 2 ) 
+6. Open the 'Command Palette'
+7. Enter 'SAP: Open Guided Answers'
+8. Select 'SAP: Open Guided Answers' ( See expected result 4 ) 
 
 ### Open Guided Answers in SBAS
 
 1. Open SAP Business Application Studio
-1. Open the 'Command Palette'
-2. Enter 'SAP: Open Guided Answers'
-3. Select 'SAP: Open Guided Answers' ( See expected result 3 ) 
-4. Make view port smaller ( See expected results 2 ) 
-
+2. Open the 'Command Palette'
+3. Enter 'SAP: Open Guided Answers'
+4. Select 'SAP: Open Guided Answers' ( See expected result 3 ) 
+5. Make view port smaller ( See expected results 4 ) 
+6. Open the 'Command Palette'
+7. Enter 'SAP: Open Guided Answers'
+8. Select 'SAP: Open Guided Answers' ( See expected result 4 ) 
 
 **Expected Results 1** 
 
@@ -59,7 +66,51 @@ Guided Answers extension opens in view port
     d. A id icon for the Component filter . Id icon is highlighted in blue as Component filter is applied by default.
 
 
+**Expected Results 4** 
 
+If the Guided Answers extension is already open in the existing view port is given focus. A new instance of the GA extension is not opened the existing instance is re used. 
+
+
+
+### Opening Guided Answers to the side in VSCODE
+1. Open VSCode
+2. Select Code in VSCode Nav bar
+3. Select Settings in drop down menu
+4. Click Settings in menu 
+5. Enter 'Guided Answers' in the setting search input field 
+6. Check/Enable 'SAP>UX>Guided Answer:Open in New Tab 
+7. Close Settings
+8. Open the 'Command Palette'
+9. Enter 'SAP: Open Guided Answers'
+10. Select 'SAP: Open Guided Answers' ( See expected result 1 ) 
+11. Open the 'Command Palette'
+12. Enter 'SAP: Open Guided Answers'
+13. Select 'SAP: Open Guided Answers' ( See expected result 2 ) 
+
+
+### Opening Guided Answers to the side in SBAS
+1. Open Dev Space in SBAS
+2. Click on menu icon in side tool bar
+3. Select File
+4. Select Preferences
+6. Click Settings in menu 
+7. Enter 'Guided Answers' in the setting search input field 
+8. Check/Enable 'SAP>UX>Guided Answer:Open in New Tab 
+9. Close Settings
+10. Open the 'Command Palette'
+11. Enter 'SAP: Open Guided Answers'
+12. Select 'SAP: Open Guided Answers' ( See expected result 1 ) 
+13. Open the 'Command Palette'
+14. Enter 'SAP: Open Guided Answers'
+15. Select 'SAP: Open Guided Answers' ( See expected result 2 ) 
+
+
+**Expected Results 1**
+Guided Answers extension open in view port
+
+
+**Expected Results 2**
+Guided Answers extension open in a new view port. Two instances of the Guided Answers Extension are opened.
 
 
 ### Search Guided Answers Content
@@ -77,9 +128,6 @@ The view port displays
     b. The description of the Guided Answer  should appear in the list
     c. The Product the Guided Answer is associated to
     d. The Component the Guided Answer is associated to
-
-
-
 
 
 ### Filtering Guided Answers Content on Product 
@@ -369,14 +417,14 @@ Pre Req: Create or Import a project
 
 3. Open Guided Answer Extension
 4. Enter Fiori Tools in search input field and press enter
-5. Open Guided Answer Extension
-6. Click on Fiori Generator outcome
-7. Click on Services unavailable, All catalog service requests failed' outcome( See expected results 1)
+5. Select Generation of SAP Fiori Applicaiton outcome
+6. Select SAP Business Application Studion
+7. Select  on Services unavailable, All catalog service requests failed' outcome( See expected results 1)
 8. Click Restart
-9. Click Deployment of SAP Fiori application
-10. Click SAP Business Application Studio
-11. Click ABAP on Premise
-12. Click Request failed with status code 400 - Archive not okay ( See expected results 2)
+9. Select Deployment of SAP Fiori application outcome
+10. Select SAP Business Application Studio outcome
+11. Select ABAP on Premise outcome
+12. Select Request failed with status code 400 - Archive not okay outcome ( See expected results 2)
 13. Click on 'Fiori: Archive project' link ( See expected results 3)
 14. Click on Node Enhancement ( See expected results 3)
 15. Reduce the Guided Answers extension view ( See expected results 3a)
@@ -390,9 +438,9 @@ Pre Req: Create or Import a project
 3. Open Guided Answer Extension
 4. Enter Fiori Tools in search input field and press enter
 5. Open Guided Answer Extension
-9. Click on Deployment of SAP Fiori application
-10. Click SAP Business Application Studio
-11. Click ABAP on Premise
+9. Click on Deployment of SAP Fiori application outcome
+10. Click SAP Business Application Studio outcome
+11. Click ABAP on Premise outcome
 12. Click Request failed with status code 400 - Archive not okay ( See expected results 4)
 
 
@@ -401,20 +449,22 @@ _SAP BUSINESS APPLICATION STUDIO _ FIORI DEV SPACE_
 1. Open SAP Business Application Studio
 2. Create Fiori Dev Space or any dev space
 3. Open Guided Answer Extension
-4. Click on Fiori Generator outcome
-5. Click on Services unavailable, All catalog service requests failed' outcome ( See expected results 5)
+5. Select Generation of SAP Fiori Applicaiton outcome
+6. Select SAP Business Application Studio outcome
+7. Select  on Services unavailable, All catalog service requests failed' outcome( See expected results 5)
 6. Click on 'Fiori: Open Environment Check' ( See expected results 6) 
-7. Click on Environment Check node enhancment ( See expected results 7)
+7. Click on Environment Check node enhancment ( See expected results 6)
 
 
 
-_SAP BUSINESS APPLICATION STUDIO _ FIORI DEV SPACE_
+_SAP BUSINESS APPLICATION STUDIO _ BASIC DEV SPACE_
 
 1. Open SAP Business Application Studio
-2. Create Fiori Dev Space or any dev space
+2. Create Basic Dev Space
 3. Open Guided Answer Extension
-4. Click on Fiori Generator outcome
-5. Click on Services unavailable, All catalog service requests failed' outcome ( See expected results 8)
+5. Select Generation of SAP Fiori Applicaiton outcome
+6. Select SAP Business Application Studio outcome
+5. Select on Services unavailable, All catalog service requests failed' outcome ( See expected results 7)
 
 
 **Expected result 1**
