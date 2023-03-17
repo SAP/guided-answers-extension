@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.18.1
+
+### Patch Changes
+
+-   d32a5bd: feat(310): change node enhancement design
+
 ## 1.18.0
 
 ### Minor Changes
