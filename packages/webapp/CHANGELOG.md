@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.18.2
+
+### Patch Changes
+
+-   b57b4fa: fix(434): fix keyboard navigation for filters
+
 ## 1.18.1
 
 ### Patch Changes
