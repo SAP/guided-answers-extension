@@ -31,6 +31,15 @@ Prerequisites: Guided Answers Extension is installed in either SAP Business Appl
 6. Open the 'Command Palette'
 7. Enter 'SAP: Open Guided Answers'
 8. Select 'SAP: Open Guided Answers' ( See expected result 4 ) 
+9. Select Code in VSCode Nav bar
+10. Select Settings in drop down menu
+11. Click Settings in menu 
+12. Enter 'Guided Answers' in the setting search input field 
+13. Check/Enable 'SAP>UX>Guided Answer:Open in New Tab 
+14. Close Settings
+15. Open the 'Command Palette'
+16. Enter 'SAP: Open Guided Answers'
+17. Select 'SAP: Open Guided Answers' ( See expected result 5 ) 
 
 ### Open Guided Answers in SBAS
 
@@ -38,10 +47,20 @@ Prerequisites: Guided Answers Extension is installed in either SAP Business Appl
 2. Open the 'Command Palette'
 3. Enter 'SAP: Open Guided Answers'
 4. Select 'SAP: Open Guided Answers' ( See expected result 3 ) 
-5. Make view port smaller ( See expected results 4 ) 
+5. Make view port smaller ( See expected results 2 ) 
 6. Open the 'Command Palette'
 7. Enter 'SAP: Open Guided Answers'
 8. Select 'SAP: Open Guided Answers' ( See expected result 4 ) 
+9. Click on menu icon in side tool bar
+10. Select File
+11. Select Preferences
+12. Click Settings in menu 
+13. Enter 'Guided Answers' in the setting search input field 
+14. Check/Enable 'SAP>UX>Guided Answer:Open in New Tab 
+15. Close Settings
+16. Open the 'Command Palette'
+17. Enter 'SAP: Open Guided Answers'
+18. Select 'SAP: Open Guided Answers' ( See expected result 5 ) 
 
 **Expected Results 1** 
 
@@ -70,46 +89,7 @@ Guided Answers extension opens in view port
 
 If the Guided Answers extension is already open in the existing view port is given focus. A new instance of the GA extension is not opened the existing instance is re used. 
 
-
-
-### Opening Guided Answers to the side in VSCODE
-1. Open VSCode
-2. Select Code in VSCode Nav bar
-3. Select Settings in drop down menu
-4. Click Settings in menu 
-5. Enter 'Guided Answers' in the setting search input field 
-6. Check/Enable 'SAP>UX>Guided Answer:Open in New Tab 
-7. Close Settings
-8. Open the 'Command Palette'
-9. Enter 'SAP: Open Guided Answers'
-10. Select 'SAP: Open Guided Answers' ( See expected result 1 ) 
-11. Open the 'Command Palette'
-12. Enter 'SAP: Open Guided Answers'
-13. Select 'SAP: Open Guided Answers' ( See expected result 2 ) 
-
-
-### Opening Guided Answers to the side in SBAS
-1. Open Dev Space in SBAS
-2. Click on menu icon in side tool bar
-3. Select File
-4. Select Preferences
-6. Click Settings in menu 
-7. Enter 'Guided Answers' in the setting search input field 
-8. Check/Enable 'SAP>UX>Guided Answer:Open in New Tab 
-9. Close Settings
-10. Open the 'Command Palette'
-11. Enter 'SAP: Open Guided Answers'
-12. Select 'SAP: Open Guided Answers' ( See expected result 1 ) 
-13. Open the 'Command Palette'
-14. Enter 'SAP: Open Guided Answers'
-15. Select 'SAP: Open Guided Answers' ( See expected result 2 ) 
-
-
-**Expected Results 1**
-Guided Answers extension open in view port
-
-
-**Expected Results 2**
+**Expected Results 5**
 Guided Answers extension open in a new view port. Two instances of the Guided Answers Extension are opened.
 
 
