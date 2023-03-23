@@ -42,7 +42,7 @@ export function SearchField() {
                                     offset: 0
                                 }
                             });
-                        }, 400);
+                        }, 100);
                     }
                 }}></UISearchBox>
             <Filters />

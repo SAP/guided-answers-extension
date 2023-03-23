@@ -20,7 +20,8 @@ import type {
     GuidedAnswerAPI,
     GuidedAnswerNodeId,
     GuidedAnswerTree,
-    GuidedAnswerTreeId
+    GuidedAnswerTreeId,
+    GuidedAnswerTreeSearchResult
 } from '@sap/guided-answers-extension-types';
 import { GuidedAnswersPanel } from '../../src/panel/guidedAnswersPanel';
 import * as logger from '../../src/logger/logger';
@@ -62,6 +63,10 @@ const getApiMock = (firstNodeId?: number): GuidedAnswerAPI =>
         sendFeedbackOutcome: jest.fn(),
         sendFeedbackComment: jest.fn()
     } as unknown as GuidedAnswerAPI);
+
+const delay = async (ms: number) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+};
 
 describe('GuidedAnswersPanel', () => {
     let loggerMock: jest.SpyInstance;
@@ -365,7 +370,7 @@ describe('GuidedAnswersPanel', () => {
         });
     });
 
-    test('GuidedAnswersPanel communication SEARCH_TREE with paging offset = 0, should trigger animation', async () => {
+    test('GuidedAnswersPanel communication 2 SEARCH_TREE events with short waiting paging offset = 0, should not trigger animation', async () => {
         // Mock setup
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
         const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
@@ -373,6 +378,56 @@ describe('GuidedAnswersPanel', () => {
         });
         jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
         jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({
+            type: SEARCH_TREE,
+            payload: { query: 'any', paging: { responseSize: 5, offset: 0 } }
+        });
+        await onDidReceiveMessageMock({
+            type: SEARCH_TREE,
+            payload: { query: 'any', paging: { responseSize: 5, offset: 0 } }
+        });
+
+        // Result check
+        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(4);
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
+            type: UPDATE_LOADING,
+            payload: false
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {
+            type: 'UPDATE_GUIDED_ANSWER_TREES',
+            payload: [{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(3, {
+            type: UPDATE_LOADING,
+            payload: false
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(4, {
+            type: 'UPDATE_GUIDED_ANSWER_TREES',
+            payload: [{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]
+        });
+    });
+
+    test('GuidedAnswersPanel communication SEARCH_TREE with long waiting time and paging offset = 0, should trigger animation', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        const apiMock = getApiMock();
+        apiMock.getTrees = async () => {
+            await delay(2100);
+            return Promise.resolve([
+                { TREEE_ID: 1 },
+                { TREEE_ID: 2 },
+                { TREEE_ID: 3 }
+            ] as unknown as GuidedAnswerTreeSearchResult);
+        };
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockReturnValue(apiMock);
 
         // Test execution
         const panel = new GuidedAnswersPanel();
