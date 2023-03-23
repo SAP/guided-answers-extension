@@ -75,7 +75,6 @@ export function App(): ReactElement {
                 <NoAnswersFound />
             ) : (
                 <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
-                    <FiltersRibbon />
                     <ul className="striped-list" role="listbox">
                         <InfiniteScroll
                             dataLength={appState.guidedAnswerTreeSearchResult.trees.length} //This is important field to render the next data
@@ -148,6 +147,7 @@ export function App(): ReactElement {
                 showNavButons={appState.activeGuidedAnswerNode.length !== 0}
                 showSearch={appState.activeGuidedAnswerNode.length === 0}
             />
+            <FiltersRibbon />
             <main className="guided-answer__container" id="results-container">
                 {content}
             </main>
