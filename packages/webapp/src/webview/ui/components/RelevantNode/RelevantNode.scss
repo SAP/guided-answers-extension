@@ -1,0 +1,41 @@
+.relevant-node {
+    border-top: 1px solid var(--vscode-editorWidget-border);
+    padding-top: 10px;
+    margin-bottom: 10px;
+
+    &:before {
+        position: absolute;
+        content: '';
+        width: 1px;
+        height: 5px;
+        background: var(--vscode-editorWidget-border);
+        margin-top: 3px;
+        margin-left: 0px;
+    }
+
+    &-content:before {
+        content: '';
+        position: absolute;
+        left: 36px;
+        height: 1px;
+        background: var(--vscode-editorWidget-border);
+        width: 10px;
+        margin-top: 7px;
+    }
+
+    &-content-description {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: 15px;
+        font-size: 11px;
+        line-height: 16px;
+        font-weight: 400;
+    }
+
+    &-content-title {
+        margin: 0px 0px 0px 15px;
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 16px;
+    }
+}

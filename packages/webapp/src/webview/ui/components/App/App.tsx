@@ -12,6 +12,7 @@ import './App.scss';
 import { initIcons, UILoader } from '@sap-ux/ui-components';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { SpinnerSize } from '@fluentui/react';
+import { RelevantNode } from '../RelevantNode';
 
 initIcons();
 
@@ -87,40 +88,50 @@ export function App(): ReactElement {
                             {appState.guidedAnswerTreeSearchResult.trees.map((tree) => {
                                 return (
                                     <li key={`tree-item-${tree.TITLE}`} className="tree-item" role="option">
-                                        <button
-                                            className="guided-answer__tree"
-                                            onClick={(): void => {
-                                                actions.setActiveTree(tree);
-                                                actions.selectNode(tree.FIRST_NODE_ID);
-                                                document.body.focus();
-                                            }}>
-                                            <div className="guided-answer__tree__ul">
-                                                <h3 className="guided-answer__tree__title">{tree.TITLE}</h3>
-                                                <div className="bottom-section">
-                                                    {tree.DESCRIPTION && (
-                                                        <span className="guided-answer__tree__desc">
-                                                            {tree.DESCRIPTION}
-                                                        </span>
-                                                    )}
-                                                    <div
-                                                        className="component-and-product-container"
-                                                        style={{ marginTop: tree.DESCRIPTION ? '10px' : '0' }}>
-                                                        {tree.PRODUCT && (
-                                                            <div className="guided-answer__tree__product">
-                                                                <span className="bottom-title">Product: </span>
-                                                                {tree.PRODUCT.split(',')[0].trim()}
-                                                            </div>
+                                        <div>
+                                            <button
+                                                className="guided-answer__tree"
+                                                onClick={(): void => {
+                                                    actions.setActiveTree(tree);
+                                                    actions.selectNode(tree.FIRST_NODE_ID);
+                                                    document.body.focus();
+                                                }}>
+                                                <div className="guided-answer__tree__ul" style={{ width: '100%' }}>
+                                                    <h3 className="guided-answer__tree__title">{tree.TITLE}</h3>
+                                                    <div className="bottom-section">
+                                                        {tree.DESCRIPTION && (
+                                                            <span className="guided-answer__tree__desc">
+                                                                {tree.DESCRIPTION}
+                                                            </span>
                                                         )}
-                                                        {tree.COMPONENT && (
-                                                            <div className="guided-answer__tree__component">
-                                                                <span className="bottom-title">Component: </span>
-                                                                {tree.COMPONENT.split(',')[0].trim()}
-                                                            </div>
-                                                        )}
+                                                        <div
+                                                            className="component-and-product-container"
+                                                            style={{ marginTop: tree.DESCRIPTION ? '10px' : '0' }}>
+                                                            {tree.PRODUCT && (
+                                                                <div className="guided-answer__tree__product">
+                                                                    <span className="bottom-title">Product: </span>
+                                                                    {tree.PRODUCT.split(',')[0].trim()}
+                                                                </div>
+                                                            )}
+                                                            {tree.COMPONENT && (
+                                                                <div className="guided-answer__tree__component">
+                                                                    <span className="bottom-title">Component: </span>
+                                                                    {tree.COMPONENT.split(',')[0].trim()}
+                                                                </div>
+                                                            )}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </button>
+                                            </button>
+                                            <RelevantNode
+                                                title="This is just a header1"
+                                                description="This is ia description for a relevant node1"
+                                            />
+                                            <RelevantNode
+                                                title="This is just a header2"
+                                                description="This is ia description for a relevant node2"
+                                            />
+                                        </div>
                                     </li>
                                 );
                             })}
