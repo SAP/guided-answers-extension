@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.18.3
+
+### Patch Changes
+
+-   dd864f5: Fix for blocking search input
+
 ## 1.18.2
 
 ## 1.18.1
