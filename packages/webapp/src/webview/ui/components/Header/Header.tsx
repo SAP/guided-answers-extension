@@ -64,6 +64,8 @@ export function Header(props: {
                                 )}
                             </div>
                         </div>
+
+                        <div className="guided-answer__header__spacer"></div>
                     </FocusZone>
                 </>
             ) : (

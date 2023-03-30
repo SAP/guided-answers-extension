@@ -118,6 +118,9 @@ exports[`<Header /> Should render a Header component with the navigation buttons
           </div>
         </div>
       </div>
+      <div
+        class="guided-answer__header__spacer"
+      />
     </div>
   </div>
 </div>

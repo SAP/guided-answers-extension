@@ -8,9 +8,9 @@ h1 span {
 }
 
 .container {
-    width: 25%;
+    position: sticky;
+    top: 85px;
     margin-top: 10px;
-    position: fixed;
     overflow: visible;
 }
 
@@ -89,7 +89,7 @@ h1 span {
     text-align: left;
 }
 
-@media only screen and (max-width: 625px) {
+@media only screen and (max-width: 740px) {
     .timeline-content-title-large {
         display: none;
     }

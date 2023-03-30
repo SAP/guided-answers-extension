@@ -30,7 +30,7 @@ export function Middle(props: {
     return appState.guideFeedback === false ? (
         <NotSolvedMessage />
     ) : (
-        <div id="middle" className="column">
+        <div id="middle">
             <div className="body_container">
                 <header>{props.activeNode.TITLE}</header>
                 <div id="hr"></div>

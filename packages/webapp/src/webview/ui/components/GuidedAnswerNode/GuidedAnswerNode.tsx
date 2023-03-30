@@ -73,40 +73,6 @@ function hasEnhancements(htmlString: string): boolean {
 }
 
 /**
- * Return the navigation section.
- *
- * @returns - react elements for navigation
- */
-function getNavigationSection(): ReactElement {
-    return (
-        <div id="left" className="column">
-            <GuidedAnswerNavPath />
-        </div>
-    );
-}
-
-/**
- * Return the content for a Guided Answers node, which consists of the middle part, the actual Guided Answers text
- * and, if present, the right part with additional commands.
- *
- * @param activeNode - the active Guided Answers node
- * @returns - react element for content
- */
-function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
-    const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
-    if (activeNode.COMMANDS) {
-        return (
-            <div className="main-container">
-                {<Middle activeNode={activeNode} enhancedBody={enhancedBody} />}
-                {<Right activeNode={activeNode} />}
-            </div>
-        );
-    } else {
-        return <Middle activeNode={activeNode} enhancedBody={enhancedBody} />;
-    }
-}
-
-/**
  * Render the react elements to display a Guided Answers node.
  *
  * @returns - react element of Guided Answers node
@@ -114,12 +80,22 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
 export function GuidedAnswerNode(): ReactElement {
     const nodes = useSelector<AppState, GuidedAnswerNodeType[]>((state) => state.activeGuidedAnswerNode);
     const activeNode = nodes[nodes.length - 1];
-    return activeNode ? (
-        <section className="guided-answer__node__body">
-            {getNavigationSection()}
-            {getContent(activeNode)}
-        </section>
-    ) : (
-        <></>
-    );
+
+    if (activeNode) {
+        const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
+
+        return (
+            <section className="guided-answer__node__body">
+                <div className="guided-answer__node__sidebar">
+                    <GuidedAnswerNavPath />
+                </div>
+                <Middle activeNode={activeNode} enhancedBody={enhancedBody} />
+                <div className="guided-answer__node__sidebar">
+                    <Right activeNode={activeNode} />
+                </div>
+            </section>
+        );
+    } else {
+        return <></>;
+    }
 }

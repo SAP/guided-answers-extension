@@ -505,6 +505,9 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
             </div>
           </div>
         </div>
+        <div
+          class="guided-answer__header__spacer"
+        />
       </div>
     </div>
     <main
