@@ -90,6 +90,7 @@ export function App(): ReactElement {
                                         <div>
                                             <button
                                                 className="guided-answer__tree"
+                                                style={{ borderBottom: '1px solid var(--vscode-editorWidget-border)' }}
                                                 onClick={(): void => {
                                                     actions.setActiveTree(tree);
                                                     actions.selectNode(tree.FIRST_NODE_ID);
