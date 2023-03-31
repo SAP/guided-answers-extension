@@ -1,6 +1,8 @@
 .guided-answer {
     &__header {
         display: flex;
+        justify-content: space-between;
+        gap: 80px;
         width: 100%;
         z-index: 10;
         background-color: var(--vscode-editor-background);
@@ -58,15 +60,14 @@
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
         }
 
-        &__allAnswersButton {
-            width: 25%;
-            margin-right: 80px;
+        &__allAnswersButton,
+        &__spacer {
+            flex: 1 0 120px;
         }
         &__back-restart-buttons {
             display: flex;
             justify-content: space-between;
-            width: 75%;
-            max-width: 620px;
+            flex: 0 1 620px;
         }
         &__restart-feedback-buttons {
             display: flex;
@@ -145,9 +146,11 @@
     width: 62px;
 }
 
-@media only screen and (max-width: 625px) {
+@media only screen and (max-width: 740px) {
     .guided-answer {
         &__header {
+            gap: 40px;
+
             &__logoAndTitle {
                 width: 50%;
             }
@@ -171,14 +174,9 @@
             &__navButtons__content__text {
                 display: none;
             }
-            &__back-restart-buttons {
-                justify-content: space-between;
-                width: 100%;
-            }
-            &__allAnswersButton {
-                margin-right: 48px;
-                width: 28px;
-                margin-left: 6px;
+            &__allAnswersButton,
+            &__spacer {
+                flex: 0 0 34px;
             }
         }
     }

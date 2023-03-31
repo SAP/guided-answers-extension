@@ -6,11 +6,9 @@ exports[`<GuidedAnswerNode /> Should render a GuidedAnswerNode component 1`] = `
     class="guided-answer__node__body"
   >
     <div
-      class="column"
-      id="left"
+      class="guided-answer__node__sidebar"
     />
     <div
-      class="column"
       id="middle"
     >
       <div
@@ -68,6 +66,18 @@ exports[`<GuidedAnswerNode /> Should render a GuidedAnswerNode component 1`] = `
             Fiori Generator
           </button>
         </div>
+      </div>
+    </div>
+    <div
+      class="guided-answer__node__sidebar"
+    >
+      <div
+        class="guided-answer__node__commands"
+      >
+        <div
+          class="ms-FocusZone css-109"
+          data-focuszone-id="FocusZone2"
+        />
       </div>
     </div>
   </section>

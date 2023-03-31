@@ -3,7 +3,6 @@
 exports[`<Middle /> Should render a Middle component 1`] = `
 <div>
   <div
-    class="column"
     id="middle"
   >
     <div
@@ -66,7 +65,6 @@ exports[`<Middle /> Should render a Middle component 1`] = `
 exports[`<Middle /> Should render a Middle component with FeedbackDialogBox 1`] = `
 <div>
   <div
-    class="column"
     id="middle"
   >
     <div
@@ -226,7 +224,6 @@ exports[`<Middle /> Should render a Middle component with NotSolvedMessage 1`] =
 exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
 <div>
   <div
-    class="column"
     id="middle"
   >
     <div
