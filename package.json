@@ -10,7 +10,7 @@
         "@types/jest": "29.4.0",
         "@types/node": "16.18.14",
         "@typescript-eslint/eslint-plugin": "5.54.1",
-        "@typescript-eslint/parser": "5.54.1",
+        "@typescript-eslint/parser": "5.57.0",
         "changelog-parser": "3.0.1",
         "eslint": "8.35.0",
         "eslint-config-prettier": "8.7.0",
