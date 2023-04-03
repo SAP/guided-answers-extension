@@ -12,7 +12,7 @@ import './App.scss';
 import { initIcons, UILoader } from '@sap-ux/ui-components';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { SpinnerSize } from '@fluentui/react';
-import { RelevantNode } from '../RelevantNode';
+import { RelevantNodeList } from '../RelevantNodeList';
 
 initIcons();
 
@@ -123,13 +123,21 @@ export function App(): ReactElement {
                                                     </div>
                                                 </div>
                                             </button>
-                                            <RelevantNode
-                                                title="This is just a header1"
-                                                description="This is ia description for a relevant node1"
-                                            />
-                                            <RelevantNode
-                                                title="This is just a header2"
-                                                description="This is ia description for a relevant node2"
+                                            <RelevantNodeList
+                                                items={[
+                                                    {
+                                                        title: 'This is just a header1',
+                                                        description: 'This is ia description for a relevant node1'
+                                                    },
+                                                    {
+                                                        title: 'This is just a header1',
+                                                        description: 'This is ia description for a relevant node1'
+                                                    },
+                                                    {
+                                                        title: 'This is just a header3',
+                                                        description: 'This is ia description for a relevant node3'
+                                                    }
+                                                ]}
                                             />
                                         </div>
                                     </li>
