@@ -1,0 +1,26 @@
+.relevant-nodes-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.relevant-nodes-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.relevant-nodes-list li {
+    padding: 8px 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.relevant-nodes-list-toggle {
+    cursor: pointer;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #212529;
+    padding: 8px 16px;
+    text-align: center;
+    margin-top: 8px;
+    width: 100%;
+}
