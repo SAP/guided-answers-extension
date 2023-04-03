@@ -12,36 +12,34 @@ import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
  */
 export function Right(props: { activeNode: GuidedAnswerNodeType }): ReactElement {
     return (
-        <div id="right" className="column">
-            <div className="guided-answer__node__commands">
-                <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
-                    {props.activeNode.COMMANDS
-                        ? props.activeNode.COMMANDS.map((command) => (
-                              <div
-                                  className="guided-answer__node__command"
-                                  key={`command-${command.label}`}
-                                  title={command.label}
-                                  onClick={() => {
-                                      actions.executeCommand(command);
-                                  }}>
-                                  <div className="guided-answer__node__command__header">
-                                      <UIIcon
-                                          className="guided-answer__node__command__header__icon"
-                                          iconName={UiIcons.CreateMockData}
-                                      />
-                                      <div className="guided-answer__node__command__header__label">{command.label}</div>
-                                  </div>
-
-                                  <button
-                                      className="guided-answer__node__command__description"
-                                      id="guided-answer__node__command">
-                                      {command.description}
-                                  </button>
+        <div className="guided-answer__node__commands">
+            <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
+                {props.activeNode.COMMANDS
+                    ? props.activeNode.COMMANDS.map((command) => (
+                          <div
+                              className="guided-answer__node__command"
+                              key={`command-${command.label}`}
+                              title={command.label}
+                              onClick={() => {
+                                  actions.executeCommand(command);
+                              }}>
+                              <div className="guided-answer__node__command__header">
+                                  <UIIcon
+                                      className="guided-answer__node__command__header__icon"
+                                      iconName={UiIcons.CreateMockData}
+                                  />
+                                  <div className="guided-answer__node__command__header__label">{command.label}</div>
                               </div>
-                          ))
-                        : ''}
-                </FocusZone>
-            </div>
+
+                              <button
+                                  className="guided-answer__node__command__description"
+                                  id="guided-answer__node__command">
+                                  {command.description}
+                              </button>
+                          </div>
+                      ))
+                    : ''}
+            </FocusZone>
         </div>
     );
 }

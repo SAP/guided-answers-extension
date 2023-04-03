@@ -148,7 +148,11 @@ export function App(): ReactElement {
                 showNavButons={appState.activeGuidedAnswerNode.length !== 0}
                 showSearch={appState.activeGuidedAnswerNode.length === 0}
             />
-            <FiltersRibbon />
+
+            {appState.guidedAnswerTreeSearchResult.resultSize > 0 && appState.activeGuidedAnswerNode.length === 0 ? (
+                <FiltersRibbon />
+            ) : null}
+
             <main className="guided-answer__container" id="results-container">
                 {content}
             </main>

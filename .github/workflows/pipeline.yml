@@ -22,7 +22,7 @@ jobs:
             - name: Setup pnpm
               uses: pnpm/action-setup@v2.2.2
               with:
-                  version: 7.28.0
+                  version: 8.0.0
                   run_install: true
             - name: Cache pnpm modules
               uses: actions/cache@v3

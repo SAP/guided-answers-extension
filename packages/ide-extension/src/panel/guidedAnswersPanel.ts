@@ -38,6 +38,7 @@ export class GuidedAnswersPanel {
     public readonly panel: WebviewPanel;
     private guidedAnswerApi: GuidedAnswerAPI;
     private startOptions: StartOptions | undefined;
+    private loadingTimeout: NodeJS.Timeout | undefined;
     private readonly ide: IDE;
 
     /**
@@ -197,9 +198,17 @@ export class GuidedAnswersPanel {
     private async getTrees(queryOptions: GuidedAnswersQueryOptions): Promise<GuidedAnswerTreeSearchResult> {
         const showLoadingAnimation = queryOptions.paging?.offset === 0;
         if (showLoadingAnimation) {
-            this.postActionToWebview(updateLoading(true));
+            if (this.loadingTimeout) {
+                clearTimeout(this.loadingTimeout);
+            }
+            this.loadingTimeout = setTimeout(() => {
+                this.postActionToWebview(updateLoading(true));
+            }, 2000);
         }
         const trees = await this.guidedAnswerApi.getTrees(queryOptions);
+        if (this.loadingTimeout) {
+            clearTimeout(this.loadingTimeout);
+        }
         if (showLoadingAnimation) {
             this.postActionToWebview(updateLoading(false));
         }

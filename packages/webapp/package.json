@@ -1,7 +1,7 @@
 {
     "name": "@sap/guided-answers-extension-webapp",
     "description": "Guided Answers extension webview module",
-    "version": "1.18.2",
+    "version": "1.18.3",
     "author": "SAP SE",
     "main": "dist/index.js",
     "private": true,

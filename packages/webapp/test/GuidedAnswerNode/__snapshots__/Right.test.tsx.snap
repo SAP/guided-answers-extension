@@ -3,42 +3,37 @@
 exports[`<Right /> Should render a Right component 1`] = `
 <div>
   <div
-    class="column"
-    id="right"
+    class="guided-answer__node__commands"
   >
     <div
-      class="guided-answer__node__commands"
+      class="ms-FocusZone css-109"
+      data-focuszone-id="FocusZone1"
     >
       <div
-        class="ms-FocusZone css-109"
-        data-focuszone-id="FocusZone1"
+        class="guided-answer__node__command"
+        title="Label for command"
       >
         <div
-          class="guided-answer__node__command"
-          title="Label for command"
+          class="guided-answer__node__command__header"
         >
+          <i
+            aria-hidden="true"
+            class="ts-icon guided-answer__node__command__header__icon root-105"
+            data-icon-name="CreateMockData"
+          />
           <div
-            class="guided-answer__node__command__header"
+            class="guided-answer__node__command__header__label"
           >
-            <i
-              aria-hidden="true"
-              class="ts-icon guided-answer__node__command__header__icon root-105"
-              data-icon-name="CreateMockData"
-            />
-            <div
-              class="guided-answer__node__command__header__label"
-            >
-              Label for command
-            </div>
+            Label for command
           </div>
-          <button
-            class="guided-answer__node__command__description"
-            id="guided-answer__node__command"
-            tabindex="0"
-          >
-            Description for command
-          </button>
         </div>
+        <button
+          class="guided-answer__node__command__description"
+          id="guided-answer__node__command"
+          tabindex="0"
+        >
+          Description for command
+        </button>
       </div>
     </div>
   </div>
@@ -48,17 +43,12 @@ exports[`<Right /> Should render a Right component 1`] = `
 exports[`<Right /> Should render a Right component without command 1`] = `
 <div>
   <div
-    class="column"
-    id="right"
+    class="guided-answer__node__commands"
   >
     <div
-      class="guided-answer__node__commands"
-    >
-      <div
-        class="ms-FocusZone css-109"
-        data-focuszone-id="FocusZone0"
-      />
-    </div>
+      class="ms-FocusZone css-109"
+      data-focuszone-id="FocusZone0"
+    />
   </div>
 </div>
 `;
