@@ -1,5 +1,15 @@
 # sap-guided-answer-extension
 
+## 1.19.0
+
+### Minor Changes
+
+-   d75d8c4: update pnpm version
+
+### Patch Changes
+
+-   87d7299: fix(310): fix element responsivity
+
 ## 1.18.3
 
 ### Patch Changes

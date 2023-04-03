@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-types
 
+## 1.19.0
+
+### Minor Changes
+
+-   d75d8c4: update pnpm version
+
 ## 1.18.3
 
 ## 1.18.2

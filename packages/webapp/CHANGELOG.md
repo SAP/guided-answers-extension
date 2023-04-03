@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.19.0
+
+### Minor Changes
+
+-   d75d8c4: update pnpm version
+
+### Patch Changes
+
+-   87d7299: fix(310): fix element responsivity
+-   ac9f112: fix(442): fix filters showing app in wrong app states
+
 ## 1.18.3
 
 ## 1.18.2

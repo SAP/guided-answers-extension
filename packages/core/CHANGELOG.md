@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-core
 
+## 1.19.0
+
+### Minor Changes
+
+-   d75d8c4: update pnpm version
+
+### Patch Changes
+
+-   Updated dependencies [d75d8c4]
+    -   @sap/guided-answers-extension-types@1.19.0
+
 ## 1.18.3
 
 ### Patch Changes
