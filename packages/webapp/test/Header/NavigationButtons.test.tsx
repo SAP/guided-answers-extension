@@ -91,7 +91,7 @@ describe('<ShareButton />', () => {
         TITLE: 'SAP Fiori Tools'
     });
 
-    it('Should render a RestartButton component', () => {
+    it('Should render a ShareButton component', () => {
         const { container } = render(
             <Provider store={mockStore(createState(stateWithActiveAnswer))}>
                 <ShareButton />
@@ -108,5 +108,12 @@ describe('<ShareButton />', () => {
         const copyBtn = screen.getByTestId('copy-btn');
         fireEvent.click(copyBtn);
         expect(screen.getByTestId('sharable-link-copied')).toBeInTheDocument();
+
+        // Test link to website
+        const webLink = screen.getByTestId('web-link');
+        expect(webLink).toHaveAttribute(
+            'href',
+            'https://ga.support.sap.com/dtp/viewer/index.html#/tree/3046/actions/45995'
+        );
     });
 });

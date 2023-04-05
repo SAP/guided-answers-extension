@@ -94,10 +94,16 @@ export function ShareButton() {
     const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!?.TREE_ID);
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
     const [link, setLink] = useState('');
+    const [webLink, setWebLink] = useState('');
 
     useEffect(() => {
         setLink(
             `vscode://saposs.sap-guided-answers-extension#/tree/${treeId}/actions/${nodes
+                .map((n) => n.NODE_ID)
+                .join(':')}`
+        );
+        setWebLink(
+            `https://ga.support.sap.com/dtp/viewer/index.html#/tree/${treeId}/actions/${nodes
                 .map((n) => n.NODE_ID)
                 .join(':')}`
         );
@@ -160,6 +166,11 @@ export function ShareButton() {
                                     </FocusZone>
                                 </div>
                                 <p className="sharable-link__footer">{i18next.t('COPIED_TO_CLIPBOARD_DESC')}</p>
+                                <hr className="sharable-link__divider"></hr>
+                                <a className="sharable-link__web-link" id="web-link" href={webLink}>
+                                    <UIIcon iconName={UiIcons.Export} />
+                                    {i18next.t('VIEW_ON_WEBSITE')}
+                                </a>
                             </div>
                         </UICallout>
                     )}

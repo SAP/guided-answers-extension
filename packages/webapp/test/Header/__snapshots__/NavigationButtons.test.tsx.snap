@@ -99,7 +99,7 @@ exports[`<RestartButton /> Should render a RestartButton component 1`] = `
 </div>
 `;
 
-exports[`<ShareButton /> Should render a RestartButton component 1`] = `
+exports[`<ShareButton /> Should render a ShareButton component 1`] = `
 <div>
   <div>
     <button
