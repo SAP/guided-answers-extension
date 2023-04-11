@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { DirectionalHint } from '@fluentui/react';
 import { actions } from '../../../../state';
@@ -8,7 +8,7 @@ import { UIIcon, UiIcons, UICallout, UIIconButton, UITextInput } from '@sap-ux/u
 import { focusOnElement } from '../../utils';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { AppState } from '../../../../types';
-import { GuidedAnswerNode, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
+import type { GuidedAnswerNode, GuidedAnswerTreeId, ShareNodeLinks } from '@sap/guided-answers-extension-types';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
 /**
@@ -82,32 +82,14 @@ export function RestartButton() {
  */
 export function ShareButton() {
     const id = 'callout-test-id';
-    const [isCalloutVisible, setCalloutVisible] = useState(false);
     const [isCopiedVisible, setCopiedVisible] = useState(false);
-    const toggleCallout = (): void => {
-        setCopiedVisible(false);
-        setCalloutVisible(!isCalloutVisible);
-    };
     const toggleCopied = (): void => {
         setCopiedVisible(!isCopiedVisible);
     };
     const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!?.TREE_ID);
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
-    const [link, setLink] = useState('');
-    const [webLink, setWebLink] = useState('');
-
-    useEffect(() => {
-        setLink(
-            `vscode://saposs.sap-guided-answers-extension#/tree/${treeId}/actions/${nodes
-                .map((n) => n.NODE_ID)
-                .join(':')}`
-        );
-        setWebLink(
-            `https://ga.support.sap.com/dtp/viewer/index.html#/tree/${treeId}/actions/${nodes
-                .map((n) => n.NODE_ID)
-                .join(':')}`
-        );
-    }, [nodes, treeId]);
+    const nodeIdPath = nodes.map((n) => n.NODE_ID);
+    const shareNodeLinks = useSelector<AppState, ShareNodeLinks | undefined>((state) => state.activeNodeSharing);
 
     return (
         <>
@@ -118,16 +100,18 @@ export function ShareButton() {
                         id={id}
                         title={i18next.t('SHARE_THIS_GUIDE')}
                         iconProps={{ iconName: UiIcons.Link }}
-                        checked={isCalloutVisible}
-                        onClick={toggleCallout}></UIIconButton>
-                    {isCalloutVisible && (
+                        checked={!!shareNodeLinks}
+                        onClick={() => {
+                            actions.fillShareLinks({ treeId, nodeIdPath });
+                        }}></UIIconButton>
+                    {!!shareNodeLinks && (
                         <UICallout
                             role="alertdialog"
                             target={`#${id}`}
                             isBeakVisible={true}
                             beakWidth={10}
                             directionalHint={DirectionalHint.bottomCenter}
-                            onDismiss={() => toggleCallout()}
+                            onDismiss={() => actions.updateActiveNodeSharing(null)}
                             calloutWidth={230}
                             calloutMinWidth={230}
                             layerProps={{
@@ -141,7 +125,7 @@ export function ShareButton() {
                                         {!isCopiedVisible && (
                                             <UITextInput
                                                 disabled={true}
-                                                value={link}
+                                                value={shareNodeLinks.extensionLink}
                                                 className="sharable-link__input-field"
                                             />
                                         )}
@@ -155,7 +139,7 @@ export function ShareButton() {
                                             </div>
                                         )}
 
-                                        <CopyToClipboard text={link} onCopy={toggleCopied}>
+                                        <CopyToClipboard text={shareNodeLinks.extensionLink} onCopy={toggleCopied}>
                                             <button title={i18next.t('COPY_THIS_LINK')} id="copy-btn">
                                                 <UIIcon
                                                     className="sharable-link__copy-to-clipboard"
@@ -167,7 +151,7 @@ export function ShareButton() {
                                 </div>
                                 <p className="sharable-link__footer">{i18next.t('COPIED_TO_CLIPBOARD_DESC')}</p>
                                 <hr className="sharable-link__divider"></hr>
-                                <a className="sharable-link__web-link" id="web-link" href={webLink}>
+                                <a className="sharable-link__web-link" id="web-link" href={shareNodeLinks.webLink}>
                                     <UIIcon iconName={UiIcons.Export} />
                                     {i18next.t('VIEW_ON_WEBSITE')}
                                 </a>

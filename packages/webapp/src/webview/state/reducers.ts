@@ -8,6 +8,7 @@ import type {
     SetProductFilters,
     SetQueryValue,
     UpdateActiveNode,
+    UpdateActiveNodeSharing,
     UpdateGuidedAnswerTrees,
     UpdateLoading,
     SetPageSize,
@@ -67,6 +68,7 @@ type Reducers = {
 const reducers: Partial<Reducers> = {
     UPDATE_GUIDED_ANSWER_TREES: updateGuidedAnswerTreesReducer,
     UPDATE_ACTIVE_NODE: updateActiveNodeReducer,
+    UPDATE_ACTIVE_NODE_SHARING: updateActiveNodeSharingReducer,
     UPDATE_LOADING: updateLoadingReducer,
     GO_TO_PREVIOUS_PAGE: goToPreviousPageReducer,
     GO_TO_ALL_ANSWERS: goToAllAnswersReducer,
@@ -148,6 +150,23 @@ function updateActiveNodeReducer(newState: AppState, action: UpdateActiveNode): 
         );
     } else {
         newState.activeGuidedAnswerNode.push(action.payload);
+    }
+    return newState;
+}
+
+/**
+ * Update property 'activeNodeSharing' with links. If null is passed as payload, property will be
+ * removed.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function updateActiveNodeSharingReducer(newState: AppState, action: UpdateActiveNodeSharing): AppState {
+    if (action.payload === null) {
+        delete newState.activeNodeSharing;
+    } else {
+        newState.activeNodeSharing = action.payload;
     }
     return newState;
 }
