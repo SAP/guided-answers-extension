@@ -1,12 +1,11 @@
 import type { WebviewPanel } from 'vscode';
 import { Uri, ViewColumn, window, workspace } from 'vscode';
-import {
+import type {
     GuidedAnswerActions,
     GuidedAnswerAPI,
     GuidedAnswersQueryOptions,
     GuidedAnswerTreeSearchResult,
-    IDE,
-    setQueryValue
+    IDE
 } from '@sap/guided-answers-extension-types';
 import {
     SELECT_NODE,
@@ -21,6 +20,7 @@ import {
     SEARCH_TREE,
     WEBVIEW_READY,
     setActiveTree,
+    setQueryValue,
     getBetaFeatures,
     feedbackResponse
 } from '@sap/guided-answers-extension-types';
