@@ -1,11 +1,12 @@
 import type { WebviewPanel } from 'vscode';
 import { Uri, ViewColumn, window, workspace } from 'vscode';
-import type {
+import {
     GuidedAnswerActions,
     GuidedAnswerAPI,
     GuidedAnswersQueryOptions,
     GuidedAnswerTreeSearchResult,
-    IDE
+    IDE,
+    setQueryValue
 } from '@sap/guided-answers-extension-types';
 import {
     SELECT_NODE,
@@ -164,7 +165,7 @@ export class GuidedAnswersPanel {
         } catch (error: any) {
             logString(
                 `Error while processing start options, error was: '${error?.message}'. Start options: \n${
-                    typeof this.startOptions === 'object' ? JSON.stringify(this.startOptions) : this.startOptions
+                    typeof startOptions === 'object' ? JSON.stringify(startOptions) : startOptions
                 }`
             );
             return false;
@@ -256,6 +257,7 @@ export class GuidedAnswersPanel {
                             const startOptionsApplied = await this.processStartOptions(start);
                             this.postActionToWebview(updateLoading(false));
                             if (startOptionsApplied) {
+                                this.postActionToWebview(setQueryValue(''));
                                 return;
                             }
                         }
