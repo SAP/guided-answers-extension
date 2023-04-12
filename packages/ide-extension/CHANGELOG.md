@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.20.0
+
+### Minor Changes
+
+-   70e04dd: Clear query if URL was inserted that cause navigation
+
 ## 1.19.0
 
 ### Minor Changes
