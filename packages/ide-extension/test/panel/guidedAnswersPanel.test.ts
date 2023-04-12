@@ -12,7 +12,8 @@ import {
     WEBVIEW_READY,
     BETA_FEATURES,
     SEND_FEEDBACK_OUTCOME,
-    SEND_FEEDBACK_COMMENT
+    SEND_FEEDBACK_COMMENT,
+    SET_QUERY_VALUE
 } from '@sap/guided-answers-extension-types';
 import type {
     Command,
@@ -347,7 +348,7 @@ describe('GuidedAnswersPanel', () => {
         await onDidReceiveMessageMock({ type: SEARCH_TREE, payload: { query: '#/tree/12/actions/34:56' } });
 
         // Result check
-        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(5);
+        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(6);
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
             type: UPDATE_LOADING,
             payload: true
@@ -367,6 +368,10 @@ describe('GuidedAnswersPanel', () => {
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(5, {
             type: UPDATE_LOADING,
             payload: false
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(6, {
+            type: SET_QUERY_VALUE,
+            payload: ''
         });
     });
 
