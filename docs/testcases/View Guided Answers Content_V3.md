@@ -13,7 +13,8 @@
 [#230](https://github.com/SAP/guided-answers-extension/issues/230),
 [#245](https://github.com/SAP/guided-answers-extension/issues/245),
 [#137](https://github.com/SAP/guided-answers-extension/issues/137),
-[#311](https://github.com/SAP/guided-answers-extension/issues/311)
+[#311](https://github.com/SAP/guided-answers-extension/issues/311),
+[#426](https://github.com/SAP/guided-answers-extension/issues/426)
 
 Prerequisites: Guided Answers Extension is installed in either SAP Business Application Studio (SBAS) or Microsoft Visual Studio Code (VSCODE)
 
@@ -332,6 +333,9 @@ Gemeral Feedback pop up closes.
 11. Highlight the link in the text input field and press Ctrl+C / Command+C
 12. Click on Home icon
 13. Paste link in the search input field (See expected results 4)
+14. Navigate to another node in the tree
+15. Click on the link icon 
+16. Click on 'View on the GA website' link (See expected results 7)
 
 _VSCode environment_
 1. Paste link in a notepad
@@ -357,6 +361,8 @@ VSCode will be launched
 **Expected result 6**
 The Guided Answer extension will be open displaying the content that was shared 
 
+**Expected result 7**
+The Guided Answer tree opens in browser window, showing the node content and the node path.
 
 
 ### Displaying HTML and Node enhancements specific to VSCode or SAP Business Application Studio
