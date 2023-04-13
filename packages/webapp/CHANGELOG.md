@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.20.1
+
+### Patch Changes
+
+-   9cf0166: Fix a11y issues in buttons
+
 ## 1.20.0
 
 ## 1.19.0

@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.20.1
+
+### Patch Changes
+
+-   9cf0166: Fix a11y issues in buttons
+
 ## 1.20.0
 
 ### Minor Changes
