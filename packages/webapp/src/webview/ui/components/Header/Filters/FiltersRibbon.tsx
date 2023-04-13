@@ -48,7 +48,7 @@ export function FiltersRibbon() {
     return (
         <>
             {hasFilters && (
-                <div style={{ lineHeight: '18px' }}>
+                <div style={{ lineHeight: '18px', marginTop: '1px' }}>
                     Searching in {hasProductsFilter ? 'Product' : ''}
                     {((hasProductsFilter && !hasComponentsFilter) || hasBothFilters) && <strong>&nbsp;</strong>}
                     <strong>

@@ -109,6 +109,8 @@ export function ShareButton() {
                 <div>
                     <UIIconButton
                         className="guided-answer__header__navButtons guided-answer__header__navButtons__content"
+                        // Overriding outline from ui-components
+                        style={{ outline: 'none' }}
                         id={id}
                         title={i18next.t('SHARE_THIS_GUIDE')}
                         iconProps={{ iconName: UiIcons.Link }}

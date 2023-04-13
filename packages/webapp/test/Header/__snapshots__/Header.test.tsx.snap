@@ -100,6 +100,7 @@ exports[`<Header /> Should render a Header component with the navigation buttons
               class="ms-Button ms-Button--icon guided-answer__header__navButtons guided-answer__header__navButtons__content root-131"
               data-is-focusable="true"
               id="callout-test-id"
+              style="outline: none;"
               tabindex="-1"
               title="Share this guide"
               type="button"

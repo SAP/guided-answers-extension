@@ -106,6 +106,7 @@ exports[`<ShareButton /> Should render a RestartButton component 1`] = `
       class="ms-Button ms-Button--icon guided-answer__header__navButtons guided-answer__header__navButtons__content root-109"
       data-is-focusable="true"
       id="callout-test-id"
+      style="outline: none;"
       title="Share this guide"
       type="button"
     >
