@@ -14,7 +14,10 @@
 [#245](https://github.com/SAP/guided-answers-extension/issues/245),
 [#137](https://github.com/SAP/guided-answers-extension/issues/137),
 [#311](https://github.com/SAP/guided-answers-extension/issues/311),
+[#258](https://github.com/SAP/guided-answers-extension/issues/258),
+[#85](https://github.com/SAP/guided-answers-extension/issues/85),
 [#426](https://github.com/SAP/guided-answers-extension/issues/426)
+
 
 Prerequisites: Guided Answers Extension is installed in either SAP Business Application Studio (SBAS) or Microsoft Visual Studio Code (VSCODE)
 
@@ -22,19 +25,42 @@ Prerequisites: Guided Answers Extension is installed in either SAP Business Appl
 
 ### Open Guided Answers in VSCODE
 
-1. Open VSCode
-1. Open the 'Command Palette'
-2. Enter 'SAP: Open Guided Answers'
-3. Select 'SAP: Open Guided Answers' ( See expected result 1 ) 
-4. Make view port smaller ( See expected results 2 ) 
+2. Open the 'Command Palette'
+3. Enter 'SAP: Open Guided Answers'
+4. Select 'SAP: Open Guided Answers' ( See expected result 1 ) 
+5. Make view port smaller ( See expected results 2 ) 
+6. Open the 'Command Palette'
+7. Enter 'SAP: Open Guided Answers'
+8. Select 'SAP: Open Guided Answers' ( See expected result 4 ) 
+9. Select Code in VSCode Nav bar
+10. Select Settings in drop down menu
+11. Click Settings in menu 
+12. Enter 'Guided Answers' in the setting search input field 
+13. Check/Enable 'SAP>UX>Guided Answer:Open in New Tab 
+14. Close Settings
+15. Open the 'Command Palette'
+16. Enter 'SAP: Open Guided Answers'
+17. Select 'SAP: Open Guided Answers' ( See expected result 5 ) 
 
 ### Open Guided Answers in SBAS
 
-1. Open SAP Business Application Studio
-1. Open the 'Command Palette'
-2. Enter 'SAP: Open Guided Answers'
-3. Select 'SAP: Open Guided Answers' ( See expected result 3 ) 
-4. Make view port smaller ( See expected results 2 ) 
+2. Open the 'Command Palette'
+3. Enter 'SAP: Open Guided Answers'
+4. Select 'SAP: Open Guided Answers' ( See expected result 3 ) 
+5. Make view port smaller ( See expected results 2 ) 
+6. Open the 'Command Palette'
+7. Enter 'SAP: Open Guided Answers'
+8. Select 'SAP: Open Guided Answers' ( See expected result 4 ) 
+9. Click on menu icon in side tool bar
+10. Select File
+11. Select Preferences
+12. Click Settings in menu 
+13. Enter 'Guided Answers' in the setting search input field 
+14. Check/Enable 'SAP>UX>Guided Answer:Open in New Tab 
+15. Close Settings
+16. Open the 'Command Palette'
+17. Enter 'SAP: Open Guided Answers'
+18. Select 'SAP: Open Guided Answers' ( See expected result 5 ) 
 
 
 **Expected Results 1** 
@@ -59,6 +85,13 @@ Guided Answers extension opens in view port
     c. A grid icon for the Product filter
     d. A id icon for the Component filter . Id icon is highlighted in blue as Component filter is applied by default.
 
+
+**Expected Results 4** 
+
+If the Guided Answers extension is already open in the existing view port is given focus. A new instance of the GA extension is not opened the existing instance is re used. 
+
+**Expected Results 5**
+Guided Answers extension open in a new view port. Two instances of the Guided Answers Extension are opened.
 
 
 
@@ -453,3 +486,47 @@ The command palette open showing two options Check Destination, Gathere Developm
  
 **Expected result 7**
 The "Fiori: Open Environment Check" does not appear as a clickable link as Application Modeler is not installed in this dev space and Environment Check node enhancement doesn't appear . 
+
+
+### GA API Exception Handling
+
+_VSCODE_
+1. Open the 'Command Palette'
+2. Enter 'SAP: Open Guided Answers'
+3. Select 'SAP: Open Guided Answers' 
+4. Enter Fiori Tools in Search input field ( See expected result 1 ) 
+5. Select Code in VSCode Nav bar
+6. Select Settings in drop down menu
+7. Click Settings in menu 
+8. Enter 'Guided Answers' in the setting search input field 
+9. Enter 'https://ga.support.sap.comXXX' in the SAP Guided Answers API host input field
+10. Close settings
+11. Open the 'Command Palette'
+12. Enter 'SAP: Open Guided Answers'
+13. Select 'SAP: Open Guided Answers' 
+14. Enter Fiori Tools in Search input field ( See expected result 2 ) 
+
+_SBAS_
+1. Open the 'Command Palette'
+2. Enter 'SAP: Open Guided Answers'
+3. Select 'SAP: Open Guided Answers' 
+4. Enter Fiori Tools in Search input field ( See expected result 1 ) 
+9. Click on menu icon in side tool bar
+10. Select File
+11. Select Preferences
+12. Click Settings in menu 
+13. Enter 'Guided Answers' in the setting search input field 
+7. Click Settings in menu 
+8. Enter 'Guided Answers' in the setting search input field 
+9. Enter 'https://ga.support.sap.comXXX' in the SAP Guided Answers API host input field
+10. Close Settings
+11. Open the 'Command Palette'
+12. Enter 'SAP: Open Guided Answers'
+13. Select 'SAP: Open Guided Answers' 
+14. Enter Fiori Tools in Search input field ( See expected result 2 ) 
+
+**Expected result 1**
+List of Guided Answers are returned
+
+**Expected result 2**
+Message 'Guided Answers is currently unavailable - Please Try Again later ' is displayed along with a search icon with a sad face.
