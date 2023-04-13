@@ -3,7 +3,7 @@
 exports[`<FiltersRibbon /> Should render a FiltersRibbon component 1`] = `
 <div>
   <div
-    style="line-height: 18px;"
+    style="line-height: 18px; margin-top: 1px;"
   >
     Searching in 
     Product
