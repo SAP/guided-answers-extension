@@ -15,7 +15,7 @@
 [#137](https://github.com/SAP/guided-answers-extension/issues/137),
 [#311](https://github.com/SAP/guided-answers-extension/issues/311),
 [#258](https://github.com/SAP/guided-answers-extension/issues/258),
-[#85](https://github.com/SAP/guided-answers-extension/issues/85)
+[#85](https://github.com/SAP/guided-answers-extension/issues/85),
 [#426](https://github.com/SAP/guided-answers-extension/issues/426)
 
 
