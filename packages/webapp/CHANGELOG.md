@@ -1,5 +1,7 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.20.0
+
 ## 1.19.0
 
 ### Minor Changes
