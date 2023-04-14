@@ -1,4 +1,4 @@
-import { extractLinkInfo, generateExtensionLink } from '../../src/links/link-info';
+import { extractLinkInfo, generateExtensionLink, generateWebLink } from '../../src/links/link-info';
 
 describe('Test extractLinkInfo()', () => {
     test('Valid link with information', () => {
@@ -27,5 +27,11 @@ describe('Test generateExtensionLink()', () => {
         expect(generateExtensionLink({ treeId: 123, nodeIdPath: [4, 5, 6, 7] })).toEqual(
             'vscode://saposs.sap-guided-answers-extension#/tree/123/actions/4:5:6:7'
         );
+    });
+});
+
+describe('Test generateWebLink()', () => {
+    test('Generate SAP web link with tree id', () => {
+        expect(generateWebLink('host//', { treeId: 123 })).toEqual('host///dtp/viewer/index.html#/tree/123');
     });
 });

@@ -1,6 +1,8 @@
 export {
+    fillShareLinks,
     updateGuidedAnswerTrees,
     updateActiveNode,
+    updateActiveNodeSharing,
     selectNode,
     goToPreviousPage,
     goToAllAnswers,

@@ -20,7 +20,8 @@ jest.mock('../../src/webview/state', () => {
         actions: {
             goToAllAnswers: jest.fn(),
             goToPreviousPage: jest.fn(),
-            restartAnswer: jest.fn()
+            restartAnswer: jest.fn(),
+            fillShareLinks: jest.fn()
         }
     };
 });
@@ -90,6 +91,10 @@ describe('<ShareButton />', () => {
         QUESTION: 'I have a problem with',
         TITLE: 'SAP Fiori Tools'
     });
+    stateWithActiveAnswer.activeNodeSharing = {
+        extensionLink: 'extension://link',
+        webLink: 'web://link'
+    };
 
     it('Should render a ShareButton component', () => {
         const { container } = render(
@@ -111,9 +116,6 @@ describe('<ShareButton />', () => {
 
         // Test link to website
         const webLink = screen.getByTestId('web-link');
-        expect(webLink).toHaveAttribute(
-            'href',
-            'https://ga.support.sap.com/dtp/viewer/index.html#/tree/3046/actions/45995'
-        );
+        expect(webLink).toHaveAttribute('href', 'web://link');
     });
 });
