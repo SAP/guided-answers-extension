@@ -53,6 +53,7 @@ const mockedInitState = {
         productFilters: [],
         trees: []
     },
+    activeNodeSharing: null,
     activeGuidedAnswerNode: [],
     betaFeatures: false,
     feedbackResponse: false,
@@ -145,6 +146,7 @@ describe('Test functions in reducers', () => {
             searchResultCount: -1,
             guidedAnswerTreeSearchResult: mockedGuidedAnswerTreeSearchResult,
             activeGuidedAnswerNode: [],
+            activeNodeSharing: null,
             betaFeatures: false,
             feedbackResponse: false,
             feedbackStatus: false,
@@ -188,6 +190,7 @@ describe('Test functions in reducers', () => {
                 trees: []
             },
             activeGuidedAnswerNode: mockedActiveGuidedAnswerNode,
+            activeNodeSharing: null,
             feedbackResponse: false,
             feedbackStatus: false,
             guideFeedback: null,
@@ -216,6 +219,7 @@ describe('Test functions in reducers', () => {
                 trees: []
             },
             activeGuidedAnswerNode: mockedActiveGuidedAnswerNode,
+            activeNodeSharing: null,
             betaFeatures: false,
             feedbackResponse: false,
             feedbackStatus: false,
