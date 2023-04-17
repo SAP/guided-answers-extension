@@ -38,7 +38,7 @@ describe('<App />', () => {
 
     it('Match snapshot of component <App/> in initial mode', () => {
         const initialState = getInitialState();
-        initialState.loading = false;
+        initialState.networkStatus = 'OK';
 
         const { container } = render(
             <Provider store={mockStore(createState(initialState))}>
@@ -50,7 +50,7 @@ describe('<App />', () => {
 
     it('Match snapshot of component <App/> with results list', () => {
         const initialState = getInitialState();
-        initialState.loading = false;
+        initialState.networkStatus = 'OK';
         initialState.guidedAnswerTreeSearchResult = {
             trees: [treeMock],
             resultSize: 1,

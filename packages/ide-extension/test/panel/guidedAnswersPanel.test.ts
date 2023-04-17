@@ -8,7 +8,7 @@ import {
     SET_ACTIVE_TREE,
     UPDATE_ACTIVE_NODE,
     UPDATE_GUIDED_ANSWER_TREES,
-    UPDATE_LOADING,
+    UPDATE_NETWORK_STATUS,
     WEBVIEW_READY,
     BETA_FEATURES,
     SEND_FEEDBACK_OUTCOME,
@@ -64,10 +64,6 @@ const getApiMock = (firstNodeId?: number): GuidedAnswerAPI =>
         sendFeedbackOutcome: jest.fn(),
         sendFeedbackComment: jest.fn()
     } as unknown as GuidedAnswerAPI);
-
-const delay = async (ms: number) => {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-};
 
 describe('GuidedAnswersPanel', () => {
     let loggerMock: jest.SpyInstance;
@@ -168,7 +164,7 @@ describe('GuidedAnswersPanel', () => {
             [{ type: SET_ACTIVE_TREE, payload: { TREE_ID: 1, FIRST_NODE_ID: 1234 } }],
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 1234, TITLE: 'Node 1234' } }],
             [{ type: BETA_FEATURES, payload: false }],
-            [{ type: UPDATE_LOADING, payload: false }]
+            [{ type: UPDATE_NETWORK_STATUS, payload: 'OK' }]
         ]);
     });
 
@@ -194,7 +190,7 @@ describe('GuidedAnswersPanel', () => {
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 200 } }],
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 300 } }],
             [{ type: BETA_FEATURES, payload: false }],
-            [{ type: UPDATE_LOADING, payload: false }]
+            [{ type: UPDATE_NETWORK_STATUS, payload: 'OK' }]
         ]);
     });
 
@@ -219,7 +215,7 @@ describe('GuidedAnswersPanel', () => {
         // Result check
         const errorLog = loggerMock.mock.calls.find((e) => e[0].includes('MOCKED_API_ERROR'))[0];
         expect(errorLog).toContain('treeId');
-        expect(webViewPanelMock.webview.postMessage).toBeCalledWith({ type: UPDATE_LOADING, payload: false });
+        expect(webViewPanelMock.webview.postMessage).toBeCalledWith({ type: UPDATE_NETWORK_STATUS, payload: 'OK' });
     });
 
     test('GuidedAnswersPanel communication WEBVIEW_READY, invalid start params', async () => {
@@ -237,7 +233,7 @@ describe('GuidedAnswersPanel', () => {
 
         // Result check
         expect(loggerMock.mock.calls.find((e) => e[0].includes('INVALID_PARAM'))[0]).toBeDefined();
-        expect(webViewPanelMock.webview.postMessage).toBeCalledWith({ type: UPDATE_LOADING, payload: false });
+        expect(webViewPanelMock.webview.postMessage).toBeCalledWith({ type: UPDATE_NETWORK_STATUS, payload: 'OK' });
     });
 
     test('GuidedAnswersPanel communication SELECT_NODE', async () => {
@@ -350,8 +346,8 @@ describe('GuidedAnswersPanel', () => {
         // Result check
         expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(6);
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
-            type: UPDATE_LOADING,
-            payload: true
+            type: UPDATE_NETWORK_STATUS,
+            payload: 'LOADING'
         });
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {
             type: SET_ACTIVE_TREE,
@@ -366,8 +362,8 @@ describe('GuidedAnswersPanel', () => {
             payload: { NODE_ID: 56 }
         });
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(5, {
-            type: UPDATE_LOADING,
-            payload: false
+            type: UPDATE_NETWORK_STATUS,
+            payload: 'OK'
         });
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(6, {
             type: SET_QUERY_VALUE,
@@ -375,48 +371,7 @@ describe('GuidedAnswersPanel', () => {
         });
     });
 
-    test('GuidedAnswersPanel communication 2 SEARCH_TREE events with short waiting paging offset = 0, should not trigger animation', async () => {
-        // Mock setup
-        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
-        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
-            onDidReceiveMessageMock = callback;
-        });
-        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
-        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
-
-        // Test execution
-        const panel = new GuidedAnswersPanel();
-        panel.show();
-        await onDidReceiveMessageMock({
-            type: SEARCH_TREE,
-            payload: { query: 'any', paging: { responseSize: 5, offset: 0 } }
-        });
-        await onDidReceiveMessageMock({
-            type: SEARCH_TREE,
-            payload: { query: 'any', paging: { responseSize: 5, offset: 0 } }
-        });
-
-        // Result check
-        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(4);
-        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
-            type: UPDATE_LOADING,
-            payload: false
-        });
-        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {
-            type: 'UPDATE_GUIDED_ANSWER_TREES',
-            payload: [{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]
-        });
-        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(3, {
-            type: UPDATE_LOADING,
-            payload: false
-        });
-        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(4, {
-            type: 'UPDATE_GUIDED_ANSWER_TREES',
-            payload: [{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]
-        });
-    });
-
-    test('GuidedAnswersPanel communication SEARCH_TREE with long waiting time and paging offset = 0, should trigger animation', async () => {
+    test('GuidedAnswersPanel communication SEARCH_TREE with paging offset = 0, should trigger animation', async () => {
         // Mock setup
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
         const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
@@ -424,7 +379,6 @@ describe('GuidedAnswersPanel', () => {
         });
         const apiMock = getApiMock();
         apiMock.getTrees = async () => {
-            await delay(2100);
             return Promise.resolve([
                 { TREEE_ID: 1 },
                 { TREEE_ID: 2 },
@@ -445,16 +399,49 @@ describe('GuidedAnswersPanel', () => {
         // Result check
         expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(3);
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
-            type: UPDATE_LOADING,
-            payload: true
+            type: UPDATE_NETWORK_STATUS,
+            payload: 'LOADING'
         });
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {
-            type: UPDATE_LOADING,
-            payload: false
+            type: UPDATE_NETWORK_STATUS,
+            payload: 'OK'
         });
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(3, {
             type: 'UPDATE_GUIDED_ANSWER_TREES',
             payload: [{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]
+        });
+    });
+
+    test('GuidedAnswersPanel communication SEARCH_TREE with paging offset = 0, should trigger animation', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        const apiMock = getApiMock();
+        apiMock.getTrees = async () => {
+            return Promise.reject();
+        };
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockReturnValue(apiMock);
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({
+            type: SEARCH_TREE,
+            payload: { query: 'any', paging: { responseSize: 5, offset: 0 } }
+        });
+
+        // Result check
+        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(2);
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
+            type: UPDATE_NETWORK_STATUS,
+            payload: 'LOADING'
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {
+            type: UPDATE_NETWORK_STATUS,
+            payload: 'ERROR'
         });
     });
 
@@ -476,8 +463,8 @@ describe('GuidedAnswersPanel', () => {
         });
 
         // Result check
-        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(1);
-        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
+        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(2);
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {
             type: 'UPDATE_GUIDED_ANSWER_TREES',
             payload: [{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]
         });

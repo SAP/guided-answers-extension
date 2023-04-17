@@ -3,7 +3,7 @@ import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import {
     UPDATE_GUIDED_ANSWER_TREES,
     UPDATE_ACTIVE_NODE,
-    UPDATE_LOADING,
+    UPDATE_NETWORK_STATUS,
     GO_TO_PREVIOUS_PAGE,
     GO_TO_ALL_ANSWERS,
     RESTART_ANSWER,
@@ -44,7 +44,7 @@ const mockedPayload = {
 };
 
 const mockedInitState = {
-    loading: true,
+    networkStatus: 'LOADING',
     query: '',
     searchResultCount: -1,
     guidedAnswerTreeSearchResult: {
@@ -140,7 +140,7 @@ describe('Test functions in reducers', () => {
         });
 
         const expected = {
-            loading: true,
+            networkStatus: 'LOADING',
             query: '',
             searchResultCount: -1,
             guidedAnswerTreeSearchResult: mockedGuidedAnswerTreeSearchResult,
@@ -178,7 +178,7 @@ describe('Test functions in reducers', () => {
         });
 
         expect(activeNode).toEqual({
-            loading: true,
+            networkStatus: 'LOADING',
             query: '',
             searchResultCount: -1,
             guidedAnswerTreeSearchResult: {
@@ -206,7 +206,7 @@ describe('Test functions in reducers', () => {
         });
 
         expect(hasActiveNode).toEqual({
-            loading: true,
+            networkStatus: 'LOADING',
             query: '',
             searchResultCount: -1,
             guidedAnswerTreeSearchResult: {
@@ -226,12 +226,12 @@ describe('Test functions in reducers', () => {
         });
     });
 
-    it('Should return loading state', () => {
-        const loadingState = reducer(getInitialState(), {
-            type: UPDATE_LOADING,
-            payload: true
+    it('Should return network status state', () => {
+        const networkStatusState = reducer(getInitialState(), {
+            type: UPDATE_NETWORK_STATUS,
+            payload: 'LOADING'
         });
-        expect(loadingState.loading).toBe(true);
+        expect(networkStatusState.networkStatus).toBe('LOADING');
     });
 
     it('Should go to previous page', () => {

@@ -9,12 +9,13 @@ import type {
     RestartAnswer,
     SearchTree,
     SelectNode,
+    NetworkStatus,
     SetActiveTree,
     SetQueryValue,
     UpdateGuidedAnswerTrees,
     UpdateActiveNode,
     WebviewReady,
-    UpdateLoading,
+    UpdateNetworkStatus,
     GuidedAnswerTreeSearchResult,
     GuidedAnswersQueryOptions,
     BetaFeatures,
@@ -42,7 +43,7 @@ import {
     SET_QUERY_VALUE,
     UPDATE_GUIDED_ANSWER_TREES,
     UPDATE_ACTIVE_NODE,
-    UPDATE_LOADING,
+    UPDATE_NETWORK_STATUS,
     WEBVIEW_READY,
     BETA_FEATURES,
     GUIDE_FEEDBACK,
@@ -69,8 +70,8 @@ export const updateActiveNode = (payload: GuidedAnswerNode): UpdateActiveNode =>
     payload
 });
 
-export const updateLoading = (payload: boolean): UpdateLoading => ({
-    type: UPDATE_LOADING,
+export const updateNetworkStatus = (payload: NetworkStatus): UpdateNetworkStatus => ({
+    type: UPDATE_NETWORK_STATUS,
     payload
 });
 

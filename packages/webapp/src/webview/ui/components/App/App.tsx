@@ -5,13 +5,14 @@ import { AppState } from '../../../types';
 import { actions } from '../../../state';
 import { GuidedAnswerNode } from '../GuidedAnswerNode';
 import { Header } from '../Header';
-import { NoAnswersFound } from '../NoAnswersFound';
+import { ErrorScreen } from '../ErrorScreen';
 import { FiltersRibbon } from '../Header/Filters';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './App.scss';
 import { initIcons, UILoader } from '@sap-ux/ui-components';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { SpinnerSize } from '@fluentui/react';
+import i18next from 'i18next';
 
 initIcons();
 
@@ -64,14 +65,16 @@ export function App(): ReactElement {
     }
 
     let content;
-    if (appState.loading) {
+    if (appState.networkStatus === 'LOADING') {
         content = <UILoader id="loading-indicator" size={SpinnerSize.large} />;
+    } else if (appState.networkStatus === 'ERROR') {
+        content = <ErrorScreen title={i18next.t('GUIDED_ANSWERS_UNAVAILABLE')} subtitle={i18next.t('TRY_LATER')} />;
     } else if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
     } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
         content =
             appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (
-                <NoAnswersFound />
+                <ErrorScreen title={i18next.t('NO_ANSWERS_FOUND')} subtitle={i18next.t('PLEASE_MODIFY_SEARCH')} />
             ) : (
                 <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
                     <ul className="striped-list" role="listbox">

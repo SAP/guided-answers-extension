@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<NoAnswersFound /> Should render a NoAnswersFound component 1`] = `
+exports[`<ErrorScreen /> Should render a ErrorScreen component 1`] = `
 <div>
   <div
     class="error-screen"
@@ -10,14 +10,10 @@ exports[`<NoAnswersFound /> Should render a NoAnswersFound component 1`] = `
     >
       <h1
         class="error-screen__object__title"
-      >
-        No answers found
-      </h1>
+      />
       <h2
         class="error-screen__object__subtitle"
-      >
-        Please modfiy search
-      </h2>
+      />
       <span
         class="error-screen__object__logo"
       >

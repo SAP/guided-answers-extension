@@ -14,7 +14,7 @@ import {
     SEND_FEEDBACK_COMMENT,
     updateGuidedAnswerTrees,
     updateActiveNode,
-    updateLoading,
+    updateNetworkStatus,
     EXECUTE_COMMAND,
     searchTree,
     SEARCH_TREE,
@@ -39,7 +39,6 @@ export class GuidedAnswersPanel {
     public readonly panel: WebviewPanel;
     private guidedAnswerApi: GuidedAnswerAPI;
     private startOptions: StartOptions | undefined;
-    private loadingTimeout: NodeJS.Timeout | undefined;
     private readonly ide: IDE;
 
     /**
@@ -197,23 +196,18 @@ export class GuidedAnswersPanel {
      * @returns - search result including trees
      */
     private async getTrees(queryOptions: GuidedAnswersQueryOptions): Promise<GuidedAnswerTreeSearchResult> {
-        const showLoadingAnimation = queryOptions.paging?.offset === 0;
-        if (showLoadingAnimation) {
-            if (this.loadingTimeout) {
-                clearTimeout(this.loadingTimeout);
-            }
-            this.loadingTimeout = setTimeout(() => {
-                this.postActionToWebview(updateLoading(true));
-            }, 2000);
+        const showLoader = queryOptions.paging?.offset === 0;
+        if (showLoader) {
+            this.postActionToWebview(updateNetworkStatus('LOADING'));
         }
-        const trees = await this.guidedAnswerApi.getTrees(queryOptions);
-        if (this.loadingTimeout) {
-            clearTimeout(this.loadingTimeout);
+        try {
+            const trees = await this.guidedAnswerApi.getTrees(queryOptions);
+            this.postActionToWebview(updateNetworkStatus('OK'));
+            return trees;
+        } catch (e) {
+            this.postActionToWebview(updateNetworkStatus('ERROR'));
+            throw e;
         }
-        if (showLoadingAnimation) {
-            this.postActionToWebview(updateLoading(false));
-        }
-        return trees;
     }
 
     /**
@@ -253,9 +247,9 @@ export class GuidedAnswersPanel {
                         const start = extractLinkInfo(action.payload.query);
                         if (start) {
                             logString(`Found possible startup options: ${JSON.stringify(start)}`);
-                            this.postActionToWebview(updateLoading(true));
+                            this.postActionToWebview(updateNetworkStatus('LOADING'));
                             const startOptionsApplied = await this.processStartOptions(start);
-                            this.postActionToWebview(updateLoading(false));
+                            this.postActionToWebview(updateNetworkStatus('OK'));
                             if (startOptionsApplied) {
                                 this.postActionToWebview(setQueryValue(''));
                                 return;
@@ -275,7 +269,7 @@ export class GuidedAnswersPanel {
                             (workspace.getConfiguration('sap.ux.guidedAnswer').get('betaFeatures') as boolean) || false
                         )
                     );
-                    this.postActionToWebview(updateLoading(false));
+                    this.postActionToWebview(updateNetworkStatus('OK'));
                     break;
                 }
                 case SEND_TELEMETRY: {

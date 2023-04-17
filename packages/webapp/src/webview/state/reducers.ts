@@ -9,7 +9,7 @@ import type {
     SetQueryValue,
     UpdateActiveNode,
     UpdateGuidedAnswerTrees,
-    UpdateLoading,
+    UpdateNetworkStatus,
     SetPageSize,
     FeedbackResponse,
     FeedbackStatus
@@ -25,7 +25,7 @@ import type { AppState } from '../types';
  */
 export function getInitialState(): AppState {
     return {
-        loading: true,
+        networkStatus: 'LOADING',
         query: '',
         guidedAnswerTreeSearchResult: {
             resultSize: -1,
@@ -67,7 +67,7 @@ type Reducers = {
 const reducers: Partial<Reducers> = {
     UPDATE_GUIDED_ANSWER_TREES: updateGuidedAnswerTreesReducer,
     UPDATE_ACTIVE_NODE: updateActiveNodeReducer,
-    UPDATE_LOADING: updateLoadingReducer,
+    UPDATE_NETWORK_STATUS: updateNetworkStatusReducer,
     GO_TO_PREVIOUS_PAGE: goToPreviousPageReducer,
     GO_TO_ALL_ANSWERS: goToAllAnswersReducer,
     RESTART_ANSWER: restartAnswerReducer,
@@ -153,14 +153,14 @@ function updateActiveNodeReducer(newState: AppState, action: UpdateActiveNode): 
 }
 
 /**
- * Update the loading indicator.
+ * Update the network status.
  *
  * @param newState - already cloned state that is modified and returned
  * @param action - action with payload
  * @returns new state with changes
  */
-function updateLoadingReducer(newState: AppState, action: UpdateLoading): AppState {
-    newState.loading = action.payload;
+function updateNetworkStatusReducer(newState: AppState, action: UpdateNetworkStatus): AppState {
+    newState.networkStatus = action.payload;
     return newState;
 }
 
