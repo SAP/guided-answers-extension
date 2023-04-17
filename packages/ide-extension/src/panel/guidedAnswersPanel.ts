@@ -8,6 +8,7 @@ import type {
     IDE
 } from '@sap/guided-answers-extension-types';
 import {
+    FILL_SHARE_LINKS,
     SELECT_NODE,
     SEND_TELEMETRY,
     SEND_FEEDBACK_OUTCOME,
@@ -15,6 +16,7 @@ import {
     updateGuidedAnswerTrees,
     updateActiveNode,
     updateNetworkStatus,
+    updateActiveNodeSharing,
     EXECUTE_COMMAND,
     searchTree,
     SEARCH_TREE,
@@ -30,7 +32,7 @@ import { getHtmlEnhancements, getInstalledExtensionIds, handleCommand } from '..
 import { logString } from '../logger/logger';
 import type { Options, StartOptions } from '../types';
 import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
-import { extractLinkInfo } from '../links/link-info';
+import { extractLinkInfo, generateExtensionLink, generateWebLink } from '../links/link-info';
 
 /**
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
@@ -239,6 +241,17 @@ export class GuidedAnswersPanel {
                 }
                 case EXECUTE_COMMAND: {
                     handleCommand(action.payload);
+                    break;
+                }
+                case FILL_SHARE_LINKS: {
+                    const startOptions: StartOptions = {
+                        treeId: action.payload.treeId,
+                        nodeIdPath: action.payload.nodeIdPath
+                    };
+                    const { host: apiHost } = this.guidedAnswerApi.getApiInfo();
+                    const extensionLink = generateExtensionLink(startOptions);
+                    const webLink = generateWebLink(apiHost, startOptions);
+                    this.postActionToWebview(updateActiveNodeSharing({ extensionLink, webLink }));
                     break;
                 }
                 case SEARCH_TREE: {

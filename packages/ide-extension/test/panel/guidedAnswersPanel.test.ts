@@ -13,7 +13,8 @@ import {
     BETA_FEATURES,
     SEND_FEEDBACK_OUTCOME,
     SEND_FEEDBACK_COMMENT,
-    SET_QUERY_VALUE
+    SET_QUERY_VALUE,
+    FILL_SHARE_LINKS
 } from '@sap/guided-answers-extension-types';
 import type {
     Command,
@@ -511,6 +512,28 @@ describe('GuidedAnswersPanel', () => {
         // Result check
         expect(guidedAnswerApiSpy).toBeCalled();
         expect(localApiMock.sendFeedbackComment).toBeCalledWith({ nodeId: 1, treeId: 2, comment: 'test' });
+    });
+
+    test('GuidedAnswersPanel communication FILL_SHARE_LINKS', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        const localApiMock = getApiMock();
+        const guidedAnswerApiSpy = jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => localApiMock);
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({
+            type: FILL_SHARE_LINKS,
+            payload: { treeId: 123, nodeIdPath: [456] }
+        });
+
+        // Result check
+        expect(guidedAnswerApiSpy).toBeCalled();
     });
 
     test('GuidedAnswersPanel communication unhandled action', async () => {

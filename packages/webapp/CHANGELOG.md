@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.20.2
+
+### Patch Changes
+
+-   f2581f2: feat(426): add link to GA website for nodes
+
 ## 1.20.1
 
 ### Patch Changes

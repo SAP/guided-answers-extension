@@ -1,7 +1,9 @@
 import type {
     Command,
     ExecuteCommand,
+    FillShareLinks,
     GuidedAnswerTree,
+    GuidedAnswerTreeId,
     GuidedAnswerNode,
     GuidedAnswerNodeId,
     GoToPreviousPage,
@@ -12,8 +14,10 @@ import type {
     NetworkStatus,
     SetActiveTree,
     SetQueryValue,
+    ShareNodeLinks,
     UpdateGuidedAnswerTrees,
     UpdateActiveNode,
+    UpdateActiveNodeSharing,
     WebviewReady,
     UpdateNetworkStatus,
     GuidedAnswerTreeSearchResult,
@@ -34,6 +38,7 @@ import type {
 } from './types';
 import {
     EXECUTE_COMMAND,
+    FILL_SHARE_LINKS,
     GO_TO_PREVIOUS_PAGE,
     GO_TO_ALL_ANSWERS,
     RESTART_ANSWER,
@@ -44,6 +49,7 @@ import {
     UPDATE_GUIDED_ANSWER_TREES,
     UPDATE_ACTIVE_NODE,
     UPDATE_NETWORK_STATUS,
+    UPDATE_ACTIVE_NODE_SHARING,
     WEBVIEW_READY,
     BETA_FEATURES,
     GUIDE_FEEDBACK,
@@ -160,5 +166,18 @@ export const feedbackResponse = (payload: boolean): FeedbackResponse => ({
 
 export const sendTelemetry = (payload: GuidedAnswersTelemetryPayload) => ({
     type: SEND_TELEMETRY,
+    payload
+});
+
+export const updateActiveNodeSharing = (payload: ShareNodeLinks | null): UpdateActiveNodeSharing => ({
+    type: UPDATE_ACTIVE_NODE_SHARING,
+    payload
+});
+
+export const fillShareLinks = (payload: {
+    treeId: GuidedAnswerTreeId;
+    nodeIdPath?: GuidedAnswerNodeId[];
+}): FillShareLinks => ({
+    type: FILL_SHARE_LINKS,
     payload
 });

@@ -142,6 +142,11 @@ export interface APIOptions {
     htmlEnhancements?: HTMLEnhancement[];
 }
 
+export interface ShareNodeLinks {
+    extensionLink: string;
+    webLink: string;
+}
+
 /**
  * Constant for 'data-*' HTML attribute to mark enhancement points and store the command in the Guided Answer BODY HTML.
  * Added some salt to make it unique
@@ -156,6 +161,7 @@ export type GuidedAnswerActions =
     | ExecuteCommand
     | FeedbackResponse
     | FeedbackStatus
+    | FillShareLinks
     | GoToAllAnswers
     | GoToPreviousPage
     | GuideFeedback
@@ -169,6 +175,7 @@ export type GuidedAnswerActions =
     | SetPageSize
     | SetProductFilters
     | SetQueryValue
+    | UpdateActiveNodeSharing
     | ResetFilters
     | RestartAnswer
     | UpdateActiveNode
@@ -184,6 +191,7 @@ export interface AppState {
     guidedAnswerTreeSearchResult: GuidedAnswerTreeSearchResult;
     activeGuidedAnswerNode: GuidedAnswerNode[];
     activeGuidedAnswer?: GuidedAnswerTree;
+    activeNodeSharing: ShareNodeLinks | null;
     betaFeatures: boolean;
     searchResultCount: number;
     guideFeedback: null | boolean;
@@ -327,4 +335,19 @@ export const SEND_TELEMETRY = 'SEND_TELEMETRY';
 export interface SendTelemetry {
     type: typeof SEND_TELEMETRY;
     payload: GuidedAnswersTelemetryPayload;
+}
+
+export const UPDATE_ACTIVE_NODE_SHARING = 'UPDATE_ACTIVE_NODE_SHARING';
+export interface UpdateActiveNodeSharing {
+    type: typeof UPDATE_ACTIVE_NODE_SHARING;
+    payload: ShareNodeLinks | null;
+}
+
+export const FILL_SHARE_LINKS = 'FILL_SHARE_LINKS';
+export interface FillShareLinks {
+    type: typeof FILL_SHARE_LINKS;
+    payload: {
+        treeId: GuidedAnswerTreeId;
+        nodeIdPath?: GuidedAnswerNodeId[];
+    };
 }

@@ -8,6 +8,7 @@ import type {
     SetProductFilters,
     SetQueryValue,
     UpdateActiveNode,
+    UpdateActiveNodeSharing,
     UpdateGuidedAnswerTrees,
     UpdateNetworkStatus,
     SetPageSize,
@@ -33,6 +34,7 @@ export function getInitialState(): AppState {
             productFilters: [],
             trees: []
         },
+        activeNodeSharing: null,
         activeGuidedAnswerNode: [],
         betaFeatures: false,
         searchResultCount: -1,
@@ -68,6 +70,7 @@ const reducers: Partial<Reducers> = {
     UPDATE_GUIDED_ANSWER_TREES: updateGuidedAnswerTreesReducer,
     UPDATE_ACTIVE_NODE: updateActiveNodeReducer,
     UPDATE_NETWORK_STATUS: updateNetworkStatusReducer,
+    UPDATE_ACTIVE_NODE_SHARING: updateActiveNodeSharingReducer,
     GO_TO_PREVIOUS_PAGE: goToPreviousPageReducer,
     GO_TO_ALL_ANSWERS: goToAllAnswersReducer,
     RESTART_ANSWER: restartAnswerReducer,
@@ -149,6 +152,19 @@ function updateActiveNodeReducer(newState: AppState, action: UpdateActiveNode): 
     } else {
         newState.activeGuidedAnswerNode.push(action.payload);
     }
+    return newState;
+}
+
+/**
+ * Update property 'activeNodeSharing' with links. If null is passed as payload, property will be
+ * removed.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function updateActiveNodeSharingReducer(newState: AppState, action: UpdateActiveNodeSharing): AppState {
+    newState.activeNodeSharing = action.payload;
     return newState;
 }
 

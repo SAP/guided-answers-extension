@@ -20,7 +20,8 @@ jest.mock('../../src/webview/state', () => {
         actions: {
             goToAllAnswers: jest.fn(),
             goToPreviousPage: jest.fn(),
-            restartAnswer: jest.fn()
+            restartAnswer: jest.fn(),
+            fillShareLinks: jest.fn()
         }
     };
 });
@@ -90,8 +91,12 @@ describe('<ShareButton />', () => {
         QUESTION: 'I have a problem with',
         TITLE: 'SAP Fiori Tools'
     });
+    stateWithActiveAnswer.activeNodeSharing = {
+        extensionLink: 'extension://link',
+        webLink: 'web://link'
+    };
 
-    it('Should render a RestartButton component', () => {
+    it('Should render a ShareButton component', () => {
         const { container } = render(
             <Provider store={mockStore(createState(stateWithActiveAnswer))}>
                 <ShareButton />
@@ -108,5 +113,9 @@ describe('<ShareButton />', () => {
         const copyBtn = screen.getByTestId('copy-btn');
         fireEvent.click(copyBtn);
         expect(screen.getByTestId('sharable-link-copied')).toBeInTheDocument();
+
+        // Test link to website
+        const webLink = screen.getByTestId('web-link');
+        expect(webLink).toHaveAttribute('href', 'web://link');
     });
 });

@@ -99,11 +99,11 @@ exports[`<RestartButton /> Should render a RestartButton component 1`] = `
 </div>
 `;
 
-exports[`<ShareButton /> Should render a RestartButton component 1`] = `
+exports[`<ShareButton /> Should render a ShareButton component 1`] = `
 <div>
   <div>
     <button
-      class="ms-Button ms-Button--icon guided-answer__header__navButtons guided-answer__header__navButtons__content root-109"
+      class="ms-Button ms-Button--icon is-checked guided-answer__header__navButtons guided-answer__header__navButtons__content root-109"
       data-is-focusable="true"
       id="callout-test-id"
       style="outline: none;"
@@ -121,6 +121,9 @@ exports[`<ShareButton /> Should render a RestartButton component 1`] = `
         />
       </span>
     </button>
+    <span
+      class="ms-layer"
+    />
   </div>
 </div>
 `;

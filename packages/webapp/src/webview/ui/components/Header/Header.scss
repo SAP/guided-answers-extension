@@ -116,7 +116,7 @@
     }
 
     &__copied {
-        width: 186px;
+        width: 184px;
         border: 1px solid var(--vscode-terminal-ansiGreen);
         line-height: 22px;
         padding-left: 6px;
@@ -143,6 +143,29 @@
     &__footer {
         padding: 0 10px;
         font-size: 11px;
+    }
+
+    &__divider {
+        margin: 0 10px;
+        border: none;
+        border-top: 1px solid var(--vscode-editorWidget-border);
+    }
+
+    &__web-link {
+        display: block;
+        width: fit-content;
+        margin: 10px 10px 5px 10px;
+        line-height: 18px;
+        font-size: 11px;
+
+        i {
+            margin-right: 5px;
+            vertical-align: middle;
+
+            path {
+                fill: var(--vscode-textLink-foreground);
+            }
+        }
     }
 }
 

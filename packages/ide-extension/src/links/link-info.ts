@@ -43,3 +43,16 @@ export function generateExtensionLink(startOptions: StartOptions): string {
     const nodes = startOptions?.nodeIdPath ? `/actions/${startOptions.nodeIdPath.join(':')}` : '';
     return `vscode://saposs.sap-guided-answers-extension#${tree}${nodes}`;
 }
+
+/**
+ * Generate web link to Guided Answers tree and node path.
+ *
+ * @param apiHost - API host including protocol, like https://ga.support.sap.com
+ * @param startOptions - start options including tree id and optionally node path
+ * @returns - link
+ */
+export function generateWebLink(apiHost: string, startOptions: StartOptions): string {
+    const tree = `/tree/${startOptions.treeId}`;
+    const nodes = startOptions?.nodeIdPath ? `/actions/${startOptions.nodeIdPath.join(':')}` : '';
+    return `${apiHost}/dtp/viewer/index.html#${tree}${nodes}`;
+}
