@@ -32,8 +32,15 @@
 
     assigneesFromCodeOwners: true,
 
+    ignorePaths: ['packages/**']
+
     packageRules: [
         {
+            matchPackageNames: ['typescript'],
+            groupName: 'TypeScript'
+        },
+        {
+            matchFiles: ["package.json"],
             matchDepTypes: ['devDependencies'],
             groupName: 'Root devDependencies'
         }
