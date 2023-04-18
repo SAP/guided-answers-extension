@@ -41,6 +41,7 @@
         },
         {
             matchFiles: ['package.json'],
+            excludePackageNames: ['typescript'],
             matchDepTypes: ['devDependencies'],
             groupName: 'Root devDependencies'
         }
