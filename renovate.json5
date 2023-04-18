@@ -38,13 +38,13 @@
     packageRules: [
         {
             matchPackageNames: ['typescript'],
-            groupName: 'TypeScript'
+            groupName: 'typescript'
         },
         {
             matchFiles: ['package.json'],
             excludePackageNames: ['typescript'],
             matchDepTypes: ['devDependencies'],
-            groupName: 'Root devDependencies'
+            groupName: 'root dev dependencies'
         }
     ]
 }
