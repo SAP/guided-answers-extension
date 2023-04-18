@@ -1,0 +1,42 @@
+// json5: https://json5.org/
+// json5 VS Code extension: https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5
+// renovate configuration: https://docs.renovatebot.com/configuration-options/
+{
+    $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+
+    extends: [
+        'config:base',
+        ':automergeDisabled',
+        ':combinePatchMinorReleases',
+        ':enableVulnerabilityAlerts',
+        ':enableVulnerabilityAlertsWithLabel(security)',
+        ':label(renovate)',
+        ':rebaseStalePrs',
+        ':semanticCommits',
+        ':semanticPrefixChore',
+        ':timezone(America/Los_Angeles)',
+        ':updateNotScheduled',
+        'workarounds:typesNodeVersioning'
+    ],
+
+    enabledManagers: ['npm'],
+    branchPrefix: 'chore/renovate/',
+    platformCommit: true,
+
+    major: {
+        dependencyDashboardApproval: true
+    },
+    dependencyDashboardAutoclose: true,
+    dependencyDashboardLabels: ['renovate-dashboard'],
+    dependencyDashboardTitle: 'Renovate Dependency Dashboard',
+
+    assigneesFromCodeOwners: true,
+
+    packageRules: [
+        {
+            matchPaths: ['./package.json'],
+            matchDepTypes: ['devDependencies'],
+            groupName: 'Root devDependencies'
+        }
+    ]
+}
