@@ -1,20 +1,22 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["config:base"],
     "automerge": false,
+    "extends": ["config:base"],
     "dependencyDashboard": true,
+    "labels": ["renovate"],
     "packageRules": [
         {
             "matchPaths": ["./package.json"],
             "matchDepTypes": ["devDependencies"],
-            "groupName": "root devDependencies",
+            "groupName": "Root devDependencies",
             "schedule": ["* * * * *"]
         },
         {
             "matchPaths": ["./packages/**"],
             "matchDepTypes": ["devDependencies"],
-            "groupName": "modules devDependencies",
+            "groupName": "Modules devDependencies",
             "schedule": ["* * * * *"]
         }
-    ]
+    ],
+    "timezone": "US/Pacific"
 }
