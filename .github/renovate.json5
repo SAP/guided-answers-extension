@@ -33,7 +33,7 @@
     assigneesFromCodeOwners: true,
 
     ignorePaths: ['packages/**'],
-    ignoreDeps: ["@types/node"]
+    ignoreDeps: ['@types/node'],
 
     packageRules: [
         {
