@@ -41,6 +41,7 @@ export class GuidedAnswersPanel {
     public readonly panel: WebviewPanel;
     private guidedAnswerApi: GuidedAnswerAPI;
     private startOptions: StartOptions | undefined;
+    private loadingTimeout: NodeJS.Timeout | undefined;
     private readonly ide: IDE;
 
     /**
@@ -200,13 +201,26 @@ export class GuidedAnswersPanel {
     private async getTrees(queryOptions: GuidedAnswersQueryOptions): Promise<GuidedAnswerTreeSearchResult> {
         const showLoader = queryOptions.paging?.offset === 0;
         if (showLoader) {
-            this.postActionToWebview(updateNetworkStatus('LOADING'));
+            if (this.loadingTimeout) {
+                clearTimeout(this.loadingTimeout);
+            }
+            console.log('setup timeout');
+            this.loadingTimeout = setTimeout(() => {
+                console.log('timeout');
+                this.postActionToWebview(updateNetworkStatus('LOADING'));
+            }, 2000);
         }
         try {
             const trees = await this.guidedAnswerApi.getTrees(queryOptions);
+            if (this.loadingTimeout) {
+                clearTimeout(this.loadingTimeout);
+            }
             this.postActionToWebview(updateNetworkStatus('OK'));
             return trees;
         } catch (e) {
+            if (this.loadingTimeout) {
+                clearTimeout(this.loadingTimeout);
+            }
             this.postActionToWebview(updateNetworkStatus('ERROR'));
             throw e;
         }
