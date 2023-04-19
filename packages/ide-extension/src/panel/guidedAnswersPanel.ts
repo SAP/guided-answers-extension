@@ -204,9 +204,7 @@ export class GuidedAnswersPanel {
             if (this.loadingTimeout) {
                 clearTimeout(this.loadingTimeout);
             }
-            console.log('setup timeout');
             this.loadingTimeout = setTimeout(() => {
-                console.log('timeout');
                 this.postActionToWebview(updateNetworkStatus('LOADING'));
             }, 2000);
         }
