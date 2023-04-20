@@ -21,7 +21,7 @@ export function SearchField() {
             <UISearchBox
                 className="tree-search-field"
                 value={appState.query}
-                readOnly={appState.loading}
+                readOnly={appState.networkStatus === 'LOADING'}
                 placeholder="Search Guided Answers"
                 id="search-field"
                 onClear={onSearchClear}

@@ -180,11 +180,13 @@ export type GuidedAnswerActions =
     | RestartAnswer
     | UpdateActiveNode
     | UpdateGuidedAnswerTrees
-    | UpdateLoading
+    | UpdateNetworkStatus
     | WebviewReady;
 
+export type NetworkStatus = 'OK' | 'LOADING' | 'ERROR';
+
 export interface AppState {
-    loading: boolean;
+    networkStatus: NetworkStatus;
     query: string;
     guidedAnswerTreeSearchResult: GuidedAnswerTreeSearchResult;
     activeGuidedAnswerNode: GuidedAnswerNode[];
@@ -218,10 +220,10 @@ export interface UpdateActiveNode {
     payload: GuidedAnswerNode;
 }
 
-export const UPDATE_LOADING = 'UPDATE_LOADING';
-export interface UpdateLoading {
-    type: typeof UPDATE_LOADING;
-    payload: boolean;
+export const UPDATE_NETWORK_STATUS = 'UPDATE_NETWORK_STATUS';
+export interface UpdateNetworkStatus {
+    type: typeof UPDATE_NETWORK_STATUS;
+    payload: NetworkStatus;
 }
 
 export const GO_TO_PREVIOUS_PAGE = 'GO_TO_PREVIOUS_PAGE';

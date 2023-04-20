@@ -11,6 +11,7 @@ import type {
     RestartAnswer,
     SearchTree,
     SelectNode,
+    NetworkStatus,
     SetActiveTree,
     SetQueryValue,
     ShareNodeLinks,
@@ -18,7 +19,7 @@ import type {
     UpdateActiveNode,
     UpdateActiveNodeSharing,
     WebviewReady,
-    UpdateLoading,
+    UpdateNetworkStatus,
     GuidedAnswerTreeSearchResult,
     GuidedAnswersQueryOptions,
     BetaFeatures,
@@ -47,8 +48,8 @@ import {
     SET_QUERY_VALUE,
     UPDATE_GUIDED_ANSWER_TREES,
     UPDATE_ACTIVE_NODE,
+    UPDATE_NETWORK_STATUS,
     UPDATE_ACTIVE_NODE_SHARING,
-    UPDATE_LOADING,
     WEBVIEW_READY,
     BETA_FEATURES,
     GUIDE_FEEDBACK,
@@ -75,8 +76,8 @@ export const updateActiveNode = (payload: GuidedAnswerNode): UpdateActiveNode =>
     payload
 });
 
-export const updateLoading = (payload: boolean): UpdateLoading => ({
-    type: UPDATE_LOADING,
+export const updateNetworkStatus = (payload: NetworkStatus): UpdateNetworkStatus => ({
+    type: UPDATE_NETWORK_STATUS,
     payload
 });
 

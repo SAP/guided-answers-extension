@@ -33,6 +33,8 @@
     "SHARE_THIS_GUIDE": "Share this guide",
     "COPY_THIS_LINK": "Copy this link",
     "COPIED_TO_CLIPBOARD": "Copied to clipboard",
+    "GUIDED_ANSWERS_UNAVAILABLE": "Guided Answers is currently unavailable",
+    "TRY_LATER": "Please try again later",
     "COPIED_TO_CLIPBOARD_DESC": "Copy this link to share via email or messages. When pasted into the search input field of the Guided Answers extension, it will navigate you straight to this node.",
     "VIEW_ON_WEBSITE": "View on the GA website"
 }
