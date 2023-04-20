@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.20.3
+
+### Patch Changes
+
+-   bd52220: feat(85): add screen for network errors
+
 ## 1.20.2
 
 ### Patch Changes
