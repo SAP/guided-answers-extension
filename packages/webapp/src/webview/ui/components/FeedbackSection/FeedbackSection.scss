@@ -57,6 +57,10 @@ button:focus-visible {
     }
 }
 
+.not-solved-link:hover {
+    color: var(--vscode-button-foreground);
+}
+
 @media only screen and (max-width: 625px) {
     .feedback-box > svg {
         display: none;
