@@ -14,7 +14,7 @@
         "format": "prettier --write '**/*.{js,json,ts,tsx,yaml,yml}' --ignore-path ../../.prettierignore",
         "lint": "eslint . --ext .ts,.tsx",
         "watch": "node esbuild.js --watch",
-        "test": "jest --maxWorkers=2 --silent -u"
+        "test": "jest --maxWorkers=2 --silent"
     },
     "devDependencies": {
         "@reduxjs/toolkit": "1.9.1",
