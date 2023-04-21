@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.20.4
+
+### Patch Changes
+
+-   4e82a88: Fix a11y issue in button
+
 ## 1.20.3
 
 ### Patch Changes
