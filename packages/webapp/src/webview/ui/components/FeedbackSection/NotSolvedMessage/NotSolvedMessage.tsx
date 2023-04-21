@@ -34,7 +34,7 @@ export default function NotSolvedMessage(): ReactElement {
                     isCircularNavigation={true}>
                     {options.map((btn) => (
                         <div className="guided-answer__node" key={btn.link}>
-                            <a className="guided-answer__node__edge" href={btn.link} role="button">
+                            <a className="guided-answer__node__edge not-solved-link" href={btn.link} role="button">
                                 {i18next.t(btn.text)}
                             </a>
                         </div>

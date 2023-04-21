@@ -37,7 +37,7 @@ exports[`<NotSolvedMessage/> Should render a NotSolvedMessage component 1`] = `
           class="guided-answer__node"
         >
           <a
-            class="guided-answer__node__edge"
+            class="guided-answer__node__edge not-solved-link"
             href="https://launchpad.support.sap.com/#/expertchat/create"
             role="button"
             tabindex="0"
@@ -49,7 +49,7 @@ exports[`<NotSolvedMessage/> Should render a NotSolvedMessage component 1`] = `
           class="guided-answer__node"
         >
           <a
-            class="guided-answer__node__edge"
+            class="guided-answer__node__edge not-solved-link"
             href="https://launchpad.support.sap.com/#/sae"
             role="button"
             tabindex="-1"
@@ -61,7 +61,7 @@ exports[`<NotSolvedMessage/> Should render a NotSolvedMessage component 1`] = `
           class="guided-answer__node"
         >
           <a
-            class="guided-answer__node__edge"
+            class="guided-answer__node__edge not-solved-link"
             href="https://launchpad.support.sap.com/#/incident/create"
             role="button"
             tabindex="-1"
@@ -73,7 +73,7 @@ exports[`<NotSolvedMessage/> Should render a NotSolvedMessage component 1`] = `
           class="guided-answer__node"
         >
           <a
-            class="guided-answer__node__edge"
+            class="guided-answer__node__edge not-solved-link"
             href="https://answers.sap.com/index.html"
             role="button"
             tabindex="-1"
