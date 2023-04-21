@@ -10,7 +10,7 @@ import {
 import type { AppState } from '../types';
 
 declare let window: Window;
-declare let acquireVsCodeApi: () => typeof window['vscode'];
+declare let acquireVsCodeApi: () => typeof window.vscode;
 
 /**
  * Communication between IDE extension and web view is realized through the communication middleware
