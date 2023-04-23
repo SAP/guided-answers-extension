@@ -2,6 +2,7 @@ import type {
     BetaFeatures,
     GuidedAnswerActions,
     GuideFeedback,
+    RestoreState,
     SearchTree,
     SetActiveTree,
     SetComponentFilters,
@@ -81,6 +82,7 @@ const reducers: Partial<Reducers> = {
     SET_PRODUCT_FILTERS: setProductFiltersReducer,
     SET_COMPONENT_FILTERS: setComponentFiltersReducer,
     RESET_FILTERS: resetFiltersReducer,
+    RESTORE_STATE: restoreStateReducer,
     SEARCH_TREE: searchTreeReducer,
     SET_PAGE_SIZE: updatePageSize,
     FEEDBACK_RESPONSE: feedbackResponseReducer,
@@ -373,4 +375,15 @@ function searchTreeReducer(newState: AppState, action: SearchTree): AppState {
 function updatePageSize(newState: AppState, action: SetPageSize): AppState {
     newState.pageSize = action.payload;
     return newState;
+}
+
+/**
+ * Restore the state, happens after deserializing of the webview panel.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function restoreStateReducer(newState: AppState, action: RestoreState) {
+    return action.payload;
 }

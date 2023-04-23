@@ -39,7 +39,8 @@
     },
     "activationEvents": [
         "onCommand:sap.ux.guidedAnswer.openGuidedAnswer",
-        "onUri"
+        "onUri",
+        "onWebviewPanel:sap.ux.guidedAnswer.view"
     ],
     "contributes": {
         "configuration": {
