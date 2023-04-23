@@ -51,7 +51,8 @@ const window = {
         sendText: jest.fn();
     },
     showErrorMessage: jest.fn(),
-    registerUriHandler: (handler) => handler
+    registerUriHandler: (handler) => handler,
+    registerWebviewPanelSerializer: jest.fn()
 };
 
 const workspace = {

@@ -14,7 +14,8 @@ import {
     SEND_FEEDBACK_OUTCOME,
     SEND_FEEDBACK_COMMENT,
     SET_QUERY_VALUE,
-    FILL_SHARE_LINKS
+    FILL_SHARE_LINKS,
+    RESTORE_STATE
 } from '@sap/guided-answers-extension-types';
 import type {
     Command,
@@ -25,7 +26,7 @@ import type {
     GuidedAnswerTreeId,
     GuidedAnswerTreeSearchResult
 } from '@sap/guided-answers-extension-types';
-import { GuidedAnswersPanel } from '../../src/panel/guidedAnswersPanel';
+import { GuidedAnswersPanel, GuidedAnswersSerializer } from '../../src/panel/guidedAnswersPanel';
 import * as logger from '../../src/logger/logger';
 import type { StartOptions } from '../../src/types';
 
@@ -616,5 +617,88 @@ describe('GuidedAnswersPanel', () => {
         panel.restartWithOptions({ openToSide: true });
         expect(panel.startOptions).toStrictEqual({ openToSide: true });
         expect(mockWebviewPanel.reveal).toBeCalledWith(ViewColumn.Beside);
+    });
+});
+
+describe('GuidedAnswersPanel deserialization', () => {
+    let loggerMock: jest.SpyInstance;
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+        loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
+    });
+
+    test('Deserialize GuidedAnswersPanel with state', () => {
+        // Mock setup
+        const panelMock = {
+            reveal: jest.fn(),
+            onDidDispose: jest.fn(),
+            webview: {
+                asWebviewUri: jest.fn().mockImplementation((uri) => uri),
+                onDidReceiveMessage: jest.fn(),
+                postMessage: jest.fn()
+            }
+        } as unknown as WebviewPanel;
+
+        // Test execution and result check
+        const serializer = new GuidedAnswersSerializer();
+        serializer.deserializeWebviewPanel(panelMock, '{"mock": "state"}');
+        expect(GuidedAnswersPanel.getInstance()?.panel).toBe(panelMock);
+        expect(panelMock.reveal).toBeCalled();
+        expect(panelMock.onDidDispose).toBeCalledWith(expect.any(Function));
+
+        (panelMock.webview.onDidReceiveMessage as jest.Mock).mock.calls[0][0]({ type: WEBVIEW_READY });
+        expect(panelMock.webview.postMessage).toBeCalledWith({ type: RESTORE_STATE, payload: { mock: 'state' } });
+    });
+
+    test('Deserialize GuidedAnswersPanel with state, then dispose', () => {
+        // Mock setup
+        const panelMock = {
+            reveal: jest.fn(),
+            onDidDispose: jest.fn(),
+            webview: {
+                asWebviewUri: jest.fn().mockImplementation((uri) => uri),
+                onDidReceiveMessage: jest.fn()
+            }
+        } as unknown as WebviewPanel;
+
+        // Test execution and result check
+        const serializer = new GuidedAnswersSerializer();
+        serializer.deserializeWebviewPanel(panelMock, '{}');
+        expect(GuidedAnswersPanel.getInstance()?.panel).toBe(panelMock);
+        (panelMock.onDidDispose as jest.Mock).mock.calls[0][0]();
+
+        expect(GuidedAnswersPanel.getInstance()?.panel).toBeUndefined();
+    });
+
+    test('Deserialize GuidedAnswersPanel with empty state, should dispose', () => {
+        // Mock setup
+        const panelMock = {
+            reveal: jest.fn(),
+            dispose: jest.fn()
+        } as unknown as WebviewPanel;
+
+        // Test execution
+        const serializer = new GuidedAnswersSerializer();
+        serializer.deserializeWebviewPanel(panelMock, '');
+
+        // Result check
+        expect(panelMock.dispose).toBeCalled();
+    });
+
+    test('Deserialize GuidedAnswersPanel with invalid state, should dispose', () => {
+        // Mock setup
+        const panelMock = {
+            reveal: jest.fn(),
+            dispose: jest.fn()
+        } as unknown as WebviewPanel;
+
+        // Test execution
+        const serializer = new GuidedAnswersSerializer();
+        serializer.deserializeWebviewPanel(panelMock, '{');
+
+        // Result check
+        expect(panelMock.dispose).toBeCalled();
+        expect(loggerMock).toBeCalledWith(expect.stringContaining('JSON'));
     });
 });
