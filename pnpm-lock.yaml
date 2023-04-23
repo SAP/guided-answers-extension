@@ -67,11 +67,8 @@ importers:
         specifier: 29.5.0
         version: 29.5.0(@types/node@16.18.14)(ts-node@10.9.1)
       jest-sonar:
-        specifier: 0.2.16
-        version: 0.2.16
-      pnpm:
-        specifier: 8.3.1
-        version: 8.3.1
+        specifier: 0.2.15
+        version: 0.2.15
       prettier:
         specifier: 2.8.7
         version: 2.8.7
@@ -5970,8 +5967,8 @@ packages:
       - supports-color
     dev: true
 
-  /jest-sonar@0.2.16:
-    resolution: {integrity: sha512-ES6Z9BbIVDELtbz+/b6pv41B2qOfp38cQpoCLqei21FtlkG/GzhyQ0M3egEIM+erpJOkpRKM8Tc8/YQtHdiTXA==}
+  /jest-sonar@0.2.15:
+    resolution: {integrity: sha512-hJSM9AIAbhTjhalduCYuOmZA+9VmNUZR+Ccm35iLQjlMS7k6NK8OLJMRJGS2mqwzd8akZmHbcyK4TkUz4ZG1Pg==}
     dependencies:
       entities: 4.3.0
       strip-ansi: 6.0.1
@@ -7061,12 +7058,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       find-up: 4.1.0
-    dev: true
-
-  /pnpm@8.3.1:
-    resolution: {integrity: sha512-0mT2ZAv08J3nz8xUdWhRW88GE89IWgPo/xZhb6acQXK2+aCikl7kT7Bg31ZcnJqOrwYXSed68xjLd/ZoSnBR8w==}
-    engines: {node: '>=16.14'}
-    hasBin: true
     dev: true
 
   /postcss-modules-extract-imports@3.0.0(postcss@8.4.20):
