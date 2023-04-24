@@ -1,4 +1,4 @@
-import { GUIDE_FEEDBACK, GuideFeedback, UpdateActiveNode } from './../../../types/src/types';
+import { GUIDE_FEEDBACK, GuideFeedback, UpdateActiveNode, AppState } from './../../../types/src/types';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import {
     UPDATE_GUIDED_ANSWER_TREES,
@@ -12,6 +12,7 @@ import {
     BETA_FEATURES,
     SET_PRODUCT_FILTERS,
     SET_COMPONENT_FILTERS,
+    RESTORE_STATE,
     RESET_FILTERS
 } from '@sap/guided-answers-extension-types';
 
@@ -331,5 +332,14 @@ describe('Test functions in reducers', () => {
         });
         expect(resetSelectedFiltersState.selectedProductFilters).toEqual([]);
         expect(resetSelectedFiltersState.selectedComponentFilters).toEqual([]);
+    });
+
+    it('Should restore the app state', () => {
+        const initialState = getInitialState();
+        const payload = JSON.parse(JSON.stringify(initialState));
+        payload.activeGuidedAnswer = [mockedActiveGuidedAnswerNode];
+        payload.guidedAnswerTreeSearchResult = mockedGuidedAnswerTreeSearchResult;
+        payload.query = 'search query';
+        expect(reducer(initialState, { type: RESTORE_STATE, payload })).toEqual(payload);
     });
 });

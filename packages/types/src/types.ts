@@ -178,6 +178,7 @@ export type GuidedAnswerActions =
     | UpdateActiveNodeSharing
     | ResetFilters
     | RestartAnswer
+    | RestoreState
     | UpdateActiveNode
     | UpdateGuidedAnswerTrees
     | UpdateNetworkStatus
@@ -350,4 +351,10 @@ export interface FillShareLinks {
         treeId: GuidedAnswerTreeId;
         nodeIdPath?: GuidedAnswerNodeId[];
     };
+}
+
+export const RESTORE_STATE = 'RESTORE_STATE';
+export interface RestoreState {
+    type: typeof RESTORE_STATE;
+    payload: AppState;
 }

@@ -34,7 +34,9 @@ import type {
     SetPageSize,
     FeedbackStatus,
     FeedbackResponse,
-    GuidedAnswersTelemetryPayload
+    GuidedAnswersTelemetryPayload,
+    RestoreState,
+    AppState
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -58,6 +60,7 @@ import {
     SET_PRODUCT_FILTERS,
     SET_COMPONENT_FILTERS,
     RESET_FILTERS,
+    RESTORE_STATE,
     SET_PAGE_SIZE,
     FEEDBACK_STATUS,
     FEEDBACK_RESPONSE,
@@ -179,5 +182,10 @@ export const fillShareLinks = (payload: {
     nodeIdPath?: GuidedAnswerNodeId[];
 }): FillShareLinks => ({
     type: FILL_SHARE_LINKS,
+    payload
+});
+
+export const restoreState = (payload: AppState): RestoreState => ({
+    type: RESTORE_STATE,
     payload
 });

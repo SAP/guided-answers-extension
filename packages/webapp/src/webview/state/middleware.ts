@@ -71,3 +71,19 @@ export const telemetryMiddleware: Middleware<
             return action;
         };
 };
+
+export const restoreMiddleware: Middleware<Dispatch<GuidedAnswerActions>, AppState, Dispatch<GuidedAnswerActions>> = ({
+    getState
+}) => {
+    return (next: Dispatch<GuidedAnswerActions>) =>
+        (action: GuidedAnswerActions): GuidedAnswerActions => {
+            action = next(action);
+            try {
+                window.vscode.setState(JSON.stringify(getState()));
+            } catch (error) {
+                console.error(`Error executing setState() to store the state: `, error);
+            }
+
+            return action;
+        };
+};
