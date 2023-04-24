@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.20.5
+
+### Patch Changes
+
+-   be0f952: Restore Guided Answers after reload
+
 ## 1.20.4
 
 ### Patch Changes
