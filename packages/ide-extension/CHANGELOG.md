@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.20.6
+
+### Patch Changes
+
+-   636c2c8: Reset copy to clipboard on callout dismiss
+
 ## 1.20.5
 
 ### Patch Changes
