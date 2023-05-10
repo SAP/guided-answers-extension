@@ -21,5 +21,6 @@ export {
     resetFilters,
     setPageSize,
     feedbackStatus,
-    feedbackResponse
+    feedbackResponse,
+    bookmark
 } from '@sap/guided-answers-extension-types';

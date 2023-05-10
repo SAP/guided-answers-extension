@@ -36,7 +36,9 @@ import type {
     FeedbackResponse,
     GuidedAnswersTelemetryPayload,
     RestoreState,
-    AppState
+    AppState,
+    BookmarkPayload,
+    Bookmark
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -64,7 +66,8 @@ import {
     SET_PAGE_SIZE,
     FEEDBACK_STATUS,
     FEEDBACK_RESPONSE,
-    SEND_TELEMETRY
+    SEND_TELEMETRY,
+    BOOKMARK
 } from './types';
 
 export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
@@ -187,5 +190,10 @@ export const fillShareLinks = (payload: {
 
 export const restoreState = (payload: AppState): RestoreState => ({
     type: RESTORE_STATE,
+    payload
+});
+
+export const bookmark = (payload: BookmarkPayload): Bookmark => ({
+    type: BOOKMARK,
     payload
 });

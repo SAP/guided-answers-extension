@@ -32,7 +32,7 @@ export function activate(context: ExtensionContext): void {
                 logString(`Guided Answers command called. Options: ${JSON.stringify(options)}`);
                 let guidedAnswersPanel: GuidedAnswersPanel | undefined = GuidedAnswersPanel.getInstance();
                 if (openInNewTab || !guidedAnswersPanel) {
-                    guidedAnswersPanel = new GuidedAnswersPanel(options);
+                    guidedAnswersPanel = new GuidedAnswersPanel(options, context);
                 } else {
                     guidedAnswersPanel.restartWithOptions(startOptions);
                 }

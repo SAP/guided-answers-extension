@@ -1,4 +1,4 @@
-import type { WebviewPanel, WebviewPanelSerializer } from 'vscode';
+import type { WebviewPanel, WebviewPanelSerializer, ExtensionContext } from 'vscode';
 import { Uri, ViewColumn, window, workspace } from 'vscode';
 import type {
     AppState,
@@ -14,6 +14,7 @@ import {
     SEND_TELEMETRY,
     SEND_FEEDBACK_OUTCOME,
     SEND_FEEDBACK_COMMENT,
+    BOOKMARK,
     updateGuidedAnswerTrees,
     updateActiveNode,
     updateNetworkStatus,
@@ -47,6 +48,7 @@ export class GuidedAnswersPanel {
     private loadingTimeout: NodeJS.Timeout | undefined;
     private readonly ide: IDE;
     private restoreAppState?: AppState;
+    private context?: ExtensionContext;
 
     /**
      * Return instance of guided answers panel. This is required when setting 'openInNewTab'
@@ -64,8 +66,10 @@ export class GuidedAnswersPanel {
      * @param [options] - optional options to initialize the panel
      * @param [options.ide] - optional runtime IDE (VSCODE/SBAS), default is VSCODE if not passed
      * @param [options.startOptions] - optional startup options like tree id or tree id + node id path, or openToSide
+     * @param context
      */
-    constructor(options?: Options) {
+    constructor(options?: Options, context?: ExtensionContext) {
+        this.context = context;
         this.startOptions = options?.startOptions;
         this.ide = options?.ide || 'VSCODE';
         this.restoreAppState = options?.restore?.appState;
@@ -319,6 +323,11 @@ export class GuidedAnswersPanel {
                 }
                 case SEND_TELEMETRY: {
                     trackAction(action);
+                    break;
+                }
+                case BOOKMARK: {
+                    this.context?.globalState.update('bookmarks', [{ guide1: action.payload.status }]);
+                    console.log('BOOKMARK--3->', this.context?.globalState.get('bookmarks'));
                     break;
                 }
                 default: {

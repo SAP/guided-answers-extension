@@ -89,6 +89,12 @@ export interface FeedbackOutcomePayload {
     solved: boolean;
 }
 
+export interface BookmarkPayload {
+    treeId: GuidedAnswerTreeId;
+    nodeId: GuidedAnswerNodeId;
+    status: boolean;
+}
+
 export interface GuidedAnswerAPI {
     getApiInfo: () => { host: string; version: string };
     getNodeById: (id: GuidedAnswerNodeId) => Promise<GuidedAnswerNode>;
@@ -182,7 +188,8 @@ export type GuidedAnswerActions =
     | UpdateActiveNode
     | UpdateGuidedAnswerTrees
     | UpdateNetworkStatus
-    | WebviewReady;
+    | WebviewReady
+    | Bookmark;
 
 export type NetworkStatus = 'OK' | 'LOADING' | 'ERROR';
 
@@ -296,6 +303,12 @@ export const SEND_FEEDBACK_COMMENT = 'SEND_FEEDBACK_COMMENT';
 export interface SendFeedbackComment {
     type: typeof SEND_FEEDBACK_COMMENT;
     payload: FeedbackCommentPayload;
+}
+
+export const BOOKMARK = 'BOOKMARK';
+export interface Bookmark {
+    type: typeof BOOKMARK;
+    payload: BookmarkPayload;
 }
 
 export const SET_PRODUCT_FILTERS = 'SET_PRODUCT_FILTERS';

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { DirectionalHint } from '@fluentui/react';
 import { actions } from '../../../../state';
-import { VscHome, VscRefresh, VscArrowLeft } from 'react-icons/vsc';
+import { VscHome, VscRefresh, VscArrowLeft, VscStarEmpty, VscStarFull } from 'react-icons/vsc';
 import i18next from 'i18next';
 import { UIIcon, UiIcons, UICallout, UIIconButton, UITextInput } from '@sap-ux/ui-components';
 import { focusOnElement } from '../../utils';
@@ -188,4 +188,30 @@ export function GeneralFeedbackButton() {
     );
 }
 
+/**
+ *
+ * @returns A button component for bookmarking a guide.
+ */
+export function BookmarkButton() {
+    const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!?.TREE_ID);
+    const [isBookmarked, setBookmark] = useState(false);
+    const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
+    const nodeId = nodes[nodes.length - 1].NODE_ID;
+
+    useEffect(() => {
+        actions.bookmark({ treeId, nodeId, status: isBookmarked });
+    }, [isBookmarked]);
+
+    return (
+        <button
+            id="bookmark-button"
+            className="guided-answer__header__navButtons"
+            onClick={(): void => {
+                setBookmark(!isBookmarked);
+            }}
+            title={i18next.t('BOOKMARK')}>
+            {!isBookmarked ? <VscStarEmpty /> : <VscStarFull className="bookmark-icon-bookmarked" />}
+        </button>
+    );
+}
 export { AllAnswersButton };
