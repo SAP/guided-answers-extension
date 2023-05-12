@@ -208,6 +208,7 @@ export interface AppState {
     pageSize: number;
     feedbackStatus: boolean;
     feedbackResponse: boolean;
+    bookmarks: any;
 }
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
@@ -305,10 +306,11 @@ export interface SendFeedbackComment {
     payload: FeedbackCommentPayload;
 }
 
-export const BOOKMARK = 'BOOKMARK';
+export const UPDATEBOOKMARK = 'UPDATEBOOKMARK';
+export const GETBOOKMARKS = 'GETBOOKMARKS';
 export interface Bookmark {
-    type: typeof BOOKMARK;
-    payload: BookmarkPayload;
+    type: typeof GETBOOKMARKS | typeof UPDATEBOOKMARK;
+    payload: BookmarkPayload | BookmarkPayload[];
 }
 
 export const SET_PRODUCT_FILTERS = 'SET_PRODUCT_FILTERS';

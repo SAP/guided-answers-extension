@@ -14,7 +14,8 @@ import {
     SEND_TELEMETRY,
     SEND_FEEDBACK_OUTCOME,
     SEND_FEEDBACK_COMMENT,
-    BOOKMARK,
+    GETBOOKMARKS,
+    UPDATEBOOKMARK,
     updateGuidedAnswerTrees,
     updateActiveNode,
     updateNetworkStatus,
@@ -27,7 +28,9 @@ import {
     setActiveTree,
     setQueryValue,
     getBetaFeatures,
-    feedbackResponse
+    feedbackResponse,
+    getBookmarks,
+    updateBookmark
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
@@ -319,15 +322,43 @@ export class GuidedAnswersPanel {
                         )
                     );
                     this.postActionToWebview(updateNetworkStatus('OK'));
+                    this.postActionToWebview(getBookmarks(this.context?.globalState.get('bookmarks')));
                     break;
                 }
                 case SEND_TELEMETRY: {
                     trackAction(action);
                     break;
                 }
-                case BOOKMARK: {
-                    this.context?.globalState.update('bookmarks', [{ guide1: action.payload.status }]);
-                    console.log('BOOKMARK--3->', this.context?.globalState.get('bookmarks'));
+                // case GETBOOKMARKS: {
+                //     this.postActionToWebview(getBookmarks(this.context?.globalState.get('bookmarks')));
+                //     break;
+                // }
+                case UPDATEBOOKMARK: {
+                    if (action.payload !== undefined) {
+                        const bookmarks: any = this.context?.globalState.get('bookmarks');
+
+                        if (bookmarks === undefined) {
+                            this.context?.globalState.update('bookmarks', [
+                                { [action.payload.nodeId]: action.payload.status }
+                            ]);
+                        } else {
+                            bookmarks.forEach((element: {}, index: string | number) => {
+                                if (Object.keys(element)[0] === action.payload.nodeId.toString()) {
+                                    bookmarks[index] = { [action.payload.nodeId]: action.payload.status };
+                                }
+                            });
+
+                            if (!bookmarks.some((x) => Object.keys(x)[0] === action.payload.nodeId.toString())) {
+                                bookmarks.push({ [action.payload.nodeId]: action.payload.status });
+                            }
+                            this.context?.globalState.update('bookmarks', bookmarks);
+                        }
+
+                        console.log('BOOKMARKS --->', this.context?.globalState.get('bookmarks'));
+
+                        this.postActionToWebview(getBookmarks(this.context?.globalState.get('bookmarks')));
+                    }
+
                     break;
                 }
                 default: {

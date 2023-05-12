@@ -14,7 +14,8 @@ import type {
     UpdateNetworkStatus,
     SetPageSize,
     FeedbackResponse,
-    FeedbackStatus
+    FeedbackStatus,
+    Bookmark
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -44,7 +45,8 @@ export function getInitialState(): AppState {
         selectedComponentFilters: [],
         pageSize: 20,
         feedbackStatus: false,
-        feedbackResponse: false
+        feedbackResponse: false,
+        bookmarks: []
     };
 }
 
@@ -86,7 +88,8 @@ const reducers: Partial<Reducers> = {
     SEARCH_TREE: searchTreeReducer,
     SET_PAGE_SIZE: updatePageSize,
     FEEDBACK_RESPONSE: feedbackResponseReducer,
-    FEEDBACK_STATUS: feedbackStatusReducer
+    FEEDBACK_STATUS: feedbackStatusReducer,
+    GETBOOKMARKS: getBookmarksReducer
 };
 
 /**
@@ -296,6 +299,18 @@ function GuideFeedbackReducer(newState: AppState, action: GuideFeedback): AppSta
  */
 function feedbackResponseReducer(newState: AppState, action: FeedbackResponse): AppState {
     newState.feedbackResponse = action.payload;
+    return newState;
+}
+
+/**
+ * Set state for bookmarks.
+ *
+ * @param newState
+ * @param action
+ * @returns new state with changes
+ */
+function getBookmarksReducer(newState: AppState, action: Bookmark): AppState {
+    newState.bookmarks = action.payload;
     return newState;
 }
 

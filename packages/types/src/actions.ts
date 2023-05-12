@@ -67,7 +67,8 @@ import {
     FEEDBACK_STATUS,
     FEEDBACK_RESPONSE,
     SEND_TELEMETRY,
-    BOOKMARK
+    UPDATEBOOKMARK,
+    GETBOOKMARKS
 } from './types';
 
 export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
@@ -193,7 +194,12 @@ export const restoreState = (payload: AppState): RestoreState => ({
     payload
 });
 
-export const bookmark = (payload: BookmarkPayload): Bookmark => ({
-    type: BOOKMARK,
+export const updateBookmark = (payload: BookmarkPayload): Bookmark => ({
+    type: UPDATEBOOKMARK,
+    payload
+});
+
+export const getBookmarks = (payload: BookmarkPayload[]): Bookmark => ({
+    type: GETBOOKMARKS,
     payload
 });

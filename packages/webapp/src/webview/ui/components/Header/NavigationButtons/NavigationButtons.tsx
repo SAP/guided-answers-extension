@@ -196,17 +196,37 @@ export function BookmarkButton() {
     const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!?.TREE_ID);
     const [isBookmarked, setBookmark] = useState(false);
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
+    const bookmarks = useSelector<AppState, GuidedAnswerNode[]>((state) => state.bookmarks);
     const nodeId = nodes[nodes.length - 1].NODE_ID;
 
     useEffect(() => {
-        actions.bookmark({ treeId, nodeId, status: isBookmarked });
-    }, [isBookmarked]);
+        console.log('UseEffect:', bookmarks);
+        bookmarks.forEach((bookmark) => {
+            // console.log(
+            //     'check if true',
+            //     Object.keys(bookmark)[0] === nodeId.toString(),
+            //     Object.keys(bookmark)[0],
+            //     nodeId.toString(),
+            //     //@ts-ignore
+            //     bookmark[Object.keys(bookmark)[0]]
+            // );
+            if (Object.keys(bookmark)[0] === nodeId.toString()) {
+                //@ts-ignore
+                setBookmark(bookmark[Object.keys(bookmark)[0]]);
+            }
+        });
+
+        if (!bookmarks.some((bookmark) => Object.keys(bookmark)[0] === nodeId.toString())) {
+            setBookmark(false);
+        }
+    }, [bookmarks]);
 
     return (
         <button
             id="bookmark-button"
             className="guided-answer__header__navButtons"
             onClick={(): void => {
+                actions.updateBookmark({ treeId, nodeId, status: !isBookmarked });
                 setBookmark(!isBookmarked);
             }}
             title={i18next.t('BOOKMARK')}>
