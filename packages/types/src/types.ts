@@ -200,6 +200,7 @@ export interface AppState {
     pageSize: number;
     feedbackStatus: boolean;
     feedbackResponse: boolean;
+    justOpened: boolean;
 }
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
@@ -350,4 +351,14 @@ export interface FillShareLinks {
         treeId: GuidedAnswerTreeId;
         nodeIdPath?: GuidedAnswerNodeId[];
     };
+}
+
+export const SHARE_LINK_TELEMETRY = 'SHARE_LINK_TELEMETRY';
+export interface ShareLinkTelemetry {
+    type: typeof SHARE_LINK_TELEMETRY;
+}
+
+export const OPEN_LINK_TELEMETRY = 'OPEN_LINK_TELEMETRY';
+export interface OpenLinkTelemetry {
+    type: typeof OPEN_LINK_TELEMETRY;
 }

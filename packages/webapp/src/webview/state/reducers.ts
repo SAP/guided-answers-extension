@@ -43,7 +43,8 @@ export function getInitialState(): AppState {
         selectedComponentFilters: [],
         pageSize: 20,
         feedbackStatus: false,
-        feedbackResponse: false
+        feedbackResponse: false,
+        justOpened: true
     };
 }
 
@@ -126,6 +127,7 @@ function updateGuidedAnswerTreesReducer(newState: AppState, action: UpdateGuided
     const trees = newState.guidedAnswerTreeSearchResult.trees;
     newState.guidedAnswerTreeSearchResult = action.payload;
     newState.guidedAnswerTreeSearchResult.trees.unshift(...trees);
+    newState.justOpened = false;
     delete newState.activeGuidedAnswer;
     return newState;
 }
@@ -152,6 +154,7 @@ function updateActiveNodeReducer(newState: AppState, action: UpdateActiveNode): 
     } else {
         newState.activeGuidedAnswerNode.push(action.payload);
     }
+    newState.justOpened = false;
     return newState;
 }
 
@@ -231,6 +234,7 @@ function restartAnswerReducer(newState: AppState): AppState {
  */
 function setActiveTreeReducer(newState: AppState, action: SetActiveTree): AppState {
     newState.activeGuidedAnswer = action.payload;
+    newState.justOpened = false;
     return newState;
 }
 
@@ -319,6 +323,7 @@ function feedbackStatusReducer(newState: AppState, action: FeedbackStatus): AppS
 function setProductFiltersReducer(newState: AppState, action: SetProductFilters): AppState {
     newState.selectedProductFilters = action.payload;
     newState.guidedAnswerTreeSearchResult.trees = [];
+    newState.justOpened = false;
     return newState;
 }
 
@@ -332,6 +337,7 @@ function setProductFiltersReducer(newState: AppState, action: SetProductFilters)
 function setComponentFiltersReducer(newState: AppState, action: SetComponentFilters): AppState {
     newState.selectedComponentFilters = action.payload;
     newState.guidedAnswerTreeSearchResult.trees = [];
+    newState.justOpened = false;
     return newState;
 }
 
@@ -345,6 +351,7 @@ function resetFiltersReducer(newState: AppState): AppState {
     newState.selectedProductFilters = [];
     newState.selectedComponentFilters = [];
     newState.guidedAnswerTreeSearchResult.trees = [];
+    newState.justOpened = false;
     return newState;
 }
 
@@ -360,6 +367,7 @@ function searchTreeReducer(newState: AppState, action: SearchTree): AppState {
     newState.selectedComponentFilters = Array.isArray(selectedComponentFilters) ? selectedComponentFilters : [];
     const selectedProductFilters = action.payload?.filters?.product;
     newState.selectedProductFilters = Array.isArray(selectedProductFilters) ? selectedProductFilters : [];
+    newState.justOpened = false;
     return newState;
 }
 

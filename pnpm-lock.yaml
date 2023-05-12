@@ -111,6 +111,9 @@ importers:
       '@sap/guided-answers-extension-types':
         specifier: workspace:*
         version: link:../types
+      '@types/uuid':
+        specifier: 9.0.1
+        version: 9.0.1
       '@types/vscode':
         specifier: 1.39.0
         version: 1.39.0
@@ -129,6 +132,9 @@ importers:
       jsdom:
         specifier: 20.0.3
         version: 20.0.3
+      uuid:
+        specifier: 3.4.0
+        version: 3.4.0
       vscode-uri:
         specifier: 3.0.7
         version: 3.0.7
@@ -2439,6 +2445,10 @@ packages:
 
   /@types/tough-cookie@4.0.2:
     resolution: {integrity: sha512-Q5vtl1W5ue16D+nIaW8JWebSSraJVlK+EthKn7e7UcD4KWsaSJ8BqGPXNaPghgtcn/fhvrN17Tv8ksUsQpiplw==}
+    dev: true
+
+  /@types/uuid@9.0.1:
+    resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
     dev: true
 
   /@types/vscode@1.39.0:

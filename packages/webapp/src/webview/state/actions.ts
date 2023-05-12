@@ -21,5 +21,7 @@ export {
     resetFilters,
     setPageSize,
     feedbackStatus,
-    feedbackResponse
+    feedbackResponse,
+    shareLinkTelemetry,
+    openLinkTelemetry
 } from '@sap/guided-answers-extension-types';

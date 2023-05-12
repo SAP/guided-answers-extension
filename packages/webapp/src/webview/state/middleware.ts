@@ -5,7 +5,17 @@ import {
     GO_TO_PREVIOUS_PAGE,
     SEND_TELEMETRY,
     SET_ACTIVE_TREE,
-    UPDATE_ACTIVE_NODE
+    UPDATE_ACTIVE_NODE,
+    SEND_FEEDBACK_OUTCOME,
+    SEND_FEEDBACK_COMMENT,
+    SEARCH_TREE,
+    EXECUTE_COMMAND,
+    SET_PRODUCT_FILTERS,
+    SET_COMPONENT_FILTERS,
+    UPDATE_GUIDED_ANSWER_TREES,
+    OPEN_LINK_TELEMETRY,
+    SHARE_LINK_TELEMETRY,
+    RESET_FILTERS
 } from '@sap/guided-answers-extension-types';
 import type { AppState } from '../types';
 
@@ -52,7 +62,20 @@ export const communicationMiddleware: Middleware<
         };
 };
 
-const allowedTelemetryActions = new Set([GO_TO_PREVIOUS_PAGE, SET_ACTIVE_TREE, UPDATE_ACTIVE_NODE]);
+const allowedTelemetryActions = new Set([
+    GO_TO_PREVIOUS_PAGE,
+    SET_ACTIVE_TREE,
+    UPDATE_ACTIVE_NODE,
+    SEND_FEEDBACK_OUTCOME,
+    SEND_FEEDBACK_COMMENT,
+    EXECUTE_COMMAND,
+    SET_PRODUCT_FILTERS,
+    SET_COMPONENT_FILTERS,
+    UPDATE_GUIDED_ANSWER_TREES,
+    SHARE_LINK_TELEMETRY,
+    OPEN_LINK_TELEMETRY,
+    RESET_FILTERS
+]);
 export const telemetryMiddleware: Middleware<
     Dispatch<GuidedAnswerActions>,
     AppState,

@@ -56,6 +56,7 @@ export interface TelemetryUIOpenTreeEventProps extends TelemetryUIEventProps {
 
 export interface TelemetryUISelectNodeEventProps extends TelemetryUIEventProps {
     action: 'NODE_SELECTED';
+    isFinalNode: string;
     treeId: string;
     treeTitle: string;
     lastNodeId: string;
@@ -72,4 +73,64 @@ export interface TelemetryUIGoToPreviousPage extends TelemetryUIEventProps {
     lastNodeTitle: string;
     nodeIdPath: string;
     nodeLevel: string;
+}
+
+export interface TelemetryUISelectOutcomeProps extends TelemetryUIEventProps {
+    action: 'SELECT_OUTCOME';
+    solved: string;
+    treeId: string;
+    treeTitle: string;
+    lastNodeId: string;
+    lastNodeTitle: string;
+    nodeIdPath: string;
+    nodeLevel: string;
+}
+
+export interface TelemetryUICommentProps extends TelemetryUIEventProps {
+    action: 'COMMENT';
+    treeId: string;
+    treeTitle: string;
+    lastNodeId: string;
+    lastNodeTitle: string;
+    nodeIdPath: string;
+    nodeLevel: string;
+}
+
+export interface TelemetryUISearchProps extends TelemetryUIEventProps {
+    action: 'SEARCH';
+    treeCount: string;
+    productFilterCount: string;
+    componentFilterCount: string;
+}
+
+export interface TelemetryUIExecuteCommandProps extends TelemetryUIEventProps {
+    action: 'EXECUTE_COMMAND';
+    commandLabel: string;
+    treeId: string;
+    treeTitle: string;
+    lastNodeId: string;
+    lastNodeTitle: string;
+    nodeIdPath: string;
+    nodeLevel: string;
+}
+
+export interface TelemetryUIFilterComponentsProps extends TelemetryUIEventProps {
+    action: 'FILTER_COMPONENTS';
+}
+
+export interface TelemetryUIFilterProductsProps extends TelemetryUIEventProps {
+    action: 'FILTER_PRODUCTS';
+}
+
+export interface TelemetryUIOpenLinkProps extends TelemetryUIEventProps {
+    action: 'OPEN_LINK';
+}
+
+export interface TelemetryUIShareLinkProps extends TelemetryUIEventProps {
+    action: 'SHARE_LINK';
+}
+
+export interface TelemetryUIClearFiltersProps extends TelemetryUIEventProps {
+    action: 'CLEAR_FILTERS';
+    justOpened: string;
 }
