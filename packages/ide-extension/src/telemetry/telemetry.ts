@@ -118,7 +118,7 @@ export async function trackAction(action: SendTelemetry): Promise<void> {
     try {
         if (actionMap[action.payload.action.type]) {
             const properties = actionMap[action.payload.action.type](action);
-            trackEvent({ name: 'USER_INTERACTION', properties });
+            await trackEvent({ name: 'USER_INTERACTION', properties });
         }
     } catch (error) {
         logString(`Error sending telemetry action '${action?.payload?.action?.type}': ${(error as Error).message}`);

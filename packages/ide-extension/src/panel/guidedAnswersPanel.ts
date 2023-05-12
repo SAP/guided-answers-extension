@@ -87,7 +87,7 @@ export class GuidedAnswersPanel {
                 treeId: typeof this.startOptions?.treeId === 'number' ? this.startOptions?.treeId.toString() : '',
                 nodeIdPath: (this.startOptions?.nodeIdPath || []).join(':')
             }
-        });
+        }).catch((error) => logString(`Error tracking event 'STARTUP'.\n${error?.toString()}`));
         /**
          * vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421), therefore node_modules from same repo are missing.
          * To overcome this we copy guidedAnswers.js and guidedAnswers.css to dist/ folder in esbuild.js
@@ -318,7 +318,9 @@ export class GuidedAnswersPanel {
                     break;
                 }
                 case SEND_TELEMETRY: {
-                    trackAction(action);
+                    trackAction(action).catch((error) =>
+                        logString(`Error tracking action '${action?.payload?.action?.type}'.\n${error?.toString()}`)
+                    );
                     break;
                 }
                 default: {
@@ -338,7 +340,11 @@ export class GuidedAnswersPanel {
      * @param action - the action to post to application info webview
      */
     private postActionToWebview(action: GuidedAnswerActions): void {
-        this.panel?.webview.postMessage(action);
+        this.panel?.webview
+            .postMessage(action)
+            ?.then(undefined, (error) =>
+                logString(`Error sending action to webview. Action was '${action?.type}'.\n${error?.toString()}`)
+            );
     }
 
     /**
