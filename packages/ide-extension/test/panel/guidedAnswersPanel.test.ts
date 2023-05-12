@@ -15,7 +15,9 @@ import {
     SEND_FEEDBACK_COMMENT,
     SET_QUERY_VALUE,
     FILL_SHARE_LINKS,
-    RESTORE_STATE
+    RESTORE_STATE,
+    SEND_TELEMETRY,
+    AppState
 } from '@sap/guided-answers-extension-types';
 import type {
     Command,
@@ -562,6 +564,39 @@ describe('GuidedAnswersPanel', () => {
 
         // Result check
         expect(guidedAnswerApiSpy).toBeCalled();
+    });
+
+    test('GuidedAnswersPanel communication SEND_TELEMETRY with error handling', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() =>
+            getWebViewPanelMock((callback: WebviewMessageCallback) => {
+                onDidReceiveMessageMock = callback;
+            })
+        );
+        const telemetryMock = jest.spyOn(telemetry, 'trackAction').mockRejectedValueOnce('TRACK_ACTION_ERROR');
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({
+            type: SEND_TELEMETRY,
+            payload: { action: { type: SEND_TELEMETRY, payload: {} as any }, state: {} as unknown as AppState }
+        });
+
+        // Result check
+        await (() => new Promise(setImmediate))();
+        expect(telemetryMock).toBeCalledWith({
+            type: 'SEND_TELEMETRY',
+            payload: {
+                action: {
+                    type: 'SEND_TELEMETRY',
+                    payload: {}
+                },
+                state: {}
+            }
+        });
+        expect(loggerMock).toBeCalledWith(expect.stringContaining('TRACK_ACTION_ERROR'));
     });
 
     test('GuidedAnswersPanel communication unhandled action', async () => {
