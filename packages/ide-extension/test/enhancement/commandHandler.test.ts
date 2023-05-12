@@ -40,6 +40,25 @@ describe('Test for handleCommand()', () => {
         expect(log).toBeCalledWith(expect.stringContaining('TEST.COMMAND'));
     });
 
+    test('VSCode command throws error', async () => {
+        //  Mock setup
+        jest.spyOn(commands, 'executeCommand').mockRejectedValueOnce('COMMAND_ERROR');
+        const log = jest.spyOn(loggerMock, 'logString').mockImplementation(() => undefined);
+        const command: Partial<Command> = {
+            exec: {
+                extensionId: 'TEST.EXTENSION',
+                commandId: 'TEST.COMMAND'
+            }
+        };
+
+        // Test execution
+        handleCommand(command as Command);
+
+        // Check results
+        await (() => new Promise(setImmediate))();
+        expect(log).toBeCalledWith(expect.stringContaining('COMMAND_ERROR'));
+    });
+
     test('Execute terminal command without cwd', () => {
         //  Mock setup
         const terminalMock: Partial<Terminal> = {

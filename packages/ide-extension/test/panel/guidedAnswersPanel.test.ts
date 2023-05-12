@@ -28,6 +28,7 @@ import type {
 } from '@sap/guided-answers-extension-types';
 import { GuidedAnswersPanel, GuidedAnswersSerializer } from '../../src/panel/guidedAnswersPanel';
 import * as logger from '../../src/logger/logger';
+import * as telemetry from '../../src/telemetry';
 import type { StartOptions } from '../../src/types';
 
 type WebviewMessageCallback = (action: GuidedAnswerActions) => void;
@@ -85,6 +86,18 @@ describe('GuidedAnswersPanel', () => {
 
         // Result check
         expect(gaPanel).toBeDefined();
+    });
+
+    test('Startup error for telemetry', async () => {
+        // Mock setup
+        jest.spyOn(telemetry, 'trackEvent').mockRejectedValueOnce('TELEMETRY_ERROR');
+
+        // Test execution
+        new GuidedAnswersPanel();
+
+        // Result check
+        await (() => new Promise(setImmediate))();
+        expect(loggerMock).toBeCalledWith(expect.stringContaining('TELEMETRY_ERROR'));
     });
 
     test('GuidedAnswersPanel communication WEBVIEW_READY', async () => {
@@ -566,6 +579,24 @@ describe('GuidedAnswersPanel', () => {
 
         // Result check
         expect(webViewPanelMock.webview.postMessage).not.toBeCalled();
+    });
+
+    test('GuidedAnswersPanel communication exception when sending action', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        webViewPanelMock.webview.postMessage = () => Promise.reject('COMMUNICATION_ERROR');
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({ type: WEBVIEW_READY });
+
+        // Result check
+        expect(loggerMock).toBeCalledWith(expect.stringContaining('COMMUNICATION_ERROR'));
     });
 
     test('GuidedAnswersPanel restart with options', async () => {

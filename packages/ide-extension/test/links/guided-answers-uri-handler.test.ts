@@ -3,9 +3,11 @@ import * as logger from '../../src/logger/logger';
 import { GuidedAnswersUriHandler } from '../../src/links';
 
 describe('Test GuidedAnswersUriHandler', () => {
+    let loggerMock: jest.SpyInstance;
+
     beforeEach(() => {
         jest.clearAllMocks();
-        jest.spyOn(logger, 'logString').mockImplementation(() => null);
+        loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
     });
 
     test('Handle valid URI, should execute start command', () => {
@@ -33,5 +35,18 @@ describe('Test GuidedAnswersUriHandler', () => {
 
         // Result check
         expect(executeCommandSpy).not.toBeCalled();
+    });
+
+    test('Calling startup command throws error', async () => {
+        // Mock setup
+        jest.spyOn(commands, 'executeCommand').mockRejectedValueOnce('START_ERROR');
+
+        // Test execution
+        const uriHandler = new GuidedAnswersUriHandler();
+        uriHandler.handleUri(Uri.parse(`#/tree/42`));
+
+        // Result check
+        await (() => new Promise(setImmediate))();
+        expect(loggerMock).toBeCalledWith(expect.stringContaining('START_ERROR'));
     });
 });
