@@ -2,7 +2,7 @@ import type { ExtensionContext } from 'vscode';
 import { commands, window, workspace } from 'vscode';
 import { getDevSpace, getIde } from '@sap/guided-answers-extension-core';
 import { logString } from './logger/logger';
-import { GuidedAnswersPanel } from './panel/guidedAnswersPanel';
+import { GuidedAnswersPanel, GuidedAnswersSerializer } from './panel/guidedAnswersPanel';
 import { initTelemetry } from './telemetry';
 import { GuidedAnswersUriHandler } from './links';
 import type { StartOptions } from './types';
@@ -18,7 +18,6 @@ export function activate(context: ExtensionContext): void {
     } catch (error) {
         logString(`Error during initialization of telemetry: ${(error as Error)?.message}`);
     }
-    let guidedAnswersPanel: GuidedAnswersPanel | undefined;
     context.subscriptions.push(
         commands.registerCommand('sap.ux.guidedAnswer.openGuidedAnswer', async (startOptions?: StartOptions) => {
             try {
@@ -31,11 +30,9 @@ export function activate(context: ExtensionContext): void {
                     startOptions
                 };
                 logString(`Guided Answers command called. Options: ${JSON.stringify(options)}`);
+                let guidedAnswersPanel: GuidedAnswersPanel | undefined = GuidedAnswersPanel.getInstance();
                 if (openInNewTab || !guidedAnswersPanel) {
                     guidedAnswersPanel = new GuidedAnswersPanel(options);
-                    guidedAnswersPanel.panel.onDidDispose(() => {
-                        guidedAnswersPanel = undefined;
-                    });
                 } else {
                     guidedAnswersPanel.restartWithOptions(startOptions);
                 }
@@ -46,4 +43,5 @@ export function activate(context: ExtensionContext): void {
         })
     );
     context.subscriptions.push(window.registerUriHandler(new GuidedAnswersUriHandler()));
+    window.registerWebviewPanelSerializer('sap.ux.guidedAnswer.view', new GuidedAnswersSerializer());
 }

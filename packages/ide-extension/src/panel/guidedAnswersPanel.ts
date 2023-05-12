@@ -1,6 +1,7 @@
-import type { WebviewPanel } from 'vscode';
+import type { WebviewPanel, WebviewPanelSerializer } from 'vscode';
 import { Uri, ViewColumn, window, workspace } from 'vscode';
 import type {
+    AppState,
     GuidedAnswerActions,
     GuidedAnswerAPI,
     GuidedAnswersQueryOptions,
@@ -21,6 +22,7 @@ import {
     searchTree,
     SEARCH_TREE,
     WEBVIEW_READY,
+    restoreState,
     setActiveTree,
     setQueryValue,
     getBetaFeatures,
@@ -38,11 +40,23 @@ import { extractLinkInfo, generateExtensionLink, generateWebLink } from '../link
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
  */
 export class GuidedAnswersPanel {
+    private static guidedAnswersPanel: GuidedAnswersPanel | undefined;
     public readonly panel: WebviewPanel;
     private guidedAnswerApi: GuidedAnswerAPI;
     private startOptions: StartOptions | undefined;
     private loadingTimeout: NodeJS.Timeout | undefined;
     private readonly ide: IDE;
+    private restoreAppState?: AppState;
+
+    /**
+     * Return instance of guided answers panel. This is required when setting 'openInNewTab'
+     * is set to false (default) and a single panel should be reused.
+     *
+     * @returns - instance of guided answers panel
+     */
+    static getInstance(): GuidedAnswersPanel | undefined {
+        return GuidedAnswersPanel.guidedAnswersPanel;
+    }
 
     /**
      * Constructor.
@@ -54,6 +68,7 @@ export class GuidedAnswersPanel {
     constructor(options?: Options) {
         this.startOptions = options?.startOptions;
         this.ide = options?.ide || 'VSCODE';
+        this.restoreAppState = options?.restore?.appState;
         const htmlEnhancements = getHtmlEnhancements(this.ide);
         const extensions = getInstalledExtensionIds();
 
@@ -81,20 +96,21 @@ export class GuidedAnswersPanel {
          * const webappDirPath = dirname(require.resolve('@sap/guided-answers-extension-webapp'));
          */
         const ViewColumnType = this.startOptions?.openToSide ? ViewColumn.Beside : ViewColumn.Active;
-        this.panel = window.createWebviewPanel(
-            'sap.ux.guidedAnswer.view',
-            'Guided Answers extension by SAP',
-            ViewColumnType,
-            {
+        this.panel =
+            options?.restore?.webviewPanel ||
+            window.createWebviewPanel('sap.ux.guidedAnswer.view', 'Guided Answers extension by SAP', ViewColumnType, {
                 enableCommandUris: true,
                 enableScripts: true,
                 retainContextWhenHidden: true,
                 localResourceRoots: [Uri.file(__dirname)],
                 enableFindWidget: true
-            }
-        );
+            });
         this.panel.webview.onDidReceiveMessage(this.onWebviewMessage.bind(this));
         this.panel.webview.html = this.createHtmlContent();
+        GuidedAnswersPanel.guidedAnswersPanel = this;
+        this.panel.onDidDispose(() => {
+            delete GuidedAnswersPanel.guidedAnswersPanel;
+        });
     }
 
     /**
@@ -131,6 +147,10 @@ export class GuidedAnswersPanel {
      * or filters that are applied depending on the environment.
      */
     private async handleWebViewReady(): Promise<void> {
+        if (this.restoreAppState) {
+            this.postActionToWebview(restoreState(this.restoreAppState));
+            delete this.restoreAppState;
+        }
         if (this.startOptions) {
             await this.processStartOptions(this.startOptions);
         } else {
@@ -326,5 +346,35 @@ export class GuidedAnswersPanel {
      */
     public show(): void {
         this.panel.reveal();
+    }
+}
+
+/**
+ * Class to (de)serialize app info webview
+ */
+export class GuidedAnswersSerializer implements WebviewPanelSerializer {
+    /**
+     * Called from VSCode when Webview panel is restored.
+     *
+     * @param webviewPanel - webview panel
+     * @param state - previously persisted state, which is the app root path
+     * @returns - void
+     */
+    deserializeWebviewPanel(webviewPanel: WebviewPanel, state: string): Promise<void> {
+        try {
+            if (state) {
+                const appState = JSON.parse(state) as AppState;
+                logString(`Restoring guided answers state with deserialized web panel`);
+                const guidedAnswersPanel = new GuidedAnswersPanel({ restore: { webviewPanel, appState } });
+                guidedAnswersPanel.show();
+            } else {
+                logString(`Received invalid state: '${state}'. Disposing webviewPanel.`);
+                webviewPanel.dispose();
+            }
+        } catch (error) {
+            logString(`Error while restoring webview panel: ${error?.toString()}`);
+            webviewPanel?.dispose();
+        }
+        return Promise.resolve();
     }
 }

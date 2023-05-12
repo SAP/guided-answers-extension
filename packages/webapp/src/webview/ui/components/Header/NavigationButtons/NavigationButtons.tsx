@@ -112,7 +112,10 @@ export function ShareButton() {
                             isBeakVisible={true}
                             beakWidth={10}
                             directionalHint={DirectionalHint.bottomCenter}
-                            onDismiss={() => actions.updateActiveNodeSharing(null)}
+                            onDismiss={() => {
+                                setCopiedVisible(false);
+                                actions.updateActiveNodeSharing(null);
+                            }}
                             calloutWidth={230}
                             calloutMinWidth={230}
                             layerProps={{

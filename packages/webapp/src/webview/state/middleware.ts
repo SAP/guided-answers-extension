@@ -20,7 +20,7 @@ import {
 import type { AppState } from '../types';
 
 declare let window: Window;
-declare let acquireVsCodeApi: () => typeof window['vscode'];
+declare let acquireVsCodeApi: () => typeof window.vscode;
 
 /**
  * Communication between IDE extension and web view is realized through the communication middleware
@@ -91,6 +91,22 @@ export const telemetryMiddleware: Middleware<
                 } as unknown as JSON);
                 console.log(i18next.t('TELEMETRY_POSTED, action: '), action);
             }
+            return action;
+        };
+};
+
+export const restoreMiddleware: Middleware<Dispatch<GuidedAnswerActions>, AppState, Dispatch<GuidedAnswerActions>> = ({
+    getState
+}) => {
+    return (next: Dispatch<GuidedAnswerActions>) =>
+        (action: GuidedAnswerActions): GuidedAnswerActions => {
+            action = next(action);
+            try {
+                window.vscode.setState(JSON.stringify(getState()));
+            } catch (error) {
+                console.error(`Error executing setState() to store the state: `, error);
+            }
+
             return action;
         };
 };

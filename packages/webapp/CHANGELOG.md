@@ -1,5 +1,17 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.20.6
+
+### Patch Changes
+
+-   636c2c8: Reset copy to clipboard on callout dismiss
+
+## 1.20.5
+
+### Patch Changes
+
+-   be0f952: Restore Guided Answers after reload
+
 ## 1.20.4
 
 ### Patch Changes

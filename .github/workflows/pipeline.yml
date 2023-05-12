@@ -47,7 +47,7 @@ jobs:
               run: pnpm run test
             - name: Run SonarCloud scan
               if: matrix.os == 'ubuntu-latest' && matrix.node-version == '16.x'
-              uses: sonarsource/sonarcloud-github-action@master
+              uses: sonarsource/sonarcloud-github-action@v1.9
               env:
                   GITHUB_TOKEN: ${{ secrets.ACCESS_PAT }}
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

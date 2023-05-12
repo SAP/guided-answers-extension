@@ -1,5 +1,13 @@
 # @sap/guided-answers-extension-types
 
+## 1.20.6
+
+## 1.20.5
+
+### Patch Changes
+
+-   be0f952: Restore Guided Answers after reload
+
 ## 1.20.4
 
 ## 1.20.3

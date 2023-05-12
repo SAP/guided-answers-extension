@@ -178,6 +178,7 @@ export type GuidedAnswerActions =
     | UpdateActiveNodeSharing
     | ResetFilters
     | RestartAnswer
+    | RestoreState
     | UpdateActiveNode
     | UpdateGuidedAnswerTrees
     | UpdateNetworkStatus
@@ -361,4 +362,10 @@ export interface ShareLinkTelemetry {
 export const OPEN_LINK_TELEMETRY = 'OPEN_LINK_TELEMETRY';
 export interface OpenLinkTelemetry {
     type: typeof OPEN_LINK_TELEMETRY;
+}
+
+export const RESTORE_STATE = 'RESTORE_STATE';
+export interface RestoreState {
+    type: typeof RESTORE_STATE;
+    payload: AppState;
 }
