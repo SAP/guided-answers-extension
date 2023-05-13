@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.20.7
+
+### Patch Changes
+
+-   9262a89: Improve error handling for promises
+
 ## 1.20.6
 
 ### Patch Changes
