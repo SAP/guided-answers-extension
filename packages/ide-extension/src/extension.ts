@@ -38,7 +38,7 @@ export function activate(context: ExtensionContext): void {
                 }
                 guidedAnswersPanel.show();
             } catch (error) {
-                window.showErrorMessage(`Error while starting Guided Answers: ${(error as Error).message}`);
+                await window.showErrorMessage(`Error while starting Guided Answers: ${(error as Error).message}`);
             }
         })
     );
