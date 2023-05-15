@@ -361,8 +361,7 @@ describe('Telemetry trackAction() tests', () => {
         expect(telemetryReporter.client.trackEvent).toBeCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
-                action: 'CLEAR_FILTERS',
-                justOpened: 'false'
+                action: 'CLEAR_FILTERS'
             }
         });
     });

@@ -132,5 +132,4 @@ export interface TelemetryUIShareLinkProps extends TelemetryUIEventProps {
 
 export interface TelemetryUIClearFiltersProps extends TelemetryUIEventProps {
     action: 'CLEAR_FILTERS';
-    justOpened: string;
 }

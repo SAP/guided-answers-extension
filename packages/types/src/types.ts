@@ -201,7 +201,6 @@ export interface AppState {
     pageSize: number;
     feedbackStatus: boolean;
     feedbackResponse: boolean;
-    justOpened: boolean;
 }
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';

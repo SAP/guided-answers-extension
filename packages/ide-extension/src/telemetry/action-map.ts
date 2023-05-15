@@ -92,9 +92,8 @@ export const actionMap: {
     [SHARE_LINK_TELEMETRY]: (): TelemetryUIShareLinkProps => ({
         action: 'SHARE_LINK'
     }),
-    [RESET_FILTERS]: (action: SendTelemetry): TelemetryUIClearFiltersProps => ({
-        action: 'CLEAR_FILTERS',
-        justOpened: action.payload.state.justOpened ? 'true' : 'false'
+    [RESET_FILTERS]: (): TelemetryUIClearFiltersProps => ({
+        action: 'CLEAR_FILTERS'
     })
 };
 
