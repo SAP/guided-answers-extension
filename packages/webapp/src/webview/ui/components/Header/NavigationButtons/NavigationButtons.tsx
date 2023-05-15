@@ -198,8 +198,11 @@ export function BookmarkButton() {
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
     const bookmarks = useSelector<AppState, GuidedAnswerNode[]>((state) => state.bookmarks);
     const nodeId = nodes[nodes.length - 1].NODE_ID;
+    const appState = useSelector<AppState, AppState>((state) => state);
 
     useEffect(() => {
+        console.log('Let me tell you sth!', appState);
+
         console.log('UseEffect:', bookmarks);
         bookmarks.forEach((bookmark) => {
             // console.log(
@@ -216,7 +219,7 @@ export function BookmarkButton() {
             }
         });
 
-        if (!bookmarks.some((bookmark) => Object.keys(bookmark)[0] === nodeId.toString())) {
+        if (bookmarks && !bookmarks.some((bookmark) => Object.keys(bookmark)[0] === nodeId.toString())) {
             setBookmark(false);
         }
     }, [bookmarks]);
