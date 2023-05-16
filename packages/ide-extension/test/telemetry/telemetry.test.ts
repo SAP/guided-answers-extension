@@ -156,6 +156,7 @@ describe('Telemetry trackAction() tests', () => {
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'NODE_SELECTED',
+                isFinalNode: 'false',
                 treeId: '1',
                 treeTitle: 'Title',
                 lastNodeId: '3',
@@ -185,6 +186,182 @@ describe('Telemetry trackAction() tests', () => {
                 lastNodeTitle: 'last node',
                 nodeIdPath: '2:3',
                 nodeLevel: '2'
+            }
+        });
+    });
+
+    test('send SEND_FEEDBACK_OUTCOME action', () => {
+        // Mock setup
+        const mockAction = getDummyAction('SEND_FEEDBACK_OUTCOME');
+        delete mockAction.payload.state.activeGuidedAnswer;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'SELECT_OUTCOME',
+                treeId: '',
+                treeTitle: '',
+                lastNodeId: '3',
+                lastNodeTitle: 'last node',
+                nodeIdPath: '2:3',
+                nodeLevel: '2',
+                solved: 'false'
+            }
+        });
+    });
+
+    test('send SEND_FEEDBACK_COMMENT action', () => {
+        // Mock setup
+        const mockAction = getDummyAction('SEND_FEEDBACK_COMMENT');
+        delete mockAction.payload.state.activeGuidedAnswer;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'COMMENT',
+                treeId: '',
+                treeTitle: '',
+                lastNodeId: '3',
+                lastNodeTitle: 'last node',
+                nodeIdPath: '2:3',
+                nodeLevel: '2'
+            }
+        });
+    });
+
+    test('send UPDATE_GUIDED_ANSWER_TREES action', () => {
+        // Mock setup
+        const mockAction = getDummyAction('UPDATE_GUIDED_ANSWER_TREES');
+        delete mockAction.payload.state.activeGuidedAnswer;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'SEARCH',
+                treeCount: '',
+                productFilterCount: '',
+                componentFilterCount: ''
+            }
+        });
+    });
+
+    test('send EXECUTE_COMMAND action', () => {
+        // Mock setup
+        const mockAction = getDummyAction('EXECUTE_COMMAND');
+        delete mockAction.payload.state.activeGuidedAnswer;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'EXECUTE_COMMAND',
+                commandLabel: '',
+                treeId: '',
+                treeTitle: '',
+                lastNodeId: '3',
+                lastNodeTitle: 'last node',
+                nodeIdPath: '2:3',
+                nodeLevel: '2'
+            }
+        });
+    });
+
+    test('send SET_COMPONENT_FILTERS action', () => {
+        // Mock setup
+        const mockAction = getDummyAction('SET_COMPONENT_FILTERS');
+        delete mockAction.payload.state.activeGuidedAnswer;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'FILTER_COMPONENTS'
+            }
+        });
+    });
+
+    test('send SET_PRODUCT_FILTERS action', () => {
+        // Mock setup
+        const mockAction = getDummyAction('SET_PRODUCT_FILTERS');
+        delete mockAction.payload.state.activeGuidedAnswer;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'FILTER_PRODUCTS'
+            }
+        });
+    });
+
+    test('send SHARE_LINK_TELEMETRY action', () => {
+        // Mock setup
+        const mockAction = getDummyAction('SHARE_LINK_TELEMETRY');
+        delete mockAction.payload.state.activeGuidedAnswer;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'SHARE_LINK'
+            }
+        });
+    });
+
+    test('send OPEN_LINK_TELEMETRY action', () => {
+        // Mock setup
+        const mockAction = getDummyAction('OPEN_LINK_TELEMETRY');
+        delete mockAction.payload.state.activeGuidedAnswer;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'OPEN_LINK'
+            }
+        });
+    });
+
+    test('send RESET_FILTERS action', () => {
+        // Mock setup
+        const mockAction = getDummyAction('RESET_FILTERS');
+        delete mockAction.payload.state.activeGuidedAnswer;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'CLEAR_FILTERS'
             }
         });
     });

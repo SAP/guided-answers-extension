@@ -64,7 +64,9 @@ import {
     SET_PAGE_SIZE,
     FEEDBACK_STATUS,
     FEEDBACK_RESPONSE,
-    SEND_TELEMETRY
+    SEND_TELEMETRY,
+    SHARE_LINK_TELEMETRY,
+    OPEN_LINK_TELEMETRY
 } from './types';
 
 export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
@@ -184,6 +186,10 @@ export const fillShareLinks = (payload: {
     type: FILL_SHARE_LINKS,
     payload
 });
+
+export const shareLinkTelemetry = () => ({ type: SHARE_LINK_TELEMETRY });
+
+export const openLinkTelemetry = () => ({ type: OPEN_LINK_TELEMETRY });
 
 export const restoreState = (payload: AppState): RestoreState => ({
     type: RESTORE_STATE,
