@@ -73,14 +73,13 @@ export function App(): ReactElement {
 
     /**
      *
-     * @param nodeId
-     * @param nodeId.toString
+     * @param treeId
+     * @param treeId.toString
      * @returns boolean
      */
-    function isBookmark(nodeId: { toString: () => string }): boolean {
+    function isBookmark(treeId: { toString: () => string }): boolean {
         return appState.bookmarks.some(
-            (bookmark: BookmarkPayload) =>
-                bookmark.activeGuidedAnswerNode?.NODE_ID === nodeId && bookmark.status !== false
+            (bookmark: BookmarkPayload) => bookmark.activeGuidedAnswer?.TREE_ID === treeId && bookmark.status !== false
         );
     }
 
@@ -92,6 +91,7 @@ export function App(): ReactElement {
     } else if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
     } else if (
+        bookmarks &&
         bookmarks.length > 0 &&
         appState.guidedAnswerTreeSearchResult.resultSize === -1 &&
         appState.query === '' &&
@@ -197,7 +197,7 @@ export function App(): ReactElement {
                                             }}>
                                             <div className="guided-answer__tree__ul">
                                                 <h3 className="guided-answer__tree__title">
-                                                    {isBookmark(tree.FIRST_NODE_ID) ? (
+                                                    {isBookmark(tree.TREE_ID) ? (
                                                         <VscStarFull className="bookmark-icon-bookmarked" />
                                                     ) : (
                                                         ''
