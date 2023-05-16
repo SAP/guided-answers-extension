@@ -322,6 +322,7 @@ export class GuidedAnswersPanel {
                         )
                     );
                     this.postActionToWebview(updateNetworkStatus('OK'));
+                    // this.context?.globalState.update('bookmarks', undefined);
                     this.postActionToWebview(getBookmarks(this.context?.globalState.get('bookmarks')));
                     break;
                 }
@@ -329,32 +330,38 @@ export class GuidedAnswersPanel {
                     trackAction(action);
                     break;
                 }
-                // case GETBOOKMARKS: {
-                //     this.postActionToWebview(getBookmarks(this.context?.globalState.get('bookmarks')));
-                //     break;
-                // }
                 case UPDATEBOOKMARK: {
                     if (action.payload !== undefined) {
                         const bookmarks: any = this.context?.globalState.get('bookmarks');
 
                         if (bookmarks === undefined) {
                             this.context?.globalState.update('bookmarks', [
-                                { [action.payload.nodeId]: action.payload.status }
+                                {
+                                    activeGuidedAnswer: action.payload.activeGuidedAnswer,
+                                    activeGuidedAnswerNode: action.payload.activeGuidedAnswerNode,
+                                    status: action.payload.status
+                                }
                             ]);
                         } else {
-                            bookmarks.forEach((element: {}, index: string | number) => {
-                                if (Object.keys(element)[0] === action.payload.nodeId.toString()) {
-                                    bookmarks[index] = { [action.payload.nodeId]: action.payload.status };
+                            bookmarks.forEach((element: any, index: string | number) => {
+                                if (
+                                    element.activeGuidedAnswerNode.NODE_ID ===
+                                        action.payload.activeGuidedAnswerNode.NODE_ID &&
+                                    action.payload.status === false
+                                ) {
+                                    bookmarks.splice(index, 1);
                                 }
                             });
 
-                            if (!bookmarks.some((x) => Object.keys(x)[0] === action.payload.nodeId.toString())) {
-                                bookmarks.push({ [action.payload.nodeId]: action.payload.status });
+                            if (action.payload.status === true) {
+                                bookmarks.push({
+                                    activeGuidedAnswer: action.payload.activeGuidedAnswer,
+                                    activeGuidedAnswerNode: action.payload.activeGuidedAnswerNode,
+                                    status: action.payload.status
+                                });
                             }
                             this.context?.globalState.update('bookmarks', bookmarks);
                         }
-
-                        console.log('BOOKMARKS --->', this.context?.globalState.get('bookmarks'));
 
                         this.postActionToWebview(getBookmarks(this.context?.globalState.get('bookmarks')));
                     }

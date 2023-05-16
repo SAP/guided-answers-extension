@@ -14,6 +14,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { SpinnerSize } from '@fluentui/react';
 import i18next from 'i18next';
 import { VscStarFull } from 'react-icons/vsc';
+import type { BookmarkPayload } from '@sap/guided-answers-extension-types';
 
 initIcons();
 
@@ -24,7 +25,7 @@ initIcons();
  */
 export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
-    const bookmarks = useSelector<AppState, any[]>((state) => state.bookmarks);
+    const bookmarks = useSelector<AppState, BookmarkPayload[]>((state) => state.bookmarks);
     useEffect(() => {
         const resultsContainer = document.getElementById('results-container');
         if (!resultsContainer) {
@@ -77,11 +78,9 @@ export function App(): ReactElement {
      * @returns boolean
      */
     function isBookmark(nodeId: { toString: () => string }): boolean {
-        // console.log('---Oxxx 833 m0u', appState.bookmarks, nodeId);
         return appState.bookmarks.some(
-            (bookmark: {}) =>
-                //@ts-ignore
-                Object.keys(bookmark)[0] === nodeId.toString() && bookmark[Object.keys(bookmark)[0]] !== false
+            (bookmark: BookmarkPayload) =>
+                bookmark.activeGuidedAnswerNode?.NODE_ID === nodeId && bookmark.status !== false
         );
     }
 
@@ -96,53 +95,80 @@ export function App(): ReactElement {
         bookmarks.length > 0 &&
         appState.guidedAnswerTreeSearchResult.resultSize === -1 &&
         appState.query === '' &&
-        bookmarks.some((bookmark: { [x: string]: boolean }) => bookmark[Object.keys(bookmark)[0]] === true)
+        bookmarks.some((bookmark) => bookmark.status !== false)
     ) {
-        content = bookmarks
-            .filter((bookmark) => bookmark[Object.keys(bookmark)[0]] === true)
-            .map((bookmark: any) => {
-                return (
-                    <li key={`tree-item-${Object.keys(bookmark)[0]}`} className="tree-item" role="option">
-                        <button
-                            className="guided-answer__tree"
-                            // onClick={(): void => {
-                            //     //@ts-ignore
-                            //     actions.setActiveTree(bookmarktree);
-                            //     actions.selectNode(tree.FIRST_NODE_ID);
-                            //     document.body.focus();
-                            // }}
-                        >
-                            <div className="guided-answer__tree__ul">
-                                <h3 className="guided-answer__tree__title">
-                                    <VscStarFull className="bookmark-icon-bookmarked" />
-                                    {Object.keys(bookmark)[0]}
-                                </h3>
-                                {/* <div className="bottom-section">
-                                    {tree.DESCRIPTION && (
-                                        <span className="guided-answer__tree__desc">{tree.DESCRIPTION}</span>
-                                    )}
-                                    <div
-                                        className="component-and-product-container"
-                                        style={{ marginTop: tree.DESCRIPTION ? '10px' : '0' }}>
-                                        {tree.PRODUCT && (
-                                            <div className="guided-answer__tree__product">
-                                                <span className="bottom-title">Product: </span>
-                                                {tree.PRODUCT.split(',')[0].trim()}
+        content = (
+            <div>
+                <h3>
+                    <VscStarFull className="bookmark-icon-bookmarked" /> Bookmarks
+                </h3>
+                <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
+                    <ul className="striped-list-bookmarks" role="listbox">
+                        {bookmarks
+                            .filter((bookmark: BookmarkPayload) => bookmark.status !== false)
+                            .map((bookmark: BookmarkPayload) => {
+                                return (
+                                    <li
+                                        key={`tree-item-${bookmark.activeGuidedAnswerNode?.NODE_ID}`}
+                                        className="tree-item"
+                                        role="option">
+                                        <button
+                                            className="guided-answer__tree"
+                                            onClick={(): void => {
+                                                //@ts-ignore
+                                                actions.setActiveTree(bookmark.activeGuidedAnswer);
+                                                //@ts-ignore
+                                                actions.selectNode(bookmark.activeGuidedAnswerNode.NODE_ID);
+                                                document.body.focus();
+                                            }}>
+                                            <div className="guided-answer__tree__ul">
+                                                <h3 className="guided-answer__tree__title">
+                                                    {bookmark.activeGuidedAnswer?.TITLE}{' '}
+                                                    {bookmark.activeGuidedAnswerNode?.NODE_ID ===
+                                                    bookmark.activeGuidedAnswer?.FIRST_NODE_ID
+                                                        ? ''
+                                                        : `- ${bookmark.activeGuidedAnswerNode?.TITLE}`}
+                                                </h3>
+                                                <div className="bottom-section">
+                                                    {bookmark.activeGuidedAnswer?.DESCRIPTION && (
+                                                        <span className="guided-answer__tree__desc">
+                                                            {bookmark.activeGuidedAnswer?.DESCRIPTION}
+                                                        </span>
+                                                    )}
+                                                    <div
+                                                        className="component-and-product-container"
+                                                        style={{
+                                                            marginTop: bookmark.activeGuidedAnswer?.DESCRIPTION
+                                                                ? '10px'
+                                                                : '0'
+                                                        }}>
+                                                        {bookmark.activeGuidedAnswer?.PRODUCT && (
+                                                            <div className="guided-answer__tree__product">
+                                                                <span className="bottom-title">Product: </span>
+                                                                {bookmark.activeGuidedAnswer?.PRODUCT.split(
+                                                                    ','
+                                                                )[0].trim()}
+                                                            </div>
+                                                        )}
+                                                        {bookmark.activeGuidedAnswer?.COMPONENT && (
+                                                            <div className="guided-answer__tree__component">
+                                                                <span className="bottom-title">Component: </span>
+                                                                {bookmark.activeGuidedAnswer?.COMPONENT.split(
+                                                                    ','
+                                                                )[0].trim()}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </div>
                                             </div>
-                                        )}
-                                        {tree.COMPONENT && (
-                                            <div className="guided-answer__tree__component">
-                                                <span className="bottom-title">Component: </span>
-                                                {tree.COMPONENT.split(',')[0].trim()}
-                                            </div>
-                                        )}
-                                    </div>
-                                </div> */}
-                            </div>
-                        </button>
-                    </li>
-                );
-            });
+                                        </button>
+                                    </li>
+                                );
+                            })}
+                    </ul>
+                </FocusZone>
+            </div>
+        );
     } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
         content =
             appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (

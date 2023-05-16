@@ -90,9 +90,9 @@ export interface FeedbackOutcomePayload {
 }
 
 export interface BookmarkPayload {
-    treeId: GuidedAnswerTreeId;
-    nodeId: GuidedAnswerNodeId;
-    status: boolean;
+    activeGuidedAnswer: GuidedAnswerTree | undefined;
+    activeGuidedAnswerNode: GuidedAnswerNode | undefined;
+    status: boolean | undefined;
 }
 
 export interface GuidedAnswerAPI {

@@ -193,34 +193,23 @@ export function GeneralFeedbackButton() {
  * @returns A button component for bookmarking a guide.
  */
 export function BookmarkButton() {
-    const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!?.TREE_ID);
+    const appState = useSelector<AppState, AppState>((state) => state);
     const [isBookmarked, setBookmark] = useState(false);
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
-    const bookmarks = useSelector<AppState, GuidedAnswerNode[]>((state) => state.bookmarks);
+    const bookmarks = useSelector<AppState, any[]>((state) => state.bookmarks);
     const nodeId = nodes[nodes.length - 1].NODE_ID;
-    const appState = useSelector<AppState, AppState>((state) => state);
 
     useEffect(() => {
-        console.log('Let me tell you sth!', appState);
+        if (bookmarks !== undefined) {
+            bookmarks.forEach((bookmark) => {
+                if (bookmark.activeGuidedAnswerNode.NODE_ID === nodeId) {
+                    setBookmark(bookmark.status);
+                }
+            });
 
-        console.log('UseEffect:', bookmarks);
-        bookmarks.forEach((bookmark) => {
-            // console.log(
-            //     'check if true',
-            //     Object.keys(bookmark)[0] === nodeId.toString(),
-            //     Object.keys(bookmark)[0],
-            //     nodeId.toString(),
-            //     //@ts-ignore
-            //     bookmark[Object.keys(bookmark)[0]]
-            // );
-            if (Object.keys(bookmark)[0] === nodeId.toString()) {
-                //@ts-ignore
-                setBookmark(bookmark[Object.keys(bookmark)[0]]);
+            if (!bookmarks.some((bookmark) => bookmark.activeGuidedAnswerNode.NODE_ID === nodeId)) {
+                setBookmark(false);
             }
-        });
-
-        if (bookmarks && !bookmarks.some((bookmark) => Object.keys(bookmark)[0] === nodeId.toString())) {
-            setBookmark(false);
         }
     }, [bookmarks]);
 
@@ -229,7 +218,11 @@ export function BookmarkButton() {
             id="bookmark-button"
             className="guided-answer__header__navButtons"
             onClick={(): void => {
-                actions.updateBookmark({ treeId, nodeId, status: !isBookmarked });
+                actions.updateBookmark({
+                    activeGuidedAnswer: appState.activeGuidedAnswer,
+                    activeGuidedAnswerNode: appState.activeGuidedAnswerNode[appState.activeGuidedAnswerNode.length - 1],
+                    status: !isBookmarked
+                });
                 setBookmark(!isBookmarked);
             }}
             title={i18next.t('BOOKMARK')}>
