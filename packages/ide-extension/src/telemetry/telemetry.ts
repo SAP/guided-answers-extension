@@ -4,6 +4,7 @@ import type { Disposable } from 'vscode';
 import { TelemetryClient } from 'applicationinsights';
 import type { Contracts } from 'applicationinsights';
 import type { IDE, SendTelemetry } from '@sap/guided-answers-extension-types';
+import { v4 as uuidv4 } from 'uuid';
 import { logString } from '../logger/logger';
 import packageJson from '../../package.json';
 import type { TelemetryEvent, TelemetryReporter } from '../types';
@@ -30,7 +31,7 @@ export function initTelemetry(): TelemetryReporter {
             return true;
         });
         client.context.tags[client.context.keys.userId] = env.machineId;
-        client.context.tags[client.context.keys.sessionId] = env.sessionId;
+        client.context.tags[client.context.keys.sessionId] = uuidv4();
         client.context.tags[client.context.keys.cloudRole] = env.appName;
         const enabled = updateTelemetryStatus();
         disposables.push(workspace.onDidChangeConfiguration(() => updateTelemetryStatus()));

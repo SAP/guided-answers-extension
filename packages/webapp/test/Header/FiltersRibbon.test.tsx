@@ -28,7 +28,7 @@ describe('<FiltersRibbon />', () => {
 
     it('Should render a FiltersRibbon component', () => {
         const initialState = getInitialState();
-        initialState.loading = false;
+        initialState.networkStatus = 'OK';
         initialState.query = 'Fiori tools';
         initialState.selectedProductFilters = ['Product A'];
         initialState.selectedComponentFilters = ['comp-a'];

@@ -84,6 +84,7 @@ export function ShareButton() {
     const id = 'callout-test-id';
     const [isCopiedVisible, setCopiedVisible] = useState(false);
     const toggleCopied = (): void => {
+        actions.shareLinkTelemetry();
         setCopiedVisible(!isCopiedVisible);
     };
     const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!?.TREE_ID);
@@ -166,7 +167,11 @@ export function ShareButton() {
                                         {i18next.t('COPY_WITH_INSTRUCTIONS')}
                                     </p>
                                 </CopyToClipboard>
-                                <a className="sharable-link__web-link" id="web-link" href={shareNodeLinks.webLink}>
+                                <a
+                                    className="sharable-link__web-link"
+                                    id="web-link"
+                                    href={shareNodeLinks.webLink}
+                                    onClick={() => actions.openLinkTelemetry()}>
                                     <UIIcon iconName={UiIcons.Export} />
                                     {i18next.t('VIEW_ON_WEBSITE')}
                                 </a>
