@@ -93,7 +93,7 @@ export function ShareButton() {
 
     const copyInstructions = i18next
         .t('COPY_WITH_INSTRUCTIONS_TEXT')
-        .replace('{EXTENSION_LINK}', shareNodeLinks?.extensionLink || '');
+        .replace('{EXTENSION_LINK}', shareNodeLinks?.extensionLink ?? '');
 
     return (
         <>

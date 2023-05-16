@@ -38,5 +38,5 @@
     "COPIED_TO_CLIPBOARD_DESC": "Copy this link to share via email or messages. When pasted into the search input field of the Guided Answers extension, it will navigate you straight to this node.",
     "VIEW_ON_WEBSITE": "View on the GA website",
     "COPY_WITH_INSTRUCTIONS": "Copy link with instructions",
-    "COPY_WITH_INSTRUCTIONS_TEXT": "Please follow the steps mentioned in Guided Answers extension by SAP to resolve your issue:\na. Launch Guided Answers via the command `SAP: Open Guided Answers`\nb. Paste into the search input field the following and hit enter: {EXTENSION_LINK}\nc. Perform the steps as mentioned in the guide\nMore info on Guided Answers extension is here: https://github.com/SAP/guided-answers-extension"
+    "COPY_WITH_INSTRUCTIONS_TEXT": "Please follow the steps mentioned in Guided Answers extension by SAP to resolve your issue:\na. Launch Guided Answers via the command `SAP: Open Guided Answers`\nb. Paste the following guide shortlink into the search input field and hit Enter: {EXTENSION_LINK}\nc. Perform the steps as mentioned in the guide\nLearn more about the Guided Answers extension here: https://github.com/SAP/guided-answers-extension"
 }
