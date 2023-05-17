@@ -1,5 +1,15 @@
 # @sap/guided-answers-extension-types
 
+## 1.21.0
+
+## 1.20.8
+
+### Patch Changes
+
+-   3a076e6: feat(440): add more telemetry events and data
+
+## 1.20.7
+
 ## 1.20.6
 
 ## 1.20.5

@@ -10,12 +10,20 @@ import { logString } from '../logger/logger';
  */
 export function handleCommand(command: Command): void {
     if (isVSCodeCommand(command.exec)) {
+        const commandId = command.exec.commandId;
+        const argument = command.exec.argument;
         logString(
-            `Executing VSCode command '${
-                command.exec.commandId
-            }'. Full command info including arguments:\n${JSON.stringify(command, null, 2)} `
+            `Executing VSCode command '${commandId}'. Full command info including arguments:\n${JSON.stringify(
+                command,
+                null,
+                2
+            )} `
         );
-        commands.executeCommand(command.exec.commandId, command.exec.argument);
+        commands
+            .executeCommand(commandId, argument)
+            ?.then(undefined, (error) =>
+                logString(`Error while executing command '${commandId}'\n${error?.toString()}`)
+            );
     }
     if (isTerminalCommand(command.exec)) {
         const terminal = window.createTerminal(`Guided Answers extension by SAP`);

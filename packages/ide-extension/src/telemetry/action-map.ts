@@ -1,10 +1,40 @@
-import { GO_TO_PREVIOUS_PAGE, SET_ACTIVE_TREE, UPDATE_ACTIVE_NODE } from '@sap/guided-answers-extension-types';
-import type { AppState, SendTelemetry, SetActiveTree } from '@sap/guided-answers-extension-types';
+import {
+    GO_TO_PREVIOUS_PAGE,
+    SET_ACTIVE_TREE,
+    UPDATE_ACTIVE_NODE,
+    SEND_FEEDBACK_OUTCOME,
+    SEND_FEEDBACK_COMMENT,
+    EXECUTE_COMMAND,
+    SET_COMPONENT_FILTERS,
+    SET_PRODUCT_FILTERS,
+    UPDATE_GUIDED_ANSWER_TREES,
+    OPEN_LINK_TELEMETRY,
+    SHARE_LINK_TELEMETRY,
+    RESET_FILTERS
+} from '@sap/guided-answers-extension-types';
+import type {
+    AppState,
+    SendTelemetry,
+    SetActiveTree,
+    ExecuteCommand,
+    UpdateGuidedAnswerTrees,
+    UpdateActiveNode,
+    SendFeedbackOutcome
+} from '@sap/guided-answers-extension-types';
 import type {
     TelemetryUIEventProps,
     TelemetryUIGoToPreviousPage,
     TelemetryUIOpenTreeEventProps,
-    TelemetryUISelectNodeEventProps
+    TelemetryUISelectNodeEventProps,
+    TelemetryUISelectOutcomeProps,
+    TelemetryUICommentProps,
+    TelemetryUISearchProps,
+    TelemetryUIExecuteCommandProps,
+    TelemetryUIFilterComponentsProps,
+    TelemetryUIFilterProductsProps,
+    TelemetryUIShareLinkProps,
+    TelemetryUIOpenLinkProps,
+    TelemetryUIClearFiltersProps
 } from '../types';
 
 /**
@@ -21,11 +51,49 @@ export const actionMap: {
     }),
     [UPDATE_ACTIVE_NODE]: (action: SendTelemetry): TelemetryUISelectNodeEventProps => ({
         action: 'NODE_SELECTED',
+        isFinalNode: (action.payload.action as UpdateActiveNode).payload.EDGES?.length === 0 ? 'true' : 'false',
         ...getTreeNodeInfo(action.payload.state)
     }),
     [GO_TO_PREVIOUS_PAGE]: (action: SendTelemetry): TelemetryUIGoToPreviousPage => ({
         action: 'GO_BACK_IN_TREE',
         ...getTreeNodeInfo(action.payload.state)
+    }),
+    [SEND_FEEDBACK_OUTCOME]: (action: SendTelemetry): TelemetryUISelectOutcomeProps => ({
+        action: 'SELECT_OUTCOME',
+        solved: (action.payload.action as SendFeedbackOutcome).payload.solved ? 'true' : 'false',
+        ...getTreeNodeInfo(action.payload.state)
+    }),
+    [SEND_FEEDBACK_COMMENT]: (action: SendTelemetry): TelemetryUICommentProps => ({
+        action: 'COMMENT',
+        ...getTreeNodeInfo(action.payload.state)
+    }),
+    [UPDATE_GUIDED_ANSWER_TREES]: (action: SendTelemetry): TelemetryUISearchProps => ({
+        action: 'SEARCH',
+        treeCount: (action.payload.action as UpdateGuidedAnswerTrees).payload.trees?.length.toString() || '',
+        productFilterCount:
+            (action.payload.action as UpdateGuidedAnswerTrees).payload.productFilters?.length.toString() || '',
+        componentFilterCount:
+            (action.payload.action as UpdateGuidedAnswerTrees).payload.componentFilters?.length.toString() || ''
+    }),
+    [EXECUTE_COMMAND]: (action: SendTelemetry): TelemetryUIExecuteCommandProps => ({
+        action: 'EXECUTE_COMMAND',
+        commandLabel: (action.payload.action as ExecuteCommand).payload.label || '',
+        ...getTreeNodeInfo(action.payload.state)
+    }),
+    [SET_COMPONENT_FILTERS]: (): TelemetryUIFilterComponentsProps => ({
+        action: 'FILTER_COMPONENTS'
+    }),
+    [SET_PRODUCT_FILTERS]: (): TelemetryUIFilterProductsProps => ({
+        action: 'FILTER_PRODUCTS'
+    }),
+    [OPEN_LINK_TELEMETRY]: (): TelemetryUIOpenLinkProps => ({
+        action: 'OPEN_LINK'
+    }),
+    [SHARE_LINK_TELEMETRY]: (): TelemetryUIShareLinkProps => ({
+        action: 'SHARE_LINK'
+    }),
+    [RESET_FILTERS]: (): TelemetryUIClearFiltersProps => ({
+        action: 'CLEAR_FILTERS'
     })
 };
 

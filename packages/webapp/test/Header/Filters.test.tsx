@@ -40,7 +40,7 @@ describe('<Filters />', () => {
 
     it('Should render a Filters component - Open products filter dialog', () => {
         const initialState = getInitialState();
-        initialState.loading = false;
+        initialState.networkStatus = 'OK';
         initialState.guidedAnswerTreeSearchResult = {
             trees: [treeMock],
             resultSize: 1,
@@ -90,7 +90,7 @@ describe('<Filters />', () => {
 
     it('Should render a Filters component - Open components filter dialog', () => {
         const initialState = getInitialState();
-        initialState.loading = false;
+        initialState.networkStatus = 'OK';
         initialState.guidedAnswerTreeSearchResult = {
             trees: [treeMock],
             resultSize: 1,

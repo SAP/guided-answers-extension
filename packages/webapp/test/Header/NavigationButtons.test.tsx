@@ -21,7 +21,9 @@ jest.mock('../../src/webview/state', () => {
             goToAllAnswers: jest.fn(),
             goToPreviousPage: jest.fn(),
             restartAnswer: jest.fn(),
-            fillShareLinks: jest.fn()
+            fillShareLinks: jest.fn(),
+            shareLinkTelemetry: jest.fn(),
+            copyLinkTelemetry: jest.fn()
         }
     };
 });

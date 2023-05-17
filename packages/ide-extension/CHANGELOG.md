@@ -1,5 +1,23 @@
 # sap-guided-answer-extension
 
+## 1.21.0
+
+### Minor Changes
+
+-   9adf7da: feat(492): add extra sharing link with instructions
+
+## 1.20.8
+
+### Patch Changes
+
+-   3a076e6: feat(440): add more telemetry events and data
+
+## 1.20.7
+
+### Patch Changes
+
+-   9262a89: Improve error handling for promises
+
 ## 1.20.6
 
 ### Patch Changes

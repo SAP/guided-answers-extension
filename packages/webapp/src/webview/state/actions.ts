@@ -22,6 +22,8 @@ export {
     setPageSize,
     feedbackStatus,
     feedbackResponse,
+    shareLinkTelemetry,
+    openLinkTelemetry,
     getBookmarks,
     updateBookmark
 } from '@sap/guided-answers-extension-types';

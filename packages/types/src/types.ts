@@ -368,6 +368,16 @@ export interface FillShareLinks {
     };
 }
 
+export const SHARE_LINK_TELEMETRY = 'SHARE_LINK_TELEMETRY';
+export interface ShareLinkTelemetry {
+    type: typeof SHARE_LINK_TELEMETRY;
+}
+
+export const OPEN_LINK_TELEMETRY = 'OPEN_LINK_TELEMETRY';
+export interface OpenLinkTelemetry {
+    type: typeof OPEN_LINK_TELEMETRY;
+}
+
 export const RESTORE_STATE = 'RESTORE_STATE';
 export interface RestoreState {
     type: typeof RESTORE_STATE;

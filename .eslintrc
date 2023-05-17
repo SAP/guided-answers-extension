@@ -16,6 +16,7 @@
                 "@typescript-eslint/no-explicit-any": "off",
                 "@typescript-eslint/no-inferrable-types": "off",
                 "@typescript-eslint/no-unused-vars": ["error"],
+                "@typescript-eslint/no-floating-promises": ["error"],
                 "@typescript-eslint/consistent-type-imports": [
                     "error",
                     {
@@ -67,7 +68,6 @@
                 "jsdoc/check-tag-names": "off",
                 "jsdoc/match-description": "off",
                 "promise/param-names": "off",
-                "promise/catch-or-return": "off",
                 "sonarjs/cognitive-complexity": ["error", 15],
                 "@typescript-eslint/no-unused-vars": "off",
                 "@typescript-eslint/consistent-type-imports": [
@@ -113,7 +113,7 @@
         "promise/always-return": "off",
         "promise/no-return-wrap": "off",
         "promise/param-names": "error",
-        "promise/catch-or-return": "error",
+        "promise/catch-or-return": ["error", { "allowThen": true }],
         "promise/no-native": "off",
         "promise/no-nesting": "error",
         "promise/no-promise-in-callback": "error",
