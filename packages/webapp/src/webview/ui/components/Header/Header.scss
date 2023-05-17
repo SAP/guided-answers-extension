@@ -167,6 +167,19 @@
             }
         }
     }
+
+    &__copy-instructions {
+        margin: 10px 10px 5px 10px;
+        line-height: 18px;
+        font-size: 11px;
+        color: var(--vscode-textLink-foreground);
+        text-decoration: underline;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
 }
 
 .home-icon {

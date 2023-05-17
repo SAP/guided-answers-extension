@@ -92,6 +92,10 @@ export function ShareButton() {
     const nodeIdPath = nodes.map((n) => n.NODE_ID);
     const shareNodeLinks = useSelector<AppState, ShareNodeLinks | null>((state) => state.activeNodeSharing);
 
+    const copyInstructions = i18next
+        .t('COPY_WITH_INSTRUCTIONS_TEXT')
+        .replace('{EXTENSION_LINK}', shareNodeLinks?.extensionLink ?? '');
+
     return (
         <>
             {!!treeId && (
@@ -155,6 +159,14 @@ export function ShareButton() {
                                 </div>
                                 <p className="sharable-link__footer">{i18next.t('COPIED_TO_CLIPBOARD_DESC')}</p>
                                 <hr className="sharable-link__divider"></hr>
+                                <CopyToClipboard text={copyInstructions} onCopy={toggleCopied}>
+                                    <p
+                                        className="sharable-link__copy-instructions"
+                                        id="copy-instructions"
+                                        title={copyInstructions}>
+                                        {i18next.t('COPY_WITH_INSTRUCTIONS')}
+                                    </p>
+                                </CopyToClipboard>
                                 <a
                                     className="sharable-link__web-link"
                                     id="web-link"
