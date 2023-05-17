@@ -1,4 +1,4 @@
-import type { WebviewPanel, WebviewPanelSerializer, ExtensionContext } from 'vscode';
+import type { WebviewPanel, WebviewPanelSerializer } from 'vscode';
 import { Uri, ViewColumn, window, workspace } from 'vscode';
 import type {
     AppState,
@@ -14,8 +14,7 @@ import {
     SEND_TELEMETRY,
     SEND_FEEDBACK_OUTCOME,
     SEND_FEEDBACK_COMMENT,
-    GETBOOKMARKS,
-    UPDATEBOOKMARK,
+    UPDATE_BOOKMARKS,
     updateGuidedAnswerTrees,
     updateActiveNode,
     updateNetworkStatus,
@@ -29,8 +28,7 @@ import {
     setQueryValue,
     getBetaFeatures,
     feedbackResponse,
-    getBookmarks,
-    updateBookmark
+    getBookmarks
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
@@ -39,6 +37,7 @@ import { logString } from '../logger/logger';
 import type { Options, StartOptions } from '../types';
 import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
 import { extractLinkInfo, generateExtensionLink, generateWebLink } from '../links/link-info';
+import { getAllBookmarks, updateBookmarks } from '../bookmarks';
 
 /**
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
@@ -51,7 +50,6 @@ export class GuidedAnswersPanel {
     private loadingTimeout: NodeJS.Timeout | undefined;
     private readonly ide: IDE;
     private restoreAppState?: AppState;
-    private context?: ExtensionContext;
 
     /**
      * Return instance of guided answers panel. This is required when setting 'openInNewTab'
@@ -69,10 +67,8 @@ export class GuidedAnswersPanel {
      * @param [options] - optional options to initialize the panel
      * @param [options.ide] - optional runtime IDE (VSCODE/SBAS), default is VSCODE if not passed
      * @param [options.startOptions] - optional startup options like tree id or tree id + node id path, or openToSide
-     * @param context
      */
-    constructor(options?: Options, context?: ExtensionContext) {
-        this.context = context;
+    constructor(options?: Options) {
         this.startOptions = options?.startOptions;
         this.ide = options?.ide || 'VSCODE';
         this.restoreAppState = options?.restore?.appState;
@@ -163,6 +159,11 @@ export class GuidedAnswersPanel {
         } else {
             await this.processEnvironmentFilters(this.ide);
         }
+        this.postActionToWebview(
+            getBetaFeatures(workspace.getConfiguration('sap.ux.guidedAnswer').get<boolean>('betaFeatures') || false)
+        );
+        this.postActionToWebview(updateNetworkStatus('OK'));
+        this.postActionToWebview(getBookmarks(getAllBookmarks()));
     }
 
     /**
@@ -316,14 +317,6 @@ export class GuidedAnswersPanel {
                 case WEBVIEW_READY: {
                     logString(`Webview is ready to receive actions`);
                     await this.handleWebViewReady();
-                    this.postActionToWebview(
-                        getBetaFeatures(
-                            (workspace.getConfiguration('sap.ux.guidedAnswer').get('betaFeatures') as boolean) || false
-                        )
-                    );
-                    this.postActionToWebview(updateNetworkStatus('OK'));
-                    // this.context?.globalState.update('bookmarks', undefined);
-                    this.postActionToWebview(getBookmarks(this.context?.globalState.get('bookmarks')));
                     break;
                 }
                 case SEND_TELEMETRY: {
@@ -332,42 +325,8 @@ export class GuidedAnswersPanel {
                     );
                     break;
                 }
-                case UPDATEBOOKMARK: {
-                    if (action.payload !== undefined) {
-                        const bookmarks: any = this.context?.globalState.get('bookmarks');
-
-                        if (bookmarks === undefined) {
-                            this.context?.globalState.update('bookmarks', [
-                                {
-                                    activeGuidedAnswer: action.payload.activeGuidedAnswer,
-                                    activeGuidedAnswerNode: action.payload.activeGuidedAnswerNode,
-                                    status: action.payload.status
-                                }
-                            ]);
-                        } else {
-                            bookmarks.forEach((element: any, index: string | number) => {
-                                if (
-                                    element.activeGuidedAnswerNode.NODE_ID ===
-                                        action.payload.activeGuidedAnswerNode.NODE_ID &&
-                                    action.payload.status === false
-                                ) {
-                                    bookmarks.splice(index, 1);
-                                }
-                            });
-
-                            if (action.payload.status === true) {
-                                bookmarks.push({
-                                    activeGuidedAnswer: action.payload.activeGuidedAnswer,
-                                    activeGuidedAnswerNode: action.payload.activeGuidedAnswerNode,
-                                    status: action.payload.status
-                                });
-                            }
-                            this.context?.globalState.update('bookmarks', bookmarks);
-                        }
-
-                        this.postActionToWebview(getBookmarks(this.context?.globalState.get('bookmarks')));
-                    }
-
+                case UPDATE_BOOKMARKS: {
+                    updateBookmarks(action.payload);
                     break;
                 }
                 default: {

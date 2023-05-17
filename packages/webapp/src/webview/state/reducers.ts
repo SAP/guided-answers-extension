@@ -1,5 +1,6 @@
 import type {
     BetaFeatures,
+    GetBookmarks,
     GuidedAnswerActions,
     GuideFeedback,
     RestoreState,
@@ -10,12 +11,12 @@ import type {
     SetQueryValue,
     UpdateActiveNode,
     UpdateActiveNodeSharing,
+    UpdateBookmarks,
     UpdateGuidedAnswerTrees,
     UpdateNetworkStatus,
     SetPageSize,
     FeedbackResponse,
-    FeedbackStatus,
-    Bookmark
+    FeedbackStatus
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -46,7 +47,7 @@ export function getInitialState(): AppState {
         pageSize: 20,
         feedbackStatus: false,
         feedbackResponse: false,
-        bookmarks: []
+        bookmarks: {}
     };
 }
 
@@ -89,7 +90,8 @@ const reducers: Partial<Reducers> = {
     SET_PAGE_SIZE: updatePageSize,
     FEEDBACK_RESPONSE: feedbackResponseReducer,
     FEEDBACK_STATUS: feedbackStatusReducer,
-    GETBOOKMARKS: getBookmarksReducer
+    GET_BOOKMARKS: getBookmarksReducer,
+    UPDATE_BOOKMARKS: updateBookmarksReducer
 };
 
 /**
@@ -309,7 +311,7 @@ function feedbackResponseReducer(newState: AppState, action: FeedbackResponse): 
  * @param action
  * @returns new state with changes
  */
-function getBookmarksReducer(newState: AppState, action: Bookmark): AppState {
+function getBookmarksReducer(newState: AppState, action: GetBookmarks): AppState {
     newState.bookmarks = action.payload;
     return newState;
 }
@@ -377,6 +379,18 @@ function searchTreeReducer(newState: AppState, action: SearchTree): AppState {
     newState.selectedComponentFilters = Array.isArray(selectedComponentFilters) ? selectedComponentFilters : [];
     const selectedProductFilters = action.payload?.filters?.product;
     newState.selectedProductFilters = Array.isArray(selectedProductFilters) ? selectedProductFilters : [];
+    return newState;
+}
+
+/**
+ * Update state for bookmarks.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function updateBookmarksReducer(newState: AppState, action: UpdateBookmarks): AppState {
+    newState.bookmarks = action.payload;
     return newState;
 }
 

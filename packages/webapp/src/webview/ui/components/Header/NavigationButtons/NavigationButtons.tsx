@@ -8,7 +8,13 @@ import { UIIcon, UiIcons, UICallout, UIIconButton, UITextInput } from '@sap-ux/u
 import { focusOnElement } from '../../utils';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { AppState } from '../../../../types';
-import type { GuidedAnswerNode, GuidedAnswerTreeId, ShareNodeLinks } from '@sap/guided-answers-extension-types';
+import type {
+    Bookmarks,
+    GuidedAnswerNode,
+    GuidedAnswerTree,
+    GuidedAnswerTreeId,
+    ShareNodeLinks
+} from '@sap/guided-answers-extension-types';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
 /**
@@ -210,40 +216,30 @@ export function GeneralFeedbackButton() {
  * @returns A button component for bookmarking a guide.
  */
 export function BookmarkButton() {
-    const appState = useSelector<AppState, AppState>((state) => state);
-    const [isBookmarked, setBookmark] = useState(false);
-    const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
-    const bookmarks = useSelector<AppState, any[]>((state) => state.bookmarks);
-    const nodeId = nodes[nodes.length - 1].NODE_ID;
-
-    useEffect(() => {
-        if (bookmarks !== undefined) {
-            bookmarks.forEach((bookmark) => {
-                if (bookmark.activeGuidedAnswerNode.NODE_ID === nodeId) {
-                    setBookmark(bookmark.status);
-                }
-            });
-
-            if (!bookmarks.some((bookmark) => bookmark.activeGuidedAnswerNode.NODE_ID === nodeId)) {
-                setBookmark(false);
-            }
-        }
-    }, [bookmarks]);
+    const tree = useSelector<AppState, GuidedAnswerTree | undefined>((state) => state.activeGuidedAnswer);
+    if (!tree) {
+        // No active tree, nothing we can do here
+        return <></>;
+    }
+    const nodePath = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
+    const bookmarks = useSelector<AppState, Bookmarks>((state) => state.bookmarks);
+    const bookmarkKey = `${tree.TREE_ID}-${nodePath.map((n) => n.NODE_ID).join(':')}`;
 
     return (
         <button
             id="bookmark-button"
             className="guided-answer__header__navButtons"
             onClick={(): void => {
-                actions.updateBookmark({
-                    activeGuidedAnswer: appState.activeGuidedAnswer,
-                    activeGuidedAnswerNode: appState.activeGuidedAnswerNode[appState.activeGuidedAnswerNode.length - 1],
-                    status: !isBookmarked
-                });
-                setBookmark(!isBookmarked);
+                const newBookmarks = JSON.parse(JSON.stringify(bookmarks));
+                if (newBookmarks[bookmarkKey]) {
+                    delete newBookmarks[bookmarkKey];
+                } else {
+                    newBookmarks[bookmarkKey] = { tree, nodePath };
+                }
+                actions.updateBookmark(newBookmarks);
             }}
             title={i18next.t('BOOKMARK')}>
-            {!isBookmarked ? <VscStarEmpty /> : <VscStarFull className="bookmark-icon-bookmarked" />}
+            {!bookmarks[bookmarkKey] ? <VscStarEmpty /> : <VscStarFull className="bookmark-icon-bookmarked" />}
         </button>
     );
 }

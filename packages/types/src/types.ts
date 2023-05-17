@@ -89,11 +89,7 @@ export interface FeedbackOutcomePayload {
     solved: boolean;
 }
 
-export interface BookmarkPayload {
-    activeGuidedAnswer: GuidedAnswerTree | undefined;
-    activeGuidedAnswerNode: GuidedAnswerNode | undefined;
-    status: boolean | undefined;
-}
+export type Bookmarks = Record<string, { tree: GuidedAnswerTree; nodePath: GuidedAnswerNode[] }>; //key is 'TREE_ID-NODE_ID:NODE_ID:NODE_ID:...NODE_ID'
 
 export interface GuidedAnswerAPI {
     getApiInfo: () => { host: string; version: string };
@@ -168,6 +164,7 @@ export type GuidedAnswerActions =
     | FeedbackResponse
     | FeedbackStatus
     | FillShareLinks
+    | GetBookmarks
     | GoToAllAnswers
     | GoToPreviousPage
     | GuideFeedback
@@ -182,14 +179,14 @@ export type GuidedAnswerActions =
     | SetProductFilters
     | SetQueryValue
     | UpdateActiveNodeSharing
+    | UpdateBookmarks
     | ResetFilters
     | RestartAnswer
     | RestoreState
     | UpdateActiveNode
     | UpdateGuidedAnswerTrees
     | UpdateNetworkStatus
-    | WebviewReady
-    | Bookmark;
+    | WebviewReady;
 
 export type NetworkStatus = 'OK' | 'LOADING' | 'ERROR';
 
@@ -208,7 +205,7 @@ export interface AppState {
     pageSize: number;
     feedbackStatus: boolean;
     feedbackResponse: boolean;
-    bookmarks: any;
+    bookmarks: Bookmarks;
 }
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
@@ -306,11 +303,16 @@ export interface SendFeedbackComment {
     payload: FeedbackCommentPayload;
 }
 
-export const UPDATEBOOKMARK = 'UPDATEBOOKMARK';
-export const GETBOOKMARKS = 'GETBOOKMARKS';
-export interface Bookmark {
-    type: typeof GETBOOKMARKS | typeof UPDATEBOOKMARK;
-    payload: BookmarkPayload | BookmarkPayload[];
+export const GET_BOOKMARKS = 'GET_BOOKMARKS';
+export interface GetBookmarks {
+    type: typeof GET_BOOKMARKS;
+    payload: Bookmarks;
+}
+
+export const UPDATE_BOOKMARKS = 'UPDATE_BOOKMARKS';
+export interface UpdateBookmarks {
+    type: typeof UPDATE_BOOKMARKS;
+    payload: Bookmarks;
 }
 
 export const SET_PRODUCT_FILTERS = 'SET_PRODUCT_FILTERS';

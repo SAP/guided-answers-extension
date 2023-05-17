@@ -37,8 +37,9 @@ import type {
     GuidedAnswersTelemetryPayload,
     RestoreState,
     AppState,
-    BookmarkPayload,
-    Bookmark
+    Bookmarks,
+    UpdateBookmarks,
+    GetBookmarks
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -69,8 +70,8 @@ import {
     SEND_TELEMETRY,
     SHARE_LINK_TELEMETRY,
     OPEN_LINK_TELEMETRY,
-    UPDATEBOOKMARK,
-    GETBOOKMARKS
+    UPDATE_BOOKMARKS,
+    GET_BOOKMARKS
 } from './types';
 
 export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
@@ -200,12 +201,12 @@ export const restoreState = (payload: AppState): RestoreState => ({
     payload
 });
 
-export const updateBookmark = (payload: BookmarkPayload): Bookmark => ({
-    type: UPDATEBOOKMARK,
+export const updateBookmark = (payload: Bookmarks): UpdateBookmarks => ({
+    type: UPDATE_BOOKMARKS,
     payload
 });
 
-export const getBookmarks = (payload: BookmarkPayload[]): Bookmark => ({
-    type: GETBOOKMARKS,
+export const getBookmarks = (payload: Bookmarks): GetBookmarks => ({
+    type: GET_BOOKMARKS,
     payload
 });

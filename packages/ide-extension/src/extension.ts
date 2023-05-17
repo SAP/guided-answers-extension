@@ -6,6 +6,7 @@ import { GuidedAnswersPanel, GuidedAnswersSerializer } from './panel/guidedAnswe
 import { initTelemetry } from './telemetry';
 import { GuidedAnswersUriHandler } from './links';
 import type { StartOptions } from './types';
+import { initBookmarks } from './bookmarks';
 
 /**
  *  Activate function is called by VSCode when the extension gets active.
@@ -16,7 +17,12 @@ export function activate(context: ExtensionContext): void {
     try {
         context.subscriptions.push(initTelemetry());
     } catch (error) {
-        logString(`Error during initialization of telemetry: ${(error as Error)?.message}`);
+        logString(`Error during initialization of telemetry.\n${error?.toString()}`);
+    }
+    try {
+        initBookmarks(context.globalState);
+    } catch (error) {
+        logString(`Error during initialization of bookmarks.\n${error?.toString()}`);
     }
     context.subscriptions.push(
         commands.registerCommand('sap.ux.guidedAnswer.openGuidedAnswer', async (startOptions?: StartOptions) => {
@@ -32,7 +38,7 @@ export function activate(context: ExtensionContext): void {
                 logString(`Guided Answers command called. Options: ${JSON.stringify(options)}`);
                 let guidedAnswersPanel: GuidedAnswersPanel | undefined = GuidedAnswersPanel.getInstance();
                 if (openInNewTab || !guidedAnswersPanel) {
-                    guidedAnswersPanel = new GuidedAnswersPanel(options, context);
+                    guidedAnswersPanel = new GuidedAnswersPanel(options);
                 } else {
                     guidedAnswersPanel.restartWithOptions(startOptions);
                 }
