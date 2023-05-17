@@ -78,7 +78,7 @@ export function App(): ReactElement {
      * @returns boolean
      */
     function isBookmark(treeId: { toString: () => string }): boolean {
-        return appState.bookmarks.some(
+        return appState.bookmarks?.some(
             (bookmark: BookmarkPayload) => bookmark.activeGuidedAnswer?.TREE_ID === treeId && bookmark.status !== false
         );
     }
