@@ -216,13 +216,13 @@ export function GeneralFeedbackButton() {
  * @returns A button component for bookmarking a guide.
  */
 export function BookmarkButton() {
+    const nodePath = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
+    const bookmarks = useSelector<AppState, Bookmarks>((state) => state.bookmarks);
     const tree = useSelector<AppState, GuidedAnswerTree | undefined>((state) => state.activeGuidedAnswer);
     if (!tree) {
         // No active tree, nothing we can do here
         return <></>;
     }
-    const nodePath = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
-    const bookmarks = useSelector<AppState, Bookmarks>((state) => state.bookmarks);
     const bookmarkKey = `${tree.TREE_ID}-${nodePath.map((n) => n.NODE_ID).join(':')}`;
 
     return (
