@@ -151,6 +151,14 @@
         border-top: 1px solid var(--vscode-editorWidget-border);
     }
 
+    &__divider-vertical {
+        height: 18px;
+        width: 6px;
+        margin-top: 4px;
+        margin-left: 6px;
+        border-left: 1px solid var(--vscode-editorWidget-border);
+    }
+
     &__web-link {
         display: block;
         width: fit-content;
