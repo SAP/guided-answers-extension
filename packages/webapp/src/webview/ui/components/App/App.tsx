@@ -14,7 +14,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { SpinnerSize } from '@fluentui/react';
 import i18next from 'i18next';
 import { VscStarFull } from 'react-icons/vsc';
-import type { Bookmarks } from '@sap/guided-answers-extension-types';
+import type { Bookmarks as BookmarksType } from '@sap/guided-answers-extension-types';
+import { Bookmarks } from '../Bookmarks';
+import { TreeItemBottomSection } from '../TreeItemBottomSection';
 
 initIcons();
 
@@ -25,7 +27,7 @@ initIcons();
  */
 export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
-    const bookmarks = useSelector<AppState, Bookmarks>((state) => state.bookmarks);
+    const bookmarks = useSelector<AppState, BookmarksType>((state) => state.bookmarks);
     useEffect(() => {
         const resultsContainer = document.getElementById('results-container');
         if (!resultsContainer) {
@@ -93,69 +95,7 @@ export function App(): ReactElement {
         appState.guidedAnswerTreeSearchResult.resultSize === -1 &&
         appState.query === ''
     ) {
-        content = (
-            <div>
-                <h3>
-                    <VscStarFull className="bookmark-icon-bookmarked" /> Bookmarks
-                </h3>
-                <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
-                    <ul className="striped-list-bookmarks" role="listbox">
-                        {Object.keys(bookmarks).map((bookmarkKey) => {
-                            const bookmark = bookmarks[bookmarkKey];
-                            return (
-                                <li
-                                    key={`tree-item-${bookmark.tree.TREE_ID}${bookmark.nodePath
-                                        .map((n) => n.NODE_ID)
-                                        .join('-')}`}
-                                    className="tree-item"
-                                    role="option">
-                                    <button
-                                        className="guided-answer__tree"
-                                        onClick={(): void => {
-                                            actions.setActiveTree(bookmark.tree);
-                                            bookmark.nodePath.forEach((node) => actions.updateActiveNode(node));
-                                            document.body.focus();
-                                        }}>
-                                        <div className="guided-answer__tree__ul">
-                                            <h3 className="guided-answer__tree__title">
-                                                {bookmark.tree.TITLE}
-                                                {' - '}
-                                                {bookmark.nodePath[bookmark.nodePath.length - 1].TITLE}
-                                            </h3>
-                                            <div className="bottom-section">
-                                                {bookmark.tree.DESCRIPTION && (
-                                                    <span className="guided-answer__tree__desc">
-                                                        {bookmark.tree.DESCRIPTION}
-                                                    </span>
-                                                )}
-                                                <div
-                                                    className="component-and-product-container"
-                                                    style={{
-                                                        marginTop: bookmark.tree.DESCRIPTION ? '10px' : '0'
-                                                    }}>
-                                                    {bookmark.tree.PRODUCT && (
-                                                        <div className="guided-answer__tree__product">
-                                                            <span className="bottom-title">Product: </span>
-                                                            {bookmark.tree.PRODUCT.split(',')[0].trim()}
-                                                        </div>
-                                                    )}
-                                                    {bookmark.tree.COMPONENT && (
-                                                        <div className="guided-answer__tree__component">
-                                                            <span className="bottom-title">Component: </span>
-                                                            {bookmark.tree.COMPONENT.split(',')[0].trim()}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </button>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </FocusZone>
-            </div>
-        );
+        content = <Bookmarks />;
     } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
         content =
             appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (
@@ -191,29 +131,7 @@ export function App(): ReactElement {
                                                     )}{' '}
                                                     {tree.TITLE}
                                                 </h3>
-                                                <div className="bottom-section">
-                                                    {tree.DESCRIPTION && (
-                                                        <span className="guided-answer__tree__desc">
-                                                            {tree.DESCRIPTION}
-                                                        </span>
-                                                    )}
-                                                    <div
-                                                        className="component-and-product-container"
-                                                        style={{ marginTop: tree.DESCRIPTION ? '10px' : '0' }}>
-                                                        {tree.PRODUCT && (
-                                                            <div className="guided-answer__tree__product">
-                                                                <span className="bottom-title">Product: </span>
-                                                                {tree.PRODUCT.split(',')[0].trim()}
-                                                            </div>
-                                                        )}
-                                                        {tree.COMPONENT && (
-                                                            <div className="guided-answer__tree__component">
-                                                                <span className="bottom-title">Component: </span>
-                                                                {tree.COMPONENT.split(',')[0].trim()}
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                </div>
+                                                <TreeItemBottomSection tree={tree} />
                                             </div>
                                         </button>
                                     </li>

@@ -7,7 +7,8 @@ import {
     AllAnswersButton,
     BackButton,
     RestartButton,
-    ShareButton
+    ShareButton,
+    BookmarkButton
 } from '../../src/webview/ui/components/Header/NavigationButtons';
 import { initI18n } from '../../src/webview/i18n';
 import configureMockStore from 'redux-mock-store';
@@ -23,7 +24,8 @@ jest.mock('../../src/webview/state', () => {
             restartAnswer: jest.fn(),
             fillShareLinks: jest.fn(),
             shareLinkTelemetry: jest.fn(),
-            copyLinkTelemetry: jest.fn()
+            copyLinkTelemetry: jest.fn(),
+            updateBookmark: jest.fn()
         }
     };
 });
@@ -119,5 +121,61 @@ describe('<ShareButton />', () => {
         // Test link to website
         const webLink = screen.getByTestId('web-link');
         expect(webLink).toHaveAttribute('href', 'web://link');
+    });
+});
+
+describe('BookmarkButton', () => {
+    const initialState = {
+        activeGuidedAnswer: {
+            TREE_ID: 'tree1',
+            TITLE: 'Tree 1'
+        },
+        activeGuidedAnswerNode: [{ NODE_ID: 'node1' }, { NODE_ID: 'node2' }],
+        bookmarks: {}
+    };
+
+    it('renders without crashing', () => {
+        const { getByRole } = render(
+            <Provider store={mockStore(createState(initialState))}>
+                <BookmarkButton />
+            </Provider>
+        );
+
+        expect(getByRole('button')).toBeInTheDocument();
+    });
+
+    it('adds bookmark when clicked', () => {
+        const { getByRole } = render(
+            <Provider store={mockStore(createState(initialState))}>
+                <BookmarkButton />
+            </Provider>
+        );
+
+        const button = getByRole('button');
+        fireEvent.click(button);
+
+        expect(actions.updateBookmark).toBeCalled();
+    });
+
+    it('removes bookmark when clicked', () => {
+        const initialStateWithBookmark = {
+            ...initialState,
+            bookmarks: {
+                'tree1-node1:node2': {
+                    tree: initialState.activeGuidedAnswer,
+                    nodePath: initialState.activeGuidedAnswerNode
+                }
+            }
+        };
+
+        const { getByRole } = render(
+            <Provider store={mockStore(createState(initialStateWithBookmark))}>
+                <BookmarkButton />
+            </Provider>
+        );
+
+        const button = getByRole('button');
+        fireEvent.click(button);
+        expect(actions.updateBookmark).toBeCalled();
     });
 });

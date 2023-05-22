@@ -504,6 +504,32 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
                 </span>
               </button>
             </div>
+            <div
+              class="guided-answer__header__divider"
+            />
+            <button
+              class="guided-answer__header__navButtons"
+              id="bookmark-button"
+              tabindex="-1"
+              title="Bookmark this guide"
+            >
+              <svg
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 16 16"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M9.595 6.252L8 1 6.405 6.252H1l4.373 3.4L3.75 15 8 11.695 12.25 15l-1.623-5.348L15 6.252H9.595zm-7.247.47H6.72L8 2.507 6.72 6.722H2.348zm3.537 2.75l-1.307 4.305 1.307-4.305zm7.767-2.75H9.28h4.372zm-8.75.9h2.366L8 5.214l.732 2.41h2.367l-1.915 1.49.731 2.409L8 10.032l-1.915 1.49.731-2.41-1.915-1.49z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </button>
           </div>
         </div>
         <div
@@ -717,10 +743,13 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
                     <h3
                       class="guided-answer__tree__title"
                     >
+                      
+                       
                       SAP Fiori tools
                     </h3>
                     <div
                       class="bottom-section"
+                      id="bottom-section"
                     >
                       <span
                         class="guided-answer__tree__desc"
@@ -733,6 +762,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
                       >
                         <div
                           class="guided-answer__tree__product"
+                          id="product-container"
                         >
                           <span
                             class="bottom-title"
@@ -743,6 +773,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
                         </div>
                         <div
                           class="guided-answer__tree__component"
+                          id="component-container"
                         >
                           <span
                             class="bottom-title"

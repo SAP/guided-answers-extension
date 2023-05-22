@@ -238,7 +238,7 @@ export function BookmarkButton() {
                 }
                 actions.updateBookmark(newBookmarks);
             }}
-            title={i18next.t('BOOKMARK')}>
+            title={!bookmarks[bookmarkKey] ? i18next.t('BOOKMARK_THIS_GUIDE') : i18next.t('REMOVE_FROM_BOOKMARKS')}>
             {!bookmarks[bookmarkKey] ? <VscStarEmpty /> : <VscStarFull className="bookmark-icon-bookmarked" />}
         </button>
     );
