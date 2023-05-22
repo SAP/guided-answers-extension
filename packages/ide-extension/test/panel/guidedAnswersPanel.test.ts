@@ -17,6 +17,7 @@ import {
     FILL_SHARE_LINKS,
     RESTORE_STATE,
     SEND_TELEMETRY,
+    GET_BOOKMARKS,
     AppState
 } from '@sap/guided-answers-extension-types';
 import type {
@@ -185,7 +186,8 @@ describe('GuidedAnswersPanel', () => {
             [{ type: SET_ACTIVE_TREE, payload: { TREE_ID: 1, FIRST_NODE_ID: 1234 } }],
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 1234, TITLE: 'Node 1234' } }],
             [{ type: BETA_FEATURES, payload: false }],
-            [{ type: UPDATE_NETWORK_STATUS, payload: 'OK' }]
+            [{ type: UPDATE_NETWORK_STATUS, payload: 'OK' }],
+            [{ type: GET_BOOKMARKS, payload: {} }]
         ]);
     });
 
@@ -211,7 +213,8 @@ describe('GuidedAnswersPanel', () => {
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 200 } }],
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 300 } }],
             [{ type: BETA_FEATURES, payload: false }],
-            [{ type: UPDATE_NETWORK_STATUS, payload: 'OK' }]
+            [{ type: UPDATE_NETWORK_STATUS, payload: 'OK' }],
+            [{ type: GET_BOOKMARKS, payload: {} }]
         ]);
     });
 
