@@ -53,10 +53,6 @@ export function App(): ReactElement {
         };
     }, []);
 
-    useEffect(() => {
-        console.log('Bookmarks on init:', bookmarks);
-    }, [bookmarks]);
-
     function fetchData() {
         if (appState.guidedAnswerTreeSearchResult.resultSize > appState.pageSize) {
             actions.searchTree({
