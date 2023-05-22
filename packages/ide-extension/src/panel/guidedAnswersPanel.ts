@@ -160,7 +160,7 @@ export class GuidedAnswersPanel {
             await this.processEnvironmentFilters(this.ide);
         }
         this.postActionToWebview(
-            getBetaFeatures(workspace.getConfiguration('sap.ux.guidedAnswer').get<boolean>('betaFeatures') || false)
+            getBetaFeatures(workspace.getConfiguration('sap.ux.guidedAnswer').get<boolean>('betaFeatures') ?? false)
         );
         this.postActionToWebview(updateNetworkStatus('OK'));
         this.postActionToWebview(getBookmarks(getAllBookmarks()));
