@@ -18,7 +18,9 @@ import {
     RESTORE_STATE,
     SEND_TELEMETRY,
     GET_BOOKMARKS,
-    AppState
+    AppState,
+    SYNCHRONIZE_BOOKMARK,
+    GuidedAnswerNode
 } from '@sap/guided-answers-extension-types';
 import type {
     Command,
@@ -600,6 +602,77 @@ describe('GuidedAnswersPanel', () => {
             }
         });
         expect(loggerMock).toBeCalledWith(expect.stringContaining('TRACK_ACTION_ERROR'));
+    });
+
+    test('GuidedAnswersPanel communication SYNCHRONIZE_BOOKMARK and UPDATE_BOOKMARKS', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock(1));
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({
+            type: SYNCHRONIZE_BOOKMARK,
+            payload: {
+                tree: { TREE_ID: 1, TITLE: 'One' } as GuidedAnswerTree,
+                nodePath: [
+                    { NODE_ID: 2, BODY: 'body2' } as GuidedAnswerNode,
+                    { NODE_ID: 3, BODY: 'body3' } as GuidedAnswerNode
+                ],
+                createdAt: '2023-05-23T21:46:42.223Z'
+            }
+        });
+
+        // Result check
+        await (() => new Promise(setImmediate))();
+        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(5);
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
+            type: 'UPDATE_BOOKMARKS',
+            payload: {
+                '1-2:3': {
+                    tree: {
+                        TREE_ID: 1,
+                        FIRST_NODE_ID: 1
+                    },
+                    nodePath: [
+                        {
+                            NODE_ID: 2
+                        },
+                        {
+                            NODE_ID: 3
+                        }
+                    ],
+                    createdAt: '2023-05-23T21:46:42.223Z'
+                }
+            }
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {
+            type: 'GO_TO_ALL_ANSWERS'
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(3, {
+            type: 'SET_ACTIVE_TREE',
+            payload: {
+                TREE_ID: 1,
+                FIRST_NODE_ID: 1
+            }
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(4, {
+            type: 'UPDATE_ACTIVE_NODE',
+            payload: {
+                NODE_ID: 2
+            }
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(5, {
+            type: 'UPDATE_ACTIVE_NODE',
+            payload: {
+                NODE_ID: 3
+            }
+        });
     });
 
     test('GuidedAnswersPanel communication unhandled action', async () => {

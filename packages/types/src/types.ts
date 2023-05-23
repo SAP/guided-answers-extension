@@ -184,6 +184,7 @@ export type GuidedAnswerActions =
     | SetPageSize
     | SetProductFilters
     | SetQueryValue
+    | SynchronizeBookmark
     | UpdateActiveNodeSharing
     | UpdateBookmarks
     | ResetFilters
@@ -390,4 +391,10 @@ export const RESTORE_STATE = 'RESTORE_STATE';
 export interface RestoreState {
     type: typeof RESTORE_STATE;
     payload: AppState;
+}
+
+export const SYNCHRONIZE_BOOKMARK = 'SYNCHRONIZE_BOOKMARK';
+export interface SynchronizeBookmark {
+    type: typeof SYNCHRONIZE_BOOKMARK;
+    payload: Bookmark;
 }

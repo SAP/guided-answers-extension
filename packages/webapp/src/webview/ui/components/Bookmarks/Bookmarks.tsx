@@ -37,6 +37,7 @@ export function Bookmarks(): ReactElement {
                                     onClick={(): void => {
                                         actions.setActiveTree(bookmark.tree);
                                         bookmark.nodePath.forEach((node) => actions.updateActiveNode(node));
+                                        actions.synchronizeBookmark(bookmark);
                                         document.body.focus();
                                     }}>
                                     <div className="guided-answer__tree__ul">

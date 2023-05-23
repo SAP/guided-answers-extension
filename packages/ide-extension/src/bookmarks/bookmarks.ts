@@ -1,5 +1,5 @@
 import type { Memento } from 'vscode';
-import type { Bookmarks } from '@sap/guided-answers-extension-types';
+import type { Bookmarks, GuidedAnswerTree } from '@sap/guided-answers-extension-types';
 import { logString } from '../logger/logger';
 
 let globalStateApi: Memento;
@@ -31,6 +31,10 @@ export function getAllBookmarks(): Bookmarks {
 export function updateBookmarks(bookmarks: Bookmarks): void {
     if (globalStateApi) {
         const newBookmarks = Object.keys(bookmarks).length > 0 ? bookmarks : undefined;
+        // Clean bookmark, remove SCORE from tree when retrieved via search result list
+        for (const bookmark in bookmarks) {
+            delete (bookmarks[bookmark].tree as GuidedAnswerTree & { SCORE?: number }).SCORE;
+        }
         globalStateApi
             .update('bookmark', newBookmarks)
             .then(undefined, (error) => logString(`Error updating bookmarks.\n${error?.toString()}`));

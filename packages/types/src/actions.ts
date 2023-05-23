@@ -39,7 +39,9 @@ import type {
     AppState,
     Bookmarks,
     UpdateBookmarks,
-    GetBookmarks
+    GetBookmarks,
+    Bookmark,
+    SynchronizeBookmark
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -71,7 +73,8 @@ import {
     SHARE_LINK_TELEMETRY,
     OPEN_LINK_TELEMETRY,
     UPDATE_BOOKMARKS,
-    GET_BOOKMARKS
+    GET_BOOKMARKS,
+    SYNCHRONIZE_BOOKMARK
 } from './types';
 
 export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
@@ -208,5 +211,10 @@ export const updateBookmark = (payload: Bookmarks): UpdateBookmarks => ({
 
 export const getBookmarks = (payload: Bookmarks): GetBookmarks => ({
     type: GET_BOOKMARKS,
+    payload
+});
+
+export const synchronizeBookmark = (payload: Bookmark): SynchronizeBookmark => ({
+    type: SYNCHRONIZE_BOOKMARK,
     payload
 });

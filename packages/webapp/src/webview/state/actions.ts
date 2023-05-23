@@ -25,5 +25,6 @@ export {
     shareLinkTelemetry,
     openLinkTelemetry,
     getBookmarks,
-    updateBookmark
+    updateBookmark,
+    synchronizeBookmark
 } from '@sap/guided-answers-extension-types';

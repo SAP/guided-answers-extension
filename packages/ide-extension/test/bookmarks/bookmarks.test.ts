@@ -118,4 +118,14 @@ describe('Bookmark functions', () => {
 
         expect(logString).toHaveBeenCalledWith(`Error updating bookmarks.\n${error.toString()}`);
     });
+
+    test('check if SCORE is removed from Guided Answer tree when storing bookmark', async () => {
+        const bookMarkWithScore = JSON.parse(JSON.stringify(mockBookmarks));
+        bookMarkWithScore['1-1'].tree.SCORE = 1.23;
+
+        initBookmarks(mockGlobalState);
+        await updateBookmarks(bookMarkWithScore);
+
+        expect(mockGlobalState.update).toHaveBeenCalledWith('bookmark', mockBookmarks);
+    });
 });
