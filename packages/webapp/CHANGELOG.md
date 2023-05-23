@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.22.0
+
+### Minor Changes
+
+-   c2d0c50: feat(492): move copy instructions button
+
 ## 1.21.0
 
 ### Minor Changes
