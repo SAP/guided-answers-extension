@@ -1,6 +1,7 @@
-import { initBookmarks, getAllBookmarks, updateBookmarks } from '../../src/bookmarks';
 import type { Memento } from 'vscode';
+import { Bookmarks } from '@sap/guided-answers-extension-types';
 import { logString } from '../../src/logger/logger';
+import { initBookmarks, getAllBookmarks, updateBookmarks } from '../../src/bookmarks';
 
 jest.mock('../../src/logger/logger', () => ({
     logString: jest.fn()
@@ -8,7 +9,7 @@ jest.mock('../../src/logger/logger', () => ({
 
 let mockGlobalState: jest.Mocked<Memento>;
 
-const mockBookmarks = {
+const mockBookmarks: Bookmarks = {
     '1-1': {
         tree: {
             TREE_ID: 1,
@@ -33,7 +34,8 @@ const mockBookmarks = {
                     }
                 ]
             }
-        ]
+        ],
+        createdAt: '2023-05-23T15:41:00.478Z'
     },
     '2-1': {
         tree: {
@@ -59,7 +61,8 @@ const mockBookmarks = {
                     }
                 ]
             }
-        ]
+        ],
+        createdAt: '2023-05-23T15:41:02.708Z'
     }
 };
 
