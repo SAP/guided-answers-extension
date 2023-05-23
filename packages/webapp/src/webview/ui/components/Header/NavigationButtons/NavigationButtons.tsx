@@ -230,11 +230,11 @@ export function BookmarkButton() {
             id="bookmark-button"
             className="guided-answer__header__navButtons"
             onClick={(): void => {
-                const newBookmarks = JSON.parse(JSON.stringify(bookmarks));
+                const newBookmarks: Bookmarks = JSON.parse(JSON.stringify(bookmarks));
                 if (newBookmarks[bookmarkKey]) {
                     delete newBookmarks[bookmarkKey];
                 } else {
-                    newBookmarks[bookmarkKey] = { tree, nodePath };
+                    newBookmarks[bookmarkKey] = { tree, nodePath, createdAt: new Date().toISOString() };
                 }
                 actions.updateBookmark(newBookmarks);
             }}

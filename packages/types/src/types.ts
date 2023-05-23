@@ -89,7 +89,13 @@ export interface FeedbackOutcomePayload {
     solved: boolean;
 }
 
-export type Bookmarks = Record<string, { tree: GuidedAnswerTree; nodePath: GuidedAnswerNode[] }>; //key is 'TREE_ID-NODE_ID:NODE_ID:NODE_ID:...NODE_ID'
+export interface Bookmark {
+    tree: GuidedAnswerTree;
+    nodePath: GuidedAnswerNode[];
+    createdAt: string;
+}
+
+export type Bookmarks = Record<string, Bookmark>; //key is 'TREE_ID-NODE_ID:NODE_ID:NODE_ID:...NODE_ID'
 
 export interface GuidedAnswerAPI {
     getApiInfo: () => { host: string; version: string };
