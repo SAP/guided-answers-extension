@@ -83,18 +83,19 @@ export function RestartButton() {
 export function ShareButton() {
     const id = 'callout-test-id';
     const [isCopiedVisible, setCopiedVisible] = useState(false);
-    const toggleCopied = (): void => {
-        actions.shareLinkTelemetry();
-        setCopiedVisible(!isCopiedVisible);
-    };
     const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!?.TREE_ID);
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
     const nodeIdPath = nodes.map((n) => n.NODE_ID);
     const shareNodeLinks = useSelector<AppState, ShareNodeLinks | null>((state) => state.activeNodeSharing);
 
-    const copyInstructions = i18next
-        .t('COPY_WITH_INSTRUCTIONS_TEXT')
-        .replace('{EXTENSION_LINK}', shareNodeLinks?.extensionLink ?? '');
+    const copyInstructions = i18next.t('COPY_WITH_INSTRUCTIONS_TEXT', {
+        extensionLink: shareNodeLinks?.extensionLink ?? ''
+    });
+
+    const handleCopy = (): void => {
+        actions.shareLinkTelemetry();
+        setCopiedVisible(true);
+    };
 
     return (
         <>
@@ -120,8 +121,8 @@ export function ShareButton() {
                                 setCopiedVisible(false);
                                 actions.updateActiveNodeSharing(null);
                             }}
-                            calloutWidth={230}
-                            calloutMinWidth={230}
+                            calloutWidth={268}
+                            calloutMinWidth={268}
                             layerProps={{
                                 eventBubblingEnabled: true
                             }}
@@ -147,26 +148,27 @@ export function ShareButton() {
                                             </div>
                                         )}
 
-                                        <CopyToClipboard text={shareNodeLinks.extensionLink} onCopy={toggleCopied}>
-                                            <button title={i18next.t('COPY_THIS_LINK')} id="copy-btn">
-                                                <UIIcon
-                                                    className="sharable-link__copy-to-clipboard"
-                                                    iconName={UiIcons.CopyToClipboard}
-                                                />
-                                            </button>
+                                        <CopyToClipboard text={shareNodeLinks.extensionLink} onCopy={handleCopy}>
+                                            <UIIconButton
+                                                className="sharable-link__copy-to-clipboard"
+                                                id="copy-btn"
+                                                title={i18next.t('COPY_THIS_LINK')}
+                                                iconProps={{ iconName: UiIcons.CopyToClipboard }}></UIIconButton>
+                                        </CopyToClipboard>
+
+                                        <div className="sharable-link__divider-vertical"></div>
+
+                                        <CopyToClipboard text={copyInstructions} onCopy={handleCopy}>
+                                            <UIIconButton
+                                                className="sharable-link__copy-to-clipboard"
+                                                id="copy-btn-instructions"
+                                                title={i18next.t('COPY_WITH_INSTRUCTIONS')}
+                                                iconProps={{ iconName: UiIcons.CopyToClipboardLong }}></UIIconButton>
                                         </CopyToClipboard>
                                     </FocusZone>
                                 </div>
                                 <p className="sharable-link__footer">{i18next.t('COPIED_TO_CLIPBOARD_DESC')}</p>
                                 <hr className="sharable-link__divider"></hr>
-                                <CopyToClipboard text={copyInstructions} onCopy={toggleCopied}>
-                                    <p
-                                        className="sharable-link__copy-instructions"
-                                        id="copy-instructions"
-                                        title={copyInstructions}>
-                                        {i18next.t('COPY_WITH_INSTRUCTIONS')}
-                                    </p>
-                                </CopyToClipboard>
                                 <a
                                     className="sharable-link__web-link"
                                     id="web-link"
