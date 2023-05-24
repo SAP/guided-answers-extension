@@ -70,9 +70,10 @@ export function App(): ReactElement {
     }
 
     /**
+     * Check if a tree is bookmarked.
      *
-     * @param treeId
-     * @param treeId.toString
+     * @param treeId - id of the tree
+     * @param treeId.toString - id a string
      * @returns boolean
      */
     function isBookmark(treeId: { toString: () => string }): boolean {

@@ -3,8 +3,8 @@ import React from 'react';
 /**
  * Component for the bottom section of the button it a tree list.
  *
- * @param props
- * @param props.tree
+ * @param props - properties containing tree
+ * @param props.tree - Guided Answers tree
  * @returns A TreeItemBottomSection component.
  */
 export function TreeItemBottomSection(props: { tree: any }) {

@@ -293,7 +293,7 @@ function GuideFeedbackReducer(newState: AppState, action: GuideFeedback): AppSta
 }
 
 /**
- * Set state for feedback reponse.
+ * Set state for feedback response.
  *
  * @param newState - already cloned state that is modified and returned
  * @param action - action with payload
@@ -307,8 +307,8 @@ function feedbackResponseReducer(newState: AppState, action: FeedbackResponse): 
 /**
  * Set state for bookmarks.
  *
- * @param newState
- * @param action
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
  * @returns new state with changes
  */
 function getBookmarksReducer(newState: AppState, action: GetBookmarks): AppState {
