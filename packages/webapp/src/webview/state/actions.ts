@@ -23,5 +23,8 @@ export {
     feedbackStatus,
     feedbackResponse,
     shareLinkTelemetry,
-    openLinkTelemetry
+    openLinkTelemetry,
+    getBookmarks,
+    updateBookmark,
+    synchronizeBookmark
 } from '@sap/guided-answers-extension-types';

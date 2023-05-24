@@ -13,6 +13,10 @@ import { initIcons, UILoader } from '@sap-ux/ui-components';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { SpinnerSize } from '@fluentui/react';
 import i18next from 'i18next';
+import { VscStarFull } from 'react-icons/vsc';
+import type { Bookmarks as BookmarksType } from '@sap/guided-answers-extension-types';
+import { Bookmarks } from '../Bookmarks';
+import { TreeItemBottomSection } from '../TreeItemBottomSection';
 
 initIcons();
 
@@ -23,6 +27,7 @@ initIcons();
  */
 export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
+    const bookmarks = useSelector<AppState, BookmarksType>((state) => state.bookmarks);
     useEffect(() => {
         const resultsContainer = document.getElementById('results-container');
         if (!resultsContainer) {
@@ -64,6 +69,17 @@ export function App(): ReactElement {
         }
     }
 
+    /**
+     * Check if a tree is bookmarked.
+     *
+     * @param treeId - id of the tree
+     * @param treeId.toString - id a string
+     * @returns boolean
+     */
+    function isBookmark(treeId: { toString: () => string }): boolean {
+        return !!Object.keys(appState.bookmarks).find((bookmarkKey) => bookmarkKey.startsWith(`${treeId}-`));
+    }
+
     let content;
     if (appState.networkStatus === 'LOADING') {
         content = <UILoader id="loading-indicator" size={SpinnerSize.large} />;
@@ -71,6 +87,12 @@ export function App(): ReactElement {
         content = <ErrorScreen title={i18next.t('GUIDED_ANSWERS_UNAVAILABLE')} subtitle={i18next.t('TRY_LATER')} />;
     } else if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
+    } else if (
+        Object.keys(bookmarks).length > 0 &&
+        appState.guidedAnswerTreeSearchResult.resultSize === -1 &&
+        appState.query === ''
+    ) {
+        content = <Bookmarks />;
     } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
         content =
             appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (
@@ -92,35 +114,21 @@ export function App(): ReactElement {
                                         <button
                                             className="guided-answer__tree"
                                             onClick={(): void => {
+                                                //@ts-ignore
                                                 actions.setActiveTree(tree);
                                                 actions.selectNode(tree.FIRST_NODE_ID);
                                                 document.body.focus();
                                             }}>
                                             <div className="guided-answer__tree__ul">
-                                                <h3 className="guided-answer__tree__title">{tree.TITLE}</h3>
-                                                <div className="bottom-section">
-                                                    {tree.DESCRIPTION && (
-                                                        <span className="guided-answer__tree__desc">
-                                                            {tree.DESCRIPTION}
-                                                        </span>
-                                                    )}
-                                                    <div
-                                                        className="component-and-product-container"
-                                                        style={{ marginTop: tree.DESCRIPTION ? '10px' : '0' }}>
-                                                        {tree.PRODUCT && (
-                                                            <div className="guided-answer__tree__product">
-                                                                <span className="bottom-title">Product: </span>
-                                                                {tree.PRODUCT.split(',')[0].trim()}
-                                                            </div>
-                                                        )}
-                                                        {tree.COMPONENT && (
-                                                            <div className="guided-answer__tree__component">
-                                                                <span className="bottom-title">Component: </span>
-                                                                {tree.COMPONENT.split(',')[0].trim()}
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                </div>
+                                                <h3 className="guided-answer__tree__title">
+                                                    {isBookmark(tree.TREE_ID) ? (
+                                                        <VscStarFull className="bookmark-icon-bookmarked" />
+                                                    ) : (
+                                                        ''
+                                                    )}{' '}
+                                                    {tree.TITLE}
+                                                </h3>
+                                                <TreeItemBottomSection tree={tree} />
                                             </div>
                                         </button>
                                     </li>

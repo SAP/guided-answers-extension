@@ -195,6 +195,10 @@
     width: 62px;
 }
 
+.bookmark-icon-bookmarked {
+    fill: var(--vscode-editorLightBulb-foreground);
+}
+
 @media only screen and (max-width: 740px) {
     .guided-answer {
         &__header {

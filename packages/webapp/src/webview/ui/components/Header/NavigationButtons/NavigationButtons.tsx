@@ -2,13 +2,19 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { DirectionalHint } from '@fluentui/react';
 import { actions } from '../../../../state';
-import { VscHome, VscRefresh, VscArrowLeft } from 'react-icons/vsc';
+import { VscHome, VscRefresh, VscArrowLeft, VscStarEmpty, VscStarFull } from 'react-icons/vsc';
 import i18next from 'i18next';
 import { UIIcon, UiIcons, UICallout, UIIconButton, UITextInput } from '@sap-ux/ui-components';
 import { focusOnElement } from '../../utils';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { AppState } from '../../../../types';
-import type { GuidedAnswerNode, GuidedAnswerTreeId, ShareNodeLinks } from '@sap/guided-answers-extension-types';
+import type {
+    Bookmarks,
+    GuidedAnswerNode,
+    GuidedAnswerTree,
+    GuidedAnswerTreeId,
+    ShareNodeLinks
+} from '@sap/guided-answers-extension-types';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
 /**
@@ -207,4 +213,36 @@ export function GeneralFeedbackButton() {
     );
 }
 
+/**
+ *
+ * @returns A button component for bookmarking a guide.
+ */
+export function BookmarkButton() {
+    const nodePath = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
+    const bookmarks = useSelector<AppState, Bookmarks>((state) => state.bookmarks);
+    const tree = useSelector<AppState, GuidedAnswerTree | undefined>((state) => state.activeGuidedAnswer);
+    if (!tree) {
+        // No active tree, nothing we can do here
+        return <></>;
+    }
+    const bookmarkKey = `${tree.TREE_ID}-${nodePath.map((n) => n.NODE_ID).join(':')}`;
+
+    return (
+        <button
+            id="bookmark-button"
+            className="guided-answer__header__navButtons"
+            onClick={(): void => {
+                const newBookmarks: Bookmarks = JSON.parse(JSON.stringify(bookmarks));
+                if (newBookmarks[bookmarkKey]) {
+                    delete newBookmarks[bookmarkKey];
+                } else {
+                    newBookmarks[bookmarkKey] = { tree, nodePath, createdAt: new Date().toISOString() };
+                }
+                actions.updateBookmark(newBookmarks);
+            }}
+            title={!bookmarks[bookmarkKey] ? i18next.t('BOOKMARK_THIS_GUIDE') : i18next.t('REMOVE_FROM_BOOKMARKS')}>
+            {!bookmarks[bookmarkKey] ? <VscStarEmpty /> : <VscStarFull className="bookmark-icon-bookmarked" />}
+        </button>
+    );
+}
 export { AllAnswersButton };

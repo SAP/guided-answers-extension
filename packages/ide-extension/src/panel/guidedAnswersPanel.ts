@@ -2,6 +2,7 @@ import type { WebviewPanel, WebviewPanelSerializer } from 'vscode';
 import { Uri, ViewColumn, window, workspace } from 'vscode';
 import type {
     AppState,
+    Bookmark,
     GuidedAnswerActions,
     GuidedAnswerAPI,
     GuidedAnswersQueryOptions,
@@ -14,6 +15,8 @@ import {
     SEND_TELEMETRY,
     SEND_FEEDBACK_OUTCOME,
     SEND_FEEDBACK_COMMENT,
+    SYNCHRONIZE_BOOKMARK,
+    UPDATE_BOOKMARKS,
     updateGuidedAnswerTrees,
     updateActiveNode,
     updateNetworkStatus,
@@ -26,7 +29,10 @@ import {
     setActiveTree,
     setQueryValue,
     getBetaFeatures,
-    feedbackResponse
+    feedbackResponse,
+    getBookmarks,
+    goToAllAnswers,
+    updateBookmark
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
@@ -35,6 +41,7 @@ import { logString } from '../logger/logger';
 import type { Options, StartOptions } from '../types';
 import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
 import { extractLinkInfo, generateExtensionLink, generateWebLink } from '../links/link-info';
+import { getAllBookmarks, updateBookmarks } from '../bookmarks';
 
 /**
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
@@ -156,6 +163,11 @@ export class GuidedAnswersPanel {
         } else {
             await this.processEnvironmentFilters(this.ide);
         }
+        this.postActionToWebview(
+            getBetaFeatures(workspace.getConfiguration('sap.ux.guidedAnswer').get<boolean>('betaFeatures') ?? false)
+        );
+        this.postActionToWebview(updateNetworkStatus('OK'));
+        this.postActionToWebview(getBookmarks(getAllBookmarks()));
     }
 
     /**
@@ -243,6 +255,37 @@ export class GuidedAnswersPanel {
             throw e;
         }
     }
+    /**
+     *
+     * @param bookmark - the bookmark to synchronize
+     */
+    async synchronizeBookmark(bookmark: Bookmark): Promise<void> {
+        let needUpdate = false;
+        const tree = await this.guidedAnswerApi.getTreeById(bookmark.tree.TREE_ID);
+        if (JSON.stringify(tree) !== JSON.stringify(bookmark.tree)) {
+            bookmark.tree = tree;
+            needUpdate = true;
+        }
+        const nodePath = await this.guidedAnswerApi.getNodePath(bookmark.nodePath.map((n) => n.NODE_ID));
+        if (JSON.stringify(nodePath) !== JSON.stringify(bookmark.nodePath)) {
+            bookmark.nodePath = nodePath;
+            needUpdate = true;
+        }
+        if (needUpdate) {
+            const bookmarkKey = `${bookmark.tree.TREE_ID}-${bookmark.nodePath.map((n) => n.NODE_ID).join(':')}`;
+            const bookmarks = getAllBookmarks();
+            bookmarks[bookmarkKey] = bookmark;
+            this.postActionToWebview(updateBookmark(bookmarks));
+            this.postActionToWebview(goToAllAnswers());
+            this.postActionToWebview(setActiveTree(tree));
+            for (const node of nodePath) {
+                this.postActionToWebview(updateActiveNode(node));
+            }
+            logString(
+                `Bookmark for Guided Answer '${tree.TITLE}' (${tree.TREE_ID}) was outdated and has been updated.`
+            );
+        }
+    }
 
     /**
      * Handler for actions coming from webview. This should be primarily commands with arguments.
@@ -309,17 +352,21 @@ export class GuidedAnswersPanel {
                 case WEBVIEW_READY: {
                     logString(`Webview is ready to receive actions`);
                     await this.handleWebViewReady();
-                    this.postActionToWebview(
-                        getBetaFeatures(
-                            (workspace.getConfiguration('sap.ux.guidedAnswer').get('betaFeatures') as boolean) || false
-                        )
-                    );
-                    this.postActionToWebview(updateNetworkStatus('OK'));
                     break;
                 }
                 case SEND_TELEMETRY: {
                     trackAction(action).catch((error) =>
                         logString(`Error tracking action '${action?.payload?.action?.type}'.\n${error?.toString()}`)
+                    );
+                    break;
+                }
+                case UPDATE_BOOKMARKS: {
+                    updateBookmarks(action.payload);
+                    break;
+                }
+                case SYNCHRONIZE_BOOKMARK: {
+                    this.synchronizeBookmark(action.payload).catch((error) =>
+                        logString(`Error during synchronizing bookmark\n${error?.toString()}`)
                     );
                     break;
                 }

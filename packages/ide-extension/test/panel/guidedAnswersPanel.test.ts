@@ -1,4 +1,4 @@
-import type { WebviewPanel } from 'vscode';
+import type { Memento, WebviewPanel } from 'vscode';
 import { window, commands, ViewColumn } from 'vscode';
 import * as coreMock from '@sap/guided-answers-extension-core';
 import {
@@ -17,12 +17,17 @@ import {
     FILL_SHARE_LINKS,
     RESTORE_STATE,
     SEND_TELEMETRY,
-    AppState
+    GET_BOOKMARKS,
+    AppState,
+    SYNCHRONIZE_BOOKMARK,
+    UPDATE_BOOKMARKS
 } from '@sap/guided-answers-extension-types';
 import type {
+    Bookmarks,
     Command,
     GuidedAnswerActions,
     GuidedAnswerAPI,
+    GuidedAnswerNode,
     GuidedAnswerNodeId,
     GuidedAnswerTree,
     GuidedAnswerTreeId,
@@ -32,6 +37,7 @@ import { GuidedAnswersPanel, GuidedAnswersSerializer } from '../../src/panel/gui
 import * as logger from '../../src/logger/logger';
 import * as telemetry from '../../src/telemetry';
 import type { StartOptions } from '../../src/types';
+import { initBookmarks } from '../../src/bookmarks';
 
 type WebviewMessageCallback = (action: GuidedAnswerActions) => void;
 
@@ -185,7 +191,8 @@ describe('GuidedAnswersPanel', () => {
             [{ type: SET_ACTIVE_TREE, payload: { TREE_ID: 1, FIRST_NODE_ID: 1234 } }],
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 1234, TITLE: 'Node 1234' } }],
             [{ type: BETA_FEATURES, payload: false }],
-            [{ type: UPDATE_NETWORK_STATUS, payload: 'OK' }]
+            [{ type: UPDATE_NETWORK_STATUS, payload: 'OK' }],
+            [{ type: GET_BOOKMARKS, payload: {} }]
         ]);
     });
 
@@ -211,7 +218,8 @@ describe('GuidedAnswersPanel', () => {
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 200 } }],
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 300 } }],
             [{ type: BETA_FEATURES, payload: false }],
-            [{ type: UPDATE_NETWORK_STATUS, payload: 'OK' }]
+            [{ type: UPDATE_NETWORK_STATUS, payload: 'OK' }],
+            [{ type: GET_BOOKMARKS, payload: {} }]
         ]);
     });
 
@@ -597,6 +605,116 @@ describe('GuidedAnswersPanel', () => {
             }
         });
         expect(loggerMock).toBeCalledWith(expect.stringContaining('TRACK_ACTION_ERROR'));
+    });
+
+    test('GuidedAnswersPanel communication SYNCHRONIZE_BOOKMARK', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock(1));
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({
+            type: SYNCHRONIZE_BOOKMARK,
+            payload: {
+                tree: { TREE_ID: 1, TITLE: 'One' } as GuidedAnswerTree,
+                nodePath: [
+                    { NODE_ID: 2, BODY: 'body2' } as GuidedAnswerNode,
+                    { NODE_ID: 3, BODY: 'body3' } as GuidedAnswerNode
+                ],
+                createdAt: '2023-05-23T21:46:42.223Z'
+            }
+        });
+
+        // Result check
+        await (() => new Promise(setImmediate))();
+        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(5);
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
+            type: 'UPDATE_BOOKMARKS',
+            payload: {
+                '1-2:3': {
+                    tree: {
+                        TREE_ID: 1,
+                        FIRST_NODE_ID: 1
+                    },
+                    nodePath: [
+                        {
+                            NODE_ID: 2
+                        },
+                        {
+                            NODE_ID: 3
+                        }
+                    ],
+                    createdAt: '2023-05-23T21:46:42.223Z'
+                }
+            }
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {
+            type: 'GO_TO_ALL_ANSWERS'
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(3, {
+            type: 'SET_ACTIVE_TREE',
+            payload: {
+                TREE_ID: 1,
+                FIRST_NODE_ID: 1
+            }
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(4, {
+            type: 'UPDATE_ACTIVE_NODE',
+            payload: {
+                NODE_ID: 2
+            }
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(5, {
+            type: 'UPDATE_ACTIVE_NODE',
+            payload: {
+                NODE_ID: 3
+            }
+        });
+    });
+
+    test('GuidedAnswersPanel communication UPDATE_BOOKMARKS', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() =>
+            getWebViewPanelMock((callback: WebviewMessageCallback) => {
+                onDidReceiveMessageMock = callback;
+            })
+        );
+        const bookmarksMock = {
+            '1-2:3': {
+                tree: {
+                    TREE_ID: 1,
+                    TITLE: 'Bookmark Title',
+                    SCORE: 0.1
+                },
+                nodePath: [{ NODE_ID: 2 }, { NODE_ID: 3 }],
+                createdAt: '2023-05-23T15:41:00.478Z'
+            }
+        } as unknown as Bookmarks;
+        const expectBookmarks = JSON.parse(JSON.stringify(bookmarksMock));
+        delete expectBookmarks['1-2:3'].tree.SCORE;
+
+        const globalStateMock = {
+            update: jest.fn()
+        } as Partial<Memento>;
+        initBookmarks(globalStateMock as Memento);
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({
+            type: UPDATE_BOOKMARKS,
+            payload: bookmarksMock
+        });
+
+        // Result check
+        expect(globalStateMock.update).toBeCalledWith('bookmark', expectBookmarks);
     });
 
     test('GuidedAnswersPanel communication unhandled action', async () => {

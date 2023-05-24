@@ -89,6 +89,14 @@ export interface FeedbackOutcomePayload {
     solved: boolean;
 }
 
+export interface Bookmark {
+    tree: GuidedAnswerTree;
+    nodePath: GuidedAnswerNode[];
+    createdAt: string;
+}
+
+export type Bookmarks = Record<string, Bookmark>; //key is 'TREE_ID-NODE_ID:NODE_ID:NODE_ID:...NODE_ID'
+
 export interface GuidedAnswerAPI {
     getApiInfo: () => { host: string; version: string };
     getNodeById: (id: GuidedAnswerNodeId) => Promise<GuidedAnswerNode>;
@@ -162,6 +170,7 @@ export type GuidedAnswerActions =
     | FeedbackResponse
     | FeedbackStatus
     | FillShareLinks
+    | GetBookmarks
     | GoToAllAnswers
     | GoToPreviousPage
     | GuideFeedback
@@ -175,7 +184,9 @@ export type GuidedAnswerActions =
     | SetPageSize
     | SetProductFilters
     | SetQueryValue
+    | SynchronizeBookmark
     | UpdateActiveNodeSharing
+    | UpdateBookmarks
     | ResetFilters
     | RestartAnswer
     | RestoreState
@@ -201,6 +212,7 @@ export interface AppState {
     pageSize: number;
     feedbackStatus: boolean;
     feedbackResponse: boolean;
+    bookmarks: Bookmarks;
 }
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
@@ -298,6 +310,18 @@ export interface SendFeedbackComment {
     payload: FeedbackCommentPayload;
 }
 
+export const GET_BOOKMARKS = 'GET_BOOKMARKS';
+export interface GetBookmarks {
+    type: typeof GET_BOOKMARKS;
+    payload: Bookmarks;
+}
+
+export const UPDATE_BOOKMARKS = 'UPDATE_BOOKMARKS';
+export interface UpdateBookmarks {
+    type: typeof UPDATE_BOOKMARKS;
+    payload: Bookmarks;
+}
+
 export const SET_PRODUCT_FILTERS = 'SET_PRODUCT_FILTERS';
 export interface SetProductFilters {
     type: typeof SET_PRODUCT_FILTERS;
@@ -367,4 +391,10 @@ export const RESTORE_STATE = 'RESTORE_STATE';
 export interface RestoreState {
     type: typeof RESTORE_STATE;
     payload: AppState;
+}
+
+export const SYNCHRONIZE_BOOKMARK = 'SYNCHRONIZE_BOOKMARK';
+export interface SynchronizeBookmark {
+    type: typeof SYNCHRONIZE_BOOKMARK;
+    payload: Bookmark;
 }

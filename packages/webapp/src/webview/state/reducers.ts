@@ -1,5 +1,6 @@
 import type {
     BetaFeatures,
+    GetBookmarks,
     GuidedAnswerActions,
     GuideFeedback,
     RestoreState,
@@ -10,6 +11,7 @@ import type {
     SetQueryValue,
     UpdateActiveNode,
     UpdateActiveNodeSharing,
+    UpdateBookmarks,
     UpdateGuidedAnswerTrees,
     UpdateNetworkStatus,
     SetPageSize,
@@ -44,7 +46,8 @@ export function getInitialState(): AppState {
         selectedComponentFilters: [],
         pageSize: 20,
         feedbackStatus: false,
-        feedbackResponse: false
+        feedbackResponse: false,
+        bookmarks: {}
     };
 }
 
@@ -86,7 +89,9 @@ const reducers: Partial<Reducers> = {
     SEARCH_TREE: searchTreeReducer,
     SET_PAGE_SIZE: updatePageSize,
     FEEDBACK_RESPONSE: feedbackResponseReducer,
-    FEEDBACK_STATUS: feedbackStatusReducer
+    FEEDBACK_STATUS: feedbackStatusReducer,
+    GET_BOOKMARKS: getBookmarksReducer,
+    UPDATE_BOOKMARKS: updateBookmarksReducer
 };
 
 /**
@@ -288,7 +293,7 @@ function GuideFeedbackReducer(newState: AppState, action: GuideFeedback): AppSta
 }
 
 /**
- * Set state for feedback reponse.
+ * Set state for feedback response.
  *
  * @param newState - already cloned state that is modified and returned
  * @param action - action with payload
@@ -296,6 +301,18 @@ function GuideFeedbackReducer(newState: AppState, action: GuideFeedback): AppSta
  */
 function feedbackResponseReducer(newState: AppState, action: FeedbackResponse): AppState {
     newState.feedbackResponse = action.payload;
+    return newState;
+}
+
+/**
+ * Set state for bookmarks.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function getBookmarksReducer(newState: AppState, action: GetBookmarks): AppState {
+    newState.bookmarks = action.payload;
     return newState;
 }
 
@@ -362,6 +379,18 @@ function searchTreeReducer(newState: AppState, action: SearchTree): AppState {
     newState.selectedComponentFilters = Array.isArray(selectedComponentFilters) ? selectedComponentFilters : [];
     const selectedProductFilters = action.payload?.filters?.product;
     newState.selectedProductFilters = Array.isArray(selectedProductFilters) ? selectedProductFilters : [];
+    return newState;
+}
+
+/**
+ * Update state for bookmarks.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function updateBookmarksReducer(newState: AppState, action: UpdateBookmarks): AppState {
+    newState.bookmarks = action.payload;
     return newState;
 }
 
