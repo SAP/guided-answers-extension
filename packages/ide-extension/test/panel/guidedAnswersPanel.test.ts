@@ -1,4 +1,4 @@
-import type { WebviewPanel } from 'vscode';
+import type { Memento, WebviewPanel } from 'vscode';
 import { window, commands, ViewColumn } from 'vscode';
 import * as coreMock from '@sap/guided-answers-extension-core';
 import {
@@ -20,12 +20,14 @@ import {
     GET_BOOKMARKS,
     AppState,
     SYNCHRONIZE_BOOKMARK,
-    GuidedAnswerNode
+    UPDATE_BOOKMARKS
 } from '@sap/guided-answers-extension-types';
 import type {
+    Bookmarks,
     Command,
     GuidedAnswerActions,
     GuidedAnswerAPI,
+    GuidedAnswerNode,
     GuidedAnswerNodeId,
     GuidedAnswerTree,
     GuidedAnswerTreeId,
@@ -35,6 +37,7 @@ import { GuidedAnswersPanel, GuidedAnswersSerializer } from '../../src/panel/gui
 import * as logger from '../../src/logger/logger';
 import * as telemetry from '../../src/telemetry';
 import type { StartOptions } from '../../src/types';
+import { initBookmarks } from '../../src/bookmarks';
 
 type WebviewMessageCallback = (action: GuidedAnswerActions) => void;
 
@@ -604,7 +607,7 @@ describe('GuidedAnswersPanel', () => {
         expect(loggerMock).toBeCalledWith(expect.stringContaining('TRACK_ACTION_ERROR'));
     });
 
-    test('GuidedAnswersPanel communication SYNCHRONIZE_BOOKMARK and UPDATE_BOOKMARKS', async () => {
+    test('GuidedAnswersPanel communication SYNCHRONIZE_BOOKMARK', async () => {
         // Mock setup
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
         const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
@@ -673,6 +676,45 @@ describe('GuidedAnswersPanel', () => {
                 NODE_ID: 3
             }
         });
+    });
+
+    test('GuidedAnswersPanel communication UPDATE_BOOKMARKS', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() =>
+            getWebViewPanelMock((callback: WebviewMessageCallback) => {
+                onDidReceiveMessageMock = callback;
+            })
+        );
+        const bookmarksMock = {
+            '1-2:3': {
+                tree: {
+                    TREE_ID: 1,
+                    TITLE: 'Bookmark Title',
+                    SCORE: 0.1
+                },
+                nodePath: [{ NODE_ID: 2 }, { NODE_ID: 3 }],
+                createdAt: '2023-05-23T15:41:00.478Z'
+            }
+        } as unknown as Bookmarks;
+        const expectBookmarks = JSON.parse(JSON.stringify(bookmarksMock));
+        delete expectBookmarks['1-2:3'].tree.SCORE;
+
+        const globalStateMock = {
+            update: jest.fn()
+        } as Partial<Memento>;
+        initBookmarks(globalStateMock as Memento);
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({
+            type: UPDATE_BOOKMARKS,
+            payload: bookmarksMock
+        });
+
+        // Result check
+        expect(globalStateMock.update).toBeCalledWith('bookmark', expectBookmarks);
     });
 
     test('GuidedAnswersPanel communication unhandled action', async () => {
