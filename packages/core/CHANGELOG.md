@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-core
 
+## 1.23.0
+
+### Minor Changes
+
+-   b242dcf: Feature to bookmark guided answers
+
+### Patch Changes
+
+-   Updated dependencies [b242dcf]
+    -   @sap/guided-answers-extension-types@1.23.0
+
 ## 1.22.0
 
 ### Patch Changes

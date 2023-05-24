@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.23.0
+
+### Minor Changes
+
+-   b242dcf: Feature to bookmark guided answers
+
 ## 1.22.0
 
 ### Minor Changes
