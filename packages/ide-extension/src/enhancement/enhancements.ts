@@ -21,7 +21,7 @@ function classifyEnhancements(
     const inapplicable: HTMLEnhancement[] = [];
 
     for (const enhancement of enhancements) {
-        if (enhancement.command.environment && enhancement.command.environment.includes(ide)) {
+        if (enhancement?.command?.environment?.includes(ide)) {
             if (isVSCodeCommand(enhancement.command.exec)) {
                 if (extensions.getExtension(enhancement.command.exec.extensionId)) {
                     applicable.push(enhancement);
