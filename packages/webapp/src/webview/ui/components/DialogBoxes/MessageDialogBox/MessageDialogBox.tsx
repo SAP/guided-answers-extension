@@ -1,4 +1,5 @@
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import type { ReactElement } from 'react';
 import './MessageDialogBox.scss';
 import { DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
 import i18next from 'i18next';

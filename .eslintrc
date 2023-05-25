@@ -9,7 +9,7 @@
     "overrides": [
         {
             "parser": "@typescript-eslint/parser",
-            "files": ["**/*.ts"],
+            "files": ["**/*.ts", "**/*.tsx"],
             "extends": ["plugin:@typescript-eslint/recommended"],
             "rules": {
                 "@typescript-eslint/ban-types": "off",

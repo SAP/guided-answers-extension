@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../../types';
+import type { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import { UIIconButton, UIDialog, UICheckbox, UITextInput, UiIcons } from '@sap-ux/ui-components';
 import type { ProductFilter, ComponentFilter } from '@sap/guided-answers-extension-types';
-import { Stack, IStackTokens } from '@fluentui/react';
+import { Stack } from '@fluentui/react';
+import type { IStackTokens } from '@fluentui/react';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
 import './Filters.scss';
@@ -42,7 +43,7 @@ export const sortComponentFilters = (filters: ComponentFilter[]) => {
 
     return filters
         .map((f: ComponentFilter) => {
-            let filter: ComponentFilterWithNoHyphens = f;
+            const filter: ComponentFilterWithNoHyphens = f;
             filter.NOHYPHENS = f.COMPONENT.replace(/-/g, '');
             return filter;
         })
@@ -224,7 +225,6 @@ export function Filters() {
             setComponentFilters(sortComponentFilters(appState.guidedAnswerTreeSearchResult.componentFilters));
         }
     };
-
     return (
         <>
             <div id="filters">
@@ -247,8 +247,6 @@ export function Filters() {
                         selectedComponentFilters.length > 0 ? 'filter-button-selected' : ''
                     }`}></UIIconButton>
                 <UIDialog
-                    //@ts-ignore
-                    id="dialog-filter"
                     className="dialog-filter"
                     dialogContentProps={{ title: filterType[filter].title }}
                     isOpen={filterType[filter].visibility}

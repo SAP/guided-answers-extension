@@ -7,7 +7,7 @@ import i18next from 'i18next';
 import { UIIcon, UiIcons, UICallout, UIIconButton, UITextInput } from '@sap-ux/ui-components';
 import { focusOnElement } from '../../utils';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { AppState } from '../../../../types';
+import type { AppState } from '../../../../types';
 import type {
     Bookmarks,
     GuidedAnswerNode,
@@ -89,7 +89,7 @@ export function RestartButton() {
 export function ShareButton() {
     const id = 'callout-test-id';
     const [isCopiedVisible, setCopiedVisible] = useState(false);
-    const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!?.TREE_ID);
+    const treeId = useSelector<AppState, GuidedAnswerTreeId | undefined>((state) => state.activeGuidedAnswer?.TREE_ID);
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
     const nodeIdPath = nodes.map((n) => n.NODE_ID);
     const shareNodeLinks = useSelector<AppState, ShareNodeLinks | null>((state) => state.activeNodeSharing);

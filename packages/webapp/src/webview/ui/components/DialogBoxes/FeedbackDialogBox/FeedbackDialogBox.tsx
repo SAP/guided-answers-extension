@@ -1,10 +1,11 @@
-import React, { ReactElement, useState, useEffect, FormEvent } from 'react';
+import React, { useState, useEffect } from 'react';
+import type { FormEvent, ReactElement } from 'react';
 import './FeedbackDialogBox.scss';
 import { DialogFooter } from '@fluentui/react/lib/Dialog';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { VscInfo } from 'react-icons/vsc';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../../types';
+import type { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import type { GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
@@ -16,7 +17,10 @@ import { UIDefaultButton, UIDialog, UITextInput } from '@sap-ux/ui-components';
  * @returns the feedback dialog box element
  */
 export function FeedbackDialogBox(): ReactElement {
-    const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!.TREE_ID);
+    const treeId = useSelector<AppState, GuidedAnswerTreeId | undefined>((state) => state.activeGuidedAnswer?.TREE_ID);
+    if (!treeId) {
+        return <></>;
+    }
     const nodeId = useSelector<AppState, GuidedAnswerNodeId>(
         (state) => state.activeGuidedAnswerNode[state.activeGuidedAnswerNode.length - 1].NODE_ID
     );

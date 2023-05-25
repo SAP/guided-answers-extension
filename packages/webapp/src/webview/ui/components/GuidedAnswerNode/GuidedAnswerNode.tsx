@@ -1,10 +1,12 @@
-import { default as parse, DOMNode, Element } from 'html-react-parser';
-import React, { ReactElement } from 'react';
+import { default as parse } from 'html-react-parser';
+import type { DOMNode, Element } from 'html-react-parser';
+import React from 'react';
+import type { ReactElement } from 'react';
 import type { Command, GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 import { useSelector } from 'react-redux';
 import { actions } from '../../../state';
-import { AppState } from '../../../types';
+import type { AppState } from '../../../types';
 import './GuidedAnswerNode.scss';
 import { GuidedAnswerNavPath } from '../GuidedAnswerNavPath';
 import { Middle } from './Middle';

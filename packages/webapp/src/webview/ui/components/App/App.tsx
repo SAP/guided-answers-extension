@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../types';
+import type { AppState } from '../../../types';
 import { actions } from '../../../state';
 import { GuidedAnswerNode } from '../GuidedAnswerNode';
 import { Header } from '../Header';
@@ -114,7 +114,6 @@ export function App(): ReactElement {
                                         <button
                                             className="guided-answer__tree"
                                             onClick={(): void => {
-                                                //@ts-ignore
                                                 actions.setActiveTree(tree);
                                                 actions.selectNode(tree.FIRST_NODE_ID);
                                                 document.body.focus();
