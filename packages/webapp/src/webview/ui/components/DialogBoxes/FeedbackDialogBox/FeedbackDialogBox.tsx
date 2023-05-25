@@ -18,9 +18,6 @@ import { UIDefaultButton, UIDialog, UITextInput } from '@sap-ux/ui-components';
  */
 export function FeedbackDialogBox(): ReactElement {
     const treeId = useSelector<AppState, GuidedAnswerTreeId | undefined>((state) => state.activeGuidedAnswer?.TREE_ID);
-    if (!treeId) {
-        return <></>;
-    }
     const nodeId = useSelector<AppState, GuidedAnswerNodeId>(
         (state) => state.activeGuidedAnswerNode[state.activeGuidedAnswerNode.length - 1].NODE_ID
     );
@@ -59,7 +56,7 @@ export function FeedbackDialogBox(): ReactElement {
         }
     };
 
-    return (
+    return treeId ? (
         <>
             <UIDialog modalProps={modalProps} isOpen={isVisible} title={dialogContentProps.title}>
                 <p className="ms-Dialog-subText">{i18next.t('FEEDBACK_DIALOG_SUBTEXT')}</p>
@@ -98,5 +95,7 @@ export function FeedbackDialogBox(): ReactElement {
                 </DialogFooter>
             </UIDialog>
         </>
+    ) : (
+        <></>
     );
 }

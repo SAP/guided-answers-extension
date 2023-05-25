@@ -15,12 +15,9 @@ import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
  */
 export function FeedbackSection(): ReactElement {
     const treeId = useSelector<AppState, GuidedAnswerTreeId | undefined>((state) => state.activeGuidedAnswer?.TREE_ID);
-    if (!treeId) {
-        return <></>;
-    }
     const nodeId = useSelector<AppState, GuidedAnswerNodeId>((state) => state.activeGuidedAnswerNode[0].NODE_ID);
     const guideFeedback = useSelector<AppState, boolean | null>((state) => state.guideFeedback);
-    return (
+    return treeId ? (
         <div className="feedback-container">
             <h3>{i18next.t('PLEASE_TELL_US_IF_THIS_ANSWER_WAS_HELPFUL')}</h3>
             <FocusZone direction={FocusZoneDirection.horizontal} className="feedback-subcontainer" role="tree">
@@ -55,5 +52,7 @@ export function FeedbackSection(): ReactElement {
                 stylingClassName="solved-message-dialog"
             />
         </div>
+    ) : (
+        <></>
     );
 }
