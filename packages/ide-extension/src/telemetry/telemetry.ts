@@ -99,7 +99,7 @@ export async function trackEvent(event: TelemetryEvent): Promise<void> {
     }
     try {
         const name = `${packageJson.name}/${event.name}`;
-        const properties = propertyValuesToString({ ...event.properties, ...(reporter.commonProperties || {}) });
+        const properties = propertyValuesToString({ ...event.properties, ...(reporter.commonProperties ?? {}) });
         reporter.client.trackEvent({ name, properties });
         logString(`Telemetry event '${event.name}': ${JSON.stringify(properties)}`);
     } catch (error) {
