@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.23.1
+
+### Patch Changes
+
+-   eb526ff: Fix linting issues and code smells
+
 ## 1.23.0
 
 ### Minor Changes
