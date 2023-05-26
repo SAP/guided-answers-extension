@@ -45,9 +45,10 @@
     "engines": {
         "npm": "please-use-pnpm",
         "yarn": "please-use-pnpm",
-        "pnpm": ">=8.0.0",
+        "pnpm": "8",
         "node": ">=16.1.0"
     },
+    "packageManager": "pnpm@8.5.1",
     "pnpm": {
         "overrides": {
             "strip-ansi@3.0.1>ansi-regex": "^5.0.1",
