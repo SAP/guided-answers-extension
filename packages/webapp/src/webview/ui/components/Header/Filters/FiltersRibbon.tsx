@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../../types';
+import type { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import { VscClose } from 'react-icons/vsc';
 import './FiltersRibbon.scss';
@@ -51,15 +51,11 @@ export function FiltersRibbon() {
                 <div style={{ lineHeight: '18px', marginTop: '1px' }}>
                     Searching in {hasProductsFilter ? 'Product' : ''}
                     {((hasProductsFilter && !hasComponentsFilter) || hasBothFilters) && <strong>&nbsp;</strong>}
-                    <strong>
-                        {selectedProductFilters && selectedProductFilters.map((pf: string) => pf).join(', ')}
-                    </strong>
+                    <strong>{selectedProductFilters?.map((pf: string) => pf).join(', ')}</strong>
                     {hasBothFilters && <span>&nbsp; and &nbsp;</span>}
                     {hasComponentsFilter && !hasProductsFilter && <strong>&nbsp;</strong>}
                     {hasComponentsFilter ? 'Component' : ''}&nbsp;
-                    <strong>
-                        {selectedComponentFilters && selectedComponentFilters.map((cf: string) => cf).join(', ')}
-                    </strong>
+                    <strong>{selectedComponentFilters?.map((cf: string) => cf).join(', ')}</strong>
                     {hasBothFilters && <strong>&nbsp;</strong>}
                     <button id="clear-filters" className="clear-filters" onClick={resetFilters} title="Clear filters">
                         <VscClose className="clear-filters__content" />{' '}

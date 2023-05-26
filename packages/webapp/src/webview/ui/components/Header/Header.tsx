@@ -1,6 +1,7 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
+import type { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../types';
+import type { AppState } from '../../../types';
 import {
     AllAnswersButton,
     BackButton,

@@ -1,4 +1,5 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
+import type { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import NotSolved from './images/not-solved.svg';
 import Solved from './images/solved.svg';
@@ -13,10 +14,10 @@ import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
  * @returns - react element with the feedback section
  */
 export function FeedbackSection(): ReactElement {
-    const treeId = useSelector<AppState, GuidedAnswerTreeId>((state) => state.activeGuidedAnswer!.TREE_ID);
+    const treeId = useSelector<AppState, GuidedAnswerTreeId | undefined>((state) => state.activeGuidedAnswer?.TREE_ID);
     const nodeId = useSelector<AppState, GuidedAnswerNodeId>((state) => state.activeGuidedAnswerNode[0].NODE_ID);
-    let guideFeedback = useSelector<AppState, boolean | null>((state) => state.guideFeedback);
-    return (
+    const guideFeedback = useSelector<AppState, boolean | null>((state) => state.guideFeedback);
+    return treeId ? (
         <div className="feedback-container">
             <h3>{i18next.t('PLEASE_TELL_US_IF_THIS_ANSWER_WAS_HELPFUL')}</h3>
             <FocusZone direction={FocusZoneDirection.horizontal} className="feedback-subcontainer" role="tree">
@@ -51,5 +52,7 @@ export function FeedbackSection(): ReactElement {
                 stylingClassName="solved-message-dialog"
             />
         </div>
+    ) : (
+        <></>
     );
 }

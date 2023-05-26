@@ -39,10 +39,10 @@ const DEFAULT_MAX_RESULTS = 9999;
  * @returns - API
  */
 export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
-    const apiHost = options?.apiHost || API_HOST;
-    const htmlEnhancements = options?.htmlEnhancements || [];
+    const apiHost = options?.apiHost ?? API_HOST;
+    const htmlEnhancements = options?.htmlEnhancements ?? [];
     const ide = options?.ide;
-    const extensions = options?.extensions || new Set<string>();
+    const extensions = options?.extensions ?? new Set<string>();
 
     return {
         getApiInfo: () => ({ host: apiHost, version: VERSION }),
@@ -216,11 +216,11 @@ function enhanceNode(
     if (!ide) {
         return node;
     }
-    const applicableNodeExtensions = (node.EXTENSIONS || []).filter((nodeExt) =>
+    const applicableNodeExtensions = (node.EXTENSIONS ?? []).filter((nodeExt) =>
         isExtensionApplicable(ide, nodeExt, extensions)
     );
     for (const nodeExtension of applicableNodeExtensions) {
-        node.COMMANDS = node.COMMANDS || [];
+        node.COMMANDS = node.COMMANDS ?? [];
         node.COMMANDS.push(convertExtensionToCommand(nodeExtension));
     }
 

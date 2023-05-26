@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../types';
+import type { AppState } from '../../../types';
 import { actions } from '../../../state';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { VscStarFull } from 'react-icons/vsc';

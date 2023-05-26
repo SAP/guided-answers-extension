@@ -1,8 +1,9 @@
-import { GuidedAnswerNode } from '@sap/guided-answers-extension-types';
-import React, { ReactElement } from 'react';
+import type { GuidedAnswerNode } from '@sap/guided-answers-extension-types';
+import React from 'react';
+import type { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { actions } from '../../../state';
-import { AppState } from '../../../types';
+import type { AppState } from '../../../types';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './GuidedAnswerNavPath.scss';
 import { focusOnElement } from '../utils';
@@ -16,9 +17,9 @@ export function GuidedAnswerNavPath(): ReactElement {
     let firstTimeFocus: boolean;
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
     const isSolved = useSelector<AppState, boolean | null>((state) => state.guideFeedback);
-    let activeNode = nodes[nodes.length - 1];
-    let lastIndex = nodes.length - 1;
-    let lastBlockBorderStyle =
+    const activeNode = nodes[nodes.length - 1];
+    const lastIndex = nodes.length - 1;
+    const lastBlockBorderStyle =
         isSolved === false ? 'timeline-content-bottom-border-not-solved' : 'timeline-content-bottom-border';
 
     if (activeNode) {

@@ -9,7 +9,7 @@
     "overrides": [
         {
             "parser": "@typescript-eslint/parser",
-            "files": ["**/*.ts"],
+            "files": ["**/*.ts", "**/*.tsx"],
             "extends": ["plugin:@typescript-eslint/recommended"],
             "rules": {
                 "@typescript-eslint/ban-types": "off",
@@ -17,6 +17,7 @@
                 "@typescript-eslint/no-inferrable-types": "off",
                 "@typescript-eslint/no-unused-vars": ["error"],
                 "@typescript-eslint/no-floating-promises": ["error"],
+                "@typescript-eslint/prefer-nullish-coalescing": ["error"],
                 "@typescript-eslint/consistent-type-imports": [
                     "error",
                     {
@@ -25,6 +26,7 @@
                     }
                 ],
                 "@typescript-eslint/no-use-before-define": ["error", "nofunc"],
+                "@typescript-eslint/prefer-optional-chain": ["error"],
                 "jsdoc/require-param-type": "off",
                 "jsdoc/require-returns-type": "off",
                 "prefer-const": [

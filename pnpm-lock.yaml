@@ -156,8 +156,8 @@ importers:
         specifier: 8.13.4
         version: 8.13.4(@types/react@17.0.52)(react@16.14.0)
       '@sap-ux/ui-components':
-        specifier: 1.6.0
-        version: 1.6.0(@types/react-dom@17.0.18)(@types/react@17.0.52)(react-dom@16.14.0)(react@16.14.0)
+        specifier: 1.7.0
+        version: 1.7.0(@types/react-dom@17.0.18)(@types/react@17.0.52)(react-dom@16.14.0)(react@16.14.0)
       react-copy-to-clipboard:
         specifier: 5.1.0
         version: 5.1.0(react@16.14.0)
@@ -285,7 +285,7 @@ packages:
     resolution: {integrity: sha512-TrRLIoSQVzfAJX9H1JeFjzAoDGcoK1IYX1UImfceTZpsyYfWr09Ss1aHW1y5TrrR3iq6RZLBwJ3E24uwPhwahw==}
     engines: {node: '>=12.0.0'}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /@azure/core-auth@1.4.0:
@@ -293,7 +293,7 @@ packages:
     engines: {node: '>=12.0.0'}
     dependencies:
       '@azure/abort-controller': 1.1.0
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /@azure/core-rest-pipeline@1.10.2:
@@ -308,7 +308,7 @@ packages:
       form-data: 4.0.0
       http-proxy-agent: 5.0.0
       https-proxy-agent: 5.0.1
-      tslib: 2.4.1
+      tslib: 2.5.0
       uuid: 8.3.2
     transitivePeerDependencies:
       - supports-color
@@ -318,7 +318,7 @@ packages:
     resolution: {integrity: sha512-I5CGMoLtX+pI17ZdiFJZgxMJApsK6jjfm85hpgp3oazCdq5Wxgh4wMr7ge/TTWW1B5WBuvIOI1fMU/FrOAMKrw==}
     engines: {node: '>=12.0.0'}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /@azure/core-util@1.2.0:
@@ -326,14 +326,14 @@ packages:
     engines: {node: '>=14.0.0'}
     dependencies:
       '@azure/abort-controller': 1.1.0
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /@azure/logger@1.0.4:
     resolution: {integrity: sha512-ustrPY8MryhloQj7OWGe+HrYx+aoiOxzbXTtgblbV3xwCqpzUK36phH3XNHQKj3EPonyFUuDTfR3qFhTEAuZEg==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /@babel/code-frame@7.18.6:
@@ -2205,8 +2205,8 @@ packages:
       reselect: 4.1.7
     dev: true
 
-  /@sap-ux/ui-components@1.6.0(@types/react-dom@17.0.18)(@types/react@17.0.52)(react-dom@16.14.0)(react@16.14.0):
-    resolution: {integrity: sha512-icCv2QW5NLdTdn8TW6dB55HBEqPIUH/RJnTmiz4gqXw23mzkErcrGdZq9/adOXT+zk06TqabY7Dh3iOrNkq2cQ==}
+  /@sap-ux/ui-components@1.7.0(@types/react-dom@17.0.18)(@types/react@17.0.52)(react-dom@16.14.0)(react@16.14.0):
+    resolution: {integrity: sha512-Xjuaq/ZQsx33V/tc5CnBHWo7RmGQjDq5eNF3YloK5SH1JKtyA4VRQrGrJRk3nudQrkTA6v4SqOESVlLFhS/eGg==}
     peerDependencies:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
@@ -8487,6 +8487,7 @@ packages:
 
   /tslib@2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
+    dev: false
 
   /tslib@2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}

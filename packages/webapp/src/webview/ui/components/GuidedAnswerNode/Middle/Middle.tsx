@@ -1,11 +1,12 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
+import type { ReactElement } from 'react';
 import { actions } from '../../../../state';
 import type { GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
 import '../GuidedAnswerNode.scss';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { focusOnElement } from '../../utils';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../../types';
+import type { AppState } from '../../../../types';
 import { FeedbackSection } from '../../FeedbackSection/FeedbackSection';
 import NotSolvedMessage from '../../FeedbackSection/NotSolvedMessage/NotSolvedMessage';
 import { FeedbackDialogBox } from '../../DialogBoxes/FeedbackDialogBox';

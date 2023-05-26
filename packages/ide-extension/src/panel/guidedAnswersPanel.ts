@@ -74,7 +74,7 @@ export class GuidedAnswersPanel {
      */
     constructor(options?: Options) {
         this.startOptions = options?.startOptions;
-        this.ide = options?.ide || 'VSCODE';
+        this.ide = options?.ide ?? 'VSCODE';
         this.restoreAppState = options?.restore?.appState;
         const htmlEnhancements = getHtmlEnhancements(this.ide);
         const extensions = getInstalledExtensionIds();
@@ -86,13 +86,13 @@ export class GuidedAnswersPanel {
             extensions
         });
         const { host: apiHost, version: apiVersion } = this.guidedAnswerApi.getApiInfo();
-        setCommonProperties({ ide: this.ide, devSpace: options?.devSpace || '', apiHost, apiVersion });
+        setCommonProperties({ ide: this.ide, devSpace: options?.devSpace ?? '', apiHost, apiVersion });
         logString(`Using API host: '${apiHost}', version: '${apiVersion}'`);
         trackEvent({
             name: 'STARTUP',
             properties: {
                 treeId: typeof this.startOptions?.treeId === 'number' ? this.startOptions?.treeId.toString() : '',
-                nodeIdPath: (this.startOptions?.nodeIdPath || []).join(':')
+                nodeIdPath: (this.startOptions?.nodeIdPath ?? []).join(':')
             }
         }).catch((error) => logString(`Error tracking event 'STARTUP'.\n${error?.toString()}`));
         /**
@@ -104,7 +104,7 @@ export class GuidedAnswersPanel {
          */
         const ViewColumnType = this.startOptions?.openToSide ? ViewColumn.Beside : ViewColumn.Active;
         this.panel =
-            options?.restore?.webviewPanel ||
+            options?.restore?.webviewPanel ??
             window.createWebviewPanel('sap.ux.guidedAnswer.view', 'Guided Answers extension by SAP', ViewColumnType, {
                 enableCommandUris: true,
                 enableScripts: true,

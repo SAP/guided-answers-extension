@@ -19,7 +19,7 @@ export class GuidedAnswersUriHandler implements UriHandler {
         logString(`Guided Answers extension called from URI: ${link}`);
         const startOptions = extractLinkInfo(link);
         logString(`Extracted information from link: ${startOptions ? JSON.stringify(startOptions) : ''}`);
-        if (startOptions && startOptions.treeId) {
+        if (startOptions?.treeId) {
             commands
                 .executeCommand('sap.ux.guidedAnswer.openGuidedAnswer', startOptions)
                 ?.then(undefined, (error) =>

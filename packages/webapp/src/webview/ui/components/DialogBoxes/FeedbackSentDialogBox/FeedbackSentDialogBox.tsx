@@ -1,9 +1,10 @@
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import type { ReactElement } from 'react';
 import './FeedbackSendDialogBox.scss';
 import { DialogType } from '@fluentui/react/lib/Dialog';
 import i18next from 'i18next';
 import { UIIcon, UiIcons, UIDialog } from '@sap-ux/ui-components';
-import { AppState } from '../../../../types';
+import type { AppState } from '../../../../types';
 import { useSelector } from 'react-redux';
 import { actions } from '../../../../state';
 
