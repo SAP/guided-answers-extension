@@ -15,6 +15,7 @@
                 "@typescript-eslint/ban-types": "off",
                 "@typescript-eslint/no-explicit-any": "off",
                 "@typescript-eslint/no-inferrable-types": "off",
+                "@typescript-eslint/no-redundant-type-constituents": "error",
                 "@typescript-eslint/no-unused-vars": ["error"],
                 "@typescript-eslint/no-floating-promises": ["error"],
                 "@typescript-eslint/prefer-nullish-coalescing": ["error"],
