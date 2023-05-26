@@ -18,6 +18,7 @@
                 "@typescript-eslint/no-unused-vars": ["error"],
                 "@typescript-eslint/no-floating-promises": ["error"],
                 "@typescript-eslint/prefer-nullish-coalescing": ["error"],
+                "@typescript-eslint/prefer-regexp-exec": ["error"],
                 "@typescript-eslint/consistent-type-imports": [
                     "error",
                     {
