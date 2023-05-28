@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.23.2
+
+### Patch Changes
+
+-   fe5c181: Fix sonar code smells and enable lint rules
+
 ## 1.23.1
 
 ### Patch Changes
