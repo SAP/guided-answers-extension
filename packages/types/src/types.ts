@@ -110,7 +110,7 @@ export interface GuidedAnswerAPI {
 export interface GuidedAnswersFeedback {
     treeId: GuidedAnswerTreeId;
     nodeId: GuidedAnswerNodeId;
-    message: 'Solved' | 'Not Solved' | string;
+    message: string;
 }
 
 export interface GuidedAnswersTelemetryPayload {

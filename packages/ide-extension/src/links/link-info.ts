@@ -13,7 +13,7 @@ export function extractLinkInfo(link: string): StartOptions | undefined {
     let treeId: GuidedAnswerTreeId | undefined;
     let nodeIdPath: GuidedAnswerNodeId[] | undefined;
     try {
-        const match = link.trim().match(fragmentRegExp);
+        const match = fragmentRegExp.exec(link.trim());
         if (Array.isArray(match) && match.length > 1 && typeof match[1] === 'string') {
             treeId = parseInt(match[1], 10);
             nodeIdPath =

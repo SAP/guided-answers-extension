@@ -1,8 +1,6 @@
 .guided-answer__node {
-    & {
-        display: flex;
-        flex-direction: column;
-    }
+    display: flex;
+    flex-direction: column;
 
     &__body {
         color: var(--vscode-foreground);
