@@ -16,7 +16,8 @@
 [#311](https://github.com/SAP/guided-answers-extension/issues/311),
 [#258](https://github.com/SAP/guided-answers-extension/issues/258),
 [#85](https://github.com/SAP/guided-answers-extension/issues/85),
-[#426](https://github.com/SAP/guided-answers-extension/issues/426)
+[#426](https://github.com/SAP/guided-answers-extension/issues/426),
+[#492](https://github.com/SAP/guided-answers-extension/issues/492)
 
 
 Prerequisites: Guided Answers Extension is installed in either SAP Business Application Studio (SBAS) or Microsoft Visual Studio Code (VSCODE)
@@ -351,33 +352,63 @@ The text submitted, the node in the Guided Answer Tree the feedback was submitte
 Gemeral Feedback pop up closes.
 
 
-### Sharing Guided Answer content
+### Sharing Guided Answer content 
+
+_VSCode and SBAS_
 
 1. Open GA extension in VSCode/SBAS  
 2. Search for SAP Fiori Tools
 3. Select a SAP Fiori Tools Guided Answer in the returned ist
 4. Navgate through a Guided Answer ( Fiori Tools - > Deployment ->SBAS -> ABAP -> Request failed with status code 400 - Archive not okay) 
-5. Click on link icon (See expected results 2)
+5. Click on 'Copy this link' icon (See expected results 1)
 6. Click on copy to clipboard icon (See expected results 2)
 7. Click on Home icon
 8. Paste link in the search input field (See expected results 3)
-9. Navigate to another node in the tree
-10. Click on link icon
-11. Highlight the link in the text input field and press Ctrl+C / Command+C
-12. Click on Home icon
-13. Paste link in the search input field (See expected results 4)
-14. Navigate to another node in the tree
-15. Click on the link icon 
-16. Click on 'View on the GA website' link (See expected results 7)
+12. Click on Home icon 
+13. Search for SAP Fiori Tools
+3. Select a SAP Fiori Tools Guided Answer in the returned ist
+14. Navgate through a Guided Answer ( Fiori Tools - > Deployment ->SBAS -> ABAP -> Request failed with status code 400 - Archive not okay)
+15. Click on link icon (See expected results 1)
+16. Click on 'Copy link with instructions' icon ( See expected results 2)
+17. Paste copied instructions in notepad ( See expected results 8)
+18. Copy link in instructions and paste link in the search input field ( see expected results 3)
+19. Navigate to another node in the tree
+20. Click on link icon
+21. Highlight the link in the text input field and press Ctrl+C / Command+C
+22. Click on Home icon
+23. Paste link in the search input field (See expected results 4)
+24. Navigate to another node in the tree
+25. Click on the link icon 
+26. Click on 'View on the GA website' link (See expected results 7)
+
 
 _VSCode environment_
-1. Paste link in a notepad
+1. Open GA extension in VSCode  
+2. Search for SAP Fiori Tools
+3. Select a SAP Fiori Tools Guided Answer in the returned ist
+4. Navgate through a Guided Answer ( Fiori Tools - > Deployment ->SBAS -> ABAP -> Request failed with status code 400 - Archive not okay) 
+5. Click on link icon (See expected results 1)
+6. Click on copy to clipboard icon (See expected results 2)
+7. Paste link in notepad (See expected results 9)
 2. Click on the link (See expected results 5) 
-3. Click Open (See expected results 6) 
+3. Click Open in 'Allow extensiont to open URI' pop up (See expected results 6) 
+12. Click on Home icon 
+13. Search for SAP Fiori Tools
+14. Select a SAP Fiori Tools Guided Answer in the returned ist
+15. Navgate through a Guided Answer ( Fiori Tools - > Deployment ->SBAS -> ABAP -> Request failed with status code 400 - Archive not okay)
+16. Click on link icon (See expected results 1)
+17. Click on Copy link with instructions icon ( See expected results 2)
+18. Paste copied instructions in notepad ( See expected results 8)
+19. Follow VSCode instructions and click on VSCode link ( See expected results 5) 
+20. Click Open in 'Allow extension to open URI' pop up( See expected results 6) 
 
 **Expected result 1**
-'Share this guide' pop up appears displaying Guided Answer link in text input field, a copy to clipboard icon.
-The following description text will also be displayed - 'This link can be pasted into the search input field of the Guided Answers extension. It will navigate you straight to this Guided Answers content’ 
+'Share this guide' pop up appears displaying 
+a. Guided Answer link in a text input field, 
+b. 'Copy this link' icon 
+c. 'Copy link with instructions' icon.
+d. The following description text will also be displayed - 'Copy this link to share via email or messages. When pasted into the search input field of the Guided Answers extension, it will navigate you straight to this node.’ 
+e. A link 'View on the GA website' will also appear in the pop up 
 
 **Expected result 2**
 Notification appears that the link was copied to the clipboard
@@ -389,13 +420,31 @@ Node for that tree opens automatically. 'Request failed with status code - Archi
 Node for that tree opens automatically.
 
 **Expected result 5**
-VSCode will be launched
+VSCode will be launched.
+
+Note: VSCode must installed.
 
 **Expected result 6**
 The Guided Answer extension will be open displaying the content that was shared 
 
+Note VSCode must be installed.
+
 **Expected result 7**
 The Guided Answer tree opens in browser window, showing the node content and the node path.
+
+**Expected result 8**
+The following instructions will appear in the notepad
+
+_To resolve your reported issue, open Guided Answers extension by SAP, and follow the steps mentioned in the guide.
+->If your IDE is VSCode, please click on the following link: "vscode://saposs.sap-guided-answers-extension#/tree/3046/actions/45995:45996:50742:46000:46005"
+->If your IDE is SAP Business Application Studio, then:
+  a. Launch Guided Answers via the command "SAP: Open Guided Answers"
+  b. Paste the following guide shortlink into the search input field: "vscode://saposs.sap-guided-answers-extension#/tree/3046/actions/45995:45996:50742:46000:46005"
+
+**Expected result 9**
+The following link will appear in the notepad
+vscode://saposs.sap-guided-answers-extension#/tree/3046/actions/45995:45996:50742:46000:46005 
+
 
 
 ### Displaying HTML and Node enhancements specific to VSCode or SAP Business Application Studio
