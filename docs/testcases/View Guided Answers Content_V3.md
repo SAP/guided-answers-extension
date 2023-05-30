@@ -17,7 +17,8 @@
 [#258](https://github.com/SAP/guided-answers-extension/issues/258),
 [#85](https://github.com/SAP/guided-answers-extension/issues/85),
 [#426](https://github.com/SAP/guided-answers-extension/issues/426),
-[#492](https://github.com/SAP/guided-answers-extension/issues/492)
+[#492](https://github.com/SAP/guided-answers-extension/issues/492),
+[#490](https://github.com/SAP/guided-answers-extension/issues/490)
 
 
 Prerequisites: Guided Answers Extension is installed in either SAP Business Application Studio (SBAS) or Microsoft Visual Studio Code (VSCODE)
@@ -351,6 +352,46 @@ The text submitted, the node in the Guided Answer Tree the feedback was submitte
 **Expected result 4**
 Gemeral Feedback pop up closes.
 
+
+### Bookmarking Guides
+
+_Adding a Bookmark_
+
+1. Open GA extension in VSCode/SBAS  
+2. Search for SAP Fiori Tools
+3. Select  SAP Fiori Tools Guided Answer in the returned ist
+4. Navgate through a Guided Answer ( Fiori Tools - > Deployment ->SBAS -> ABAP -> Request failed with status code 400 - Archive not okay) 
+5. Click on star icon(See expected results 1)
+6. Click on Home icon ( See expected results 2)
+7. Close GA extension
+8. Open GA extension ( See expected results 3) 
+9. Click on the bookmark ( See expected result 4) 
+10. Click on the star icon ( See expected results 5)
+11. Click on Home icon
+12. Enter 'SAP Fiori Tools' into search input field (See expected results 6)
+13. Close GA extension
+14. Open GA extension (See expected results 7)
+
+**Expected Result 1**
+Star icon is turned yellow 
+
+**Expected Results 2**
+Guided Answer Tree 'SAP Fiori Tools' Guided Answer content has yellow star icon beside the Title in the returned list.
+
+**Expected Results 3**
+List of Bookmarks are displayed to the user. Showing the Tree name and the node name that was bookmarked e.g. 'SAP Fiori Tools - Request failed with status code 400 - Archive not okay". The Guided Answer tree description is shown and the product and componement of the Guided Answer Tree
+
+**Expected Results 4**
+The Guided Answer extension opens the node  "Request failed with status code 400 - Archive not okay"
+
+**Expected Results 5**
+Star icon is no longer yellow in colour
+
+**Expected Results 6**
+In the returned searched list the Guided Answers Tree 'SAP Fiori Tools' no longer has a yellow star icon beside it.
+
+**Expected Results 7**
+No saved Bookmarks are displayed to the user. Just a blank screen with empty search input field. 
 
 ### Sharing Guided Answer content 
 
