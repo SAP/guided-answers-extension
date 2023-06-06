@@ -15,7 +15,6 @@ import type {
     GuidedAnswerTreeId,
     ShareNodeLinks
 } from '@sap/guided-answers-extension-types';
-import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 
 /**
  *
@@ -136,42 +135,40 @@ export function ShareButton() {
                             <div>
                                 <div className="sharable-link__title">{i18next.t('SHARE_THIS_GUIDE')}</div>
                                 <div className="sharable-link__body">
-                                    <FocusZone direction={FocusZoneDirection.horizontal} style={{ display: 'flex' }}>
-                                        {!isCopiedVisible && (
-                                            <UITextInput
-                                                disabled={true}
-                                                value={shareNodeLinks.extensionLink}
-                                                className="sharable-link__input-field"
+                                    {!isCopiedVisible && (
+                                        <UITextInput
+                                            disabled={true}
+                                            value={shareNodeLinks.extensionLink}
+                                            className="sharable-link__input-field"
+                                        />
+                                    )}
+                                    {isCopiedVisible && (
+                                        <div id="sharable-link-copied" className="sharable-link__copied">
+                                            <UIIcon
+                                                iconName={UiIcons.ConfirmationCheckSymbol}
+                                                className="sharable-link__copied-icon"
                                             />
-                                        )}
-                                        {isCopiedVisible && (
-                                            <div id="sharable-link-copied" className="sharable-link__copied">
-                                                <UIIconButton
-                                                    iconProps={{ iconName: UiIcons.ConfirmationCheckSymbol }}
-                                                    className="sharable-link__copied-icon"
-                                                />
-                                                {i18next.t('COPIED_TO_CLIPBOARD')}
-                                            </div>
-                                        )}
+                                            {i18next.t('COPIED_TO_CLIPBOARD')}
+                                        </div>
+                                    )}
 
-                                        <CopyToClipboard text={shareNodeLinks.extensionLink} onCopy={handleCopy}>
-                                            <UIIconButton
-                                                className="sharable-link__copy-to-clipboard"
-                                                id="copy-btn"
-                                                title={i18next.t('COPY_THIS_LINK')}
-                                                iconProps={{ iconName: UiIcons.CopyToClipboard }}></UIIconButton>
-                                        </CopyToClipboard>
+                                    <CopyToClipboard text={shareNodeLinks.extensionLink} onCopy={handleCopy}>
+                                        <UIIconButton
+                                            className="sharable-link__copy-to-clipboard"
+                                            id="copy-btn"
+                                            title={i18next.t('COPY_THIS_LINK')}
+                                            iconProps={{ iconName: UiIcons.CopyToClipboard }}></UIIconButton>
+                                    </CopyToClipboard>
 
-                                        <div className="sharable-link__divider-vertical"></div>
+                                    <div className="sharable-link__divider-vertical"></div>
 
-                                        <CopyToClipboard text={copyInstructions} onCopy={handleCopy}>
-                                            <UIIconButton
-                                                className="sharable-link__copy-to-clipboard"
-                                                id="copy-btn-instructions"
-                                                title={i18next.t('COPY_WITH_INSTRUCTIONS')}
-                                                iconProps={{ iconName: UiIcons.CopyToClipboardLong }}></UIIconButton>
-                                        </CopyToClipboard>
-                                    </FocusZone>
+                                    <CopyToClipboard text={copyInstructions} onCopy={handleCopy}>
+                                        <UIIconButton
+                                            className="sharable-link__copy-to-clipboard"
+                                            id="copy-btn-instructions"
+                                            title={i18next.t('COPY_WITH_INSTRUCTIONS')}
+                                            iconProps={{ iconName: UiIcons.CopyToClipboardLong }}></UIIconButton>
+                                    </CopyToClipboard>
                                 </div>
                                 <p className="sharable-link__footer">{i18next.t('COPIED_TO_CLIPBOARD_DESC')}</p>
                                 <hr className="sharable-link__divider"></hr>
