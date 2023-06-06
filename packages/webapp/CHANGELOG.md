@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.23.4
+
+### Patch Changes
+
+-   a029a75: fix(504): remove box sizing specifier for all elements
+
 ## 1.23.3
 
 ### Patch Changes
