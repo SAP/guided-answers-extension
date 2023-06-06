@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.23.3
+
+### Patch Changes
+
+-   96ba044: fix(485): fix share popup focus highlighting
+
 ## 1.23.2
 
 ### Patch Changes
