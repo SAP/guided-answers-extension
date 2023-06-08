@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.23.5
+
+### Patch Changes
+
+-   c42c40b: fix(521): fixed the text color of a dialog button
+
 ## 1.23.4
 
 ### Patch Changes
