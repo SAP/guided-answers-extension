@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.23.6
+
+### Patch Changes
+
+-   2ee6c84: Change text for copy link instructions
+
 ## 1.23.5
 
 ## 1.23.4
