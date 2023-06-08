@@ -160,8 +160,8 @@ importers:
         specifier: 8.13.4
         version: 8.13.4(@types/react@17.0.52)(react@16.14.0)
       '@sap-ux/ui-components':
-        specifier: 1.7.0
-        version: 1.7.0(@types/react-dom@17.0.18)(@types/react@17.0.52)(react-dom@16.14.0)(react@16.14.0)
+        specifier: 1.8.1
+        version: 1.8.1(@types/react-dom@17.0.18)(@types/react@17.0.52)(react-dom@16.14.0)(react@16.14.0)
       react-copy-to-clipboard:
         specifier: 5.1.0
         version: 5.1.0(react@16.14.0)
@@ -2209,8 +2209,8 @@ packages:
       reselect: 4.1.7
     dev: true
 
-  /@sap-ux/ui-components@1.7.0(@types/react-dom@17.0.18)(@types/react@17.0.52)(react-dom@16.14.0)(react@16.14.0):
-    resolution: {integrity: sha512-Xjuaq/ZQsx33V/tc5CnBHWo7RmGQjDq5eNF3YloK5SH1JKtyA4VRQrGrJRk3nudQrkTA6v4SqOESVlLFhS/eGg==}
+  /@sap-ux/ui-components@1.8.1(@types/react-dom@17.0.18)(@types/react@17.0.52)(react-dom@16.14.0)(react@16.14.0):
+    resolution: {integrity: sha512-0xFpS/9SNdqkV20QzJnBBPoi7sRNl0su7tO8x/V51cMKDBrW2JaNn5G9gYpmhaPpqjSuVpDYR/Rs2eFR3J01Zg==}
     peerDependencies:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
