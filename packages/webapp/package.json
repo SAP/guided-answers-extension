@@ -54,7 +54,7 @@
         "@fluentui/react-focus": "8.8.10",
         "@fluentui/style-utilities": "8.8.3",
         "@fluentui/utilities": "8.13.4",
-        "@sap-ux/ui-components": "1.7.0",
+        "@sap-ux/ui-components": "1.8.1",
         "react-copy-to-clipboard": "5.1.0",
         "react-infinite-scroll-component": "6.1.0"
     }

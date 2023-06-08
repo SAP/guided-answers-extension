@@ -29,21 +29,6 @@
         gap: 10px;
     }
 
-    .default-button {
-        background-color: var(--vscode-button-secondaryBackground);
-        color: var(--vscode-button-foreground);
-        border-color: var(--vscode-button-secondaryBackground);
-        text-align: center;
-    }
-
-    .primary-button {
-        color: var(--vscode-button-foreground);
-        font-weight: 400;
-        border-color: var(--vscode-button-background);
-        background-color: var(--vscode-button-background);
-        border-style: none;
-    }
-
     button:focus-visible {
         outline: 1px solid var(--vscode-focusBorder, #007fd4);
         border-style: none;
