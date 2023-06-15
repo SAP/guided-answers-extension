@@ -156,6 +156,7 @@ describe('Telemetry trackAction() tests', () => {
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'NODE_SELECTED',
+                isBookmarked: 'false',
                 isFinalNode: 'false',
                 treeId: '1',
                 treeTitle: 'Title',
@@ -185,7 +186,8 @@ describe('Telemetry trackAction() tests', () => {
                 lastNodeId: '3',
                 lastNodeTitle: 'last node',
                 nodeIdPath: '2:3',
-                nodeLevel: '2'
+                nodeLevel: '2',
+                isBookmarked: 'false'
             }
         });
     });
@@ -209,7 +211,8 @@ describe('Telemetry trackAction() tests', () => {
                 lastNodeTitle: 'last node',
                 nodeIdPath: '2:3',
                 nodeLevel: '2',
-                solved: 'false'
+                solved: 'false',
+                isBookmarked: 'false'
             }
         });
     });
@@ -232,7 +235,8 @@ describe('Telemetry trackAction() tests', () => {
                 lastNodeId: '3',
                 lastNodeTitle: 'last node',
                 nodeIdPath: '2:3',
-                nodeLevel: '2'
+                nodeLevel: '2',
+                isBookmarked: 'false'
             }
         });
     });
@@ -276,7 +280,8 @@ describe('Telemetry trackAction() tests', () => {
                 lastNodeId: '3',
                 lastNodeTitle: 'last node',
                 nodeIdPath: '2:3',
-                nodeLevel: '2'
+                nodeLevel: '2',
+                isBookmarked: 'false'
             }
         });
     });
@@ -362,6 +367,23 @@ describe('Telemetry trackAction() tests', () => {
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'CLEAR_FILTERS'
+            }
+        });
+    });
+
+    test('send UPDATE_BOOKMARKS action', () => {
+        // Mock setup
+        const mockAction = getDummyAction('UPDATE_BOOKMARKS');
+        delete mockAction.payload.state.activeGuidedAnswer;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'REMOVE_BOOKMARK'
             }
         });
     });
@@ -485,7 +507,8 @@ function getDummyAction(actionName: string): SendTelemetry {
                 activeGuidedAnswerNode: [
                     { NODE_ID: 2 },
                     { NODE_ID: 3, TITLE: 'last node' }
-                ] as unknown as GuidedAnswerNode[]
+                ] as unknown as GuidedAnswerNode[],
+                bookmarks: {}
             } as unknown as AppState
         }
     };
