@@ -405,7 +405,45 @@ describe('Guided Answers Api: getNodeById()', () => {
                     ORD: 2
                 }
             ],
-            EXTENSIONS: [
+            HTML_EXTENSIONS: [
+                {
+                    extensionType: 'HTML',
+                    label: 'of course, 42',
+                    desc: `Text 'solution to all questions' decorated as link to terminal command`,
+                    text: 'solution to all questions',
+                    command: {
+                        type: 'Terminal',
+                        exec: {
+                            args: '42',
+                            command: 'echo',
+                            extensionId: ''
+                        },
+                        environment: {
+                            sbas: 1,
+                            vscode: 1
+                        }
+                    }
+                },
+                {
+                    extensionType: 'HTML',
+                    text: 'Body of',
+                    label: 'what does that even mean',
+                    desc: `we decorate 'Body of' with a link to vscode command`,
+                    command: {
+                        type: 'Extension',
+                        exec: {
+                            extensionId: 'terry.exxt',
+                            command: 'Knock kock',
+                            args: '{ "fsPath": "whos/there/body/of" }'
+                        },
+                        environment: {
+                            sbas: 1,
+                            vscode: 1
+                        }
+                    }
+                }
+            ],
+            NODE_EXTENSIONS: [
                 {
                     TYPE: 'Terminal Command',
                     LABEL: 'terminal command enhancement',
@@ -429,34 +467,34 @@ describe('Guided Answers Api: getNodeById()', () => {
 
         const options: APIOptions = {
             ide: 'VSCODE',
-            extensions: new Set(['full speed']),
-            htmlEnhancements: [
-                {
-                    text: 'solution to all questions',
-                    command: {
-                        label: 'of course, 42',
-                        description: `Text 'solution to all questions' decorated as link to terminal command`,
-                        exec: {
-                            cwd: '.',
-                            arguments: ['echo', '42']
-                        },
-                        environment: ['VSCODE', 'SBAS']
-                    }
-                },
-                {
-                    text: 'Body of',
-                    command: {
-                        label: 'what does that even mean',
-                        description: `we decorate 'Body of' with a link to vscode command`,
-                        exec: {
-                            extensionId: 'terry.exxt',
-                            commandId: 'Knock kock',
-                            argument: { fsPath: 'whos/there/body/of' }
-                        },
-                        environment: ['VSCODE', 'SBAS']
-                    }
-                }
-            ]
+            extensions: new Set(['full speed', 'terry.exxt'])
+            // htmlEnhancements: [
+            //     {
+            //         text: 'solution to all questions',
+            //         command: {
+            //             label: 'of course, 42',
+            //             description: `Text 'solution to all questions' decorated as link to terminal command`,
+            //             exec: {
+            //                 cwd: '.',
+            //                 arguments: ['echo', '42']
+            //             },
+            //             environment: ['VSCODE', 'SBAS']
+            //         }
+            //     },
+            //     {
+            //         text: 'Body of',
+            //         command: {
+            //             label: 'what does that even mean',
+            //             description: `we decorate 'Body of' with a link to vscode command`,
+            //             exec: {
+            //                 extensionId: 'terry.exxt',
+            //                 commandId: 'Knock kock',
+            //                 argument: { fsPath: 'whos/there/body/of' }
+            //             },
+            //             environment: ['VSCODE', 'SBAS']
+            //         }
+            //     }
+            // ]
         };
         let requestUrl = '';
         mockedAxios.get.mockImplementation((url) => {
@@ -600,7 +638,8 @@ describe('Guided Answers Api: getNodeById()', () => {
         BODY: `<p>N1</p>`,
         QUESTION: '?',
         EDGES: [],
-        EXTENSIONS: [
+        HTML_EXTENSIONS: [],
+        NODE_EXTENSIONS: [
             {
                 TYPE: 'Extension Command',
                 LABEL: 'vscode and sbas command enhancement',
@@ -657,6 +696,26 @@ describe('Guided Answers Api: getNodePath()', () => {
                 EDGES: [
                     { LABEL: 'Next', TARGET_NODE: 112, ORD: 1 },
                     { LABEL: 'Somewhere else', TARGET_NODE: 911, ORD: 2 }
+                ],
+                HTML_EXTENSIONS: [
+                    {
+                        extensionType: 'HTML',
+                        label: 'Command for Onehundredtwelve',
+                        desc: `Command to enhance node in path`,
+                        text: 'Onehundredtwelve',
+                        command: {
+                            type: 'Terminal',
+                            exec: {
+                                args: '',
+                                command: 'TEST',
+                                extensionId: ''
+                            },
+                            environment: {
+                                sbas: 1,
+                                vscode: 1
+                            }
+                        }
+                    }
                 ]
             },
             {
@@ -664,27 +723,31 @@ describe('Guided Answers Api: getNodePath()', () => {
                 TITLE: 'Onehundredtwelve',
                 BODY: '<p>This is node Onehundredtwelve</p>',
                 QUESTION: 'Nowhere else to go',
-                EDGES: []
+                EDGES: [],
+                HTML_EXTENSIONS: [
+                    {
+                        extensionType: 'HTML',
+                        label: 'Command for Onehundredtwelve',
+                        desc: `Command to enhance node in path`,
+                        text: 'Onehundredtwelve',
+                        command: {
+                            type: 'Terminal',
+                            exec: {
+                                args: '',
+                                command: 'TEST',
+                                extensionId: ''
+                            },
+                            environment: {
+                                sbas: 1,
+                                vscode: 1
+                            }
+                        }
+                    }
+                ]
             }
         ];
 
-        const options: APIOptions = {
-            ide: 'VSCODE',
-            htmlEnhancements: [
-                {
-                    text: 'Onehundredtwelve',
-                    command: {
-                        label: 'Command for Onehundredtwelve',
-                        description: `Command to enhance node in path`,
-                        exec: {
-                            cwd: '/',
-                            arguments: ['TEST']
-                        },
-                        environment: ['VSCODE', 'SBAS']
-                    }
-                }
-            ]
-        };
+        const options: APIOptions = { ide: 'VSCODE' };
         mockedAxios.get.mockImplementation((url: string) => {
             const data = nodes.find((n) => url.endsWith(`/${n.NODE_ID}`));
             if (data) {
