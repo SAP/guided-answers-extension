@@ -10,7 +10,9 @@ import {
     GuidedAnswerNode,
     GuidedAnswerTree,
     SendTelemetry,
-    UpdateActiveNode
+    UpdateActiveNode,
+    UpdateBookmarks,
+    Bookmark
 } from '@sap/guided-answers-extension-types';
 import { TelemetryEvent, TelemetryReporter } from '../../src/types';
 import packageJson from '../../package.json';
@@ -371,7 +373,7 @@ describe('Telemetry trackAction() tests', () => {
         });
     });
 
-    test('send UPDATE_BOOKMARKS action', () => {
+    test('send UPDATE_BOOKMARKS action, REMOVE_BOOKMARK', () => {
         // Mock setup
         const mockAction = getDummyAction('UPDATE_BOOKMARKS');
         delete mockAction.payload.state.activeGuidedAnswer;
@@ -384,6 +386,44 @@ describe('Telemetry trackAction() tests', () => {
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'REMOVE_BOOKMARK'
+            }
+        });
+    });
+
+    test('send UPDATE_BOOKMARKS action, ADD_BOOKMARK', () => {
+        // Mock setup
+        const mockAction = getDummyAction('UPDATE_BOOKMARKS');
+        delete mockAction.payload.state.activeGuidedAnswer;
+        (mockAction.payload.action as UpdateBookmarks).payload.bookmarkKey = 'abc';
+        mockAction.payload.state.bookmarks = { abc: {} as Bookmark };
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'ADD_BOOKMARK',
+                isFirstNode: 'true'
+            }
+        });
+    });
+
+    test('send UPDATE_BOOKMARKS action, SYNC_BOOKMARK', () => {
+        // Mock setup
+        const mockAction = getDummyAction('UPDATE_BOOKMARKS');
+        delete mockAction.payload.state.activeGuidedAnswer;
+        (mockAction.payload.action as UpdateBookmarks).payload.bookmarkKey = '';
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'SYNC_BOOKMARKS'
             }
         });
     });
