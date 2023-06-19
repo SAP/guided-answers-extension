@@ -12,7 +12,8 @@ import {
     SHARE_LINK_TELEMETRY,
     RESET_FILTERS,
     GET_BOOKMARKS,
-    UPDATE_BOOKMARKS
+    UPDATE_BOOKMARKS,
+    SYNCHRONIZE_BOOKMARK
 } from '@sap/guided-answers-extension-types';
 import type {
     AppState,
@@ -42,7 +43,7 @@ import type {
     TelemetryUILoadBookmarksProps,
     TelemetryUIAddBookmarksProps,
     TelemetryUIRemoveBookmarksProps,
-    TelemetryUISyncBookmarksProps
+    TelemetryUIClickBookmarkProps
 } from '../types';
 
 /**
@@ -107,14 +108,10 @@ export const actionMap: {
         action: 'LOAD_BOOKMARKS',
         count: Object.keys((action.payload.action as GetBookmarks).payload).length.toString()
     }),
-    [UPDATE_BOOKMARKS]: (
-        action: SendTelemetry
-    ): TelemetryUIAddBookmarksProps | TelemetryUIRemoveBookmarksProps | TelemetryUISyncBookmarksProps => {
+    [UPDATE_BOOKMARKS]: (action: SendTelemetry): TelemetryUIAddBookmarksProps | TelemetryUIRemoveBookmarksProps => {
         const bookmarkKey = (action.payload.action as UpdateBookmarks).payload.bookmarkKey;
 
-        if (bookmarkKey === '') {
-            return { action: 'SYNC_BOOKMARKS' };
-        } else if (Object.keys(action.payload.state.bookmarks).includes(bookmarkKey)) {
+        if (Object.keys(action.payload.state.bookmarks).includes(bookmarkKey)) {
             return {
                 action: 'ADD_BOOKMARK',
                 isFirstNode: (!bookmarkKey.includes(':')).toString()
@@ -122,7 +119,10 @@ export const actionMap: {
         } else {
             return { action: 'REMOVE_BOOKMARK' };
         }
-    }
+    },
+    [SYNCHRONIZE_BOOKMARK]: (): TelemetryUIClickBookmarkProps => ({
+        action: 'CLICK_BOOKMARK'
+    })
 };
 
 /**
@@ -138,7 +138,6 @@ function getTreeNodeInfo(state: AppState): {
     lastNodeTitle: string;
     nodeIdPath: string;
     nodeLevel: string;
-    isBookmarked: string;
 } {
     const treeId = state.activeGuidedAnswer?.TREE_ID.toString() ?? '';
     const nodeIdPath = state.activeGuidedAnswerNode.map((node) => node.NODE_ID.toString()).join(':');
@@ -149,7 +148,6 @@ function getTreeNodeInfo(state: AppState): {
         lastNodeId: state.activeGuidedAnswerNode.slice(-1)[0]?.NODE_ID.toString(),
         lastNodeTitle: state.activeGuidedAnswerNode.slice(-1)[0]?.TITLE,
         nodeIdPath,
-        nodeLevel: state.activeGuidedAnswerNode.length.toString(),
-        isBookmarked: state.bookmarks[`${treeId}-${nodeIdPath}`] ? 'true' : 'false'
+        nodeLevel: state.activeGuidedAnswerNode.length.toString()
     };
 }

@@ -635,26 +635,21 @@ describe('GuidedAnswersPanel', () => {
         await (() => new Promise(setImmediate))();
         expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(5);
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
-            type: 'UPDATE_BOOKMARKS',
+            type: 'SYNCHRONIZE_BOOKMARK_RESPONSE',
             payload: {
-                bookmarkKey: '',
-                bookmarks: {
-                    '1-2:3': {
-                        tree: {
-                            TREE_ID: 1,
-                            FIRST_NODE_ID: 1
-                        },
-                        nodePath: [
-                            {
-                                NODE_ID: 2
-                            },
-                            {
-                                NODE_ID: 3
-                            }
-                        ],
-                        createdAt: '2023-05-23T21:46:42.223Z'
+                tree: {
+                    TREE_ID: 1,
+                    FIRST_NODE_ID: 1
+                },
+                nodePath: [
+                    {
+                        NODE_ID: 2
+                    },
+                    {
+                        NODE_ID: 3
                     }
-                }
+                ],
+                createdAt: '2023-05-23T21:46:42.223Z'
             }
         });
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {

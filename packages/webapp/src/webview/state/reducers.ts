@@ -16,7 +16,8 @@ import type {
     UpdateNetworkStatus,
     SetPageSize,
     FeedbackResponse,
-    FeedbackStatus
+    FeedbackStatus,
+    SynchronizeBookmarkResponse
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -91,7 +92,8 @@ const reducers: Partial<Reducers> = {
     FEEDBACK_RESPONSE: feedbackResponseReducer,
     FEEDBACK_STATUS: feedbackStatusReducer,
     GET_BOOKMARKS: getBookmarksReducer,
-    UPDATE_BOOKMARKS: updateBookmarksReducer
+    UPDATE_BOOKMARKS: updateBookmarksReducer,
+    SYNCHRONIZE_BOOKMARK_RESPONSE: synchronizeBookmarkResponseReducer
 };
 
 /**
@@ -415,4 +417,18 @@ function updatePageSize(newState: AppState, action: SetPageSize): AppState {
  */
 function restoreStateReducer(newState: AppState, action: RestoreState) {
     return action.payload;
+}
+
+/**
+ * Update bookmark based on received data from synchronization.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function synchronizeBookmarkResponseReducer(newState: AppState, action: SynchronizeBookmarkResponse) {
+    const bookmark = action.payload;
+    const bookmarkKey = `${bookmark.tree.TREE_ID}-${bookmark.nodePath.map((n) => n.NODE_ID).join(':')}`;
+    newState.bookmarks[bookmarkKey] = bookmark;
+    return newState;
 }

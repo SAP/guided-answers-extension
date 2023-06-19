@@ -63,7 +63,6 @@ export interface TelemetryUISelectNodeEventProps extends TelemetryUIEventProps {
     lastNodeTitle: string;
     nodeIdPath: string;
     nodeLevel: string;
-    isBookmarked: string;
 }
 
 export interface TelemetryUIGoToPreviousPage extends TelemetryUIEventProps {
@@ -74,7 +73,6 @@ export interface TelemetryUIGoToPreviousPage extends TelemetryUIEventProps {
     lastNodeTitle: string;
     nodeIdPath: string;
     nodeLevel: string;
-    isBookmarked: string;
 }
 
 export interface TelemetryUISelectOutcomeProps extends TelemetryUIEventProps {
@@ -86,7 +84,6 @@ export interface TelemetryUISelectOutcomeProps extends TelemetryUIEventProps {
     lastNodeTitle: string;
     nodeIdPath: string;
     nodeLevel: string;
-    isBookmarked: string;
 }
 
 export interface TelemetryUICommentProps extends TelemetryUIEventProps {
@@ -97,7 +94,6 @@ export interface TelemetryUICommentProps extends TelemetryUIEventProps {
     lastNodeTitle: string;
     nodeIdPath: string;
     nodeLevel: string;
-    isBookmarked: string;
 }
 
 export interface TelemetryUISearchProps extends TelemetryUIEventProps {
@@ -116,7 +112,6 @@ export interface TelemetryUIExecuteCommandProps extends TelemetryUIEventProps {
     lastNodeTitle: string;
     nodeIdPath: string;
     nodeLevel: string;
-    isBookmarked: string;
 }
 
 export interface TelemetryUIFilterComponentsProps extends TelemetryUIEventProps {
@@ -153,6 +148,6 @@ export interface TelemetryUIRemoveBookmarksProps extends TelemetryUIEventProps {
     action: 'REMOVE_BOOKMARK';
 }
 
-export interface TelemetryUISyncBookmarksProps extends TelemetryUIEventProps {
-    action: 'SYNC_BOOKMARKS';
+export interface TelemetryUIClickBookmarkProps extends TelemetryUIEventProps {
+    action: 'CLICK_BOOKMARK';
 }

@@ -32,7 +32,7 @@ import {
     feedbackResponse,
     getBookmarks,
     goToAllAnswers,
-    updateBookmark
+    synchronizeBookmarkResponse
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
@@ -272,10 +272,7 @@ export class GuidedAnswersPanel {
             needUpdate = true;
         }
         if (needUpdate) {
-            const bookmarkKey = `${bookmark.tree.TREE_ID}-${bookmark.nodePath.map((n) => n.NODE_ID).join(':')}`;
-            const bookmarks = getAllBookmarks();
-            bookmarks[bookmarkKey] = bookmark;
-            this.postActionToWebview(updateBookmark({ bookmarks, bookmarkKey: '' }));
+            this.postActionToWebview(synchronizeBookmarkResponse(bookmark));
             this.postActionToWebview(goToAllAnswers());
             this.postActionToWebview(setActiveTree(tree));
             for (const node of nodePath) {

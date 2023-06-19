@@ -158,7 +158,6 @@ describe('Telemetry trackAction() tests', () => {
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'NODE_SELECTED',
-                isBookmarked: 'false',
                 isFinalNode: 'false',
                 treeId: '1',
                 treeTitle: 'Title',
@@ -188,8 +187,7 @@ describe('Telemetry trackAction() tests', () => {
                 lastNodeId: '3',
                 lastNodeTitle: 'last node',
                 nodeIdPath: '2:3',
-                nodeLevel: '2',
-                isBookmarked: 'false'
+                nodeLevel: '2'
             }
         });
     });
@@ -213,8 +211,7 @@ describe('Telemetry trackAction() tests', () => {
                 lastNodeTitle: 'last node',
                 nodeIdPath: '2:3',
                 nodeLevel: '2',
-                solved: 'false',
-                isBookmarked: 'false'
+                solved: 'false'
             }
         });
     });
@@ -237,8 +234,7 @@ describe('Telemetry trackAction() tests', () => {
                 lastNodeId: '3',
                 lastNodeTitle: 'last node',
                 nodeIdPath: '2:3',
-                nodeLevel: '2',
-                isBookmarked: 'false'
+                nodeLevel: '2'
             }
         });
     });
@@ -282,8 +278,7 @@ describe('Telemetry trackAction() tests', () => {
                 lastNodeId: '3',
                 lastNodeTitle: 'last node',
                 nodeIdPath: '2:3',
-                nodeLevel: '2',
-                isBookmarked: 'false'
+                nodeLevel: '2'
             }
         });
     });
@@ -410,11 +405,10 @@ describe('Telemetry trackAction() tests', () => {
         });
     });
 
-    test('send UPDATE_BOOKMARKS action, SYNC_BOOKMARK', () => {
+    test('send SYNCHRONIZE_BOOKMARK action', () => {
         // Mock setup
-        const mockAction = getDummyAction('UPDATE_BOOKMARKS');
+        const mockAction = getDummyAction('SYNCHRONIZE_BOOKMARK');
         delete mockAction.payload.state.activeGuidedAnswer;
-        (mockAction.payload.action as UpdateBookmarks).payload.bookmarkKey = '';
 
         // Test execution
         trackAction(mockAction);
@@ -423,7 +417,7 @@ describe('Telemetry trackAction() tests', () => {
         expect(telemetryReporter.client.trackEvent).toBeCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
-                action: 'SYNC_BOOKMARKS'
+                action: 'CLICK_BOOKMARK'
             }
         });
     });
