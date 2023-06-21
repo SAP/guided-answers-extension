@@ -1,9 +1,14 @@
 .guided-answer {
     &__header {
         display: flex;
+        justify-content: space-between;
+        gap: 80px;
         width: 100%;
         z-index: 10;
         background-color: var(--vscode-editor-background);
+        position: sticky;
+        top: 0;
+        padding-bottom: 20px;
         &__sub {
             display: flex;
             align-items: center;
@@ -22,41 +27,192 @@
         &__navButtons {
             height: 25px;
             margin-top: 30px;
-            color: var(--vscode-textLink-foreground);
+            color: var(--vscode-foreground);
+            padding: 0 5px 0px 5px;
+            text-align: start;
+            cursor: pointer;
+            background: none;
+            border: 0;
             &__content {
                 vertical-align: middle;
                 display: inline-block;
-                cursor: pointer;
+                &__text {
+                    margin-left: 3px;
+                }
+            }
+            display: flex;
+            align-items: center;
+            svg {
+                width: 16px;
+                height: 16px;
+                min-width: 16px;
             }
         }
-        &__allAnswersButton {
-            width: 380px;
+        &__navButtons:hover {
+            background: var(--vscode-menubar-selectionBackground);
+            outline: 1px solid var(--vscode-contrastActiveBorder);
+            border-radius: 3px;
+            > span {
+                text-decoration: none;
+            }
+        }
+        &__navButtons:focus-visible {
+            outline: 1px solid var(--vscode-focusBorder, #007fd4);
+        }
+
+        &__allAnswersButton,
+        &__spacer {
+            flex: 1 0 120px;
         }
         &__back-restart-buttons {
             display: flex;
-            width: 600px;
             justify-content: space-between;
+            flex: 0 1 620px;
+        }
+        &__restart-feedback-buttons {
+            display: flex;
+        }
+        &__divider {
+            border-left: 1px solid var(--vscode-editorWidget-border);
+            height: 16px;
+            margin-top: 35px;
+            margin-left: 10px;
+            margin-right: 10px;
         }
         &__logoAndTitle {
             display: flex;
             align-items: center;
-            margin-top: 40px;
-            width: 33%;
-            min-width: 250px;
+            margin-top: 30px;
+            min-width: 280px;
         }
         &__searchField {
             display: flex;
             align-items: start;
-            flex-direction: column;
-            margin-top: 40px;
+            flex-direction: row;
+            margin-top: 30px;
             width: 66%;
         }
     }
 }
 
-@media only screen and (max-width: 625px) {
+.sharable-link {
+    &__title {
+        margin: 10px 0 0 10px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    &__body {
+        display: flex;
+        margin: 10px;
+    }
+
+    &__input-field {
+        width: 184px;
+    }
+
+    &__copied {
+        width: 184px;
+        height: 26px;
+        border: 1px solid var(--vscode-terminal-ansiGreen);
+        line-height: 22px;
+        padding-left: 6px;
+        font-size: 13px;
+        display: inline-block;
+        i {
+            svg {
+                width: 14px;
+                height: 14px;
+            }
+        }
+    }
+
+    &__copied-icon {
+        margin-top: 3px;
+        margin-right: 5px;
+        vertical-align: middle;
+    }
+
+    &__copy-to-clipboard {
+        width: 26px;
+        height: 26px;
+        padding: 0;
+        margin-left: 5px;
+        outline: none;
+
+        &:focus-visible {
+            outline: none;
+        }
+    }
+
+    &__footer {
+        padding: 0 10px;
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    &__divider {
+        margin: 0 10px;
+        border: none;
+        border-top: 1px solid var(--vscode-editorWidget-border);
+    }
+
+    &__divider-vertical {
+        height: 18px;
+        width: 0;
+        margin-top: 4px;
+        margin-left: 6px;
+        border-left: 1px solid var(--vscode-editorWidget-border);
+    }
+
+    &__web-link {
+        display: block;
+        width: fit-content;
+        margin: 10px 10px 5px 10px;
+        line-height: 18px;
+        font-size: 11px;
+
+        &:focus-visible {
+            outline: 1px solid var(--vscode-focusBorder);
+        }
+
+        i {
+            margin-right: 5px;
+            vertical-align: middle;
+
+            path {
+                fill: var(--vscode-textLink-foreground);
+            }
+        }
+    }
+
+    &__copy-instructions {
+        margin: 10px 10px 5px 10px;
+        line-height: 18px;
+        font-size: 11px;
+        color: var(--vscode-textLink-foreground);
+        text-decoration: underline;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.home-icon {
+    width: 62px;
+}
+
+.bookmark-icon-bookmarked {
+    fill: var(--vscode-editorLightBulb-foreground);
+}
+
+@media only screen and (max-width: 740px) {
     .guided-answer {
         &__header {
+            gap: 40px;
+
             &__logoAndTitle {
                 width: 50%;
             }
@@ -70,6 +226,29 @@
                 margin-top: 20px;
                 align-items: start;
             }
+            &__navButtons {
+                text-align: center;
+                justify-content: center;
+            }
+            &__navButtons__content {
+                margin-left: 0;
+            }
+            &__navButtons__content__text {
+                display: none;
+            }
+            &__allAnswersButton,
+            &__spacer {
+                flex: 0 0 34px;
+            }
         }
+    }
+    .home-icon {
+        width: 28px;
+        padding: 0 3px 2px 3px;
+        border-radius: 3px;
+        color: var(--vscode-menu-foreground, #cccccc);
+    }
+    .home-icon:hover {
+        background: var(--vscode-menubar-selectionBackground);
     }
 }

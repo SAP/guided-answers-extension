@@ -7,12 +7,13 @@
 
 
 # Guided Answers extension by SAP
-<img align="left" style="padding-right:10px" src="./docs/resources/guided-answers-logo.svg"/> 
+<img align="left" style="padding-right:10px; width:64px" src="./docs/resources/guided-answers-logo.svg"/> 
 A Visual Studio Code extension for accessing SAP's Guided Answers.
 <br clear="left"/>
 <br/>
 
 ## About this project
+<kbd><img src="./docs/resources/sap-guided-answers.gif" align="center" style="margin-top:10px;margin-bottom:10px"/></kbd>
 
 Enable community collaboration to jointly promote, develop and consume a VSCode extension which provides a simple interactive way to show the developers how to troubleshoot issues, navigate processes and guide through tasks via the content published to SAP's Guided Answers (https://ga.support.sap.com/dtp/viewer/)
 
@@ -109,3 +110,7 @@ Users are currently unable to filter the Guided Answers on Products or Component
 ## Known Issues
 
 https://github.com/SAP/guided-answers-extension/issues?q=is%3Aopen+is%3Aissue+label%3Abug
+
+## Design Sources
+
+Figma file (Read Only) - https://www.figma.com/file/XSZw3w81MYY0QPe1BoUcBO/Guided-Answers?node-id=1%3A4211&t=vVdqU90dr8pTwJQP-1 

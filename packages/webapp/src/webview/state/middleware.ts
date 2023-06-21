@@ -1,10 +1,25 @@
 import i18next from 'i18next';
 import type { Middleware, MiddlewareAPI, Dispatch, Action } from 'redux';
 import type { GuidedAnswerActions } from '@sap/guided-answers-extension-types';
+import {
+    GO_TO_PREVIOUS_PAGE,
+    SEND_TELEMETRY,
+    SET_ACTIVE_TREE,
+    UPDATE_ACTIVE_NODE,
+    SEND_FEEDBACK_OUTCOME,
+    SEND_FEEDBACK_COMMENT,
+    EXECUTE_COMMAND,
+    SET_PRODUCT_FILTERS,
+    SET_COMPONENT_FILTERS,
+    UPDATE_GUIDED_ANSWER_TREES,
+    OPEN_LINK_TELEMETRY,
+    SHARE_LINK_TELEMETRY,
+    RESET_FILTERS
+} from '@sap/guided-answers-extension-types';
 import type { AppState } from '../types';
 
 declare let window: Window;
-declare let acquireVsCodeApi: () => typeof window['vscode'];
+declare let acquireVsCodeApi: () => typeof window.vscode;
 
 /**
  * Communication between IDE extension and web view is realized through the communication middleware
@@ -19,7 +34,7 @@ export const communicationMiddleware: Middleware<
     AppState,
     Dispatch<GuidedAnswerActions>
 > = (store: MiddlewareAPI) => {
-    // Add event handler, this will dispatch incomming state updates
+    // Add event handler, this will dispatch incoming state updates
     window.addEventListener('message', (event: MessageEvent) => {
         if (event.origin === window.origin) {
             console.log(i18next.t('MESSAGE_RECEIVED'), event);
@@ -38,10 +53,59 @@ export const communicationMiddleware: Middleware<
     return (next: Dispatch<GuidedAnswerActions>) =>
         (action): Action => {
             action = next(action);
-            if (action && typeof action.type === 'string' && !action.type.startsWith('[view]')) {
+            if (action && typeof action.type === 'string') {
                 window.vscode.postMessage(action);
                 console.log(i18next.t('REACT_ACTION_POSTED'), action);
             }
+            return action;
+        };
+};
+
+const allowedTelemetryActions = new Set([
+    GO_TO_PREVIOUS_PAGE,
+    SET_ACTIVE_TREE,
+    UPDATE_ACTIVE_NODE,
+    SEND_FEEDBACK_OUTCOME,
+    SEND_FEEDBACK_COMMENT,
+    EXECUTE_COMMAND,
+    SET_PRODUCT_FILTERS,
+    SET_COMPONENT_FILTERS,
+    UPDATE_GUIDED_ANSWER_TREES,
+    SHARE_LINK_TELEMETRY,
+    OPEN_LINK_TELEMETRY,
+    RESET_FILTERS
+]);
+export const telemetryMiddleware: Middleware<
+    Dispatch<GuidedAnswerActions>,
+    AppState,
+    Dispatch<GuidedAnswerActions>
+> = ({ getState }) => {
+    return (next: Dispatch<GuidedAnswerActions>) =>
+        (action: GuidedAnswerActions): GuidedAnswerActions => {
+            action = next(action);
+            if (action && typeof action.type === 'string' && allowedTelemetryActions.has(action.type)) {
+                window.vscode.postMessage({
+                    type: SEND_TELEMETRY,
+                    payload: { action, state: getState() }
+                } as unknown as JSON);
+                console.log(i18next.t('TELEMETRY_POSTED, action: '), action);
+            }
+            return action;
+        };
+};
+
+export const restoreMiddleware: Middleware<Dispatch<GuidedAnswerActions>, AppState, Dispatch<GuidedAnswerActions>> = ({
+    getState
+}) => {
+    return (next: Dispatch<GuidedAnswerActions>) =>
+        (action: GuidedAnswerActions): GuidedAnswerActions => {
+            action = next(action);
+            try {
+                window.vscode.setState(JSON.stringify(getState()));
+            } catch (error) {
+                console.error(`Error executing setState() to store the state: `, error);
+            }
+
             return action;
         };
 };

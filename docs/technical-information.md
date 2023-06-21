@@ -21,16 +21,31 @@ Here are some characteristics of the module
 - listens to messages/actions from UI and handles or dispatches them
 - uses module [`@sap/guided-answers-extension-core`](../packages/core/) to communicate with the Guided Answers REST API
 
-Command `SAP: Open Guided Answers` is registered to start the main screen which allows to search for Guided Answers. There is also a possibility to programmatically start Guided Answers from another extension with a particular Guided Answers tree id, e.g.
+Command `SAP: Open Guided Answers` is registered to start the main screen which allows to search for Guided Answers. There is also a possibility to programmatically start Guided Answers from another extension with a particular Guided Answers tree id, or a complete path to a node, e.g.
 
 ```typescript
 import { commands } from 'vscode';
 
+// (1) Call Guided Answers with a tree
 commands.executeCommand('sap.ux.guidedAnswer.openGuidedAnswer', { treeId: 3046 });
+
+// (2) Call Guided Answers with a tree and node path
+commands.executeCommand('sap.ux.guidedAnswer.openGuidedAnswer', { treeId: 3046, nodeIdPath: [45995, 45996, 46000] });
 ```
 
 The tree id can be captured from the Guide Answer's guide URL, e.g.:   
-`https://ga.support.sap.com/dtp/viewer/index.html#/tree/`**3046**`/actions/45995`
+`https://ga.support.sap.com/dtp/viewer/index.html#/tree/`**3046**`/actions/45995`.
+
+The first example will immediately show the Guided Answer tree 3046 and the first node 45995, the second example will navigate to a path including four steps, like: 
+https://ga.support.sap.com/dtp/viewer/index.html#/tree/3046/actions/45995:45996:45999:46000
+
+Another startup parameter, that can be passed when Guided Answers extension is called programmatically is `openToSide`, which opens Guided Answers extension next to the currently open editor, e.g. by calling
+
+```typescript
+commands.executeCommand('sap.ux.guidedAnswer.openGuidedAnswer', { openToSide: true });
+```
+
+Parameter `openToSide` can also be combined with other startup parameters like `treeId` or `nodeIdPath`.
 
 ### Module `@sap/guided-answers-extension-core` ([packages/core](../packages/core/)) 
 
@@ -43,7 +58,7 @@ Characteristics include
 
 ### Module `@sap/guided-answers-extension-webapp` ([packages/webapp](../packages/webapp/))
 
-The UI part is developed using React. As state container we use Redux. Communication between webapp UI and ide extension is done within a middleware and uses iframe `postMessage()` calls. As control library Microsoft's module `@vscode/webview-ui-toolkit` is used, which also provides controls as React elements.
+The UI part is developed using React. As state container we use Redux. Communication between webapp UI and ide extension is done within a middleware and uses iframe `postMessage()` calls. As control library SAP's module `@sap-ux/ui-components` is used, which also provides controls as React elements.
 
 This module is responsible to 
 

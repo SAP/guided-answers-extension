@@ -1,12 +1,16 @@
-import { default as parse, DOMNode, Element, Text } from 'html-react-parser';
-import React, { ReactElement } from 'react';
+import { default as parse } from 'html-react-parser';
+import type { DOMNode, Element } from 'html-react-parser';
+import React from 'react';
+import type { ReactElement } from 'react';
 import type { Command, GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 import { useSelector } from 'react-redux';
 import { actions } from '../../../state';
-import { AppState } from '../../../types';
+import type { AppState } from '../../../types';
 import './GuidedAnswerNode.scss';
 import { GuidedAnswerNavPath } from '../GuidedAnswerNavPath';
+import { Middle } from './Middle';
+import { Right } from './Right';
 
 /**
  * Replacer function for html-react-parser's replace function. If an element was marked, replace it with  link <a>
@@ -23,17 +27,17 @@ function replace(domNode: DOMNode): ReactElement | undefined {
         if (dataCommandString) {
             try {
                 const command = JSON.parse(decodeURIComponent(dataCommandString)) as Command;
-                const textContent = domElement?.firstChild?.type === 'text' ? (domElement.firstChild as Text).data : '';
+                const textContent = domElement?.firstChild?.type === 'text' ? domElement.firstChild.data : '';
                 if (command) {
                     result = (
-                        <span
+                        <button
                             title={command.description}
                             className="enhancement-link"
                             onClick={(): void => {
                                 actions.executeCommand(command);
                             }}>
                             {textContent}
-                        </span>
+                        </button>
                     );
                 }
             } catch (error) {
@@ -71,83 +75,6 @@ function hasEnhancements(htmlString: string): boolean {
 }
 
 /**
- * Return the navigation section.
- *
- * @returns - react elements for navigation
- */
-function getNavigationSection(): ReactElement {
-    return (
-        <div id="left" className="column">
-            <GuidedAnswerNavPath />
-        </div>
-    );
-}
-
-/**
- * Return the content for a Guided Answers node, which consists of the middle part, the actual Guided Answers text
- * and, if present, the right part with additional commands.
- *
- * @param activeNode - the active Guided Answers node
- * @returns - react element for content
- */
-function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
-    const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
-    const middle = (
-        <div id="middle" className="column">
-            <h1>{activeNode.TITLE}</h1>
-            <hr />
-            {enhancedBody ? enhancedBody : <div dangerouslySetInnerHTML={{ __html: activeNode.BODY }}></div>}
-            <p className="guided-answer__node__question">{activeNode.QUESTION}</p>
-            <div className="guided-answer__node">
-                {activeNode.EDGES.map((edge, index) => (
-                    <div
-                        key={`edge_button${index}`}
-                        className="guided-answer__node__edge"
-                        onClick={(): void => {
-                            actions.selectNode(edge.TARGET_NODE);
-                        }}>
-                        {edge.LABEL}
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-    let right = null;
-    if (activeNode.COMMANDS) {
-        right = (
-            <div id="right" className="column">
-                <div className="guided-answer__node__commands">
-                    {activeNode.COMMANDS
-                        ? activeNode.COMMANDS.map((command, index) => (
-                              <div className="guided-answer__node__command" key={`command-${index}`}>
-                                  <div className="guided-answer__node__command__header">
-                                      <div className="guided-answer__node__command__header__label">{command.label}</div>
-                                  </div>
-                                  <div
-                                      className="guided-answer__node__command__description"
-                                      onClick={(): void => {
-                                          actions.executeCommand(command);
-                                      }}>
-                                      {command.description}
-                                  </div>
-                              </div>
-                          ))
-                        : ''}
-                </div>
-            </div>
-        );
-    }
-    return right ? (
-        <div className="main-container">
-            {middle}
-            {right}
-        </div>
-    ) : (
-        middle
-    );
-}
-
-/**
  * Render the react elements to display a Guided Answers node.
  *
  * @returns - react element of Guided Answers node
@@ -155,12 +82,22 @@ function getContent(activeNode: GuidedAnswerNodeType): ReactElement {
 export function GuidedAnswerNode(): ReactElement {
     const nodes = useSelector<AppState, GuidedAnswerNodeType[]>((state) => state.activeGuidedAnswerNode);
     const activeNode = nodes[nodes.length - 1];
-    return activeNode ? (
-        <section className="guided-answer__node__body">
-            {getNavigationSection()}
-            {getContent(activeNode)}
-        </section>
-    ) : (
-        <></>
-    );
+
+    if (activeNode) {
+        const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
+
+        return (
+            <section className="guided-answer__node__body">
+                <div className="guided-answer__node__sidebar">
+                    <GuidedAnswerNavPath />
+                </div>
+                <Middle activeNode={activeNode} enhancedBody={enhancedBody} />
+                <div className="guided-answer__node__sidebar">
+                    <Right activeNode={activeNode} />
+                </div>
+            </section>
+        );
+    } else {
+        return <></>;
+    }
 }

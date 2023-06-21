@@ -12,7 +12,6 @@
             "args": ["${fileBasenameNoExtension}", "--coverage=false", "--config", "jest.config.js"],
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
-            "disableOptimisticBPs": true,
             "windows": {
                 "program": "${workspaceFolder}/node_modules/jest/bin/jest"
             },
@@ -23,7 +22,6 @@
             "type": "extensionHost",
             "request": "launch",
             "runtimeExecutable": "${execPath}",
-            "stopOnEntry": true,
             "args": ["--log=debug", "--extensionDevelopmentPath=${workspaceFolder}/packages/ide-extension/"],
             "outFiles": ["${workspaceFolder}/packages/ide-extension/dist/extension-min.js"]
         },
@@ -35,11 +33,23 @@
             "args": ["${fileBasenameNoExtension}", "--coverage=false", "--config", "jest.config.js"],
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
-            "disableOptimisticBPs": true,
             "windows": {
                 "program": "${workspaceFolder}/node_modules/jest/bin/jest"
             },
             "cwd": "${workspaceFolder}/packages/ide-extension"
+        },
+        {
+            "name": "webapp: Run Current Jest File",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+            "args": ["${fileBasenameNoExtension}", "--coverage=false", "--config", "jest.config.js"],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "windows": {
+                "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+            },
+            "cwd": "${workspaceFolder}/packages/webapp"
         }
     ]
 }

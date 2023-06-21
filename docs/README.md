@@ -5,3 +5,4 @@
 - [Technical Information](./technical-information.md)
 - [Release Strategy](./release-strategy.md)
 - [Testing Strategy](./testing-strategy.md)
+- [Manual Test Cases](./testcases/)

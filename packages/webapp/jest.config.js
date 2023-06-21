@@ -1,11 +1,10 @@
 module.exports = {
-    name: 'guided-answers-extension-webapp',
     displayName: 'guided-answers-extension-webapp',
     automock: false,
     clearMocks: true,
     collectCoverage: true,
-    collectCoverageFrom: ['src/**/*.{ts,tsx}'],
-    testPathIgnorePatterns: ['<rootDir>/node_modules/'],
+    collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.d.ts'],
+    testPathIgnorePatterns: ['<rootDir>/node_modules/,<rootDir>/test/'],
     errorOnDeprecated: true,
     globals: {
         'ts-jest': {
@@ -19,7 +18,7 @@ module.exports = {
     notify: false,
     notifyMode: 'failure',
     preset: 'ts-jest',
-    setupFilesAfterEnv: ['./test/test-setup.js'],
+    setupFilesAfterEnv: ['./test/test-setup.js', './test/jest-setup.ts'],
     testEnvironment: 'jsdom',
     testMatch: ['**/test/**/*.(test).ts(x)?'],
     transform: {
@@ -27,7 +26,8 @@ module.exports = {
         '.+\\.(css|sass|scss)$': 'jest-css-modules-transform'
     },
     moduleNameMapper: {
-        '.+\\.(svg)$': '<rootDir>/test/__mocks__/svgMock.ts'
+        '.+\\.(svg)$': '<rootDir>/test/__mocks__/svgMock.ts',
+        uuid: require.resolve('uuid')
     },
     transformIgnorePatterns: ['<rootDir>/node_modules/'],
     verbose: false,

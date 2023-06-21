@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ErrorScreen /> Should render a ErrorScreen component 1`] = `
+<div>
+  <div
+    class="error-screen"
+  >
+    <div
+      class="error-screen__objects"
+    >
+      <h1
+        class="error-screen__object__title"
+      />
+      <h2
+        class="error-screen__object__subtitle"
+      />
+      <span
+        class="error-screen__object__logo"
+      >
+        <svg />
+      </span>
+    </div>
+  </div>
+</div>
+`;

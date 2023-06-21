@@ -5,7 +5,14 @@ const commands = {
     registerCommand: (id, handler) => handler
 };
 
+const env = {
+    machineId: 'machine-id',
+    sessionId: 'session-id',
+    appName: 'app-name'
+};
+
 const extensions = {
+    all: [{ id: 'Extension1' }, { id: 'Extension2' }],
     getExtension: jest.fn()
 };
 
@@ -38,7 +45,14 @@ const window = {
             onDidChangeViewState: jest.fn(),
             onDidDispose: jest.fn()
         };
-    })
+    }),
+    createTerminal: () => {
+        show: jest.fn();
+        sendText: jest.fn();
+    },
+    showErrorMessage: jest.fn(),
+    registerUriHandler: (handler) => handler,
+    registerWebviewPanelSerializer: jest.fn()
 };
 
 const workspace = {
@@ -46,11 +60,13 @@ const workspace = {
         return {
             get: jest.fn()
         };
-    })
+    }),
+    onDidChangeConfiguration: jest.fn().mockReturnValue({ dispose: jest.fn() })
 };
 
 const vscode = {
     commands,
+    env,
     extensions,
     Uri: URI.URI,
     ViewColumn,

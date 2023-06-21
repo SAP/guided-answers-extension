@@ -8,6 +8,37 @@ export interface GuidedAnswerTree {
     AVAILABILITY: string;
     DESCRIPTION: string;
     FIRST_NODE_ID: GuidedAnswerNodeId;
+    PRODUCT: string;
+    COMPONENT: string;
+}
+
+export interface GuidedAnswersQueryOptions {
+    query?: string;
+    filters?: GuidedAnswersQueryFilterOptions;
+    paging?: GuidedAnswersQueryPagingOptions;
+}
+
+export interface GuidedAnswersQueryFilterOptions {
+    component?: string[];
+    product?: string[];
+}
+
+export interface GuidedAnswersQueryPagingOptions {
+    responseSize: number;
+    offset: number;
+}
+
+export type GuidedAnswerTreeSearchHit = GuidedAnswerTree & { SCORE: number };
+
+export type ProductFilter = { PRODUCT: string; COUNT: number };
+
+export type ComponentFilter = { COMPONENT: string; COUNT: number };
+
+export interface GuidedAnswerTreeSearchResult {
+    resultSize: number;
+    trees: GuidedAnswerTreeSearchHit[];
+    productFilters: ProductFilter[];
+    componentFilters: ComponentFilter[];
 }
 
 export type GuidedAnswerNodeId = number;
@@ -17,7 +48,28 @@ export interface GuidedAnswerNode {
     BODY: string;
     QUESTION: string;
     EDGES: GuidedAnswerEdge[];
+    EXTENSIONS?: GuidedAnswerNodeExtension[];
     COMMANDS?: Command[];
+}
+
+export interface GuidedAnswerNodeExtension {
+    TYPE: 'Extension Command' | 'Terminal Command';
+    LABEL: string;
+    DESCRIPTION: string;
+    ARG1: {
+        NAME: string;
+        VALUE: string;
+    };
+    ARG2: {
+        NAME: string;
+        VALUE: string;
+    };
+    ENV_VSCODE: 0 | 1;
+    ENV_SBAS: 0 | 1;
+}
+export interface PostFeedbackResponse {
+    status: number;
+    statusText: string;
 }
 
 export interface GuidedAnswerEdge {
@@ -26,10 +78,44 @@ export interface GuidedAnswerEdge {
     ORD: number;
 }
 
+export interface FeedbackCommentPayload {
+    treeId: GuidedAnswerTreeId;
+    nodeId: GuidedAnswerNodeId;
+    comment: string;
+}
+export interface FeedbackOutcomePayload {
+    treeId: GuidedAnswerTreeId;
+    nodeId: GuidedAnswerNodeId;
+    solved: boolean;
+}
+
+export interface Bookmark {
+    tree: GuidedAnswerTree;
+    nodePath: GuidedAnswerNode[];
+    createdAt: string;
+}
+
+export type Bookmarks = Record<string, Bookmark>; //key is 'TREE_ID-NODE_ID:NODE_ID:NODE_ID:...NODE_ID'
+
 export interface GuidedAnswerAPI {
+    getApiInfo: () => { host: string; version: string };
     getNodeById: (id: GuidedAnswerNodeId) => Promise<GuidedAnswerNode>;
     getTreeById: (id: GuidedAnswerTreeId) => Promise<GuidedAnswerTree>;
-    getTrees: (query?: string) => Promise<GuidedAnswerTree[]>;
+    getTrees: (queryOptions?: GuidedAnswersQueryOptions) => Promise<GuidedAnswerTreeSearchResult>;
+    getNodePath: (nodeIdPath: GuidedAnswerNodeId[]) => Promise<GuidedAnswerNode[]>;
+    sendFeedbackComment: (payload: FeedbackCommentPayload) => Promise<PostFeedbackResponse>;
+    sendFeedbackOutcome: (payload: FeedbackOutcomePayload) => Promise<PostFeedbackResponse>;
+}
+
+export interface GuidedAnswersFeedback {
+    treeId: GuidedAnswerTreeId;
+    nodeId: GuidedAnswerNodeId;
+    message: string;
+}
+
+export interface GuidedAnswersTelemetryPayload {
+    action: GuidedAnswerActions;
+    state: AppState;
 }
 
 export interface VSCodeCommand {
@@ -39,19 +125,17 @@ export interface VSCodeCommand {
 }
 
 export interface TerminalCommand {
-    cwd: string;
+    cwd?: string;
     arguments: string[];
 }
+
+export type IDE = 'VSCODE' | 'SBAS';
 
 export interface Command {
     label: string;
     description: string;
     exec: TerminalCommand | VSCodeCommand;
-}
-
-export interface NodeEnhancement {
-    nodeId: number;
-    command: Command;
+    environment?: IDE[];
 }
 
 export interface HTMLEnhancement {
@@ -61,10 +145,14 @@ export interface HTMLEnhancement {
 
 export interface APIOptions {
     apiHost?: string;
-    enhancements?: {
-        nodeEnhancements?: NodeEnhancement[];
-        htmlEnhancements?: HTMLEnhancement[];
-    };
+    ide?: IDE;
+    extensions?: Set<string>;
+    htmlEnhancements?: HTMLEnhancement[];
+}
+
+export interface ShareNodeLinks {
+    extensionLink: string;
+    webLink: string;
 }
 
 /**
@@ -77,22 +165,60 @@ export const HTML_ENHANCEMENT_DATA_ATTR_MARKER = 'data-guided-answers-command-8d
  * Action types for redux
  */
 export type GuidedAnswerActions =
-    | UpdateGuidedAnserTrees
-    | SelectNode
-    | UpdateActiveNode
-    | GoToPreviousPage
-    | GoToAllAnswers
-    | RestartAnswer
+    | BetaFeatures
     | ExecuteCommand
-    | SetActiveTree
+    | FeedbackResponse
+    | FeedbackStatus
+    | FillShareLinks
+    | GetBookmarks
+    | GoToAllAnswers
+    | GoToPreviousPage
+    | GuideFeedback
     | SearchTree
+    | SelectNode
+    | SendFeedbackComment
+    | SendFeedbackOutcome
+    | SendTelemetry
+    | SetActiveTree
+    | SetComponentFilters
+    | SetPageSize
+    | SetProductFilters
     | SetQueryValue
+    | SynchronizeBookmark
+    | UpdateActiveNodeSharing
+    | UpdateBookmarks
+    | ResetFilters
+    | RestartAnswer
+    | RestoreState
+    | UpdateActiveNode
+    | UpdateGuidedAnswerTrees
+    | UpdateNetworkStatus
     | WebviewReady;
 
+export type NetworkStatus = 'OK' | 'LOADING' | 'ERROR';
+
+export interface AppState {
+    networkStatus: NetworkStatus;
+    query: string;
+    guidedAnswerTreeSearchResult: GuidedAnswerTreeSearchResult;
+    activeGuidedAnswerNode: GuidedAnswerNode[];
+    activeGuidedAnswer?: GuidedAnswerTree;
+    activeNodeSharing: ShareNodeLinks | null;
+    betaFeatures: boolean;
+    searchResultCount: number;
+    guideFeedback: null | boolean;
+    selectedProductFilters: string[];
+    selectedComponentFilters: string[];
+    pageSize: number;
+    feedbackStatus: boolean;
+    feedbackResponse: boolean;
+    bookmarks: Bookmarks;
+}
+
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
-export interface UpdateGuidedAnserTrees {
+export interface UpdateGuidedAnswerTrees {
     type: typeof UPDATE_GUIDED_ANSWER_TREES;
-    payload: GuidedAnswerTree[];
+    payload: GuidedAnswerTreeSearchResult;
 }
 
 export const SELECT_NODE = 'SELECT_NODE';
@@ -105,6 +231,12 @@ export const UPDATE_ACTIVE_NODE = 'UPDATE_ACTIVE_NODE';
 export interface UpdateActiveNode {
     type: typeof UPDATE_ACTIVE_NODE;
     payload: GuidedAnswerNode;
+}
+
+export const UPDATE_NETWORK_STATUS = 'UPDATE_NETWORK_STATUS';
+export interface UpdateNetworkStatus {
+    type: typeof UPDATE_NETWORK_STATUS;
+    payload: NetworkStatus;
 }
 
 export const GO_TO_PREVIOUS_PAGE = 'GO_TO_PREVIOUS_PAGE';
@@ -140,7 +272,7 @@ export interface SetActiveTree {
 export const SEARCH_TREE = 'SEARCH_TREE';
 export interface SearchTree {
     type: typeof SEARCH_TREE;
-    payload: string;
+    payload: GuidedAnswersQueryOptions;
 }
 
 export const SET_QUERY_VALUE = 'SET_QUERY_VALUE';
@@ -152,4 +284,117 @@ export interface SetQueryValue {
 export const WEBVIEW_READY = 'WEBVIEW_READY';
 export interface WebviewReady {
     type: typeof WEBVIEW_READY;
+}
+
+export const BETA_FEATURES = 'BETA_FEATURES';
+export interface BetaFeatures {
+    type: typeof BETA_FEATURES;
+    payload: boolean;
+}
+
+export const GUIDE_FEEDBACK = 'GUIDE_FEEDBACK';
+export interface GuideFeedback {
+    type: typeof GUIDE_FEEDBACK;
+    payload: boolean | null;
+}
+
+export const SEND_FEEDBACK_OUTCOME = 'SEND_FEEDBACK_OUTCOME';
+export interface SendFeedbackOutcome {
+    type: typeof SEND_FEEDBACK_OUTCOME;
+    payload: FeedbackOutcomePayload;
+}
+
+export const SEND_FEEDBACK_COMMENT = 'SEND_FEEDBACK_COMMENT';
+export interface SendFeedbackComment {
+    type: typeof SEND_FEEDBACK_COMMENT;
+    payload: FeedbackCommentPayload;
+}
+
+export const GET_BOOKMARKS = 'GET_BOOKMARKS';
+export interface GetBookmarks {
+    type: typeof GET_BOOKMARKS;
+    payload: Bookmarks;
+}
+
+export const UPDATE_BOOKMARKS = 'UPDATE_BOOKMARKS';
+export interface UpdateBookmarks {
+    type: typeof UPDATE_BOOKMARKS;
+    payload: Bookmarks;
+}
+
+export const SET_PRODUCT_FILTERS = 'SET_PRODUCT_FILTERS';
+export interface SetProductFilters {
+    type: typeof SET_PRODUCT_FILTERS;
+    payload: string[];
+}
+
+export const SET_COMPONENT_FILTERS = 'SET_COMPONENT_FILTERS';
+export interface SetComponentFilters {
+    type: typeof SET_COMPONENT_FILTERS;
+    payload: string[];
+}
+
+export const RESET_FILTERS = 'RESET_FILTERS';
+export interface ResetFilters {
+    type: typeof RESET_FILTERS;
+}
+
+export const SET_PAGE_SIZE = 'SET_PAGE_SIZE';
+export interface SetPageSize {
+    type: typeof SET_PAGE_SIZE;
+    payload: number;
+}
+export const FEEDBACK_STATUS = 'FEEDBACK_STATUS';
+export interface FeedbackStatus {
+    type: typeof FEEDBACK_STATUS;
+    payload: boolean;
+}
+
+export const FEEDBACK_RESPONSE = 'FEEDBACK_RESPONSE';
+export interface FeedbackResponse {
+    type: typeof FEEDBACK_RESPONSE;
+    payload: boolean;
+}
+
+export const SEND_TELEMETRY = 'SEND_TELEMETRY';
+export interface SendTelemetry {
+    type: typeof SEND_TELEMETRY;
+    payload: GuidedAnswersTelemetryPayload;
+}
+
+export const UPDATE_ACTIVE_NODE_SHARING = 'UPDATE_ACTIVE_NODE_SHARING';
+export interface UpdateActiveNodeSharing {
+    type: typeof UPDATE_ACTIVE_NODE_SHARING;
+    payload: ShareNodeLinks | null;
+}
+
+export const FILL_SHARE_LINKS = 'FILL_SHARE_LINKS';
+export interface FillShareLinks {
+    type: typeof FILL_SHARE_LINKS;
+    payload: {
+        treeId: GuidedAnswerTreeId;
+        nodeIdPath?: GuidedAnswerNodeId[];
+    };
+}
+
+export const SHARE_LINK_TELEMETRY = 'SHARE_LINK_TELEMETRY';
+export interface ShareLinkTelemetry {
+    type: typeof SHARE_LINK_TELEMETRY;
+}
+
+export const OPEN_LINK_TELEMETRY = 'OPEN_LINK_TELEMETRY';
+export interface OpenLinkTelemetry {
+    type: typeof OPEN_LINK_TELEMETRY;
+}
+
+export const RESTORE_STATE = 'RESTORE_STATE';
+export interface RestoreState {
+    type: typeof RESTORE_STATE;
+    payload: AppState;
+}
+
+export const SYNCHRONIZE_BOOKMARK = 'SYNCHRONIZE_BOOKMARK';
+export interface SynchronizeBookmark {
+    type: typeof SYNCHRONIZE_BOOKMARK;
+    payload: Bookmark;
 }

@@ -17,5 +17,5 @@ export function isVSCodeCommand(exec: VSCodeCommand | TerminalCommand): exec is 
  * @returns true: is terminal commmand; false: no terminal command
  */
 export function isTerminalCommand(exec: VSCodeCommand | TerminalCommand): exec is TerminalCommand {
-    return (exec as TerminalCommand).cwd !== undefined && Array.isArray((exec as TerminalCommand).arguments);
+    return (exec as TerminalCommand).arguments !== undefined && Array.isArray((exec as TerminalCommand).arguments);
 }

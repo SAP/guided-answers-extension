@@ -1,78 +1,18 @@
-section.answer__node__body {
-    height: 100%;
-    margin: 0px;
-    display: flex;
-    box-sizing: border-box;
-}
-
-.column {
-    flex-direction: column;
-    overflow-y: auto;
-    box-sizing: border-box;
-    justify-content: flex-start;
-    align-items: stretch;
-    flex-wrap: nowrap;
-}
-
-#left {
-    height: 100%;
-    width: 400px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
-    padding-top: 45px;
-}
-
-.main-container {
-    display: flex;
-}
-
-#middle {
-    display: flex;
-    grid-area: content;
-    overflow-x: hidden;
-    position: relative;
-    left: 0;
-    transition: left 0.5s;
-    flex-grow: 1;
-    margin-left: 380px;
-    padding-right: 20px;
-    max-width: 620px;
-}
-
-hr {
-    width: 100%;
-    border: 1px solid var(--vscode-editorWidget-border);
-}
-
-#middle-with-command {
-    width: 370vw;
-    display: flex;
-    grid-area: content;
-    overflow-x: hidden;
-    position: relative;
-    left: 0;
-    transition: left 0.5s;
-    flex-grow: 1;
-    margin-left: 400px;
-}
-
-#right {
-    min-width: 310px;
-    padding-top: 32px;
-}
-
-.bottom {
-    flex-grow: 1;
-    overflow-y: auto;
-}
-
 .guided-answer__node {
+    display: flex;
+    flex-direction: column;
+
     &__body {
         color: var(--vscode-foreground);
+        display: flex;
+        justify-content: space-between;
+        gap: 80px;
     }
+
+    &__sidebar {
+        flex: 1 0 120px;
+    }
+
     &__question {
         color: var(--vscode-settings-headerForeground);
         font-size: 14px;
@@ -82,6 +22,7 @@ hr {
         letter-spacing: 0em;
         text-align: left;
     }
+
     &__edge {
         background-color: var(--vscode-button-background);
         color: var(--vscode-button-foreground);
@@ -92,40 +33,56 @@ hr {
         height: auto;
         line-height: 18px;
         letter-spacing: 0em;
-        margin: 1em;
-        padding: 1em;
-        text-align: center;
-    }
-    &__commands {
-        position: fixed;
-        margin-top: 18px;
-    }
-    &__command {
-        margin: 16px;
-        background-color: var(--vscode-sideBar-background);
-        border-radius: 8px;
+        margin: 10px 0;
         padding: 10px;
+        text-align: center;
+        outline-offset: -1px;
+        border: 1px solid var(--vscode-contrastBorder);
+        text-decoration: none;
+    }
+
+    &__edge:hover {
+        background-color: var(--vscode-button-hoverBackground);
+        outline: 1px solid var(--vscode-contrastActiveBorder);
+    }
+
+    &__edge:focus-visible {
+        outline: 1px solid var(--vscode-focusBorder);
+        outline-offset: 2px;
+    }
+
+    &__commands {
+        position: sticky;
+        top: 85px;
+    }
+
+    &__command {
+        margin: 10px 0;
+        background-color: var(--vscode-menu-background);
+        border: 1px solid var(--vscode-editorWidget-border);
+        border-radius: 3px;
+        padding: 10px;
+
         &__header {
             text-align: left;
             display: flex;
+
             &__icon {
-                width: 16px;
-                height: 16px;
                 padding-top: 2px;
-                vertical-align: bottom;
+                margin-right: 9px;
             }
+
             &__label {
                 color: var(--vscode-foreground);
                 font-size: 14px;
                 font-weight: 700;
                 line-height: 18px;
-                padding-left: 5px;
-                white-space: nowrap;
                 display: inline-block;
             }
         }
+
         &__description {
-            margin: 7px;
+            margin-top: 7px;
             position: relative;
             color: var(--vscode-foreground);
             font-size: 13px;
@@ -135,14 +92,93 @@ hr {
             text-align: start;
         }
     }
+
     &__command:hover {
-        background-color: var(--vscode-list-hoverBackground);
+        border: 1px solid var(--vscode-list-focusOutline);
         cursor: pointer;
     }
+}
+
+#middle {
+    flex: 0 1 620px;
+
+    .content > * {
+        line-height: 18px;
+    }
+
+    .content > h1 {
+        font-size: 20px;
+        margin-top: 15px;
+    }
+
+    a:focus-visible {
+        outline: 1px solid var(--vscode-focusBorder, #007fd4);
+    }
+}
+
+@media only screen and (max-width: 740px) {
+    .guided-answer__node__body {
+        gap: 40px;
+    }
+
+    .guided-answer__node__sidebar {
+        flex: 0 0 34px;
+    }
+
+    .guided-answer__node__command {
+        &__header__label,
+        &__description {
+            display: none;
+        }
+
+        &__header__icon {
+            margin-right: 0;
+        }
+    }
+}
+
+.body_container {
+    overflow: auto;
+    overflow-wrap: anywhere;
+}
+
+header {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+button:focus-visible {
+    outline: 1px solid var(--vscode-focusBorder, #007fd4);
+}
+
+a:hover {
+    outline: 1px solid var(--vscode-contrastActiveBorder);
+    text-decoration: none;
+}
+
+#hr {
+    width: 100%;
+    border-bottom: 1px solid var(--vscode-editorWidget-border);
+    padding-bottom: 10px;
 }
 
 .enhancement-link {
     color: var(--vscode-textLink-foreground);
     cursor: pointer;
     text-decoration: underline;
+}
+
+.enhancement-link:focus-visible {
+    outline: 1px solid var(--vscode-focusBorder, #007fd4);
 }

@@ -3,20 +3,34 @@ import axios from 'axios';
 import { default as xss } from 'xss';
 import type {
     APIOptions,
+    Command,
+    FeedbackCommentPayload,
+    FeedbackOutcomePayload,
     GuidedAnswerAPI,
     GuidedAnswerNode,
+    GuidedAnswerNodeExtension,
     GuidedAnswerNodeId,
+    GuidedAnswersFeedback,
+    GuidedAnswersQueryFilterOptions,
+    GuidedAnswersQueryOptions,
+    GuidedAnswersQueryPagingOptions,
     GuidedAnswerTree,
     GuidedAnswerTreeId,
+    GuidedAnswerTreeSearchResult,
     HTMLEnhancement,
-    NodeEnhancement
+    IDE,
+    PostFeedbackResponse
 } from '@sap/guided-answers-extension-types';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 
 const API_HOST = 'https://ga.support.sap.com';
-const NODE_PATH = '/dtp/api/nodes/';
-const TREE_PATH = '/dtp/api/trees/';
+const VERSION = 'v4';
+const NODE_PATH = `/dtp/api/${VERSION}/nodes/`;
+const TREE_PATH = `/dtp/api/${VERSION}/trees/`;
 const IMG_PREFIX = '/dtp/viewer/';
+const FEEDBACK_COMMENT = `dtp/api/${VERSION}/feedback/comment`;
+const FEEDBACK_OUTCOME = `dtp/api/${VERSION}/feedback/outcome`;
+const DEFAULT_MAX_RESULTS = 9999;
 
 /**
  * Returns API to programmatically access Guided Answers.
@@ -25,15 +39,27 @@ const IMG_PREFIX = '/dtp/viewer/';
  * @returns - API
  */
 export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
-    const apiHost = options?.apiHost || API_HOST;
-    const nodeEnhancements = options?.enhancements?.nodeEnhancements || [];
-    const htmlEnhancements = options?.enhancements?.htmlEnhancements || [];
+    const apiHost = options?.apiHost ?? API_HOST;
+    const htmlEnhancements = options?.htmlEnhancements ?? [];
+    const ide = options?.ide;
+    const extensions = options?.extensions ?? new Set<string>();
 
     return {
+        getApiInfo: () => ({ host: apiHost, version: VERSION }),
         getNodeById: async (id: GuidedAnswerNodeId): Promise<GuidedAnswerNode> =>
-            enhanceNode(await getNodeById(apiHost, id), nodeEnhancements, htmlEnhancements),
+            enhanceNode(await getNodeById(apiHost, id), htmlEnhancements, extensions, ide),
         getTreeById: async (id: GuidedAnswerTreeId): Promise<GuidedAnswerTree> => getTreeById(apiHost, id),
-        getTrees: async (query?: string): Promise<GuidedAnswerTree[]> => getTrees(apiHost, query)
+        getTrees: async (queryOptions?: GuidedAnswersQueryOptions): Promise<GuidedAnswerTreeSearchResult> =>
+            getTrees(apiHost, queryOptions),
+        getNodePath: async (nodeIdPath: GuidedAnswerNodeId[]): Promise<GuidedAnswerNode[]> => {
+            let nodes = await getNodePath(apiHost, nodeIdPath);
+            nodes = nodes.map((node) => enhanceNode(node, htmlEnhancements, extensions, ide));
+            return nodes;
+        },
+        sendFeedbackComment: async (payload: FeedbackCommentPayload) =>
+            sendFeedbackComment(apiHost, payload.treeId, payload.nodeId, payload.comment),
+        sendFeedbackOutcome: async (payload: FeedbackOutcomePayload) =>
+            sendFeedbackOutcome(apiHost, payload.treeId, payload.nodeId, payload.solved)
     };
 }
 
@@ -45,7 +71,34 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
  * @returns - html string with converted <img>-tags
  */
 function convertImageSrc(body: string, host: string): string {
-    return body.replace(/<img src="services\/backend\.xsjs/gi, `<img src="${host}${IMG_PREFIX}services/backend.xsjs`);
+    return body.replace(/src="services\/backend\.xsjs\?/gi, `src="${host}${IMG_PREFIX}services/backend.xsjs?`);
+}
+
+/**
+ * Convert query filter options to URL get parameter string.
+ *
+ * @param filters - optional filters
+ * @param filters.component - optional component filter
+ * @param filters.product - optional product filter
+ * @param paging - optional paging, if not provided set to high response size with 0 offset
+ * @returns - URL get parameters as string
+ */
+function convertQueryOptionsToGetParams(
+    filters: GuidedAnswersQueryFilterOptions = {},
+    paging: GuidedAnswersQueryPagingOptions = { responseSize: DEFAULT_MAX_RESULTS, offset: 0 }
+): string {
+    const parameters = [
+        // Filter parameters
+        ...Object.keys(filters).map(
+            (filterName) =>
+                `${filterName}=${filters[filterName as keyof typeof filters]
+                    ?.map((filterValue) => encodeURIComponent(`"${filterValue}"`))
+                    .join(',')}`
+        ),
+        // Paging parameters
+        ...Object.keys(paging).map((pagingName) => `${pagingName}=${paging[pagingName as keyof typeof paging]}`)
+    ];
+    return `?${parameters.join('&')}`;
 }
 
 /**
@@ -88,42 +141,87 @@ async function getTreeById(host: string, id: GuidedAnswerTreeId): Promise<Guided
  * Returns an array of Guided Answers trees.
  *
  * @param host - Guided Answer API host
- * @param query - query string
+ * @param queryOptions - options like query string, filters
  * @returns - Array of Guided Answer trees
  */
-async function getTrees(host: string, query?: string): Promise<GuidedAnswerTree[]> {
-    const url = `${host}${TREE_PATH}${query ? query : ''}`;
-    const response: AxiosResponse<GuidedAnswerTree[]> = await axios.get<GuidedAnswerTree[]>(url);
-    const treesRaw = Array.isArray(response.data) ? response.data : [response.data];
-
-    // when we get data as search results, TREE_ID and NODE_ID are string. When we get a single tree, both are numbers.
-    // generalize to number here
-    return treesRaw.map((treeItem) => {
-        treeItem.TREE_ID = parseInt(treeItem.TREE_ID as unknown as string, 10);
-        treeItem.FIRST_NODE_ID = parseInt(treeItem.FIRST_NODE_ID as unknown as string, 10);
-        return treeItem;
-    });
+async function getTrees(host: string, queryOptions?: GuidedAnswersQueryOptions): Promise<GuidedAnswerTreeSearchResult> {
+    if (typeof queryOptions?.query === 'number') {
+        throw Error(
+            `Invalid search for tree with number. Please use string or function getTreeById() to get a tree by id`
+        );
+    }
+    const query = queryOptions?.query ? encodeURIComponent(`"${queryOptions.query}"`) : '*';
+    const urlGetParamString = convertQueryOptionsToGetParams(queryOptions?.filters, queryOptions?.paging);
+    const url = `${host}${TREE_PATH}${query}${urlGetParamString}`;
+    const response: AxiosResponse<GuidedAnswerTreeSearchResult> = await axios.get<GuidedAnswerTreeSearchResult>(url);
+    const searchResult = response.data;
+    if (!Array.isArray(searchResult?.trees)) {
+        throw Error(
+            `Query result from call '${url}' does not contain property 'trees' as array. Received response: '${searchResult}'`
+        );
+    }
+    return searchResult;
 }
 
 /**
- * Enhance a standard node from Guided Answers with commands. This can be commands added to the node or text replaced
+ * Check if a node extension is applicable in the current environment.
+ *
+ * @param ide - development environment 'VSCODE' or 'SBAS'
+ * @param extension - node extension
+ * @param extensions - list of installed extension ids
+ * @returns - boolean, true: is applicable; false: not applicable
+ */
+function isExtensionApplicable(ide: IDE, extension: GuidedAnswerNodeExtension, extensions: Set<string>): boolean {
+    return (ide === 'VSCODE' && extension.ENV_VSCODE !== 1) ||
+        (ide === 'SBAS' && extension.ENV_SBAS !== 1) ||
+        (extension.TYPE === 'Extension Command' && !extensions.has(extension.ARG1.VALUE.toLocaleLowerCase()))
+        ? false
+        : true;
+}
+
+/**
+ * Convert an node.EXTENSION to COMMAND.
+ *
+ * @param extension - node extension
+ * @returns - command
+ */
+function convertExtensionToCommand(extension: GuidedAnswerNodeExtension): Command {
+    return {
+        label: extension.LABEL,
+        description: extension.DESCRIPTION,
+        exec:
+            extension.TYPE === 'Extension Command'
+                ? { extensionId: extension.ARG1.VALUE, commandId: extension.ARG2.VALUE }
+                : { cwd: extension.ARG1.VALUE, arguments: extension.ARG2.VALUE.split(' ') }
+    };
+}
+
+/**
+ * Enhance a standard node from Guided Answers with commands. This can be commands added to the node as extensions or text replaced
  * by links. For the later, we just set a marker by embedding the text in <span>-tag with the command as JSON. The
  * actual replacement to a link needs to happen in an consuming UI.
  *
  * @param node - node data from Guided Answer
- * @param nodeEnhancements - commands added to the node (usually rendered on the side)
  * @param htmlEnhancements - enhancements that change text to link
+ * @param extensions - all installed extensions
+ * @param [ide] - optional, IDE environment, SBAS or VSCODE. If not provided no enhancements will be applied
  * @returns - the enhanced Guided Answers node
  */
 function enhanceNode(
     node: GuidedAnswerNode,
-    nodeEnhancements: NodeEnhancement[],
-    htmlEnhancements: HTMLEnhancement[]
+    htmlEnhancements: HTMLEnhancement[],
+    extensions: Set<string>,
+    ide?: IDE
 ): GuidedAnswerNode {
-    // Check for enhancements of the Guided Answers node
-    const nodeCommands = nodeEnhancements.filter((c) => c.nodeId === node.NODE_ID).map((enh) => enh.command);
-    if (nodeCommands.length > 0) {
-        node.COMMANDS = nodeCommands;
+    if (!ide) {
+        return node;
+    }
+    const applicableNodeExtensions = (node.EXTENSIONS ?? []).filter((nodeExt) =>
+        isExtensionApplicable(ide, nodeExt, extensions)
+    );
+    for (const nodeExtension of applicableNodeExtensions) {
+        node.COMMANDS = node.COMMANDS ?? [];
+        node.COMMANDS.push(convertExtensionToCommand(nodeExtension));
     }
 
     // Check for enhancements of the HTML text. If found, embed text in <span>-tag with command as data-* attribute.
@@ -144,4 +242,69 @@ function enhanceNode(
         }
     }
     return node;
+}
+
+/**
+ * Get an array of nodes from an array of node ids.
+ *
+ * @param host - Guided Answer API host
+ * @param nodeIdPath - node path as array of node ids
+ */
+async function getNodePath(host: string, nodeIdPath: GuidedAnswerNodeId[]): Promise<GuidedAnswerNode[]> {
+    const promises: Promise<GuidedAnswerNode>[] = [];
+    for (const nodeId of nodeIdPath) {
+        promises.push(getNodeById(host, nodeId));
+    }
+    return Promise.all(promises);
+}
+
+/**
+ * Post feedback for tree and node. In case posting feedback is not successful, this function
+ * throws an error.
+ *
+ * @param url - url to post feedback
+ * @param feedback - feedback structure
+ */
+async function postFeedback(url: string, feedback: GuidedAnswersFeedback): Promise<PostFeedbackResponse> {
+    const response = await axios.post(url, feedback);
+    if (response.status !== 200) {
+        throw Error(`Could not send feedback. ${response.statusText} (${response.status})`);
+    }
+    return response;
+}
+
+/**
+ * Send comment for a tree/node combination.
+ *
+ * @param host - Guided Answers API host
+ * @param treeId - Guided Answers tree id
+ * @param nodeId - Guided Answers node id
+ * @param comment - Feedback comment
+ */
+async function sendFeedbackComment(
+    host: string,
+    treeId: GuidedAnswerTreeId,
+    nodeId: GuidedAnswerNodeId,
+    comment: string
+): Promise<PostFeedbackResponse> {
+    const message = comment;
+    return postFeedback(`${host}/${FEEDBACK_COMMENT}`, { treeId, nodeId, message });
+}
+
+/**
+ * Send feedback about the outcome: solved/not solved.
+ *
+ * @param host - Guided Answer API host
+ * @param treeId - Guided Answers tree id
+ * @param nodeId - Guided Answers node id
+ * @param solved - true: tree solved the problem; false: tree did not solve the problem
+ */
+async function sendFeedbackOutcome(
+    host: string,
+    treeId: GuidedAnswerTreeId,
+    nodeId: GuidedAnswerNodeId,
+    solved: boolean
+): Promise<PostFeedbackResponse> {
+    const message = solved ? 'Solved' : 'Not Solved';
+    return postFeedback(`${host}/${FEEDBACK_OUTCOME}`, { treeId, nodeId, message });
 }

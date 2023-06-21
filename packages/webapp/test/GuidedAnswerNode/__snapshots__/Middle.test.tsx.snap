@@ -1,0 +1,282 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Middle /> Should render a Middle component 1`] = `
+<div>
+  <div
+    id="middle"
+  >
+    <div
+      class="body_container"
+    >
+      <header>
+        SAP Fiori Tools
+      </header>
+      <div
+        id="hr"
+      />
+      <div
+        class="ms-FocusZone css-109"
+        data-focuszone-id="FocusZone0"
+      >
+        <div
+          class="content"
+        >
+          <p>
+            SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code
+          </p>
+        </div>
+      </div>
+      <p
+        class="guided-answer__node__question"
+      >
+        I have a problem with
+      </p>
+    </div>
+    <div
+      class="ms-FocusZone css-109"
+      data-focuszone-id="FocusZone1"
+      role="listbox"
+    >
+      <div
+        class="guided-answer__node"
+      >
+        <button
+          class="guided-answer__node__edge"
+          id="edge_button"
+          role="option"
+          tabindex="0"
+        >
+          Deployment
+        </button>
+        <button
+          class="guided-answer__node__edge"
+          id="edge_button"
+          role="option"
+          tabindex="-1"
+        >
+          Fiori Generator
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Middle /> Should render a Middle component with FeedbackDialogBox 1`] = `
+<div>
+  <div
+    id="middle"
+  >
+    <div
+      class="body_container"
+    >
+      <header>
+        SAP Fiori Tools
+      </header>
+      <div
+        id="hr"
+      />
+      <div
+        class="ms-FocusZone css-109"
+        data-focuszone-id="FocusZone5"
+      >
+        <div
+          class="content"
+        >
+          <p>
+            SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code
+          </p>
+        </div>
+      </div>
+      <p
+        class="guided-answer__node__question"
+      >
+        I have a problem with
+      </p>
+    </div>
+    <div
+      class="ms-FocusZone css-109"
+      data-focuszone-id="FocusZone6"
+      role="listbox"
+    >
+      <div
+        class="guided-answer__node"
+      >
+        <button
+          class="guided-answer__node__edge"
+          id="edge_button"
+          role="option"
+          tabindex="0"
+        >
+          Deployment
+        </button>
+        <button
+          class="guided-answer__node__edge"
+          id="edge_button"
+          role="option"
+          tabindex="-1"
+        >
+          Fiori Generator
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Middle /> Should render a Middle component with NotSolvedMessage 1`] = `
+<div>
+  <div
+    class="column"
+    id="middle"
+  >
+    <h1>
+      Issue is not resolved
+    </h1>
+    <div
+      id="hr"
+    />
+    <div
+      class="guided-answer__node__question"
+    >
+      <p>
+        <strong>
+          We are sorry to hear that your issue is not yet resolved.
+        </strong>
+      </p>
+      <p
+        style="font-weight: 400;"
+      >
+        There are several options for getting further assistance:
+      </p>
+    </div>
+    <div
+      class="guided-answer__node"
+    >
+      <div
+        class="ms-FocusZone css-109 guided-answer__node"
+        data-focuszone-id="FocusZone4"
+      >
+        <div
+          class="guided-answer__node"
+        >
+          <a
+            class="guided-answer__node__edge not-solved-link"
+            href="https://launchpad.support.sap.com/#/expertchat/create"
+            role="button"
+            tabindex="0"
+          >
+            Start an Expert Chat
+          </a>
+        </div>
+        <div
+          class="guided-answer__node"
+        >
+          <a
+            class="guided-answer__node__edge not-solved-link"
+            href="https://launchpad.support.sap.com/#/sae"
+            role="button"
+            tabindex="-1"
+          >
+            Schedule an Expert
+          </a>
+        </div>
+        <div
+          class="guided-answer__node"
+        >
+          <a
+            class="guided-answer__node__edge not-solved-link"
+            href="https://launchpad.support.sap.com/#/incident/create"
+            role="button"
+            tabindex="-1"
+          >
+            Open an Incident
+          </a>
+        </div>
+        <div
+          class="guided-answer__node"
+        >
+          <a
+            class="guided-answer__node__edge not-solved-link"
+            href="https://answers.sap.com/index.html"
+            role="button"
+            tabindex="-1"
+          >
+            Ask the SAP Community
+          </a>
+        </div>
+        <div
+          class="guided-answer__node"
+        >
+          <button
+            class="guided-answer__node__edge"
+            tabindex="-1"
+          >
+            Search for another Guided Answer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
+<div>
+  <div
+    id="middle"
+  >
+    <div
+      class="body_container"
+    >
+      <header>
+        SAP Fiori Tools
+      </header>
+      <div
+        id="hr"
+      />
+      <div
+        class="ms-FocusZone css-109"
+        data-focuszone-id="FocusZone2"
+      >
+        <span
+          id="enhancedHtml"
+        >
+          Test
+        </span>
+      </div>
+      <p
+        class="guided-answer__node__question"
+      >
+        I have a problem with
+      </p>
+    </div>
+    <div
+      class="ms-FocusZone css-109"
+      data-focuszone-id="FocusZone3"
+      role="listbox"
+    >
+      <div
+        class="guided-answer__node"
+      >
+        <button
+          class="guided-answer__node__edge"
+          id="edge_button"
+          role="option"
+          tabindex="0"
+        >
+          Deployment
+        </button>
+        <button
+          class="guided-answer__node__edge"
+          id="edge_button"
+          role="option"
+          tabindex="-1"
+        >
+          Fiori Generator
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,6 +1,8 @@
 export {
-    updateGuidedAnserTrees,
+    fillShareLinks,
+    updateGuidedAnswerTrees,
     updateActiveNode,
+    updateActiveNodeSharing,
     selectNode,
     goToPreviousPage,
     goToAllAnswers,
@@ -9,5 +11,20 @@ export {
     setActiveTree,
     searchTree,
     setQueryValue,
-    webviewReady
+    webviewReady,
+    getBetaFeatures,
+    sendFeedbackOutcome,
+    sendFeedbackComment,
+    guideFeedback,
+    setProductFilters,
+    setComponentFilters,
+    resetFilters,
+    setPageSize,
+    feedbackStatus,
+    feedbackResponse,
+    shareLinkTelemetry,
+    openLinkTelemetry,
+    getBookmarks,
+    updateBookmark,
+    synchronizeBookmark
 } from '@sap/guided-answers-extension-types';

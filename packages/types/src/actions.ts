@@ -1,7 +1,9 @@
 import type {
     Command,
     ExecuteCommand,
+    FillShareLinks,
     GuidedAnswerTree,
+    GuidedAnswerTreeId,
     GuidedAnswerNode,
     GuidedAnswerNodeId,
     GoToPreviousPage,
@@ -9,14 +11,41 @@ import type {
     RestartAnswer,
     SearchTree,
     SelectNode,
+    NetworkStatus,
     SetActiveTree,
     SetQueryValue,
-    UpdateGuidedAnserTrees,
+    ShareNodeLinks,
+    UpdateGuidedAnswerTrees,
     UpdateActiveNode,
-    WebviewReady
+    UpdateActiveNodeSharing,
+    WebviewReady,
+    UpdateNetworkStatus,
+    GuidedAnswerTreeSearchResult,
+    GuidedAnswersQueryOptions,
+    BetaFeatures,
+    GuideFeedback,
+    FeedbackOutcomePayload,
+    SendFeedbackOutcome,
+    FeedbackCommentPayload,
+    SendFeedbackComment,
+    SetProductFilters,
+    SetComponentFilters,
+    ResetFilters,
+    SetPageSize,
+    FeedbackStatus,
+    FeedbackResponse,
+    GuidedAnswersTelemetryPayload,
+    RestoreState,
+    AppState,
+    Bookmarks,
+    UpdateBookmarks,
+    GetBookmarks,
+    Bookmark,
+    SynchronizeBookmark
 } from './types';
 import {
     EXECUTE_COMMAND,
+    FILL_SHARE_LINKS,
     GO_TO_PREVIOUS_PAGE,
     GO_TO_ALL_ANSWERS,
     RESTART_ANSWER,
@@ -26,10 +55,29 @@ import {
     SET_QUERY_VALUE,
     UPDATE_GUIDED_ANSWER_TREES,
     UPDATE_ACTIVE_NODE,
-    WEBVIEW_READY
+    UPDATE_NETWORK_STATUS,
+    UPDATE_ACTIVE_NODE_SHARING,
+    WEBVIEW_READY,
+    BETA_FEATURES,
+    GUIDE_FEEDBACK,
+    SEND_FEEDBACK_OUTCOME,
+    SEND_FEEDBACK_COMMENT,
+    SET_PRODUCT_FILTERS,
+    SET_COMPONENT_FILTERS,
+    RESET_FILTERS,
+    RESTORE_STATE,
+    SET_PAGE_SIZE,
+    FEEDBACK_STATUS,
+    FEEDBACK_RESPONSE,
+    SEND_TELEMETRY,
+    SHARE_LINK_TELEMETRY,
+    OPEN_LINK_TELEMETRY,
+    UPDATE_BOOKMARKS,
+    GET_BOOKMARKS,
+    SYNCHRONIZE_BOOKMARK
 } from './types';
 
-export const updateGuidedAnserTrees = (payload: GuidedAnswerTree[]): UpdateGuidedAnserTrees => ({
+export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
     type: UPDATE_GUIDED_ANSWER_TREES,
     payload
 });
@@ -38,6 +86,11 @@ export const selectNode = (payload: GuidedAnswerNodeId): SelectNode => ({ type: 
 
 export const updateActiveNode = (payload: GuidedAnswerNode): UpdateActiveNode => ({
     type: UPDATE_ACTIVE_NODE,
+    payload
+});
+
+export const updateNetworkStatus = (payload: NetworkStatus): UpdateNetworkStatus => ({
+    type: UPDATE_NETWORK_STATUS,
     payload
 });
 
@@ -63,7 +116,7 @@ export const setActiveTree = (payload: GuidedAnswerTree): SetActiveTree => ({
     payload
 });
 
-export const searchTree = (payload: string): SearchTree => ({
+export const searchTree = (payload: GuidedAnswersQueryOptions): SearchTree => ({
     type: SEARCH_TREE,
     payload
 });
@@ -73,4 +126,95 @@ export const setQueryValue = (payload: string): SetQueryValue => ({
     payload
 });
 
+export const getBetaFeatures = (payload: boolean): BetaFeatures => ({
+    type: BETA_FEATURES,
+    payload
+});
+
+export const setProductFilters = (payload: string[]): SetProductFilters => ({
+    type: SET_PRODUCT_FILTERS,
+    payload
+});
+
+export const setComponentFilters = (payload: string[]): SetComponentFilters => ({
+    type: SET_COMPONENT_FILTERS,
+    payload
+});
+
+export const resetFilters = (): ResetFilters => ({
+    type: RESET_FILTERS
+});
+
 export const webviewReady = (): WebviewReady => ({ type: WEBVIEW_READY });
+
+export const guideFeedback = (payload: boolean | null): GuideFeedback => ({
+    type: GUIDE_FEEDBACK,
+    payload
+});
+
+export const feedbackStatus = (payload: boolean): FeedbackStatus => ({
+    type: FEEDBACK_STATUS,
+    payload
+});
+
+export const sendFeedbackOutcome = (payload: FeedbackOutcomePayload): SendFeedbackOutcome => ({
+    type: SEND_FEEDBACK_OUTCOME,
+    payload
+});
+
+export const sendFeedbackComment = (payload: FeedbackCommentPayload): SendFeedbackComment => ({
+    type: SEND_FEEDBACK_COMMENT,
+    payload
+});
+
+export const setPageSize = (payload: number): SetPageSize => ({
+    type: SET_PAGE_SIZE,
+    payload
+});
+
+export const feedbackResponse = (payload: boolean): FeedbackResponse => ({
+    type: FEEDBACK_RESPONSE,
+    payload
+});
+
+export const sendTelemetry = (payload: GuidedAnswersTelemetryPayload) => ({
+    type: SEND_TELEMETRY,
+    payload
+});
+
+export const updateActiveNodeSharing = (payload: ShareNodeLinks | null): UpdateActiveNodeSharing => ({
+    type: UPDATE_ACTIVE_NODE_SHARING,
+    payload
+});
+
+export const fillShareLinks = (payload: {
+    treeId: GuidedAnswerTreeId;
+    nodeIdPath?: GuidedAnswerNodeId[];
+}): FillShareLinks => ({
+    type: FILL_SHARE_LINKS,
+    payload
+});
+
+export const shareLinkTelemetry = () => ({ type: SHARE_LINK_TELEMETRY });
+
+export const openLinkTelemetry = () => ({ type: OPEN_LINK_TELEMETRY });
+
+export const restoreState = (payload: AppState): RestoreState => ({
+    type: RESTORE_STATE,
+    payload
+});
+
+export const updateBookmark = (payload: Bookmarks): UpdateBookmarks => ({
+    type: UPDATE_BOOKMARKS,
+    payload
+});
+
+export const getBookmarks = (payload: Bookmarks): GetBookmarks => ({
+    type: GET_BOOKMARKS,
+    payload
+});
+
+export const synchronizeBookmark = (payload: Bookmark): SynchronizeBookmark => ({
+    type: SYNCHRONIZE_BOOKMARK,
+    payload
+});
