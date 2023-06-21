@@ -13,9 +13,7 @@ import {
     SET_PRODUCT_FILTERS,
     SET_COMPONENT_FILTERS,
     RESTORE_STATE,
-    RESET_FILTERS,
-    SYNCHRONIZE_BOOKMARK_RESPONSE,
-    Bookmark
+    RESET_FILTERS
 } from '@sap/guided-answers-extension-types';
 
 const mockedPayload = {
@@ -347,25 +345,5 @@ describe('Test functions in reducers', () => {
         payload.guidedAnswerTreeSearchResult = mockedGuidedAnswerTreeSearchResult;
         payload.query = 'search query';
         expect(reducer(initialState, { type: RESTORE_STATE, payload })).toEqual(payload);
-    });
-
-    it('Should synch bookmark', () => {
-        const synchronizeBookmarkResponseState = reducer(getInitialState(), {
-            type: SYNCHRONIZE_BOOKMARK_RESPONSE,
-            payload: {
-                tree: {
-                    TREE_ID: 1
-                },
-                nodePath: [{ NODE_ID: 2 }]
-            } as Bookmark
-        });
-        expect(synchronizeBookmarkResponseState.bookmarks).toEqual({
-            '1-2': {
-                tree: {
-                    TREE_ID: 1
-                },
-                nodePath: [{ NODE_ID: 2 }]
-            } as Bookmark
-        });
     });
 });

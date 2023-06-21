@@ -139,15 +139,22 @@ export interface TelemetryUILoadBookmarksProps extends TelemetryUIEventProps {
     count: string;
 }
 
-export interface TelemetryUIAddBookmarksProps extends TelemetryUIEventProps {
-    action: 'ADD_BOOKMARK';
-    isFirstNode: string;
-}
-
-export interface TelemetryUIRemoveBookmarksProps extends TelemetryUIEventProps {
-    action: 'REMOVE_BOOKMARK';
+export interface TelemetryUIUpdateBookmarksProps extends TelemetryUIEventProps {
+    action: 'ADD_BOOKMARK' | 'REMOVE_BOOKMARK' | 'SYNC_BOOKMARK';
+    treeId: string;
+    treeTitle: string;
+    lastNodeId: string;
+    lastNodeTitle: string;
+    nodeIdPath: string;
+    nodeLevel: string;
 }
 
 export interface TelemetryUIClickBookmarkProps extends TelemetryUIEventProps {
     action: 'CLICK_BOOKMARK';
+    treeId: string;
+    treeTitle: string;
+    lastNodeId: string;
+    lastNodeTitle: string;
+    nodeIdPath: string;
+    nodeLevel: string;
 }

@@ -41,8 +41,7 @@ import type {
     TelemetryUIOpenLinkProps,
     TelemetryUIClearFiltersProps,
     TelemetryUILoadBookmarksProps,
-    TelemetryUIAddBookmarksProps,
-    TelemetryUIRemoveBookmarksProps,
+    TelemetryUIUpdateBookmarksProps,
     TelemetryUIClickBookmarkProps
 } from '../types';
 
@@ -108,20 +107,26 @@ export const actionMap: {
         action: 'LOAD_BOOKMARKS',
         count: Object.keys((action.payload.action as GetBookmarks).payload).length.toString()
     }),
-    [UPDATE_BOOKMARKS]: (action: SendTelemetry): TelemetryUIAddBookmarksProps | TelemetryUIRemoveBookmarksProps => {
+    [UPDATE_BOOKMARKS]: (action: SendTelemetry): TelemetryUIUpdateBookmarksProps => {
         const bookmarkKey = (action.payload.action as UpdateBookmarks).payload.bookmarkKey;
 
-        if (Object.keys(action.payload.state.bookmarks).includes(bookmarkKey)) {
-            return {
-                action: 'ADD_BOOKMARK',
-                isFirstNode: (!bookmarkKey.includes(':')).toString()
-            };
+        let mappedAction: 'ADD_BOOKMARK' | 'REMOVE_BOOKMARK' | 'SYNC_BOOKMARK';
+        if (!bookmarkKey) {
+            mappedAction = 'SYNC_BOOKMARK';
+        } else if (Object.keys(action.payload.state.bookmarks).includes(bookmarkKey)) {
+            mappedAction = 'ADD_BOOKMARK';
         } else {
-            return { action: 'REMOVE_BOOKMARK' };
+            mappedAction = 'REMOVE_BOOKMARK';
         }
+
+        return {
+            action: mappedAction,
+            ...getTreeNodeInfo(action.payload.state)
+        };
     },
-    [SYNCHRONIZE_BOOKMARK]: (): TelemetryUIClickBookmarkProps => ({
-        action: 'CLICK_BOOKMARK'
+    [SYNCHRONIZE_BOOKMARK]: (action: SendTelemetry): TelemetryUIClickBookmarkProps => ({
+        action: 'CLICK_BOOKMARK',
+        ...getTreeNodeInfo(action.payload.state)
     })
 };
 

@@ -96,7 +96,7 @@ export interface Bookmark {
 }
 
 export interface UpdateBookmarksPayload {
-    bookmarkKey: string;
+    bookmarkKey?: string;
     bookmarks: Bookmarks;
 }
 
@@ -198,8 +198,7 @@ export type GuidedAnswerActions =
     | UpdateActiveNode
     | UpdateGuidedAnswerTrees
     | UpdateNetworkStatus
-    | WebviewReady
-    | SynchronizeBookmarkResponse;
+    | WebviewReady;
 
 export type NetworkStatus = 'OK' | 'LOADING' | 'ERROR';
 
@@ -402,11 +401,5 @@ export interface RestoreState {
 export const SYNCHRONIZE_BOOKMARK = 'SYNCHRONIZE_BOOKMARK';
 export interface SynchronizeBookmark {
     type: typeof SYNCHRONIZE_BOOKMARK;
-    payload: Bookmark;
-}
-
-export const SYNCHRONIZE_BOOKMARK_RESPONSE = 'SYNCHRONIZE_BOOKMARK_RESPONSE';
-export interface SynchronizeBookmarkResponse {
-    type: typeof SYNCHRONIZE_BOOKMARK_RESPONSE;
     payload: Bookmark;
 }

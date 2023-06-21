@@ -372,6 +372,7 @@ describe('Telemetry trackAction() tests', () => {
         // Mock setup
         const mockAction = getDummyAction('UPDATE_BOOKMARKS');
         delete mockAction.payload.state.activeGuidedAnswer;
+        (mockAction.payload.action as UpdateBookmarks).payload.bookmarkKey = '111';
 
         // Test execution
         trackAction(mockAction);
@@ -380,7 +381,13 @@ describe('Telemetry trackAction() tests', () => {
         expect(telemetryReporter.client.trackEvent).toBeCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
-                action: 'REMOVE_BOOKMARK'
+                action: 'REMOVE_BOOKMARK',
+                treeId: '',
+                treeTitle: '',
+                lastNodeId: '3',
+                lastNodeTitle: 'last node',
+                nodeIdPath: '2:3',
+                nodeLevel: '2'
             }
         });
     });
@@ -400,7 +407,36 @@ describe('Telemetry trackAction() tests', () => {
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'ADD_BOOKMARK',
-                isFirstNode: 'true'
+                treeId: '',
+                treeTitle: '',
+                lastNodeId: '3',
+                lastNodeTitle: 'last node',
+                nodeIdPath: '2:3',
+                nodeLevel: '2'
+            }
+        });
+    });
+
+    test('send UPDATE_BOOKMARKS action, SYNC_BOOKMARK', () => {
+        // Mock setup
+        const mockAction = getDummyAction('UPDATE_BOOKMARKS');
+        delete mockAction.payload.state.activeGuidedAnswer;
+        (mockAction.payload.action as UpdateBookmarks).payload.bookmarkKey = undefined;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'SYNC_BOOKMARK',
+                treeId: '',
+                treeTitle: '',
+                lastNodeId: '3',
+                lastNodeTitle: 'last node',
+                nodeIdPath: '2:3',
+                nodeLevel: '2'
             }
         });
     });
@@ -417,7 +453,13 @@ describe('Telemetry trackAction() tests', () => {
         expect(telemetryReporter.client.trackEvent).toBeCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
-                action: 'CLICK_BOOKMARK'
+                action: 'CLICK_BOOKMARK',
+                treeId: '',
+                treeTitle: '',
+                lastNodeId: '3',
+                lastNodeTitle: 'last node',
+                nodeIdPath: '2:3',
+                nodeLevel: '2'
             }
         });
     });
