@@ -1,6 +1,6 @@
-This document details the process that is followed to release the Guided Answers extension
+This document details the process that is followed to release the Guided Answers extension by SAP
 
-Development is completed in two week sprints followed by one of week of testing and stabilization.  Details on testing strategy can be found **here** 
+Development is completed in two week sprints followed by one of week of testing and stabilization.  Details on testing strategy can be found [here](./testing-strategy.md) 
 
 The Stabilization phase is overlapped with the next sprint. New features, updates and fixes are released every two weeks. This means that from start of development until the code is delivered is 3 weeks 
 

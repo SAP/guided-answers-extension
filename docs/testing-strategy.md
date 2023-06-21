@@ -1,4 +1,5 @@
 This document details the testing strategy for the Guided Answer Extension.
+For a release strategy overview, please see the relevant document [here](./release-strategy.md).
 
 
 
@@ -6,7 +7,7 @@ This document details the testing strategy for the Guided Answer Extension.
 
 - When a new feature is complete a manual testcase must be created or an existing testcase must be updated with a new test case.
 - All testcases for the Guided Answer Extension are located [here](https://github.com/SAP/guided-answers-extension/tree/main/docs/testcases)
-- The github issue detailing the feature must be reference the testcase.
+- The github issue detailing the feature must reference the testcase.
 - The testcase must also reference the user story.
   
 
@@ -22,7 +23,7 @@ A full regression must test the following areas across the different supported e
 
 The supported environments are as follows
   - VSCode
-  - SAP Business Application Studio dev spaces
+  - SAP Business Application Studio
   
         SAP Business Application Studio - SAP Fiori                  
         Full Stack Cloud Application 
