@@ -1,4 +1,10 @@
-import { GUIDE_FEEDBACK, GuideFeedback, UpdateActiveNode, AppState } from './../../../types/src/types';
+import {
+    GUIDE_FEEDBACK,
+    GuideFeedback,
+    UpdateActiveNode,
+    AppState,
+    GuidedAnswerActions
+} from './../../../types/src/types';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import {
     UPDATE_GUIDED_ANSWER_TREES,
@@ -129,6 +135,12 @@ describe('Test functions in reducers', () => {
     it('Should return the initial state', () => {
         const initState = getInitialState();
         expect(initState).toEqual(mockedInitState);
+    });
+
+    it('Should return state if action is not known to reduced', () => {
+        expect(reducer({ any: 'value' } as unknown as AppState, undefined as unknown as GuidedAnswerActions)).toEqual({
+            any: 'value'
+        });
     });
 
     it('Should return updated guide answer trees', () => {

@@ -103,7 +103,7 @@ const reducers: Partial<Reducers> = {
  */
 export const reducer: Reducer<AppState, GuidedAnswerActions> = (
     state: AppState = getInitialState(),
-    action: GuidedAnswerActions = {} as GuidedAnswerActions // just to avoid default-param-last issue for state
+    action: GuidedAnswerActions = {} as GuidedAnswerActions // avoid default-param-last issue for state argument
 ): AppState => {
     const caseReducer = reducers[action.type];
     if (typeof caseReducer === 'function') {
