@@ -206,19 +206,19 @@ function isHtmlExtensionApplicable(ide: IDE, extension: GuidedAnswerHtmlExtensio
 /**
  * Return the html and node enhancements of a node. Consider also applicability.
  *
- * @param htmlExtensions -
- * @param nodeExtensions -
  * @param ide - development environment 'VSCODE' or 'SBAS'
  * @param extensions - list of installed extension ids
- * @param [logger] - optional, log issues
+ * @param logger - logger to log issues
+ * @param htmlExtensions - html extensions
+ * @param nodeExtensions - node extensions
  * @returns array of html and node enhancements
  */
 function getEnhancements(
-    htmlExtensions: GuidedAnswerHtmlExtension[] = [],
-    nodeExtensions: GuidedAnswerNodeExtension[] = [],
     ide: IDE,
     extensions: Set<string>,
-    logger: Logger
+    logger: Logger,
+    htmlExtensions: GuidedAnswerHtmlExtension[] = [],
+    nodeExtensions: GuidedAnswerNodeExtension[] = []
 ): { htmlEnhancements: HTMLEnhancement[]; nodeCommands: Command[] } {
     const nodeCommands: Command[] = [];
     const htmlEnhancements: HTMLEnhancement[] = [];
@@ -306,11 +306,11 @@ function enhanceNode(options: {
     }
 
     const { htmlEnhancements, nodeCommands } = getEnhancements(
-        node.HTML_EXTENSIONS,
-        node.NODE_EXTENSIONS,
         ide,
         extensions,
-        logger
+        logger,
+        node.HTML_EXTENSIONS,
+        node.NODE_EXTENSIONS
     );
     if (nodeCommands.length > 0) {
         node.COMMANDS = nodeCommands;
