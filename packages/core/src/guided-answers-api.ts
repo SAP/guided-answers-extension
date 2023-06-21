@@ -20,6 +20,7 @@ import type {
     GuidedAnswerTreeSearchResult,
     HTMLEnhancement,
     IDE,
+    Logger,
     PostFeedbackResponse,
     TerminalCommand,
     VSCodeCommand
@@ -45,17 +46,22 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
     const apiHost = options?.apiHost ?? API_HOST;
     const ide = options?.ide;
     const extensions = options?.extensions ?? new Set<string>();
+    const logger = options?.logger ?? {
+        logString: (m) => {
+            console.log(m);
+        }
+    };
 
     return {
         getApiInfo: () => ({ host: apiHost, version: VERSION }),
         getNodeById: async (id: GuidedAnswerNodeId): Promise<GuidedAnswerNode> =>
-            enhanceNode(await getNodeById(apiHost, id), extensions, ide),
+            enhanceNode({ node: await getNodeById(apiHost, id), extensions, logger, ide }),
         getTreeById: async (id: GuidedAnswerTreeId): Promise<GuidedAnswerTree> => getTreeById(apiHost, id),
         getTrees: async (queryOptions?: GuidedAnswersQueryOptions): Promise<GuidedAnswerTreeSearchResult> =>
             getTrees(apiHost, queryOptions),
         getNodePath: async (nodeIdPath: GuidedAnswerNodeId[]): Promise<GuidedAnswerNode[]> => {
             let nodes = await getNodePath(apiHost, nodeIdPath);
-            nodes = nodes.map((node) => enhanceNode(node, extensions, ide));
+            nodes = nodes.map((node) => enhanceNode({ node, extensions, logger, ide }));
             return nodes;
         },
         sendFeedbackComment: async (payload: FeedbackCommentPayload) =>
@@ -204,13 +210,15 @@ function isHtmlExtensionApplicable(ide: IDE, extension: GuidedAnswerHtmlExtensio
  * @param nodeExtensions -
  * @param ide - development environment 'VSCODE' or 'SBAS'
  * @param extensions - list of installed extension ids
+ * @param [logger] - optional, log issues
  * @returns array of html and node enhancements
  */
 function getEnhancements(
     htmlExtensions: GuidedAnswerHtmlExtension[] = [],
     nodeExtensions: GuidedAnswerNodeExtension[] = [],
     ide: IDE,
-    extensions: Set<string>
+    extensions: Set<string>,
+    logger: Logger
 ): { htmlEnhancements: HTMLEnhancement[]; nodeCommands: Command[] } {
     const nodeCommands: Command[] = [];
     const htmlEnhancements: HTMLEnhancement[] = [];
@@ -248,9 +256,10 @@ function getEnhancements(
                         ? JSON.parse(applicableHtmlExtension.command.exec.args)
                         : undefined;
                 } catch (error) {
-                    console.error(
-                        `Error when parsing argument '${applicableHtmlExtension.command.exec.args}' for HTML enhancement. Extension id: '${extensionId}', command id: '${commandId}'`,
-                        error
+                    logger.logString(
+                        `Error when parsing argument '${
+                            applicableHtmlExtension.command.exec.args
+                        }' for HTML enhancement. Extension id: '${extensionId}', command id: '${commandId}', ${error?.toString()}`
                     );
                 }
                 exec = { extensionId, commandId, argument };
@@ -268,7 +277,7 @@ function getEnhancements(
             });
         }
     } catch (error) {
-        console.error(`Error processing enhancements`, error);
+        logger.logString(`Error processing enhancements, ${error?.toString()}`);
     }
     return { htmlEnhancements, nodeCommands };
 }
@@ -278,12 +287,20 @@ function getEnhancements(
  * by links. For the later, we just set a marker by embedding the text in <span>-tag with the command as JSON. The
  * actual replacement to a link needs to happen in an consuming UI.
  *
- * @param node - node data from Guided Answer
- * @param extensions - all installed extensions
- * @param [ide] - optional, IDE environment, SBAS or VSCODE. If not provided no enhancements will be applied
+ * @param options - enhancement options
+ * @param options.node - node data from Guided Answer
+ * @param options.extensions - all installed extensions
+ * @param options.logger - log issues
+ * @param options.ide - optional, IDE environment, SBAS or VSCODE. If not provided no enhancements will be applied
  * @returns - the enhanced Guided Answers node
  */
-function enhanceNode(node: GuidedAnswerNode, extensions: Set<string>, ide?: IDE): GuidedAnswerNode {
+function enhanceNode(options: {
+    node: GuidedAnswerNode;
+    extensions: Set<string>;
+    ide?: IDE;
+    logger: Logger;
+}): GuidedAnswerNode {
+    const { node, extensions, ide, logger } = options;
     if (!ide) {
         return node;
     }
@@ -292,7 +309,8 @@ function enhanceNode(node: GuidedAnswerNode, extensions: Set<string>, ide?: IDE)
         node.HTML_EXTENSIONS,
         node.NODE_EXTENSIONS,
         ide,
-        extensions
+        extensions,
+        logger
     );
     if (nodeCommands.length > 0) {
         node.COMMANDS = nodeCommands;

@@ -162,10 +162,15 @@ export interface HTMLEnhancement {
     command: Command;
 }
 
+export interface Logger {
+    logString: (message: string) => void;
+}
+
 export interface APIOptions {
     apiHost?: string;
     ide?: IDE;
     extensions?: Set<string>;
+    logger?: Logger;
 }
 
 export interface ShareNodeLinks {
