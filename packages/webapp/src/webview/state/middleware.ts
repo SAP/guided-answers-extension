@@ -14,7 +14,10 @@ import {
     UPDATE_GUIDED_ANSWER_TREES,
     OPEN_LINK_TELEMETRY,
     SHARE_LINK_TELEMETRY,
-    RESET_FILTERS
+    RESET_FILTERS,
+    GET_BOOKMARKS,
+    UPDATE_BOOKMARKS,
+    SYNCHRONIZE_BOOKMARK
 } from '@sap/guided-answers-extension-types';
 import type { AppState } from '../types';
 
@@ -73,7 +76,10 @@ const allowedTelemetryActions = new Set([
     UPDATE_GUIDED_ANSWER_TREES,
     SHARE_LINK_TELEMETRY,
     OPEN_LINK_TELEMETRY,
-    RESET_FILTERS
+    RESET_FILTERS,
+    GET_BOOKMARKS,
+    UPDATE_BOOKMARKS,
+    SYNCHRONIZE_BOOKMARK
 ]);
 export const telemetryMiddleware: Middleware<
     Dispatch<GuidedAnswerActions>,

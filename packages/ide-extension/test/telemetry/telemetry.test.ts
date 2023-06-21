@@ -10,7 +10,9 @@ import {
     GuidedAnswerNode,
     GuidedAnswerTree,
     SendTelemetry,
-    UpdateActiveNode
+    UpdateActiveNode,
+    UpdateBookmarks,
+    Bookmark
 } from '@sap/guided-answers-extension-types';
 import { TelemetryEvent, TelemetryReporter } from '../../src/types';
 import packageJson from '../../package.json';
@@ -366,6 +368,102 @@ describe('Telemetry trackAction() tests', () => {
         });
     });
 
+    test('send UPDATE_BOOKMARKS action, REMOVE_BOOKMARK', () => {
+        // Mock setup
+        const mockAction = getDummyAction('UPDATE_BOOKMARKS');
+        delete mockAction.payload.state.activeGuidedAnswer;
+        (mockAction.payload.action as UpdateBookmarks).payload.bookmarkKey = '111';
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'REMOVE_BOOKMARK',
+                treeId: '',
+                treeTitle: '',
+                lastNodeId: '3',
+                lastNodeTitle: 'last node',
+                nodeIdPath: '2:3',
+                nodeLevel: '2'
+            }
+        });
+    });
+
+    test('send UPDATE_BOOKMARKS action, ADD_BOOKMARK', () => {
+        // Mock setup
+        const mockAction = getDummyAction('UPDATE_BOOKMARKS');
+        delete mockAction.payload.state.activeGuidedAnswer;
+        (mockAction.payload.action as UpdateBookmarks).payload.bookmarkKey = 'abc';
+        mockAction.payload.state.bookmarks = { abc: {} as Bookmark };
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'ADD_BOOKMARK',
+                treeId: '',
+                treeTitle: '',
+                lastNodeId: '3',
+                lastNodeTitle: 'last node',
+                nodeIdPath: '2:3',
+                nodeLevel: '2'
+            }
+        });
+    });
+
+    test('send UPDATE_BOOKMARKS action, SYNC_BOOKMARK', () => {
+        // Mock setup
+        const mockAction = getDummyAction('UPDATE_BOOKMARKS');
+        delete mockAction.payload.state.activeGuidedAnswer;
+        (mockAction.payload.action as UpdateBookmarks).payload.bookmarkKey = undefined;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'SYNC_BOOKMARK',
+                treeId: '',
+                treeTitle: '',
+                lastNodeId: '3',
+                lastNodeTitle: 'last node',
+                nodeIdPath: '2:3',
+                nodeLevel: '2'
+            }
+        });
+    });
+
+    test('send SYNCHRONIZE_BOOKMARK action', () => {
+        // Mock setup
+        const mockAction = getDummyAction('SYNCHRONIZE_BOOKMARK');
+        delete mockAction.payload.state.activeGuidedAnswer;
+
+        // Test execution
+        trackAction(mockAction);
+
+        // Result check
+        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+            name: 'sap-guided-answers-extension/USER_INTERACTION',
+            properties: {
+                action: 'CLICK_BOOKMARK',
+                treeId: '',
+                treeTitle: '',
+                lastNodeId: '3',
+                lastNodeTitle: 'last node',
+                nodeIdPath: '2:3',
+                nodeLevel: '2'
+            }
+        });
+    });
+
     test('error handling when track action throws error', () => {
         // Mock setup
         const mockAction = getDummyAction('SET_ACTIVE_TREE');
@@ -485,7 +583,8 @@ function getDummyAction(actionName: string): SendTelemetry {
                 activeGuidedAnswerNode: [
                     { NODE_ID: 2 },
                     { NODE_ID: 3, TITLE: 'last node' }
-                ] as unknown as GuidedAnswerNode[]
+                ] as unknown as GuidedAnswerNode[],
+                bookmarks: {}
             } as unknown as AppState
         }
     };

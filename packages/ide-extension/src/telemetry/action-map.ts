@@ -10,7 +10,10 @@ import {
     UPDATE_GUIDED_ANSWER_TREES,
     OPEN_LINK_TELEMETRY,
     SHARE_LINK_TELEMETRY,
-    RESET_FILTERS
+    RESET_FILTERS,
+    GET_BOOKMARKS,
+    UPDATE_BOOKMARKS,
+    SYNCHRONIZE_BOOKMARK
 } from '@sap/guided-answers-extension-types';
 import type {
     AppState,
@@ -19,7 +22,9 @@ import type {
     ExecuteCommand,
     UpdateGuidedAnswerTrees,
     UpdateActiveNode,
-    SendFeedbackOutcome
+    SendFeedbackOutcome,
+    GetBookmarks,
+    UpdateBookmarks
 } from '@sap/guided-answers-extension-types';
 import type {
     TelemetryUIEventProps,
@@ -34,7 +39,10 @@ import type {
     TelemetryUIFilterProductsProps,
     TelemetryUIShareLinkProps,
     TelemetryUIOpenLinkProps,
-    TelemetryUIClearFiltersProps
+    TelemetryUIClearFiltersProps,
+    TelemetryUILoadBookmarksProps,
+    TelemetryUIUpdateBookmarksProps,
+    TelemetryUIClickBookmarkProps
 } from '../types';
 
 /**
@@ -94,6 +102,31 @@ export const actionMap: {
     }),
     [RESET_FILTERS]: (): TelemetryUIClearFiltersProps => ({
         action: 'CLEAR_FILTERS'
+    }),
+    [GET_BOOKMARKS]: (action: SendTelemetry): TelemetryUILoadBookmarksProps => ({
+        action: 'LOAD_BOOKMARKS',
+        count: Object.keys((action.payload.action as GetBookmarks).payload).length.toString()
+    }),
+    [UPDATE_BOOKMARKS]: (action: SendTelemetry): TelemetryUIUpdateBookmarksProps => {
+        const bookmarkKey = (action.payload.action as UpdateBookmarks).payload.bookmarkKey;
+
+        let mappedAction: 'ADD_BOOKMARK' | 'REMOVE_BOOKMARK' | 'SYNC_BOOKMARK';
+        if (!bookmarkKey) {
+            mappedAction = 'SYNC_BOOKMARK';
+        } else if (Object.keys(action.payload.state.bookmarks).includes(bookmarkKey)) {
+            mappedAction = 'ADD_BOOKMARK';
+        } else {
+            mappedAction = 'REMOVE_BOOKMARK';
+        }
+
+        return {
+            action: mappedAction,
+            ...getTreeNodeInfo(action.payload.state)
+        };
+    },
+    [SYNCHRONIZE_BOOKMARK]: (action: SendTelemetry): TelemetryUIClickBookmarkProps => ({
+        action: 'CLICK_BOOKMARK',
+        ...getTreeNodeInfo(action.payload.state)
     })
 };
 
@@ -111,12 +144,15 @@ function getTreeNodeInfo(state: AppState): {
     nodeIdPath: string;
     nodeLevel: string;
 } {
+    const treeId = state.activeGuidedAnswer?.TREE_ID.toString() ?? '';
+    const nodeIdPath = state.activeGuidedAnswerNode.map((node) => node.NODE_ID.toString()).join(':');
+
     return {
-        treeId: state.activeGuidedAnswer?.TREE_ID.toString() ?? '',
+        treeId,
         treeTitle: state.activeGuidedAnswer?.TITLE ?? '',
         lastNodeId: state.activeGuidedAnswerNode.slice(-1)[0]?.NODE_ID.toString(),
         lastNodeTitle: state.activeGuidedAnswerNode.slice(-1)[0]?.TITLE,
-        nodeIdPath: state.activeGuidedAnswerNode.map((node) => node.NODE_ID.toString()).join(':'),
+        nodeIdPath,
         nodeLevel: state.activeGuidedAnswerNode.length.toString()
     };
 }
