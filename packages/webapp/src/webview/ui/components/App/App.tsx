@@ -16,6 +16,7 @@ import i18next from 'i18next';
 import { VscStarFull } from 'react-icons/vsc';
 import type { Bookmarks as BookmarksType } from '@sap/guided-answers-extension-types';
 import { Bookmarks } from '../Bookmarks';
+import { LastVisited } from '../LastVisited';
 import { TreeItemBottomSection } from '../TreeItemBottomSection';
 
 initIcons();
@@ -92,7 +93,12 @@ export function App(): ReactElement {
         appState.guidedAnswerTreeSearchResult.resultSize === -1 &&
         appState.query === ''
     ) {
-        content = <Bookmarks />;
+        content = (
+            <>
+                <LastVisited />
+                <Bookmarks />
+            </>
+        );
     } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
         content =
             appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (

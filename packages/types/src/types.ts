@@ -97,6 +97,14 @@ export interface Bookmark {
 
 export type Bookmarks = Record<string, Bookmark>; //key is 'TREE_ID-NODE_ID:NODE_ID:NODE_ID:...NODE_ID'
 
+export interface LastVisitedGuide {
+    tree: GuidedAnswerTree;
+    nodePath: GuidedAnswerNode[];
+    createdAt: string;
+}
+
+export type LastVisitedGuides = Record<string, LastVisitedGuide>; //key is 'TREE_ID-NODE_ID:NODE_ID:NODE_ID:...NODE_ID'
+
 export interface GuidedAnswerAPI {
     getApiInfo: () => { host: string; version: string };
     getNodeById: (id: GuidedAnswerNodeId) => Promise<GuidedAnswerNode>;
@@ -186,6 +194,7 @@ export type GuidedAnswerActions =
     | SetQueryValue
     | SynchronizeBookmark
     | UpdateActiveNodeSharing
+    | GetLastVisitedGuides
     | UpdateBookmarks
     | ResetFilters
     | RestartAnswer
@@ -213,6 +222,7 @@ export interface AppState {
     feedbackStatus: boolean;
     feedbackResponse: boolean;
     bookmarks: Bookmarks;
+    lastVisitedGuides: LastVisitedGuides;
 }
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
@@ -320,6 +330,18 @@ export const UPDATE_BOOKMARKS = 'UPDATE_BOOKMARKS';
 export interface UpdateBookmarks {
     type: typeof UPDATE_BOOKMARKS;
     payload: Bookmarks;
+}
+
+export const GET_LAST_VISITED_GUIDES = 'GET_LAST_VISITED_GUIDES';
+export interface GetLastVisitedGuides {
+    type: typeof GET_LAST_VISITED_GUIDES;
+    payload: LastVisitedGuides;
+}
+
+export const UPDATE_LAST_VISITED_GUIDES = 'UPDATE_LAST_VISITED_GUIDES';
+export interface UpdateLastVisitedGuides {
+    type: typeof UPDATE_LAST_VISITED_GUIDES;
+    payload: LastVisitedGuides;
 }
 
 export const SET_PRODUCT_FILTERS = 'SET_PRODUCT_FILTERS';

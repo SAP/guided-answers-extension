@@ -7,6 +7,7 @@ import { initTelemetry } from './telemetry';
 import { GuidedAnswersUriHandler } from './links';
 import type { StartOptions } from './types';
 import { initBookmarks } from './bookmarks';
+import { initLastVisited } from './last-visited';
 
 /**
  *  Activate function is called by VSCode when the extension gets active.
@@ -21,6 +22,7 @@ export function activate(context: ExtensionContext): void {
     }
     try {
         initBookmarks(context.globalState);
+        initLastVisited(context.globalState);
     } catch (error) {
         logString(`Error during initialization of bookmarks.\n${error?.toString()}`);
     }

@@ -17,6 +17,7 @@ import {
     SEND_FEEDBACK_COMMENT,
     SYNCHRONIZE_BOOKMARK,
     UPDATE_BOOKMARKS,
+    UPDATE_LAST_VISITED_GUIDES,
     updateGuidedAnswerTrees,
     updateActiveNode,
     updateNetworkStatus,
@@ -32,7 +33,8 @@ import {
     feedbackResponse,
     getBookmarks,
     goToAllAnswers,
-    updateBookmark
+    updateBookmark,
+    getLastVisitedGuides
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
@@ -42,6 +44,7 @@ import type { Options, StartOptions } from '../types';
 import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
 import { extractLinkInfo, generateExtensionLink, generateWebLink } from '../links/link-info';
 import { getAllBookmarks, updateBookmarks } from '../bookmarks';
+import { updateLastVisitedGuides, getAllLastVisitedGuides } from '../last-visited';
 
 /**
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
@@ -168,6 +171,7 @@ export class GuidedAnswersPanel {
         );
         this.postActionToWebview(updateNetworkStatus('OK'));
         this.postActionToWebview(getBookmarks(getAllBookmarks()));
+        this.postActionToWebview(getLastVisitedGuides(getAllLastVisitedGuides()));
     }
 
     /**
@@ -362,6 +366,11 @@ export class GuidedAnswersPanel {
                 }
                 case UPDATE_BOOKMARKS: {
                     updateBookmarks(action.payload);
+                    break;
+                }
+                case UPDATE_LAST_VISITED_GUIDES: {
+                    updateLastVisitedGuides(action.payload);
+                    console.log('----->', action);
                     break;
                 }
                 case SYNCHRONIZE_BOOKMARK: {

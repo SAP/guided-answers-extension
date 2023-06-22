@@ -16,7 +16,8 @@ import type {
     UpdateNetworkStatus,
     SetPageSize,
     FeedbackResponse,
-    FeedbackStatus
+    FeedbackStatus,
+    GetLastVisitedGuides
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -47,7 +48,8 @@ export function getInitialState(): AppState {
         pageSize: 20,
         feedbackStatus: false,
         feedbackResponse: false,
-        bookmarks: {}
+        bookmarks: {},
+        lastVisitedGuides: {}
     };
 }
 
@@ -91,7 +93,8 @@ const reducers: Partial<Reducers> = {
     FEEDBACK_RESPONSE: feedbackResponseReducer,
     FEEDBACK_STATUS: feedbackStatusReducer,
     GET_BOOKMARKS: getBookmarksReducer,
-    UPDATE_BOOKMARKS: updateBookmarksReducer
+    UPDATE_BOOKMARKS: updateBookmarksReducer,
+    GET_LAST_VISITED_GUIDES: getLastVisitedGuidesReducer
 };
 
 /**
@@ -146,7 +149,7 @@ function updateGuidedAnswerTreesReducer(newState: AppState, action: UpdateGuided
  * @returns new state with changes
  */
 function updateActiveNodeReducer(newState: AppState, action: UpdateActiveNode): AppState {
-    const node = newState.activeGuidedAnswerNode.find((n) => n.NODE_ID === action.payload.NODE_ID);
+    const node = newState.activeGuidedAnswerNode.find((n: { NODE_ID: any }) => n.NODE_ID === action.payload.NODE_ID);
     if (newState.guideFeedback === false) {
         newState.guideFeedback = null;
         newState.activeGuidedAnswerNode.pop();
@@ -313,6 +316,18 @@ function feedbackResponseReducer(newState: AppState, action: FeedbackResponse): 
  */
 function getBookmarksReducer(newState: AppState, action: GetBookmarks): AppState {
     newState.bookmarks = action.payload;
+    return newState;
+}
+
+/**
+ * Set state for last visited guides.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function getLastVisitedGuidesReducer(newState: AppState, action: GetLastVisitedGuides): AppState {
+    newState.lastVisitedGuides = action.payload;
     return newState;
 }
 
