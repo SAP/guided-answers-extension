@@ -19,7 +19,7 @@ export function initLastVisited(globalState: Memento) {
  * @returns - list of last visited guides
  */
 export function getAllLastVisitedGuides(): LastVisitedGuides {
-    const lastVisitedGuides: LastVisitedGuides = globalStateApi?.get<LastVisitedGuides>('lastVisitedGuides') ?? {};
+    const lastVisitedGuides: LastVisitedGuides = globalStateApi?.get<LastVisitedGuides>('lastVisitedGuides') ?? [];
     console.log('FROM getAllLastVisitedGuides --->', lastVisitedGuides);
     return lastVisitedGuides;
 }
@@ -32,13 +32,13 @@ export function getAllLastVisitedGuides(): LastVisitedGuides {
 export function updateLastVisitedGuides(lastVisitedGuides: LastVisitedGuides): void {
     if (globalStateApi) {
         console.log('FROM updateLastVisitedGuides --->', lastVisitedGuides);
-        const newLastVisitedGuides = Object.keys(lastVisitedGuides).length > 0 ? lastVisitedGuides : undefined;
-        // Clean Last Visited, remove SCORE from tree when retrieved via search result list
-        for (const lastVisitedGuide in lastVisitedGuides) {
-            delete (lastVisitedGuides[lastVisitedGuide].tree as GuidedAnswerTree & { SCORE?: number }).SCORE;
-        }
+        // const newLastVisitedGuides = Object.keys(lastVisitedGuides).length > 0 ? lastVisitedGuides : undefined;
+        // // Clean Last Visited, remove SCORE from tree when retrieved via search result list
+        // for (const lastVisitedGuide in lastVisitedGuides) {
+        //     delete (lastVisitedGuides[lastVisitedGuide].tree as GuidedAnswerTree & { SCORE?: number }).SCORE;
+        // }
         globalStateApi
-            .update('lastVisitedGuides', newLastVisitedGuides)
+            .update('lastVisitedGuides', lastVisitedGuides)
             .then(undefined, (error) => logString(`Error updating lastVisitedGuides.\n${error?.toString()}`));
     }
 }

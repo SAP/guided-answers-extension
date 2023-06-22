@@ -6,7 +6,8 @@ import type {
     Command,
     GuidedAnswerNode as GuidedAnswerNodeType,
     GuidedAnswerTree,
-    LastVisitedGuides
+    LastVisitedGuides,
+    LastVisitedGuide
 } from '@sap/guided-answers-extension-types';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 import { useSelector } from 'react-redux';
@@ -103,7 +104,13 @@ export function GuidedAnswerNode(): ReactElement {
             const lastVisitedKey = `${tree.TREE_ID}-${nodes.map((n) => n.NODE_ID).join(':')}`;
             const newLastVisitedGuides: LastVisitedGuides = JSON.parse(JSON.stringify(lastVisitedGuides));
 
-            newLastVisitedGuides[lastVisitedKey] = { tree, nodePath: nodes, createdAt: new Date().toISOString() };
+            newLastVisitedGuides.push({
+                [lastVisitedKey]: {
+                    tree,
+                    nodePath: nodes,
+                    createdAt: new Date().toISOString()
+                }
+            });
 
             console.log(')>>>>>>>>>>>>', newLastVisitedGuides);
 

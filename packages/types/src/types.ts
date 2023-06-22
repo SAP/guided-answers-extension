@@ -108,7 +108,7 @@ export interface LastVisitedGuide {
     createdAt: string;
 }
 
-export type LastVisitedGuides = Record<string, LastVisitedGuide>; //key is 'TREE_ID-NODE_ID:NODE_ID:NODE_ID:...NODE_ID'
+export type LastVisitedGuides = Array<Record<string, LastVisitedGuide>>; //key is 'TREE_ID-NODE_ID:NODE_ID:NODE_ID:...NODE_ID'
 
 export interface GuidedAnswerAPI {
     getApiInfo: () => { host: string; version: string };

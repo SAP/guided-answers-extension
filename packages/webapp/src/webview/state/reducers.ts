@@ -49,7 +49,7 @@ export function getInitialState(): AppState {
         feedbackStatus: false,
         feedbackResponse: false,
         bookmarks: {},
-        lastVisitedGuides: {}
+        lastVisitedGuides: []
     };
 }
 
