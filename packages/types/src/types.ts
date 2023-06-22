@@ -48,8 +48,28 @@ export interface GuidedAnswerNode {
     BODY: string;
     QUESTION: string;
     EDGES: GuidedAnswerEdge[];
-    EXTENSIONS?: GuidedAnswerNodeExtension[];
+    HTML_EXTENSIONS?: GuidedAnswerHtmlExtension[];
+    NODE_EXTENSIONS?: GuidedAnswerNodeExtension[];
     COMMANDS?: Command[];
+}
+
+export interface GuidedAnswerHtmlExtension {
+    extensionType: 'HTML';
+    label: string;
+    desc: string;
+    text: string;
+    command: {
+        type: 'Extension' | 'Terminal';
+        exec: {
+            extensionId: string;
+            command: string;
+            args: string;
+        };
+        environment: {
+            vscode: 0 | 1;
+            sbas: 0 | 1;
+        };
+    };
 }
 
 export interface GuidedAnswerNodeExtension {
@@ -140,7 +160,6 @@ export interface Command {
     label: string;
     description: string;
     exec: TerminalCommand | VSCodeCommand;
-    environment?: IDE[];
 }
 
 export interface HTMLEnhancement {
@@ -148,11 +167,15 @@ export interface HTMLEnhancement {
     command: Command;
 }
 
+export interface Logger {
+    logString: (message: string) => void;
+}
+
 export interface APIOptions {
     apiHost?: string;
     ide?: IDE;
     extensions?: Set<string>;
-    htmlEnhancements?: HTMLEnhancement[];
+    logger?: Logger;
 }
 
 export interface ShareNodeLinks {

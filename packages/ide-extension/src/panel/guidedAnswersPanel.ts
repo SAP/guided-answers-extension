@@ -36,7 +36,7 @@ import {
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
-import { getHtmlEnhancements, getInstalledExtensionIds, handleCommand } from '../enhancement';
+import { getInstalledExtensionIds, handleCommand } from '../enhancement';
 import { logString } from '../logger/logger';
 import type { Options, StartOptions } from '../types';
 import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
@@ -76,12 +76,10 @@ export class GuidedAnswersPanel {
         this.startOptions = options?.startOptions;
         this.ide = options?.ide ?? 'VSCODE';
         this.restoreAppState = options?.restore?.appState;
-        const htmlEnhancements = getHtmlEnhancements(this.ide);
         const extensions = getInstalledExtensionIds();
 
         this.guidedAnswerApi = getGuidedAnswerApi({
             apiHost: options?.apiHost,
-            htmlEnhancements,
             ide: this.ide,
             extensions
         });

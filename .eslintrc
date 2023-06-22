@@ -126,6 +126,7 @@
         "promise/no-new-statics": "error",
         "promise/no-return-in-finally": "error",
         "promise/valid-params": "error",
+        "default-param-last": "error",
         "no-cond-assign": "error",
         "no-constant-condition": "error",
         "no-control-regex": "error",
