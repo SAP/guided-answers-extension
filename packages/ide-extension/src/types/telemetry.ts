@@ -133,3 +133,28 @@ export interface TelemetryUIShareLinkProps extends TelemetryUIEventProps {
 export interface TelemetryUIClearFiltersProps extends TelemetryUIEventProps {
     action: 'CLEAR_FILTERS';
 }
+
+export interface TelemetryUILoadBookmarksProps extends TelemetryUIEventProps {
+    action: 'LOAD_BOOKMARKS';
+    count: string;
+}
+
+export interface TelemetryUIUpdateBookmarksProps extends TelemetryUIEventProps {
+    action: 'ADD_BOOKMARK' | 'REMOVE_BOOKMARK' | 'SYNC_BOOKMARK';
+    treeId: string;
+    treeTitle: string;
+    lastNodeId: string;
+    lastNodeTitle: string;
+    nodeIdPath: string;
+    nodeLevel: string;
+}
+
+export interface TelemetryUIClickBookmarkProps extends TelemetryUIEventProps {
+    action: 'CLICK_BOOKMARK';
+    treeId: string;
+    treeTitle: string;
+    lastNodeId: string;
+    lastNodeTitle: string;
+    nodeIdPath: string;
+    nodeLevel: string;
+}

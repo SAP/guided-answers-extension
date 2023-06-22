@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.23.7
+
+### Patch Changes
+
+-   7659e08: feat(509): add telemetry for bookmarks
+
 ## 1.23.6
 
 ## 1.23.5

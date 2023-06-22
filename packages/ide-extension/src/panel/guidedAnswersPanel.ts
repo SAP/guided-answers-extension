@@ -279,7 +279,7 @@ export class GuidedAnswersPanel {
             const bookmarkKey = `${bookmark.tree.TREE_ID}-${bookmark.nodePath.map((n) => n.NODE_ID).join(':')}`;
             const bookmarks = getAllBookmarks();
             bookmarks[bookmarkKey] = bookmark;
-            this.postActionToWebview(updateBookmark(bookmarks));
+            this.postActionToWebview(updateBookmark({ bookmarks }));
             this.postActionToWebview(goToAllAnswers());
             this.postActionToWebview(setActiveTree(tree));
             for (const node of nodePath) {
@@ -365,7 +365,7 @@ export class GuidedAnswersPanel {
                     break;
                 }
                 case UPDATE_BOOKMARKS: {
-                    updateBookmarks(action.payload);
+                    updateBookmarks(action.payload.bookmarks);
                     break;
                 }
                 case UPDATE_LAST_VISITED_GUIDES: {

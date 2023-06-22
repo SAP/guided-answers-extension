@@ -637,20 +637,22 @@ describe('GuidedAnswersPanel', () => {
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
             type: 'UPDATE_BOOKMARKS',
             payload: {
-                '1-2:3': {
-                    tree: {
-                        TREE_ID: 1,
-                        FIRST_NODE_ID: 1
-                    },
-                    nodePath: [
-                        {
-                            NODE_ID: 2
+                bookmarks: {
+                    '1-2:3': {
+                        tree: {
+                            TREE_ID: 1,
+                            FIRST_NODE_ID: 1
                         },
-                        {
-                            NODE_ID: 3
-                        }
-                    ],
-                    createdAt: '2023-05-23T21:46:42.223Z'
+                        nodePath: [
+                            {
+                                NODE_ID: 2
+                            },
+                            {
+                                NODE_ID: 3
+                            }
+                        ],
+                        createdAt: '2023-05-23T21:46:42.223Z'
+                    }
                 }
             }
         });
@@ -710,7 +712,10 @@ describe('GuidedAnswersPanel', () => {
         panel.show();
         await onDidReceiveMessageMock({
             type: UPDATE_BOOKMARKS,
-            payload: bookmarksMock
+            payload: {
+                bookmarkKey: '1-2:3',
+                bookmarks: bookmarksMock
+            }
         });
 
         // Result check

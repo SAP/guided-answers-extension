@@ -44,7 +44,8 @@ import type {
     SynchronizeBookmark,
     LastVisitedGuides,
     GetLastVisitedGuides,
-    UpdateLastVisitedGuides
+    UpdateLastVisitedGuides,
+    UpdateBookmarksPayload
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -209,7 +210,7 @@ export const restoreState = (payload: AppState): RestoreState => ({
     payload
 });
 
-export const updateBookmark = (payload: Bookmarks): UpdateBookmarks => ({
+export const updateBookmark = (payload: UpdateBookmarksPayload): UpdateBookmarks => ({
     type: UPDATE_BOOKMARKS,
     payload
 });

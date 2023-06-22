@@ -405,7 +405,7 @@ function searchTreeReducer(newState: AppState, action: SearchTree): AppState {
  * @returns new state with changes
  */
 function updateBookmarksReducer(newState: AppState, action: UpdateBookmarks): AppState {
-    newState.bookmarks = action.payload;
+    newState.bookmarks = action.payload.bookmarks;
     return newState;
 }
 

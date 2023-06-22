@@ -95,6 +95,11 @@ export interface Bookmark {
     createdAt: string;
 }
 
+export interface UpdateBookmarksPayload {
+    bookmarkKey?: string;
+    bookmarks: Bookmarks;
+}
+
 export type Bookmarks = Record<string, Bookmark>; //key is 'TREE_ID-NODE_ID:NODE_ID:NODE_ID:...NODE_ID'
 
 export interface LastVisitedGuide {
@@ -329,7 +334,7 @@ export interface GetBookmarks {
 export const UPDATE_BOOKMARKS = 'UPDATE_BOOKMARKS';
 export interface UpdateBookmarks {
     type: typeof UPDATE_BOOKMARKS;
-    payload: Bookmarks;
+    payload: UpdateBookmarksPayload;
 }
 
 export const GET_LAST_VISITED_GUIDES = 'GET_LAST_VISITED_GUIDES';
