@@ -1,5 +1,7 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.24.0
+
 ## 1.23.7
 
 ### Patch Changes

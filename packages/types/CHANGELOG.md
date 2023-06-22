@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-types
 
+## 1.24.0
+
+### Minor Changes
+
+-   37a50f4: Read HTML enhancements from API
+
 ## 1.23.7
 
 ### Patch Changes
