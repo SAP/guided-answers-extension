@@ -71,7 +71,7 @@ const getApiMock = (firstNodeId?: number): GuidedAnswerAPI =>
         getNodeById: (nodeId: GuidedAnswerNodeId) => Promise.resolve({ NODE_ID: nodeId, TITLE: `Node ${nodeId}` }),
         getNodePath: (nodeIdPath: GuidedAnswerNodeId[]) =>
             Promise.resolve(nodeIdPath.map((nodeId) => ({ NODE_ID: nodeId }))),
-        getTrees: () => Promise.resolve([{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]),
+        getTrees: () => Promise.resolve([{ TREE_ID: 1 }, { TREE_ID: 2 }, { TREE_ID: 3 }]),
         sendFeedbackOutcome: jest.fn(),
         sendFeedbackComment: jest.fn()
     } as unknown as GuidedAnswerAPI);
@@ -88,7 +88,7 @@ describe('GuidedAnswersPanel', () => {
         loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
     });
 
-    test('Smoketest new GuidedAnswersPanel', () => {
+    test('Smoke test new GuidedAnswersPanel', () => {
         // Test execution
         const gaPanel = new GuidedAnswersPanel();
 
@@ -354,7 +354,7 @@ describe('GuidedAnswersPanel', () => {
         // Result check
         expect(webViewPanelMock.webview.postMessage).toBeCalledWith({
             type: UPDATE_GUIDED_ANSWER_TREES,
-            payload: [{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]
+            payload: { searchResult: [{ TREE_ID: 1 }, { TREE_ID: 2 }, { TREE_ID: 3 }] }
         });
     });
 
@@ -400,7 +400,7 @@ describe('GuidedAnswersPanel', () => {
         });
     });
 
-    test('GuidedAnswersPanel communication SEARCH_TREE, server errror', async () => {
+    test('GuidedAnswersPanel communication SEARCH_TREE, server error', async () => {
         // Mock setup
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
         const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
@@ -439,9 +439,9 @@ describe('GuidedAnswersPanel', () => {
         apiMock.getTrees = async () => {
             await delay(2100);
             return Promise.resolve([
-                { TREEE_ID: 1 },
-                { TREEE_ID: 2 },
-                { TREEE_ID: 3 }
+                { TREE_ID: 1 },
+                { TREE_ID: 2 },
+                { TREE_ID: 3 }
             ] as unknown as GuidedAnswerTreeSearchResult);
         };
         jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
@@ -467,7 +467,10 @@ describe('GuidedAnswersPanel', () => {
         });
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(3, {
             type: 'UPDATE_GUIDED_ANSWER_TREES',
-            payload: [{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]
+            payload: {
+                searchResult: [{ TREE_ID: 1 }, { TREE_ID: 2 }, { TREE_ID: 3 }],
+                pagingOptions: { responseSize: 5, offset: 0 }
+            }
         });
     });
 
@@ -481,9 +484,9 @@ describe('GuidedAnswersPanel', () => {
         apiMock.getTrees = async () => {
             await delay(2100);
             return Promise.resolve([
-                { TREEE_ID: 1 },
-                { TREEE_ID: 2 },
-                { TREEE_ID: 3 }
+                { TREE_ID: 1 },
+                { TREE_ID: 2 },
+                { TREE_ID: 3 }
             ] as unknown as GuidedAnswerTreeSearchResult);
         };
         jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
@@ -505,7 +508,10 @@ describe('GuidedAnswersPanel', () => {
         });
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {
             type: 'UPDATE_GUIDED_ANSWER_TREES',
-            payload: [{ TREEE_ID: 1 }, { TREEE_ID: 2 }, { TREEE_ID: 3 }]
+            payload: {
+                searchResult: [{ TREE_ID: 1 }, { TREE_ID: 2 }, { TREE_ID: 3 }],
+                pagingOptions: { responseSize: 5, offset: 10 }
+            }
         });
     });
 

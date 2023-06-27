@@ -20,7 +20,6 @@ import type {
     UpdateActiveNodeSharing,
     WebviewReady,
     UpdateNetworkStatus,
-    GuidedAnswerTreeSearchResult,
     GuidedAnswersQueryOptions,
     BetaFeatures,
     GuideFeedback,
@@ -78,7 +77,7 @@ import {
     SYNCHRONIZE_BOOKMARK
 } from './types';
 
-export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
+export const updateGuidedAnswerTrees = (payload: UpdateGuidedAnswerTrees['payload']): UpdateGuidedAnswerTrees => ({
     type: UPDATE_GUIDED_ANSWER_TREES,
     payload
 });
