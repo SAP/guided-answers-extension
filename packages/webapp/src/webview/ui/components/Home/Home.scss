@@ -1,0 +1,19 @@
+.guided-answer__home {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+
+    &__column {
+        flex: 0 1 540px;
+    }
+
+    &__row {
+        margin-bottom: 50px;
+    }
+}
+
+@media only screen and (max-width: 740px) {
+    .guided-answer__home {
+        display: block;
+    }
+}

@@ -15,8 +15,8 @@ import { SpinnerSize } from '@fluentui/react';
 import i18next from 'i18next';
 import { VscStarFull } from 'react-icons/vsc';
 import type { Bookmarks as BookmarksType } from '@sap/guided-answers-extension-types';
-import { Bookmarks } from '../Bookmarks';
 import { TreeItemBottomSection } from '../TreeItemBottomSection';
+import { Home } from '../Home';
 
 initIcons();
 
@@ -92,7 +92,7 @@ export function App(): ReactElement {
         appState.guidedAnswerTreeSearchResult.resultSize === -1 &&
         appState.query === ''
     ) {
-        content = <Bookmarks />;
+        content = <Home />;
     } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
         content =
             appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (
