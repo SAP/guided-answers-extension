@@ -62,6 +62,7 @@ describe('Telemetry trackEvent() tests', () => {
         jest.clearAllMocks();
         jest.spyOn(commands, 'registerCommand');
         jest.spyOn(logger, 'logString').mockImplementation(() => null);
+        jest.spyOn(logger, 'traceString').mockImplementation(() => null);
         jest.spyOn(workspace, 'getConfiguration').mockReturnValue({ get: () => true } as any);
 
         const context = {
@@ -145,6 +146,7 @@ describe('Telemetry trackAction() tests', () => {
                 treeTitle: 'Title'
             }
         });
+        expect(logger.traceString).toBeCalledWith(expect.stringContaining('OPEN_TREE'));
     });
 
     test('send UPDATE_ACTIVE_NODE action', () => {
