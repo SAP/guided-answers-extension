@@ -77,11 +77,15 @@ export const actionMap: {
     }),
     [UPDATE_GUIDED_ANSWER_TREES]: (action: SendTelemetry): TelemetryUISearchProps => ({
         action: 'SEARCH',
-        treeCount: (action.payload.action as UpdateGuidedAnswerTrees).payload.trees?.length.toString() || '',
+        treeCount:
+            (action.payload.action as UpdateGuidedAnswerTrees).payload.searchResult.trees?.length.toString() || '',
         productFilterCount:
-            (action.payload.action as UpdateGuidedAnswerTrees).payload.productFilters?.length.toString() || '',
+            (action.payload.action as UpdateGuidedAnswerTrees).payload.searchResult.productFilters?.length.toString() ||
+            '',
         componentFilterCount:
-            (action.payload.action as UpdateGuidedAnswerTrees).payload.componentFilters?.length.toString() || ''
+            (
+                action.payload.action as UpdateGuidedAnswerTrees
+            ).payload.searchResult.componentFilters?.length.toString() || ''
     }),
     [EXECUTE_COMMAND]: (action: SendTelemetry): TelemetryUIExecuteCommandProps => ({
         action: 'EXECUTE_COMMAND',

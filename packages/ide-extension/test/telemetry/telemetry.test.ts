@@ -16,6 +16,7 @@ import {
 } from '@sap/guided-answers-extension-types';
 import { TelemetryEvent, TelemetryReporter } from '../../src/types';
 import packageJson from '../../package.json';
+import { GuidedAnswerTreeSearchResult, UpdateGuidedAnswerTrees } from '../../../types/src/types';
 
 jest.mock('applicationinsights', () => ({
     TelemetryClient: jest.fn().mockImplementation((key) => ({
@@ -243,6 +244,9 @@ describe('Telemetry trackAction() tests', () => {
         // Mock setup
         const mockAction = getDummyAction('UPDATE_GUIDED_ANSWER_TREES');
         delete mockAction.payload.state.activeGuidedAnswer;
+        (mockAction.payload.action as UpdateGuidedAnswerTrees).payload = {
+            searchResult: {} as GuidedAnswerTreeSearchResult
+        };
 
         // Test execution
         trackAction(mockAction);

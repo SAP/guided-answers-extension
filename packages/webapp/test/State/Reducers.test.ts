@@ -1,10 +1,4 @@
-import {
-    GUIDE_FEEDBACK,
-    GuideFeedback,
-    UpdateActiveNode,
-    AppState,
-    GuidedAnswerActions
-} from './../../../types/src/types';
+import { GUIDE_FEEDBACK, AppState, GuidedAnswerActions } from './../../../types/src/types';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import {
     UPDATE_GUIDED_ANSWER_TREES,
@@ -21,6 +15,7 @@ import {
     RESTORE_STATE,
     RESET_FILTERS
 } from '@sap/guided-answers-extension-types';
+import type { GuidedAnswerTreeSearchHit } from '@sap/guided-answers-extension-types';
 
 const mockedPayload = {
     trees: [
@@ -146,12 +141,12 @@ describe('Test functions in reducers', () => {
     it('Should return updated guide answer trees', () => {
         const answersWithDefaultState = reducer(undefined, {
             type: UPDATE_GUIDED_ANSWER_TREES,
-            payload: mockedPayload
+            payload: { searchResult: mockedPayload }
         });
 
         const answers = reducer(getInitialState(), {
             type: UPDATE_GUIDED_ANSWER_TREES,
-            payload: mockedPayload
+            payload: { searchResult: mockedPayload }
         });
 
         const expected = {
@@ -173,6 +168,31 @@ describe('Test functions in reducers', () => {
 
         expect(answersWithDefaultState).toEqual(expected);
         expect(answers).toEqual(expected);
+    });
+
+    it('Should add new results to existing guided answers trees (paging)', () => {
+        const state = getInitialState();
+        state.guidedAnswerTreeSearchResult.trees = [{ TREE_ID: 1 } as GuidedAnswerTreeSearchHit];
+
+        const newState = reducer(state, {
+            type: UPDATE_GUIDED_ANSWER_TREES,
+            payload: {
+                searchResult: {
+                    trees: [{ TREE_ID: 2 } as GuidedAnswerTreeSearchHit],
+                    resultSize: 2,
+                    componentFilters: [],
+                    productFilters: []
+                },
+                pagingOptions: { offset: 1, responseSize: 10 }
+            }
+        });
+
+        expect(newState.guidedAnswerTreeSearchResult).toEqual({
+            trees: [{ TREE_ID: 1 }, { TREE_ID: 2 }],
+            resultSize: 2,
+            componentFilters: [],
+            productFilters: []
+        });
     });
 
     it('Should pop node when tree is updated with GuideFeedback as False', () => {

@@ -246,7 +246,10 @@ export interface AppState {
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnswerTrees {
     type: typeof UPDATE_GUIDED_ANSWER_TREES;
-    payload: GuidedAnswerTreeSearchResult;
+    payload: {
+        searchResult: GuidedAnswerTreeSearchResult;
+        pagingOptions?: GuidedAnswersQueryPagingOptions;
+    };
 }
 
 export const SELECT_NODE = 'SELECT_NODE';
