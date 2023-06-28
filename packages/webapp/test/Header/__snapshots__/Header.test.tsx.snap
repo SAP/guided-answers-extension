@@ -153,6 +153,105 @@ exports[`<Header /> Should render a Header component with the navigation buttons
 </div>
 `;
 
+exports[`<Header /> Should render a Header component without the navigation buttons (with beta features) 1`] = `
+<div>
+  <div
+    class="guided-answer__header vertical"
+    style="padding-bottom: 20px;"
+  >
+    <div
+      class="guided-answer__header__sub"
+    >
+      <div
+        class="guided-answer__header__logoAndTitle"
+      >
+        <span
+          id="sap-logo"
+        >
+          <svg />
+        </span>
+        <h1
+          class="guided-answer__header__title"
+        >
+          Guided Answers
+        </h1>
+      </div>
+      <div
+        class="guided-answer__header__searchField"
+      >
+        <div
+          class="ms-SearchBox tree-search-field root-109"
+        >
+          <div
+            aria-hidden="true"
+            class="ms-SearchBox-iconContainer iconContainer-110"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-SearchBox-icon icon-114"
+              data-icon-name="Search"
+            />
+          </div>
+          <input
+            class="ms-SearchBox-field field-113"
+            id="search-field"
+            placeholder="Search Guided Answers"
+            readonly=""
+            role="searchbox"
+            value=""
+          />
+        </div>
+        <div
+          id="filters"
+        >
+          <button
+            aria-disabled="true"
+            class="ms-Button ms-Button--icon is-disabled filter-button root-115"
+            data-is-focusable="false"
+            disabled=""
+            id="filter-products"
+            title="Filter Products"
+            type="button"
+          >
+            <span
+              class="ms-Button-flexContainer flexContainer-116"
+              data-automationid="splitbuttonprimary"
+            >
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon icon-118"
+                data-icon-name="Table"
+              />
+            </span>
+          </button>
+          <button
+            aria-disabled="true"
+            class="ms-Button ms-Button--icon is-disabled filter-button root-115"
+            data-is-focusable="false"
+            disabled=""
+            id="filter-components"
+            title="Filter Components"
+            type="button"
+          >
+            <span
+              class="ms-Button-flexContainer flexContainer-116"
+              data-automationid="splitbuttonprimary"
+            >
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon icon-118"
+                data-icon-name="IdTag"
+              />
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+     
+  </div>
+</div>
+`;
+
 exports[`<Header /> Should render a Header component without the navigation buttons 1`] = `
 <div>
   <div

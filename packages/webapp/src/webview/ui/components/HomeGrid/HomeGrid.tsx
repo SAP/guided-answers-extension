@@ -27,14 +27,14 @@ export function HomeGrid(props: { children: ReactNode }): ReactElement {
         <div className="guided-answer__home-grid">
             <div className="guided-answer__home-grid__column">
                 {column1.map((row, i) => (
-                    <div key={i} className="guided-answer__home-grid__row">
+                    <div key={`home-grid-row-${i}`} className="guided-answer__home-grid__row">
                         {row}
                     </div>
                 ))}
             </div>
             <div className="guided-answer__home-grid__column">
                 {column2.map((row, i) => (
-                    <div key={i} className="guided-answer__home-grid__row">
+                    <div key={`home-grid-row-${i}`} className="guided-answer__home-grid__row">
                         {row}
                     </div>
                 ))}

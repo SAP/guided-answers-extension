@@ -29,6 +29,9 @@ describe('<Header />', () => {
         TITLE: 'SAP Fiori Tools'
     });
 
+    const stateWithBetaFeatures = getInitialState();
+    stateWithBetaFeatures.betaFeatures = true;
+
     it('Should render a Header component without the navigation buttons', () => {
         const { container } = render(
             <Provider store={mockStore(createState(getInitialState()))}>
@@ -42,6 +45,15 @@ describe('<Header />', () => {
         const { container } = render(
             <Provider store={mockStore(createState(stateWithActiveAnswer))}>
                 <Header showSub={false} showLogo={false} showNavButons={true} showSearch={false} />
+            </Provider>
+        );
+        expect(container).toMatchSnapshot();
+    });
+
+    it('Should render a Header component without the navigation buttons (with beta features)', () => {
+        const { container } = render(
+            <Provider store={mockStore(createState(stateWithBetaFeatures))}>
+                <Header showSub={true} showLogo={true} showNavButons={false} showSearch={true} />
             </Provider>
         );
         expect(container).toMatchSnapshot();
