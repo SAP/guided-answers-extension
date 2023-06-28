@@ -91,6 +91,28 @@
             flex-direction: row;
             margin-top: 30px;
             width: 66%;
+
+            .ms-SearchBox {
+                min-width: 250px;
+                width: 50%;
+            }
+        }
+        &.vertical {
+            justify-content: center;
+
+            .guided-answer__header__sub {
+                flex-direction: column;
+                width: unset;
+                align-items: flex-start;
+            }
+
+            .guided-answer__header__searchField {
+                width: unset;
+            }
+
+            .ms-SearchBox {
+                width: 500px;
+            }
         }
     }
 }

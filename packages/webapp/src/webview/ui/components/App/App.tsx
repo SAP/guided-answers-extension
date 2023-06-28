@@ -16,7 +16,8 @@ import i18next from 'i18next';
 import { VscStarFull } from 'react-icons/vsc';
 import type { Bookmarks as BookmarksType } from '@sap/guided-answers-extension-types';
 import { TreeItemBottomSection } from '../TreeItemBottomSection';
-import { Home } from '../Home';
+import { Bookmarks } from '../Bookmarks';
+import { HomeGrid } from '../HomeGrid';
 
 initIcons();
 
@@ -92,7 +93,15 @@ export function App(): ReactElement {
         appState.guidedAnswerTreeSearchResult.resultSize === -1 &&
         appState.query === ''
     ) {
-        content = <Home />;
+        content = appState.betaFeatures ? (
+            <HomeGrid>
+                <Bookmarks />
+                <Bookmarks />
+                <Bookmarks />
+            </HomeGrid>
+        ) : (
+            <Bookmarks />
+        );
     } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
         content =
             appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (

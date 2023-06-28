@@ -3,7 +3,7 @@
 exports[`<Header /> Should render a Header component with the navigation buttons 1`] = `
 <div>
   <div
-    class="guided-answer__header"
+    class="guided-answer__header "
     style="padding-bottom: 0px;"
   >
     <div
@@ -156,7 +156,7 @@ exports[`<Header /> Should render a Header component with the navigation buttons
 exports[`<Header /> Should render a Header component without the navigation buttons 1`] = `
 <div>
   <div
-    class="guided-answer__header"
+    class="guided-answer__header "
     style="padding-bottom: 20px;"
   >
     <div

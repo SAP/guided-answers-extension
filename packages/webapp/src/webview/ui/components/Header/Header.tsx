@@ -32,8 +32,12 @@ export function Header(props: {
     showSearch: boolean;
 }): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
+    const verticalSearch =
+        appState.betaFeatures && appState.guidedAnswerTreeSearchResult.resultSize === -1 && appState.query === '';
     return (
-        <div className="guided-answer__header" style={{ paddingBottom: props.showNavButons === true ? '0' : '20px' }}>
+        <div
+            className={`guided-answer__header ${verticalSearch ? 'vertical' : ''}`}
+            style={{ paddingBottom: props.showNavButons === true ? '0' : '20px' }}>
             {props.showSub === true ? (
                 <>
                     <div className="guided-answer__header__sub">
