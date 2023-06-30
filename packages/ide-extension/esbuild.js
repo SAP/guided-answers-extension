@@ -1,5 +1,6 @@
 const { join } = require('path');
 const { copy } = require('esbuild-plugin-copy');
+const { build, context } = require('esbuild');
 
 const buildConfig = {
     logLevel: 'info',
@@ -38,15 +39,24 @@ const buildConfig = {
     ]
 };
 
-if (process.argv.slice(2).includes('--watch')) {
-    console.log('Applyin watch config');
-    buildConfig.watch = true;
+async function run() {
+    'use strict';
+    const watch = process.argv.slice(2).includes('--watch');
+    if (!watch) {
+        // Standard build
+        build(buildConfig).catch((error) => {
+            console.log(error);
+            process.exit(1);
+        });
+        process.exit(0);
+    }
+    // Build with watch
+    console.log('Applying watch config');
     buildConfig.minify = false;
-}
-
-require('esbuild')
-    .build(buildConfig)
-    .catch((error) => {
+    const buildContext = await context(buildConfig);
+    await buildContext.watch().catch((error) => {
         console.log(error);
-        process.exit(1);
+        buildContext.dispose();
     });
+}
+run();

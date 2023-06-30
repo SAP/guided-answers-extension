@@ -10,10 +10,14 @@ exports[`<ErrorScreen /> Should render a ErrorScreen component 1`] = `
     >
       <h1
         class="error-screen__object__title"
-      />
+      >
+        TITLE
+      </h1>
       <h2
         class="error-screen__object__subtitle"
-      />
+      >
+        SUBTITLE
+      </h2>
       <span
         class="error-screen__object__logo"
       >

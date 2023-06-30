@@ -6,15 +6,6 @@ module.exports = {
     collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.d.ts'],
     testPathIgnorePatterns: ['<rootDir>/node_modules/,<rootDir>/test/'],
     errorOnDeprecated: true,
-    globals: {
-        'ts-jest': {
-            jsx: 'react',
-            diagnostics: {
-                warnOnly: true,
-                exclude: /\.(spec|test)\.ts$/
-            }
-        }
-    },
     notify: false,
     notifyMode: 'failure',
     preset: 'ts-jest',
@@ -22,7 +13,16 @@ module.exports = {
     testEnvironment: 'jsdom',
     testMatch: ['**/test/**/*.(test).ts(x)?'],
     transform: {
-        '^.+\\.(ts|tsx)?$': 'ts-jest',
+        '^.+\\.(ts|tsx)?$': [
+            'ts-jest',
+            {
+                jsx: 'react',
+                diagnostics: {
+                    warnOnly: true,
+                    exclude: /\.(spec|test)\.ts$/
+                }
+            }
+        ],
         '.+\\.(css|sass|scss)$': 'jest-css-modules-transform'
     },
     moduleNameMapper: {
