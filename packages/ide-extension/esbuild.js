@@ -44,7 +44,7 @@ async function run() {
     const watch = process.argv.slice(2).includes('--watch');
     if (!watch) {
         // Standard build
-        build(buildConfig).catch((error) => {
+        await build(buildConfig).catch((error) => {
             console.log(error);
             process.exit(1);
         });

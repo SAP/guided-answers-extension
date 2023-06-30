@@ -32,7 +32,7 @@
         "esbuild": "0.18.10",
         "esbuild-css-modules-plugin": "2.7.1",
         "esbuild-plugin-replace": "1.4.0",
-        "esbuild-plugin-svgr": "2.0.0",
+        "esbuild-plugin-svgr": "1.1.0",
         "esbuild-sass-plugin": "2.10.0",
         "html-react-parser": "4.0.0",
         "i18next": "23.2.6",
