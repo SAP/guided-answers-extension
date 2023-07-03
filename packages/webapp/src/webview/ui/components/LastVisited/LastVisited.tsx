@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import type { AppState } from '../../../types';
 import { actions } from '../../../state';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-import { VscStarFull } from 'react-icons/vsc';
+import { VscHistory } from 'react-icons/vsc';
 import { TreeItemBottomSection } from '../TreeItemBottomSection';
 import type { LastVisitedGuides as LastVisitedGuidesType, LastVisitedGuide } from '@sap/guided-answers-extension-types';
 
@@ -15,12 +15,17 @@ import type { LastVisitedGuides as LastVisitedGuidesType, LastVisitedGuide } fro
  */
 export function LastVisited(): ReactElement {
     const lastVisitedGuides = useSelector<AppState, LastVisitedGuidesType>((state) => state.lastVisitedGuides);
-    console.log('Ahhhh', lastVisitedGuides);
+    if (lastVisitedGuides.length === 0) {
+        return <></>;
+    }
     return (
         <div>
-            <h3>Last visited</h3>
+            <h3 style={{ display: 'flex', alignItems: 'center' }}>
+                <VscHistory />
+                <span style={{ margin: '0 5px' }}>Last visited</span>
+            </h3>
             <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
-                <ul className="striped-list-bookmarks" role="listbox">
+                <ul className="striped-list-items" role="listbox">
                     {lastVisitedGuides.slice(-1).map((lastVisitedGuidesKey: any) => {
                         const lastVisitedGuide: LastVisitedGuide =
                             lastVisitedGuidesKey[Object.keys(lastVisitedGuidesKey)[0]];
@@ -35,7 +40,9 @@ export function LastVisited(): ReactElement {
                                     className="guided-answer__tree"
                                     onClick={(): void => {
                                         actions.setActiveTree(lastVisitedGuide.tree);
-                                        // lastVisitedGuide.nodePath.forEach((node: any) => actions.updateActiveNode(node));
+                                        lastVisitedGuide.nodePath.forEach((node: any) =>
+                                            actions.updateActiveNode(node)
+                                        );
                                         document.body.focus();
                                     }}>
                                     <div className="guided-answer__tree__ul">

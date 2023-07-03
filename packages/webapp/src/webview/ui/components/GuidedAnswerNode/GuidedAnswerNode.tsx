@@ -5,9 +5,7 @@ import type { ReactElement } from 'react';
 import type {
     Command,
     GuidedAnswerNode as GuidedAnswerNodeType,
-    GuidedAnswerTree,
-    LastVisitedGuides,
-    LastVisitedGuide
+    GuidedAnswerTree
 } from '@sap/guided-answers-extension-types';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 import { useSelector } from 'react-redux';
@@ -88,7 +86,6 @@ function hasEnhancements(htmlString: string): boolean {
 export function GuidedAnswerNode(): ReactElement {
     const nodes = useSelector<AppState, GuidedAnswerNodeType[]>((state) => state.activeGuidedAnswerNode);
     const tree = useSelector<AppState, GuidedAnswerTree | undefined>((state) => state.activeGuidedAnswer);
-    const lastVisitedGuides = useSelector<AppState, LastVisitedGuides>((state) => state.lastVisitedGuides);
 
     if (!tree) {
         // No active tree, nothing we can do here
@@ -99,23 +96,6 @@ export function GuidedAnswerNode(): ReactElement {
 
     if (activeNode) {
         const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
-
-        if (tree) {
-            const lastVisitedKey = `${tree.TREE_ID}-${nodes.map((n) => n.NODE_ID).join(':')}`;
-            const newLastVisitedGuides: LastVisitedGuides = JSON.parse(JSON.stringify(lastVisitedGuides));
-
-            newLastVisitedGuides.push({
-                [lastVisitedKey]: {
-                    tree,
-                    nodePath: nodes,
-                    createdAt: new Date().toISOString()
-                }
-            });
-
-            console.log(')>>>>>>>>>>>>', newLastVisitedGuides);
-
-            actions.updateLastVisitedGuide(newLastVisitedGuides);
-        }
 
         return (
             <section className="guided-answer__node__body">

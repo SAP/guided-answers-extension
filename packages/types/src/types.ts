@@ -200,6 +200,7 @@ export type GuidedAnswerActions =
     | SynchronizeBookmark
     | UpdateActiveNodeSharing
     | GetLastVisitedGuides
+    | UpdateLastVisitedGuides
     | UpdateBookmarks
     | ResetFilters
     | RestartAnswer

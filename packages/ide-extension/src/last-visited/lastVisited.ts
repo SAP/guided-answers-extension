@@ -19,6 +19,9 @@ export function initLastVisited(globalState: Memento) {
  * @returns - list of last visited guides
  */
 export function getAllLastVisitedGuides(): LastVisitedGuides {
+    // globalStateApi
+    //     .update('lastVisitedGuides', undefined)
+    //     .then(undefined, (error) => logString(`Error updating lastVisitedGuides.\n${error?.toString()}`));
     const lastVisitedGuides: LastVisitedGuides = globalStateApi?.get<LastVisitedGuides>('lastVisitedGuides') ?? [];
     console.log('FROM getAllLastVisitedGuides --->', lastVisitedGuides);
     return lastVisitedGuides;

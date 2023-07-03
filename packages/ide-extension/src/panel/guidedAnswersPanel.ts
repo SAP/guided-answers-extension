@@ -370,7 +370,7 @@ export class GuidedAnswersPanel {
                 }
                 case UPDATE_LAST_VISITED_GUIDES: {
                     updateLastVisitedGuides(action.payload);
-                    console.log('----->', action);
+                    this.postActionToWebview(getLastVisitedGuides(getAllLastVisitedGuides()));
                     break;
                 }
                 case SYNCHRONIZE_BOOKMARK: {
