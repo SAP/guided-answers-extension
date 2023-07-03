@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.24.2
+
+### Patch Changes
+
+-   7cb1b2a: Update dependencies
+
 ## 1.24.1
 
 ### Patch Changes
