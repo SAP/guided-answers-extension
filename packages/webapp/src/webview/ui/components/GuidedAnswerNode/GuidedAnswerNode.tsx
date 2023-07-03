@@ -2,11 +2,7 @@ import { default as parse } from 'html-react-parser';
 import type { DOMNode, Element } from 'html-react-parser';
 import React from 'react';
 import type { ReactElement } from 'react';
-import type {
-    Command,
-    GuidedAnswerNode as GuidedAnswerNodeType,
-    GuidedAnswerTree
-} from '@sap/guided-answers-extension-types';
+import type { Command, GuidedAnswerNode as GuidedAnswerNodeType } from '@sap/guided-answers-extension-types';
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 import { useSelector } from 'react-redux';
 import { actions } from '../../../state';
@@ -85,12 +81,6 @@ function hasEnhancements(htmlString: string): boolean {
  */
 export function GuidedAnswerNode(): ReactElement {
     const nodes = useSelector<AppState, GuidedAnswerNodeType[]>((state) => state.activeGuidedAnswerNode);
-    const tree = useSelector<AppState, GuidedAnswerTree | undefined>((state) => state.activeGuidedAnswer);
-
-    if (!tree) {
-        // No active tree, nothing we can do here
-        return <></>;
-    }
 
     const activeNode = nodes[nodes.length - 1];
 
