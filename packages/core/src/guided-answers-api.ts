@@ -341,6 +341,7 @@ function enhanceNode(options: {
  *
  * @param host - Guided Answer API host
  * @param nodeIdPath - node path as array of node ids
+ * @returns - array of Guided Answers nodes
  */
 async function getNodePath(host: string, nodeIdPath: GuidedAnswerNodeId[]): Promise<GuidedAnswerNode[]> {
     const promises: Promise<GuidedAnswerNode>[] = [];
@@ -356,6 +357,7 @@ async function getNodePath(host: string, nodeIdPath: GuidedAnswerNodeId[]): Prom
  *
  * @param url - url to post feedback
  * @param feedback - feedback structure
+ * @returns - Feedback response
  */
 async function postFeedback(url: string, feedback: GuidedAnswersFeedback): Promise<PostFeedbackResponse> {
     const response = await axios.post(url, feedback);
@@ -372,6 +374,7 @@ async function postFeedback(url: string, feedback: GuidedAnswersFeedback): Promi
  * @param treeId - Guided Answers tree id
  * @param nodeId - Guided Answers node id
  * @param comment - Feedback comment
+ * @returns - Feedback response
  */
 async function sendFeedbackComment(
     host: string,
@@ -390,6 +393,7 @@ async function sendFeedbackComment(
  * @param treeId - Guided Answers tree id
  * @param nodeId - Guided Answers node id
  * @param solved - true: tree solved the problem; false: tree did not solve the problem
+ * @returns - Feedback response
  */
 async function sendFeedbackOutcome(
     host: string,

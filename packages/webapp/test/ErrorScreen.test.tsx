@@ -7,7 +7,7 @@ describe('<ErrorScreen />', () => {
     initI18n();
 
     it('Should render a ErrorScreen component', () => {
-        const { container } = render(<ErrorScreen />);
+        const { container } = render(<ErrorScreen title="TITLE" subtitle="SUBTITLE" />);
         expect(container).toMatchSnapshot();
     });
 });

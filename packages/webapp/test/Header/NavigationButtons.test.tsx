@@ -132,7 +132,7 @@ describe('BookmarkButton', () => {
         },
         activeGuidedAnswerNode: [{ NODE_ID: 'node1' }, { NODE_ID: 'node2' }],
         bookmarks: {}
-    };
+    } as unknown as AppState;
 
     it('renders without crashing', () => {
         const { getByRole } = render(
@@ -166,7 +166,7 @@ describe('BookmarkButton', () => {
                     nodePath: initialState.activeGuidedAnswerNode
                 }
             }
-        };
+        } as unknown as AppState;
 
         const { getByRole } = render(
             <Provider store={mockStore(createState(initialStateWithBookmark))}>
