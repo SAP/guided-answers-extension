@@ -131,8 +131,10 @@ function cloneState(state: AppState): AppState {
  */
 function updateGuidedAnswerTreesReducer(newState: AppState, action: UpdateGuidedAnswerTrees): AppState {
     const trees = newState.guidedAnswerTreeSearchResult.trees;
-    newState.guidedAnswerTreeSearchResult = action.payload;
-    newState.guidedAnswerTreeSearchResult.trees.unshift(...trees);
+    newState.guidedAnswerTreeSearchResult = action.payload.searchResult;
+    if ((action.payload?.pagingOptions?.offset ?? 0) > 0) {
+        newState.guidedAnswerTreeSearchResult.trees.unshift(...trees);
+    }
     delete newState.activeGuidedAnswer;
     return newState;
 }

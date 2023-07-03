@@ -14,3 +14,12 @@ export function logString(message: string): void {
     }
     channel.appendLine(message);
 }
+
+/**
+ * Add a message to trace.
+ *
+ * @param message - trace message
+ */
+export function traceString(message: string): void {
+    console.log(message);
+}

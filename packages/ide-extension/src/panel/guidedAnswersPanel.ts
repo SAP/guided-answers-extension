@@ -344,7 +344,9 @@ export class GuidedAnswersPanel {
                     }
                     const trees = await this.getTrees(action.payload);
                     logString(`Found ${trees.resultSize} trees`);
-                    this.postActionToWebview(updateGuidedAnswerTrees(trees));
+                    this.postActionToWebview(
+                        updateGuidedAnswerTrees({ searchResult: trees, pagingOptions: action.payload.paging })
+                    );
                     break;
                 }
                 case WEBVIEW_READY: {

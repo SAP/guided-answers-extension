@@ -16,6 +16,7 @@ import {
 } from '@sap/guided-answers-extension-types';
 import { TelemetryEvent, TelemetryReporter } from '../../src/types';
 import packageJson from '../../package.json';
+import { GuidedAnswerTreeSearchResult, UpdateGuidedAnswerTrees } from '../../../types/src/types';
 
 jest.mock('applicationinsights', () => ({
     TelemetryClient: jest.fn().mockImplementation((key) => ({
@@ -61,6 +62,7 @@ describe('Telemetry trackEvent() tests', () => {
         jest.clearAllMocks();
         jest.spyOn(commands, 'registerCommand');
         jest.spyOn(logger, 'logString').mockImplementation(() => null);
+        jest.spyOn(logger, 'traceString').mockImplementation(() => null);
         jest.spyOn(workspace, 'getConfiguration').mockReturnValue({ get: () => true } as any);
 
         const context = {
@@ -144,6 +146,7 @@ describe('Telemetry trackAction() tests', () => {
                 treeTitle: 'Title'
             }
         });
+        expect(logger.traceString).toBeCalledWith(expect.stringContaining('OPEN_TREE'));
     });
 
     test('send UPDATE_ACTIVE_NODE action', () => {
@@ -243,6 +246,9 @@ describe('Telemetry trackAction() tests', () => {
         // Mock setup
         const mockAction = getDummyAction('UPDATE_GUIDED_ANSWER_TREES');
         delete mockAction.payload.state.activeGuidedAnswer;
+        (mockAction.payload.action as UpdateGuidedAnswerTrees).payload = {
+            searchResult: {} as GuidedAnswerTreeSearchResult
+        };
 
         // Test execution
         trackAction(mockAction);

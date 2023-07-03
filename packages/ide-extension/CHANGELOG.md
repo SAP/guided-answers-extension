@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.24.1
+
+### Patch Changes
+
+-   34c9138: Fix for duplicate search results
+
 ## 1.24.0
 
 ### Minor Changes
