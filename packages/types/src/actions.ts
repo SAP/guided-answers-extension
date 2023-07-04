@@ -41,7 +41,8 @@ import type {
     GetBookmarks,
     Bookmark,
     SynchronizeBookmark,
-    UpdateBookmarksPayload
+    UpdateBookmarksPayload,
+    GoToHomePage
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -74,7 +75,8 @@ import {
     OPEN_LINK_TELEMETRY,
     UPDATE_BOOKMARKS,
     GET_BOOKMARKS,
-    SYNCHRONIZE_BOOKMARK
+    SYNCHRONIZE_BOOKMARK,
+    GO_TO_HOME_PAGE
 } from './types';
 
 export const updateGuidedAnswerTrees = (payload: UpdateGuidedAnswerTrees['payload']): UpdateGuidedAnswerTrees => ({
@@ -104,6 +106,10 @@ export const goToAllAnswers = (): GoToAllAnswers => ({
 
 export const restartAnswer = (): RestartAnswer => ({
     type: RESTART_ANSWER
+});
+
+export const goToHomePage = (): GoToHomePage => ({
+    type: GO_TO_HOME_PAGE
 });
 
 export const executeCommand = (payload: Command): ExecuteCommand => ({

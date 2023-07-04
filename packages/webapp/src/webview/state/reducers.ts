@@ -40,14 +40,14 @@ export function getInitialState(): AppState {
         activeNodeSharing: null,
         activeGuidedAnswerNode: [],
         betaFeatures: false,
-        searchResultCount: -1,
         guideFeedback: null,
         selectedProductFilters: [],
         selectedComponentFilters: [],
         pageSize: 20,
         feedbackStatus: false,
         feedbackResponse: false,
-        bookmarks: {}
+        bookmarks: {},
+        isHome: true
     };
 }
 
@@ -78,6 +78,7 @@ const reducers: Partial<Reducers> = {
     GO_TO_PREVIOUS_PAGE: goToPreviousPageReducer,
     GO_TO_ALL_ANSWERS: goToAllAnswersReducer,
     RESTART_ANSWER: restartAnswerReducer,
+    GO_TO_HOME_PAGE: goToHomePageReducer,
     SET_ACTIVE_TREE: setActiveTreeReducer,
     SET_QUERY_VALUE: setQueryValueReducer,
     BETA_FEATURES: betaFeaturesReducer,
@@ -136,6 +137,7 @@ function updateGuidedAnswerTreesReducer(newState: AppState, action: UpdateGuided
         newState.guidedAnswerTreeSearchResult.trees.unshift(...trees);
     }
     delete newState.activeGuidedAnswer;
+    newState.isHome = false;
     return newState;
 }
 
@@ -161,6 +163,7 @@ function updateActiveNodeReducer(newState: AppState, action: UpdateActiveNode): 
     } else {
         newState.activeGuidedAnswerNode.push(action.payload);
     }
+    newState.isHome = false;
     return newState;
 }
 
@@ -228,6 +231,26 @@ function goToAllAnswersReducer(newState: AppState): AppState {
 function restartAnswerReducer(newState: AppState): AppState {
     newState.activeGuidedAnswerNode = [newState.activeGuidedAnswerNode[0]];
     newState.guideFeedback = null;
+    return newState;
+}
+
+/**
+ * Go to home page.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @returns new state with changes
+ */
+function goToHomePageReducer(newState: AppState): AppState {
+    newState.isHome = true;
+    newState.guidedAnswerTreeSearchResult = {
+        resultSize: -1,
+        componentFilters: [],
+        productFilters: [],
+        trees: []
+    };
+    newState.query = '';
+    newState.activeNodeSharing = null;
+    newState.activeGuidedAnswerNode = [];
     return newState;
 }
 

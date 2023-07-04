@@ -164,6 +164,8 @@ exports[`<Header /> Should render a Header component without the navigation butt
     >
       <div
         class="guided-answer__header__logoAndTitle"
+        id="logo-and-title"
+        title="Home"
       >
         <span
           id="sap-logo"
@@ -263,6 +265,8 @@ exports[`<Header /> Should render a Header component without the navigation butt
     >
       <div
         class="guided-answer__header__logoAndTitle"
+        id="logo-and-title"
+        title="Home"
       >
         <span
           id="sap-logo"

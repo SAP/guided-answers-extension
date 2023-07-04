@@ -1,6 +1,8 @@
-import type { ReactElement, ReactNode } from 'react';
-import React, { Children } from 'react';
+import type { ReactElement } from 'react';
+import React from 'react';
 import './HomeGrid.scss';
+
+type ReactElementWithKey = ReactElement<{ key: string }>;
 
 /**
  * Home grid for Guided Answers Extension app.
@@ -9,11 +11,11 @@ import './HomeGrid.scss';
  * @param props.children Sections to layout in the grid
  * @returns - react elements for the home grid
  */
-export function HomeGrid(props: { children: ReactNode }): ReactElement {
-    const children = Children.toArray(props.children);
+export function HomeGrid(props: { children: ReactElementWithKey[] | ReactElementWithKey }): ReactElement {
+    const children = Array.isArray(props.children) ? props.children : [props.children];
 
-    let column1: ReactNode[] = [];
-    let column2: ReactNode[] = [];
+    let column1: ReactElementWithKey[] = [];
+    let column2: ReactElementWithKey[] = [];
 
     if (children.length <= 2) {
         column1 = children;
@@ -26,15 +28,15 @@ export function HomeGrid(props: { children: ReactNode }): ReactElement {
     return (
         <div className="guided-answer__home-grid">
             <div className="guided-answer__home-grid__column">
-                {column1.map((row, i) => (
-                    <div key={`home-grid-row-${i}`} className="guided-answer__home-grid__row">
+                {column1.map((row) => (
+                    <div key={`home-grid-row-${row.key}`} className="guided-answer__home-grid__row">
                         {row}
                     </div>
                 ))}
             </div>
             <div className="guided-answer__home-grid__column">
-                {column2.map((row, i) => (
-                    <div key={`home-grid-row-${i}`} className="guided-answer__home-grid__row">
+                {column2.map((row) => (
+                    <div key={`home-grid-row-${row.key}`} className="guided-answer__home-grid__row">
                         {row}
                     </div>
                 ))}

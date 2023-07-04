@@ -14,7 +14,6 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { SpinnerSize } from '@fluentui/react';
 import i18next from 'i18next';
 import { VscStarFull } from 'react-icons/vsc';
-import type { Bookmarks as BookmarksType } from '@sap/guided-answers-extension-types';
 import { TreeItemBottomSection } from '../TreeItemBottomSection';
 import { Bookmarks } from '../Bookmarks';
 import { HomeGrid } from '../HomeGrid';
@@ -28,7 +27,6 @@ initIcons();
  */
 export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
-    const bookmarks = useSelector<AppState, BookmarksType>((state) => state.bookmarks);
     useEffect(() => {
         const resultsContainer = document.getElementById('results-container');
         if (!resultsContainer) {
@@ -88,21 +86,15 @@ export function App(): ReactElement {
         content = <ErrorScreen title={i18next.t('GUIDED_ANSWERS_UNAVAILABLE')} subtitle={i18next.t('TRY_LATER')} />;
     } else if (appState.activeGuidedAnswerNode.length > 0) {
         content = <GuidedAnswerNode />;
-    } else if (
-        Object.keys(bookmarks).length > 0 &&
-        appState.guidedAnswerTreeSearchResult.resultSize === -1 &&
-        appState.query === ''
-    ) {
+    } else if (appState.isHome) {
         content = appState.betaFeatures ? (
             <HomeGrid>
-                <Bookmarks />
-                <Bookmarks />
-                <Bookmarks />
+                <Bookmarks key="bookmarks" />
             </HomeGrid>
         ) : (
             <Bookmarks />
         );
-    } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
+    } else {
         content =
             appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (
                 <ErrorScreen title={i18next.t('NO_ANSWERS_FOUND')} subtitle={i18next.t('PLEASE_MODIFY_SEARCH')} />

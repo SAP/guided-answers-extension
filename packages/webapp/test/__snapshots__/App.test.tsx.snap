@@ -14,6 +14,8 @@ exports[`<App /> Match snapshot of component <App/> in initial mode (with beta f
       >
         <div
           class="guided-answer__header__logoAndTitle"
+          id="logo-and-title"
+          title="Home"
         >
           <span
             id="sap-logo"
@@ -192,6 +194,8 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
       >
         <div
           class="guided-answer__header__logoAndTitle"
+          id="logo-and-title"
+          title="Home"
         >
           <span
             id="sap-logo"
@@ -341,7 +345,38 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
     <main
       class="guided-answer__container"
       id="results-container"
-    />
+    >
+      <div>
+        <h3>
+          <svg
+            class="bookmark-icon-bookmarked"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 16 16"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M9.595 6.252L8 1 6.405 6.252H1l4.373 3.4L3.75 15 8 11.695 12.25 15l-1.623-5.348L15 6.252H9.595z"
+              fill-rule="evenodd"
+            />
+          </svg>
+           Bookmarks
+        </h3>
+        <div
+          class="ms-FocusZone css-134"
+          data-focuszone-id="FocusZone16"
+        >
+          <ul
+            class="striped-list-bookmarks"
+            role="listbox"
+          />
+        </div>
+      </div>
+    </main>
   </div>
 </div>
 `;
@@ -360,6 +395,8 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
       >
         <div
           class="guided-answer__header__logoAndTitle"
+          id="logo-and-title"
+          title="Home"
         >
           <span
             id="sap-logo"
@@ -534,8 +571,8 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
       style="padding-bottom: 0px;"
     >
       <div
-        class="ms-FocusZone css-137 guided-answer__header"
-        data-focuszone-id="FocusZone33"
+        class="ms-FocusZone css-134 guided-answer__header"
+        data-focuszone-id="FocusZone34"
       >
         <div
           class="guided-answer__header__allAnswersButton"
@@ -644,7 +681,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
             />
             <div>
               <button
-                class="ms-Button ms-Button--icon guided-answer__header__navButtons guided-answer__header__navButtons__content root-134"
+                class="ms-Button ms-Button--icon guided-answer__header__navButtons guided-answer__header__navButtons__content root-135"
                 data-is-focusable="true"
                 id="callout-test-id"
                 style="outline: none;"
@@ -658,7 +695,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
                 >
                   <i
                     aria-hidden="true"
-                    class="ms-Icon root-101 ms-Button-icon icon-135"
+                    class="ms-Icon root-101 ms-Button-icon icon-136"
                     data-icon-name="Link"
                   >
                     <svg
@@ -746,6 +783,8 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
       >
         <div
           class="guided-answer__header__logoAndTitle"
+          id="logo-and-title"
+          title="Home"
         >
           <span
             id="sap-logo"
@@ -799,7 +838,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
             id="filters"
           >
             <button
-              class="ms-Button ms-Button--icon filter-button root-134"
+              class="ms-Button ms-Button--icon filter-button root-135"
               data-is-focusable="true"
               id="filter-products"
               title="Filter Products"
@@ -811,7 +850,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
               >
                 <i
                   aria-hidden="true"
-                  class="ms-Icon root-101 ms-Button-icon icon-135"
+                  class="ms-Icon root-101 ms-Button-icon icon-136"
                   data-icon-name="Table"
                 >
                   <svg
@@ -829,7 +868,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
               </span>
             </button>
             <button
-              class="ms-Button ms-Button--icon filter-button root-134"
+              class="ms-Button ms-Button--icon filter-button root-135"
               data-is-focusable="true"
               id="filter-components"
               title="Filter Components"
@@ -841,7 +880,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
               >
                 <i
                   aria-hidden="true"
-                  class="ms-Icon root-101 ms-Button-icon icon-135"
+                  class="ms-Icon root-101 ms-Button-icon icon-136"
                   data-icon-name="IdTag"
                 >
                   <svg
@@ -892,82 +931,35 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
       class="guided-answer__container"
       id="results-container"
     >
-      <div
-        class="ms-FocusZone css-137"
-        data-focuszone-id="FocusZone32"
-      >
-        <ul
-          class="striped-list"
-          role="listbox"
-        >
-          <div
-            class="infinite-scroll-component__outerdiv"
+      <div>
+        <h3>
+          <svg
+            class="bookmark-icon-bookmarked"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 16 16"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <div
-              class="infinite-scroll-component "
-              style="height: auto; overflow: auto;"
-            >
-              <li
-                class="tree-item"
-                role="option"
-              >
-                <button
-                  class="guided-answer__tree"
-                  tabindex="0"
-                >
-                  <div
-                    class="guided-answer__tree__ul"
-                  >
-                    <h3
-                      class="guided-answer__tree__title"
-                    >
-                      
-                       
-                      SAP Fiori tools
-                    </h3>
-                    <div
-                      class="bottom-section"
-                      id="bottom-section"
-                    >
-                      <span
-                        class="guided-answer__tree__desc"
-                      >
-                        This is a troubleshooting guide to solve the issues while using SAP Fiori tools
-                      </span>
-                      <div
-                        class="component-and-product-container"
-                        style="margin-top: 10px;"
-                      >
-                        <div
-                          class="guided-answer__tree__product"
-                          id="product-container"
-                        >
-                          <span
-                            class="bottom-title"
-                          >
-                            Product: 
-                          </span>
-                          Product A
-                        </div>
-                        <div
-                          class="guided-answer__tree__component"
-                          id="component-container"
-                        >
-                          <span
-                            class="bottom-title"
-                          >
-                            Component: 
-                          </span>
-                          comp-a
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </button>
-              </li>
-            </div>
-          </div>
-        </ul>
+            <path
+              clip-rule="evenodd"
+              d="M9.595 6.252L8 1 6.405 6.252H1l4.373 3.4L3.75 15 8 11.695 12.25 15l-1.623-5.348L15 6.252H9.595z"
+              fill-rule="evenodd"
+            />
+          </svg>
+           Bookmarks
+        </h3>
+        <div
+          class="ms-FocusZone css-134"
+          data-focuszone-id="FocusZone33"
+        >
+          <ul
+            class="striped-list-bookmarks"
+            role="listbox"
+          />
+        </div>
       </div>
     </main>
   </div>
