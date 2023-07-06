@@ -11,11 +11,11 @@ exports[`<Header /> Should render a Header component with the navigation buttons
       data-focuszone-id="FocusZone8"
     >
       <div
-        class="guided-answer__header__allAnswersButton"
+        class="guided-answer__header__homeButton"
       >
         <button
           class="guided-answer__header__navButtons home-icon"
-          id="all-answers-button"
+          id="home-button"
           tabindex="0"
           title="Home"
         >

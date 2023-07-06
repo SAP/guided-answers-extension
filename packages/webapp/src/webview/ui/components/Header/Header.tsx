@@ -3,7 +3,7 @@ import type { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import type { AppState } from '../../../types';
 import {
-    AllAnswersButton,
+    HomeButton,
     BackButton,
     GeneralFeedbackButton,
     RestartButton,
@@ -29,8 +29,8 @@ export function Header(): ReactElement {
             style={{ paddingBottom: appState.activeScreen === 'NODE' ? '0' : '20px' }}>
             {appState.activeScreen === 'NODE' ? (
                 <FocusZone isCircularNavigation={true} className="guided-answer__header">
-                    <div className="guided-answer__header__allAnswersButton">
-                        <AllAnswersButton />
+                    <div className="guided-answer__header__homeButton">
+                        <HomeButton />
                     </div>
 
                     <div className="guided-answer__header__back-restart-buttons">

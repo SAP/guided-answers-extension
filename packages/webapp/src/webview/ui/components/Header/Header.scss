@@ -60,7 +60,7 @@
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
         }
 
-        &__allAnswersButton,
+        &__homeButton,
         &__spacer {
             flex: 1 0 120px;
         }
@@ -259,7 +259,7 @@
             &__navButtons__content__text {
                 display: none;
             }
-            &__allAnswersButton,
+            &__homeButton,
             &__spacer {
                 flex: 0 0 34px;
             }
