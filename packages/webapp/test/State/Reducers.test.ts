@@ -65,7 +65,7 @@ const mockedInitState = {
     selectedProductFilters: [],
     selectedComponentFilters: [],
     pageSize: 20,
-    isHome: true
+    activeScreen: 'HOME'
 };
 
 const mockedActiveGuidedAnswerNode = [
@@ -164,7 +164,7 @@ describe('Test functions in reducers', () => {
             selectedProductFilters: [],
             selectedComponentFilters: [],
             pageSize: 20,
-            isHome: false
+            activeScreen: 'SEARCH'
         };
 
         expect(answersWithDefaultState).toEqual(expected);
@@ -234,7 +234,7 @@ describe('Test functions in reducers', () => {
             selectedProductFilters: [],
             selectedComponentFilters: [],
             pageSize: 20,
-            isHome: false
+            activeScreen: 'NODE'
         });
 
         const mockedInitStateWithActiveGuidedNode: any = mockedInitState;
@@ -264,7 +264,7 @@ describe('Test functions in reducers', () => {
             selectedProductFilters: [],
             selectedComponentFilters: [],
             pageSize: 20,
-            isHome: false
+            activeScreen: 'NODE'
         });
     });
 
@@ -313,7 +313,7 @@ describe('Test functions in reducers', () => {
         const goToHomePageState = reducer(getInitialState(), {
             type: GO_TO_HOME_PAGE
         });
-        expect(goToHomePageState.isHome).toEqual(true);
+        expect(goToHomePageState.activeScreen).toEqual('HOME');
     });
 
     it('Should set GuideFeedback', () => {

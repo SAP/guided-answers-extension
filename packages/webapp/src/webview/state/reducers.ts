@@ -47,7 +47,7 @@ export function getInitialState(): AppState {
         feedbackStatus: false,
         feedbackResponse: false,
         bookmarks: {},
-        isHome: true
+        activeScreen: 'HOME'
     };
 }
 
@@ -137,7 +137,7 @@ function updateGuidedAnswerTreesReducer(newState: AppState, action: UpdateGuided
         newState.guidedAnswerTreeSearchResult.trees.unshift(...trees);
     }
     delete newState.activeGuidedAnswer;
-    newState.isHome = false;
+    newState.activeScreen = 'SEARCH';
     return newState;
 }
 
@@ -163,7 +163,7 @@ function updateActiveNodeReducer(newState: AppState, action: UpdateActiveNode): 
     } else {
         newState.activeGuidedAnswerNode.push(action.payload);
     }
-    newState.isHome = false;
+    newState.activeScreen = 'NODE';
     return newState;
 }
 
@@ -206,6 +206,9 @@ function goToPreviousPageReducer(newState: AppState): AppState {
         newState.guideFeedback = null;
         newState.activeGuidedAnswerNode.pop();
     }
+    if (newState.activeGuidedAnswerNode.length === 0) {
+        newState.activeScreen = 'SEARCH';
+    }
     return newState;
 }
 
@@ -219,6 +222,7 @@ function goToAllAnswersReducer(newState: AppState): AppState {
     newState.guideFeedback = null;
     newState.activeGuidedAnswerNode = [];
     delete newState.activeGuidedAnswer;
+    newState.activeScreen = 'SEARCH';
     return newState;
 }
 
@@ -241,13 +245,7 @@ function restartAnswerReducer(newState: AppState): AppState {
  * @returns new state with changes
  */
 function goToHomePageReducer(newState: AppState): AppState {
-    newState.isHome = true;
-    newState.guidedAnswerTreeSearchResult = {
-        resultSize: -1,
-        componentFilters: [],
-        productFilters: [],
-        trees: []
-    };
+    newState.activeScreen = 'HOME';
     newState.query = '';
     newState.activeNodeSharing = null;
     newState.activeGuidedAnswerNode = [];

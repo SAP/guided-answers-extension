@@ -84,9 +84,9 @@ export function App(): ReactElement {
         content = <UILoader id="loading-indicator" size={SpinnerSize.large} />;
     } else if (appState.networkStatus === 'ERROR') {
         content = <ErrorScreen title={i18next.t('GUIDED_ANSWERS_UNAVAILABLE')} subtitle={i18next.t('TRY_LATER')} />;
-    } else if (appState.activeGuidedAnswerNode.length > 0) {
+    } else if (appState.activeScreen === 'NODE') {
         content = <GuidedAnswerNode />;
-    } else if (appState.isHome) {
+    } else if (appState.activeScreen === 'HOME') {
         content = appState.betaFeatures ? (
             <HomeGrid>
                 <Bookmarks key="bookmarks" />
@@ -141,12 +141,7 @@ export function App(): ReactElement {
     }
     return (
         <div className="guided-answer">
-            <Header
-                showSub={appState.activeGuidedAnswerNode.length === 0}
-                showLogo={appState.activeGuidedAnswerNode.length === 0}
-                showNavButons={appState.activeGuidedAnswerNode.length !== 0}
-                showSearch={appState.activeGuidedAnswerNode.length === 0}
-            />
+            <Header />
 
             {appState.guidedAnswerTreeSearchResult.resultSize > 0 && appState.activeGuidedAnswerNode.length === 0 ? (
                 <FiltersRibbon />

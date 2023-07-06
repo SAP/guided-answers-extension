@@ -249,7 +249,6 @@ exports[`<Header /> Should render a Header component without the navigation butt
         </div>
       </div>
     </div>
-     
   </div>
 </div>
 `;
@@ -350,7 +349,6 @@ exports[`<Header /> Should render a Header component without the navigation butt
         </div>
       </div>
     </div>
-     
   </div>
 </div>
 `;

@@ -241,7 +241,7 @@ export interface AppState {
     feedbackStatus: boolean;
     feedbackResponse: boolean;
     bookmarks: Bookmarks;
-    isHome: boolean;
+    activeScreen: 'HOME' | 'SEARCH' | 'NODE';
 }
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
