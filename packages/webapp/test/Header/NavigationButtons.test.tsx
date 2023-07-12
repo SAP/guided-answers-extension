@@ -4,7 +4,7 @@ import { actions } from '../../src/webview/state';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import {
-    AllAnswersButton,
+    HomeButton,
     BackButton,
     RestartButton,
     ShareButton,
@@ -19,7 +19,7 @@ import { Provider } from 'react-redux';
 jest.mock('../../src/webview/state', () => {
     return {
         actions: {
-            goToAllAnswers: jest.fn(),
+            goToHomePage: jest.fn(),
             goToPreviousPage: jest.fn(),
             restartAnswer: jest.fn(),
             fillShareLinks: jest.fn(),
@@ -33,18 +33,18 @@ jest.mock('../../src/webview/state', () => {
 const createState = (initialState: AppState) => (actions: any[]) => actions.reduce(reducer, initialState);
 const mockStore = configureMockStore();
 
-describe('<AllAnswersButton />', () => {
+describe('<HomeButton />', () => {
     initI18n();
     afterEach(cleanup);
 
-    it('Should render a AllAnswersButton component', () => {
-        const { container } = render(<AllAnswersButton />);
+    it('Should render a HomeButton component', () => {
+        const { container } = render(<HomeButton />);
         expect(container).toMatchSnapshot();
 
         //Test click event
-        const element = screen.getByTestId('all-answers-button');
+        const element = screen.getByTestId('home-button');
         fireEvent.click(element);
-        expect(actions.goToAllAnswers).toBeCalled();
+        expect(actions.goToHomePage).toBeCalled();
     });
 });
 

@@ -60,7 +60,7 @@
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
         }
 
-        &__allAnswersButton,
+        &__homeButton,
         &__spacer {
             flex: 1 0 120px;
         }
@@ -84,6 +84,7 @@
             align-items: center;
             margin-top: 30px;
             min-width: 280px;
+            cursor: pointer;
         }
         &__searchField {
             display: flex;
@@ -91,6 +92,28 @@
             flex-direction: row;
             margin-top: 30px;
             width: 66%;
+
+            .ms-SearchBox {
+                min-width: 250px;
+                width: 50%;
+            }
+        }
+        &.vertical {
+            justify-content: center;
+
+            .guided-answer__header__sub {
+                flex-direction: column;
+                width: unset;
+                align-items: flex-start;
+            }
+
+            .guided-answer__header__searchField {
+                width: unset;
+            }
+
+            .ms-SearchBox {
+                width: 500px;
+            }
         }
     }
 }
@@ -236,7 +259,7 @@
             &__navButtons__content__text {
                 display: none;
             }
-            &__allAnswersButton,
+            &__homeButton,
             &__spacer {
                 flex: 0 0 34px;
             }

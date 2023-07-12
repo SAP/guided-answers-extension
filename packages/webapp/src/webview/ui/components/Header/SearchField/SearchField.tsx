@@ -13,9 +13,25 @@ let timer: NodeJS.Timeout;
  */
 export function SearchField() {
     const appState = useSelector<AppState, AppState>((state) => state);
-    const onSearchClear = (): void => {
-        actions.setQueryValue('');
+
+    const onChange = (value: string): void => {
+        clearTimeout(timer);
+        actions.setQueryValue(value);
+        timer = setTimeout(() => {
+            actions.searchTree({
+                query: value,
+                filters: {
+                    product: [],
+                    component: []
+                },
+                paging: {
+                    responseSize: appState.pageSize,
+                    offset: 0
+                }
+            });
+        }, 100);
     };
+
     return (
         <div className="guided-answer__header__searchField">
             <UISearchBox
@@ -24,27 +40,8 @@ export function SearchField() {
                 readOnly={appState.networkStatus === 'LOADING'}
                 placeholder="Search Guided Answers"
                 id="search-field"
-                onClear={onSearchClear}
-                onChange={(e: any) => {
-                    const newValue = e?.target?.value;
-                    if (newValue !== undefined) {
-                        clearTimeout(timer);
-                        actions.setQueryValue(newValue);
-                        timer = setTimeout(() => {
-                            actions.searchTree({
-                                query: newValue,
-                                filters: {
-                                    product: [],
-                                    component: []
-                                },
-                                paging: {
-                                    responseSize: appState.pageSize,
-                                    offset: 0
-                                }
-                            });
-                        }, 100);
-                    }
-                }}></UISearchBox>
+                onClear={() => onChange('')}
+                onChange={(e: any) => onChange(e?.target?.value || '')}></UISearchBox>
             <Filters />
         </div>
     );

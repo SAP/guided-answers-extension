@@ -14,9 +14,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { SpinnerSize } from '@fluentui/react';
 import i18next from 'i18next';
 import { VscStarFull } from 'react-icons/vsc';
-import type { Bookmarks as BookmarksType } from '@sap/guided-answers-extension-types';
-import { Bookmarks } from '../Bookmarks';
 import { TreeItemBottomSection } from '../TreeItemBottomSection';
+import { Bookmarks } from '../Bookmarks';
+import { HomeGrid } from '../HomeGrid';
 
 initIcons();
 
@@ -27,7 +27,6 @@ initIcons();
  */
 export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
-    const bookmarks = useSelector<AppState, BookmarksType>((state) => state.bookmarks);
     useEffect(() => {
         const resultsContainer = document.getElementById('results-container');
         if (!resultsContainer) {
@@ -85,15 +84,17 @@ export function App(): ReactElement {
         content = <UILoader id="loading-indicator" size={SpinnerSize.large} />;
     } else if (appState.networkStatus === 'ERROR') {
         content = <ErrorScreen title={i18next.t('GUIDED_ANSWERS_UNAVAILABLE')} subtitle={i18next.t('TRY_LATER')} />;
-    } else if (appState.activeGuidedAnswerNode.length > 0) {
+    } else if (appState.activeScreen === 'NODE') {
         content = <GuidedAnswerNode />;
-    } else if (
-        Object.keys(bookmarks).length > 0 &&
-        appState.guidedAnswerTreeSearchResult.resultSize === -1 &&
-        appState.query === ''
-    ) {
-        content = <Bookmarks />;
-    } else if (appState.guidedAnswerTreeSearchResult.resultSize >= 0) {
+    } else if (appState.activeScreen === 'HOME') {
+        content = appState.betaFeatures ? (
+            <HomeGrid>
+                <Bookmarks key="bookmarks" />
+            </HomeGrid>
+        ) : (
+            <Bookmarks />
+        );
+    } else {
         content =
             appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (
                 <ErrorScreen title={i18next.t('NO_ANSWERS_FOUND')} subtitle={i18next.t('PLEASE_MODIFY_SEARCH')} />
@@ -140,12 +141,7 @@ export function App(): ReactElement {
     }
     return (
         <div className="guided-answer">
-            <Header
-                showSub={appState.activeGuidedAnswerNode.length === 0}
-                showLogo={appState.activeGuidedAnswerNode.length === 0}
-                showNavButons={appState.activeGuidedAnswerNode.length !== 0}
-                showSearch={appState.activeGuidedAnswerNode.length === 0}
-            />
+            <Header />
 
             {appState.guidedAnswerTreeSearchResult.resultSize > 0 && appState.activeGuidedAnswerNode.length === 0 ? (
                 <FiltersRibbon />

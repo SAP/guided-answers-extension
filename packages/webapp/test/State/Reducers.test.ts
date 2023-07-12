@@ -13,7 +13,8 @@ import {
     SET_PRODUCT_FILTERS,
     SET_COMPONENT_FILTERS,
     RESTORE_STATE,
-    RESET_FILTERS
+    RESET_FILTERS,
+    GO_TO_HOME_PAGE
 } from '@sap/guided-answers-extension-types';
 import type { GuidedAnswerTreeSearchHit } from '@sap/guided-answers-extension-types';
 
@@ -48,7 +49,6 @@ const mockedPayload = {
 const mockedInitState = {
     networkStatus: 'LOADING',
     query: '',
-    searchResultCount: -1,
     guidedAnswerTreeSearchResult: {
         resultSize: -1,
         componentFilters: [],
@@ -64,7 +64,8 @@ const mockedInitState = {
     guideFeedback: null,
     selectedProductFilters: [],
     selectedComponentFilters: [],
-    pageSize: 20
+    pageSize: 20,
+    activeScreen: 'HOME'
 };
 
 const mockedActiveGuidedAnswerNode = [
@@ -152,7 +153,6 @@ describe('Test functions in reducers', () => {
         const expected = {
             networkStatus: 'LOADING',
             query: '',
-            searchResultCount: -1,
             guidedAnswerTreeSearchResult: mockedGuidedAnswerTreeSearchResult,
             activeGuidedAnswerNode: [],
             activeNodeSharing: null,
@@ -163,7 +163,8 @@ describe('Test functions in reducers', () => {
             guideFeedback: null,
             selectedProductFilters: [],
             selectedComponentFilters: [],
-            pageSize: 20
+            pageSize: 20,
+            activeScreen: 'SEARCH'
         };
 
         expect(answersWithDefaultState).toEqual(expected);
@@ -217,7 +218,6 @@ describe('Test functions in reducers', () => {
         expect(activeNode).toEqual({
             networkStatus: 'LOADING',
             query: '',
-            searchResultCount: -1,
             guidedAnswerTreeSearchResult: {
                 resultSize: -1,
                 componentFilters: [],
@@ -233,7 +233,8 @@ describe('Test functions in reducers', () => {
             bookmarks: {},
             selectedProductFilters: [],
             selectedComponentFilters: [],
-            pageSize: 20
+            pageSize: 20,
+            activeScreen: 'NODE'
         });
 
         const mockedInitStateWithActiveGuidedNode: any = mockedInitState;
@@ -247,7 +248,6 @@ describe('Test functions in reducers', () => {
         expect(hasActiveNode).toEqual({
             networkStatus: 'LOADING',
             query: '',
-            searchResultCount: -1,
             guidedAnswerTreeSearchResult: {
                 resultSize: -1,
                 componentFilters: [],
@@ -263,7 +263,8 @@ describe('Test functions in reducers', () => {
             guideFeedback: null,
             selectedProductFilters: [],
             selectedComponentFilters: [],
-            pageSize: 20
+            pageSize: 20,
+            activeScreen: 'NODE'
         });
     });
 
@@ -306,6 +307,13 @@ describe('Test functions in reducers', () => {
         });
         expect(restartAnswersState.activeGuidedAnswerNode).toStrictEqual([undefined]);
         expect(restartAnswersState.guideFeedback).toEqual(null);
+    });
+
+    it('Should go to home page', () => {
+        const goToHomePageState = reducer(getInitialState(), {
+            type: GO_TO_HOME_PAGE
+        });
+        expect(goToHomePageState.activeScreen).toEqual('HOME');
     });
 
     it('Should set GuideFeedback', () => {

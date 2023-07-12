@@ -18,23 +18,21 @@ import type {
 
 /**
  *
- * @returns A button component navigating to all answers.
+ * @returns A button component navigating to home page.
  */
-const AllAnswersButton = React.memo(function AllAnswersButton() {
+const HomeButton = React.memo(function HomeButton() {
     focusOnElement('.home-icon');
 
     return (
         <button
-            id="all-answers-button"
+            id="home-button"
             className="guided-answer__header__navButtons home-icon"
             onClick={(): void => {
-                actions.goToAllAnswers();
+                actions.goToHomePage();
             }}
-            title={i18next.t('ALL_ANSWERS')}>
+            title={i18next.t('HOME')}>
             <VscHome className="guided-answer__header__navButtons__content" />{' '}
-            <span className="guided-answer__header__navButtons__content__text text-underline">
-                {i18next.t('ALL_ANSWERS')}
-            </span>
+            <span className="guided-answer__header__navButtons__content__text text-underline">{i18next.t('HOME')}</span>
         </button>
     );
 });
@@ -242,4 +240,4 @@ export function BookmarkButton() {
         </button>
     );
 }
-export { AllAnswersButton };
+export { HomeButton };

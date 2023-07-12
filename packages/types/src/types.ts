@@ -201,6 +201,7 @@ export type GuidedAnswerActions =
     | GetBookmarks
     | GoToAllAnswers
     | GoToPreviousPage
+    | GoToHomePage
     | GuideFeedback
     | SearchTree
     | SelectNode
@@ -233,7 +234,6 @@ export interface AppState {
     activeGuidedAnswer?: GuidedAnswerTree;
     activeNodeSharing: ShareNodeLinks | null;
     betaFeatures: boolean;
-    searchResultCount: number;
     guideFeedback: null | boolean;
     selectedProductFilters: string[];
     selectedComponentFilters: string[];
@@ -241,6 +241,7 @@ export interface AppState {
     feedbackStatus: boolean;
     feedbackResponse: boolean;
     bookmarks: Bookmarks;
+    activeScreen: 'HOME' | 'SEARCH' | 'NODE';
 }
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
@@ -286,6 +287,11 @@ export interface GoToAllAnswers {
 
 export interface RestartAnswer {
     type: typeof RESTART_ANSWER;
+}
+
+export const GO_TO_HOME_PAGE = 'GO_TO_HOME_PAGE';
+export interface GoToHomePage {
+    type: typeof GO_TO_HOME_PAGE;
 }
 
 export const EXECUTE_COMMAND = 'EXECUTE_COMMAND';
