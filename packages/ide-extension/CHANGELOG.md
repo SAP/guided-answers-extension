@@ -1,5 +1,7 @@
 # sap-guided-answer-extension
 
+## 1.25.0
+
 ## 1.24.2
 
 ### Patch Changes

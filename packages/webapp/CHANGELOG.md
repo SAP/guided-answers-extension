@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.25.0
+
+### Minor Changes
+
+-   84290f5: feat(232): add smart home layout proposal
+
 ## 1.24.2
 
 ### Patch Changes
