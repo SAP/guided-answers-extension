@@ -31,6 +31,13 @@
                 "@typescript-eslint/prefer-optional-chain": ["error"],
                 "jsdoc/require-param-type": "off",
                 "jsdoc/require-returns-type": "off",
+                "jsdoc/tag-lines": [
+                    "error",
+                    "never",
+                    {
+                        "startLines": 1
+                    }
+                ],
                 "prefer-const": [
                     "error",
                     {
@@ -126,6 +133,7 @@
         "promise/no-new-statics": "error",
         "promise/no-return-in-finally": "error",
         "promise/valid-params": "error",
+        "default-param-last": "error",
         "no-cond-assign": "error",
         "no-constant-condition": "error",
         "no-control-regex": "error",

@@ -377,7 +377,11 @@ describe('Guided Answers Api: getNodeById()', () => {
                 }
             ]
         };
-        mockedAxios.get.mockImplementation(() => Promise.resolve({ data }));
+        mockedAxios.get.mockImplementation((url) =>
+            url.includes('123')
+                ? Promise.resolve({ data })
+                : Promise.reject(`wrong node id, url is: ${url}, expecting 123`)
+        );
 
         // Test execution
         const result = await getGuidedAnswerApi().getNodeById(123);
@@ -405,7 +409,45 @@ describe('Guided Answers Api: getNodeById()', () => {
                     ORD: 2
                 }
             ],
-            EXTENSIONS: [
+            HTML_EXTENSIONS: [
+                {
+                    extensionType: 'HTML',
+                    label: 'of course, 42',
+                    desc: `Text 'solution to all questions' decorated as link to terminal command`,
+                    text: 'solution to all questions',
+                    command: {
+                        type: 'Terminal',
+                        exec: {
+                            args: '42',
+                            command: 'echo',
+                            extensionId: ''
+                        },
+                        environment: {
+                            sbas: 1,
+                            vscode: 1
+                        }
+                    }
+                },
+                {
+                    extensionType: 'HTML',
+                    text: 'Body of',
+                    label: 'what does that even mean',
+                    desc: `we decorate 'Body of' with a link to vscode command`,
+                    command: {
+                        type: 'Extension',
+                        exec: {
+                            extensionId: 'terry.exxt',
+                            command: 'Knock kock',
+                            args: '{ "fsPath": "whos/there/body/of" }'
+                        },
+                        environment: {
+                            sbas: 1,
+                            vscode: 1
+                        }
+                    }
+                }
+            ],
+            NODE_EXTENSIONS: [
                 {
                     TYPE: 'Terminal Command',
                     LABEL: 'terminal command enhancement',
@@ -429,34 +471,7 @@ describe('Guided Answers Api: getNodeById()', () => {
 
         const options: APIOptions = {
             ide: 'VSCODE',
-            extensions: new Set(['full speed']),
-            htmlEnhancements: [
-                {
-                    text: 'solution to all questions',
-                    command: {
-                        label: 'of course, 42',
-                        description: `Text 'solution to all questions' decorated as link to terminal command`,
-                        exec: {
-                            cwd: '.',
-                            arguments: ['echo', '42']
-                        },
-                        environment: ['VSCODE', 'SBAS']
-                    }
-                },
-                {
-                    text: 'Body of',
-                    command: {
-                        label: 'what does that even mean',
-                        description: `we decorate 'Body of' with a link to vscode command`,
-                        exec: {
-                            extensionId: 'terry.exxt',
-                            commandId: 'Knock kock',
-                            argument: { fsPath: 'whos/there/body/of' }
-                        },
-                        environment: ['VSCODE', 'SBAS']
-                    }
-                }
-            ]
+            extensions: new Set(['full speed', 'terry.exxt'])
         };
         let requestUrl = '';
         mockedAxios.get.mockImplementation((url) => {
@@ -600,7 +615,8 @@ describe('Guided Answers Api: getNodeById()', () => {
         BODY: `<p>N1</p>`,
         QUESTION: '?',
         EDGES: [],
-        EXTENSIONS: [
+        HTML_EXTENSIONS: [],
+        NODE_EXTENSIONS: [
             {
                 TYPE: 'Extension Command',
                 LABEL: 'vscode and sbas command enhancement',
@@ -657,6 +673,26 @@ describe('Guided Answers Api: getNodePath()', () => {
                 EDGES: [
                     { LABEL: 'Next', TARGET_NODE: 112, ORD: 1 },
                     { LABEL: 'Somewhere else', TARGET_NODE: 911, ORD: 2 }
+                ],
+                HTML_EXTENSIONS: [
+                    {
+                        extensionType: 'HTML',
+                        label: 'Command for Onehundredtwelve',
+                        desc: `Command to enhance node in path`,
+                        text: 'Onehundredtwelve',
+                        command: {
+                            type: 'Terminal',
+                            exec: {
+                                args: '',
+                                command: 'TEST',
+                                extensionId: ''
+                            },
+                            environment: {
+                                sbas: 1,
+                                vscode: 1
+                            }
+                        }
+                    }
                 ]
             },
             {
@@ -664,33 +700,37 @@ describe('Guided Answers Api: getNodePath()', () => {
                 TITLE: 'Onehundredtwelve',
                 BODY: '<p>This is node Onehundredtwelve</p>',
                 QUESTION: 'Nowhere else to go',
-                EDGES: []
+                EDGES: [],
+                HTML_EXTENSIONS: [
+                    {
+                        extensionType: 'HTML',
+                        label: 'Command for Onehundredtwelve',
+                        desc: `Command to enhance node in path`,
+                        text: 'Onehundredtwelve',
+                        command: {
+                            type: 'Terminal',
+                            exec: {
+                                args: '',
+                                command: 'TEST',
+                                extensionId: ''
+                            },
+                            environment: {
+                                sbas: 1,
+                                vscode: 1
+                            }
+                        }
+                    }
+                ]
             }
         ];
 
-        const options: APIOptions = {
-            ide: 'VSCODE',
-            htmlEnhancements: [
-                {
-                    text: 'Onehundredtwelve',
-                    command: {
-                        label: 'Command for Onehundredtwelve',
-                        description: `Command to enhance node in path`,
-                        exec: {
-                            cwd: '/',
-                            arguments: ['TEST']
-                        },
-                        environment: ['VSCODE', 'SBAS']
-                    }
-                }
-            ]
-        };
+        const options: APIOptions = { ide: 'VSCODE' };
         mockedAxios.get.mockImplementation((url: string) => {
             const data = nodes.find((n) => url.endsWith(`/${n.NODE_ID}`));
             if (data) {
                 return Promise.resolve({ data });
             } else {
-                return Promise.reject('node not found');
+                return Promise.reject(`wrong node id, url is: ${url}`);
             }
         });
 
@@ -698,7 +738,223 @@ describe('Guided Answers Api: getNodePath()', () => {
         const result = await getGuidedAnswerApi(options).getNodePath([111, 112]);
 
         // Result check
-        expect(result).toMatchSnapshot();
+        expect(result.length).toBe(2);
+        expect(result[0].BODY).toMatchSnapshot();
+        expect(result[1].BODY).toMatchSnapshot();
+    });
+
+    test('Get node path, enhanced with wrong IDE should not be applied', async () => {
+        // Mock setup
+        const nodes = [
+            {
+                NODE_ID: 111,
+                BODY: '<p>This tag should not be modified at all</p>',
+                HTML_EXTENSIONS: [
+                    {
+                        extensionType: 'HTML',
+                        text: 'This',
+                        command: {
+                            type: 'Terminal',
+                            exec: {
+                                args: '',
+                                command: 'TEST',
+                                extensionId: ''
+                            },
+                            environment: {
+                                sbas: 0,
+                                vscode: 1
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                NODE_ID: 112,
+                BODY: '<p>Also this tag should not be modified at all</p>',
+                EDGES: []
+            }
+        ];
+
+        const options: APIOptions = { ide: 'SBAS' };
+        mockedAxios.get.mockImplementation((url: string) => {
+            const data = nodes.find((n) => url.endsWith(`/${n.NODE_ID}`));
+            if (data) {
+                return Promise.resolve({ data });
+            } else {
+                return Promise.reject(`wrong node id, url is: ${url}`);
+            }
+        });
+
+        // Test execution
+        const result = await getGuidedAnswerApi(options).getNodePath([111, 112]);
+
+        // Result check
+        expect(result.length).toBe(2);
+        expect(result[0].BODY).toBe('<p>This tag should not be modified at all</p>');
+        expect(result[1].BODY).toBe('<p>Also this tag should not be modified at all</p>');
+    });
+
+    test('Get node path, HTML enhancement with invalid, should ignore errors', async () => {
+        // Mock setup
+        const nodes = [
+            {
+                NODE_ID: 1,
+                BODY: '<p>Should not be modified at all</p>',
+                HTML_EXTENSIONS: [
+                    {
+                        extensionType: 'HTML',
+                        text: '#$%#@#@',
+                        command: {
+                            type: 'Extension',
+                            exec: {
+                                extensionId: 'my.ext.id',
+                                command: 'ls',
+                                args: '{}'
+                            },
+                            environment: {
+                                sbas: 1,
+                                vscode: 0
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                NODE_ID: 2,
+                BODY: '<p>Also should not be modified at all</p>',
+                HTML_EXTENSIONS: [
+                    {
+                        extensionType: 'HTML',
+                        text: '1234567890',
+                        command: {
+                            type: 'Extension',
+                            exec: {
+                                extensionId: 'my.ext.id',
+                                command: 'ps',
+                                args: '{'
+                            },
+                            environment: {
+                                sbas: 1,
+                                vscode: 0
+                            }
+                        }
+                    }
+                ]
+            }
+        ];
+
+        const options: APIOptions = {
+            ide: 'SBAS',
+            extensions: new Set(['my.ext.id']),
+            logger: { logString: jest.fn() }
+        };
+        mockedAxios.get.mockImplementation((url: string) => {
+            const data = nodes.find((n) => url.endsWith(`/${n.NODE_ID}`));
+            if (data) {
+                return Promise.resolve({ data });
+            } else {
+                return Promise.reject(`wrong node id, url is: ${url}`);
+            }
+        });
+
+        // Test execution
+        const result = await getGuidedAnswerApi(options).getNodePath([1, 2]);
+
+        // Result check
+        expect(result.length).toBe(2);
+        expect(result[0].BODY).toBe('<p>Should not be modified at all</p>');
+        expect(result[1].BODY).toBe('<p>Also should not be modified at all</p>');
+        expect(options.logger?.logString).toBeCalledWith(expect.stringContaining('Unexpected end of JSON input'));
+    });
+
+    test('Get node path, error in getEnhancements()', async () => {
+        // Mock setup
+        const data = {
+            NODE_ID: 1,
+            BODY: '<p>Should remain</p>',
+            NODE_EXTENSIONS: null
+        };
+        const options: APIOptions = {
+            ide: 'SBAS',
+            logger: { logString: jest.fn() }
+        };
+        mockedAxios.get.mockResolvedValue({ data });
+
+        // Test execution
+        const result = await getGuidedAnswerApi(options).getNodePath([1]);
+
+        // Result check
+        expect(options.logger?.logString).toBeCalledWith(expect.stringContaining('Error'));
+        expect(result[0]?.BODY).toBe('<p>Should remain</p>');
+    });
+
+    test('Get node path, HTML enhancement without args', async () => {
+        // Mock setup
+        const data = {
+            NODE_ID: 1,
+            BODY: '<p>Changed body</p>',
+            HTML_EXTENSIONS: [
+                {
+                    extensionType: 'HTML',
+                    text: 'body',
+                    command: {
+                        type: 'Extension',
+                        exec: {
+                            extensionId: 'my.ext.id',
+                            command: 'top'
+                        },
+                        environment: {
+                            sbas: 0,
+                            vscode: 1
+                        }
+                    }
+                }
+            ]
+        };
+        const options: APIOptions = {
+            ide: 'VSCODE',
+            extensions: new Set(['my.ext.id'])
+        };
+        mockedAxios.get.mockResolvedValue({ data });
+
+        // Test execution
+        const result = await getGuidedAnswerApi(options).getNodePath([1]);
+
+        // Result check
+        expect(result[0]?.BODY).toMatchSnapshot();
+    });
+    test('Get node path, node enhancement without args', async () => {
+        // Mock setup
+        const data = {
+            NODE_ID: 1,
+            BODY: '<p>Unhanged body</p>',
+            HTML_EXTENSIONS: [
+                {
+                    extensionType: 'HTML',
+                    text: 'This',
+                    command: {
+                        type: 'Terminal',
+                        exec: {
+                            command: 'TEST',
+                            extensionId: ''
+                        },
+                        environment: {
+                            sbas: 0,
+                            vscode: 1
+                        }
+                    }
+                }
+            ]
+        };
+        const options: APIOptions = { ide: 'VSCODE' };
+        mockedAxios.get.mockResolvedValue({ data });
+
+        // Test execution
+        const result = await getGuidedAnswerApi(options).getNodePath([1]);
+
+        // Result check
+        expect(result[0]?.BODY).toMatchSnapshot();
+        expect(result[0]?.HTML_EXTENSIONS).toEqual(data.HTML_EXTENSIONS);
     });
 });
 
@@ -809,5 +1065,52 @@ describe('Guided Answers Api: sendFeedbackOutcome()', () => {
             nodeId: 22,
             message: 'Not Solved'
         });
+    });
+});
+
+describe('Guided Answers Api: console logger', () => {
+    const originalLog = console.log;
+
+    beforeEach(() => {
+        console.log = jest.fn();
+    });
+
+    afterEach(() => {
+        console.log = originalLog;
+    });
+
+    test('Get node by id: Fallback to console logger for erroneous enhancement', async () => {
+        // Mock setup
+        const data = {
+            NODE_ID: 10,
+            BODY: '<p>Body, should be modified</p>',
+            HTML_EXTENSIONS: [
+                {
+                    extensionType: 'HTML',
+                    text: 'Body',
+                    command: {
+                        type: 'Extension',
+                        exec: {
+                            extensionId: 'ext.id',
+                            command: 'ps',
+                            args: '{'
+                        },
+                        environment: {
+                            sbas: 1,
+                            vscode: 1
+                        }
+                    }
+                }
+            ]
+        };
+        const options: APIOptions = { ide: 'VSCODE', extensions: new Set(['ext.id']) };
+        mockedAxios.get.mockResolvedValue({ data });
+
+        // Test execution
+        const result = await getGuidedAnswerApi(options).getNodeById(10);
+
+        // Result check
+        expect(result?.BODY).toMatchSnapshot();
+        expect(console.log).toBeCalledWith(expect.stringContaining(`Error when parsing argument '{'`));
     });
 });

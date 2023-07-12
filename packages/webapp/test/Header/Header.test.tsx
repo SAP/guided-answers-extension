@@ -15,33 +15,45 @@ describe('<Header />', () => {
     initI18n();
     afterEach(cleanup);
 
-    const stateWithActiveAnswer = getInitialState();
-
-    stateWithActiveAnswer.activeGuidedAnswer = treeMock;
-    stateWithActiveAnswer.activeGuidedAnswerNode.push({
-        BODY: '<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p>',
-        EDGES: [
-            { LABEL: 'Deployment', TARGET_NODE: 45996, ORD: 1 },
-            { LABEL: 'Fiori Generator', TARGET_NODE: 48363, ORD: 2 }
-        ],
-        NODE_ID: 45995,
-        QUESTION: 'I have a problem with',
-        TITLE: 'SAP Fiori Tools'
-    });
-
     it('Should render a Header component without the navigation buttons', () => {
         const { container } = render(
             <Provider store={mockStore(createState(getInitialState()))}>
-                <Header showSub={true} showLogo={true} showNavButons={false} showSearch={true} />
+                <Header />
             </Provider>
         );
         expect(container).toMatchSnapshot();
     });
 
     it('Should render a Header component with the navigation buttons', () => {
+        const state = getInitialState();
+        state.activeScreen = 'NODE';
+        state.activeGuidedAnswer = treeMock;
+        state.activeGuidedAnswerNode.push({
+            BODY: '<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p>',
+            EDGES: [
+                { LABEL: 'Deployment', TARGET_NODE: 45996, ORD: 1 },
+                { LABEL: 'Fiori Generator', TARGET_NODE: 48363, ORD: 2 }
+            ],
+            NODE_ID: 45995,
+            QUESTION: 'I have a problem with',
+            TITLE: 'SAP Fiori Tools'
+        });
+
         const { container } = render(
-            <Provider store={mockStore(createState(stateWithActiveAnswer))}>
-                <Header showSub={false} showLogo={false} showNavButons={true} showSearch={false} />
+            <Provider store={mockStore(createState(state))}>
+                <Header />
+            </Provider>
+        );
+        expect(container).toMatchSnapshot();
+    });
+
+    it('Should render a Header component without the navigation buttons (with beta features)', () => {
+        const state = getInitialState();
+        state.betaFeatures = true;
+
+        const { container } = render(
+            <Provider store={mockStore(createState(state))}>
+                <Header />
             </Provider>
         );
         expect(container).toMatchSnapshot();

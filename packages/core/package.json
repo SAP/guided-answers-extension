@@ -1,7 +1,7 @@
 {
     "name": "@sap/guided-answers-extension-core",
     "description": "Guided Answers extension core module",
-    "version": "1.23.7",
+    "version": "1.25.0",
     "license": "Apache-2.0",
     "private": true,
     "main": "dist/index.js",
@@ -21,9 +21,9 @@
         "watch": "tsc --watch"
     },
     "dependencies": {
-        "@sap/bas-sdk": "3.1.0",
+        "@sap/bas-sdk": "3.4.0",
         "@sap/guided-answers-extension-types": "workspace:*",
-        "axios": "0.26.1",
+        "axios": "1.4.0",
         "xss": "1.0.14"
     },
     "files": [

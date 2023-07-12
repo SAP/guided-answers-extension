@@ -1,5 +1,25 @@
 # sap-guided-answer-extension
 
+## 1.25.0
+
+## 1.24.2
+
+### Patch Changes
+
+-   7cb1b2a: Update dependencies
+
+## 1.24.1
+
+### Patch Changes
+
+-   34c9138: Fix for duplicate search results
+
+## 1.24.0
+
+### Minor Changes
+
+-   37a50f4: Read HTML enhancements from API
+
 ## 1.23.7
 
 ### Patch Changes

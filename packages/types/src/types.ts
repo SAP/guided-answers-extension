@@ -48,8 +48,28 @@ export interface GuidedAnswerNode {
     BODY: string;
     QUESTION: string;
     EDGES: GuidedAnswerEdge[];
-    EXTENSIONS?: GuidedAnswerNodeExtension[];
+    HTML_EXTENSIONS?: GuidedAnswerHtmlExtension[];
+    NODE_EXTENSIONS?: GuidedAnswerNodeExtension[];
     COMMANDS?: Command[];
+}
+
+export interface GuidedAnswerHtmlExtension {
+    extensionType: 'HTML';
+    label: string;
+    desc: string;
+    text: string;
+    command: {
+        type: 'Extension' | 'Terminal';
+        exec: {
+            extensionId: string;
+            command: string;
+            args: string;
+        };
+        environment: {
+            vscode: 0 | 1;
+            sbas: 0 | 1;
+        };
+    };
 }
 
 export interface GuidedAnswerNodeExtension {
@@ -148,7 +168,6 @@ export interface Command {
     label: string;
     description: string;
     exec: TerminalCommand | VSCodeCommand;
-    environment?: IDE[];
 }
 
 export interface HTMLEnhancement {
@@ -156,11 +175,15 @@ export interface HTMLEnhancement {
     command: Command;
 }
 
+export interface Logger {
+    logString: (message: string) => void;
+}
+
 export interface APIOptions {
     apiHost?: string;
     ide?: IDE;
     extensions?: Set<string>;
-    htmlEnhancements?: HTMLEnhancement[];
+    logger?: Logger;
 }
 
 export interface ShareNodeLinks {
@@ -186,6 +209,7 @@ export type GuidedAnswerActions =
     | GetBookmarks
     | GoToAllAnswers
     | GoToPreviousPage
+    | GoToHomePage
     | GuideFeedback
     | SearchTree
     | SelectNode
@@ -220,7 +244,6 @@ export interface AppState {
     activeGuidedAnswer?: GuidedAnswerTree;
     activeNodeSharing: ShareNodeLinks | null;
     betaFeatures: boolean;
-    searchResultCount: number;
     guideFeedback: null | boolean;
     selectedProductFilters: string[];
     selectedComponentFilters: string[];
@@ -228,13 +251,17 @@ export interface AppState {
     feedbackStatus: boolean;
     feedbackResponse: boolean;
     bookmarks: Bookmarks;
+    activeScreen: 'HOME' | 'SEARCH' | 'NODE';
     lastVisitedGuides: LastVisitedGuides;
 }
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
 export interface UpdateGuidedAnswerTrees {
     type: typeof UPDATE_GUIDED_ANSWER_TREES;
-    payload: GuidedAnswerTreeSearchResult;
+    payload: {
+        searchResult: GuidedAnswerTreeSearchResult;
+        pagingOptions?: GuidedAnswersQueryPagingOptions;
+    };
 }
 
 export const SELECT_NODE = 'SELECT_NODE';
@@ -271,6 +298,11 @@ export interface GoToAllAnswers {
 
 export interface RestartAnswer {
     type: typeof RESTART_ANSWER;
+}
+
+export const GO_TO_HOME_PAGE = 'GO_TO_HOME_PAGE';
+export interface GoToHomePage {
+    type: typeof GO_TO_HOME_PAGE;
 }
 
 export const EXECUTE_COMMAND = 'EXECUTE_COMMAND';

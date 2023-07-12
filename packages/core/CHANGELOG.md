@@ -1,5 +1,36 @@
 # @sap/guided-answers-extension-core
 
+## 1.25.0
+
+### Patch Changes
+
+-   @sap/guided-answers-extension-types@1.25.0
+
+## 1.24.2
+
+### Patch Changes
+
+-   7cb1b2a: Update dependencies
+    -   @sap/guided-answers-extension-types@1.24.2
+
+## 1.24.1
+
+### Patch Changes
+
+-   Updated dependencies [34c9138]
+    -   @sap/guided-answers-extension-types@1.24.1
+
+## 1.24.0
+
+### Minor Changes
+
+-   37a50f4: Read HTML enhancements from API
+
+### Patch Changes
+
+-   Updated dependencies [37a50f4]
+    -   @sap/guided-answers-extension-types@1.24.0
+
 ## 1.23.7
 
 ### Patch Changes

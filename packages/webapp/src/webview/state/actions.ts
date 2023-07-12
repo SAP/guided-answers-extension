@@ -7,6 +7,7 @@ export {
     goToPreviousPage,
     goToAllAnswers,
     restartAnswer,
+    goToHomePage,
     executeCommand,
     setActiveTree,
     searchTree,

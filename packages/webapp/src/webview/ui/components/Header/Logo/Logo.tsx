@@ -1,6 +1,7 @@
 import React from 'react';
 import i18next from 'i18next';
 import LogoIcon from './sap-logo.svg';
+import { actions } from '../../../../state';
 
 /**
  *
@@ -8,7 +9,11 @@ import LogoIcon from './sap-logo.svg';
  */
 export function Logo() {
     return (
-        <div className="guided-answer__header__logoAndTitle">
+        <div
+            className="guided-answer__header__logoAndTitle"
+            id="logo-and-title"
+            onClick={() => actions.goToHomePage()}
+            title={i18next.t('HOME')}>
             <span id="sap-logo">
                 <LogoIcon />
             </span>

@@ -1,5 +1,5 @@
 import type { Memento } from 'vscode';
-import type { LastVisitedGuides, GuidedAnswerTree } from '@sap/guided-answers-extension-types';
+import type { LastVisitedGuides } from '@sap/guided-answers-extension-types';
 import { logString } from '../logger/logger';
 
 let globalStateApi: Memento;

@@ -41,7 +41,6 @@ export function getInitialState(): AppState {
         activeNodeSharing: null,
         activeGuidedAnswerNode: [],
         betaFeatures: false,
-        searchResultCount: -1,
         guideFeedback: null,
         selectedProductFilters: [],
         selectedComponentFilters: [],
@@ -49,6 +48,7 @@ export function getInitialState(): AppState {
         feedbackStatus: false,
         feedbackResponse: false,
         bookmarks: {},
+        activeScreen: 'HOME',
         lastVisitedGuides: []
     };
 }
@@ -80,6 +80,7 @@ const reducers: Partial<Reducers> = {
     GO_TO_PREVIOUS_PAGE: goToPreviousPageReducer,
     GO_TO_ALL_ANSWERS: goToAllAnswersReducer,
     RESTART_ANSWER: restartAnswerReducer,
+    GO_TO_HOME_PAGE: goToHomePageReducer,
     SET_ACTIVE_TREE: setActiveTreeReducer,
     SET_QUERY_VALUE: setQueryValueReducer,
     BETA_FEATURES: betaFeaturesReducer,
@@ -106,7 +107,7 @@ const reducers: Partial<Reducers> = {
  */
 export const reducer: Reducer<AppState, GuidedAnswerActions> = (
     state: AppState = getInitialState(),
-    action: GuidedAnswerActions
+    action: GuidedAnswerActions = {} as GuidedAnswerActions // avoid default-param-last issue for state argument
 ): AppState => {
     const caseReducer = reducers[action.type];
     if (typeof caseReducer === 'function') {
@@ -134,9 +135,12 @@ function cloneState(state: AppState): AppState {
  */
 function updateGuidedAnswerTreesReducer(newState: AppState, action: UpdateGuidedAnswerTrees): AppState {
     const trees = newState.guidedAnswerTreeSearchResult.trees;
-    newState.guidedAnswerTreeSearchResult = action.payload;
-    newState.guidedAnswerTreeSearchResult.trees.unshift(...trees);
+    newState.guidedAnswerTreeSearchResult = action.payload.searchResult;
+    if ((action.payload?.pagingOptions?.offset ?? 0) > 0) {
+        newState.guidedAnswerTreeSearchResult.trees.unshift(...trees);
+    }
     delete newState.activeGuidedAnswer;
+    newState.activeScreen = 'SEARCH';
     return newState;
 }
 
@@ -162,6 +166,7 @@ function updateActiveNodeReducer(newState: AppState, action: UpdateActiveNode): 
     } else {
         newState.activeGuidedAnswerNode.push(action.payload);
     }
+    newState.activeScreen = 'NODE';
     return newState;
 }
 
@@ -204,6 +209,9 @@ function goToPreviousPageReducer(newState: AppState): AppState {
         newState.guideFeedback = null;
         newState.activeGuidedAnswerNode.pop();
     }
+    if (newState.activeGuidedAnswerNode.length === 0) {
+        newState.activeScreen = 'SEARCH';
+    }
     return newState;
 }
 
@@ -217,6 +225,7 @@ function goToAllAnswersReducer(newState: AppState): AppState {
     newState.guideFeedback = null;
     newState.activeGuidedAnswerNode = [];
     delete newState.activeGuidedAnswer;
+    newState.activeScreen = 'SEARCH';
     return newState;
 }
 
@@ -229,6 +238,20 @@ function goToAllAnswersReducer(newState: AppState): AppState {
 function restartAnswerReducer(newState: AppState): AppState {
     newState.activeGuidedAnswerNode = [newState.activeGuidedAnswerNode[0]];
     newState.guideFeedback = null;
+    return newState;
+}
+
+/**
+ * Go to home page.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @returns new state with changes
+ */
+function goToHomePageReducer(newState: AppState): AppState {
+    newState.activeScreen = 'HOME';
+    newState.query = '';
+    newState.activeNodeSharing = null;
+    newState.activeGuidedAnswerNode = [];
     return newState;
 }
 

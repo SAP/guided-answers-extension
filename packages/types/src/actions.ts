@@ -20,7 +20,6 @@ import type {
     UpdateActiveNodeSharing,
     WebviewReady,
     UpdateNetworkStatus,
-    GuidedAnswerTreeSearchResult,
     GuidedAnswersQueryOptions,
     BetaFeatures,
     GuideFeedback,
@@ -45,7 +44,8 @@ import type {
     LastVisitedGuides,
     GetLastVisitedGuides,
     UpdateLastVisitedGuides,
-    UpdateBookmarksPayload
+    UpdateBookmarksPayload,
+    GoToHomePage
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -80,10 +80,11 @@ import {
     GET_BOOKMARKS,
     SYNCHRONIZE_BOOKMARK,
     GET_LAST_VISITED_GUIDES,
-    UPDATE_LAST_VISITED_GUIDES
+    UPDATE_LAST_VISITED_GUIDES,
+    GO_TO_HOME_PAGE
 } from './types';
 
-export const updateGuidedAnswerTrees = (payload: GuidedAnswerTreeSearchResult): UpdateGuidedAnswerTrees => ({
+export const updateGuidedAnswerTrees = (payload: UpdateGuidedAnswerTrees['payload']): UpdateGuidedAnswerTrees => ({
     type: UPDATE_GUIDED_ANSWER_TREES,
     payload
 });
@@ -110,6 +111,10 @@ export const goToAllAnswers = (): GoToAllAnswers => ({
 
 export const restartAnswer = (): RestartAnswer => ({
     type: RESTART_ANSWER
+});
+
+export const goToHomePage = (): GoToHomePage => ({
+    type: GO_TO_HOME_PAGE
 });
 
 export const executeCommand = (payload: Command): ExecuteCommand => ({

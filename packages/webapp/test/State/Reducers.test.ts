@@ -1,4 +1,4 @@
-import { GUIDE_FEEDBACK, GuideFeedback, UpdateActiveNode, AppState } from './../../../types/src/types';
+import { GUIDE_FEEDBACK, AppState, GuidedAnswerActions } from './../../../types/src/types';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import {
     UPDATE_GUIDED_ANSWER_TREES,
@@ -13,8 +13,10 @@ import {
     SET_PRODUCT_FILTERS,
     SET_COMPONENT_FILTERS,
     RESTORE_STATE,
-    RESET_FILTERS
+    RESET_FILTERS,
+    GO_TO_HOME_PAGE
 } from '@sap/guided-answers-extension-types';
+import type { GuidedAnswerTreeSearchHit } from '@sap/guided-answers-extension-types';
 
 const mockedPayload = {
     trees: [
@@ -47,7 +49,6 @@ const mockedPayload = {
 const mockedInitState = {
     networkStatus: 'LOADING',
     query: '',
-    searchResultCount: -1,
     guidedAnswerTreeSearchResult: {
         resultSize: -1,
         componentFilters: [],
@@ -63,7 +64,8 @@ const mockedInitState = {
     guideFeedback: null,
     selectedProductFilters: [],
     selectedComponentFilters: [],
-    pageSize: 20
+    pageSize: 20,
+    activeScreen: 'HOME'
 };
 
 const mockedActiveGuidedAnswerNode = [
@@ -131,21 +133,26 @@ describe('Test functions in reducers', () => {
         expect(initState).toEqual(mockedInitState);
     });
 
+    it('Should return state if action is not known to reduced', () => {
+        expect(reducer({ any: 'value' } as unknown as AppState, undefined as unknown as GuidedAnswerActions)).toEqual({
+            any: 'value'
+        });
+    });
+
     it('Should return updated guide answer trees', () => {
         const answersWithDefaultState = reducer(undefined, {
             type: UPDATE_GUIDED_ANSWER_TREES,
-            payload: mockedPayload
+            payload: { searchResult: mockedPayload }
         });
 
         const answers = reducer(getInitialState(), {
             type: UPDATE_GUIDED_ANSWER_TREES,
-            payload: mockedPayload
+            payload: { searchResult: mockedPayload }
         });
 
         const expected = {
             networkStatus: 'LOADING',
             query: '',
-            searchResultCount: -1,
             guidedAnswerTreeSearchResult: mockedGuidedAnswerTreeSearchResult,
             activeGuidedAnswerNode: [],
             activeNodeSharing: null,
@@ -156,11 +163,37 @@ describe('Test functions in reducers', () => {
             guideFeedback: null,
             selectedProductFilters: [],
             selectedComponentFilters: [],
-            pageSize: 20
+            pageSize: 20,
+            activeScreen: 'SEARCH'
         };
 
         expect(answersWithDefaultState).toEqual(expected);
         expect(answers).toEqual(expected);
+    });
+
+    it('Should add new results to existing guided answers trees (paging)', () => {
+        const state = getInitialState();
+        state.guidedAnswerTreeSearchResult.trees = [{ TREE_ID: 1 } as GuidedAnswerTreeSearchHit];
+
+        const newState = reducer(state, {
+            type: UPDATE_GUIDED_ANSWER_TREES,
+            payload: {
+                searchResult: {
+                    trees: [{ TREE_ID: 2 } as GuidedAnswerTreeSearchHit],
+                    resultSize: 2,
+                    componentFilters: [],
+                    productFilters: []
+                },
+                pagingOptions: { offset: 1, responseSize: 10 }
+            }
+        });
+
+        expect(newState.guidedAnswerTreeSearchResult).toEqual({
+            trees: [{ TREE_ID: 1 }, { TREE_ID: 2 }],
+            resultSize: 2,
+            componentFilters: [],
+            productFilters: []
+        });
     });
 
     it('Should pop node when tree is updated with GuideFeedback as False', () => {
@@ -185,7 +218,6 @@ describe('Test functions in reducers', () => {
         expect(activeNode).toEqual({
             networkStatus: 'LOADING',
             query: '',
-            searchResultCount: -1,
             guidedAnswerTreeSearchResult: {
                 resultSize: -1,
                 componentFilters: [],
@@ -201,7 +233,8 @@ describe('Test functions in reducers', () => {
             bookmarks: {},
             selectedProductFilters: [],
             selectedComponentFilters: [],
-            pageSize: 20
+            pageSize: 20,
+            activeScreen: 'NODE'
         });
 
         const mockedInitStateWithActiveGuidedNode: any = mockedInitState;
@@ -215,7 +248,6 @@ describe('Test functions in reducers', () => {
         expect(hasActiveNode).toEqual({
             networkStatus: 'LOADING',
             query: '',
-            searchResultCount: -1,
             guidedAnswerTreeSearchResult: {
                 resultSize: -1,
                 componentFilters: [],
@@ -231,7 +263,8 @@ describe('Test functions in reducers', () => {
             guideFeedback: null,
             selectedProductFilters: [],
             selectedComponentFilters: [],
-            pageSize: 20
+            pageSize: 20,
+            activeScreen: 'NODE'
         });
     });
 
@@ -274,6 +307,13 @@ describe('Test functions in reducers', () => {
         });
         expect(restartAnswersState.activeGuidedAnswerNode).toStrictEqual([undefined]);
         expect(restartAnswersState.guideFeedback).toEqual(null);
+    });
+
+    it('Should go to home page', () => {
+        const goToHomePageState = reducer(getInitialState(), {
+            type: GO_TO_HOME_PAGE
+        });
+        expect(goToHomePageState.activeScreen).toEqual('HOME');
     });
 
     it('Should set GuideFeedback', () => {

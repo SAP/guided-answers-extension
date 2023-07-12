@@ -38,7 +38,7 @@ import {
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
-import { getHtmlEnhancements, getInstalledExtensionIds, handleCommand } from '../enhancement';
+import { getInstalledExtensionIds, handleCommand } from '../enhancement';
 import { logString } from '../logger/logger';
 import type { Options, StartOptions } from '../types';
 import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
@@ -79,12 +79,10 @@ export class GuidedAnswersPanel {
         this.startOptions = options?.startOptions;
         this.ide = options?.ide ?? 'VSCODE';
         this.restoreAppState = options?.restore?.appState;
-        const htmlEnhancements = getHtmlEnhancements(this.ide);
         const extensions = getInstalledExtensionIds();
 
         this.guidedAnswerApi = getGuidedAnswerApi({
             apiHost: options?.apiHost,
-            htmlEnhancements,
             ide: this.ide,
             extensions
         });
@@ -350,7 +348,9 @@ export class GuidedAnswersPanel {
                     }
                     const trees = await this.getTrees(action.payload);
                     logString(`Found ${trees.resultSize} trees`);
-                    this.postActionToWebview(updateGuidedAnswerTrees(trees));
+                    this.postActionToWebview(
+                        updateGuidedAnswerTrees({ searchResult: trees, pagingOptions: action.payload.paging })
+                    );
                     break;
                 }
                 case WEBVIEW_READY: {
