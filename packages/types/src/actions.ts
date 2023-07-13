@@ -41,7 +41,7 @@ import type {
     GetBookmarks,
     Bookmark,
     SynchronizeBookmark,
-    LastVisitedGuides,
+    LastVisitedGuide,
     GetLastVisitedGuides,
     UpdateLastVisitedGuides,
     UpdateBookmarksPayload,
@@ -230,12 +230,12 @@ export const synchronizeBookmark = (payload: Bookmark): SynchronizeBookmark => (
     payload
 });
 
-export const getLastVisitedGuides = (payload: LastVisitedGuides): GetLastVisitedGuides => ({
+export const getLastVisitedGuides = (payload: LastVisitedGuide[]): GetLastVisitedGuides => ({
     type: GET_LAST_VISITED_GUIDES,
     payload
 });
 
-export const updateLastVisitedGuide = (payload: LastVisitedGuides): UpdateLastVisitedGuides => ({
+export const updateLastVisitedGuide = (payload: LastVisitedGuide[]): UpdateLastVisitedGuides => ({
     type: UPDATE_LAST_VISITED_GUIDES,
     payload
 });

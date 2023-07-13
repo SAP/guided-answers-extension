@@ -128,8 +128,6 @@ export interface LastVisitedGuide {
     createdAt: string;
 }
 
-export type LastVisitedGuides = Array<Record<string, LastVisitedGuide>>; //key is 'TREE_ID-NODE_ID:NODE_ID:NODE_ID:...NODE_ID'
-
 export interface GuidedAnswerAPI {
     getApiInfo: () => { host: string; version: string };
     getNodeById: (id: GuidedAnswerNodeId) => Promise<GuidedAnswerNode>;
@@ -252,7 +250,7 @@ export interface AppState {
     feedbackResponse: boolean;
     bookmarks: Bookmarks;
     activeScreen: 'HOME' | 'SEARCH' | 'NODE';
-    lastVisitedGuides: LastVisitedGuides;
+    lastVisitedGuides: LastVisitedGuide[];
 }
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
@@ -373,13 +371,13 @@ export interface UpdateBookmarks {
 export const GET_LAST_VISITED_GUIDES = 'GET_LAST_VISITED_GUIDES';
 export interface GetLastVisitedGuides {
     type: typeof GET_LAST_VISITED_GUIDES;
-    payload: LastVisitedGuides;
+    payload: LastVisitedGuide[];
 }
 
 export const UPDATE_LAST_VISITED_GUIDES = 'UPDATE_LAST_VISITED_GUIDES';
 export interface UpdateLastVisitedGuides {
     type: typeof UPDATE_LAST_VISITED_GUIDES;
-    payload: LastVisitedGuides;
+    payload: LastVisitedGuide[];
 }
 
 export const SET_PRODUCT_FILTERS = 'SET_PRODUCT_FILTERS';

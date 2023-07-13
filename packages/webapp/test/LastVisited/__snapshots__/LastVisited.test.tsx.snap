@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LastVisited /> Should render LastVisited component 1`] = `
+<div>
+  <div>
+    <h3
+      style="display: flex; align-items: center;"
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 16 16"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M13.507 12.324a7 7 0 0 0 .065-8.56A7 7 0 0 0 2 4.393V2H1v3.5l.5.5H5V5H2.811a6.008 6.008 0 1 1-.135 5.77l-.887.462a7 7 0 0 0 11.718 1.092zm-3.361-.97l.708-.707L8 7.792V4H7v4l.146.354 3 3z"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <span
+        style="margin: 0px 5px;"
+      >
+        Last visited
+      </span>
+    </h3>
+    <div
+      class="ms-FocusZone css-101"
+      data-focuszone-id="FocusZone0"
+    >
+      <ul
+        class="striped-list-items"
+        role="listbox"
+      >
+        <li
+          class="tree-item"
+          role="option"
+        >
+          <button
+            class="guided-answer__tree"
+            id="last-visited-button"
+            tabindex="0"
+          >
+            <div
+              class="guided-answer__tree__ul"
+            >
+              <h3
+                class="guided-answer__tree__title"
+              >
+                Bookmark 2 Title
+                 - 
+                Node 2
+              </h3>
+              <div
+                class="bottom-section"
+                id="bottom-section"
+              >
+                <span
+                  class="guided-answer__tree__desc"
+                >
+                  Bookmark 2 Description
+                </span>
+                <div
+                  class="component-and-product-container"
+                  style="margin-top: 10px;"
+                >
+                  <div
+                    class="guided-answer__tree__product"
+                    id="product-container"
+                  >
+                    <span
+                      class="bottom-title"
+                    >
+                      Product: 
+                    </span>
+                    Product 1
+                  </div>
+                  <div
+                    class="guided-answer__tree__component"
+                    id="component-container"
+                  >
+                    <span
+                      class="bottom-title"
+                    >
+                      Component: 
+                    </span>
+                    Component 1
+                  </div>
+                </div>
+              </div>
+            </div>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<LastVisited /> Should render LastVisited component with no data 1`] = `<div />`;

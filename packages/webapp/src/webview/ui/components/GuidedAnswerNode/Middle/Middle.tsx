@@ -1,11 +1,7 @@
 import React from 'react';
 import type { ReactElement } from 'react';
 import { actions } from '../../../../state';
-import type {
-    GuidedAnswerNode as GuidedAnswerNodeType,
-    GuidedAnswerTree,
-    GuidedAnswerNode
-} from '@sap/guided-answers-extension-types';
+import type { GuidedAnswerNode } from '@sap/guided-answers-extension-types';
 import '../GuidedAnswerNode.scss';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { focusOnElement } from '../../utils';
@@ -15,7 +11,6 @@ import { FeedbackSection } from '../../FeedbackSection/FeedbackSection';
 import NotSolvedMessage from '../../FeedbackSection/NotSolvedMessage/NotSolvedMessage';
 import { FeedbackDialogBox } from '../../DialogBoxes/FeedbackDialogBox';
 import { FeedbackSentDialogBox } from '../../DialogBoxes/FeedbackSentDialogBox/FeedbackSentDialogBox';
-import type { LastVisitedGuides } from '@sap/guided-answers-extension-types';
 import { useEffect } from 'react';
 
 let firstTimeFocus = true;
@@ -29,34 +24,29 @@ let firstTimeFocus = true;
  * @returns - The middle react element
  */
 export function Middle(props: {
-    activeNode: GuidedAnswerNodeType;
+    activeNode: GuidedAnswerNode;
     enhancedBody: ReactElement | undefined | null;
 }): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
     firstTimeFocus = true;
 
-    const lastVisitedGuides = useSelector<AppState, LastVisitedGuides>((state) => state.lastVisitedGuides);
-    const tree = useSelector<AppState, GuidedAnswerTree | undefined>((state) => state.activeGuidedAnswer);
-    const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
-
-    if (!tree) {
+    if (!appState.activeGuidedAnswer) {
         // No active tree, nothing we can do here
         return <></>;
     }
-    const lastVisitedKey = `${tree.TREE_ID}-${nodes.map((n) => n.NODE_ID).join(':')}`;
-    const newLastVisitedGuides: LastVisitedGuides = JSON.parse(JSON.stringify(lastVisitedGuides));
-
-    newLastVisitedGuides.push({
-        [lastVisitedKey]: {
-            tree,
-            nodePath: nodes,
-            createdAt: new Date().toISOString()
-        }
-    });
 
     useEffect(() => {
-        actions.updateLastVisitedGuide(newLastVisitedGuides);
-    }, []);
+        if (appState.activeGuidedAnswer) {
+            actions.updateLastVisitedGuide([
+                ...appState.lastVisitedGuides,
+                {
+                    tree: appState.activeGuidedAnswer,
+                    nodePath: appState.activeGuidedAnswerNode,
+                    createdAt: new Date().toISOString()
+                }
+            ]);
+        }
+    }, [props.activeNode.NODE_ID]);
 
     return appState.guideFeedback === false ? (
         <NotSolvedMessage />

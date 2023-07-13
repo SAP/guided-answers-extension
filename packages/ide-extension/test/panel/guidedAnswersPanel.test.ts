@@ -20,7 +20,9 @@ import {
     GET_BOOKMARKS,
     AppState,
     SYNCHRONIZE_BOOKMARK,
-    UPDATE_BOOKMARKS
+    UPDATE_BOOKMARKS,
+    GET_LAST_VISITED_GUIDES,
+    UPDATE_LAST_VISITED_GUIDES
 } from '@sap/guided-answers-extension-types';
 import type {
     Bookmarks,
@@ -31,13 +33,15 @@ import type {
     GuidedAnswerNodeId,
     GuidedAnswerTree,
     GuidedAnswerTreeId,
-    GuidedAnswerTreeSearchResult
+    GuidedAnswerTreeSearchResult,
+    LastVisitedGuide
 } from '@sap/guided-answers-extension-types';
 import { GuidedAnswersPanel, GuidedAnswersSerializer } from '../../src/panel/guidedAnswersPanel';
 import * as logger from '../../src/logger/logger';
 import * as telemetry from '../../src/telemetry';
 import type { StartOptions } from '../../src/types';
 import { initBookmarks } from '../../src/bookmarks';
+import { initLastVisited } from '../../src/last-visited';
 
 type WebviewMessageCallback = (action: GuidedAnswerActions) => void;
 
@@ -192,7 +196,8 @@ describe('GuidedAnswersPanel', () => {
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 1234, TITLE: 'Node 1234' } }],
             [{ type: BETA_FEATURES, payload: false }],
             [{ type: UPDATE_NETWORK_STATUS, payload: 'OK' }],
-            [{ type: GET_BOOKMARKS, payload: {} }]
+            [{ type: GET_BOOKMARKS, payload: {} }],
+            [{ type: GET_LAST_VISITED_GUIDES, payload: [] }]
         ]);
     });
 
@@ -219,7 +224,8 @@ describe('GuidedAnswersPanel', () => {
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 300 } }],
             [{ type: BETA_FEATURES, payload: false }],
             [{ type: UPDATE_NETWORK_STATUS, payload: 'OK' }],
-            [{ type: GET_BOOKMARKS, payload: {} }]
+            [{ type: GET_BOOKMARKS, payload: {} }],
+            [{ type: GET_LAST_VISITED_GUIDES, payload: [] }]
         ]);
     });
 
@@ -726,6 +732,42 @@ describe('GuidedAnswersPanel', () => {
 
         // Result check
         expect(globalStateMock.update).toBeCalledWith('bookmark', expectBookmarks);
+    });
+
+    test('GuidedAnswersPanel communication UPDATE_LAST_VISITED_GUIDES', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => { };
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() =>
+            getWebViewPanelMock((callback: WebviewMessageCallback) => {
+                onDidReceiveMessageMock = callback;
+            })
+        );
+        const lastVisitedMock = [
+            {
+                tree: {
+                    TREE_ID: 1,
+                    TITLE: 'Bookmark Title',
+                },
+                nodePath: [{ NODE_ID: 2 }, { NODE_ID: 3 }],
+                createdAt: '2023-05-23T15:41:00.478Z'
+            }
+        ] as LastVisitedGuide[];
+
+        const globalStateMock = {
+            update: jest.fn()
+        } as Partial<Memento>;
+        initLastVisited(globalStateMock as Memento);
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({
+            type: UPDATE_LAST_VISITED_GUIDES,
+            payload: lastVisitedMock
+        });
+
+        // Result check
+        expect(globalStateMock.update).toBeCalledWith('lastVisitedGuides', lastVisitedMock);
     });
 
     test('GuidedAnswersPanel communication unhandled action', async () => {
