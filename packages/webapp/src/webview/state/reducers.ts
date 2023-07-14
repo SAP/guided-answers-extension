@@ -153,7 +153,7 @@ function updateGuidedAnswerTreesReducer(newState: AppState, action: UpdateGuided
  * @returns new state with changes
  */
 function updateActiveNodeReducer(newState: AppState, action: UpdateActiveNode): AppState {
-    const node = newState.activeGuidedAnswerNode.find((n: { NODE_ID: any }) => n.NODE_ID === action.payload.NODE_ID);
+    const node = newState.activeGuidedAnswerNode.find((n: GuidedAnswerNode) => n.NODE_ID === action.payload.NODE_ID);
     if (newState.guideFeedback === false) {
         newState.guideFeedback = null;
         newState.activeGuidedAnswerNode.pop();
