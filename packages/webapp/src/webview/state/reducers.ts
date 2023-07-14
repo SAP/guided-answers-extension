@@ -17,6 +17,7 @@ import type {
     SetPageSize,
     FeedbackResponse,
     FeedbackStatus,
+    GuidedAnswerNode,
     GetLastVisitedGuides
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';

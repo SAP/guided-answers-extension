@@ -45,7 +45,7 @@ export function Middle(props: {
     if (!appState.activeGuidedAnswer) {
         // No active tree, nothing we can do here
         return <></>;
-    } else if (!appState.guideFeedback) {
+    } else if (appState.guideFeedback === false) {
         return <NotSolvedMessage />;
     } else {
         return (
