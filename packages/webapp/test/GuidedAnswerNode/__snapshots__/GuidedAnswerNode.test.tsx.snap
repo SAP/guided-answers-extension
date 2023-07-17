@@ -9,66 +9,6 @@ exports[`<GuidedAnswerNode /> Should render a GuidedAnswerNode component 1`] = `
       class="guided-answer__node__sidebar"
     />
     <div
-      id="middle"
-    >
-      <div
-        class="body_container"
-      >
-        <header>
-          SAP Fiori Tools
-        </header>
-        <div
-          id="hr"
-        />
-        <div
-          class="ms-FocusZone css-109"
-          data-focuszone-id="FocusZone0"
-        >
-          <p>
-            SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code 
-            <button
-              class="enhancement-link"
-              tabindex="0"
-              title="Run command to archive a Fiori tools project from current workspace"
-            >
-              Fiori: Archive Project
-            </button>
-          </p>
-        </div>
-        <p
-          class="guided-answer__node__question"
-        >
-          I have a problem with
-        </p>
-      </div>
-      <div
-        class="ms-FocusZone css-109"
-        data-focuszone-id="FocusZone1"
-        role="listbox"
-      >
-        <div
-          class="guided-answer__node"
-        >
-          <button
-            class="guided-answer__node__edge"
-            id="edge_button"
-            role="option"
-            tabindex="0"
-          >
-            Deployment
-          </button>
-          <button
-            class="guided-answer__node__edge"
-            id="edge_button"
-            role="option"
-            tabindex="-1"
-          >
-            Fiori Generator
-          </button>
-        </div>
-      </div>
-    </div>
-    <div
       class="guided-answer__node__sidebar"
     >
       <div
@@ -76,7 +16,7 @@ exports[`<GuidedAnswerNode /> Should render a GuidedAnswerNode component 1`] = `
       >
         <div
           class="ms-FocusZone css-109"
-          data-focuszone-id="FocusZone2"
+          data-focuszone-id="FocusZone0"
         />
       </div>
     </div>

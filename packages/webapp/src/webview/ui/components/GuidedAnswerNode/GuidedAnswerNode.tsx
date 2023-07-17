@@ -81,6 +81,7 @@ function hasEnhancements(htmlString: string): boolean {
  */
 export function GuidedAnswerNode(): ReactElement {
     const nodes = useSelector<AppState, GuidedAnswerNodeType[]>((state) => state.activeGuidedAnswerNode);
+
     const activeNode = nodes[nodes.length - 1];
 
     if (activeNode) {

@@ -41,6 +41,9 @@ import type {
     GetBookmarks,
     Bookmark,
     SynchronizeBookmark,
+    LastVisitedGuide,
+    GetLastVisitedGuides,
+    UpdateLastVisitedGuides,
     UpdateBookmarksPayload,
     GoToHomePage
 } from './types';
@@ -76,6 +79,8 @@ import {
     UPDATE_BOOKMARKS,
     GET_BOOKMARKS,
     SYNCHRONIZE_BOOKMARK,
+    GET_LAST_VISITED_GUIDES,
+    UPDATE_LAST_VISITED_GUIDES,
     GO_TO_HOME_PAGE
 } from './types';
 
@@ -222,5 +227,15 @@ export const getBookmarks = (payload: Bookmarks): GetBookmarks => ({
 
 export const synchronizeBookmark = (payload: Bookmark): SynchronizeBookmark => ({
     type: SYNCHRONIZE_BOOKMARK,
+    payload
+});
+
+export const getLastVisitedGuides = (payload: LastVisitedGuide[]): GetLastVisitedGuides => ({
+    type: GET_LAST_VISITED_GUIDES,
+    payload
+});
+
+export const updateLastVisitedGuide = (payload: LastVisitedGuide[]): UpdateLastVisitedGuides => ({
+    type: UPDATE_LAST_VISITED_GUIDES,
     payload
 });

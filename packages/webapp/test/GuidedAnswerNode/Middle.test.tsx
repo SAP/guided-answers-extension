@@ -1,6 +1,8 @@
 import { treeMock } from '../__mocks__/treeMock';
 import React, { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
 import { render, fireEvent, cleanup } from '@testing-library/react';
+import { screen } from '@testing-library/dom';
 import { Middle } from '../../src/webview/ui/components/GuidedAnswerNode/Middle';
 import { actions } from '../../src/webview/state';
 import { initI18n } from '../../src/webview/i18n';
@@ -16,61 +18,30 @@ let activeNodeMock = {
     TITLE: 'SAP Fiori Tools'
 };
 
-// Have to use var because jest does not hoist variables.
-// See https://github.com/kulshekhar/ts-jest/issues/1088#issuecomment-562975615
-var initState = {
+let initialState = {
     guidedAnswerTreeSearchResult: {
         trees: [treeMock],
         resultSize: 1,
         productFilters: [],
         componentFilters: []
     },
-    query: 'fiori tools'
+    query: 'fiori tools',
+    activeGuidedAnswer: treeMock,
+    activeGuidedAnswerNode: [activeNodeMock],
+    lastVisitedGuides: []
 };
 
 jest.mock('../../src/webview/state', () => {
     return {
         actions: {
-            selectNode: jest.fn()
+            selectNode: jest.fn(),
+            updateLastVisitedGuide: jest.fn()
         }
     };
 });
 
 jest.mock('react-redux', () => ({
-    ...jest.requireActual('react-redux'),
-    useSelector: jest
-        .fn()
-        .mockReturnValueOnce({
-            activeGuidedAnswerNode: [],
-            ...initState,
-            guideFeedback: true
-        })
-        .mockReturnValueOnce({
-            activeGuidedAnswerNode: [],
-            ...initState,
-            guideFeedback: true
-        })
-        .mockReturnValueOnce({
-            activeGuidedAnswerNode: [],
-            ...initState,
-            guideFeedback: false
-        })
-        .mockReturnValueOnce({
-            activeGuidedAnswer: treeMock,
-            activeGuidedAnswerNode: [
-                {
-                    BODY: '<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p>',
-                    EDGES: [
-                        { LABEL: 'Deployment', TARGET_NODE: 45996, ORD: 1 },
-                        { LABEL: 'Fiori Generator', TARGET_NODE: 48363, ORD: 2 }
-                    ],
-                    NODE_ID: 45995,
-                    QUESTION: 'I have a problem with',
-                    TITLE: 'SAP Fiori Tools'
-                }
-            ],
-            guideFeedback: true
-        })
+    useSelector: jest.fn()
 }));
 
 export function TestComponent(): ReactElement {
@@ -82,25 +53,41 @@ describe('<Middle />', () => {
     afterEach(cleanup);
 
     it('Should render a Middle component', () => {
-        const { container, getAllByTestId } = render(<Middle activeNode={activeNodeMock} enhancedBody={null} />);
+        (useSelector as jest.Mock).mockReturnValue({ ...initialState, guideFeedback: true });
+
+        const { container } = render(<Middle activeNode={activeNodeMock} enhancedBody={null} />);
         expect(container).toMatchSnapshot();
 
-        const edgeBtn = getAllByTestId('edge_button')[0];
+        const edgeBtn = screen.getAllByTestId('edge_button')[0];
         fireEvent.click(edgeBtn);
         expect(actions.selectNode).toBeCalled();
+        expect(actions.updateLastVisitedGuide).toBeCalled();
     });
 
     it('Should render a Middle component with enhancedBody', () => {
+        (useSelector as jest.Mock).mockReturnValue({ ...initialState, guideFeedback: true });
+
         const { container } = render(<Middle activeNode={activeNodeMock} enhancedBody={TestComponent()} />);
         expect(container).toMatchSnapshot();
     });
 
     it('Should render a Middle component with NotSolvedMessage', () => {
+        (useSelector as jest.Mock).mockReturnValue({ ...initialState, guideFeedback: false });
+
         const { container } = render(<Middle activeNode={activeNodeMock} enhancedBody={null} />);
         expect(container).toMatchSnapshot();
     });
 
     it('Should render a Middle component with FeedbackDialogBox', () => {
+        (useSelector as jest.Mock).mockReturnValue({ ...initialState, guideFeedback: true });
+
+        const { container } = render(<Middle activeNode={activeNodeMock} enhancedBody={null} />);
+        expect(container).toMatchSnapshot();
+    });
+
+    it('Should render a empty Middle component', () => {
+        (useSelector as jest.Mock).mockReturnValue({ ...initialState, activeGuidedAnswer: undefined });
+
         const { container } = render(<Middle activeNode={activeNodeMock} enhancedBody={null} />);
         expect(container).toMatchSnapshot();
     });

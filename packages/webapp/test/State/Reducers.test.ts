@@ -65,7 +65,8 @@ const mockedInitState = {
     selectedProductFilters: [],
     selectedComponentFilters: [],
     pageSize: 20,
-    activeScreen: 'HOME'
+    activeScreen: 'HOME',
+    lastVisitedGuides: []
 };
 
 const mockedActiveGuidedAnswerNode = [
@@ -164,7 +165,8 @@ describe('Test functions in reducers', () => {
             selectedProductFilters: [],
             selectedComponentFilters: [],
             pageSize: 20,
-            activeScreen: 'SEARCH'
+            activeScreen: 'SEARCH',
+            lastVisitedGuides: []
         };
 
         expect(answersWithDefaultState).toEqual(expected);
@@ -234,7 +236,8 @@ describe('Test functions in reducers', () => {
             selectedProductFilters: [],
             selectedComponentFilters: [],
             pageSize: 20,
-            activeScreen: 'NODE'
+            activeScreen: 'NODE',
+            lastVisitedGuides: []
         });
 
         const mockedInitStateWithActiveGuidedNode: any = mockedInitState;
@@ -264,7 +267,8 @@ describe('Test functions in reducers', () => {
             selectedProductFilters: [],
             selectedComponentFilters: [],
             pageSize: 20,
-            activeScreen: 'NODE'
+            activeScreen: 'NODE',
+            lastVisitedGuides: []
         });
     });
 

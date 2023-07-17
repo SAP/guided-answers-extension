@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Middle /> Should render a Middle component 1`] = `
-<div>
+<div
+  aria-hidden="true"
+>
   <div
     id="middle"
   >
@@ -58,12 +60,20 @@ exports[`<Middle /> Should render a Middle component 1`] = `
         </button>
       </div>
     </div>
+    <span
+      class="ms-layer"
+    />
+    <span
+      class="ms-layer"
+    />
   </div>
 </div>
 `;
 
 exports[`<Middle /> Should render a Middle component with FeedbackDialogBox 1`] = `
-<div>
+<div
+  aria-hidden="true"
+>
   <div
     id="middle"
   >
@@ -78,7 +88,7 @@ exports[`<Middle /> Should render a Middle component with FeedbackDialogBox 1`] 
       />
       <div
         class="ms-FocusZone css-109"
-        data-focuszone-id="FocusZone5"
+        data-focuszone-id="FocusZone37"
       >
         <div
           class="content"
@@ -96,7 +106,7 @@ exports[`<Middle /> Should render a Middle component with FeedbackDialogBox 1`] 
     </div>
     <div
       class="ms-FocusZone css-109"
-      data-focuszone-id="FocusZone6"
+      data-focuszone-id="FocusZone38"
       role="listbox"
     >
       <div
@@ -120,6 +130,12 @@ exports[`<Middle /> Should render a Middle component with FeedbackDialogBox 1`] 
         </button>
       </div>
     </div>
+    <span
+      class="ms-layer"
+    />
+    <span
+      class="ms-layer"
+    />
   </div>
 </div>
 `;
@@ -155,7 +171,7 @@ exports[`<Middle /> Should render a Middle component with NotSolvedMessage 1`] =
     >
       <div
         class="ms-FocusZone css-109 guided-answer__node"
-        data-focuszone-id="FocusZone4"
+        data-focuszone-id="FocusZone36"
       >
         <div
           class="guided-answer__node"
@@ -222,7 +238,9 @@ exports[`<Middle /> Should render a Middle component with NotSolvedMessage 1`] =
 `;
 
 exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
-<div>
+<div
+  aria-hidden="true"
+>
   <div
     id="middle"
   >
@@ -237,7 +255,7 @@ exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
       />
       <div
         class="ms-FocusZone css-109"
-        data-focuszone-id="FocusZone2"
+        data-focuszone-id="FocusZone18"
       >
         <span
           id="enhancedHtml"
@@ -253,7 +271,7 @@ exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
     </div>
     <div
       class="ms-FocusZone css-109"
-      data-focuszone-id="FocusZone3"
+      data-focuszone-id="FocusZone19"
       role="listbox"
     >
       <div
@@ -277,6 +295,14 @@ exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
         </button>
       </div>
     </div>
+    <span
+      class="ms-layer"
+    />
+    <span
+      class="ms-layer"
+    />
   </div>
 </div>
 `;
+
+exports[`<Middle /> Should render a empty Middle component 1`] = `<div />`;

@@ -22,7 +22,7 @@ export function Bookmarks(): ReactElement {
                 <VscStarFull className="bookmark-icon-bookmarked" /> Bookmarks
             </h3>
             <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
-                <ul className="striped-list-bookmarks" role="listbox">
+                <ul className="striped-list-items" role="listbox">
                     {Object.keys(bookmarks).map((bookmarkKey) => {
                         const bookmark = bookmarks[bookmarkKey];
                         return (

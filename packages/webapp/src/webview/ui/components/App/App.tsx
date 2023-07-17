@@ -14,8 +14,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { SpinnerSize } from '@fluentui/react';
 import i18next from 'i18next';
 import { VscStarFull } from 'react-icons/vsc';
-import { TreeItemBottomSection } from '../TreeItemBottomSection';
 import { Bookmarks } from '../Bookmarks';
+import { LastVisited } from '../LastVisited';
+import { TreeItemBottomSection } from '../TreeItemBottomSection';
 import { HomeGrid } from '../HomeGrid';
 
 initIcons();
@@ -89,10 +90,14 @@ export function App(): ReactElement {
     } else if (appState.activeScreen === 'HOME') {
         content = appState.betaFeatures ? (
             <HomeGrid>
+                <LastVisited key="last-visited" />
                 <Bookmarks key="bookmarks" />
             </HomeGrid>
         ) : (
-            <Bookmarks />
+            <>
+                <LastVisited />
+                <Bookmarks />
+            </>
         );
     } else {
         content =

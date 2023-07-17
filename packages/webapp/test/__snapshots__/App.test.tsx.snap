@@ -369,7 +369,7 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
           data-focuszone-id="FocusZone16"
         >
           <ul
-            class="striped-list-bookmarks"
+            class="striped-list-items"
             role="listbox"
           />
         </div>
@@ -923,7 +923,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
           data-focuszone-id="FocusZone33"
         >
           <ul
-            class="striped-list-bookmarks"
+            class="striped-list-items"
             role="listbox"
           />
         </div>
