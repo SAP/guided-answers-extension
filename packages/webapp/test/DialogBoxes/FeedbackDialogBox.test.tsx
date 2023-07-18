@@ -55,10 +55,12 @@ describe('<FeedbackDialogBox />', () => {
 
         const textArea = screen.getByTestId('feedbackDialogTextArea') as HTMLInputElement;
         expect(textArea.value).toEqual('');
-        expect(screen.getByTestId('sendFeedbackBtn')).toBeDisabled();
+        expect(screen.getByTestId('sendFeedbackBtn').getAttribute('aria-disabled')).toBe('true');
+        expect(screen.getByTestId('sendFeedbackBtn').getAttribute('data-is-focusable')).toBe('true');
 
         fireEvent.change(textArea, { target: { value: 'test' } });
-        expect(screen.getByTestId('sendFeedbackBtn')).toBeEnabled();
+        expect(screen.getByTestId('sendFeedbackBtn').getAttribute('aria-disabled')).toBe(null);
+        expect(screen.getByTestId('sendFeedbackBtn').getAttribute('data-is-focusable')).toBe('true');
     });
 
     it('Should sennd feedback comment and feedback status', () => {

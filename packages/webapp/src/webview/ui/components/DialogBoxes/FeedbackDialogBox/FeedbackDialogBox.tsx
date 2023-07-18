@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import type { FormEvent, ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import './FeedbackDialogBox.scss';
 import { DialogFooter } from '@fluentui/react/lib/Dialog';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
@@ -25,9 +25,9 @@ export function FeedbackDialogBox(): ReactElement {
     const container = document.querySelector('.feedback-section-dialog');
     const [isVisible, setVisible] = useState(feedbackStatus);
     const [feedback, setFeedback] = useState('');
-    const [textFieldhasValue, setTextFieldhasValue] = useState(true);
 
     useEffect(() => {
+        setFeedback('');
         setVisible(feedbackStatus);
         if (feedbackStatus === false) {
             container?.classList.toggle('.dialog-exit');
@@ -44,57 +44,45 @@ export function FeedbackDialogBox(): ReactElement {
         className: `feedback-section-dialog`
     };
 
-    const onChange = (
-        event: FormEvent<HTMLInputElement | HTMLTextAreaElement>,
-        newValue?: string | undefined
-    ): void => {
-        if (newValue !== undefined && newValue !== '') {
-            setFeedback(newValue);
-            setTextFieldhasValue(false);
-        } else {
-            setTextFieldhasValue(true);
-        }
-    };
-
     return treeId ? (
-        <>
-            <UIDialog modalProps={modalProps} isOpen={isVisible} title={dialogContentProps.title}>
-                <p className="ms-Dialog-subText">{i18next.t('FEEDBACK_DIALOG_SUBTEXT')}</p>
-                <UITextInput
-                    id="feedbackDialogTextArea"
-                    label={i18next.t('FEEDBACK_DIALOG_SUGGESTION')}
-                    multiline
-                    style={{ height: '85px' }}
-                    onChange={onChange}
-                />
-                <div className="privacy-notice">
-                    <VscInfo className="info-icon" />
-                    <p>{i18next.t('FEEDBACK_DIALOG_DISCLAIMER')}</p>
-                </div>
-                <DialogFooter>
-                    <FocusZone direction={FocusZoneDirection.horizontal} className="button-container">
-                        <UIDefaultButton
-                            primary
-                            text={i18next.t('SEND')}
-                            disabled={textFieldhasValue}
-                            id="sendFeedbackBtn"
-                            onClick={() => {
-                                actions.feedbackResponse(false);
-                                actions.sendFeedbackComment({ treeId, nodeId, comment: feedback });
-                                actions.feedbackStatus(false);
-                            }}
-                        />
-                        <UIDefaultButton
-                            text={i18next.t('CLOSE')}
-                            id="closeDialogBtn"
-                            onClick={() => {
-                                actions.feedbackStatus(false);
-                            }}
-                        />
-                    </FocusZone>
-                </DialogFooter>
-            </UIDialog>
-        </>
+        <UIDialog modalProps={modalProps} isOpen={isVisible} title={dialogContentProps.title}>
+            <p className="ms-Dialog-subText">{i18next.t('FEEDBACK_DIALOG_SUBTEXT')}</p>
+            <UITextInput
+                id="feedbackDialogTextArea"
+                label={i18next.t('FEEDBACK_DIALOG_SUGGESTION')}
+                multiline
+                style={{ height: '85px' }}
+                value={feedback}
+                onChange={(_, value: string | undefined) => setFeedback(value ?? '')}
+            />
+            <div className="privacy-notice">
+                <VscInfo className="info-icon" />
+                <p>{i18next.t('FEEDBACK_DIALOG_DISCLAIMER')}</p>
+            </div>
+            <DialogFooter>
+                <FocusZone direction={FocusZoneDirection.horizontal} className="button-container">
+                    <UIDefaultButton
+                        primary
+                        text={i18next.t('SEND')}
+                        disabled={feedback === ''}
+                        id="sendFeedbackBtn"
+                        allowDisabledFocus
+                        onClick={() => {
+                            actions.feedbackResponse(false);
+                            actions.sendFeedbackComment({ treeId, nodeId, comment: feedback });
+                            actions.feedbackStatus(false);
+                        }}
+                    />
+                    <UIDefaultButton
+                        text={i18next.t('CLOSE')}
+                        id="closeDialogBtn"
+                        onClick={() => {
+                            actions.feedbackStatus(false);
+                        }}
+                    />
+                </FocusZone>
+            </DialogFooter>
+        </UIDialog>
     ) : (
         <></>
     );
