@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.26.0
+
+### Minor Changes
+
+-   c95cefe: Feat/ga/last visited
+
 ## 1.25.0
 
 ### Minor Changes
