@@ -45,8 +45,14 @@ export function MessageDialogBox(props: {
             <UIDialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
                 <DialogFooter>
                     <FocusZone direction={FocusZoneDirection.horizontal} className="button-container">
-                        <UIDefaultButton primary text={i18next.t('HOME')} onClick={() => props.primaryButtonAction()} />
                         <UIDefaultButton
+                            id="dialog-home-button"
+                            primary
+                            text={i18next.t('HOME')}
+                            onClick={() => props.primaryButtonAction()}
+                        />
+                        <UIDefaultButton
+                            id="dialog-close-button"
                             text={i18next.t('CLOSE')}
                             onClick={() => {
                                 props.defaultButtonAction();
