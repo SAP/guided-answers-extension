@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.26.1
+
+### Patch Changes
+
+-   34e5563: fix(488): fix accessibility issue in feedback sharing dialog
+
 ## 1.26.0
 
 ### Minor Changes
