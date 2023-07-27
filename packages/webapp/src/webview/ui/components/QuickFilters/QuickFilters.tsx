@@ -1,6 +1,8 @@
 import React from 'react';
 import type { ReactElement } from 'react';
 import { VscFilter } from 'react-icons/vsc';
+import { useSelector } from 'react-redux';
+import type { AppState } from '../../../types';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { actions } from '../../../state';
 import type { GuidedAnswersQueryFilterOptions } from '@sap/guided-answers-extension-types';
@@ -12,9 +14,7 @@ import './QuickFilters.scss';
  * @returns - react elements for QuickFilters view
  */
 export function QuickFilters(): ReactElement {
-    const filters: GuidedAnswersQueryFilterOptions[] = [
-        { component: ['CA-UX-IDE', 'CA-FE-FLP-EU', 'CA-FE-FLP-DT', 'CA-FE-FAL', 'CA-UI2-INT-BE', 'CA-UI2-INT-FE', 'CA-UI2-THD'] }
-    ];
+    const filters = useSelector<AppState, GuidedAnswersQueryFilterOptions[]>((state) => state.quickFilters);
     return (
         <div>
             <h3 style={{ display: 'flex', alignItems: 'center' }}>
@@ -27,17 +27,22 @@ export function QuickFilters(): ReactElement {
                         <li
                             key={`tree-item-${f.product?.join('-')}-${f.component?.join('-')}`}
                             className="tree-item"
-                            role="option"
-                        >
+                            role="option">
                             <button
                                 className="guided-answer__quick-filter"
-                                onClick={(): void => {}}
-                            >
+                                onClick={(): void => {
+                                    actions.updateNetworkStatus('LOADING');
+                                    actions.searchTree({ filters: f });
+                                }}>
                                 {f.product && (
-                                    <div>Product: <strong>{f.product.join(', ')}</strong></div>
+                                    <div>
+                                        Product: <strong>{f.product.join(', ')}</strong>
+                                    </div>
                                 )}
                                 {f.component && (
-                                    <div>Component: <strong>{f.component.join(', ')}</strong></div>
+                                    <div>
+                                        Component: <strong>{f.component.join(', ')}</strong>
+                                    </div>
                                 )}
                             </button>
                         </li>

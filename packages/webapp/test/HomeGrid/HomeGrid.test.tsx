@@ -13,7 +13,7 @@ describe('<HomeGrid />', () => {
 
         expect(container.firstChild).toHaveClass('guided-answer__home-grid');
         expect(columns[0].children.length).toBe(1);
-        expect(columns[1].children.length).toBe(0);
+        expect(columns[1]).toBe(undefined);
     });
 
     it('Should render a HomeGrid component, three items', async () => {

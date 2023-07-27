@@ -23,7 +23,6 @@ import {
     updateNetworkStatus,
     updateActiveNodeSharing,
     EXECUTE_COMMAND,
-    searchTree,
     SEARCH_TREE,
     WEBVIEW_READY,
     restoreState,
@@ -34,7 +33,8 @@ import {
     getBookmarks,
     goToAllAnswers,
     updateBookmark,
-    getLastVisitedGuides
+    getLastVisitedGuides,
+    setQuickFilters
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
@@ -161,9 +161,8 @@ export class GuidedAnswersPanel {
         }
         if (this.startOptions) {
             await this.processStartOptions(this.startOptions);
-        } else {
-            await this.processEnvironmentFilters(this.ide);
         }
+        await this.loadQuickFilters(this.ide);
         this.postActionToWebview(
             getBetaFeatures(workspace.getConfiguration('sap.ux.guidedAnswer').get<boolean>('betaFeatures') ?? false)
         );
@@ -214,13 +213,33 @@ export class GuidedAnswersPanel {
      *
      * @param ide - environment like VSCODE or BAS
      */
-    private async processEnvironmentFilters(ide: IDE): Promise<void> {
+    private async loadQuickFilters(ide: IDE): Promise<void> {
         try {
             const filters = await getFiltersForIde(ide);
             logString(`Filters for environment '${ide}': ${JSON.stringify(filters)}`);
             if (Object.keys(filters).length > 0) {
-                this.postActionToWebview(searchTree({ filters }));
+                this.postActionToWebview(setQuickFilters([filters]));
             }
+            this.postActionToWebview(
+                setQuickFilters([
+                    {
+                        component: [
+                            'CA-UX-IDE',
+                            'CA-FE-FLP-EU',
+                            'CA-FE-FLP-DT',
+                            'CA-FE-FAL',
+                            'CA-UI2-INT-BE',
+                            'CA-UI2-INT-FE',
+                            'CA-UI2-THD'
+                        ]
+                    },
+                    { product: ['SAP Fiori tools'] },
+                    {
+                        product: ['SAP Fiori Cloud'],
+                        component: ['CA-UX-IDE', 'CA-FE-FLP-EU', 'CA-FE-FLP-DT', 'CA-FE-FAL']
+                    }
+                ])
+            );
         } catch (error: any) {
             logString(`Error while retrieving context information, error was: '${error?.message}'.`);
         }

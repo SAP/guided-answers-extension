@@ -91,13 +91,13 @@ export function App(): ReactElement {
     } else if (appState.activeScreen === 'HOME') {
         content = appState.betaFeatures ? (
             <HomeGrid>
-                <LastVisited key="last-visited" />
-                <Bookmarks key="bookmarks" />
-                <QuickFilters key="quick-filters" />
+                {appState.lastVisitedGuides.length && <LastVisited />}
+                <Bookmarks />
+                {appState.quickFilters.length && <QuickFilters />}
             </HomeGrid>
         ) : (
             <>
-                <LastVisited />
+                {appState.lastVisitedGuides.length && <LastVisited />}
                 <Bookmarks />
             </>
         );
@@ -150,9 +150,7 @@ export function App(): ReactElement {
         <div className="guided-answer">
             <Header />
 
-            {appState.guidedAnswerTreeSearchResult.resultSize > 0 && appState.activeGuidedAnswerNode.length === 0 ? (
-                <FiltersRibbon />
-            ) : null}
+            {appState.activeScreen === 'SEARCH' && <FiltersRibbon />}
 
             <main className="guided-answer__container" id="results-container">
                 {content}
