@@ -1,11 +1,11 @@
 import React from 'react';
 import { App } from '../src/webview/ui/components/App';
 import { render, cleanup } from '@testing-library/react';
+import type { AppState } from '@sap/guided-answers-extension-types';
 import { initI18n } from '../src/webview/i18n';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import { getInitialState, reducer } from '../src/webview/state/reducers';
-import { AppState } from '../src/webview/types';
 import { treeMock } from './__mocks__/treeMock';
 
 jest.mock('../src/webview/state', () => {

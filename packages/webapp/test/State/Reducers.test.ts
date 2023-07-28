@@ -1,4 +1,3 @@
-import { GUIDE_FEEDBACK, AppState, GuidedAnswerActions } from './../../../types/src/types';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import {
     UPDATE_GUIDED_ANSWER_TREES,
@@ -14,9 +13,11 @@ import {
     SET_COMPONENT_FILTERS,
     RESTORE_STATE,
     RESET_FILTERS,
-    GO_TO_HOME_PAGE
+    GO_TO_HOME_PAGE,
+    SET_QUICK_FILTERS,
+    GUIDE_FEEDBACK
 } from '@sap/guided-answers-extension-types';
-import type { GuidedAnswerTreeSearchHit } from '@sap/guided-answers-extension-types';
+import type { GuidedAnswerTreeSearchHit, AppState, GuidedAnswerActions } from '@sap/guided-answers-extension-types';
 
 const mockedPayload = {
     trees: [
@@ -384,6 +385,16 @@ describe('Test functions in reducers', () => {
         });
         expect(resetSelectedFiltersState.selectedProductFilters).toEqual([]);
         expect(resetSelectedFiltersState.selectedComponentFilters).toEqual([]);
+    });
+
+    it('Should set quick filters', () => {
+        const state = getInitialState();
+
+        const setQuickFiltersState = reducer(state, {
+            type: SET_QUICK_FILTERS,
+            payload: [{ product: ['product'], component: ['component'] }]
+        });
+        expect(setQuickFiltersState.quickFilters).toEqual([{ product: ['product'], component: ['component'] }]);
     });
 
     it('Should restore the app state', () => {
