@@ -15,7 +15,8 @@ import {
     RESET_FILTERS,
     GO_TO_HOME_PAGE,
     SET_QUICK_FILTERS,
-    GUIDE_FEEDBACK
+    GUIDE_FEEDBACK,
+    SEARCH_TREE
 } from '@sap/guided-answers-extension-types';
 import type { GuidedAnswerTreeSearchHit, AppState, GuidedAnswerActions } from '@sap/guided-answers-extension-types';
 
@@ -395,6 +396,35 @@ describe('Test functions in reducers', () => {
             payload: [{ product: ['product'], component: ['component'] }]
         });
         expect(setQuickFiltersState.quickFilters).toEqual([{ product: ['product'], component: ['component'] }]);
+    });
+
+    it('Should set filters to search tree', () => {
+        const state = getInitialState();
+
+        const searchTreeState = reducer(state, {
+            type: SEARCH_TREE,
+            payload: {
+                query: 'query',
+                filters: { product: ['product'], component: ['component'] }
+            }
+        });
+        expect(searchTreeState.selectedProductFilters).toEqual(['product']);
+        expect(searchTreeState.selectedComponentFilters).toEqual(['component']);
+        expect(searchTreeState.activeScreen).toEqual('SEARCH');
+    });
+
+    it('Should set filters to search tree, with no filters', () => {
+        const state = getInitialState();
+
+        const searchTreeState = reducer(state, {
+            type: SEARCH_TREE,
+            payload: {
+                query: 'query'
+            }
+        });
+        expect(searchTreeState.selectedProductFilters).toEqual([]);
+        expect(searchTreeState.selectedComponentFilters).toEqual([]);
+        expect(searchTreeState.activeScreen).toEqual('SEARCH');
     });
 
     it('Should restore the app state', () => {

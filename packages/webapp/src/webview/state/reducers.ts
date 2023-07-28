@@ -417,10 +417,8 @@ function resetFiltersReducer(newState: AppState): AppState {
  * @returns new state with changes
  */
 function searchTreeReducer(newState: AppState, action: SearchTree): AppState {
-    const selectedComponentFilters = action.payload?.filters?.component;
-    newState.selectedComponentFilters = Array.isArray(selectedComponentFilters) ? selectedComponentFilters : [];
-    const selectedProductFilters = action.payload?.filters?.product;
-    newState.selectedProductFilters = Array.isArray(selectedProductFilters) ? selectedProductFilters : [];
+    newState.selectedComponentFilters = action.payload.filters?.component ?? [];
+    newState.selectedProductFilters = action.payload.filters?.product ?? [];
     newState.activeScreen = 'SEARCH';
     return newState;
 }
