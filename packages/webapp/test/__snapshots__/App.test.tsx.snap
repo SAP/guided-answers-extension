@@ -344,7 +344,6 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
       class="guided-answer__container"
       id="results-container"
     >
-      0
       <div>
         <h3>
           <svg
@@ -899,7 +898,6 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
       class="guided-answer__container"
       id="results-container"
     >
-      0
       <div>
         <h3>
           <svg

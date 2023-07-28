@@ -91,13 +91,13 @@ export function App(): ReactElement {
     } else if (appState.activeScreen === 'HOME') {
         content = appState.betaFeatures ? (
             <HomeGrid>
-                {appState.lastVisitedGuides.length && <LastVisited />}
-                <Bookmarks />
-                {appState.quickFilters.length && <QuickFilters />}
+                {!!appState.lastVisitedGuides.length && <LastVisited />}
+                {!!Object.keys(appState.bookmarks).length && <Bookmarks />}
+                {!!appState.quickFilters.length && <QuickFilters />}
             </HomeGrid>
         ) : (
             <>
-                {appState.lastVisitedGuides.length && <LastVisited />}
+                {!!appState.lastVisitedGuides.length && <LastVisited />}
                 <Bookmarks />
             </>
         );
