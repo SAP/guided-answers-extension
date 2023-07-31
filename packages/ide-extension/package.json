@@ -22,7 +22,7 @@
         "url": "https://github.com/SAP/guided-answers-extension.git"
     },
     "engines": {
-        "vscode": "^1.39.0"
+        "vscode": "^1.73.1"
     },
     "main": "./dist/extension-min.js",
     "private": false,
@@ -83,7 +83,7 @@
         "@sap/guided-answers-extension-core": "workspace:*",
         "@sap/guided-answers-extension-types": "workspace:*",
         "@types/uuid": "9.0.2",
-        "@types/vscode": "1.39.0",
+        "@types/vscode": "1.73.1",
         "@vscode/vsce": "2.19.0",
         "applicationinsights": "2.5.0",
         "esbuild": "0.18.10",
