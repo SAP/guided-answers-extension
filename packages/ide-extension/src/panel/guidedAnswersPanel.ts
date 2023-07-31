@@ -220,26 +220,6 @@ export class GuidedAnswersPanel {
             if (Object.keys(filters).length > 0) {
                 this.postActionToWebview(setQuickFilters([filters]));
             }
-            this.postActionToWebview(
-                setQuickFilters([
-                    {
-                        component: [
-                            'CA-UX-IDE',
-                            'CA-FE-FLP-EU',
-                            'CA-FE-FLP-DT',
-                            'CA-FE-FAL',
-                            'CA-UI2-INT-BE',
-                            'CA-UI2-INT-FE',
-                            'CA-UI2-THD'
-                        ]
-                    },
-                    { product: ['SAP Fiori tools'] },
-                    {
-                        product: ['SAP Fiori Cloud'],
-                        component: ['CA-UX-IDE', 'CA-FE-FLP-EU', 'CA-FE-FLP-DT', 'CA-FE-FAL']
-                    }
-                ])
-            );
         } catch (error: any) {
             logString(`Error while retrieving context information, error was: '${error?.message}'.`);
         }

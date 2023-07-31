@@ -256,6 +256,8 @@ function goToHomePageReducer(newState: AppState): AppState {
     newState.query = '';
     newState.activeNodeSharing = null;
     newState.activeGuidedAnswerNode = [];
+    newState.selectedComponentFilters = [];
+    newState.selectedProductFilters = [];
     return newState;
 }
 
