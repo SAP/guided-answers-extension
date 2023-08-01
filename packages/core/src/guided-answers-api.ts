@@ -252,7 +252,6 @@ function getEnhancements(
                 const commandId = applicableHtmlExtension.command.exec.command;
                 let argument;
                 try {
-                    console.log(applicableHtmlExtension.command.exec.args);
                     argument = applicableHtmlExtension.command.exec.args
                         ? JSON.parse(applicableHtmlExtension.command.exec.args)
                         : undefined;
