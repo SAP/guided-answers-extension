@@ -1,5 +1,7 @@
 # sap-guided-answer-extension
 
+## 1.26.1
+
 ## 1.26.0
 
 ### Minor Changes
