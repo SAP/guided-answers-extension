@@ -409,7 +409,7 @@ describe('Guided Answers Api: getNodeById()', () => {
                     ORD: 2
                 }
             ],
-            HTML_EXTENSIONS: [
+            ENHANCEMENTS: [
                 {
                     extensionType: 'HTML',
                     label: 'of course, 42',
@@ -417,11 +417,7 @@ describe('Guided Answers Api: getNodeById()', () => {
                     text: 'solution to all questions',
                     command: {
                         type: 'Terminal',
-                        exec: {
-                            args: '42',
-                            command: 'echo',
-                            extensionId: ''
-                        },
+                        exec: { args: '42', command: 'echo', context: '' },
                         environment: {
                             sbas: 1,
                             vscode: 1
@@ -436,7 +432,7 @@ describe('Guided Answers Api: getNodeById()', () => {
                     command: {
                         type: 'Extension',
                         exec: {
-                            extensionId: 'terry.exxt',
+                            context: 'terry.exxt',
                             command: 'Knock kock',
                             args: '{ "fsPath": "whos/there/body/of" }'
                         },
@@ -445,26 +441,42 @@ describe('Guided Answers Api: getNodeById()', () => {
                             vscode: 1
                         }
                     }
-                }
-            ],
-            NODE_EXTENSIONS: [
-                {
-                    TYPE: 'Terminal Command',
-                    LABEL: 'terminal command enhancement',
-                    DESCRIPTION: 'Node enhancement with terminal command',
-                    ARG1: { NAME: 'cwd', VALUE: '.' },
-                    ARG2: { NAME: 'argument', VALUE: 'launch Infinite Improbability Drive' },
-                    ENV_VSCODE: 1,
-                    ENV_SBAS: 1
                 },
                 {
-                    TYPE: 'Extension Command',
-                    LABEL: 'vscode command enhancement',
-                    DESCRIPTION: 'Node enhancement with VSCode command',
-                    ARG1: { NAME: 'extensionId', VALUE: 'full speed' },
-                    ARG2: { NAME: 'commandId', VALUE: 'SPEED' },
-                    ENV_VSCODE: 1,
-                    ENV_SBAS: 1
+                    extensionType: 'NODE',
+                    label: 'terminal command enhancement',
+                    desc: 'Node enhancement with terminal command',
+                    text: '',
+                    command: {
+                        type: 'Terminal',
+                        exec: {
+                            context: '.',
+                            command: 'launch',
+                            args: 'Infinite Improbability Drive'
+                        },
+                        environment: {
+                            sbas: 1,
+                            vscode: 1
+                        }
+                    }
+                },
+                {
+                    extensionType: 'NODE',
+                    label: 'vscode command enhancement',
+                    desc: 'Node enhancement with VSCode command',
+                    text: '',
+                    command: {
+                        type: 'Extension',
+                        exec: {
+                            context: 'full speed',
+                            command: 'SPEED',
+                            args: ''
+                        },
+                        environment: {
+                            sbas: 1,
+                            vscode: 1
+                        }
+                    }
                 }
             ]
         };
@@ -615,43 +627,78 @@ describe('Guided Answers Api: getNodeById()', () => {
         BODY: `<p>N1</p>`,
         QUESTION: '?',
         EDGES: [],
-        HTML_EXTENSIONS: [],
-        NODE_EXTENSIONS: [
+        ENHANCEMENTS: [
             {
-                TYPE: 'Extension Command',
-                LABEL: 'vscode and sbas command enhancement',
-                DESCRIPTION: 'Node enhancement command',
-                ARG1: { NAME: 'extensionId', VALUE: 'both.ext' },
-                ARG2: { NAME: 'commandId', VALUE: 'commandBoth' },
-                ENV_VSCODE: 1,
-                ENV_SBAS: 1
+                extensionType: 'NODE',
+                label: 'vscode and sbas command enhancement',
+                desc: 'Node enhancement command',
+                text: '',
+                command: {
+                    type: 'Extension',
+                    exec: {
+                        context: 'both.ext',
+                        command: 'commandBoth',
+                        args: ''
+                    },
+                    environment: {
+                        sbas: 1,
+                        vscode: 1
+                    }
+                }
             },
             {
-                TYPE: 'Extension Command',
-                LABEL: 'vscode command enhancement',
-                DESCRIPTION: 'Node enhancement with VSCode command',
-                ARG1: { NAME: 'extensionId', VALUE: 'vscode.ext' },
-                ARG2: { NAME: 'commandId', VALUE: 'commandVscode' },
-                ENV_VSCODE: 1,
-                ENV_SBAS: 0
+                extensionType: 'NODE',
+                label: 'vscode command enhancement',
+                desc: 'Node enhancement with VSCode command',
+                text: '',
+                command: {
+                    type: 'Extension',
+                    exec: {
+                        context: 'vscode.ext',
+                        command: 'commandVscode',
+                        args: ''
+                    },
+                    environment: {
+                        sbas: 0,
+                        vscode: 1
+                    }
+                }
             },
             {
-                TYPE: 'Extension Command',
-                LABEL: 'sbas command enhancement',
-                DESCRIPTION: 'Node enhancement with SBAS command',
-                ARG1: { NAME: 'extensionId', VALUE: 'sbas.ext' },
-                ARG2: { NAME: 'commandId', VALUE: 'commandSbas' },
-                ENV_VSCODE: 0,
-                ENV_SBAS: 1
+                extensionType: 'NODE',
+                label: 'sbas command enhancement',
+                desc: 'Node enhancement with SBAS command',
+                text: '',
+                command: {
+                    type: 'Extension',
+                    exec: {
+                        context: 'sbas.ext',
+                        command: 'commandSbas',
+                        args: ''
+                    },
+                    environment: {
+                        sbas: 1,
+                        vscode: 0
+                    }
+                }
             },
             {
-                TYPE: 'Extension Command',
-                LABEL: 'command for no IDE',
-                DESCRIPTION: 'Should not be apply on any IDE',
-                ARG1: { NAME: 'extensionId', VALUE: 'extension' },
-                ARG2: { NAME: 'commandId', VALUE: 'invalidcommand' },
-                ENV_VSCODE: 0,
-                ENV_SBAS: 0
+                extensionType: 'NODE',
+                label: 'command for no IDE',
+                desc: 'Should not be apply on any IDE',
+                text: '',
+                command: {
+                    type: 'Extension',
+                    exec: {
+                        context: 'extension',
+                        command: 'invalidcommand',
+                        args: ''
+                    },
+                    environment: {
+                        sbas: 0,
+                        vscode: 0
+                    }
+                }
             }
         ]
     });
@@ -674,7 +721,7 @@ describe('Guided Answers Api: getNodePath()', () => {
                     { LABEL: 'Next', TARGET_NODE: 112, ORD: 1 },
                     { LABEL: 'Somewhere else', TARGET_NODE: 911, ORD: 2 }
                 ],
-                HTML_EXTENSIONS: [
+                ENHANCEMENTS: [
                     {
                         extensionType: 'HTML',
                         label: 'Command for Onehundredtwelve',
@@ -685,7 +732,7 @@ describe('Guided Answers Api: getNodePath()', () => {
                             exec: {
                                 args: '',
                                 command: 'TEST',
-                                extensionId: ''
+                                context: ''
                             },
                             environment: {
                                 sbas: 1,
@@ -701,7 +748,7 @@ describe('Guided Answers Api: getNodePath()', () => {
                 BODY: '<p>This is node Onehundredtwelve</p>',
                 QUESTION: 'Nowhere else to go',
                 EDGES: [],
-                HTML_EXTENSIONS: [
+                ENHANCEMENTS: [
                     {
                         extensionType: 'HTML',
                         label: 'Command for Onehundredtwelve',
@@ -712,7 +759,7 @@ describe('Guided Answers Api: getNodePath()', () => {
                             exec: {
                                 args: '',
                                 command: 'TEST',
-                                extensionId: ''
+                                context: ''
                             },
                             environment: {
                                 sbas: 1,
@@ -749,7 +796,7 @@ describe('Guided Answers Api: getNodePath()', () => {
             {
                 NODE_ID: 111,
                 BODY: '<p>This tag should not be modified at all</p>',
-                HTML_EXTENSIONS: [
+                ENHANCEMENTS: [
                     {
                         extensionType: 'HTML',
                         text: 'This',
@@ -758,7 +805,7 @@ describe('Guided Answers Api: getNodePath()', () => {
                             exec: {
                                 args: '',
                                 command: 'TEST',
-                                extensionId: ''
+                                context: ''
                             },
                             environment: {
                                 sbas: 0,
@@ -800,14 +847,14 @@ describe('Guided Answers Api: getNodePath()', () => {
             {
                 NODE_ID: 1,
                 BODY: '<p>Should not be modified at all</p>',
-                HTML_EXTENSIONS: [
+                ENHANCEMENTS: [
                     {
                         extensionType: 'HTML',
                         text: '#$%#@#@',
                         command: {
                             type: 'Extension',
                             exec: {
-                                extensionId: 'my.ext.id',
+                                context: 'my.ext.id',
                                 command: 'ls',
                                 args: '{}'
                             },
@@ -822,14 +869,14 @@ describe('Guided Answers Api: getNodePath()', () => {
             {
                 NODE_ID: 2,
                 BODY: '<p>Also should not be modified at all</p>',
-                HTML_EXTENSIONS: [
+                ENHANCEMENTS: [
                     {
                         extensionType: 'HTML',
                         text: '1234567890',
                         command: {
                             type: 'Extension',
                             exec: {
-                                extensionId: 'my.ext.id',
+                                context: 'my.ext.id',
                                 command: 'ps',
                                 args: '{'
                             },
@@ -872,7 +919,7 @@ describe('Guided Answers Api: getNodePath()', () => {
         const data = {
             NODE_ID: 1,
             BODY: '<p>Should remain</p>',
-            NODE_EXTENSIONS: null
+            ENHANCEMENTS: null
         };
         const options: APIOptions = {
             ide: 'SBAS',
@@ -893,14 +940,14 @@ describe('Guided Answers Api: getNodePath()', () => {
         const data = {
             NODE_ID: 1,
             BODY: '<p>Changed body</p>',
-            HTML_EXTENSIONS: [
+            ENHANCEMENTS: [
                 {
                     extensionType: 'HTML',
                     text: 'body',
                     command: {
                         type: 'Extension',
                         exec: {
-                            extensionId: 'my.ext.id',
+                            context: 'my.ext.id',
                             command: 'top'
                         },
                         environment: {
@@ -928,7 +975,7 @@ describe('Guided Answers Api: getNodePath()', () => {
         const data = {
             NODE_ID: 1,
             BODY: '<p>Unhanged body</p>',
-            HTML_EXTENSIONS: [
+            ENHANCEMENTS: [
                 {
                     extensionType: 'HTML',
                     text: 'This',
@@ -936,7 +983,7 @@ describe('Guided Answers Api: getNodePath()', () => {
                         type: 'Terminal',
                         exec: {
                             command: 'TEST',
-                            extensionId: ''
+                            context: ''
                         },
                         environment: {
                             sbas: 0,
@@ -954,7 +1001,7 @@ describe('Guided Answers Api: getNodePath()', () => {
 
         // Result check
         expect(result[0]?.BODY).toMatchSnapshot();
-        expect(result[0]?.HTML_EXTENSIONS).toEqual(data.HTML_EXTENSIONS);
+        expect(result[0]?.ENHANCEMENTS).toEqual(data.ENHANCEMENTS);
     });
 });
 
@@ -1084,14 +1131,14 @@ describe('Guided Answers Api: console logger', () => {
         const data = {
             NODE_ID: 10,
             BODY: '<p>Body, should be modified</p>',
-            HTML_EXTENSIONS: [
+            ENHANCEMENTS: [
                 {
                     extensionType: 'HTML',
                     text: 'Body',
                     command: {
                         type: 'Extension',
                         exec: {
-                            extensionId: 'ext.id',
+                            context: 'ext.id',
                             command: 'ps',
                             args: '{'
                         },

@@ -48,20 +48,19 @@ export interface GuidedAnswerNode {
     BODY: string;
     QUESTION: string;
     EDGES: GuidedAnswerEdge[];
-    HTML_EXTENSIONS?: GuidedAnswerHtmlExtension[];
-    NODE_EXTENSIONS?: GuidedAnswerNodeExtension[];
+    ENHANCEMENTS?: GuidedAnswersEnhancement[];
     COMMANDS?: Command[];
 }
 
-export interface GuidedAnswerHtmlExtension {
-    extensionType: 'HTML';
+export interface GuidedAnswersEnhancement {
+    extensionType: 'NODE' | 'HTML';
     label: string;
     desc: string;
     text: string;
     command: {
         type: 'Extension' | 'Terminal';
         exec: {
-            extensionId: string;
+            context: string;
             command: string;
             args: string;
         };
@@ -72,21 +71,6 @@ export interface GuidedAnswerHtmlExtension {
     };
 }
 
-export interface GuidedAnswerNodeExtension {
-    TYPE: 'Extension Command' | 'Terminal Command';
-    LABEL: string;
-    DESCRIPTION: string;
-    ARG1: {
-        NAME: string;
-        VALUE: string;
-    };
-    ARG2: {
-        NAME: string;
-        VALUE: string;
-    };
-    ENV_VSCODE: 0 | 1;
-    ENV_SBAS: 0 | 1;
-}
 export interface PostFeedbackResponse {
     status: number;
     statusText: string;
