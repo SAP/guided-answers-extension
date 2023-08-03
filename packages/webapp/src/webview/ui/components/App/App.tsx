@@ -16,6 +16,7 @@ import i18next from 'i18next';
 import { VscStarFull } from 'react-icons/vsc';
 import { Bookmarks } from '../Bookmarks';
 import { LastVisited } from '../LastVisited';
+import { QuickFilters } from '../QuickFilters';
 import { TreeItemBottomSection } from '../TreeItemBottomSection';
 import { HomeGrid } from '../HomeGrid';
 
@@ -90,12 +91,13 @@ export function App(): ReactElement {
     } else if (appState.activeScreen === 'HOME') {
         content = appState.betaFeatures ? (
             <HomeGrid>
-                <LastVisited key="last-visited" />
-                <Bookmarks key="bookmarks" />
+                {!!appState.lastVisitedGuides.length && <LastVisited />}
+                {!!Object.keys(appState.bookmarks).length && <Bookmarks />}
+                {!!appState.quickFilters.length && <QuickFilters />}
             </HomeGrid>
         ) : (
             <>
-                <LastVisited />
+                {!!appState.lastVisitedGuides.length && <LastVisited />}
                 <Bookmarks />
             </>
         );
@@ -148,9 +150,7 @@ export function App(): ReactElement {
         <div className="guided-answer">
             <Header />
 
-            {appState.guidedAnswerTreeSearchResult.resultSize > 0 && appState.activeGuidedAnswerNode.length === 0 ? (
-                <FiltersRibbon />
-            ) : null}
+            {appState.activeScreen === 'SEARCH' && <FiltersRibbon />}
 
             <main className="guided-answer__container" id="results-container">
                 {content}

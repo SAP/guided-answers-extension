@@ -129,7 +129,7 @@ describe('GuidedAnswersPanel', () => {
         expect(loggerMock).toBeCalledWith('Webview is ready to receive actions');
     });
 
-    test('GuidedAnswersPanel for SBAS, should call search tree with components', async () => {
+    test('GuidedAnswersPanel for SBAS, should set quick filters', async () => {
         // Mock setup
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
         const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
@@ -149,9 +149,9 @@ describe('GuidedAnswersPanel', () => {
         expect(loggerMock).toBeCalledWith('Webview is ready to receive actions');
         expect(getFiltersForIdeSpy).toBeCalledWith('SBAS');
         const searchCall = (webViewPanelMock.webview.postMessage as jest.Mock).mock.calls.find((c) =>
-            c.find((p: { type: string }) => p.type === 'SEARCH_TREE')
+            c.find((p: { type: string }) => p.type === 'SET_QUICK_FILTERS')
         )[0];
-        expect(searchCall).toEqual({ type: 'SEARCH_TREE', payload: { filters: { component: ['AB-CD', 'EFG-H'] } } });
+        expect(searchCall).toEqual({ type: 'SET_QUICK_FILTERS', payload: [{ component: ['AB-CD', 'EFG-H'] }] });
     });
 
     test('GuidedAnswersPanel for SBAS with error in getFiltersForIde(), should log error', async () => {
