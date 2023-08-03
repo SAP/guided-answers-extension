@@ -15,9 +15,6 @@ import type { LastVisitedGuide } from '@sap/guided-answers-extension-types';
  */
 export function LastVisited(): ReactElement {
     const lastVisitedGuides = useSelector<AppState, LastVisitedGuide[]>((state) => state.lastVisitedGuides);
-    if (lastVisitedGuides.length === 0) {
-        return <></>;
-    }
     return (
         <div>
             <h3 style={{ display: 'flex', alignItems: 'center' }}>

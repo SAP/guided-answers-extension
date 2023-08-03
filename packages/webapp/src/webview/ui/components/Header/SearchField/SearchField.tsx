@@ -21,8 +21,8 @@ export function SearchField() {
             actions.searchTree({
                 query: value,
                 filters: {
-                    product: [],
-                    component: []
+                    product: appState.selectedProductFilters,
+                    component: appState.selectedComponentFilters
                 },
                 paging: {
                     responseSize: appState.pageSize,

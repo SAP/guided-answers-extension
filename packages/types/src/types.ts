@@ -230,7 +230,8 @@ export type GuidedAnswerActions =
     | UpdateActiveNode
     | UpdateGuidedAnswerTrees
     | UpdateNetworkStatus
-    | WebviewReady;
+    | WebviewReady
+    | SetQuickFilters;
 
 export type NetworkStatus = 'OK' | 'LOADING' | 'ERROR';
 
@@ -251,6 +252,7 @@ export interface AppState {
     bookmarks: Bookmarks;
     activeScreen: 'HOME' | 'SEARCH' | 'NODE';
     lastVisitedGuides: LastVisitedGuide[];
+    quickFilters: GuidedAnswersQueryFilterOptions[];
 }
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
@@ -455,4 +457,10 @@ export const SYNCHRONIZE_BOOKMARK = 'SYNCHRONIZE_BOOKMARK';
 export interface SynchronizeBookmark {
     type: typeof SYNCHRONIZE_BOOKMARK;
     payload: Bookmark;
+}
+
+export const SET_QUICK_FILTERS = 'SET_QUICK_FILTERS';
+export interface SetQuickFilters {
+    type: typeof SET_QUICK_FILTERS;
+    payload: GuidedAnswersQueryFilterOptions[];
 }

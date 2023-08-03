@@ -45,7 +45,9 @@ import type {
     GetLastVisitedGuides,
     UpdateLastVisitedGuides,
     UpdateBookmarksPayload,
-    GoToHomePage
+    GoToHomePage,
+    SetQuickFilters,
+    GuidedAnswersQueryFilterOptions
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -81,7 +83,8 @@ import {
     SYNCHRONIZE_BOOKMARK,
     GET_LAST_VISITED_GUIDES,
     UPDATE_LAST_VISITED_GUIDES,
-    GO_TO_HOME_PAGE
+    GO_TO_HOME_PAGE,
+    SET_QUICK_FILTERS
 } from './types';
 
 export const updateGuidedAnswerTrees = (payload: UpdateGuidedAnswerTrees['payload']): UpdateGuidedAnswerTrees => ({
@@ -237,5 +240,10 @@ export const getLastVisitedGuides = (payload: LastVisitedGuide[]): GetLastVisite
 
 export const updateLastVisitedGuide = (payload: LastVisitedGuide[]): UpdateLastVisitedGuides => ({
     type: UPDATE_LAST_VISITED_GUIDES,
+    payload
+});
+
+export const setQuickFilters = (payload: GuidedAnswersQueryFilterOptions[]): SetQuickFilters => ({
+    type: SET_QUICK_FILTERS,
     payload
 });

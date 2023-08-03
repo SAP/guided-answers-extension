@@ -23,7 +23,6 @@ import {
     updateNetworkStatus,
     updateActiveNodeSharing,
     EXECUTE_COMMAND,
-    searchTree,
     SEARCH_TREE,
     WEBVIEW_READY,
     restoreState,
@@ -34,7 +33,8 @@ import {
     getBookmarks,
     goToAllAnswers,
     updateBookmark,
-    getLastVisitedGuides
+    getLastVisitedGuides,
+    setQuickFilters
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
@@ -161,9 +161,8 @@ export class GuidedAnswersPanel {
         }
         if (this.startOptions) {
             await this.processStartOptions(this.startOptions);
-        } else {
-            await this.processEnvironmentFilters(this.ide);
         }
+        await this.loadQuickFilters(this.ide);
         this.postActionToWebview(
             getBetaFeatures(workspace.getConfiguration('sap.ux.guidedAnswer').get<boolean>('betaFeatures') ?? false)
         );
@@ -214,12 +213,12 @@ export class GuidedAnswersPanel {
      *
      * @param ide - environment like VSCODE or BAS
      */
-    private async processEnvironmentFilters(ide: IDE): Promise<void> {
+    private async loadQuickFilters(ide: IDE): Promise<void> {
         try {
             const filters = await getFiltersForIde(ide);
             logString(`Filters for environment '${ide}': ${JSON.stringify(filters)}`);
             if (Object.keys(filters).length > 0) {
-                this.postActionToWebview(searchTree({ filters }));
+                this.postActionToWebview(setQuickFilters([filters]));
             }
         } catch (error: any) {
             logString(`Error while retrieving context information, error was: '${error?.message}'.`);
