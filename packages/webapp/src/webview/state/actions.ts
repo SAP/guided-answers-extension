@@ -3,6 +3,7 @@ export {
     updateGuidedAnswerTrees,
     updateActiveNode,
     updateActiveNodeSharing,
+    updateNetworkStatus,
     selectNode,
     goToPreviousPage,
     goToAllAnswers,

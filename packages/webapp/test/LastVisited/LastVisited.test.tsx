@@ -20,7 +20,7 @@ describe('<LastVisited />', () => {
     afterEach(cleanup);
 
     const mockLastVisited = [
-        { 
+        {
             tree: {
                 TREE_ID: '1',
                 TITLE: 'Bookmark 1 Title',

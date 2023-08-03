@@ -18,7 +18,8 @@ import type {
     FeedbackResponse,
     FeedbackStatus,
     GuidedAnswerNode,
-    GetLastVisitedGuides
+    GetLastVisitedGuides,
+    SetQuickFilters
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -50,7 +51,8 @@ export function getInitialState(): AppState {
         feedbackResponse: false,
         bookmarks: {},
         activeScreen: 'HOME',
-        lastVisitedGuides: []
+        lastVisitedGuides: [],
+        quickFilters: []
     };
 }
 
@@ -96,7 +98,8 @@ const reducers: Partial<Reducers> = {
     FEEDBACK_STATUS: feedbackStatusReducer,
     GET_BOOKMARKS: getBookmarksReducer,
     UPDATE_BOOKMARKS: updateBookmarksReducer,
-    GET_LAST_VISITED_GUIDES: getLastVisitedGuidesReducer
+    GET_LAST_VISITED_GUIDES: getLastVisitedGuidesReducer,
+    SET_QUICK_FILTERS: setQuickFiltersReducer
 };
 
 /**
@@ -253,6 +256,8 @@ function goToHomePageReducer(newState: AppState): AppState {
     newState.query = '';
     newState.activeNodeSharing = null;
     newState.activeGuidedAnswerNode = [];
+    newState.selectedComponentFilters = [];
+    newState.selectedProductFilters = [];
     return newState;
 }
 
@@ -414,10 +419,9 @@ function resetFiltersReducer(newState: AppState): AppState {
  * @returns new state with changes
  */
 function searchTreeReducer(newState: AppState, action: SearchTree): AppState {
-    const selectedComponentFilters = action.payload?.filters?.component;
-    newState.selectedComponentFilters = Array.isArray(selectedComponentFilters) ? selectedComponentFilters : [];
-    const selectedProductFilters = action.payload?.filters?.product;
-    newState.selectedProductFilters = Array.isArray(selectedProductFilters) ? selectedProductFilters : [];
+    newState.selectedComponentFilters = action.payload.filters?.component ?? [];
+    newState.selectedProductFilters = action.payload.filters?.product ?? [];
+    newState.activeScreen = 'SEARCH';
     return newState;
 }
 
@@ -442,6 +446,18 @@ function updateBookmarksReducer(newState: AppState, action: UpdateBookmarks): Ap
  */
 function updatePageSize(newState: AppState, action: SetPageSize): AppState {
     newState.pageSize = action.payload;
+    return newState;
+}
+
+/**
+ * Set quick filters.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function setQuickFiltersReducer(newState: AppState, action: SetQuickFilters): AppState {
+    newState.quickFilters = action.payload;
     return newState;
 }
 

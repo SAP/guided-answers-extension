@@ -1,4 +1,3 @@
-import { GUIDE_FEEDBACK, AppState, GuidedAnswerActions } from './../../../types/src/types';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import {
     UPDATE_GUIDED_ANSWER_TREES,
@@ -14,9 +13,12 @@ import {
     SET_COMPONENT_FILTERS,
     RESTORE_STATE,
     RESET_FILTERS,
-    GO_TO_HOME_PAGE
+    GO_TO_HOME_PAGE,
+    SET_QUICK_FILTERS,
+    GUIDE_FEEDBACK,
+    SEARCH_TREE
 } from '@sap/guided-answers-extension-types';
-import type { GuidedAnswerTreeSearchHit } from '@sap/guided-answers-extension-types';
+import type { GuidedAnswerTreeSearchHit, AppState, GuidedAnswerActions } from '@sap/guided-answers-extension-types';
 
 const mockedPayload = {
     trees: [
@@ -66,7 +68,8 @@ const mockedInitState = {
     selectedComponentFilters: [],
     pageSize: 20,
     activeScreen: 'HOME',
-    lastVisitedGuides: []
+    lastVisitedGuides: [],
+    quickFilters: []
 };
 
 const mockedActiveGuidedAnswerNode = [
@@ -166,7 +169,8 @@ describe('Test functions in reducers', () => {
             selectedComponentFilters: [],
             pageSize: 20,
             activeScreen: 'SEARCH',
-            lastVisitedGuides: []
+            lastVisitedGuides: [],
+            quickFilters: []
         };
 
         expect(answersWithDefaultState).toEqual(expected);
@@ -237,7 +241,8 @@ describe('Test functions in reducers', () => {
             selectedComponentFilters: [],
             pageSize: 20,
             activeScreen: 'NODE',
-            lastVisitedGuides: []
+            lastVisitedGuides: [],
+            quickFilters: []
         });
 
         const mockedInitStateWithActiveGuidedNode: any = mockedInitState;
@@ -268,7 +273,8 @@ describe('Test functions in reducers', () => {
             selectedComponentFilters: [],
             pageSize: 20,
             activeScreen: 'NODE',
-            lastVisitedGuides: []
+            lastVisitedGuides: [],
+            quickFilters: []
         });
     });
 
@@ -380,6 +386,45 @@ describe('Test functions in reducers', () => {
         });
         expect(resetSelectedFiltersState.selectedProductFilters).toEqual([]);
         expect(resetSelectedFiltersState.selectedComponentFilters).toEqual([]);
+    });
+
+    it('Should set quick filters', () => {
+        const state = getInitialState();
+
+        const setQuickFiltersState = reducer(state, {
+            type: SET_QUICK_FILTERS,
+            payload: [{ product: ['product'], component: ['component'] }]
+        });
+        expect(setQuickFiltersState.quickFilters).toEqual([{ product: ['product'], component: ['component'] }]);
+    });
+
+    it('Should set filters to search tree', () => {
+        const state = getInitialState();
+
+        const searchTreeState = reducer(state, {
+            type: SEARCH_TREE,
+            payload: {
+                query: 'query',
+                filters: { product: ['product'], component: ['component'] }
+            }
+        });
+        expect(searchTreeState.selectedProductFilters).toEqual(['product']);
+        expect(searchTreeState.selectedComponentFilters).toEqual(['component']);
+        expect(searchTreeState.activeScreen).toEqual('SEARCH');
+    });
+
+    it('Should set filters to search tree, with no filters', () => {
+        const state = getInitialState();
+
+        const searchTreeState = reducer(state, {
+            type: SEARCH_TREE,
+            payload: {
+                query: 'query'
+            }
+        });
+        expect(searchTreeState.selectedProductFilters).toEqual([]);
+        expect(searchTreeState.selectedComponentFilters).toEqual([]);
+        expect(searchTreeState.activeScreen).toEqual('SEARCH');
     });
 
     it('Should restore the app state', () => {

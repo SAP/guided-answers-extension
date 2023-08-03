@@ -1,0 +1,27 @@
+.guided-answer__quick-filter {
+    display: flex;
+    padding: 15px;
+    gap: 10px;
+    flex-flow: row wrap;
+    width: 100%;
+    color: var(--vscode-foreground);
+    text-align: left;
+    font-weight: 400;
+    cursor: pointer;
+    border: none;
+
+    &:hover {
+        background-color: var(--vscode-list-hoverBackground);
+        outline: 1px solid var(--vscode-focusBorder, #007fd4);
+        outline-offset: -1px;
+    }
+    
+    &:focus-visible {
+        outline: 1px solid var(--vscode-focusBorder, #007fd4);
+        outline-offset: -2px;
+    }
+
+    strong {
+        font-weight: 700;
+    }
+}

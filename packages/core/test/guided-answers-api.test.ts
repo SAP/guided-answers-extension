@@ -911,7 +911,7 @@ describe('Guided Answers Api: getNodePath()', () => {
         expect(result.length).toBe(2);
         expect(result[0].BODY).toBe('<p>Should not be modified at all</p>');
         expect(result[1].BODY).toBe('<p>Also should not be modified at all</p>');
-        expect(options.logger?.logString).toBeCalledWith(expect.stringContaining('Unexpected end of JSON input'));
+        expect(options.logger?.logString).toBeCalledWith(expect.stringContaining('Error when parsing argument'));
     });
 
     test('Get node path, error in getEnhancements()', async () => {
