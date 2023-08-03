@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-types
 
+## 1.27.0
+
+### Minor Changes
+
+-   1f31524: Feat/545/quick filters
+
 ## 1.26.1
 
 ## 1.26.0

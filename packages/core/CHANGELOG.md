@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-core
 
+## 1.27.0
+
+### Minor Changes
+
+-   1f31524: Feat/545/quick filters
+
+### Patch Changes
+
+-   Updated dependencies [1f31524]
+    -   @sap/guided-answers-extension-types@1.27.0
+
 ## 1.26.1
 
 ### Patch Changes
