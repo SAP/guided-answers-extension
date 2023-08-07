@@ -5,10 +5,10 @@
 
     &__column {
         flex: 0 1 570px;
-    }
 
-    &__row {
-        margin-bottom: 30px;
+        >div {
+            margin-bottom: 30px
+        }
     }
 }
 

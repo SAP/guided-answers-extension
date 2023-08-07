@@ -16,7 +16,6 @@ import i18next from 'i18next';
 import { VscStarFull } from 'react-icons/vsc';
 import { Bookmarks } from '../Bookmarks';
 import { LastVisited } from '../LastVisited';
-import { QuickFilters } from '../QuickFilters';
 import { TreeItemBottomSection } from '../TreeItemBottomSection';
 import { HomeGrid } from '../HomeGrid';
 
@@ -90,11 +89,7 @@ export function App(): ReactElement {
         content = <GuidedAnswerNode />;
     } else if (appState.activeScreen === 'HOME') {
         content = appState.betaFeatures ? (
-            <HomeGrid>
-                {!!appState.lastVisitedGuides.length && <LastVisited />}
-                {!!Object.keys(appState.bookmarks).length && <Bookmarks />}
-                {!!appState.quickFilters.length && <QuickFilters />}
-            </HomeGrid>
+            <HomeGrid />
         ) : (
             <>
                 {!!appState.lastVisitedGuides.length && <LastVisited />}
