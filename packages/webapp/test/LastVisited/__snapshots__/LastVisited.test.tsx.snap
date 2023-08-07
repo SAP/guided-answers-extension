@@ -51,8 +51,6 @@ exports[`<LastVisited /> Should render LastVisited component 1`] = `
                 class="guided-answer__tree__title"
               >
                 Bookmark 2 Title
-                 - 
-                Node 2
               </h3>
               <div
                 class="bottom-section"

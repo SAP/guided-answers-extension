@@ -98,7 +98,9 @@ export function App(): ReactElement {
         ) : (
             <>
                 {!!appState.lastVisitedGuides.length && <LastVisited />}
-                <Bookmarks />
+                {/* Temporary margin before moving to smart home grid */}
+                <div style={{ marginBottom: '30px' }}></div>
+                {!!Object.keys(appState.bookmarks).length && <Bookmarks />}
             </>
         );
     } else {

@@ -344,36 +344,9 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
       class="guided-answer__container"
       id="results-container"
     >
-      <div>
-        <h3>
-          <svg
-            class="bookmark-icon-bookmarked"
-            fill="currentColor"
-            height="1em"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 16 16"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              clip-rule="evenodd"
-              d="M9.595 6.252L8 1 6.405 6.252H1l4.373 3.4L3.75 15 8 11.695 12.25 15l-1.623-5.348L15 6.252H9.595z"
-              fill-rule="evenodd"
-            />
-          </svg>
-           Bookmarks
-        </h3>
-        <div
-          class="ms-FocusZone css-134"
-          data-focuszone-id="FocusZone16"
-        >
-          <ul
-            class="striped-list-items"
-            role="listbox"
-          />
-        </div>
-      </div>
+      <div
+        style="margin-bottom: 30px;"
+      />
     </main>
   </div>
 </div>
@@ -806,7 +779,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
             id="filters"
           >
             <button
-              class="ms-Button ms-Button--icon filter-button root-135"
+              class="ms-Button ms-Button--icon filter-button root-134"
               data-is-focusable="true"
               id="filter-products"
               title="Filter Products"
@@ -818,7 +791,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
               >
                 <i
                   aria-hidden="true"
-                  class="ms-Icon root-101 ms-Button-icon icon-136"
+                  class="ms-Icon root-101 ms-Button-icon icon-135"
                   data-icon-name="Table"
                 >
                   <svg
@@ -836,7 +809,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
               </span>
             </button>
             <button
-              class="ms-Button ms-Button--icon filter-button root-135"
+              class="ms-Button ms-Button--icon filter-button root-134"
               data-is-focusable="true"
               id="filter-components"
               title="Filter Components"
@@ -848,7 +821,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
               >
                 <i
                   aria-hidden="true"
-                  class="ms-Icon root-101 ms-Button-icon icon-136"
+                  class="ms-Icon root-101 ms-Button-icon icon-135"
                   data-icon-name="IdTag"
                 >
                   <svg
@@ -898,36 +871,9 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
       class="guided-answer__container"
       id="results-container"
     >
-      <div>
-        <h3>
-          <svg
-            class="bookmark-icon-bookmarked"
-            fill="currentColor"
-            height="1em"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 16 16"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              clip-rule="evenodd"
-              d="M9.595 6.252L8 1 6.405 6.252H1l4.373 3.4L3.75 15 8 11.695 12.25 15l-1.623-5.348L15 6.252H9.595z"
-              fill-rule="evenodd"
-            />
-          </svg>
-           Bookmarks
-        </h3>
-        <div
-          class="ms-FocusZone css-134"
-          data-focuszone-id="FocusZone33"
-        >
-          <ul
-            class="striped-list-items"
-            role="listbox"
-          />
-        </div>
-      </div>
+      <div
+        style="margin-bottom: 30px;"
+      />
     </main>
   </div>
 </div>
