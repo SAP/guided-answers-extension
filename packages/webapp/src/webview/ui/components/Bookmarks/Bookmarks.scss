@@ -29,10 +29,10 @@
 
         &:focus-visible {
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
+            opacity: 1;
         }
     }
 
-    &:focus-within &__button,
     &:focus-visible &__button,
     &:hover &__button {
         opacity: 1;
