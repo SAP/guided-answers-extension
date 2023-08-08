@@ -26,9 +26,8 @@
         }
         &__navButtons {
             height: 25px;
-            margin-top: 30px;
             color: var(--vscode-foreground);
-            padding: 0 5px 0px 5px;
+            margin: 30px 5px 0px 5px;
             text-align: start;
             cursor: pointer;
             background: none;
@@ -266,8 +265,7 @@
         }
     }
     .home-icon {
-        width: 40px;
-        padding-bottom: 3px;
+        width: 28px;
         border-radius: 3px;
         color: var(--vscode-menu-foreground, #cccccc);
     }
