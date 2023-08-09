@@ -228,19 +228,19 @@ function getEnhancements(
             ) {
                 continue;
             }
-            const exec = convertCommand(enhancement.command, logger);
+            const command = {
+                label: enhancement.label,
+                description: enhancement.desc,
+                exec: convertCommand(enhancement.command, logger)
+            };
             if (enhancement.extensionType === 'HTML') {
                 htmlEnhancements.push({
                     text: enhancement.text,
-                    command: { label: enhancement.label, description: enhancement.desc, exec }
+                    command
                 });
             }
             if (enhancement.extensionType === 'NODE') {
-                nodeCommands.push({
-                    description: enhancement.desc,
-                    label: enhancement.label,
-                    exec
-                });
+                nodeCommands.push(command);
             }
         }
     } catch (error) {

@@ -602,6 +602,44 @@ describe('Guided Answers Api: getNodeById()', () => {
         ]);
     });
 
+    test('Get node by id, enhancements that have invalid command type', async () => {
+        // Mock setup
+        const data: GuidedAnswerNode = getMockNodeWithEnhancements();
+        data.ENHANCEMENTS = [
+            {
+                extensionType: 'NODE',
+                label: 'command enhancement',
+                desc: 'Node enhancement command with wrong type',
+                text: '',
+                command: {
+                    type: 'WRONG' as 'Extension',
+                    exec: {
+                        context: 'sbas.ext',
+                        command: 'command',
+                        args: ''
+                    },
+                    environment: {
+                        sbas: 1,
+                        vscode: 0
+                    }
+                }
+            }
+        ];
+        const options: APIOptions = {
+            ide: 'SBAS',
+            extensions: new Set(['sbas.ext']),
+            logger: { logString: jest.fn() }
+        };
+        mockedAxios.get.mockImplementation(() => Promise.resolve({ data }));
+
+        // Test execution
+        const result = await getGuidedAnswerApi(options).getNodeById(1);
+
+        // Result check
+        expect(result.COMMANDS).toBe(undefined);
+        expect(options.logger?.logString).toBeCalledWith(expect.stringContaining('WRONG'));
+    });
+
     test('Get node with different images, should add host to src where applicable', async () => {
         // Mock setup
         mockedAxios.get.mockImplementation(() =>
