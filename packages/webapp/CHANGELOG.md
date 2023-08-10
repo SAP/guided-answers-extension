@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.27.1
+
+### Patch Changes
+
+-   6701f4e: Styling fix in home icon for small screens
+
 ## 1.27.0
 
 ### Minor Changes
