@@ -26,7 +26,8 @@ describe('<HomeGrid />', () => {
                     }
                 },
                 lastVisitedGuides: [],
-                quickFilters: []
+                quickFilters: [],
+                betaFeatures: true
             })
         );
         const { container } = render(<HomeGrid />);
@@ -50,7 +51,8 @@ describe('<HomeGrid />', () => {
                         createdAt: 'time'
                     }
                 ],
-                quickFilters: []
+                quickFilters: [],
+                betaFeatures: true
             })
         );
         const { container } = render(<HomeGrid />);
@@ -67,7 +69,8 @@ describe('<HomeGrid />', () => {
                         product: ['product 1'],
                         component: ['component 1']
                     }
-                ]
+                ],
+                betaFeatures: true
             })
         );
         const { container } = render(<HomeGrid />);
@@ -107,7 +110,55 @@ describe('<HomeGrid />', () => {
                         product: ['product 1'],
                         component: ['component 1']
                     }
-                ]
+                ],
+                betaFeatures: true
+            })
+        );
+        const { container } = render(<HomeGrid />);
+        expect(container).toMatchSnapshot();
+    });
+
+    it('Should render only Bookmarks, no beta features', () => {
+        (useSelector as jest.Mock).mockImplementation((selector) =>
+            selector({
+                bookmarks: {
+                    'tree1-node1': {
+                        tree: {
+                            TREE_ID: 'tree1',
+                            TITLE: 'Bookmark 1 Title',
+                            DESCRIPTION: 'Bookmark 1 Description',
+                            PRODUCT: 'Product 1, Product 2',
+                            COMPONENT: 'Component 1, Component 2'
+                        },
+                        nodePath: [{ NODE_ID: 'node1', TITLE: 'Node 1' }]
+                    }
+                },
+                lastVisitedGuides: [],
+                quickFilters: []
+            })
+        );
+        const { container } = render(<HomeGrid />);
+        expect(container).toMatchSnapshot();
+    });
+
+    it('Should render only LastVisited, no beta features', () => {
+        (useSelector as jest.Mock).mockImplementation((selector) =>
+            selector({
+                bookmarks: {},
+                lastVisitedGuides: [
+                    {
+                        tree: {
+                            TREE_ID: '1',
+                            TITLE: 'Bookmark 1 Title',
+                            DESCRIPTION: 'Bookmark 1 Description',
+                            PRODUCT: 'Product 1, Product 2',
+                            COMPONENT: 'Component 1, Component 2'
+                        },
+                        nodePath: [{ NODE_ID: '1', TITLE: 'Node 1' }],
+                        createdAt: 'time'
+                    }
+                ],
+                quickFilters: []
             })
         );
         const { container } = render(<HomeGrid />);

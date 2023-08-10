@@ -14,8 +14,6 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { SpinnerSize } from '@fluentui/react';
 import i18next from 'i18next';
 import { VscStarFull } from 'react-icons/vsc';
-import { Bookmarks } from '../Bookmarks';
-import { LastVisited } from '../LastVisited';
 import { TreeItemBottomSection } from '../TreeItemBottomSection';
 import { HomeGrid } from '../HomeGrid';
 
@@ -88,16 +86,7 @@ export function App(): ReactElement {
     } else if (appState.activeScreen === 'NODE') {
         content = <GuidedAnswerNode />;
     } else if (appState.activeScreen === 'HOME') {
-        content = appState.betaFeatures ? (
-            <HomeGrid />
-        ) : (
-            <>
-                {!!appState.lastVisitedGuides.length && <LastVisited />}
-                {/* Temporary margin before moving to smart home grid */}
-                <div style={{ marginBottom: '30px' }}></div>
-                {!!Object.keys(appState.bookmarks).length && <Bookmarks />}
-            </>
-        );
+        content = <HomeGrid />;
     } else {
         content =
             appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (

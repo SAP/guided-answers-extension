@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import type { AppState } from '../../../types';
 import { Bookmarks } from '../Bookmarks';
@@ -15,11 +15,26 @@ import './HomeGrid.scss';
 export function HomeGrid(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
 
+    const [hasBookmarks, setHasBookmarks] = useState(false);
     const hasLastVisited = !!appState.lastVisitedGuides.length;
-    const hasBookmarks = !!Object.keys(appState.bookmarks).length;
     const hasQuickFilters = !!appState.quickFilters.length;
 
+    if (!hasBookmarks && !!Object.keys(appState.bookmarks).length) {
+        setHasBookmarks(true);
+    }
+
     const isTwoColumnLayout = hasLastVisited && hasBookmarks && hasQuickFilters;
+
+    // Temporary return for beta features
+    if (!appState.betaFeatures) {
+        return (
+            <>
+                {hasLastVisited && <LastVisited />}
+                <div style={{ marginBottom: '30px' }}></div>
+                {hasBookmarks && <Bookmarks />}
+            </>
+        );
+    }
 
     return isTwoColumnLayout ? (
         <div className="guided-answer__home-grid">
