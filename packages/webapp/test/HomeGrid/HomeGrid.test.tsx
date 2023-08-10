@@ -1,50 +1,167 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
+import { useSelector } from 'react-redux';
 import { HomeGrid } from '../../src/webview/ui/components/HomeGrid';
 
+jest.mock('react-redux', () => ({
+    useSelector: jest.fn()
+}));
+
 describe('<HomeGrid />', () => {
-    it('Should render a HomeGrid component, one item', async () => {
-        const { container } = render(
-            <HomeGrid>
-                <div>one</div>
-            </HomeGrid>
-        );
-        const columns = container.getElementsByClassName('guided-answer__home-grid__column');
+    afterEach(cleanup);
 
-        expect(container.firstChild).toHaveClass('guided-answer__home-grid');
-        expect(columns[0].children.length).toBe(1);
-        expect(columns[1]).toBe(undefined);
+    it('Should render only Bookmarks', () => {
+        (useSelector as jest.Mock).mockImplementation((selector) =>
+            selector({
+                bookmarks: {
+                    'tree1-node1': {
+                        tree: {
+                            TREE_ID: 'tree1',
+                            TITLE: 'Bookmark 1 Title',
+                            DESCRIPTION: 'Bookmark 1 Description',
+                            PRODUCT: 'Product 1, Product 2',
+                            COMPONENT: 'Component 1, Component 2'
+                        },
+                        nodePath: [{ NODE_ID: 'node1', TITLE: 'Node 1' }]
+                    }
+                },
+                lastVisitedGuides: [],
+                quickFilters: [],
+                betaFeatures: true
+            })
+        );
+        const { container } = render(<HomeGrid />);
+        expect(container).toMatchSnapshot();
     });
 
-    it('Should render a HomeGrid component, three items', async () => {
-        const { container } = render(
-            <HomeGrid>
-                <div>one</div>
-                <div>two</div>
-                <div>three</div>
-            </HomeGrid>
+    it('Should render only LastVisited', () => {
+        (useSelector as jest.Mock).mockImplementation((selector) =>
+            selector({
+                bookmarks: {},
+                lastVisitedGuides: [
+                    {
+                        tree: {
+                            TREE_ID: '1',
+                            TITLE: 'Bookmark 1 Title',
+                            DESCRIPTION: 'Bookmark 1 Description',
+                            PRODUCT: 'Product 1, Product 2',
+                            COMPONENT: 'Component 1, Component 2'
+                        },
+                        nodePath: [{ NODE_ID: '1', TITLE: 'Node 1' }],
+                        createdAt: 'time'
+                    }
+                ],
+                quickFilters: [],
+                betaFeatures: true
+            })
         );
-        const columns = container.getElementsByClassName('guided-answer__home-grid__column');
-
-        expect(container.firstChild).toHaveClass('guided-answer__home-grid');
-        expect(columns[0].children.length).toBe(2);
-        expect(columns[1].children.length).toBe(1);
+        const { container } = render(<HomeGrid />);
+        expect(container).toMatchSnapshot();
     });
 
-    it('Should render a HomeGrid component, five items', async () => {
-        const { container } = render(
-            <HomeGrid>
-                <div>one</div>
-                <div>two</div>
-                <div>three</div>
-                <div>four</div>
-                <div>five</div>
-            </HomeGrid>
+    it('Should render only QuickFilters', () => {
+        (useSelector as jest.Mock).mockImplementation((selector) =>
+            selector({
+                bookmarks: {},
+                lastVisitedGuides: [],
+                quickFilters: [
+                    {
+                        product: ['product 1'],
+                        component: ['component 1']
+                    }
+                ],
+                betaFeatures: true
+            })
         );
-        const columns = container.getElementsByClassName('guided-answer__home-grid__column');
+        const { container } = render(<HomeGrid />);
+        expect(container).toMatchSnapshot();
+    });
 
-        expect(container.firstChild).toHaveClass('guided-answer__home-grid');
-        expect(columns[0].children.length).toBe(3);
-        expect(columns[1].children.length).toBe(2);
+    it('Should render all in 2 columns', () => {
+        (useSelector as jest.Mock).mockImplementation((selector) =>
+            selector({
+                bookmarks: {
+                    'tree1-node1': {
+                        tree: {
+                            TREE_ID: 'tree1',
+                            TITLE: 'Bookmark 1 Title',
+                            DESCRIPTION: 'Bookmark 1 Description',
+                            PRODUCT: 'Product 1, Product 2',
+                            COMPONENT: 'Component 1, Component 2'
+                        },
+                        nodePath: [{ NODE_ID: 'node1', TITLE: 'Node 1' }]
+                    }
+                },
+                lastVisitedGuides: [
+                    {
+                        tree: {
+                            TREE_ID: '1',
+                            TITLE: 'Bookmark 1 Title',
+                            DESCRIPTION: 'Bookmark 1 Description',
+                            PRODUCT: 'Product 1, Product 2',
+                            COMPONENT: 'Component 1, Component 2'
+                        },
+                        nodePath: [{ NODE_ID: '1', TITLE: 'Node 1' }],
+                        createdAt: 'time'
+                    }
+                ],
+                quickFilters: [
+                    {
+                        product: ['product 1'],
+                        component: ['component 1']
+                    }
+                ],
+                betaFeatures: true
+            })
+        );
+        const { container } = render(<HomeGrid />);
+        expect(container).toMatchSnapshot();
+    });
+
+    it('Should render only Bookmarks, no beta features', () => {
+        (useSelector as jest.Mock).mockImplementation((selector) =>
+            selector({
+                bookmarks: {
+                    'tree1-node1': {
+                        tree: {
+                            TREE_ID: 'tree1',
+                            TITLE: 'Bookmark 1 Title',
+                            DESCRIPTION: 'Bookmark 1 Description',
+                            PRODUCT: 'Product 1, Product 2',
+                            COMPONENT: 'Component 1, Component 2'
+                        },
+                        nodePath: [{ NODE_ID: 'node1', TITLE: 'Node 1' }]
+                    }
+                },
+                lastVisitedGuides: [],
+                quickFilters: []
+            })
+        );
+        const { container } = render(<HomeGrid />);
+        expect(container).toMatchSnapshot();
+    });
+
+    it('Should render only LastVisited, no beta features', () => {
+        (useSelector as jest.Mock).mockImplementation((selector) =>
+            selector({
+                bookmarks: {},
+                lastVisitedGuides: [
+                    {
+                        tree: {
+                            TREE_ID: '1',
+                            TITLE: 'Bookmark 1 Title',
+                            DESCRIPTION: 'Bookmark 1 Description',
+                            PRODUCT: 'Product 1, Product 2',
+                            COMPONENT: 'Component 1, Component 2'
+                        },
+                        nodePath: [{ NODE_ID: '1', TITLE: 'Node 1' }],
+                        createdAt: 'time'
+                    }
+                ],
+                quickFilters: []
+            })
+        );
+        const { container } = render(<HomeGrid />);
+        expect(container).toMatchSnapshot();
     });
 });
