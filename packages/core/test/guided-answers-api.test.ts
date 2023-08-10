@@ -417,7 +417,11 @@ describe('Guided Answers Api: getNodeById()', () => {
                     text: 'solution to all questions',
                     command: {
                         type: 'Terminal',
-                        exec: { args: '42', command: 'echo', context: '' },
+                        exec: {
+                            args: '42',
+                            command: 'echo',
+                            context: ''
+                        },
                         environment: {
                             sbas: 1,
                             vscode: 1
