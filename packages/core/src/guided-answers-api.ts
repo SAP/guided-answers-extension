@@ -7,9 +7,8 @@ import type {
     FeedbackCommentPayload,
     FeedbackOutcomePayload,
     GuidedAnswerAPI,
-    GuidedAnswerHtmlExtension,
+    GuidedAnswersEnhancement,
     GuidedAnswerNode,
-    GuidedAnswerNodeExtension,
     GuidedAnswerNodeId,
     GuidedAnswersFeedback,
     GuidedAnswersQueryFilterOptions,
@@ -28,7 +27,7 @@ import type {
 import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension-types';
 
 const API_HOST = 'https://ga.support.sap.com';
-const VERSION = 'v5';
+const VERSION = 'v6';
 const NODE_PATH = `/dtp/api/${VERSION}/nodes/`;
 const TREE_PATH = `/dtp/api/${VERSION}/trees/`;
 const IMG_PREFIX = '/dtp/viewer/';
@@ -172,35 +171,35 @@ async function getTrees(host: string, queryOptions?: GuidedAnswersQueryOptions):
 }
 
 /**
- * Check if a node extension is applicable in the current environment.
+ * Convert a command attached as enhancement to a node into Guided Answers Extension format.
  *
- * @param ide - development environment 'VSCODE' or 'SBAS'
- * @param extension - node extension
- * @param extensions - list of installed extension ids
- * @returns - boolean, true: is applicable; false: not applicable
+ * @param command - command from Guided Answers node
+ * @param logger - logger to log issues
+ * @returns -Terminal command or Visual Studio Code command, depending on the input command
  */
-function isExtensionApplicable(ide: IDE, extension: GuidedAnswerNodeExtension, extensions: Set<string>): boolean {
-    return (ide === 'VSCODE' && extension.ENV_VSCODE !== 1) ||
-        (ide === 'SBAS' && extension.ENV_SBAS !== 1) ||
-        (extension.TYPE === 'Extension Command' && !extensions.has(extension.ARG1.VALUE.toLocaleLowerCase()))
-        ? false
-        : true;
-}
-
-/**
- * Check if a html extension is applicable in the current environment.
- *
- * @param ide - development environment 'VSCODE' or 'SBAS'
- * @param extension - node extension
- * @param extensions - list of installed extension ids
- * @returns - boolean, true: is applicable; false: not applicable
- */
-function isHtmlExtensionApplicable(ide: IDE, extension: GuidedAnswerHtmlExtension, extensions: Set<string>): boolean {
-    return (ide === 'VSCODE' && extension.command.environment.vscode !== 1) ||
-        (ide === 'SBAS' && extension.command.environment.sbas !== 1) ||
-        (extension.command.type === 'Extension' && !extensions.has(extension.command.exec.extensionId))
-        ? false
-        : true;
+function convertCommand(command: GuidedAnswersEnhancement['command'], logger: Logger): TerminalCommand | VSCodeCommand {
+    if (command.type === 'Extension') {
+        const extensionId = command.exec.context;
+        const commandId = command.exec.command;
+        let argument;
+        try {
+            argument = command.exec.args ? JSON.parse(command.exec.args) : undefined;
+        } catch (error) {
+            logger.logString(
+                `Error when parsing argument '${
+                    command.exec.args
+                }' for HTML enhancement. Extension id: '${extensionId}', command id: '${commandId}', ${error?.toString()}`
+            );
+        }
+        return { extensionId, commandId, argument } as VSCodeCommand;
+    }
+    if (command.type === 'Terminal') {
+        return {
+            arguments: [command.exec.command, ...(command.exec.args ?? '').split(' ')],
+            cwd: command.exec.context
+        } as TerminalCommand;
+    }
+    throw Error(`Error converting command: Unknown command '${command?.type}'`);
 }
 
 /**
@@ -209,72 +208,40 @@ function isHtmlExtensionApplicable(ide: IDE, extension: GuidedAnswerHtmlExtensio
  * @param ide - development environment 'VSCODE' or 'SBAS'
  * @param extensions - list of installed extension ids
  * @param logger - logger to log issues
- * @param htmlExtensions - html extensions
- * @param nodeExtensions - node extensions
+ * @param enhancements - array of enhancements
  * @returns array of html and node enhancements
  */
 function getEnhancements(
     ide: IDE,
     extensions: Set<string>,
     logger: Logger,
-    htmlExtensions: GuidedAnswerHtmlExtension[] = [],
-    nodeExtensions: GuidedAnswerNodeExtension[] = []
+    enhancements: GuidedAnswersEnhancement[] = []
 ): { htmlEnhancements: HTMLEnhancement[]; nodeCommands: Command[] } {
     const nodeCommands: Command[] = [];
     const htmlEnhancements: HTMLEnhancement[] = [];
     try {
-        const applicableNodeExtensions = nodeExtensions.filter((nodeExt) =>
-            isExtensionApplicable(ide, nodeExt, extensions)
-        );
-        for (const applicableNodeExtension of applicableNodeExtensions) {
-            const label = applicableNodeExtension.LABEL;
-            const description = applicableNodeExtension.DESCRIPTION;
-            const exec =
-                applicableNodeExtension.TYPE === 'Extension Command'
-                    ? { extensionId: applicableNodeExtension.ARG1.VALUE, commandId: applicableNodeExtension.ARG2.VALUE }
-                    : {
-                          cwd: applicableNodeExtension.ARG1.VALUE,
-                          arguments: applicableNodeExtension.ARG2.VALUE.split(' ')
-                      };
-            nodeCommands.push({ label, description, exec });
-        }
-
-        const applicableHtmlExtensions = htmlExtensions.filter((htmlExt) =>
-            isHtmlExtensionApplicable(ide, htmlExt, extensions)
-        );
-        for (const applicableHtmlExtension of applicableHtmlExtensions) {
-            const text = applicableHtmlExtension.text;
-            const label = applicableHtmlExtension.label;
-            const description = applicableHtmlExtension.desc;
-            let exec: TerminalCommand | VSCodeCommand;
-            if (applicableHtmlExtension.command.type === 'Extension') {
-                const extensionId = applicableHtmlExtension.command.exec.extensionId;
-                const commandId = applicableHtmlExtension.command.exec.command;
-                let argument;
-                try {
-                    argument = applicableHtmlExtension.command.exec.args
-                        ? JSON.parse(applicableHtmlExtension.command.exec.args)
-                        : undefined;
-                } catch (error) {
-                    logger.logString(
-                        `Error when parsing argument '${
-                            applicableHtmlExtension.command.exec.args
-                        }' for HTML enhancement. Extension id: '${extensionId}', command id: '${commandId}', ${error?.toString()}`
-                    );
-                }
-                exec = { extensionId, commandId, argument };
-            } else {
-                exec = {
-                    arguments: [
-                        applicableHtmlExtension.command.exec.command,
-                        ...(applicableHtmlExtension.command.exec.args ?? '').split(' ')
-                    ]
-                };
+        for (const enhancement of enhancements) {
+            if (
+                (ide === 'VSCODE' && enhancement.command.environment.vscode !== 1) ||
+                (ide === 'SBAS' && enhancement.command.environment.sbas !== 1) ||
+                (enhancement.command.type === 'Extension' && !extensions.has(enhancement.command.exec.context))
+            ) {
+                continue;
             }
-            htmlEnhancements.push({
-                text,
-                command: { label, description, exec }
-            });
+            const command = {
+                label: enhancement.label,
+                description: enhancement.desc,
+                exec: convertCommand(enhancement.command, logger)
+            };
+            if (enhancement.extensionType === 'HTML') {
+                htmlEnhancements.push({
+                    text: enhancement.text,
+                    command
+                });
+            }
+            if (enhancement.extensionType === 'NODE') {
+                nodeCommands.push(command);
+            }
         }
     } catch (error) {
         logger.logString(`Error processing enhancements, ${error?.toString()}`);
@@ -305,13 +272,7 @@ function enhanceNode(options: {
         return node;
     }
 
-    const { htmlEnhancements, nodeCommands } = getEnhancements(
-        ide,
-        extensions,
-        logger,
-        node.HTML_EXTENSIONS,
-        node.NODE_EXTENSIONS
-    );
+    const { htmlEnhancements, nodeCommands } = getEnhancements(ide, extensions, logger, node.ENHANCEMENTS);
     if (nodeCommands.length > 0) {
         node.COMMANDS = nodeCommands;
     }
