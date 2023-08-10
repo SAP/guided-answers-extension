@@ -1,5 +1,13 @@
 # @sap/guided-answers-extension-core
 
+## 1.28.1
+
+### Patch Changes
+
+-   efd210d: Consume API version 6
+-   Updated dependencies [efd210d]
+    -   @sap/guided-answers-extension-types@1.28.1
+
 ## 1.28.0
 
 ### Patch Changes
