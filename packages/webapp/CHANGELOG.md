@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.28.0
+
+### Minor Changes
+
+-   d2184d6: Feat/531/bookmark enhancements
+
 ## 1.27.1
 
 ### Patch Changes
