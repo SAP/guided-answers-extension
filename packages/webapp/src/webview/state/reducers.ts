@@ -258,6 +258,8 @@ function goToHomePageReducer(newState: AppState): AppState {
     newState.activeGuidedAnswerNode = [];
     newState.selectedComponentFilters = [];
     newState.selectedProductFilters = [];
+    newState.guidedAnswerTreeSearchResult.componentFilters = [];
+    newState.guidedAnswerTreeSearchResult.productFilters = [];
     return newState;
 }
 

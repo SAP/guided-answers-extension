@@ -9,21 +9,25 @@
         position: sticky;
         top: 0;
         padding-bottom: 20px;
+
         &__sub {
             display: flex;
             align-items: center;
             width: 100%;
         }
+
         &__title {
             font-weight: 600;
             margin: 0;
             color: var(--vscode-settings-headerForeground);
             line-height: 29px;
         }
+
         &__subtitle {
             color: var(--vscode-editorCodeLens-foreground, #999);
             font-size: 2em;
         }
+
         &__navButtons {
             height: 25px;
             color: var(--vscode-foreground);
@@ -32,29 +36,36 @@
             cursor: pointer;
             background: none;
             border: 0;
+
             &__content {
                 vertical-align: middle;
                 display: inline-block;
+
                 &__text {
                     margin-left: 3px;
                 }
             }
+
             display: flex;
             align-items: center;
+
             svg {
                 width: 16px;
                 height: 16px;
                 min-width: 16px;
             }
         }
+
         &__navButtons:hover {
             background: var(--vscode-menubar-selectionBackground);
             outline: 1px solid var(--vscode-contrastActiveBorder);
             border-radius: 3px;
+
             > span {
                 text-decoration: none;
             }
         }
+
         &__navButtons:focus-visible {
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
         }
@@ -63,14 +74,17 @@
         &__spacer {
             flex: 1 0 120px;
         }
+
         &__back-restart-buttons {
             display: flex;
             justify-content: space-between;
             flex: 0 1 620px;
         }
+
         &__restart-feedback-buttons {
             display: flex;
         }
+
         &__divider {
             border-left: 1px solid var(--vscode-editorWidget-border);
             height: 16px;
@@ -78,6 +92,7 @@
             margin-left: 10px;
             margin-right: 10px;
         }
+
         &__logoAndTitle {
             display: flex;
             align-items: center;
@@ -85,6 +100,7 @@
             min-width: 280px;
             cursor: pointer;
         }
+
         &__searchField {
             display: flex;
             align-items: start;
@@ -97,6 +113,7 @@
                 width: 50%;
             }
         }
+
         &.vertical {
             justify-content: center;
 
@@ -141,6 +158,7 @@
         padding-left: 6px;
         font-size: 13px;
         display: inline-block;
+
         i {
             svg {
                 width: 14px;
@@ -248,27 +266,43 @@
                 margin-top: 20px;
                 align-items: start;
             }
+
             &__navButtons {
                 text-align: center;
                 justify-content: center;
             }
+
             &__navButtons__content {
                 margin-left: 0;
             }
+
             &__navButtons__content__text {
                 display: none;
             }
+
             &__homeButton,
             &__spacer {
                 flex: 0 0 34px;
             }
+
+            &.vertical {
+                .guided-answer__header__sub {
+                    width: 100%;
+                }
+
+                .guided-answer__header__searchField {
+                    width: 100%;
+                }
+            }
         }
     }
+
     .home-icon {
         width: 28px;
         border-radius: 3px;
         color: var(--vscode-menu-foreground, #cccccc);
     }
+
     .home-icon:hover {
         background: var(--vscode-menubar-selectionBackground);
     }

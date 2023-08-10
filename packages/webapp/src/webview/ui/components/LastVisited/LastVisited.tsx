@@ -23,32 +23,29 @@ export function LastVisited(): ReactElement {
             </h3>
             <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
                 <ul className="striped-list-items" role="listbox">
-                    {lastVisitedGuides.slice(-1).map((guide: LastVisitedGuide) => (
-                        <li
-                            key={`tree-item-${guide.tree.TREE_ID}${guide.nodePath
-                                .map((n: { NODE_ID: any }) => n.NODE_ID)
-                                .join('-')}`}
-                            className="tree-item"
-                            role="option">
-                            <button
-                                className="guided-answer__tree"
-                                id="last-visited-button"
-                                onClick={(): void => {
-                                    actions.setActiveTree(guide.tree);
-                                    guide.nodePath.forEach((node: any) => actions.updateActiveNode(node));
-                                    document.body.focus();
-                                }}>
-                                <div className="guided-answer__tree__ul">
-                                    <h3 className="guided-answer__tree__title">
-                                        {guide.tree.TITLE}
-                                        {' - '}
-                                        {guide.nodePath[guide.nodePath.length - 1].TITLE}
-                                    </h3>
-                                    <TreeItemBottomSection tree={guide.tree} />
-                                </div>
-                            </button>
-                        </li>
-                    ))}
+                    {lastVisitedGuides.slice(-1).map((guide: LastVisitedGuide) => {
+                        const guideTitle =
+                            guide.nodePath.length > 1
+                                ? `${guide.tree.TITLE} - ${guide.nodePath[guide.nodePath.length - 1].TITLE}`
+                                : guide.tree.TITLE;
+                        return (
+                            <li key={`tree-item-${guideTitle}`} className="tree-item" role="option">
+                                <button
+                                    className="guided-answer__tree"
+                                    id="last-visited-button"
+                                    onClick={(): void => {
+                                        actions.setActiveTree(guide.tree);
+                                        guide.nodePath.forEach((node: any) => actions.updateActiveNode(node));
+                                        document.body.focus();
+                                    }}>
+                                    <div className="guided-answer__tree__ul">
+                                        <h3 className="guided-answer__tree__title">{guideTitle}</h3>
+                                        <TreeItemBottomSection tree={guide.tree} />
+                                    </div>
+                                </button>
+                            </li>
+                        );
+                    })}
                 </ul>
             </FocusZone>
         </div>
