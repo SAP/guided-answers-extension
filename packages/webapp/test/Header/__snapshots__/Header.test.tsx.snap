@@ -7,8 +7,8 @@ exports[`<Header /> Should render a Header component with the navigation buttons
     style="padding-bottom: 0px;"
   >
     <div
-      class="ms-FocusZone css-130 guided-answer__header"
-      data-focuszone-id="FocusZone8"
+      class="ms-FocusZone css-115 guided-answer__header"
+      data-focuszone-id="FocusZone0"
     >
       <div
         class="guided-answer__header__homeButton"
@@ -97,7 +97,7 @@ exports[`<Header /> Should render a Header component with the navigation buttons
           />
           <div>
             <button
-              class="ms-Button ms-Button--icon guided-answer__header__navButtons guided-answer__header__navButtons__content root-131"
+              class="ms-Button ms-Button--icon guided-answer__header__navButtons guided-answer__header__navButtons__content root-116"
               data-is-focusable="true"
               id="callout-test-id"
               style="outline: none;"
@@ -106,12 +106,12 @@ exports[`<Header /> Should render a Header component with the navigation buttons
               type="button"
             >
               <span
-                class="ms-Button-flexContainer flexContainer-116"
+                class="ms-Button-flexContainer flexContainer-117"
                 data-automationid="splitbuttonprimary"
               >
                 <i
                   aria-hidden="true"
-                  class="ms-Icon root-105 ms-Button-icon icon-132"
+                  class="ms-Icon root-105 ms-Button-icon icon-119"
                   data-icon-name="Link"
                 />
               </span>
@@ -203,50 +203,6 @@ exports[`<Header /> Should render a Header component without the navigation butt
             value=""
           />
         </div>
-        <div
-          id="filters"
-        >
-          <button
-            aria-disabled="true"
-            class="ms-Button ms-Button--icon is-disabled filter-button root-115"
-            data-is-focusable="false"
-            disabled=""
-            id="filter-products"
-            title="Filter Products"
-            type="button"
-          >
-            <span
-              class="ms-Button-flexContainer flexContainer-116"
-              data-automationid="splitbuttonprimary"
-            >
-              <i
-                aria-hidden="true"
-                class="ms-Icon root-105 ms-Button-icon icon-118"
-                data-icon-name="Table"
-              />
-            </span>
-          </button>
-          <button
-            aria-disabled="true"
-            class="ms-Button ms-Button--icon is-disabled filter-button root-115"
-            data-is-focusable="false"
-            disabled=""
-            id="filter-components"
-            title="Filter Components"
-            type="button"
-          >
-            <span
-              class="ms-Button-flexContainer flexContainer-116"
-              data-automationid="splitbuttonprimary"
-            >
-              <i
-                aria-hidden="true"
-                class="ms-Icon root-105 ms-Button-icon icon-118"
-                data-icon-name="IdTag"
-              />
-            </span>
-          </button>
-        </div>
       </div>
     </div>
   </div>
@@ -302,50 +258,6 @@ exports[`<Header /> Should render a Header component without the navigation butt
             role="searchbox"
             value=""
           />
-        </div>
-        <div
-          id="filters"
-        >
-          <button
-            aria-disabled="true"
-            class="ms-Button ms-Button--icon is-disabled filter-button root-115"
-            data-is-focusable="false"
-            disabled=""
-            id="filter-products"
-            title="Filter Products"
-            type="button"
-          >
-            <span
-              class="ms-Button-flexContainer flexContainer-116"
-              data-automationid="splitbuttonprimary"
-            >
-              <i
-                aria-hidden="true"
-                class="ms-Icon root-105 ms-Button-icon icon-118"
-                data-icon-name="Table"
-              />
-            </span>
-          </button>
-          <button
-            aria-disabled="true"
-            class="ms-Button ms-Button--icon is-disabled filter-button root-115"
-            data-is-focusable="false"
-            disabled=""
-            id="filter-components"
-            title="Filter Components"
-            type="button"
-          >
-            <span
-              class="ms-Button-flexContainer flexContainer-116"
-              data-automationid="splitbuttonprimary"
-            >
-              <i
-                aria-hidden="true"
-                class="ms-Icon root-105 ms-Button-icon icon-118"
-                data-icon-name="IdTag"
-              />
-            </span>
-          </button>
         </div>
       </div>
     </div>
