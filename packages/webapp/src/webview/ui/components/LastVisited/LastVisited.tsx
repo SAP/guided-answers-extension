@@ -40,7 +40,10 @@ export function LastVisited(): ReactElement {
                                     }}>
                                     <div className="guided-answer__tree__ul">
                                         <h3 className="guided-answer__tree__title">{guideTitle}</h3>
-                                        <TreeItemBottomSection tree={guide.tree} />
+                                        <TreeItemBottomSection
+                                            product={guide.tree.PRODUCT}
+                                            component={guide.tree.COMPONENT}
+                                        />
                                     </div>
                                 </button>
                             </li>

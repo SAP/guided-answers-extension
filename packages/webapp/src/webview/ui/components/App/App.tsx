@@ -121,7 +121,11 @@ export function App(): ReactElement {
                                                     )}{' '}
                                                     {tree.TITLE}
                                                 </h3>
-                                                <TreeItemBottomSection tree={tree} />
+                                                <TreeItemBottomSection
+                                                    description={tree.DESCRIPTION}
+                                                    product={tree.PRODUCT}
+                                                    component={tree.COMPONENT}
+                                                />
                                             </div>
                                         </button>
                                     </li>

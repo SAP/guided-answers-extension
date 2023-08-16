@@ -88,14 +88,9 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
                     class="bottom-section"
                     id="bottom-section"
                   >
-                    <span
-                      class="guided-answer__tree__desc"
-                    >
-                      Bookmark 1 Description
-                    </span>
                     <div
                       class="component-and-product-container"
-                      style="margin-top: 10px;"
+                      style="margin-top: 0px;"
                     >
                       <div
                         class="guided-answer__tree__product"
@@ -185,14 +180,9 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
                     class="bottom-section"
                     id="bottom-section"
                   >
-                    <span
-                      class="guided-answer__tree__desc"
-                    >
-                      Bookmark 1 Description
-                    </span>
                     <div
                       class="component-and-product-container"
-                      style="margin-top: 10px;"
+                      style="margin-top: 0px;"
                     >
                       <div
                         class="guided-answer__tree__product"
@@ -375,14 +365,9 @@ exports[`<HomeGrid /> Should render only Bookmarks 1`] = `
                     class="bottom-section"
                     id="bottom-section"
                   >
-                    <span
-                      class="guided-answer__tree__desc"
-                    >
-                      Bookmark 1 Description
-                    </span>
                     <div
                       class="component-and-product-container"
-                      style="margin-top: 10px;"
+                      style="margin-top: 0px;"
                     >
                       <div
                         class="guided-answer__tree__product"
@@ -504,14 +489,9 @@ exports[`<HomeGrid /> Should render only Bookmarks, no beta features 1`] = `
                 class="bottom-section"
                 id="bottom-section"
               >
-                <span
-                  class="guided-answer__tree__desc"
-                >
-                  Bookmark 1 Description
-                </span>
                 <div
                   class="component-and-product-container"
-                  style="margin-top: 10px;"
+                  style="margin-top: 0px;"
                 >
                   <div
                     class="guided-answer__tree__product"
@@ -608,14 +588,9 @@ exports[`<HomeGrid /> Should render only LastVisited 1`] = `
                     class="bottom-section"
                     id="bottom-section"
                   >
-                    <span
-                      class="guided-answer__tree__desc"
-                    >
-                      Bookmark 1 Description
-                    </span>
                     <div
                       class="component-and-product-container"
-                      style="margin-top: 10px;"
+                      style="margin-top: 0px;"
                     >
                       <div
                         class="guided-answer__tree__product"
@@ -708,14 +683,9 @@ exports[`<HomeGrid /> Should render only LastVisited, no beta features 1`] = `
                 class="bottom-section"
                 id="bottom-section"
               >
-                <span
-                  class="guided-answer__tree__desc"
-                >
-                  Bookmark 1 Description
-                </span>
                 <div
                   class="component-and-product-container"
-                  style="margin-top: 10px;"
+                  style="margin-top: 0px;"
                 >
                   <div
                     class="guided-answer__tree__product"

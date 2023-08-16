@@ -4,7 +4,7 @@ import { TreeItemBottomSection } from '../../src/webview/ui/components/TreeItemB
 
 describe('<TreeItemBottomSection />', () => {
     it('renders without description, product or component', () => {
-        render(<TreeItemBottomSection tree={{}} />);
+        render(<TreeItemBottomSection />);
 
         const bottomSection = screen.getByTestId('bottom-section');
         expect(bottomSection).toBeInTheDocument();
@@ -21,14 +21,14 @@ describe('<TreeItemBottomSection />', () => {
 
     it('renders with a description', () => {
         const mockDescription = 'A sample description';
-        render(<TreeItemBottomSection tree={{ DESCRIPTION: mockDescription }} />);
+        render(<TreeItemBottomSection description={mockDescription} />);
 
         const descElement = screen.getByText(mockDescription);
         expect(descElement).toBeInTheDocument();
     });
     it('renders with a product', () => {
         const mockProduct = 'Product 1, Product 2';
-        render(<TreeItemBottomSection tree={{ PRODUCT: mockProduct }} />);
+        render(<TreeItemBottomSection product={mockProduct} />);
 
         const productContainer = screen.getByTestId('product-container');
         expect(productContainer).toBeInTheDocument();
@@ -48,7 +48,7 @@ describe('<TreeItemBottomSection />', () => {
 
     it('renders with a component', () => {
         const mockComponent = 'Component 1, Component 2';
-        render(<TreeItemBottomSection tree={{ COMPONENT: mockComponent }} />);
+        render(<TreeItemBottomSection component={mockComponent} />);
 
         const componentContainer = screen.getByTestId('component-container');
         expect(componentContainer).toBeInTheDocument();
