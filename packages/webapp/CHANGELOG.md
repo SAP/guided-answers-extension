@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.28.2
+
+### Patch Changes
+
+-   640e7cc: fix: fix bookmark and filter positioning
+
 ## 1.28.1
 
 ## 1.28.0
