@@ -56,14 +56,9 @@ exports[`<LastVisited /> Should render LastVisited component 1`] = `
                 class="bottom-section"
                 id="bottom-section"
               >
-                <span
-                  class="guided-answer__tree__desc"
-                >
-                  Bookmark 2 Description
-                </span>
                 <div
                   class="component-and-product-container"
-                  style="margin-top: 10px;"
+                  style="margin-top: 0px;"
                 >
                   <div
                     class="guided-answer__tree__product"

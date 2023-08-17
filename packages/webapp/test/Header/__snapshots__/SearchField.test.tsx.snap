@@ -1,6 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SearchField /> Should render a SearchField component 1`] = `
+exports[`<SearchField /> Should render a SearchField component, on home screen 1`] = `
+<div>
+  <div
+    class="guided-answer__header__searchField"
+  >
+    <div
+      class="ms-SearchBox can-clear tree-search-field root-109"
+    >
+      <div
+        aria-hidden="true"
+        class="ms-SearchBox-iconContainer iconContainer-110"
+      >
+        <i
+          aria-hidden="true"
+          class="ms-SearchBox-icon icon-114"
+          data-icon-name="Search"
+        />
+      </div>
+      <input
+        class="ms-SearchBox-field field-113"
+        id="search-field"
+        placeholder="Search Guided Answers"
+        role="searchbox"
+        value="fiori tools"
+      />
+      <div
+        class="ms-SearchBox-clearButton clearButton-112"
+      >
+        <button
+          aria-label="Clear text"
+          class="ms-Button ms-Button--icon root-115"
+          data-is-focusable="true"
+          type="button"
+        >
+          <span
+            class="ms-Button-flexContainer flexContainer-116"
+            data-automationid="splitbuttonprimary"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-105 ms-Button-icon icon-118"
+              data-icon-name="Clear"
+            />
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<SearchField /> Should render a SearchField component, on search screen 1`] = `
 <div>
   <div
     class="guided-answer__header__searchField"

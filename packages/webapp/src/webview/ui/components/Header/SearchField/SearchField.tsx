@@ -42,7 +42,7 @@ export function SearchField() {
                 id="search-field"
                 onClear={() => onChange('')}
                 onChange={(e: any) => onChange(e?.target?.value || '')}></UISearchBox>
-            <Filters />
+            {appState.activeScreen === 'SEARCH' && <Filters />}
         </div>
     );
 }

@@ -4,28 +4,30 @@ import React from 'react';
  * Component for the bottom section of the button it a tree list.
  *
  * @param props - properties containing tree
- * @param props.tree - Guided Answers tree
+ * @param props.description - Guided Answers tree description
+ * @param props.product - Guided Answers tree product
+ * @param props.component - Guided Answers tree component
  * @returns A TreeItemBottomSection component.
  */
-export function TreeItemBottomSection(props: { tree: any }) {
+export function TreeItemBottomSection(props: { description?: string; product?: string; component?: string }) {
     return (
         <div className="bottom-section" id="bottom-section">
-            {props.tree.DESCRIPTION && <span className="guided-answer__tree__desc">{props.tree.DESCRIPTION}</span>}
+            {props.description && <span className="guided-answer__tree__desc">{props.description}</span>}
             <div
                 className="component-and-product-container"
                 style={{
-                    marginTop: props.tree.DESCRIPTION ? '10px' : '0'
+                    marginTop: props.description ? '10px' : '0'
                 }}>
-                {props.tree.PRODUCT && (
+                {props.product && (
                     <div className="guided-answer__tree__product" id="product-container">
                         <span className="bottom-title">Product: </span>
-                        {props.tree.PRODUCT.split(',')[0].trim()}
+                        {props.product.split(',')[0].trim()}
                     </div>
                 )}
-                {props.tree.COMPONENT && (
+                {props.component && (
                     <div className="guided-answer__tree__component" id="component-container">
                         <span className="bottom-title">Component: </span>
-                        {props.tree.COMPONENT.split(',')[0].trim()}
+                        {props.component.split(',')[0].trim()}
                     </div>
                 )}
             </div>

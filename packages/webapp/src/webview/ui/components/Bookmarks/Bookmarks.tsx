@@ -80,7 +80,10 @@ export function Bookmarks(): ReactElement {
                                                 )}
                                             </button>
                                         </h3>
-                                        <TreeItemBottomSection tree={bookmark.tree} />
+                                        <TreeItemBottomSection
+                                            product={bookmark.tree.PRODUCT}
+                                            component={bookmark.tree.COMPONENT}
+                                        />
                                     </div>
                                 </button>
                             </li>
