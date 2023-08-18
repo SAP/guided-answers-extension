@@ -153,66 +153,10 @@ exports[`<Header /> Should render a Header component with the navigation buttons
 </div>
 `;
 
-exports[`<Header /> Should render a Header component without the navigation buttons (with beta features) 1`] = `
-<div>
-  <div
-    class="guided-answer__header vertical"
-    style="padding-bottom: 20px;"
-  >
-    <div
-      class="guided-answer__header__sub"
-    >
-      <div
-        class="guided-answer__header__logoAndTitle"
-        id="logo-and-title"
-        title="Home"
-      >
-        <span
-          id="sap-logo"
-        >
-          <svg />
-        </span>
-        <h1
-          class="guided-answer__header__title"
-        >
-          Guided Answers
-        </h1>
-      </div>
-      <div
-        class="guided-answer__header__searchField"
-      >
-        <div
-          class="ms-SearchBox tree-search-field root-109"
-        >
-          <div
-            aria-hidden="true"
-            class="ms-SearchBox-iconContainer iconContainer-110"
-          >
-            <i
-              aria-hidden="true"
-              class="ms-SearchBox-icon icon-114"
-              data-icon-name="Search"
-            />
-          </div>
-          <input
-            class="ms-SearchBox-field field-113"
-            id="search-field"
-            placeholder="Search Guided Answers"
-            readonly=""
-            role="searchbox"
-            value=""
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`<Header /> Should render a Header component without the navigation buttons 1`] = `
 <div>
   <div
-    class="guided-answer__header "
+    class="guided-answer__header vertical"
     style="padding-bottom: 20px;"
   >
     <div

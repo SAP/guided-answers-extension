@@ -22,7 +22,7 @@ import { FocusZone } from '@fluentui/react-focus';
  */
 export function Header(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
-    const verticalSearch = appState.betaFeatures && appState.activeScreen === 'HOME';
+    const verticalSearch = appState.activeScreen === 'HOME';
     return (
         <div
             className={`guided-answer__header ${verticalSearch ? 'vertical' : ''}`}
