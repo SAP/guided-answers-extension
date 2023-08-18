@@ -2,11 +2,11 @@ import type { ReactElement } from 'react';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import i18next from 'i18next';
-import type { AppState } from '../../../types';
-import { actions } from '../../../state';
+import type { AppState } from '../../../../types';
+import { actions } from '../../../../state';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import { VscStarFull, VscStarEmpty } from 'react-icons/vsc';
-import { TreeItemBottomSection } from '../TreeItemBottomSection';
+import { TreeItemBottomSection } from '../../TreeItemBottomSection';
 import type { Bookmarks as BookmarksType, Bookmark } from '@sap/guided-answers-extension-types';
 import './Bookmarks.scss';
 
@@ -44,12 +44,12 @@ export function Bookmarks(): ReactElement {
 
     return (
         <div>
-            <h3 style={{ display: 'flex', alignItems: 'center' }}>
+            <h3 className="guided-answer__home-grid__section__title">
                 <VscStarFull className="bookmark-icon-bookmarked" />
-                <span style={{ margin: '0 5px' }}>Bookmarks</span>
+                <span>Bookmarks</span>
             </h3>
-            <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
-                <ul className="striped-list-items" role="listbox">
+            <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
+                <ul className="guided-answer__home-grid__section__list" role="listbox">
                     {Object.keys(localBookmarks).map((bookmarkKey) => {
                         const bookmark = localBookmarks[bookmarkKey];
                         const bookmarkTitle =
@@ -58,34 +58,26 @@ export function Bookmarks(): ReactElement {
                                 : bookmark.tree.TITLE;
                         const isBookmarked = !!storedBookmarks[bookmarkKey];
                         return (
-                            <li key={`tree-item-${bookmarkTitle}`} className="tree-item" role="option">
-                                <button
-                                    className="guided-answer__tree guided-answer__bookmark"
-                                    id="goto-bookmark-button"
-                                    onClick={(): void => goToBookmark(bookmark)}>
-                                    <div className="guided-answer__tree__ul">
-                                        <h3 className="guided-answer__tree__title">
-                                            <span>{bookmarkTitle}</span>
-                                            <button
-                                                className="guided-answer__bookmark__button"
-                                                id="bookmark-button"
-                                                onClick={(e) => toggleBookmark(e, bookmark)}>
-                                                {isBookmarked ? (
-                                                    <VscStarFull
-                                                        className="bookmark-icon-bookmarked"
-                                                        title={i18next.t('REMOVE_FROM_BOOKMARKS')}
-                                                    />
-                                                ) : (
-                                                    <VscStarEmpty title={i18next.t('BOOKMARK_THIS_GUIDE')} />
-                                                )}
-                                            </button>
-                                        </h3>
-                                        <TreeItemBottomSection
-                                            product={bookmark.tree.PRODUCT}
-                                            component={bookmark.tree.COMPONENT}
-                                        />
-                                    </div>
-                                </button>
+                            <li key={`tree-item-${bookmarkTitle}`} className="guided-answer__bookmark">
+                                <div className="guided-answer__bookmark__title">
+                                    <a id="goto-bookmark-button" onClick={(): void => goToBookmark(bookmark)}>
+                                        {bookmarkTitle}
+                                    </a>
+                                    <button id="toggle-bookmark-button" onClick={(e) => toggleBookmark(e, bookmark)}>
+                                        {isBookmarked ? (
+                                            <VscStarFull
+                                                className="bookmark-icon-bookmarked"
+                                                title={i18next.t('REMOVE_FROM_BOOKMARKS')}
+                                            />
+                                        ) : (
+                                            <VscStarEmpty title={i18next.t('BOOKMARK_THIS_GUIDE')} />
+                                        )}
+                                    </button>
+                                </div>
+                                <TreeItemBottomSection
+                                    product={bookmark.tree.PRODUCT}
+                                    component={bookmark.tree.COMPONENT}
+                                />
                             </li>
                         );
                     })}

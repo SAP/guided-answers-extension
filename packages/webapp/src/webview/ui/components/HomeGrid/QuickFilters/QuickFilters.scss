@@ -1,0 +1,32 @@
+.guided-answer__quick-filter {
+    >button {
+        padding: 15px;
+        width: 100%;
+        display: flex;
+        gap: 10px;
+        flex-flow: row wrap;
+        color: var(--vscode-foreground);
+        background: var(--vscode-editorWidget-background);
+        text-align: left;
+        font-weight: 400;
+        font-size: 13px;
+        cursor: pointer;
+        border: none;
+        border-radius: 3px;
+
+        &:hover {
+            outline: 1px solid var(--vscode-focusBorder, #007fd4);
+            outline-offset: -1px;
+        }
+
+        &:focus-visible {
+            outline: 1px solid var(--vscode-focusBorder, #007fd4);
+            outline-offset: -2px;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+    }
+
+}

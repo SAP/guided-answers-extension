@@ -10,6 +10,26 @@
             margin-bottom: 30px;
         }
     }
+
+    &__section {
+        &__title {
+            display: flex;
+            align-items: center;
+
+            >span {
+                margin: 0 5px;
+            }
+        }
+
+        &__list {
+            display: flex;
+            flex-flow: column nowrap;
+            gap: 5px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    }
 }
 
 @media only screen and (max-width: 740px) {

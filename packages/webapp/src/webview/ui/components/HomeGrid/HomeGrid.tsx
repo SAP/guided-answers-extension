@@ -2,9 +2,9 @@ import type { ReactElement } from 'react';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import type { AppState } from '../../../types';
-import { Bookmarks } from '../Bookmarks';
-import { LastVisited } from '../LastVisited';
-import { QuickFilters } from '../QuickFilters';
+import { Bookmarks } from './Bookmarks';
+import { LastVisited } from './LastVisited';
+import { QuickFilters } from './QuickFilters';
 import './HomeGrid.scss';
 
 /**

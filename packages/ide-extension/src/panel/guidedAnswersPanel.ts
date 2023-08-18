@@ -220,6 +220,13 @@ export class GuidedAnswersPanel {
             if (Object.keys(filters).length > 0) {
                 this.postActionToWebview(setQuickFilters([filters]));
             }
+            this.postActionToWebview(
+                setQuickFilters([
+                    { product: ['prod1', 'prod2'] },
+                    { product: ['prod1'], component: ['component1', 'component2'] },
+                    { component: ['component1'] }
+                ])
+            );
         } catch (error: any) {
             logString(`Error while retrieving context information, error was: '${error?.message}'.`);
         }
