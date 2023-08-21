@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.29.0
+
+### Minor Changes
+
+-   5f8e573: feat(232): remove beta toggle
+
 ## 1.28.2
 
 ### Patch Changes
