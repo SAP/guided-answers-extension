@@ -26,8 +26,7 @@ describe('<HomeGrid />', () => {
                     }
                 },
                 lastVisitedGuides: [],
-                quickFilters: [],
-                betaFeatures: true
+                quickFilters: []
             })
         );
         const { container } = render(<HomeGrid />);
@@ -51,8 +50,7 @@ describe('<HomeGrid />', () => {
                         createdAt: 'time'
                     }
                 ],
-                quickFilters: [],
-                betaFeatures: true
+                quickFilters: []
             })
         );
         const { container } = render(<HomeGrid />);
@@ -69,8 +67,7 @@ describe('<HomeGrid />', () => {
                         product: ['product 1'],
                         component: ['component 1']
                     }
-                ],
-                betaFeatures: true
+                ]
             })
         );
         const { container } = render(<HomeGrid />);
@@ -110,8 +107,7 @@ describe('<HomeGrid />', () => {
                         product: ['product 1'],
                         component: ['component 1']
                     }
-                ],
-                betaFeatures: true
+                ]
             })
         );
         const { container } = render(<HomeGrid />);
