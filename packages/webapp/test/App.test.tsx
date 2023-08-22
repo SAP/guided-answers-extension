@@ -48,18 +48,6 @@ describe('<App />', () => {
         expect(container).toMatchSnapshot();
     });
 
-    it('Match snapshot of component <App/> in initial mode (with beta features)', () => {
-        const initialState = getInitialState();
-        initialState.betaFeatures = true;
-
-        const { container } = render(
-            <Provider store={mockStore(createState(initialState))}>
-                <App />
-            </Provider>
-        );
-        expect(container).toMatchSnapshot();
-    });
-
     it('Match snapshot of component <App/> with results list', () => {
         const initialState = getInitialState();
         initialState.networkStatus = 'OK';

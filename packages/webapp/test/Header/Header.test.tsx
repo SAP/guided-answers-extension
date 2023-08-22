@@ -6,7 +6,7 @@ import { initI18n } from '../../src/webview/i18n';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
-import { AppState } from '../../src/webview/types';
+import type { AppState } from '../../src/webview/types';
 
 const createState = (initialState: AppState) => (actions: any[]) => actions.reduce(reducer, initialState);
 const mockStore = configureMockStore();
@@ -38,18 +38,6 @@ describe('<Header />', () => {
             QUESTION: 'I have a problem with',
             TITLE: 'SAP Fiori Tools'
         });
-
-        const { container } = render(
-            <Provider store={mockStore(createState(state))}>
-                <Header />
-            </Provider>
-        );
-        expect(container).toMatchSnapshot();
-    });
-
-    it('Should render a Header component without the navigation buttons (with beta features)', () => {
-        const state = getInitialState();
-        state.betaFeatures = true;
 
         const { container } = render(
             <Provider store={mockStore(createState(state))}>

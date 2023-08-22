@@ -25,17 +25,6 @@ export function HomeGrid(): ReactElement {
 
     const isTwoColumnLayout = hasLastVisited && hasBookmarks && hasQuickFilters;
 
-    // Temporary return for beta features
-    if (!appState.betaFeatures) {
-        return (
-            <>
-                {hasLastVisited && <LastVisited />}
-                <div style={{ marginBottom: '30px' }}></div>
-                {hasBookmarks && <Bookmarks />}
-            </>
-        );
-    }
-
     return isTwoColumnLayout ? (
         <div className="guided-answer__home-grid">
             <div className="guided-answer__home-grid__column">

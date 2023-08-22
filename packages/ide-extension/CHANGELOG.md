@@ -1,5 +1,7 @@
 # sap-guided-answer-extension
 
+## 1.29.0
+
 ## 1.28.2
 
 ## 1.28.1
