@@ -3,7 +3,7 @@ import { render, screen, within, cleanup } from '@testing-library/react';
 import { fireEvent } from '@testing-library/dom';
 import { useSelector } from 'react-redux';
 import { actions } from '../../src/webview/state';
-import { Bookmarks } from '../../src/webview/ui/components/Bookmarks';
+import { Bookmarks } from '../../src/webview/ui/components/HomeGrid/Bookmarks';
 
 jest.mock('../../src/webview/state', () => ({
     actions: {
@@ -87,7 +87,7 @@ describe('<Bookmarks />', () => {
     it('removes bookmark from the list', () => {
         render(<Bookmarks />);
 
-        fireEvent.click(screen.getAllByTestId('bookmark-button')[0]);
+        fireEvent.click(screen.getAllByTestId('toggle-bookmark-button')[0]);
         expect(actions.updateBookmark).toBeCalledWith({
             bookmarkKey: 'tree1-node1',
             bookmarks: {
@@ -108,7 +108,7 @@ describe('<Bookmarks />', () => {
 
         render(<Bookmarks />);
 
-        fireEvent.click(screen.getAllByTestId('bookmark-button')[0]);
+        fireEvent.click(screen.getAllByTestId('toggle-bookmark-button')[0]);
         expect(actions.updateBookmark).toBeCalledWith({
             bookmarkKey: 'tree1-node1',
             bookmarks: {

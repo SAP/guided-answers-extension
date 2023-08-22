@@ -10,7 +10,7 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
     >
       <div>
         <h3
-          style="display: flex; align-items: center;"
+          class="guided-answer__home-grid__section__title"
         >
           <svg
             class="bookmark-icon-bookmarked"
@@ -28,9 +28,7 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
               fill-rule="evenodd"
             />
           </svg>
-          <span
-            style="margin: 0px 5px;"
-          >
+          <span>
             Bookmarks
           </span>
         </h3>
@@ -39,85 +37,76 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
           data-focuszone-id="FocusZone3"
         >
           <ul
-            class="striped-list-items"
+            class="guided-answer__home-grid__section__list"
             role="listbox"
           >
             <li
-              class="tree-item"
-              role="option"
+              class="guided-answer__bookmark"
             >
-              <button
-                class="guided-answer__tree guided-answer__bookmark"
-                id="goto-bookmark-button"
-                tabindex="0"
+              <div
+                class="guided-answer__bookmark__title"
+              >
+                <a
+                  id="goto-bookmark-button"
+                  tabindex="0"
+                >
+                  Bookmark 1 Title
+                </a>
+                <button
+                  id="toggle-bookmark-button"
+                  tabindex="-1"
+                >
+                  <svg
+                    class="bookmark-icon-bookmarked"
+                    fill="currentColor"
+                    focusable="false"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 16 16"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M9.595 6.252L8 1 6.405 6.252H1l4.373 3.4L3.75 15 8 11.695 12.25 15l-1.623-5.348L15 6.252H9.595z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div
+                class="bottom-section"
+                id="bottom-section"
               >
                 <div
-                  class="guided-answer__tree__ul"
+                  class="component-and-product-container"
+                  style="margin-top: 0px;"
                 >
-                  <h3
-                    class="guided-answer__tree__title"
-                  >
-                    <span>
-                      Bookmark 1 Title
-                    </span>
-                    <button
-                      class="guided-answer__bookmark__button"
-                      id="bookmark-button"
-                      tabindex="-1"
-                    >
-                      <svg
-                        class="bookmark-icon-bookmarked"
-                        fill="currentColor"
-                        focusable="false"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 16 16"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          clip-rule="evenodd"
-                          d="M9.595 6.252L8 1 6.405 6.252H1l4.373 3.4L3.75 15 8 11.695 12.25 15l-1.623-5.348L15 6.252H9.595z"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </h3>
                   <div
-                    class="bottom-section"
-                    id="bottom-section"
+                    class="guided-answer__tree__product"
+                    id="product-container"
                   >
-                    <div
-                      class="component-and-product-container"
-                      style="margin-top: 0px;"
+                    <span
+                      class="bottom-title"
                     >
-                      <div
-                        class="guided-answer__tree__product"
-                        id="product-container"
-                      >
-                        <span
-                          class="bottom-title"
-                        >
-                          Product: 
-                        </span>
-                        Product 1
-                      </div>
-                      <div
-                        class="guided-answer__tree__component"
-                        id="component-container"
-                      >
-                        <span
-                          class="bottom-title"
-                        >
-                          Component: 
-                        </span>
-                        Component 1
-                      </div>
-                    </div>
+                      Product: 
+                    </span>
+                    Product 1
+                  </div>
+                  <div
+                    class="guided-answer__tree__component"
+                    id="component-container"
+                  >
+                    <span
+                      class="bottom-title"
+                    >
+                      Component: 
+                    </span>
+                    Component 1
                   </div>
                 </div>
-              </button>
+              </div>
             </li>
           </ul>
         </div>
@@ -128,7 +117,7 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
     >
       <div>
         <h3
-          style="display: flex; align-items: center;"
+          class="guided-answer__home-grid__section__title"
         >
           <svg
             fill="currentColor"
@@ -145,9 +134,7 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
               fill-rule="evenodd"
             />
           </svg>
-          <span
-            style="margin: 0px 5px;"
-          >
+          <span>
             Last visited
           </span>
         </h3>
@@ -156,67 +143,57 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
           data-focuszone-id="FocusZone4"
         >
           <ul
-            class="striped-list-items"
+            class="guided-answer__home-grid__section__list"
             role="listbox"
           >
             <li
-              class="tree-item"
-              role="option"
+              class="guided-answer__last-visited"
             >
-              <button
-                class="guided-answer__tree"
-                id="last-visited-button"
+              <a
+                id="last-visited-link"
                 tabindex="0"
               >
+                Bookmark 1 Title
+              </a>
+              <div
+                class="bottom-section"
+                id="bottom-section"
+              >
                 <div
-                  class="guided-answer__tree__ul"
+                  class="component-and-product-container"
+                  style="margin-top: 0px;"
                 >
-                  <h3
-                    class="guided-answer__tree__title"
-                  >
-                    Bookmark 1 Title
-                  </h3>
                   <div
-                    class="bottom-section"
-                    id="bottom-section"
+                    class="guided-answer__tree__product"
+                    id="product-container"
                   >
-                    <div
-                      class="component-and-product-container"
-                      style="margin-top: 0px;"
+                    <span
+                      class="bottom-title"
                     >
-                      <div
-                        class="guided-answer__tree__product"
-                        id="product-container"
-                      >
-                        <span
-                          class="bottom-title"
-                        >
-                          Product: 
-                        </span>
-                        Product 1
-                      </div>
-                      <div
-                        class="guided-answer__tree__component"
-                        id="component-container"
-                      >
-                        <span
-                          class="bottom-title"
-                        >
-                          Component: 
-                        </span>
-                        Component 1
-                      </div>
-                    </div>
+                      Product: 
+                    </span>
+                    Product 1
+                  </div>
+                  <div
+                    class="guided-answer__tree__component"
+                    id="component-container"
+                  >
+                    <span
+                      class="bottom-title"
+                    >
+                      Component: 
+                    </span>
+                    Component 1
                   </div>
                 </div>
-              </button>
+              </div>
             </li>
           </ul>
         </div>
       </div>
       <div>
         <h3
-          style="display: flex; align-items: center;"
+          class="guided-answer__home-grid__section__title"
         >
           <svg
             fill="currentColor"
@@ -233,9 +210,7 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
               fill-rule="evenodd"
             />
           </svg>
-          <span
-            style="margin: 0px 5px;"
-          >
+          <span>
             Quick Filters
           </span>
         </h3>
@@ -244,15 +219,13 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
           data-focuszone-id="FocusZone5"
         >
           <ul
-            class="striped-list-items"
+            class="guided-answer__home-grid__section__list"
             role="listbox"
           >
             <li
-              class="tree-item"
-              role="option"
+              class="guided-answer__quick-filter"
             >
               <button
-                class="guided-answer__quick-filter"
                 tabindex="0"
               >
                 <div>
@@ -287,7 +260,7 @@ exports[`<HomeGrid /> Should render only Bookmarks 1`] = `
     >
       <div>
         <h3
-          style="display: flex; align-items: center;"
+          class="guided-answer__home-grid__section__title"
         >
           <svg
             class="bookmark-icon-bookmarked"
@@ -305,9 +278,7 @@ exports[`<HomeGrid /> Should render only Bookmarks 1`] = `
               fill-rule="evenodd"
             />
           </svg>
-          <span
-            style="margin: 0px 5px;"
-          >
+          <span>
             Bookmarks
           </span>
         </h3>
@@ -316,85 +287,76 @@ exports[`<HomeGrid /> Should render only Bookmarks 1`] = `
           data-focuszone-id="FocusZone0"
         >
           <ul
-            class="striped-list-items"
+            class="guided-answer__home-grid__section__list"
             role="listbox"
           >
             <li
-              class="tree-item"
-              role="option"
+              class="guided-answer__bookmark"
             >
-              <button
-                class="guided-answer__tree guided-answer__bookmark"
-                id="goto-bookmark-button"
-                tabindex="0"
+              <div
+                class="guided-answer__bookmark__title"
+              >
+                <a
+                  id="goto-bookmark-button"
+                  tabindex="0"
+                >
+                  Bookmark 1 Title
+                </a>
+                <button
+                  id="toggle-bookmark-button"
+                  tabindex="-1"
+                >
+                  <svg
+                    class="bookmark-icon-bookmarked"
+                    fill="currentColor"
+                    focusable="false"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 16 16"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M9.595 6.252L8 1 6.405 6.252H1l4.373 3.4L3.75 15 8 11.695 12.25 15l-1.623-5.348L15 6.252H9.595z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div
+                class="bottom-section"
+                id="bottom-section"
               >
                 <div
-                  class="guided-answer__tree__ul"
+                  class="component-and-product-container"
+                  style="margin-top: 0px;"
                 >
-                  <h3
-                    class="guided-answer__tree__title"
-                  >
-                    <span>
-                      Bookmark 1 Title
-                    </span>
-                    <button
-                      class="guided-answer__bookmark__button"
-                      id="bookmark-button"
-                      tabindex="-1"
-                    >
-                      <svg
-                        class="bookmark-icon-bookmarked"
-                        fill="currentColor"
-                        focusable="false"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 16 16"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          clip-rule="evenodd"
-                          d="M9.595 6.252L8 1 6.405 6.252H1l4.373 3.4L3.75 15 8 11.695 12.25 15l-1.623-5.348L15 6.252H9.595z"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </h3>
                   <div
-                    class="bottom-section"
-                    id="bottom-section"
+                    class="guided-answer__tree__product"
+                    id="product-container"
                   >
-                    <div
-                      class="component-and-product-container"
-                      style="margin-top: 0px;"
+                    <span
+                      class="bottom-title"
                     >
-                      <div
-                        class="guided-answer__tree__product"
-                        id="product-container"
-                      >
-                        <span
-                          class="bottom-title"
-                        >
-                          Product: 
-                        </span>
-                        Product 1
-                      </div>
-                      <div
-                        class="guided-answer__tree__component"
-                        id="component-container"
-                      >
-                        <span
-                          class="bottom-title"
-                        >
-                          Component: 
-                        </span>
-                        Component 1
-                      </div>
-                    </div>
+                      Product: 
+                    </span>
+                    Product 1
+                  </div>
+                  <div
+                    class="guided-answer__tree__component"
+                    id="component-container"
+                  >
+                    <span
+                      class="bottom-title"
+                    >
+                      Component: 
+                    </span>
+                    Component 1
                   </div>
                 </div>
-              </button>
+              </div>
             </li>
           </ul>
         </div>
@@ -414,7 +376,7 @@ exports[`<HomeGrid /> Should render only Bookmarks, no beta features 1`] = `
     >
       <div>
         <h3
-          style="display: flex; align-items: center;"
+          class="guided-answer__home-grid__section__title"
         >
           <svg
             class="bookmark-icon-bookmarked"
@@ -432,9 +394,7 @@ exports[`<HomeGrid /> Should render only Bookmarks, no beta features 1`] = `
               fill-rule="evenodd"
             />
           </svg>
-          <span
-            style="margin: 0px 5px;"
-          >
+          <span>
             Bookmarks
           </span>
         </h3>
@@ -443,85 +403,76 @@ exports[`<HomeGrid /> Should render only Bookmarks, no beta features 1`] = `
           data-focuszone-id="FocusZone6"
         >
           <ul
-            class="striped-list-items"
+            class="guided-answer__home-grid__section__list"
             role="listbox"
           >
             <li
-              class="tree-item"
-              role="option"
+              class="guided-answer__bookmark"
             >
-              <button
-                class="guided-answer__tree guided-answer__bookmark"
-                id="goto-bookmark-button"
-                tabindex="0"
+              <div
+                class="guided-answer__bookmark__title"
+              >
+                <a
+                  id="goto-bookmark-button"
+                  tabindex="0"
+                >
+                  Bookmark 1 Title
+                </a>
+                <button
+                  id="toggle-bookmark-button"
+                  tabindex="-1"
+                >
+                  <svg
+                    class="bookmark-icon-bookmarked"
+                    fill="currentColor"
+                    focusable="false"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 16 16"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M9.595 6.252L8 1 6.405 6.252H1l4.373 3.4L3.75 15 8 11.695 12.25 15l-1.623-5.348L15 6.252H9.595z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div
+                class="bottom-section"
+                id="bottom-section"
               >
                 <div
-                  class="guided-answer__tree__ul"
+                  class="component-and-product-container"
+                  style="margin-top: 0px;"
                 >
-                  <h3
-                    class="guided-answer__tree__title"
-                  >
-                    <span>
-                      Bookmark 1 Title
-                    </span>
-                    <button
-                      class="guided-answer__bookmark__button"
-                      id="bookmark-button"
-                      tabindex="-1"
-                    >
-                      <svg
-                        class="bookmark-icon-bookmarked"
-                        fill="currentColor"
-                        focusable="false"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 16 16"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          clip-rule="evenodd"
-                          d="M9.595 6.252L8 1 6.405 6.252H1l4.373 3.4L3.75 15 8 11.695 12.25 15l-1.623-5.348L15 6.252H9.595z"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </h3>
                   <div
-                    class="bottom-section"
-                    id="bottom-section"
+                    class="guided-answer__tree__product"
+                    id="product-container"
                   >
-                    <div
-                      class="component-and-product-container"
-                      style="margin-top: 0px;"
+                    <span
+                      class="bottom-title"
                     >
-                      <div
-                        class="guided-answer__tree__product"
-                        id="product-container"
-                      >
-                        <span
-                          class="bottom-title"
-                        >
-                          Product: 
-                        </span>
-                        Product 1
-                      </div>
-                      <div
-                        class="guided-answer__tree__component"
-                        id="component-container"
-                      >
-                        <span
-                          class="bottom-title"
-                        >
-                          Component: 
-                        </span>
-                        Component 1
-                      </div>
-                    </div>
+                      Product: 
+                    </span>
+                    Product 1
+                  </div>
+                  <div
+                    class="guided-answer__tree__component"
+                    id="component-container"
+                  >
+                    <span
+                      class="bottom-title"
+                    >
+                      Component: 
+                    </span>
+                    Component 1
                   </div>
                 </div>
-              </button>
+              </div>
             </li>
           </ul>
         </div>
@@ -541,7 +492,7 @@ exports[`<HomeGrid /> Should render only LastVisited 1`] = `
     >
       <div>
         <h3
-          style="display: flex; align-items: center;"
+          class="guided-answer__home-grid__section__title"
         >
           <svg
             fill="currentColor"
@@ -558,9 +509,7 @@ exports[`<HomeGrid /> Should render only LastVisited 1`] = `
               fill-rule="evenodd"
             />
           </svg>
-          <span
-            style="margin: 0px 5px;"
-          >
+          <span>
             Last visited
           </span>
         </h3>
@@ -569,60 +518,50 @@ exports[`<HomeGrid /> Should render only LastVisited 1`] = `
           data-focuszone-id="FocusZone1"
         >
           <ul
-            class="striped-list-items"
+            class="guided-answer__home-grid__section__list"
             role="listbox"
           >
             <li
-              class="tree-item"
-              role="option"
+              class="guided-answer__last-visited"
             >
-              <button
-                class="guided-answer__tree"
-                id="last-visited-button"
+              <a
+                id="last-visited-link"
                 tabindex="0"
               >
+                Bookmark 1 Title
+              </a>
+              <div
+                class="bottom-section"
+                id="bottom-section"
+              >
                 <div
-                  class="guided-answer__tree__ul"
+                  class="component-and-product-container"
+                  style="margin-top: 0px;"
                 >
-                  <h3
-                    class="guided-answer__tree__title"
-                  >
-                    Bookmark 1 Title
-                  </h3>
                   <div
-                    class="bottom-section"
-                    id="bottom-section"
+                    class="guided-answer__tree__product"
+                    id="product-container"
                   >
-                    <div
-                      class="component-and-product-container"
-                      style="margin-top: 0px;"
+                    <span
+                      class="bottom-title"
                     >
-                      <div
-                        class="guided-answer__tree__product"
-                        id="product-container"
-                      >
-                        <span
-                          class="bottom-title"
-                        >
-                          Product: 
-                        </span>
-                        Product 1
-                      </div>
-                      <div
-                        class="guided-answer__tree__component"
-                        id="component-container"
-                      >
-                        <span
-                          class="bottom-title"
-                        >
-                          Component: 
-                        </span>
-                        Component 1
-                      </div>
-                    </div>
+                      Product: 
+                    </span>
+                    Product 1
+                  </div>
+                  <div
+                    class="guided-answer__tree__component"
+                    id="component-container"
+                  >
+                    <span
+                      class="bottom-title"
+                    >
+                      Component: 
+                    </span>
+                    Component 1
                   </div>
                 </div>
-              </button>
+              </div>
             </li>
           </ul>
         </div>
@@ -642,7 +581,7 @@ exports[`<HomeGrid /> Should render only LastVisited, no beta features 1`] = `
     >
       <div>
         <h3
-          style="display: flex; align-items: center;"
+          class="guided-answer__home-grid__section__title"
         >
           <svg
             fill="currentColor"
@@ -659,9 +598,7 @@ exports[`<HomeGrid /> Should render only LastVisited, no beta features 1`] = `
               fill-rule="evenodd"
             />
           </svg>
-          <span
-            style="margin: 0px 5px;"
-          >
+          <span>
             Last visited
           </span>
         </h3>
@@ -670,60 +607,50 @@ exports[`<HomeGrid /> Should render only LastVisited, no beta features 1`] = `
           data-focuszone-id="FocusZone7"
         >
           <ul
-            class="striped-list-items"
+            class="guided-answer__home-grid__section__list"
             role="listbox"
           >
             <li
-              class="tree-item"
-              role="option"
+              class="guided-answer__last-visited"
             >
-              <button
-                class="guided-answer__tree"
-                id="last-visited-button"
+              <a
+                id="last-visited-link"
                 tabindex="0"
               >
+                Bookmark 1 Title
+              </a>
+              <div
+                class="bottom-section"
+                id="bottom-section"
+              >
                 <div
-                  class="guided-answer__tree__ul"
+                  class="component-and-product-container"
+                  style="margin-top: 0px;"
                 >
-                  <h3
-                    class="guided-answer__tree__title"
-                  >
-                    Bookmark 1 Title
-                  </h3>
                   <div
-                    class="bottom-section"
-                    id="bottom-section"
+                    class="guided-answer__tree__product"
+                    id="product-container"
                   >
-                    <div
-                      class="component-and-product-container"
-                      style="margin-top: 0px;"
+                    <span
+                      class="bottom-title"
                     >
-                      <div
-                        class="guided-answer__tree__product"
-                        id="product-container"
-                      >
-                        <span
-                          class="bottom-title"
-                        >
-                          Product: 
-                        </span>
-                        Product 1
-                      </div>
-                      <div
-                        class="guided-answer__tree__component"
-                        id="component-container"
-                      >
-                        <span
-                          class="bottom-title"
-                        >
-                          Component: 
-                        </span>
-                        Component 1
-                      </div>
-                    </div>
+                      Product: 
+                    </span>
+                    Product 1
+                  </div>
+                  <div
+                    class="guided-answer__tree__component"
+                    id="component-container"
+                  >
+                    <span
+                      class="bottom-title"
+                    >
+                      Component: 
+                    </span>
+                    Component 1
                   </div>
                 </div>
-              </button>
+              </div>
             </li>
           </ul>
         </div>
@@ -743,7 +670,7 @@ exports[`<HomeGrid /> Should render only QuickFilters 1`] = `
     >
       <div>
         <h3
-          style="display: flex; align-items: center;"
+          class="guided-answer__home-grid__section__title"
         >
           <svg
             fill="currentColor"
@@ -760,9 +687,7 @@ exports[`<HomeGrid /> Should render only QuickFilters 1`] = `
               fill-rule="evenodd"
             />
           </svg>
-          <span
-            style="margin: 0px 5px;"
-          >
+          <span>
             Quick Filters
           </span>
         </h3>
@@ -771,15 +696,13 @@ exports[`<HomeGrid /> Should render only QuickFilters 1`] = `
           data-focuszone-id="FocusZone2"
         >
           <ul
-            class="striped-list-items"
+            class="guided-answer__home-grid__section__list"
             role="listbox"
           >
             <li
-              class="tree-item"
-              role="option"
+              class="guided-answer__quick-filter"
             >
               <button
-                class="guided-answer__quick-filter"
                 tabindex="0"
               >
                 <div>

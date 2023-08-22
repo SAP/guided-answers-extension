@@ -4,7 +4,7 @@ exports[`<LastVisited /> Should render LastVisited component 1`] = `
 <div>
   <div>
     <h3
-      style="display: flex; align-items: center;"
+      class="guided-answer__home-grid__section__title"
     >
       <svg
         fill="currentColor"
@@ -21,9 +21,7 @@ exports[`<LastVisited /> Should render LastVisited component 1`] = `
           fill-rule="evenodd"
         />
       </svg>
-      <span
-        style="margin: 0px 5px;"
-      >
+      <span>
         Last visited
       </span>
     </h3>
@@ -32,60 +30,50 @@ exports[`<LastVisited /> Should render LastVisited component 1`] = `
       data-focuszone-id="FocusZone0"
     >
       <ul
-        class="striped-list-items"
+        class="guided-answer__home-grid__section__list"
         role="listbox"
       >
         <li
-          class="tree-item"
-          role="option"
+          class="guided-answer__last-visited"
         >
-          <button
-            class="guided-answer__tree"
-            id="last-visited-button"
+          <a
+            id="last-visited-link"
             tabindex="0"
           >
+            Bookmark 2 Title
+          </a>
+          <div
+            class="bottom-section"
+            id="bottom-section"
+          >
             <div
-              class="guided-answer__tree__ul"
+              class="component-and-product-container"
+              style="margin-top: 0px;"
             >
-              <h3
-                class="guided-answer__tree__title"
-              >
-                Bookmark 2 Title
-              </h3>
               <div
-                class="bottom-section"
-                id="bottom-section"
+                class="guided-answer__tree__product"
+                id="product-container"
               >
-                <div
-                  class="component-and-product-container"
-                  style="margin-top: 0px;"
+                <span
+                  class="bottom-title"
                 >
-                  <div
-                    class="guided-answer__tree__product"
-                    id="product-container"
-                  >
-                    <span
-                      class="bottom-title"
-                    >
-                      Product: 
-                    </span>
-                    Product 1
-                  </div>
-                  <div
-                    class="guided-answer__tree__component"
-                    id="component-container"
-                  >
-                    <span
-                      class="bottom-title"
-                    >
-                      Component: 
-                    </span>
-                    Component 1
-                  </div>
-                </div>
+                  Product: 
+                </span>
+                Product 1
+              </div>
+              <div
+                class="guided-answer__tree__component"
+                id="component-container"
+              >
+                <span
+                  class="bottom-title"
+                >
+                  Component: 
+                </span>
+                Component 1
               </div>
             </div>
-          </button>
+          </div>
         </li>
       </ul>
     </div>
@@ -97,7 +85,7 @@ exports[`<LastVisited /> Should render LastVisited component with no data 1`] = 
 <div>
   <div>
     <h3
-      style="display: flex; align-items: center;"
+      class="guided-answer__home-grid__section__title"
     >
       <svg
         fill="currentColor"
@@ -114,9 +102,7 @@ exports[`<LastVisited /> Should render LastVisited component with no data 1`] = 
           fill-rule="evenodd"
         />
       </svg>
-      <span
-        style="margin: 0px 5px;"
-      >
+      <span>
         Last visited
       </span>
     </h3>
@@ -125,7 +111,7 @@ exports[`<LastVisited /> Should render LastVisited component with no data 1`] = 
       data-focuszone-id="FocusZone1"
     >
       <ul
-        class="striped-list-items"
+        class="guided-answer__home-grid__section__list"
         role="listbox"
       />
     </div>
