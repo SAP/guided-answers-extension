@@ -9,11 +9,10 @@ import { ErrorScreen } from '../ErrorScreen';
 import { FiltersRibbon } from '../Header/Filters';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './App.scss';
-import { initIcons, UILoader } from '@sap-ux/ui-components';
+import { initIcons, UILoader, UIIcon, UiIcons } from '@sap-ux/ui-components';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { SpinnerSize } from '@fluentui/react';
 import i18next from 'i18next';
-import { VscStarFull } from 'react-icons/vsc';
 import { TreeItemBottomSection } from '../TreeItemBottomSection';
 import { HomeGrid } from '../HomeGrid';
 
@@ -115,7 +114,7 @@ export function App(): ReactElement {
                                             <div className="guided-answer__tree__ul">
                                                 <h3 className="guided-answer__tree__title">
                                                     {isBookmark(tree.TREE_ID) ? (
-                                                        <VscStarFull className="bookmark-icon-bookmarked" />
+                                                        <UIIcon iconName={UiIcons.StarActive} />
                                                     ) : (
                                                         ''
                                                     )}{' '}

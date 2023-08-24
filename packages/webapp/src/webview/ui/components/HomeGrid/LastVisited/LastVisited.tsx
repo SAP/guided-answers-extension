@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import type { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-import { VscHistory } from 'react-icons/vsc';
+import { UIIcon, UiIcons } from '@sap-ux/ui-components';
 import { TreeItemBottomSection } from '../../TreeItemBottomSection';
 import type { LastVisitedGuide } from '@sap/guided-answers-extension-types';
 import './LastVisited.scss';
@@ -19,7 +19,7 @@ export function LastVisited(): ReactElement {
     return (
         <div>
             <h3 className="guided-answer__home-grid__section__title">
-                <VscHistory />
+                <UIIcon iconName={UiIcons.History} />
                 <span>Last visited</span>
             </h3>
             <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>

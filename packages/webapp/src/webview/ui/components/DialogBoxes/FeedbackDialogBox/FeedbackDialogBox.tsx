@@ -3,13 +3,12 @@ import type { ReactElement } from 'react';
 import './FeedbackDialogBox.scss';
 import { DialogFooter } from '@fluentui/react/lib/Dialog';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-import { VscInfo } from 'react-icons/vsc';
 import { useSelector } from 'react-redux';
 import type { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import type { GuidedAnswerNodeId, GuidedAnswerTreeId } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
-import { UIDefaultButton, UIDialog, UITextInput } from '@sap-ux/ui-components';
+import { UIDefaultButton, UIDialog, UITextInput, UIIcon, UiIcons } from '@sap-ux/ui-components';
 
 /**
  * The feedback dialog box for submitting comments.
@@ -56,7 +55,7 @@ export function FeedbackDialogBox(): ReactElement {
                 onChange={(_, value: string | undefined) => setFeedback(value ?? '')}
             />
             <div className="privacy-notice">
-                <VscInfo className="info-icon" />
+                <UIIcon iconName={UiIcons.Info} />
                 <p>{i18next.t('FEEDBACK_DIALOG_DISCLAIMER')}</p>
             </div>
             <DialogFooter>

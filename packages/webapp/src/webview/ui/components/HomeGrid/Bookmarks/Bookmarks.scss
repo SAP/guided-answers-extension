@@ -32,17 +32,12 @@
         }
 
         >button {
-            position: relative;
-            top: -3px;
-            margin-bottom: -7px;
-            flex: 0 0 25px;
-            height: 25px;
+            padding: 5px;
             opacity: 0;
 
             svg {
                 width: 16px;
                 height: 16px;
-                margin-top: 3px;
             }
 
             &:hover {
@@ -56,8 +51,6 @@
                 opacity: 1;
             }
         }
-
-
     }
 
     &:hover>&__title>button {

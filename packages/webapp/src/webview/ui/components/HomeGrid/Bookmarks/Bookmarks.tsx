@@ -5,7 +5,7 @@ import i18next from 'i18next';
 import type { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-import { VscStarFull, VscStarEmpty } from 'react-icons/vsc';
+import { UIIcon, UiIcons, UIIconButton } from '@sap-ux/ui-components';
 import { TreeItemBottomSection } from '../../TreeItemBottomSection';
 import type { Bookmarks as BookmarksType, Bookmark } from '@sap/guided-answers-extension-types';
 import './Bookmarks.scss';
@@ -26,8 +26,7 @@ export function Bookmarks(): ReactElement {
         document.body.focus();
     };
 
-    const toggleBookmark = (e: React.MouseEvent, bookmark: Bookmark) => {
-        e.stopPropagation();
+    const toggleBookmark = (bookmark: Bookmark) => {
         const bookmarkKey = `${bookmark.tree.TREE_ID}-${bookmark.nodePath.map((n) => n.NODE_ID).join(':')}`;
         const newBookmarks: BookmarksType = JSON.parse(JSON.stringify(storedBookmarks));
         if (newBookmarks[bookmarkKey]) {
@@ -45,7 +44,7 @@ export function Bookmarks(): ReactElement {
     return (
         <div>
             <h3 className="guided-answer__home-grid__section__title">
-                <VscStarFull className="bookmark-icon-bookmarked" />
+                <UIIcon iconName={UiIcons.StarActive} />
                 <span>Bookmarks</span>
             </h3>
             <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
@@ -63,7 +62,16 @@ export function Bookmarks(): ReactElement {
                                     <a id="goto-bookmark-button" onClick={(): void => goToBookmark(bookmark)}>
                                         {bookmarkTitle}
                                     </a>
-                                    <button id="toggle-bookmark-button" onClick={(e) => toggleBookmark(e, bookmark)}>
+                                    <UIIconButton
+                                        id="toggle-bookmark-button"
+                                        title={
+                                            isBookmarked
+                                                ? i18next.t('REMOVE_FROM_BOOKMARKS')
+                                                : i18next.t('BOOKMARK_THIS_GUIDE')
+                                        }
+                                        iconProps={{ iconName: isBookmarked ? UiIcons.StarActive : UiIcons.Star }}
+                                        onClick={() => toggleBookmark(bookmark)}></UIIconButton>
+                                    {/* <button id="toggle-bookmark-button" onClick={(e) => toggleBookmark(e, bookmark)}>
                                         {isBookmarked ? (
                                             <VscStarFull
                                                 className="bookmark-icon-bookmarked"
@@ -72,7 +80,7 @@ export function Bookmarks(): ReactElement {
                                         ) : (
                                             <VscStarEmpty title={i18next.t('BOOKMARK_THIS_GUIDE')} />
                                         )}
-                                    </button>
+                                    </button> */}
                                 </div>
                                 <TreeItemBottomSection
                                     product={bookmark.tree.PRODUCT}

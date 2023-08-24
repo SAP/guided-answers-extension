@@ -84,7 +84,7 @@ export function Middle(props: {
                                       id="edge_button"
                                       onClick={(): void => {
                                           actions.selectNode(edge.TARGET_NODE);
-                                          focusOnElement('.home-icon');
+                                          focusOnElement('#home-button');
                                       }}>
                                       {edge.LABEL}
                                   </button>

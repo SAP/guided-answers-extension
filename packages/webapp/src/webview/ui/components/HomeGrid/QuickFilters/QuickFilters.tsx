@@ -1,6 +1,6 @@
 import React from 'react';
 import type { ReactElement } from 'react';
-import { VscFilter } from 'react-icons/vsc';
+import { UIIcon, UiIcons } from '@sap-ux/ui-components';
 import { useSelector } from 'react-redux';
 import type { AppState } from '../../../../types';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
@@ -18,7 +18,7 @@ export function QuickFilters(): ReactElement {
     return (
         <div>
             <h3 className="guided-answer__home-grid__section__title">
-                <VscFilter />
+                <UIIcon iconName={UiIcons.Filter} />
                 <span>Quick Filters</span>
             </h3>
             <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>

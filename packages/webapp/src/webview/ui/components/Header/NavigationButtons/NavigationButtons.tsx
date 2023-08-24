@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { DirectionalHint } from '@fluentui/react';
 import { actions } from '../../../../state';
-import { VscHome, VscRefresh, VscArrowLeft, VscStarEmpty, VscStarFull } from 'react-icons/vsc';
 import i18next from 'i18next';
 import { UIIcon, UiIcons, UICallout, UIIconButton, UITextInput } from '@sap-ux/ui-components';
 import { focusOnElement } from '../../utils';
@@ -20,19 +19,19 @@ import type {
  *
  * @returns A button component navigating to home page.
  */
-const HomeButton = React.memo(function HomeButton() {
-    focusOnElement('.home-icon');
+export const HomeButton = React.memo(function HomeButton() {
+    focusOnElement('#home-button');
 
     return (
         <button
             id="home-button"
-            className="guided-answer__header__navButtons home-icon"
+            className="guided-answer__header__navButtons"
+            title={i18next.t('HOME')}
             onClick={(): void => {
                 actions.goToHomePage();
-            }}
-            title={i18next.t('HOME')}>
-            <VscHome className="guided-answer__header__navButtons__content" />{' '}
-            <span className="guided-answer__header__navButtons__content__text text-underline">{i18next.t('HOME')}</span>
+            }}>
+            <UIIcon iconName={UiIcons.Home} />
+            <span className="guided-answer__header__navButtons__text">{i18next.t('HOME')}</span>
         </button>
     );
 });
@@ -46,14 +45,12 @@ export function BackButton() {
         <button
             id="back-button"
             className="guided-answer__header__navButtons"
+            title={i18next.t('STEP_BACK')}
             onClick={(): void => {
                 actions.goToPreviousPage();
-            }}
-            title={i18next.t('STEP_BACK')}>
-            <VscArrowLeft className="guided-answer__header__navButtons__content" />
-            <span className="guided-answer__header__navButtons__content text-underline" style={{ marginLeft: '3px' }}>
-                {i18next.t('STEP_BACK')}
-            </span>
+            }}>
+            <UIIcon iconName={UiIcons.GoLeft} />
+            <span className="guided-answer__header__navButtons__text">{i18next.t('STEP_BACK')}</span>
         </button>
     );
 }
@@ -67,14 +64,12 @@ export function RestartButton() {
         <button
             id="restart-button"
             className="guided-answer__header__navButtons"
+            title={i18next.t('RESTART')}
             onClick={(): void => {
                 actions.restartAnswer();
-            }}
-            title={i18next.t('RESTART')}>
-            <VscRefresh className="guided-answer__header__navButtons__content" />
-            <span className="guided-answer__header__navButtons__content text-underline" style={{ marginLeft: '3px' }}>
-                {i18next.t('RESTART')}
-            </span>
+            }}>
+            <UIIcon iconName={UiIcons.Refresh} />
+            <span className="guided-answer__header__navButtons__text">{i18next.t('RESTART')}</span>
         </button>
     );
 }
@@ -100,90 +95,86 @@ export function ShareButton() {
         setCopiedVisible(true);
     };
 
-    return (
+    return treeId ? (
         <>
-            {!!treeId && (
-                <div>
-                    <UIIconButton
-                        className="guided-answer__header__navButtons guided-answer__header__navButtons__content"
-                        // Overriding outline from ui-components
-                        style={{ outline: 'none' }}
-                        id={id}
-                        title={i18next.t('SHARE_THIS_GUIDE')}
-                        iconProps={{ iconName: UiIcons.Link }}
-                        checked={!!shareNodeLinks}
-                        onClick={() => actions.fillShareLinks({ treeId, nodeIdPath })}></UIIconButton>
-                    {!!shareNodeLinks && (
-                        <UICallout
-                            role="alertdialog"
-                            target={`#${id}`}
-                            isBeakVisible={true}
-                            beakWidth={10}
-                            directionalHint={DirectionalHint.bottomCenter}
-                            onDismiss={() => {
-                                setCopiedVisible(false);
-                                actions.updateActiveNodeSharing(null);
-                            }}
-                            calloutWidth={268}
-                            calloutMinWidth={268}
-                            layerProps={{
-                                eventBubblingEnabled: true
-                            }}
-                            setInitialFocus>
-                            <div>
-                                <div className="sharable-link__title">{i18next.t('SHARE_THIS_GUIDE')}</div>
-                                <div className="sharable-link__body">
-                                    {!isCopiedVisible && (
-                                        <UITextInput
-                                            disabled={true}
-                                            value={shareNodeLinks.extensionLink}
-                                            className="sharable-link__input-field"
-                                        />
-                                    )}
-                                    {isCopiedVisible && (
-                                        <div id="sharable-link-copied" className="sharable-link__copied">
-                                            <UIIcon
-                                                iconName={UiIcons.ConfirmationCheckSymbol}
-                                                className="sharable-link__copied-icon"
-                                            />
-                                            {i18next.t('COPIED_TO_CLIPBOARD')}
-                                        </div>
-                                    )}
-
-                                    <CopyToClipboard text={shareNodeLinks.extensionLink} onCopy={handleCopy}>
-                                        <UIIconButton
-                                            className="sharable-link__copy-to-clipboard"
-                                            id="copy-btn"
-                                            title={i18next.t('COPY_THIS_LINK')}
-                                            iconProps={{ iconName: UiIcons.CopyToClipboard }}></UIIconButton>
-                                    </CopyToClipboard>
-
-                                    <div className="sharable-link__divider-vertical"></div>
-
-                                    <CopyToClipboard text={copyInstructions} onCopy={handleCopy}>
-                                        <UIIconButton
-                                            className="sharable-link__copy-to-clipboard"
-                                            id="copy-btn-instructions"
-                                            title={i18next.t('COPY_WITH_INSTRUCTIONS')}
-                                            iconProps={{ iconName: UiIcons.CopyToClipboardLong }}></UIIconButton>
-                                    </CopyToClipboard>
+            <UIIconButton
+                className="guided-answer__header__navButtons"
+                id={id}
+                title={i18next.t('SHARE_THIS_GUIDE')}
+                iconProps={{ iconName: UiIcons.Link }}
+                checked={!!shareNodeLinks}
+                onClick={() => actions.fillShareLinks({ treeId, nodeIdPath })}></UIIconButton>
+            {!!shareNodeLinks && (
+                <UICallout
+                    role="alertdialog"
+                    target={`#${id}`}
+                    isBeakVisible={true}
+                    beakWidth={10}
+                    directionalHint={DirectionalHint.bottomCenter}
+                    onDismiss={() => {
+                        setCopiedVisible(false);
+                        actions.updateActiveNodeSharing(null);
+                    }}
+                    calloutWidth={268}
+                    calloutMinWidth={268}
+                    layerProps={{
+                        eventBubblingEnabled: true
+                    }}
+                    setInitialFocus>
+                    <div>
+                        <div className="sharable-link__title">{i18next.t('SHARE_THIS_GUIDE')}</div>
+                        <div className="sharable-link__body">
+                            {!isCopiedVisible && (
+                                <UITextInput
+                                    disabled={true}
+                                    value={shareNodeLinks.extensionLink}
+                                    className="sharable-link__input-field"
+                                />
+                            )}
+                            {isCopiedVisible && (
+                                <div id="sharable-link-copied" className="sharable-link__copied">
+                                    <UIIcon
+                                        iconName={UiIcons.ConfirmationCheckSymbol}
+                                        className="sharable-link__copied-icon"
+                                    />
+                                    {i18next.t('COPIED_TO_CLIPBOARD')}
                                 </div>
-                                <p className="sharable-link__footer">{i18next.t('COPIED_TO_CLIPBOARD_DESC')}</p>
-                                <hr className="sharable-link__divider"></hr>
-                                <a
-                                    className="sharable-link__web-link"
-                                    id="web-link"
-                                    href={shareNodeLinks.webLink}
-                                    onClick={() => actions.openLinkTelemetry()}>
-                                    <UIIcon iconName={UiIcons.Export} />
-                                    {i18next.t('VIEW_ON_WEBSITE')}
-                                </a>
-                            </div>
-                        </UICallout>
-                    )}
-                </div>
+                            )}
+
+                            <CopyToClipboard text={shareNodeLinks.extensionLink} onCopy={handleCopy}>
+                                <UIIconButton
+                                    className="sharable-link__copy-to-clipboard"
+                                    id="copy-btn"
+                                    title={i18next.t('COPY_THIS_LINK')}
+                                    iconProps={{ iconName: UiIcons.CopyToClipboard }}></UIIconButton>
+                            </CopyToClipboard>
+
+                            <div className="sharable-link__divider-vertical"></div>
+
+                            <CopyToClipboard text={copyInstructions} onCopy={handleCopy}>
+                                <UIIconButton
+                                    className="sharable-link__copy-to-clipboard"
+                                    id="copy-btn-instructions"
+                                    title={i18next.t('COPY_WITH_INSTRUCTIONS')}
+                                    iconProps={{ iconName: UiIcons.CopyToClipboardLong }}></UIIconButton>
+                            </CopyToClipboard>
+                        </div>
+                        <p className="sharable-link__footer">{i18next.t('COPIED_TO_CLIPBOARD_DESC')}</p>
+                        <hr className="sharable-link__divider"></hr>
+                        <a
+                            className="sharable-link__web-link"
+                            id="web-link"
+                            href={shareNodeLinks.webLink}
+                            onClick={() => actions.openLinkTelemetry()}>
+                            <UIIcon iconName={UiIcons.Export} />
+                            {i18next.t('VIEW_ON_WEBSITE')}
+                        </a>
+                    </div>
+                </UICallout>
             )}
         </>
+    ) : (
+        <></>
     );
 }
 
@@ -193,18 +184,14 @@ export function ShareButton() {
  */
 export function GeneralFeedbackButton() {
     return (
-        <button
+        <UIIconButton
             className="guided-answer__header__navButtons"
+            title={i18next.t('FEEDBACK')}
+            iconProps={{ iconName: UiIcons.ChatBubbles }}
             onClick={(): void => {
                 actions.feedbackStatus(true);
             }}
-            title={i18next.t('FEEDBACK')}>
-            <UIIcon
-                className="guided-answer__header__navButtons__content"
-                style={{ paddingTop: '2px' }}
-                iconName={UiIcons.ChatBubbles}
-            />
-        </button>
+        />
     );
 }
 
@@ -223,9 +210,11 @@ export function BookmarkButton() {
     const bookmarkKey = `${tree.TREE_ID}-${nodePath.map((n) => n.NODE_ID).join(':')}`;
 
     return (
-        <button
+        <UIIconButton
             id="bookmark-button"
             className="guided-answer__header__navButtons"
+            title={!bookmarks[bookmarkKey] ? i18next.t('BOOKMARK_THIS_GUIDE') : i18next.t('REMOVE_FROM_BOOKMARKS')}
+            iconProps={{ iconName: !bookmarks[bookmarkKey] ? UiIcons.Star : UiIcons.StarActive }}
             onClick={(): void => {
                 const newBookmarks: Bookmarks = JSON.parse(JSON.stringify(bookmarks));
                 if (newBookmarks[bookmarkKey]) {
@@ -235,9 +224,6 @@ export function BookmarkButton() {
                 }
                 actions.updateBookmark({ bookmarkKey, bookmarks: newBookmarks });
             }}
-            title={!bookmarks[bookmarkKey] ? i18next.t('BOOKMARK_THIS_GUIDE') : i18next.t('REMOVE_FROM_BOOKMARKS')}>
-            {!bookmarks[bookmarkKey] ? <VscStarEmpty /> : <VscStarFull className="bookmark-icon-bookmarked" />}
-        </button>
+        />
     );
 }
-export { HomeButton };
