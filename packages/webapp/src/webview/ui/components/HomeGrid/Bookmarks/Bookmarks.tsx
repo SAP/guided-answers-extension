@@ -71,16 +71,6 @@ export function Bookmarks(): ReactElement {
                                         }
                                         iconProps={{ iconName: isBookmarked ? UiIcons.StarActive : UiIcons.Star }}
                                         onClick={() => toggleBookmark(bookmark)}></UIIconButton>
-                                    {/* <button id="toggle-bookmark-button" onClick={(e) => toggleBookmark(e, bookmark)}>
-                                        {isBookmarked ? (
-                                            <VscStarFull
-                                                className="bookmark-icon-bookmarked"
-                                                title={i18next.t('REMOVE_FROM_BOOKMARKS')}
-                                            />
-                                        ) : (
-                                            <VscStarEmpty title={i18next.t('BOOKMARK_THIS_GUIDE')} />
-                                        )}
-                                    </button> */}
                                 </div>
                                 <TreeItemBottomSection
                                     product={bookmark.tree.PRODUCT}
