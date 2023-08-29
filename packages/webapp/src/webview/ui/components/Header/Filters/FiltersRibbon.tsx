@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import type { AppState } from '../../../../types';
 import { actions } from '../../../../state';
-import { VscClose } from 'react-icons/vsc';
+import { UIIcon, UiIcons } from '@sap-ux/ui-components';
 import './FiltersRibbon.scss';
 
 /**
@@ -58,8 +58,8 @@ export function FiltersRibbon() {
                     <strong>{selectedComponentFilters?.map((cf: string) => cf).join(', ')}</strong>
                     {hasBothFilters && <strong>&nbsp;</strong>}
                     <button id="clear-filters" className="clear-filters" onClick={resetFilters} title="Clear filters">
-                        <VscClose className="clear-filters__content" />{' '}
-                        <span className="clear-filters__content__text text-underline">Clear filters</span>
+                        <UIIcon iconName={UiIcons.Close} />
+                        <span>Clear filters</span>
                     </button>
                 </div>
             )}

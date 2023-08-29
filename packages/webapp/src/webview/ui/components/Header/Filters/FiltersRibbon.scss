@@ -7,15 +7,15 @@
     background: none;
     border: 0;
     margin-left: 7px;
-    &__content {
+
+    >i {
         vertical-align: middle;
-        display: inline-block;
-        margin-bottom: 3px;
+        margin-right: 3px;
     }
-    svg {
-        width: 16px;
-        height: 16px;
-        margin-right: -2px;
+
+    >span {
+        text-decoration: underline;
+        text-underline-offset: 1px;
     }
 }
 .clear-filters:hover {
@@ -28,9 +28,4 @@
 }
 .clear-filters:focus-visible {
     outline: 1px solid var(--vscode-focusBorder, #007fd4);
-}
-
-.text-underline {
-    text-decoration: underline;
-    text-underline-offset: 1px;
 }

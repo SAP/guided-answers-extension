@@ -51,20 +51,28 @@
     .privacy-notice {
         display: flex;
         font-size: 11px;
-        align-items: center;
+        align-items: start;
         font-weight: 400;
         gap: 5px;
         margin-top: 20px;
-    }
-    .info-icon {
-        width: 14px;
-        height: 14px;
-        min-width: 16px;
-        min-height: 16px;
-    }
-    .privacy-notice > p {
-        margin-bottom: 0;
-        margin-top: 0;
+
+        >p {
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+
+        >i {
+            margin-top: 1px;
+
+            >svg {
+                width: 14px;
+                height: 14px;
+
+                >path {
+                    fill: currentColor;
+                }
+            }
+        }
     }
     textarea {
         resize: none;

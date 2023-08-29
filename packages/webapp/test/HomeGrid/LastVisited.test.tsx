@@ -2,7 +2,7 @@ import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import { fireEvent, screen } from '@testing-library/dom';
 import { useSelector } from 'react-redux';
-import { LastVisited } from '../../src/webview/ui/components/LastVisited';
+import { LastVisited } from '../../src/webview/ui/components/HomeGrid/LastVisited';
 import { actions } from '../../src/webview/state';
 
 jest.mock('../../src/webview/state', () => ({
@@ -49,7 +49,7 @@ describe('<LastVisited />', () => {
         const { container } = render(<LastVisited />);
         expect(container).toMatchSnapshot();
 
-        const btn = screen.getAllByTestId('last-visited-button')[0];
+        const btn = screen.getAllByTestId('last-visited-link')[0];
         fireEvent.click(btn);
         expect(actions.setActiveTree).toBeCalledTimes(1);
         expect(actions.updateActiveNode).toBeCalledTimes(1);

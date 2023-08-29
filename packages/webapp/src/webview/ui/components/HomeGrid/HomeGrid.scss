@@ -1,13 +1,39 @@
 .guided-answer__home-grid {
     display: flex;
     justify-content: center;
-    gap: 50px;
+    gap: 5%;
+    margin: 0 4%;
 
     &__column {
         flex: 0 1 570px;
 
         >div {
             margin-bottom: 30px;
+        }
+    }
+
+    &__section {
+        &__title {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+
+            >i {
+                height: 16px;
+            }
+
+            >span {
+                margin: 0 5px;
+            }
+        }
+
+        &__list {
+            display: flex;
+            flex-flow: column nowrap;
+            gap: 5px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
         }
     }
 }

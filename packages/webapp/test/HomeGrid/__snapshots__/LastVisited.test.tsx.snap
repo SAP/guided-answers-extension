@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LastVisited /> Should render LastVisited component 1`] = `
+<div>
+  <div>
+    <h3
+      class="guided-answer__home-grid__section__title"
+    >
+      <i
+        aria-hidden="true"
+        class="ts-icon root-105"
+        data-icon-name="History"
+      />
+      <span>
+        Last visited
+      </span>
+    </h3>
+    <div
+      class="ms-FocusZone css-109"
+      data-focuszone-id="FocusZone0"
+    >
+      <ul
+        class="guided-answer__home-grid__section__list"
+        role="listbox"
+      >
+        <li
+          class="guided-answer__last-visited"
+        >
+          <a
+            id="last-visited-link"
+            tabindex="0"
+          >
+            Bookmark 2 Title
+          </a>
+          <div
+            class="bottom-section"
+            id="bottom-section"
+          >
+            <div
+              class="component-and-product-container"
+              style="margin-top: 0px;"
+            >
+              <div
+                class="guided-answer__tree__product"
+                id="product-container"
+              >
+                <span
+                  class="bottom-title"
+                >
+                  Product: 
+                </span>
+                Product 1
+              </div>
+              <div
+                class="guided-answer__tree__component"
+                id="component-container"
+              >
+                <span
+                  class="bottom-title"
+                >
+                  Component: 
+                </span>
+                Component 1
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<LastVisited /> Should render LastVisited component with no data 1`] = `
+<div>
+  <div>
+    <h3
+      class="guided-answer__home-grid__section__title"
+    >
+      <i
+        aria-hidden="true"
+        class="ts-icon root-105"
+        data-icon-name="History"
+      />
+      <span>
+        Last visited
+      </span>
+    </h3>
+    <div
+      class="ms-FocusZone css-109"
+      data-focuszone-id="FocusZone1"
+    >
+      <ul
+        class="guided-answer__home-grid__section__list"
+        role="listbox"
+      />
+    </div>
+  </div>
+</div>
+`;

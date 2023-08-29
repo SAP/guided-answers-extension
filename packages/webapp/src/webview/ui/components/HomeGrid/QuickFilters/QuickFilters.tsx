@@ -1,10 +1,10 @@
 import React from 'react';
 import type { ReactElement } from 'react';
-import { VscFilter } from 'react-icons/vsc';
+import { UIIcon, UiIcons } from '@sap-ux/ui-components';
 import { useSelector } from 'react-redux';
-import type { AppState } from '../../../types';
+import type { AppState } from '../../../../types';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-import { actions } from '../../../state';
+import { actions } from '../../../../state';
 import type { GuidedAnswersQueryFilterOptions } from '@sap/guided-answers-extension-types';
 import './QuickFilters.scss';
 
@@ -17,19 +17,17 @@ export function QuickFilters(): ReactElement {
     const filters = useSelector<AppState, GuidedAnswersQueryFilterOptions[]>((state) => state.quickFilters);
     return (
         <div>
-            <h3 style={{ display: 'flex', alignItems: 'center' }}>
-                <VscFilter />
-                <span style={{ margin: '0 5px' }}>Quick Filters</span>
+            <h3 className="guided-answer__home-grid__section__title">
+                <UIIcon iconName={UiIcons.Filter} />
+                <span>Quick Filters</span>
             </h3>
-            <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
-                <ul className="striped-list-items" role="listbox">
+            <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
+                <ul className="guided-answer__home-grid__section__list" role="listbox">
                     {filters.map((f: GuidedAnswersQueryFilterOptions) => (
                         <li
                             key={`tree-item-${f.product?.join('-')}-${f.component?.join('-')}`}
-                            className="tree-item"
-                            role="option">
+                            className="guided-answer__quick-filter">
                             <button
-                                className="guided-answer__quick-filter"
                                 onClick={(): void => {
                                     actions.updateNetworkStatus('LOADING');
                                     actions.searchTree({ filters: f });

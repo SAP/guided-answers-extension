@@ -3,7 +3,7 @@ import { render, cleanup } from '@testing-library/react';
 import { fireEvent, screen } from '@testing-library/dom';
 import { useSelector } from 'react-redux';
 import { actions } from '../../src/webview/state';
-import { QuickFilters } from '../../src/webview/ui/components/QuickFilters';
+import { QuickFilters } from '../../src/webview/ui/components/HomeGrid/QuickFilters';
 
 jest.mock('../../src/webview/state', () => ({
     actions: {
