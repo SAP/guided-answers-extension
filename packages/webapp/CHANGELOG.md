@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.30.0
+
+### Minor Changes
+
+-   9eefda8: Feat/232/home section redesign
+
 ## 1.29.0
 
 ### Minor Changes
