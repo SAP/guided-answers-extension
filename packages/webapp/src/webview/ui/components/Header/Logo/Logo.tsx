@@ -9,15 +9,16 @@ import { actions } from '../../../../state';
  */
 export function Logo() {
     return (
-        <div
+        <button
             className="guided-answer__header__logoAndTitle"
             id="logo-and-title"
+            type="button"
             onClick={() => actions.goToHomePage()}
             title={i18next.t('HOME')}>
             <span id="sap-logo">
                 <LogoIcon />
             </span>
             <h1 className="guided-answer__header__title">{i18next.t('GUIDED_ANSWERS')}</h1>
-        </div>
+        </button>
     );
 }
