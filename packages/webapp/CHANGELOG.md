@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.30.1
+
+### Patch Changes
+
+-   3104692: fix(232): make title keyboard accessible
+
 ## 1.30.0
 
 ### Minor Changes
