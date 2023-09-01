@@ -12,10 +12,11 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
       <div
         class="guided-answer__header__sub"
       >
-        <div
+        <button
           class="guided-answer__header__logoAndTitle"
           id="logo-and-title"
           title="Home"
+          type="button"
         >
           <span
             id="sap-logo"
@@ -27,7 +28,7 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
           >
             Guided Answers
           </h1>
-        </div>
+        </button>
         <div
           class="guided-answer__header__searchField"
         >
@@ -96,10 +97,11 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
       <div
         class="guided-answer__header__sub"
       >
-        <div
+        <button
           class="guided-answer__header__logoAndTitle"
           id="logo-and-title"
           title="Home"
+          type="button"
         >
           <span
             id="sap-logo"
@@ -111,7 +113,7 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
           >
             Guided Answers
           </h1>
-        </div>
+        </button>
         <div
           class="guided-answer__header__searchField"
         >
@@ -182,10 +184,11 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
       <div
         class="guided-answer__header__sub"
       >
-        <div
+        <button
           class="guided-answer__header__logoAndTitle"
           id="logo-and-title"
           title="Home"
+          type="button"
         >
           <span
             id="sap-logo"
@@ -197,7 +200,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
           >
             Guided Answers
           </h1>
-        </div>
+        </button>
         <div
           class="guided-answer__header__searchField"
         >
@@ -268,10 +271,11 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
       <div
         class="guided-answer__header__sub"
       >
-        <div
+        <button
           class="guided-answer__header__logoAndTitle"
           id="logo-and-title"
           title="Home"
+          type="button"
         >
           <span
             id="sap-logo"
@@ -283,7 +287,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
           >
             Guided Answers
           </h1>
-        </div>
+        </button>
         <div
           class="guided-answer__header__searchField"
         >
