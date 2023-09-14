@@ -1,7 +1,7 @@
 import type { ExtensionContext } from 'vscode';
 import { commands, window, workspace } from 'vscode';
 import { getDevSpace, getIde } from '@sap/guided-answers-extension-core';
-import { logString } from './logger/logger';
+import { logError, logInfo } from './logger/logger';
 import { GuidedAnswersPanel, GuidedAnswersSerializer } from './panel/guidedAnswersPanel';
 import { initTelemetry } from './telemetry';
 import { GuidedAnswersUriHandler } from './links';
@@ -18,15 +18,13 @@ export function activate(context: ExtensionContext): void {
     try {
         context.subscriptions.push(initTelemetry());
     } catch (error) {
-        logString(`Error during initialization of telemetry.\n${error?.toString()}`);
+        logError(`Error during initialization of telemetry.`, error);
     }
     try {
         initBookmarks(context.globalState);
         initLastVisited(context.globalState);
     } catch (error) {
-        logString(
-            `Error during initialization of functionality that relies on VSCode's global state storage.\n${error?.toString()}`
-        );
+        logError(`Error during initialization of functionality that relies on VSCode's global state storage.`, error);
     }
     context.subscriptions.push(
         commands.registerCommand('sap.ux.guidedAnswer.openGuidedAnswer', async (startOptions?: StartOptions) => {
@@ -39,7 +37,7 @@ export function activate(context: ExtensionContext): void {
                     ide: await getIde(),
                     startOptions
                 };
-                logString(`Guided Answers command called. Options: ${JSON.stringify(options)}`);
+                logInfo(`Guided Answers command called. Options:`, options);
                 let guidedAnswersPanel: GuidedAnswersPanel | undefined = GuidedAnswersPanel.getInstance();
                 if (openInNewTab || !guidedAnswersPanel) {
                     guidedAnswersPanel = new GuidedAnswersPanel(options);

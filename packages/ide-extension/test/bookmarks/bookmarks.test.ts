@@ -1,11 +1,10 @@
-import type { Memento } from 'vscode';
+import type { LogOutputChannel, Memento } from 'vscode';
+import { window } from 'vscode';
 import { Bookmarks } from '@sap/guided-answers-extension-types';
-import { logString } from '../../src/logger/logger';
 import { initBookmarks, getAllBookmarks, updateBookmarks } from '../../src/bookmarks';
 
-jest.mock('../../src/logger/logger', () => ({
-    logString: jest.fn()
-}));
+const loggerMock = { error: jest.fn() } as Partial<LogOutputChannel>;
+jest.spyOn(window, 'createOutputChannel').mockImplementation(() => loggerMock as LogOutputChannel);
 
 let mockGlobalState: jest.Mocked<Memento>;
 
@@ -116,7 +115,7 @@ describe('Bookmark functions', () => {
         initBookmarks(mockGlobalState);
         await updateBookmarks(mockBookmarks);
 
-        expect(logString).toHaveBeenCalledWith(`Error updating bookmarks.\n${error.toString()}`);
+        expect(loggerMock.error).toHaveBeenCalledWith(expect.stringContaining('Error'), error);
     });
 
     test('check if SCORE is removed from Guided Answer tree when storing bookmark', async () => {

@@ -1,9 +1,13 @@
 import { join } from 'path';
 import { URI } from 'vscode-uri';
+import type { LogOutputChannel } from 'vscode';
 import { ExtensionContext, commands, window, WebviewPanel } from 'vscode';
 import * as telemetry from '../src/telemetry/telemetry';
 import * as logger from '../src/logger/logger';
 import { activate } from '../src/extension';
+
+const loggerMock = { error: jest.fn(), info: jest.fn() } as Partial<LogOutputChannel>;
+jest.spyOn(window, 'createOutputChannel').mockImplementation(() => loggerMock as LogOutputChannel);
 
 describe('Extension test', () => {
     beforeEach(() => {
@@ -47,7 +51,6 @@ describe('Extension test', () => {
         const context = {
             subscriptions: []
         };
-        jest.spyOn(logger, 'logString').mockImplementation(() => null);
         jest.spyOn(telemetry, 'initTelemetry').mockImplementationOnce(() => {
             throw Error();
         });
@@ -62,7 +65,6 @@ describe('Extension test', () => {
 
     test('execute command', async () => {
         // Mock setup
-        const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
         const subscriptionsMock = jest.spyOn(commands, 'registerCommand');
         jest.spyOn(telemetry, 'initTelemetry').mockImplementationOnce(() => ({} as any));
         const webViewPanelMock = {
@@ -94,12 +96,11 @@ describe('Extension test', () => {
             )
         ).toMatchSnapshot();
         expect(webViewPanelMock.reveal).toBeCalled();
-        expect(loggerMock).toBeCalled();
+        expect(loggerMock.info).toBeCalled();
     });
 
     test('execute command with parameters', async () => {
         // Mock setup
-        const loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
         const subscriptionsMock = jest.spyOn(commands, 'registerCommand');
         jest.spyOn(telemetry, 'initTelemetry').mockImplementationOnce(() => ({} as any));
         const context = {
@@ -110,12 +111,16 @@ describe('Extension test', () => {
         activate(context as unknown as ExtensionContext);
         await subscriptionsMock.mock.calls[0][1]({ treeId: 0, nodeIdPath: [1, 2, 3] });
         // Result check
-        expect(loggerMock.mock.calls[0][0]).toContain('{"treeId":0,"nodeIdPath":[1,2,3]}');
+        expect(loggerMock.info).toBeCalledWith('Guided Answers command called. Options:', {
+            devSpace: '',
+            ide: 'VSCODE',
+            startOptions: { treeId: 0, nodeIdPath: [1, 2, 3] }
+        });
     });
 
     test('execute command error occurs', async () => {
         // Mock setup
-        jest.spyOn(logger, 'logString').mockImplementation(() => {
+        jest.spyOn(logger, 'logInfo').mockImplementation(() => {
             throw Error('ERROR');
         });
         jest.spyOn(telemetry, 'initTelemetry').mockImplementationOnce(() => ({} as any));

@@ -1,6 +1,6 @@
 import type { Memento } from 'vscode';
 import type { LastVisitedGuide } from '@sap/guided-answers-extension-types';
-import { logString } from '../logger/logger';
+import { logError } from '../logger/logger';
 
 let globalStateApi: Memento;
 
@@ -30,5 +30,5 @@ export function getAllLastVisitedGuides(): LastVisitedGuide[] {
 export function updateLastVisitedGuides(lastVisitedGuides: LastVisitedGuide[]): void {
     globalStateApi
         .update('lastVisitedGuides', lastVisitedGuides)
-        .then(undefined, (error) => logString(`Error updating lastVisitedGuides.\n${error?.toString()}`));
+        .then(undefined, (error) => logError(`Error updating lastVisitedGuides.`, error));
 }
