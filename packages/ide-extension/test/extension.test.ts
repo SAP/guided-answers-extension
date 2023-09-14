@@ -5,6 +5,7 @@ import { ExtensionContext, commands, window, WebviewPanel } from 'vscode';
 import * as telemetry from '../src/telemetry/telemetry';
 import * as logger from '../src/logger/logger';
 import { activate } from '../src/extension';
+import * as bookmarkMock from '../src/bookmarks';
 
 const loggerMock = { error: jest.fn(), info: jest.fn() } as Partial<LogOutputChannel>;
 jest.spyOn(window, 'createOutputChannel').mockImplementation(() => loggerMock as LogOutputChannel);
@@ -61,6 +62,26 @@ describe('Extension test', () => {
         // Result check
         expect(subscriptionsMock.mock.calls[0][0]).toBe('sap.ux.guidedAnswer.openGuidedAnswer');
         expect(context.subscriptions.length).toBe(2);
+    });
+
+    test('active, error during initialization with global storage', () => {
+        // Mock setup
+        const context = {
+            subscriptions: []
+        };
+        jest.spyOn(bookmarkMock, 'initBookmarks').mockImplementationOnce(() => {
+            throw Error('BOOKMARK_ERROR');
+        });
+
+        // Test execution
+        activate(context as unknown as ExtensionContext);
+
+        // Result check
+        expect(context.subscriptions.length).toBeGreaterThan(0);
+        expect(loggerMock.error).toHaveBeenCalledWith(
+            expect.stringContaining('Error'),
+            expect.objectContaining({ message: 'BOOKMARK_ERROR' })
+        );
     });
 
     test('execute command', async () => {
