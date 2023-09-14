@@ -45,11 +45,7 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
     const apiHost = options?.apiHost ?? API_HOST;
     const ide = options?.ide;
     const extensions = options?.extensions ?? new Set<string>();
-    const logger = options?.logger ?? {
-        logString: (m) => {
-            console.log(m);
-        }
-    };
+    const logger = options?.logger ?? getConsoleLogger();
 
     return {
         getApiInfo: () => ({ host: apiHost, version: VERSION }),
@@ -67,6 +63,21 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
             sendFeedbackComment(apiHost, payload.treeId, payload.nodeId, payload.comment),
         sendFeedbackOutcome: async (payload: FeedbackOutcomePayload) =>
             sendFeedbackOutcome(apiHost, payload.treeId, payload.nodeId, payload.solved)
+    };
+}
+
+/**
+ * Return logger for console logging.
+ *
+ * @returns - logger to log to console
+ */
+function getConsoleLogger(): Logger {
+    return {
+        logTrace: console.trace,
+        logDebug: console.debug,
+        logInfo: console.info,
+        logWarn: console.warn,
+        logError: console.error
     };
 }
 
@@ -185,10 +196,9 @@ function convertCommand(command: GuidedAnswersEnhancement['command'], logger: Lo
         try {
             argument = command.exec.args ? JSON.parse(command.exec.args) : undefined;
         } catch (error) {
-            logger.logString(
-                `Error when parsing argument '${
-                    command.exec.args
-                }' for HTML enhancement. Extension id: '${extensionId}', command id: '${commandId}', ${error?.toString()}`
+            logger.logError(
+                `Error when parsing argument '${command.exec.args}' for HTML enhancement. Extension id: '${extensionId}', command id: '${commandId}'.`,
+                error
             );
         }
         return { extensionId, commandId, argument } as VSCodeCommand;
@@ -244,7 +254,7 @@ function getEnhancements(
             }
         }
     } catch (error) {
-        logger.logString(`Error processing enhancements, ${error?.toString()}`);
+        logger.logError('Error processing enhancements', error);
     }
     return { htmlEnhancements, nodeCommands };
 }

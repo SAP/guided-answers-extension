@@ -5,7 +5,8 @@ import type {
     FeedbackOutcomePayload,
     GuidedAnswerNode,
     GuidedAnswersQueryOptions,
-    GuidedAnswerTreeSearchResult
+    GuidedAnswerTreeSearchResult,
+    Logger
 } from '@sap/guided-answers-extension-types';
 import { getGuidedAnswerApi } from '../src';
 
@@ -632,7 +633,7 @@ describe('Guided Answers Api: getNodeById()', () => {
         const options: APIOptions = {
             ide: 'SBAS',
             extensions: new Set(['sbas.ext']),
-            logger: { logString: jest.fn() }
+            logger: { logError: jest.fn() } as Partial<Logger> as Logger
         };
         mockedAxios.get.mockImplementation(() => Promise.resolve({ data }));
 
@@ -641,7 +642,10 @@ describe('Guided Answers Api: getNodeById()', () => {
 
         // Result check
         expect(result.COMMANDS).toBe(undefined);
-        expect(options.logger?.logString).toBeCalledWith(expect.stringContaining('WRONG'));
+        expect(options.logger?.logError).toBeCalledWith(
+            expect.stringContaining('Error'),
+            expect.objectContaining({ message: expect.stringContaining('WRONG') })
+        );
     });
 
     test('Get node with different images, should add host to src where applicable', async () => {
@@ -935,7 +939,7 @@ describe('Guided Answers Api: getNodePath()', () => {
         const options: APIOptions = {
             ide: 'SBAS',
             extensions: new Set(['my.ext.id']),
-            logger: { logString: jest.fn() }
+            logger: { logError: jest.fn() } as Partial<Logger> as Logger
         };
         mockedAxios.get.mockImplementation((url: string) => {
             const data = nodes.find((n) => url.endsWith(`/${n.NODE_ID}`));
@@ -953,7 +957,10 @@ describe('Guided Answers Api: getNodePath()', () => {
         expect(result.length).toBe(2);
         expect(result[0].BODY).toBe('<p>Should not be modified at all</p>');
         expect(result[1].BODY).toBe('<p>Also should not be modified at all</p>');
-        expect(options.logger?.logString).toBeCalledWith(expect.stringContaining('Error when parsing argument'));
+        expect(options.logger?.logError).toBeCalledWith(
+            expect.stringContaining('Error when parsing argument'),
+            expect.objectContaining({ message: expect.stringContaining('JSON') })
+        );
     });
 
     test('Get node path, error in getEnhancements()', async () => {
@@ -965,7 +972,7 @@ describe('Guided Answers Api: getNodePath()', () => {
         };
         const options: APIOptions = {
             ide: 'SBAS',
-            logger: { logString: jest.fn() }
+            logger: { logError: jest.fn() } as Partial<Logger> as Logger
         };
         mockedAxios.get.mockResolvedValue({ data });
 
@@ -973,7 +980,10 @@ describe('Guided Answers Api: getNodePath()', () => {
         const result = await getGuidedAnswerApi(options).getNodePath([1]);
 
         // Result check
-        expect(options.logger?.logString).toBeCalledWith(expect.stringContaining('Error'));
+        expect(options.logger?.logError).toBeCalledWith(
+            expect.stringContaining('Error'),
+            expect.objectContaining({ message: expect.stringContaining('enhancements') })
+        );
         expect(result[0]?.BODY).toBe('<p>Should remain</p>');
     });
 
@@ -1158,14 +1168,14 @@ describe('Guided Answers Api: sendFeedbackOutcome()', () => {
 });
 
 describe('Guided Answers Api: console logger', () => {
-    const originalLog = console.log;
+    const originalConsoleError = console.error;
 
     beforeEach(() => {
-        console.log = jest.fn();
+        console.error = jest.fn();
     });
 
     afterEach(() => {
-        console.log = originalLog;
+        console.error = originalConsoleError;
     });
 
     test('Get node by id: Fallback to console logger for erroneous enhancement', async () => {
@@ -1200,6 +1210,9 @@ describe('Guided Answers Api: console logger', () => {
 
         // Result check
         expect(result?.BODY).toMatchSnapshot();
-        expect(console.log).toBeCalledWith(expect.stringContaining(`Error when parsing argument '{'`));
+        expect(console.error).toBeCalledWith(
+            expect.stringContaining(`Error when parsing argument '{'`),
+            expect.objectContaining({ message: expect.stringContaining('JSON') })
+        );
     });
 });
