@@ -36,8 +36,8 @@ const buildConfig = {
     ],
     plugins: [
         sassPlugin({
-            async transform(source) {
-                const { css } = await postcss([autoprefixer]).process(source);
+            async transform(source, _ ,filePath) {
+                const { css } = await postcss([autoprefixer]).process(source, { from: filePath });
                 return css;
             }
         }),
