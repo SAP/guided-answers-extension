@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.31.1
+
+### Patch Changes
+
+-   c3267cf: Update dependencies, code hygiene
+
 ## 1.31.0
 
 ### Minor Changes
