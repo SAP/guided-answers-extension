@@ -1,5 +1,16 @@
 # @sap/guided-answers-extension-core
 
+## 1.31.0
+
+### Minor Changes
+
+-   3976fd5: Enhanced output log with log levels
+
+### Patch Changes
+
+-   Updated dependencies [3976fd5]
+    -   @sap/guided-answers-extension-types@1.31.0
+
 ## 1.30.1
 
 ### Patch Changes
