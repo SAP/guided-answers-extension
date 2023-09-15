@@ -21,9 +21,9 @@
         "watch": "tsc --watch"
     },
     "dependencies": {
-        "@sap/bas-sdk": "3.4.0",
+        "@sap/bas-sdk": "3.6.0",
         "@sap/guided-answers-extension-types": "workspace:*",
-        "axios": "1.4.0",
+        "axios": "1.5.0",
         "xss": "1.0.14"
     },
     "files": [

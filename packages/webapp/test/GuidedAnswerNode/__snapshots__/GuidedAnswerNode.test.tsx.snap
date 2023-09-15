@@ -15,7 +15,7 @@ exports[`<GuidedAnswerNode /> Should render a GuidedAnswerNode component 1`] = `
         class="guided-answer__node__commands"
       >
         <div
-          class="ms-FocusZone css-109"
+          class="ms-FocusZone css-166"
           data-focuszone-id="FocusZone0"
         />
       </div>

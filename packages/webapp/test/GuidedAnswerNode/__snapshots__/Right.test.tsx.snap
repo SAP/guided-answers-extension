@@ -6,7 +6,7 @@ exports[`<Right /> Should render a Right component 1`] = `
     class="guided-answer__node__commands"
   >
     <div
-      class="ms-FocusZone css-109"
+      class="ms-FocusZone css-166"
       data-focuszone-id="FocusZone1"
     >
       <div
@@ -18,7 +18,7 @@ exports[`<Right /> Should render a Right component 1`] = `
         >
           <i
             aria-hidden="true"
-            class="ts-icon guided-answer__node__command__header__icon root-105"
+            class="ts-icon guided-answer__node__command__header__icon root-162"
             data-icon-name="CreateMockData"
           />
           <div
@@ -46,7 +46,7 @@ exports[`<Right /> Should render a Right component without command 1`] = `
     class="guided-answer__node__commands"
   >
     <div
-      class="ms-FocusZone css-109"
+      class="ms-FocusZone css-166"
       data-focuszone-id="FocusZone0"
     />
   </div>

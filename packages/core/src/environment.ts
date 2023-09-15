@@ -31,7 +31,7 @@ export async function getDevSpace(): Promise<string> {
     } catch {
         // Ignore exceptions and return empty string
     }
-    return devSpace ? devSpace : '';
+    return devSpace;
 }
 
 /**

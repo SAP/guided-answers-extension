@@ -66,19 +66,19 @@ exports[`<RestartButton /> Should render a RestartButton component 1`] = `
 exports[`<ShareButton /> Should render a ShareButton component 1`] = `
 <div>
   <button
-    class="ms-Button ms-Button--icon is-checked guided-answer__header__navButtons root-109"
+    class="ms-Button ms-Button--icon is-checked guided-answer__header__navButtons root-166"
     data-is-focusable="true"
     id="callout-test-id"
     title="Share this guide"
     type="button"
   >
     <span
-      class="ms-Button-flexContainer flexContainer-110"
+      class="ms-Button-flexContainer flexContainer-167"
       data-automationid="splitbuttonprimary"
     >
       <i
         aria-hidden="true"
-        class="ms-Icon root-105 ms-Button-icon icon-112"
+        class="ms-Icon root-105 ms-Button-icon icon-169"
         data-icon-name="Link"
       />
     </span>

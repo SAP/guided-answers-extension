@@ -247,10 +247,9 @@ export function Filters() {
                         selectedComponentFilters.length > 0 ? 'filter-button-selected' : ''
                     }`}></UIIconButton>
                 <UIDialog
-                    className="dialog-filter"
                     dialogContentProps={{ title: filterType[filter].title }}
-                    isOpen={filterType[filter].visibility}
-                    isBlocking={true}
+                    hidden={!filterType[filter].visibility}
+                    modalProps={{ className: 'dialog-filter', isBlocking: true }}
                     acceptButtonText={'Apply Filter'}
                     cancelButtonText={'Cancel'}
                     styles={{ main }}
