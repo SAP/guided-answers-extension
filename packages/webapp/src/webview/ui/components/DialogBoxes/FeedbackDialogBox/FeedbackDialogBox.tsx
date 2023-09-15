@@ -44,8 +44,7 @@ export function FeedbackDialogBox(): ReactElement {
     };
 
     return treeId ? (
-        <UIDialog modalProps={modalProps} isOpen={isVisible} title={dialogContentProps.title}>
-            <p className="ms-Dialog-subText">{i18next.t('FEEDBACK_DIALOG_SUBTEXT')}</p>
+        <UIDialog modalProps={modalProps} hidden={!isVisible} dialogContentProps={dialogContentProps}>
             <UITextInput
                 id="feedbackDialogTextArea"
                 label={i18next.t('FEEDBACK_DIALOG_SUGGESTION')}

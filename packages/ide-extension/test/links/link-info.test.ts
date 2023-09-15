@@ -1,4 +1,4 @@
-import { extractLinkInfo, generateExtensionLink, generateWebLink } from '../../src/links/link-info';
+import { extractLinkInfo, generateExtensionLink, generateWebLink } from '../../src/links';
 
 describe('Test extractLinkInfo()', () => {
     test('Valid link with information', () => {
