@@ -8,37 +8,37 @@ exports[`<Filters /> Should render a Filters component - Open components filter 
     id="filters"
   >
     <button
-      class="ms-Button ms-Button--icon filter-button root-124"
+      class="ms-Button ms-Button--icon filter-button root-181"
       data-is-focusable="true"
       id="filter-products"
       title="Filter Products"
       type="button"
     >
       <span
-        class="ms-Button-flexContainer flexContainer-110"
+        class="ms-Button-flexContainer flexContainer-167"
         data-automationid="splitbuttonprimary"
       >
         <i
           aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-125"
+          class="ms-Icon root-162 ms-Button-icon icon-182"
           data-icon-name="Table"
         />
       </span>
     </button>
     <button
-      class="ms-Button ms-Button--icon filter-button root-124"
+      class="ms-Button ms-Button--icon filter-button root-181"
       data-is-focusable="true"
       id="filter-components"
       title="Filter Components"
       type="button"
     >
       <span
-        class="ms-Button-flexContainer flexContainer-110"
+        class="ms-Button-flexContainer flexContainer-167"
         data-automationid="splitbuttonprimary"
       >
         <i
           aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-125"
+          class="ms-Icon root-162 ms-Button-icon icon-182"
           data-icon-name="IdTag"
         />
       </span>
@@ -58,37 +58,37 @@ exports[`<Filters /> Should render a Filters component - Open products filter di
     id="filters"
   >
     <button
-      class="ms-Button ms-Button--icon filter-button root-124"
+      class="ms-Button ms-Button--icon filter-button root-181"
       data-is-focusable="true"
       id="filter-products"
       title="Filter Products"
       type="button"
     >
       <span
-        class="ms-Button-flexContainer flexContainer-110"
+        class="ms-Button-flexContainer flexContainer-167"
         data-automationid="splitbuttonprimary"
       >
         <i
           aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-125"
+          class="ms-Icon root-162 ms-Button-icon icon-182"
           data-icon-name="Table"
         />
       </span>
     </button>
     <button
-      class="ms-Button ms-Button--icon filter-button root-124"
+      class="ms-Button ms-Button--icon filter-button root-181"
       data-is-focusable="true"
       id="filter-components"
       title="Filter Components"
       type="button"
     >
       <span
-        class="ms-Button-flexContainer flexContainer-110"
+        class="ms-Button-flexContainer flexContainer-167"
         data-automationid="splitbuttonprimary"
       >
         <i
           aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-125"
+          class="ms-Icon root-162 ms-Button-icon icon-182"
           data-icon-name="IdTag"
         />
       </span>
@@ -107,7 +107,7 @@ exports[`<Filters /> Should render a Filters component 1`] = `
   >
     <button
       aria-disabled="true"
-      class="ms-Button ms-Button--icon is-disabled filter-button root-109"
+      class="ms-Button ms-Button--icon is-disabled filter-button root-166"
       data-is-focusable="false"
       disabled=""
       id="filter-products"
@@ -115,19 +115,19 @@ exports[`<Filters /> Should render a Filters component 1`] = `
       type="button"
     >
       <span
-        class="ms-Button-flexContainer flexContainer-110"
+        class="ms-Button-flexContainer flexContainer-167"
         data-automationid="splitbuttonprimary"
       >
         <i
           aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-112"
+          class="ms-Icon root-162 ms-Button-icon icon-169"
           data-icon-name="Table"
         />
       </span>
     </button>
     <button
       aria-disabled="true"
-      class="ms-Button ms-Button--icon is-disabled filter-button root-109"
+      class="ms-Button ms-Button--icon is-disabled filter-button root-166"
       data-is-focusable="false"
       disabled=""
       id="filter-components"
@@ -135,12 +135,12 @@ exports[`<Filters /> Should render a Filters component 1`] = `
       type="button"
     >
       <span
-        class="ms-Button-flexContainer flexContainer-110"
+        class="ms-Button-flexContainer flexContainer-167"
         data-automationid="splitbuttonprimary"
       >
         <i
           aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-112"
+          class="ms-Icon root-162 ms-Button-icon icon-169"
           data-icon-name="IdTag"
         />
       </span>

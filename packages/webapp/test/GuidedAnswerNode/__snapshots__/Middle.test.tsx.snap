@@ -17,7 +17,7 @@ exports[`<Middle /> Should render a Middle component 1`] = `
         id="hr"
       />
       <div
-        class="ms-FocusZone css-109"
+        class="ms-FocusZone css-166"
         data-focuszone-id="FocusZone0"
       >
         <div
@@ -35,7 +35,7 @@ exports[`<Middle /> Should render a Middle component 1`] = `
       </p>
     </div>
     <div
-      class="ms-FocusZone css-109"
+      class="ms-FocusZone css-166"
       data-focuszone-id="FocusZone1"
       role="listbox"
     >
@@ -87,7 +87,7 @@ exports[`<Middle /> Should render a Middle component with FeedbackDialogBox 1`] 
         id="hr"
       />
       <div
-        class="ms-FocusZone css-109"
+        class="ms-FocusZone css-166"
         data-focuszone-id="FocusZone37"
       >
         <div
@@ -105,7 +105,7 @@ exports[`<Middle /> Should render a Middle component with FeedbackDialogBox 1`] 
       </p>
     </div>
     <div
-      class="ms-FocusZone css-109"
+      class="ms-FocusZone css-166"
       data-focuszone-id="FocusZone38"
       role="listbox"
     >
@@ -170,7 +170,7 @@ exports[`<Middle /> Should render a Middle component with NotSolvedMessage 1`] =
       class="guided-answer__node"
     >
       <div
-        class="ms-FocusZone css-109 guided-answer__node"
+        class="ms-FocusZone css-166 guided-answer__node"
         data-focuszone-id="FocusZone36"
       >
         <div
@@ -254,7 +254,7 @@ exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
         id="hr"
       />
       <div
-        class="ms-FocusZone css-109"
+        class="ms-FocusZone css-166"
         data-focuszone-id="FocusZone18"
       >
         <span
@@ -270,7 +270,7 @@ exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
       </p>
     </div>
     <div
-      class="ms-FocusZone css-109"
+      class="ms-FocusZone css-166"
       data-focuszone-id="FocusZone19"
       role="listbox"
     >

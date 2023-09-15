@@ -6,41 +6,41 @@ exports[`<SearchField /> Should render a SearchField component, on home screen 1
     class="guided-answer__header__searchField"
   >
     <div
-      class="ms-SearchBox can-clear tree-search-field root-109"
+      class="ms-SearchBox can-clear tree-search-field root-166"
     >
       <div
         aria-hidden="true"
-        class="ms-SearchBox-iconContainer iconContainer-110"
+        class="ms-SearchBox-iconContainer iconContainer-167"
       >
         <i
           aria-hidden="true"
-          class="ms-SearchBox-icon icon-114"
+          class="ms-SearchBox-icon icon-171"
           data-icon-name="Search"
         />
       </div>
       <input
-        class="ms-SearchBox-field field-113"
+        class="ms-SearchBox-field field-170"
         id="search-field"
         placeholder="Search Guided Answers"
         role="searchbox"
         value="fiori tools"
       />
       <div
-        class="ms-SearchBox-clearButton clearButton-112"
+        class="ms-SearchBox-clearButton clearButton-169"
       >
         <button
           aria-label="Clear text"
-          class="ms-Button ms-Button--icon root-115"
+          class="ms-Button ms-Button--icon root-172"
           data-is-focusable="true"
           type="button"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-116"
+            class="ms-Button-flexContainer flexContainer-173"
             data-automationid="splitbuttonprimary"
           >
             <i
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon icon-118"
+              class="ms-Icon root-162 ms-Button-icon icon-175"
               data-icon-name="Clear"
             />
           </span>
@@ -57,41 +57,41 @@ exports[`<SearchField /> Should render a SearchField component, on search screen
     class="guided-answer__header__searchField"
   >
     <div
-      class="ms-SearchBox can-clear tree-search-field root-109"
+      class="ms-SearchBox can-clear tree-search-field root-166"
     >
       <div
         aria-hidden="true"
-        class="ms-SearchBox-iconContainer iconContainer-110"
+        class="ms-SearchBox-iconContainer iconContainer-167"
       >
         <i
           aria-hidden="true"
-          class="ms-SearchBox-icon icon-114"
+          class="ms-SearchBox-icon icon-171"
           data-icon-name="Search"
         />
       </div>
       <input
-        class="ms-SearchBox-field field-113"
+        class="ms-SearchBox-field field-170"
         id="search-field"
         placeholder="Search Guided Answers"
         role="searchbox"
         value="fiori tools"
       />
       <div
-        class="ms-SearchBox-clearButton clearButton-112"
+        class="ms-SearchBox-clearButton clearButton-169"
       >
         <button
           aria-label="Clear text"
-          class="ms-Button ms-Button--icon root-115"
+          class="ms-Button ms-Button--icon root-172"
           data-is-focusable="true"
           type="button"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-116"
+            class="ms-Button-flexContainer flexContainer-173"
             data-automationid="splitbuttonprimary"
           >
             <i
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon icon-118"
+              class="ms-Icon root-162 ms-Button-icon icon-175"
               data-icon-name="Clear"
             />
           </span>
@@ -103,7 +103,7 @@ exports[`<SearchField /> Should render a SearchField component, on search screen
     >
       <button
         aria-disabled="true"
-        class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-123"
+        class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-180"
         data-is-focusable="false"
         disabled=""
         id="filter-products"
@@ -111,19 +111,19 @@ exports[`<SearchField /> Should render a SearchField component, on search screen
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-124"
+          class="ms-Button-flexContainer flexContainer-181"
           data-automationid="splitbuttonprimary"
         >
           <i
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon icon-125"
+            class="ms-Icon root-162 ms-Button-icon icon-182"
             data-icon-name="Table"
           />
         </span>
       </button>
       <button
         aria-disabled="true"
-        class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-123"
+        class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-180"
         data-is-focusable="false"
         disabled=""
         id="filter-components"
@@ -131,12 +131,12 @@ exports[`<SearchField /> Should render a SearchField component, on search screen
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-124"
+          class="ms-Button-flexContainer flexContainer-181"
           data-automationid="splitbuttonprimary"
         >
           <i
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon icon-125"
+            class="ms-Icon root-162 ms-Button-icon icon-182"
             data-icon-name="IdTag"
           />
         </span>

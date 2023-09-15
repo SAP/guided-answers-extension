@@ -14,7 +14,7 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
         >
           <i
             aria-hidden="true"
-            class="ts-icon root-105"
+            class="ts-icon root-162"
             data-icon-name="StarActive"
           />
           <span>
@@ -22,7 +22,7 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
           </span>
         </h3>
         <div
-          class="ms-FocusZone css-109"
+          class="ms-FocusZone css-166"
           data-focuszone-id="FocusZone6"
         >
           <ul
@@ -42,19 +42,19 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
                   Bookmark 1 Title
                 </a>
                 <button
-                  class="ms-Button ms-Button--icon root-110"
+                  class="ms-Button ms-Button--icon root-167"
                   data-is-focusable="true"
                   id="toggle-bookmark-button"
                   tabindex="-1"
                   type="button"
                 >
                   <span
-                    class="ms-Button-flexContainer flexContainer-111"
+                    class="ms-Button-flexContainer flexContainer-168"
                     data-automationid="splitbuttonprimary"
                   >
                     <i
                       aria-hidden="true"
-                      class="ms-Icon root-105 ms-Button-icon icon-113"
+                      class="ms-Icon root-162 ms-Button-icon icon-170"
                       data-icon-name="StarActive"
                     />
                   </span>
@@ -106,7 +106,7 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
         >
           <i
             aria-hidden="true"
-            class="ts-icon root-105"
+            class="ts-icon root-162"
             data-icon-name="History"
           />
           <span>
@@ -114,7 +114,7 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
           </span>
         </h3>
         <div
-          class="ms-FocusZone css-109"
+          class="ms-FocusZone css-166"
           data-focuszone-id="FocusZone10"
         >
           <ul
@@ -172,7 +172,7 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
         >
           <i
             aria-hidden="true"
-            class="ts-icon root-105"
+            class="ts-icon root-162"
             data-icon-name="Filter"
           />
           <span>
@@ -180,7 +180,7 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
           </span>
         </h3>
         <div
-          class="ms-FocusZone css-109"
+          class="ms-FocusZone css-166"
           data-focuszone-id="FocusZone11"
         >
           <ul
@@ -229,7 +229,7 @@ exports[`<HomeGrid /> Should render only Bookmarks 1`] = `
         >
           <i
             aria-hidden="true"
-            class="ts-icon root-105"
+            class="ts-icon root-162"
             data-icon-name="StarActive"
           />
           <span>
@@ -237,7 +237,7 @@ exports[`<HomeGrid /> Should render only Bookmarks 1`] = `
           </span>
         </h3>
         <div
-          class="ms-FocusZone css-109"
+          class="ms-FocusZone css-166"
           data-focuszone-id="FocusZone0"
         >
           <ul
@@ -257,19 +257,19 @@ exports[`<HomeGrid /> Should render only Bookmarks 1`] = `
                   Bookmark 1 Title
                 </a>
                 <button
-                  class="ms-Button ms-Button--icon root-110"
+                  class="ms-Button ms-Button--icon root-167"
                   data-is-focusable="true"
                   id="toggle-bookmark-button"
                   tabindex="-1"
                   type="button"
                 >
                   <span
-                    class="ms-Button-flexContainer flexContainer-111"
+                    class="ms-Button-flexContainer flexContainer-168"
                     data-automationid="splitbuttonprimary"
                   >
                     <i
                       aria-hidden="true"
-                      class="ms-Icon root-105 ms-Button-icon icon-113"
+                      class="ms-Icon root-162 ms-Button-icon icon-170"
                       data-icon-name="StarActive"
                     />
                   </span>
@@ -330,7 +330,7 @@ exports[`<HomeGrid /> Should render only Bookmarks, no beta features 1`] = `
         >
           <i
             aria-hidden="true"
-            class="ts-icon root-105"
+            class="ts-icon root-162"
             data-icon-name="StarActive"
           />
           <span>
@@ -338,7 +338,7 @@ exports[`<HomeGrid /> Should render only Bookmarks, no beta features 1`] = `
           </span>
         </h3>
         <div
-          class="ms-FocusZone css-109"
+          class="ms-FocusZone css-166"
           data-focuszone-id="FocusZone12"
         >
           <ul
@@ -358,19 +358,19 @@ exports[`<HomeGrid /> Should render only Bookmarks, no beta features 1`] = `
                   Bookmark 1 Title
                 </a>
                 <button
-                  class="ms-Button ms-Button--icon root-110"
+                  class="ms-Button ms-Button--icon root-167"
                   data-is-focusable="true"
                   id="toggle-bookmark-button"
                   tabindex="-1"
                   type="button"
                 >
                   <span
-                    class="ms-Button-flexContainer flexContainer-111"
+                    class="ms-Button-flexContainer flexContainer-168"
                     data-automationid="splitbuttonprimary"
                   >
                     <i
                       aria-hidden="true"
-                      class="ms-Icon root-105 ms-Button-icon icon-113"
+                      class="ms-Icon root-162 ms-Button-icon icon-170"
                       data-icon-name="StarActive"
                     />
                   </span>
@@ -431,7 +431,7 @@ exports[`<HomeGrid /> Should render only LastVisited 1`] = `
         >
           <i
             aria-hidden="true"
-            class="ts-icon root-105"
+            class="ts-icon root-162"
             data-icon-name="History"
           />
           <span>
@@ -439,7 +439,7 @@ exports[`<HomeGrid /> Should render only LastVisited 1`] = `
           </span>
         </h3>
         <div
-          class="ms-FocusZone css-109"
+          class="ms-FocusZone css-166"
           data-focuszone-id="FocusZone4"
         >
           <ul
@@ -510,7 +510,7 @@ exports[`<HomeGrid /> Should render only LastVisited, no beta features 1`] = `
         >
           <i
             aria-hidden="true"
-            class="ts-icon root-105"
+            class="ts-icon root-162"
             data-icon-name="History"
           />
           <span>
@@ -518,7 +518,7 @@ exports[`<HomeGrid /> Should render only LastVisited, no beta features 1`] = `
           </span>
         </h3>
         <div
-          class="ms-FocusZone css-109"
+          class="ms-FocusZone css-166"
           data-focuszone-id="FocusZone16"
         >
           <ul
@@ -589,7 +589,7 @@ exports[`<HomeGrid /> Should render only QuickFilters 1`] = `
         >
           <i
             aria-hidden="true"
-            class="ts-icon root-105"
+            class="ts-icon root-162"
             data-icon-name="Filter"
           />
           <span>
@@ -597,7 +597,7 @@ exports[`<HomeGrid /> Should render only QuickFilters 1`] = `
           </span>
         </h3>
         <div
-          class="ms-FocusZone css-109"
+          class="ms-FocusZone css-166"
           data-focuszone-id="FocusZone5"
         >
           <ul

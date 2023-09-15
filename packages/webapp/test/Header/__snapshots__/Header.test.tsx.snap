@@ -7,7 +7,7 @@ exports[`<Header /> Should render a Header component with the navigation buttons
     style="padding-bottom: 0px;"
   >
     <div
-      class="ms-FocusZone css-115 guided-answer__header"
+      class="ms-FocusZone css-172 guided-answer__header"
       data-focuszone-id="FocusZone0"
     >
       <div
@@ -55,19 +55,19 @@ exports[`<Header /> Should render a Header component with the navigation buttons
           class="guided-answer__header__restart-feedback-buttons"
         >
           <button
-            class="ms-Button ms-Button--icon guided-answer__header__navButtons root-116"
+            class="ms-Button ms-Button--icon guided-answer__header__navButtons root-173"
             data-is-focusable="true"
             tabindex="-1"
             title="Feedback"
             type="button"
           >
             <span
-              class="ms-Button-flexContainer flexContainer-117"
+              class="ms-Button-flexContainer flexContainer-174"
               data-automationid="splitbuttonprimary"
             >
               <i
                 aria-hidden="true"
-                class="ms-Icon root-105 ms-Button-icon icon-119"
+                class="ms-Icon root-105 ms-Button-icon icon-176"
                 data-icon-name="ChatBubbles"
               />
             </span>
@@ -76,7 +76,7 @@ exports[`<Header /> Should render a Header component with the navigation buttons
             class="guided-answer__header__divider"
           />
           <button
-            class="ms-Button ms-Button--icon guided-answer__header__navButtons root-116"
+            class="ms-Button ms-Button--icon guided-answer__header__navButtons root-173"
             data-is-focusable="true"
             id="callout-test-id"
             tabindex="-1"
@@ -84,12 +84,12 @@ exports[`<Header /> Should render a Header component with the navigation buttons
             type="button"
           >
             <span
-              class="ms-Button-flexContainer flexContainer-117"
+              class="ms-Button-flexContainer flexContainer-174"
               data-automationid="splitbuttonprimary"
             >
               <i
                 aria-hidden="true"
-                class="ms-Icon root-105 ms-Button-icon icon-119"
+                class="ms-Icon root-105 ms-Button-icon icon-176"
                 data-icon-name="Link"
               />
             </span>
@@ -98,7 +98,7 @@ exports[`<Header /> Should render a Header component with the navigation buttons
             class="guided-answer__header__divider"
           />
           <button
-            class="ms-Button ms-Button--icon guided-answer__header__navButtons root-116"
+            class="ms-Button ms-Button--icon guided-answer__header__navButtons root-173"
             data-is-focusable="true"
             id="bookmark-button"
             tabindex="-1"
@@ -106,12 +106,12 @@ exports[`<Header /> Should render a Header component with the navigation buttons
             type="button"
           >
             <span
-              class="ms-Button-flexContainer flexContainer-117"
+              class="ms-Button-flexContainer flexContainer-174"
               data-automationid="splitbuttonprimary"
             >
               <i
                 aria-hidden="true"
-                class="ms-Icon root-105 ms-Button-icon icon-119"
+                class="ms-Icon root-105 ms-Button-icon icon-176"
                 data-icon-name="Star"
               />
             </span>
@@ -156,20 +156,20 @@ exports[`<Header /> Should render a Header component without the navigation butt
         class="guided-answer__header__searchField"
       >
         <div
-          class="ms-SearchBox tree-search-field root-109"
+          class="ms-SearchBox tree-search-field root-166"
         >
           <div
             aria-hidden="true"
-            class="ms-SearchBox-iconContainer iconContainer-110"
+            class="ms-SearchBox-iconContainer iconContainer-167"
           >
             <i
               aria-hidden="true"
-              class="ms-SearchBox-icon icon-114"
+              class="ms-SearchBox-icon icon-171"
               data-icon-name="Search"
             />
           </div>
           <input
-            class="ms-SearchBox-field field-113"
+            class="ms-SearchBox-field field-170"
             id="search-field"
             placeholder="Search Guided Answers"
             readonly=""
