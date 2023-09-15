@@ -1,6 +1,6 @@
 import type { Memento } from 'vscode';
 import type { Bookmarks, GuidedAnswerTree } from '@sap/guided-answers-extension-types';
-import { logString } from '../logger/logger';
+import { logError } from '../logger/logger';
 
 let globalStateApi: Memento;
 
@@ -37,6 +37,6 @@ export function updateBookmarks(bookmarks: Bookmarks): void {
         }
         globalStateApi
             .update('bookmark', newBookmarks)
-            .then(undefined, (error) => logString(`Error updating bookmarks.\n${error?.toString()}`));
+            .then(undefined, (error) => logError(`Error updating bookmarks.`, error));
     }
 }

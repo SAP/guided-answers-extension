@@ -1,8 +1,10 @@
 import { commands, window } from 'vscode';
-import type { Terminal } from 'vscode';
+import type { LogOutputChannel, Terminal } from 'vscode';
 import { Command } from '@sap/guided-answers-extension-types';
 import { handleCommand } from '../../src/enhancement';
-import * as loggerMock from '../../src/logger/logger';
+
+const loggerMock = { error: jest.fn(), info: jest.fn() } as Partial<LogOutputChannel>;
+jest.spyOn(window, 'createOutputChannel').mockImplementation(() => loggerMock as LogOutputChannel);
 
 describe('Test for handleCommand()', () => {
     const env = process.env;
@@ -20,7 +22,6 @@ describe('Test for handleCommand()', () => {
     test('Execute VSCode command', () => {
         //  Mock setup
         const executeCommandMock = jest.spyOn(commands, 'executeCommand');
-        const log = jest.spyOn(loggerMock, 'logString').mockImplementation(() => undefined);
         const command: Partial<Command> = {
             exec: {
                 extensionId: 'TEST.EXTENSION',
@@ -37,13 +38,14 @@ describe('Test for handleCommand()', () => {
         // Check results
         expect(executeCommandMock).toBeCalledTimes(1);
         expect(executeCommandMock).toBeCalledWith('TEST.COMMAND', { fsPath: 'TESTPATH' });
-        expect(log).toBeCalledWith(expect.stringContaining('TEST.COMMAND'));
+        expect(loggerMock.info).toBeCalledWith(expect.stringContaining('TEST.COMMAND'), {
+            exec: { extensionId: 'TEST.EXTENSION', commandId: 'TEST.COMMAND', argument: { fsPath: 'TESTPATH' } }
+        });
     });
 
     test('VSCode command throws error', async () => {
         //  Mock setup
         jest.spyOn(commands, 'executeCommand').mockRejectedValueOnce('COMMAND_ERROR');
-        const log = jest.spyOn(loggerMock, 'logString').mockImplementation(() => undefined);
         const command: Partial<Command> = {
             exec: {
                 extensionId: 'TEST.EXTENSION',
@@ -56,7 +58,7 @@ describe('Test for handleCommand()', () => {
 
         // Check results
         await (() => new Promise(setImmediate))();
-        expect(log).toBeCalledWith(expect.stringContaining('COMMAND_ERROR'));
+        expect(loggerMock.error).toBeCalledWith(expect.stringContaining('Error'), 'COMMAND_ERROR');
     });
 
     test('Execute terminal command without cwd', () => {
@@ -66,7 +68,6 @@ describe('Test for handleCommand()', () => {
             sendText: jest.fn()
         };
         jest.spyOn(window, 'createTerminal').mockImplementationOnce(() => terminalMock as Terminal);
-        const log = jest.spyOn(loggerMock, 'logString').mockImplementation(() => undefined);
         const command: Partial<Command> = {
             exec: {
                 arguments: ['TEST.ARG']
@@ -80,7 +81,9 @@ describe('Test for handleCommand()', () => {
         expect(terminalMock.show).toBeCalledTimes(1);
         expect(terminalMock.sendText).toHaveBeenCalledTimes(1);
         expect(terminalMock.sendText).toBeCalledWith('TEST.ARG');
-        expect(log).toBeCalledWith(expect.stringContaining('TEST.ARG'));
+        expect(loggerMock.info).toBeCalledWith(expect.stringContaining('TEST.ARG'), {
+            exec: { arguments: ['TEST.ARG'] }
+        });
     });
 
     test('Execute terminal command with cwd', () => {
@@ -90,7 +93,6 @@ describe('Test for handleCommand()', () => {
             sendText: jest.fn()
         };
         jest.spyOn(window, 'createTerminal').mockImplementationOnce(() => terminalMock as Terminal);
-        const log = jest.spyOn(loggerMock, 'logString').mockImplementation(() => undefined);
         const command: Partial<Command> = {
             exec: {
                 cwd: 'TEST/CWD',
@@ -106,7 +108,9 @@ describe('Test for handleCommand()', () => {
         expect(terminalMock.sendText).toHaveBeenCalledTimes(2);
         expect(terminalMock.sendText).toHaveBeenNthCalledWith(1, 'cd "TEST/CWD"');
         expect(terminalMock.sendText).toHaveBeenNthCalledWith(2, 'ARG.ONE ARG.TWO');
-        expect(log).toBeCalledWith(expect.stringContaining('ARG.ONE ARG.TWO'));
+        expect(loggerMock.info).toBeCalledWith(expect.stringContaining('ARG.ONE ARG.TWO'), {
+            exec: { cwd: 'TEST/CWD', arguments: ['ARG.ONE', 'ARG.TWO'] }
+        });
     });
 
     test('Execute terminal creation error, ', () => {

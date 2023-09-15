@@ -39,7 +39,7 @@ import {
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
 import { getInstalledExtensionIds, handleCommand } from '../enhancement';
-import { logString } from '../logger/logger';
+import * as logger from '../logger/logger';
 import type { Options, StartOptions } from '../types';
 import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
 import { extractLinkInfo, generateExtensionLink, generateWebLink } from '../links/link-info';
@@ -84,18 +84,19 @@ export class GuidedAnswersPanel {
         this.guidedAnswerApi = getGuidedAnswerApi({
             apiHost: options?.apiHost,
             ide: this.ide,
-            extensions
+            extensions,
+            logger
         });
         const { host: apiHost, version: apiVersion } = this.guidedAnswerApi.getApiInfo();
         setCommonProperties({ ide: this.ide, devSpace: options?.devSpace ?? '', apiHost, apiVersion });
-        logString(`Using API host: '${apiHost}', version: '${apiVersion}'`);
+        logger.logInfo(`Using API host: '${apiHost}', version: '${apiVersion}'`);
         trackEvent({
             name: 'STARTUP',
             properties: {
                 treeId: typeof this.startOptions?.treeId === 'number' ? this.startOptions?.treeId.toString() : '',
                 nodeIdPath: (this.startOptions?.nodeIdPath ?? []).join(':')
             }
-        }).catch((error) => logString(`Error tracking event 'STARTUP'.\n${error?.toString()}`));
+        }).catch((error) => logger.logError(`Error tracking event 'STARTUP'`, error));
         /**
          * vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421), therefore node_modules from same repo are missing.
          * To overcome this we copy guidedAnswers.js and guidedAnswers.css to dist/ folder in esbuild.js
@@ -142,7 +143,7 @@ export class GuidedAnswersPanel {
      */
     restartWithOptions(startOptions: StartOptions | undefined) {
         this.startOptions = startOptions;
-        logString(`Restarting Guided Answers...`);
+        logger.logInfo(`Restarting Guided Answers...`);
         if (startOptions?.openToSide) {
             this.panel.reveal(ViewColumn.Beside);
         }
@@ -198,10 +199,9 @@ export class GuidedAnswersPanel {
                 this.postActionToWebview(updateActiveNode(await this.guidedAnswerApi.getNodeById(tree.FIRST_NODE_ID)));
             }
         } catch (error: any) {
-            logString(
-                `Error while processing start options, error was: '${error?.message}'. Start options: \n${
-                    typeof startOptions === 'object' ? JSON.stringify(startOptions) : startOptions
-                }`
+            logger.logError(
+                `Error while processing start options, error was: '${error?.message}'. Start options:`,
+                startOptions
             );
             return false;
         }
@@ -216,12 +216,12 @@ export class GuidedAnswersPanel {
     private async loadQuickFilters(ide: IDE): Promise<void> {
         try {
             const filters = await getFiltersForIde(ide);
-            logString(`Filters for environment '${ide}': ${JSON.stringify(filters)}`);
+            logger.logInfo(`Filters for environment '${ide}':`, filters);
             if (Object.keys(filters).length > 0) {
                 this.postActionToWebview(setQuickFilters([filters]));
             }
         } catch (error: any) {
-            logString(`Error while retrieving context information, error was: '${error?.message}'.`);
+            logger.logError(`Error while retrieving context information, error was:`, error);
         }
     }
 
@@ -282,7 +282,7 @@ export class GuidedAnswersPanel {
             for (const node of nodePath) {
                 this.postActionToWebview(updateActiveNode(node));
             }
-            logString(
+            logger.logInfo(
                 `Bookmark for Guided Answer '${tree.TITLE}' (${tree.TREE_ID}) was outdated and has been updated.`
             );
         }
@@ -298,7 +298,7 @@ export class GuidedAnswersPanel {
             switch (action.type) {
                 case SELECT_NODE: {
                     const node = await this.guidedAnswerApi.getNodeById(action.payload);
-                    logString(`Node selected: ${node.NODE_ID}: ${node.TITLE}`);
+                    logger.logInfo(`Node selected: ${node.NODE_ID}: ${node.TITLE}`);
                     this.postActionToWebview(updateActiveNode(node));
                     break;
                 }
@@ -331,11 +331,11 @@ export class GuidedAnswersPanel {
                     break;
                 }
                 case SEARCH_TREE: {
-                    logString(`Starting search: ${JSON.stringify(action.payload)}`);
+                    logger.logInfo(`Starting search: ${JSON.stringify(action.payload)}`);
                     if (typeof action.payload.query === 'string') {
                         const start = extractLinkInfo(action.payload.query);
                         if (start) {
-                            logString(`Found possible startup options: ${JSON.stringify(start)}`);
+                            logger.logInfo(`Found possible startup options:`, start);
                             this.postActionToWebview(updateNetworkStatus('LOADING'));
                             const startOptionsApplied = await this.processStartOptions(start);
                             this.postActionToWebview(updateNetworkStatus('OK'));
@@ -346,20 +346,20 @@ export class GuidedAnswersPanel {
                         }
                     }
                     const trees = await this.getTrees(action.payload);
-                    logString(`Found ${trees.resultSize} trees`);
+                    logger.logInfo(`Found ${trees.resultSize} trees`);
                     this.postActionToWebview(
                         updateGuidedAnswerTrees({ searchResult: trees, pagingOptions: action.payload.paging })
                     );
                     break;
                 }
                 case WEBVIEW_READY: {
-                    logString(`Webview is ready to receive actions`);
+                    logger.logInfo(`Webview is ready to receive actions`);
                     await this.handleWebViewReady();
                     break;
                 }
                 case SEND_TELEMETRY: {
                     trackAction(action).catch((error) =>
-                        logString(`Error tracking action '${action?.payload?.action?.type}'.\n${error?.toString()}`)
+                        logger.logError(`Error tracking action '${action?.payload?.action?.type}'`, error)
                     );
                     break;
                 }
@@ -374,7 +374,7 @@ export class GuidedAnswersPanel {
                 }
                 case SYNCHRONIZE_BOOKMARK: {
                     this.synchronizeBookmark(action.payload).catch((error) =>
-                        logString(`Error during synchronizing bookmark\n${error?.toString()}`)
+                        logger.logError(`Error during synchronizing bookmark.`, error)
                     );
                     break;
                 }
@@ -383,8 +383,9 @@ export class GuidedAnswersPanel {
                 }
             }
         } catch (error: any) {
-            logString(
-                `Error while processing action.\n  Action: ${JSON.stringify(action)}\n  Message: ${error?.message}`
+            logger.logError(
+                `Error while processing action.\n  Action: ${JSON.stringify(action)}\n  Message:`,
+                error?.message
             );
         }
     }
@@ -398,7 +399,7 @@ export class GuidedAnswersPanel {
         this.panel?.webview
             .postMessage(action)
             ?.then(undefined, (error) =>
-                logString(`Error sending action to webview. Action was '${action?.type}'.\n${error?.toString()}`)
+                logger.logError(`Error sending action to webview. Action was '${action?.type}'`, error)
             );
     }
 
@@ -425,15 +426,15 @@ export class GuidedAnswersSerializer implements WebviewPanelSerializer {
         try {
             if (state) {
                 const appState = JSON.parse(state) as AppState;
-                logString(`Restoring guided answers state with deserialized web panel`);
+                logger.logInfo(`Restoring guided answers state with deserialized web panel`);
                 const guidedAnswersPanel = new GuidedAnswersPanel({ restore: { webviewPanel, appState } });
                 guidedAnswersPanel.show();
             } else {
-                logString(`Received invalid state: '${state}'. Disposing webviewPanel.`);
+                logger.logInfo(`Received invalid state. Disposing webviewPanel. State:`, state);
                 webviewPanel.dispose();
             }
         } catch (error) {
-            logString(`Error while restoring webview panel: ${error?.toString()}`);
+            logger.logError(`Error while restoring webview panel:`, error);
             webviewPanel?.dispose();
         }
         return Promise.resolve();

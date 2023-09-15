@@ -120,8 +120,8 @@ importers:
         specifier: 9.0.2
         version: 9.0.2
       '@types/vscode':
-        specifier: 1.73.1
-        version: 1.73.1
+        specifier: 1.74.1
+        version: 1.74.1
       '@vscode/vsce':
         specifier: 2.19.0
         version: 2.19.0
@@ -2431,8 +2431,9 @@ packages:
     resolution: {integrity: sha512-kNnC1GFBLuhImSnV7w4njQkUiJi0ZXUycu1rUaouPqiKlXkh77JKgdRnTAp1x5eBwcIwbtI+3otwzuIDEuDoxQ==}
     dev: true
 
-  /@types/vscode@1.73.1:
-    resolution: {integrity: sha512-eArfOrAoZVV+Ao9zQOCaFNaeXj4kTCD+bGS2gyNgIFZH9xVMuLMlRrEkhb22NyxycFWKV1UyTh03vhaVHmqVMg==}
+  /@types/vscode@1.74.1:
+    resolution: {integrity: sha512-/4bwu5Lz2tQIhCDfGyEho36jEBHfEGgbuajgFZgRIfsfK/U0vv8diYIvQRiz8cc9tGlzd7m/NJscEJ7gFExJ4g==}
+    deprecated: 'Warning: @types/vscode@1.74.1 contains types for VS Code 1.75. Please install @types/vscode@1.74.0 if your extension is expected to run in VS Code 1.74'
     dev: true
 
   /@types/yargs-parser@21.0.0:
