@@ -1,7 +1,7 @@
 import { commands, window } from 'vscode';
 import type { Command } from '@sap/guided-answers-extension-types';
 import { isTerminalCommand, isVSCodeCommand } from '@sap/guided-answers-extension-types';
-import { logString } from '../logger/logger';
+import { logError, logInfo } from '../logger/logger';
 
 /**
  * Execute command execution requests.
@@ -12,27 +12,17 @@ export function handleCommand(command: Command): void {
     if (isVSCodeCommand(command.exec)) {
         const commandId = command.exec.commandId;
         const argument = command.exec.argument;
-        logString(
-            `Executing VSCode command '${commandId}'. Full command info including arguments:\n${JSON.stringify(
-                command,
-                null,
-                2
-            )} `
-        );
+        logInfo(`Executing VSCode command '${commandId}'. Full command info including arguments:`, command);
         commands
             .executeCommand(commandId, argument)
-            ?.then(undefined, (error) =>
-                logString(`Error while executing command '${commandId}'\n${error?.toString()}`)
-            );
+            ?.then(undefined, (error) => logError(`Error while executing command '${commandId}'`, error));
     }
     if (isTerminalCommand(command.exec)) {
         const terminal = window.createTerminal(`Guided Answers extension by SAP`);
         if (terminal) {
             const commandString = command.exec.arguments.join(' ');
             terminal.show();
-            logString(
-                `Executing terminal command '${commandString}'. Full command info:\n${JSON.stringify(command, null, 2)}`
-            );
+            logInfo(`Executing terminal command '${commandString}'. Full command info:`, command);
             if (command.exec.cwd) {
                 terminal.sendText(`cd "${command.exec.cwd}"`);
             }

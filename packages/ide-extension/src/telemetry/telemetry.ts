@@ -5,7 +5,7 @@ import { TelemetryClient } from 'applicationinsights';
 import type { Contracts } from 'applicationinsights';
 import type { IDE, SendTelemetry } from '@sap/guided-answers-extension-types';
 import { v4 as uuidv4 } from 'uuid';
-import { logString, traceString } from '../logger/logger';
+import { logError, logTrace } from '../logger/logger';
 import packageJson from '../../package.json';
 import type { TelemetryEvent, TelemetryReporter } from '../types';
 import { actionMap } from './action-map';
@@ -101,9 +101,9 @@ export async function trackEvent(event: TelemetryEvent): Promise<void> {
         const name = `${packageJson.name}/${event.name}`;
         const properties = propertyValuesToString({ ...event.properties, ...(reporter.commonProperties ?? {}) });
         reporter.client.trackEvent({ name, properties });
-        traceString(`Telemetry event '${event.name}': ${JSON.stringify(properties)}`);
+        logTrace(`Telemetry event '${event.name}':`, properties);
     } catch (error) {
-        logString(`Error sending telemetry event '${event.name}': ${(error as Error).message}`);
+        logError(`Error sending telemetry event '${event.name}':`, error);
     }
 }
 
@@ -122,7 +122,7 @@ export async function trackAction(action: SendTelemetry): Promise<void> {
             await trackEvent({ name: 'USER_INTERACTION', properties });
         }
     } catch (error) {
-        logString(`Error sending telemetry action '${action?.payload?.action?.type}': ${(error as Error).message}`);
+        logError(`Error sending telemetry action '${action?.payload?.action?.type}':`, error);
     }
 }
 

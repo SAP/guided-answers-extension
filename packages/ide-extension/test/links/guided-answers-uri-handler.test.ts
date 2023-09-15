@@ -1,13 +1,13 @@
-import { commands, Uri } from 'vscode';
-import * as logger from '../../src/logger/logger';
+import type { LogOutputChannel } from 'vscode';
+import { commands, Uri, window } from 'vscode';
 import { GuidedAnswersUriHandler } from '../../src/links';
 
-describe('Test GuidedAnswersUriHandler', () => {
-    let loggerMock: jest.SpyInstance;
+const loggerMock = { error: jest.fn(), info: jest.fn() } as Partial<LogOutputChannel>;
+jest.spyOn(window, 'createOutputChannel').mockImplementation(() => loggerMock as LogOutputChannel);
 
+describe('Test GuidedAnswersUriHandler', () => {
     beforeEach(() => {
         jest.clearAllMocks();
-        loggerMock = jest.spyOn(logger, 'logString').mockImplementation(() => null);
     });
 
     test('Handle valid URI, should execute start command', () => {
@@ -47,6 +47,9 @@ describe('Test GuidedAnswersUriHandler', () => {
 
         // Result check
         await (() => new Promise(setImmediate))();
-        expect(loggerMock).toBeCalledWith(expect.stringContaining('START_ERROR'));
+        expect(loggerMock.error).toBeCalledWith(
+            expect.stringContaining('Error'),
+            expect.stringContaining('START_ERROR')
+        );
     });
 });

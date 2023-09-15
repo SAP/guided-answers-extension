@@ -158,7 +158,11 @@ export interface HTMLEnhancement {
 }
 
 export interface Logger {
-    logString: (message: string) => void;
+    logTrace(message: string, ...args: any[]): void;
+    logDebug(message: string, ...args: any[]): void;
+    logInfo(message: string, ...args: any[]): void;
+    logWarn(message: string, ...args: any[]): void;
+    logError(error: string | Error, ...args: any[]): void;
 }
 
 export interface APIOptions {

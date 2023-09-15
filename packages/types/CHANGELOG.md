@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-types
 
+## 1.31.0
+
+### Minor Changes
+
+-   3976fd5: Enhanced output log with log levels
+
 ## 1.30.1
 
 ## 1.30.0

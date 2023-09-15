@@ -1,11 +1,10 @@
-import type { Memento } from 'vscode';
+import type { LogOutputChannel, Memento } from 'vscode';
+import { window } from 'vscode';
 import { LastVisitedGuide } from '@sap/guided-answers-extension-types';
-import { logString } from '../../src/logger/logger';
 import { initLastVisited, getAllLastVisitedGuides, updateLastVisitedGuides } from '../../src/last-visited';
 
-jest.mock('../../src/logger/logger', () => ({
-    logString: jest.fn()
-}));
+const loggerMock = { error: jest.fn() } as Partial<LogOutputChannel>;
+jest.spyOn(window, 'createOutputChannel').mockImplementation(() => loggerMock as LogOutputChannel);
 
 let mockGlobalState: jest.Mocked<Memento>;
 
@@ -36,6 +35,7 @@ const mockLastVisited: LastVisitedGuide[] = [
 
 describe('LastVisited functions', () => {
     beforeEach(() => {
+        jest.clearAllMocks();
         mockGlobalState = {
             get: jest.fn(),
             update: jest.fn(() => Promise.resolve())
@@ -64,6 +64,9 @@ describe('LastVisited functions', () => {
         initLastVisited(mockGlobalState);
         await updateLastVisitedGuides(mockLastVisited);
 
-        expect(logString).toHaveBeenCalledWith(`Error updating lastVisitedGuides.\n${error.toString()}`);
+        expect(loggerMock.error).toHaveBeenCalledWith(
+            expect.stringContaining('Error updating lastVisitedGuides'),
+            expect.objectContaining({ message: 'Update error' })
+        );
     });
 });

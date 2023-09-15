@@ -1,6 +1,6 @@
 import { commands } from 'vscode';
 import type { ProviderResult, Uri, UriHandler } from 'vscode';
-import { logString } from '../logger/logger';
+import { logError, logInfo } from '../logger/logger';
 import { extractLinkInfo } from './link-info';
 
 /**
@@ -16,16 +16,14 @@ export class GuidedAnswersUriHandler implements UriHandler {
      */
     handleUri(uri: Uri): ProviderResult<void> {
         const link = decodeURIComponent(uri.toString());
-        logString(`Guided Answers extension called from URI: ${link}`);
+        logInfo(`Guided Answers extension called from URI: ${link}`);
         const startOptions = extractLinkInfo(link);
-        logString(`Extracted information from link: ${startOptions ? JSON.stringify(startOptions) : ''}`);
+        logInfo(`Extracted information from link:`, startOptions);
         if (startOptions?.treeId) {
             commands
                 .executeCommand('sap.ux.guidedAnswer.openGuidedAnswer', startOptions)
                 ?.then(undefined, (error) =>
-                    logString(
-                        `Error while executing start command 'sap.ux.guidedAnswer.openGuidedAnswer'.\n${error?.toString()}`
-                    )
+                    logError(`Error while executing start command 'sap.ux.guidedAnswer.openGuidedAnswer'`, error)
                 );
         }
     }

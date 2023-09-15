@@ -1,9 +1,8 @@
 import * as os from 'os';
-import { commands, workspace } from 'vscode';
-import type { ConfigurationChangeEvent, Disposable, ExtensionContext } from 'vscode';
+import { commands, window, workspace } from 'vscode';
+import type { ConfigurationChangeEvent, Disposable, ExtensionContext, LogOutputChannel } from 'vscode';
 import { initTelemetry, setCommonProperties, trackAction, trackEvent } from '../../src/telemetry/telemetry';
 import type { Contracts } from 'applicationinsights';
-import * as logger from '../../src/logger/logger';
 import { activate } from '../../src/extension';
 import {
     AppState,
@@ -31,6 +30,9 @@ jest.mock('os');
 jest.spyOn(os, 'arch').mockImplementation(() => 'arch' as any);
 jest.spyOn(os, 'platform').mockImplementation(() => 'platform' as any);
 jest.spyOn(os, 'release').mockImplementation(() => '1.2.3release' as any);
+
+const loggerMock = { trace: jest.fn(), error: jest.fn() } as unknown as LogOutputChannel;
+jest.spyOn(window, 'createOutputChannel').mockImplementation(() => loggerMock);
 
 describe('Test for initTelemetry()', () => {
     beforeEach(() => {
@@ -61,8 +63,6 @@ describe('Telemetry trackEvent() tests', () => {
     beforeEach(() => {
         jest.clearAllMocks();
         jest.spyOn(commands, 'registerCommand');
-        jest.spyOn(logger, 'logString').mockImplementation(() => null);
-        jest.spyOn(logger, 'traceString').mockImplementation(() => null);
         jest.spyOn(workspace, 'getConfiguration').mockReturnValue({ get: () => true } as any);
 
         const context = {
@@ -106,7 +106,10 @@ describe('Telemetry trackEvent() tests', () => {
         trackEvent({ name: 'STARTUP', properties: { treeId: 1, nodeIdPath: '2:3:4' } } as unknown as TelemetryEvent);
 
         // Result check
-        expect(logger.logString).toHaveBeenCalledWith(expect.stringContaining('TRACK_EVENT_ERROR'));
+        expect(loggerMock.error).toHaveBeenCalledWith(
+            expect.stringContaining('Error'),
+            expect.objectContaining({ message: 'TRACK_EVENT_ERROR' })
+        );
     });
 });
 
@@ -119,7 +122,6 @@ describe('Telemetry trackAction() tests', () => {
     beforeEach(() => {
         jest.clearAllMocks();
         jest.spyOn(commands, 'registerCommand');
-        jest.spyOn(logger, 'logString').mockImplementation(() => null);
         const context = {
             subscriptions: []
         };
@@ -146,7 +148,11 @@ describe('Telemetry trackAction() tests', () => {
                 treeTitle: 'Title'
             }
         });
-        expect(logger.traceString).toBeCalledWith(expect.stringContaining('OPEN_TREE'));
+        expect(loggerMock.trace).toBeCalledWith(expect.stringContaining('USER_INTERACTION'), {
+            action: 'OPEN_TREE',
+            treeId: '10',
+            treeTitle: 'Title'
+        });
     });
 
     test('send UPDATE_ACTIVE_NODE action', () => {
@@ -479,7 +485,10 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(logger.logString).toHaveBeenCalledWith(expect.stringContaining('SET_ACTIVE_TREE'));
+        expect(loggerMock.error).toHaveBeenCalledWith(
+            expect.stringContaining('SET_ACTIVE_TREE'),
+            expect.objectContaining({ message: expect.stringContaining('TREE_ID') })
+        );
     });
 });
 
