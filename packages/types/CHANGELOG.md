@@ -1,5 +1,7 @@
 # @sap/guided-answers-extension-types
 
+## 1.32.0
+
 ## 1.31.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.32.0
+
+### Minor Changes
+
+-   e2df76f: extends startup options interface
+
 ## 1.31.1
 
 ### Patch Changes
