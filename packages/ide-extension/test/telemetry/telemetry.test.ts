@@ -75,7 +75,10 @@ describe('Telemetry trackEvent() tests', () => {
     test('set common properties and track event, telemetry enabled', () => {
         // Test execution
         setCommonProperties({ ide: 'SBAS', devSpace: 'DevSpace', apiHost: 'any:host', apiVersion: 'v1' });
-        trackEvent({ name: 'STARTUP', properties: { treeId: 1, nodeIdPath: '2:3:4' } } as unknown as TelemetryEvent);
+        trackEvent({
+            name: 'STARTUP',
+            properties: { treeId: 1, nodeIdPath: '2:3:4', trigger: 'vsc-extension-mock' }
+        } as unknown as TelemetryEvent);
 
         // Result check
         expect(reporter.client.trackEvent).toBeCalledWith({
@@ -91,7 +94,8 @@ describe('Telemetry trackEvent() tests', () => {
                 'common.extname': packageJson.name,
                 'common.extversion': packageJson.version,
                 nodeIdPath: '2:3:4',
-                treeId: '1'
+                treeId: '1',
+                trigger: 'vsc-extension-mock'
             }
         });
     });

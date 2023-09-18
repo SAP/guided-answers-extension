@@ -94,7 +94,8 @@ export class GuidedAnswersPanel {
             name: 'STARTUP',
             properties: {
                 treeId: typeof this.startOptions?.treeId === 'number' ? this.startOptions?.treeId.toString() : '',
-                nodeIdPath: (this.startOptions?.nodeIdPath ?? []).join(':')
+                nodeIdPath: (this.startOptions?.nodeIdPath ?? []).join(':'),
+                trigger: this.startOptions?.trigger ?? ''
             }
         }).catch((error) => logger.logError(`Error tracking event 'STARTUP'`, error));
         /**
