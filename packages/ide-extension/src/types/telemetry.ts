@@ -35,6 +35,7 @@ export interface TelemetryStartupEvent extends TelemetryBaseEvent {
     properties: {
         treeId: string;
         nodeIdPath: string;
+        trigger: string;
     };
 }
 
