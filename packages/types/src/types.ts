@@ -28,7 +28,15 @@ export interface GuidedAnswersQueryPagingOptions {
     offset: number;
 }
 
-export type GuidedAnswerTreeSearchHit = GuidedAnswerTree & { SCORE: number };
+export interface GuidedAnswerTreeSearchAction {
+    DETAIL: string;
+    NODE_ID: GuidedAnswerNodeId;
+    SCORE: number;
+    TITLE: string;
+    TREE_ID: GuidedAnswerTreeId;
+}
+
+export type GuidedAnswerTreeSearchHit = GuidedAnswerTree & { ACTION: GuidedAnswerTreeSearchAction; SCORE: number };
 
 export type ProductFilter = { PRODUCT: string; COUNT: number };
 
