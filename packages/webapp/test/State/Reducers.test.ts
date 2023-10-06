@@ -16,7 +16,10 @@ import {
     GO_TO_HOME_PAGE,
     SET_QUICK_FILTERS,
     GUIDE_FEEDBACK,
-    SEARCH_TREE
+    SEARCH_TREE,
+    EXPAND_ALL_SEARCH_NODES,
+    COLLAPSE_ALL_SEARCH_NODES,
+    EXPAND_SEARCH_NODES_FOR_TREE
 } from '@sap/guided-answers-extension-types';
 import type { GuidedAnswerTreeSearchHit, AppState, GuidedAnswerActions } from '@sap/guided-answers-extension-types';
 
@@ -30,7 +33,8 @@ const mockedPayload = {
             FIRST_NODE_ID: 100,
             SCORE: 0.1,
             COMPONENT: 'C1',
-            PRODUCT: 'P_one'
+            PRODUCT: 'P_one',
+            ACTIONS: []
         },
         {
             TREE_ID: 2,
@@ -40,7 +44,11 @@ const mockedPayload = {
             FIRST_NODE_ID: 200,
             SCORE: 0.2,
             COMPONENT: 'C2',
-            PRODUCT: 'P_two'
+            PRODUCT: 'P_two',
+            ACTIONS: [
+                { TITLE: 'One', DETAIL: 'First node', NODE_ID: 1, TREE_ID: 2, SCORE: 0.2 },
+                { TITLE: 'Two', DETAIL: 'Second node', NODE_ID: 2, TREE_ID: 2, SCORE: 0.2 }
+            ]
         }
     ],
     resultSize: 2,
@@ -69,7 +77,8 @@ const mockedInitState = {
     pageSize: 20,
     activeScreen: 'HOME',
     lastVisitedGuides: [],
-    quickFilters: []
+    quickFilters: [],
+    searchResultVisibleNodeCount: {}
 };
 
 const mockedActiveGuidedAnswerNode = [
@@ -103,7 +112,8 @@ const mockedGuidedAnswerTreeSearchResult = {
             FIRST_NODE_ID: 100,
             SCORE: 0.1,
             COMPONENT: 'C1',
-            PRODUCT: 'P_one'
+            PRODUCT: 'P_one',
+            ACTIONS: []
         },
         {
             TREE_ID: 2,
@@ -113,7 +123,11 @@ const mockedGuidedAnswerTreeSearchResult = {
             FIRST_NODE_ID: 200,
             SCORE: 0.2,
             COMPONENT: 'C2',
-            PRODUCT: 'P_two'
+            PRODUCT: 'P_two',
+            ACTIONS: [
+                { TITLE: 'One', DETAIL: 'First node', NODE_ID: 1, TREE_ID: 2, SCORE: 0.2 },
+                { TITLE: 'Two', DETAIL: 'Second node', NODE_ID: 2, TREE_ID: 2, SCORE: 0.2 }
+            ]
         }
     ],
     resultSize: 2,
@@ -170,7 +184,11 @@ describe('Test functions in reducers', () => {
             pageSize: 20,
             activeScreen: 'SEARCH',
             lastVisitedGuides: [],
-            quickFilters: []
+            quickFilters: [],
+            searchResultVisibleNodeCount: {
+                '1': 0,
+                '2': 2
+            }
         };
 
         expect(answersWithDefaultState).toEqual(expected);
@@ -179,13 +197,15 @@ describe('Test functions in reducers', () => {
 
     it('Should add new results to existing guided answers trees (paging)', () => {
         const state = getInitialState();
-        state.guidedAnswerTreeSearchResult.trees = [{ TREE_ID: 1 } as GuidedAnswerTreeSearchHit];
+        state.guidedAnswerTreeSearchResult.trees = [
+            { TREE_ID: 1, ACTIONS: [] } as unknown as GuidedAnswerTreeSearchHit
+        ];
 
         const newState = reducer(state, {
             type: UPDATE_GUIDED_ANSWER_TREES,
             payload: {
                 searchResult: {
-                    trees: [{ TREE_ID: 2 } as GuidedAnswerTreeSearchHit],
+                    trees: [{ TREE_ID: 2, ACTIONS: [{}, {}] } as GuidedAnswerTreeSearchHit],
                     resultSize: 2,
                     componentFilters: [],
                     productFilters: []
@@ -195,10 +215,17 @@ describe('Test functions in reducers', () => {
         });
 
         expect(newState.guidedAnswerTreeSearchResult).toEqual({
-            trees: [{ TREE_ID: 1 }, { TREE_ID: 2 }],
+            trees: [
+                { TREE_ID: 1, ACTIONS: [] },
+                { TREE_ID: 2, ACTIONS: [{}, {}] }
+            ],
             resultSize: 2,
             componentFilters: [],
             productFilters: []
+        });
+        expect(newState.searchResultVisibleNodeCount).toEqual({
+            '1': 0,
+            '2': 2
         });
     });
 
@@ -242,7 +269,8 @@ describe('Test functions in reducers', () => {
             pageSize: 20,
             activeScreen: 'NODE',
             lastVisitedGuides: [],
-            quickFilters: []
+            quickFilters: [],
+            searchResultVisibleNodeCount: {}
         });
 
         const mockedInitStateWithActiveGuidedNode: any = mockedInitState;
@@ -274,7 +302,8 @@ describe('Test functions in reducers', () => {
             pageSize: 20,
             activeScreen: 'NODE',
             lastVisitedGuides: [],
-            quickFilters: []
+            quickFilters: [],
+            searchResultVisibleNodeCount: {}
         });
     });
 
@@ -425,6 +454,60 @@ describe('Test functions in reducers', () => {
         expect(searchTreeState.selectedProductFilters).toEqual([]);
         expect(searchTreeState.selectedComponentFilters).toEqual([]);
         expect(searchTreeState.activeScreen).toEqual('SEARCH');
+    });
+
+    it('Should expand all search nodes', () => {
+        const initialState = getInitialState();
+        initialState.guidedAnswerTreeSearchResult.trees = [
+            { TREE_ID: 1, ACTIONS: [{}, {}] } as unknown as GuidedAnswerTreeSearchHit,
+            { TREE_ID: 2, ACTIONS: [{}, {}, {}] } as unknown as GuidedAnswerTreeSearchHit
+        ];
+        initialState.searchResultVisibleNodeCount = {
+            1: 1,
+            2: 1
+        };
+
+        const newState = reducer(initialState, { type: EXPAND_ALL_SEARCH_NODES });
+        expect(newState.searchResultVisibleNodeCount).toEqual({
+            1: 2,
+            2: 3
+        });
+    });
+
+    it('Should collapse all search nodes', () => {
+        const initialState = getInitialState();
+        initialState.guidedAnswerTreeSearchResult.trees = [
+            { TREE_ID: 1, ACTIONS: [{}, {}] } as unknown as GuidedAnswerTreeSearchHit,
+            { TREE_ID: 2, ACTIONS: [{}, {}, {}] } as unknown as GuidedAnswerTreeSearchHit
+        ];
+        initialState.searchResultVisibleNodeCount = {
+            1: 2,
+            2: 1
+        };
+
+        const newState = reducer(initialState, { type: COLLAPSE_ALL_SEARCH_NODES });
+        expect(newState.searchResultVisibleNodeCount).toEqual({
+            1: 0,
+            2: 0
+        });
+    });
+
+    it('Should expand search nodes for tree', () => {
+        const initialState = getInitialState();
+        initialState.guidedAnswerTreeSearchResult.trees = [
+            { TREE_ID: 1, ACTIONS: [{}, {}] } as unknown as GuidedAnswerTreeSearchHit,
+            { TREE_ID: 2, ACTIONS: [{}, {}, {}] } as unknown as GuidedAnswerTreeSearchHit
+        ];
+        initialState.searchResultVisibleNodeCount = {
+            1: 1,
+            2: 1
+        };
+
+        const newState = reducer(initialState, { type: EXPAND_SEARCH_NODES_FOR_TREE, payload: 2 });
+        expect(newState.searchResultVisibleNodeCount).toEqual({
+            1: 1,
+            2: 3
+        });
     });
 
     it('Should restore the app state', () => {

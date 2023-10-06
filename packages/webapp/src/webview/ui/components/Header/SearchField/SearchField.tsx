@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import type { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import { UISearchBox } from '@sap-ux/ui-components';
-
 import { Filters } from '../Filters';
+import { CollapseButtons } from '../CollapseButtons';
 
 let timer: NodeJS.Timeout;
 /**
@@ -42,7 +42,16 @@ export function SearchField() {
                 id="search-field"
                 onClear={() => onChange('')}
                 onChange={(e: any) => onChange(e?.target?.value || '')}></UISearchBox>
-            {appState.activeScreen === 'SEARCH' && <Filters />}
+
+            {appState.activeScreen === 'SEARCH' && (
+                <>
+                    <Filters />
+                    <div
+                        className="guided-answer__header__divider"
+                        style={{ marginTop: 0, marginLeft: 5, marginRight: 5 }}></div>
+                    <CollapseButtons />
+                </>
+            )}
         </div>
     );
 }

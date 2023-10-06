@@ -36,7 +36,7 @@ export interface GuidedAnswerTreeSearchAction {
     TREE_ID: GuidedAnswerTreeId;
 }
 
-export type GuidedAnswerTreeSearchHit = GuidedAnswerTree & { ACTION: GuidedAnswerTreeSearchAction; SCORE: number };
+export type GuidedAnswerTreeSearchHit = GuidedAnswerTree & { ACTIONS: GuidedAnswerTreeSearchAction[]; SCORE: number };
 
 export type ProductFilter = { PRODUCT: string; COUNT: number };
 
@@ -227,7 +227,10 @@ export type GuidedAnswerActions =
     | UpdateGuidedAnswerTrees
     | UpdateNetworkStatus
     | WebviewReady
-    | SetQuickFilters;
+    | SetQuickFilters
+    | ExpandAllSearchNodes
+    | CollapseAllSearchNodes
+    | ExpandSearchNodesForTree;
 
 export type NetworkStatus = 'OK' | 'LOADING' | 'ERROR';
 
@@ -249,6 +252,7 @@ export interface AppState {
     activeScreen: 'HOME' | 'SEARCH' | 'NODE';
     lastVisitedGuides: LastVisitedGuide[];
     quickFilters: GuidedAnswersQueryFilterOptions[];
+    searchResultVisibleNodeCount: Record<GuidedAnswerTreeId, number>;
 }
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
@@ -459,4 +463,20 @@ export const SET_QUICK_FILTERS = 'SET_QUICK_FILTERS';
 export interface SetQuickFilters {
     type: typeof SET_QUICK_FILTERS;
     payload: GuidedAnswersQueryFilterOptions[];
+}
+
+export const EXPAND_ALL_SEARCH_NODES = 'EXPAND_ALL_SEARCH_NODES';
+export interface ExpandAllSearchNodes {
+    type: typeof EXPAND_ALL_SEARCH_NODES;
+}
+
+export const COLLAPSE_ALL_SEARCH_NODES = 'COLLAPSE_ALL_SEARCH_NODES';
+export interface CollapseAllSearchNodes {
+    type: typeof COLLAPSE_ALL_SEARCH_NODES;
+}
+
+export const EXPAND_SEARCH_NODES_FOR_TREE = 'EXPAND_SEARCH_NODES_FOR_TREE';
+export interface ExpandSearchNodesForTree {
+    type: typeof EXPAND_SEARCH_NODES_FOR_TREE;
+    payload: number;
 }

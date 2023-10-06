@@ -41,13 +41,7 @@ describe('Guided Answers Api: getTrees()', () => {
                     SCORE: 0.1,
                     COMPONENT: 'C1',
                     PRODUCT: 'P_one',
-                    ACTION: {
-                        DETAIL: 'detail',
-                        NODE_ID: 11,
-                        SCORE: 0.11,
-                        TITLE: 'Node',
-                        TREE_ID: 1
-                    }
+                    ACTIONS: []
                 },
                 {
                     TREE_ID: 2,
@@ -58,13 +52,7 @@ describe('Guided Answers Api: getTrees()', () => {
                     SCORE: 0.2,
                     COMPONENT: 'C2',
                     PRODUCT: 'P_two',
-                    ACTION: {
-                        DETAIL: 'detail',
-                        NODE_ID: 12,
-                        SCORE: 0.12,
-                        TITLE: 'Node',
-                        TREE_ID: 2
-                    }
+                    ACTIONS: []
                 },
                 {
                     TREE_ID: 3,
@@ -75,13 +63,7 @@ describe('Guided Answers Api: getTrees()', () => {
                     SCORE: 0.3,
                     COMPONENT: 'C3',
                     PRODUCT: 'P_three',
-                    ACTION: {
-                        DETAIL: 'detail',
-                        NODE_ID: 13,
-                        SCORE: 0.13,
-                        TITLE: 'Node',
-                        TREE_ID: 3
-                    }
+                    ACTIONS: []
                 }
             ],
             resultSize: 3,
@@ -112,13 +94,7 @@ describe('Guided Answers Api: getTrees()', () => {
                     SCORE: 0.1,
                     COMPONENT: 'C1',
                     PRODUCT: 'P_one',
-                    ACTION: {
-                        DETAIL: 'detail',
-                        NODE_ID: 11,
-                        SCORE: 0.11,
-                        TITLE: 'Node',
-                        TREE_ID: 1
-                    }
+                    ACTIONS: []
                 },
                 {
                     TREE_ID: 2,
@@ -129,13 +105,7 @@ describe('Guided Answers Api: getTrees()', () => {
                     SCORE: 0.2,
                     COMPONENT: 'C2',
                     PRODUCT: 'P_two',
-                    ACTION: {
-                        DETAIL: 'detail',
-                        NODE_ID: 12,
-                        SCORE: 0.12,
-                        TITLE: 'Node',
-                        TREE_ID: 2
-                    }
+                    ACTIONS: []
                 },
                 {
                     TREE_ID: 3,
@@ -146,13 +116,7 @@ describe('Guided Answers Api: getTrees()', () => {
                     SCORE: 0.3,
                     COMPONENT: 'C3',
                     PRODUCT: 'P_three',
-                    ACTION: {
-                        DETAIL: 'detail',
-                        NODE_ID: 13,
-                        SCORE: 0.13,
-                        TITLE: 'Node',
-                        TREE_ID: 3
-                    }
+                    ACTIONS: []
                 }
             ],
             resultSize: 3,

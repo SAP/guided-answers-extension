@@ -30,5 +30,8 @@ export {
     getLastVisitedGuides,
     updateBookmark,
     synchronizeBookmark,
-    updateLastVisitedGuide
+    updateLastVisitedGuide,
+    expandAllSearchNodes,
+    collapseAllSearchNodes,
+    expandSearchNodesForTree
 } from '@sap/guided-answers-extension-types';

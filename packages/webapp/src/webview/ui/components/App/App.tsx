@@ -7,14 +7,12 @@ import { GuidedAnswerNode } from '../GuidedAnswerNode';
 import { Header } from '../Header';
 import { ErrorScreen } from '../ErrorScreen';
 import { FiltersRibbon } from '../Header/Filters';
-import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-import './App.scss';
-import { initIcons, UILoader, UIIcon, UiIcons } from '@sap-ux/ui-components';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { initIcons, UILoader } from '@sap-ux/ui-components';
 import { SpinnerSize } from '@fluentui/react';
 import i18next from 'i18next';
-import { TreeItemBottomSection } from '../TreeItemBottomSection';
 import { HomeGrid } from '../HomeGrid';
+import { SearchResults } from '../SearchResults';
+import './App.scss';
 
 initIcons();
 
@@ -50,33 +48,6 @@ export function App(): ReactElement {
         };
     }, []);
 
-    function fetchData() {
-        if (appState.guidedAnswerTreeSearchResult.resultSize > appState.pageSize) {
-            actions.searchTree({
-                query: appState.query,
-                filters: {
-                    product: appState.selectedProductFilters,
-                    component: appState.selectedComponentFilters
-                },
-                paging: {
-                    responseSize: appState.pageSize,
-                    offset: appState.guidedAnswerTreeSearchResult.trees.length
-                }
-            });
-        }
-    }
-
-    /**
-     * Check if a tree is bookmarked.
-     *
-     * @param treeId - id of the tree
-     * @param treeId.toString - id a string
-     * @returns boolean
-     */
-    function isBookmark(treeId: { toString: () => string }): boolean {
-        return !!Object.keys(appState.bookmarks).find((bookmarkKey) => bookmarkKey.startsWith(`${treeId}-`));
-    }
-
     let content;
     if (appState.networkStatus === 'LOADING') {
         content = <UILoader id="loading-indicator" size={SpinnerSize.large} />;
@@ -87,53 +58,7 @@ export function App(): ReactElement {
     } else if (appState.activeScreen === 'HOME') {
         content = <HomeGrid />;
     } else {
-        content =
-            appState.guidedAnswerTreeSearchResult.resultSize === 0 ? (
-                <ErrorScreen title={i18next.t('NO_ANSWERS_FOUND')} subtitle={i18next.t('PLEASE_MODIFY_SEARCH')} />
-            ) : (
-                <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
-                    <ul className="striped-list" role="listbox">
-                        <InfiniteScroll
-                            dataLength={appState.guidedAnswerTreeSearchResult.trees.length} //This is important field to render the next data
-                            next={fetchData}
-                            loader={<UILoader id="loading-indicator" size={SpinnerSize.large} />}
-                            hasMore={
-                                appState.guidedAnswerTreeSearchResult.trees.length <
-                                appState.guidedAnswerTreeSearchResult.resultSize
-                            }>
-                            {appState.guidedAnswerTreeSearchResult.trees.map((tree) => {
-                                return (
-                                    <li key={`tree-item-${tree.TITLE}`} className="tree-item" role="option">
-                                        <button
-                                            className="guided-answer__tree"
-                                            onClick={(): void => {
-                                                actions.setActiveTree(tree);
-                                                actions.selectNode(tree.FIRST_NODE_ID);
-                                                document.body.focus();
-                                            }}>
-                                            <div className="guided-answer__tree__ul">
-                                                <h3 className="guided-answer__tree__title">
-                                                    {isBookmark(tree.TREE_ID) ? (
-                                                        <UIIcon iconName={UiIcons.StarActive} />
-                                                    ) : (
-                                                        ''
-                                                    )}{' '}
-                                                    {tree.TITLE}
-                                                </h3>
-                                                <TreeItemBottomSection
-                                                    description={tree.DESCRIPTION}
-                                                    product={tree.PRODUCT}
-                                                    component={tree.COMPONENT}
-                                                />
-                                            </div>
-                                        </button>
-                                    </li>
-                                );
-                            })}
-                        </InfiniteScroll>
-                    </ul>
-                </FocusZone>
-            );
+        content = <SearchResults />;
     }
     return (
         <div className="guided-answer">

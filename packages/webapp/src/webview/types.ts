@@ -1,1 +1,5 @@
-export type { AppState } from '@sap/guided-answers-extension-types';
+export type {
+    AppState,
+    GuidedAnswerTreeSearchHit,
+    GuidedAnswerTreeSearchAction
+} from '@sap/guided-answers-extension-types';

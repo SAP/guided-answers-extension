@@ -1,0 +1,95 @@
+.guided-answer__search-results {
+    &__node-list {
+        padding-bottom: 10px;
+
+        >ul {
+            padding: 0;
+        }
+    }
+
+    &__separator {
+        margin: 0 15px 5px 15px;
+        border: none;
+        border-top: 1px solid var(--vscode-editorWidget-border);
+    }
+
+    &__view-more {
+        margin: 10px 0 0 30px;
+        cursor: pointer;
+
+        &:hover {
+            >span {
+                text-decoration-line: none;
+            }
+        }
+
+        >i {
+            height: 16px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        >span {
+            color: var(--vscode-foreground);
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 16px;
+            text-decoration-line: underline;
+            vertical-align: middle;
+        }
+    }
+
+    &__node {
+        list-style-type: none;
+
+        >button {
+            display: flex;
+            width: 100%;
+            padding: 5px 15px 5px 15px;
+
+            &:hover {
+                background-color: var(--vscode-list-hoverBackground);
+                outline: 1px solid var(--vscode-focusBorder, #007fd4);
+                outline-offset: -1px;
+            }
+
+            &:focus-visible {
+                outline: 1px solid var(--vscode-focusBorder, #007fd4);
+                outline-offset: -2px;
+            }
+        }
+
+        &__indent {
+            width: 10px;
+            height: 5px;
+            margin: 3px 5px 0 0;
+            border-bottom: 1px solid var(--vscode-editorWidget-border);
+            border-left: 1px solid var(--vscode-editorWidget-border);
+        }
+
+        &__title {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 0 0 5px 0;
+            padding: 0;
+            font-size: 11px;
+            line-height: 16px;
+            color: var(--vscode-settings-headerForeground);
+            text-align: left;
+
+            >i {
+                height: 16px;
+            }
+        }
+
+        &__detail {
+            margin: 0;
+            padding: 0;
+            font-size: 11px;
+            line-height: 16px;
+            color: var(--vscode-foreground);
+            text-align: left;
+        }
+    }
+}

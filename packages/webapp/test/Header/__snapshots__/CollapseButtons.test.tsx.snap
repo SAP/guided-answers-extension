@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CollapseButtons /> renders without crashing 1`] = `
+<div>
+  <button
+    class="ms-Button ms-Button--icon guided-answer__header__navButtons root-166"
+    data-is-focusable="true"
+    id="expand-all-button"
+    style="margin-top: 0px;"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-167"
+      data-automationid="splitbuttonprimary"
+    >
+      <i
+        aria-hidden="true"
+        class="ms-Icon root-162 ms-Button-icon icon-169"
+        data-icon-name="ExpandNodes"
+      />
+    </span>
+  </button>
+  <button
+    class="ms-Button ms-Button--icon guided-answer__header__navButtons root-166"
+    data-is-focusable="true"
+    id="collapse-all-button"
+    style="margin-top: 0px;"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-167"
+      data-automationid="splitbuttonprimary"
+    >
+      <i
+        aria-hidden="true"
+        class="ms-Icon root-162 ms-Button-icon icon-169"
+        data-icon-name="ContractNodes"
+      />
+    </span>
+  </button>
+</div>
+`;
+
+exports[`<CollapseButtons /> renders without crashing, disabled buttons 1`] = `
+<div>
+  <button
+    aria-disabled="true"
+    class="ms-Button ms-Button--icon is-disabled guided-answer__header__navButtons root-174"
+    data-is-focusable="false"
+    disabled=""
+    id="expand-all-button"
+    style="margin-top: 0px;"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-167"
+      data-automationid="splitbuttonprimary"
+    >
+      <i
+        aria-hidden="true"
+        class="ms-Icon root-162 ms-Button-icon icon-175"
+        data-icon-name="ExpandNodes"
+      />
+    </span>
+  </button>
+  <button
+    aria-disabled="true"
+    class="ms-Button ms-Button--icon is-disabled guided-answer__header__navButtons root-174"
+    data-is-focusable="false"
+    disabled=""
+    id="collapse-all-button"
+    style="margin-top: 0px;"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-167"
+      data-automationid="splitbuttonprimary"
+    >
+      <i
+        aria-hidden="true"
+        class="ms-Icon root-162 ms-Button-icon icon-175"
+        data-icon-name="ContractNodes"
+      />
+    </span>
+  </button>
+</div>
+`;

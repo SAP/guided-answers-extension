@@ -19,7 +19,8 @@ import type {
     FeedbackStatus,
     GuidedAnswerNode,
     GetLastVisitedGuides,
-    SetQuickFilters
+    SetQuickFilters,
+    ExpandSearchNodesForTree
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -52,7 +53,8 @@ export function getInitialState(): AppState {
         bookmarks: {},
         activeScreen: 'HOME',
         lastVisitedGuides: [],
-        quickFilters: []
+        quickFilters: [],
+        searchResultVisibleNodeCount: {}
     };
 }
 
@@ -99,7 +101,10 @@ const reducers: Partial<Reducers> = {
     GET_BOOKMARKS: getBookmarksReducer,
     UPDATE_BOOKMARKS: updateBookmarksReducer,
     GET_LAST_VISITED_GUIDES: getLastVisitedGuidesReducer,
-    SET_QUICK_FILTERS: setQuickFiltersReducer
+    SET_QUICK_FILTERS: setQuickFiltersReducer,
+    EXPAND_ALL_SEARCH_NODES: expandAllSearchNodes,
+    COLLAPSE_ALL_SEARCH_NODES: collapseAllSearchNodes,
+    EXPAND_SEARCH_NODES_FOR_TREE: expandSearchNodesForTree
 };
 
 /**
@@ -142,6 +147,9 @@ function updateGuidedAnswerTreesReducer(newState: AppState, action: UpdateGuided
     newState.guidedAnswerTreeSearchResult = action.payload.searchResult;
     if ((action.payload?.pagingOptions?.offset ?? 0) > 0) {
         newState.guidedAnswerTreeSearchResult.trees.unshift(...trees);
+    }
+    for (const tree of newState.guidedAnswerTreeSearchResult.trees) {
+        newState.searchResultVisibleNodeCount[tree.TREE_ID] = Math.min(tree.ACTIONS.length, 2);
     }
     delete newState.activeGuidedAnswer;
     newState.activeScreen = 'SEARCH';
@@ -289,6 +297,7 @@ function setQueryValueReducer(newState: AppState, action: SetQueryValue): AppSta
         productFilters: [],
         trees: []
     };
+    newState.searchResultVisibleNodeCount = {};
     newState.query = action.payload;
     return newState;
 }
@@ -460,6 +469,47 @@ function updatePageSize(newState: AppState, action: SetPageSize): AppState {
  */
 function setQuickFiltersReducer(newState: AppState, action: SetQuickFilters): AppState {
     newState.quickFilters = action.payload;
+    return newState;
+}
+
+/**
+ * Expand all search nodes.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @returns new state with changes
+ */
+function expandAllSearchNodes(newState: AppState): AppState {
+    for (const tree of newState.guidedAnswerTreeSearchResult.trees) {
+        newState.searchResultVisibleNodeCount[tree.TREE_ID] = tree.ACTIONS.length;
+    }
+    return newState;
+}
+
+/**
+ * Collapse all search nodes.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @returns new state with changes
+ */
+function collapseAllSearchNodes(newState: AppState): AppState {
+    for (const tree of newState.guidedAnswerTreeSearchResult.trees) {
+        newState.searchResultVisibleNodeCount[tree.TREE_ID] = 0;
+    }
+    return newState;
+}
+
+/**
+ * Expand search nodes for a specific tree.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function expandSearchNodesForTree(newState: AppState, action: ExpandSearchNodesForTree): AppState {
+    const tree = newState.guidedAnswerTreeSearchResult.trees.find((t) => t.TREE_ID === action.payload);
+    if (tree) {
+        newState.searchResultVisibleNodeCount[tree.TREE_ID] = tree.ACTIONS.length;
+    }
     return newState;
 }
 

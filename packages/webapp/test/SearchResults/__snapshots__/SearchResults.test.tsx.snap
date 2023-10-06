@@ -1,0 +1,253 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchResults /> renders without crashing 1`] = `
+<div>
+  <div
+    class="ms-FocusZone css-166"
+    data-focuszone-id="FocusZone0"
+  >
+    <ul
+      class="striped-list"
+      role="listbox"
+    >
+      <div
+        class="infinite-scroll-component__outerdiv"
+      >
+        <div
+          class="infinite-scroll-component "
+          style="height: auto; overflow: auto;"
+        >
+          <li
+            class="tree-item"
+            role="option"
+          >
+            <button
+              class="guided-answer__tree"
+              id="search-result-tree-button"
+              tabindex="0"
+            >
+              <div
+                class="guided-answer__tree__ul"
+              >
+                <h3
+                  class="guided-answer__tree__title"
+                >
+                  Tree title
+                   
+                  <i
+                    aria-hidden="true"
+                    class="ts-icon root-105"
+                    data-icon-name="StarActive"
+                  />
+                </h3>
+                <div
+                  class="bottom-section"
+                  id="bottom-section"
+                >
+                  <span
+                    class="guided-answer__tree__desc"
+                  >
+                    Tree description
+                  </span>
+                  <div
+                    class="component-and-product-container"
+                    style="margin-top: 10px;"
+                  >
+                    <div
+                      class="guided-answer__tree__product"
+                      id="product-container"
+                    >
+                      <span
+                        class="bottom-title"
+                      >
+                        Product: 
+                      </span>
+                      product
+                    </div>
+                    <div
+                      class="guided-answer__tree__component"
+                      id="component-container"
+                    >
+                      <span
+                        class="bottom-title"
+                      >
+                        Component: 
+                      </span>
+                      component
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </button>
+            <div
+              class="guided-answer__search-results__node-list"
+            >
+              <hr
+                class="guided-answer__search-results__separator"
+              />
+              <ul
+                role="listbox"
+              >
+                <li
+                  class="guided-answer__search-results__node"
+                  role="option"
+                >
+                  <button
+                    id="search-result-node-button"
+                    tabindex="-1"
+                  >
+                    <div
+                      class="guided-answer__search-results__node__indent"
+                    />
+                    <div>
+                      <h3
+                        class="guided-answer__search-results__node__title"
+                      >
+                        <span>
+                          Node title
+                        </span>
+                        <i
+                          aria-hidden="true"
+                          class="ts-icon root-105"
+                          data-icon-name="StarActive"
+                        />
+                      </h3>
+                      <p
+                        class="guided-answer__search-results__node__detail"
+                      >
+                        Node detail
+                      </p>
+                    </div>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li
+            class="tree-item"
+            role="option"
+          >
+            <button
+              class="guided-answer__tree"
+              id="search-result-tree-button"
+              tabindex="-1"
+            >
+              <div
+                class="guided-answer__tree__ul"
+              >
+                <h3
+                  class="guided-answer__tree__title"
+                >
+                  Tree title 2
+                   
+                  
+                </h3>
+                <div
+                  class="bottom-section"
+                  id="bottom-section"
+                >
+                  <span
+                    class="guided-answer__tree__desc"
+                  >
+                    Tree description 2
+                  </span>
+                  <div
+                    class="component-and-product-container"
+                    style="margin-top: 10px;"
+                  >
+                    <div
+                      class="guided-answer__tree__product"
+                      id="product-container"
+                    >
+                      <span
+                        class="bottom-title"
+                      >
+                        Product: 
+                      </span>
+                      product
+                    </div>
+                    <div
+                      class="guided-answer__tree__component"
+                      id="component-container"
+                    >
+                      <span
+                        class="bottom-title"
+                      >
+                        Component: 
+                      </span>
+                      component
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </button>
+            <div
+              class="guided-answer__search-results__node-list"
+            >
+              <hr
+                class="guided-answer__search-results__separator"
+              />
+              <ul
+                role="listbox"
+              >
+                <li
+                  class="guided-answer__search-results__node"
+                  role="option"
+                >
+                  <button
+                    id="search-result-node-button"
+                    tabindex="-1"
+                  >
+                    <div
+                      class="guided-answer__search-results__node__indent"
+                    />
+                    <div>
+                      <h3
+                        class="guided-answer__search-results__node__title"
+                      >
+                        <span>
+                          Node title
+                        </span>
+                        
+                      </h3>
+                      <p
+                        class="guided-answer__search-results__node__detail"
+                      >
+                        Node detail
+                      </p>
+                    </div>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`<SearchResults /> renders without crashing, no results 1`] = `
+<div>
+  <div
+    class="error-screen"
+  >
+    <div
+      class="error-screen__objects"
+    >
+      <h1
+        class="error-screen__object__title"
+      />
+      <h2
+        class="error-screen__object__subtitle"
+      />
+      <span
+        class="error-screen__object__logo"
+      >
+        <svg />
+      </span>
+    </div>
+  </div>
+</div>
+`;
