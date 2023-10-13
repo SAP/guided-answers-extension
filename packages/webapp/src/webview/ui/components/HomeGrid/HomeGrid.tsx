@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import type { AppState } from '../../../types';
 import { Bookmarks } from './Bookmarks';
 import { LastVisited } from './LastVisited';
-import { QuickFilters } from './QuickFilters';
+import { Filters } from './Filters';
 import './HomeGrid.scss';
 
 /**
@@ -17,13 +17,13 @@ export function HomeGrid(): ReactElement {
 
     const [hasBookmarks, setHasBookmarks] = useState(false);
     const hasLastVisited = !!appState.lastVisitedGuides.length;
-    const hasQuickFilters = !!appState.quickFilters.length;
+    const hasFilters = !!appState.autoFilters.length || !!appState.customFilters.length;
 
     if (!hasBookmarks && !!Object.keys(appState.bookmarks).length) {
         setHasBookmarks(true);
     }
 
-    const isTwoColumnLayout = hasLastVisited && hasBookmarks && hasQuickFilters;
+    const isTwoColumnLayout = hasLastVisited && hasBookmarks && hasFilters;
 
     return isTwoColumnLayout ? (
         <div className="guided-answer__home-grid">
@@ -32,7 +32,7 @@ export function HomeGrid(): ReactElement {
             </div>
             <div className="guided-answer__home-grid__column">
                 <LastVisited />
-                <QuickFilters />
+                <Filters />
             </div>
         </div>
     ) : (
@@ -40,7 +40,7 @@ export function HomeGrid(): ReactElement {
             <div className="guided-answer__home-grid__column">
                 {hasLastVisited && <LastVisited />}
                 {hasBookmarks && <Bookmarks />}
-                {hasQuickFilters && <QuickFilters />}
+                {hasFilters && <Filters />}
             </div>
         </div>
     );

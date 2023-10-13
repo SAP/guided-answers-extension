@@ -14,7 +14,7 @@ import {
     RESTORE_STATE,
     RESET_FILTERS,
     GO_TO_HOME_PAGE,
-    SET_QUICK_FILTERS,
+    SET_AUTO_FILTERS,
     GUIDE_FEEDBACK,
     SEARCH_TREE
 } from '@sap/guided-answers-extension-types';
@@ -69,7 +69,7 @@ const mockedInitState = {
     pageSize: 20,
     activeScreen: 'HOME',
     lastVisitedGuides: [],
-    quickFilters: []
+    autoFilters: []
 };
 
 const mockedActiveGuidedAnswerNode = [
@@ -170,7 +170,7 @@ describe('Test functions in reducers', () => {
             pageSize: 20,
             activeScreen: 'SEARCH',
             lastVisitedGuides: [],
-            quickFilters: []
+            autoFilters: []
         };
 
         expect(answersWithDefaultState).toEqual(expected);
@@ -242,7 +242,7 @@ describe('Test functions in reducers', () => {
             pageSize: 20,
             activeScreen: 'NODE',
             lastVisitedGuides: [],
-            quickFilters: []
+            autoFilters: []
         });
 
         const mockedInitStateWithActiveGuidedNode: any = mockedInitState;
@@ -274,7 +274,7 @@ describe('Test functions in reducers', () => {
             pageSize: 20,
             activeScreen: 'NODE',
             lastVisitedGuides: [],
-            quickFilters: []
+            autoFilters: []
         });
     });
 
@@ -388,14 +388,14 @@ describe('Test functions in reducers', () => {
         expect(resetSelectedFiltersState.selectedComponentFilters).toEqual([]);
     });
 
-    it('Should set quick filters', () => {
+    it('Should set auto filters', () => {
         const state = getInitialState();
 
-        const setQuickFiltersState = reducer(state, {
-            type: SET_QUICK_FILTERS,
+        const setAutoFiltersState = reducer(state, {
+            type: SET_AUTO_FILTERS,
             payload: [{ product: ['product'], component: ['component'] }]
         });
-        expect(setQuickFiltersState.quickFilters).toEqual([{ product: ['product'], component: ['component'] }]);
+        expect(setAutoFiltersState.autoFilters).toEqual([{ product: ['product'], component: ['component'] }]);
     });
 
     it('Should set filters to search tree', () => {

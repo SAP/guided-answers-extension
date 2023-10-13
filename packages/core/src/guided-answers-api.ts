@@ -11,7 +11,7 @@ import type {
     GuidedAnswerNode,
     GuidedAnswerNodeId,
     GuidedAnswersFeedback,
-    GuidedAnswersQueryFilterOptions,
+    FilterStack,
     GuidedAnswersQueryOptions,
     GuidedAnswersQueryPagingOptions,
     GuidedAnswerTree,
@@ -96,13 +96,13 @@ function convertImageSrc(body: string, host: string): string {
  * Convert query filter options to URL get parameter string.
  *
  * @param filters - optional filters
- * @param filters.component - optional component filter
- * @param filters.product - optional product filter
+ * @param filters.component - component filter
+ * @param filters.product - product filter
  * @param paging - optional paging, if not provided set to high response size with 0 offset
  * @returns - URL get parameters as string
  */
 function convertQueryOptionsToGetParams(
-    filters: GuidedAnswersQueryFilterOptions = {},
+    filters: FilterStack = {},
     paging: GuidedAnswersQueryPagingOptions = { responseSize: DEFAULT_MAX_RESULTS, offset: 0 }
 ): string {
     const parameters = [
@@ -110,7 +110,7 @@ function convertQueryOptionsToGetParams(
         ...Object.keys(filters).map(
             (filterName) =>
                 `${filterName}=${filters[filterName as keyof typeof filters]
-                    ?.map((filterValue) => encodeURIComponent(`"${filterValue}"`))
+                    .map((filterValue) => encodeURIComponent(`"${filterValue}"`))
                     .join(',')}`
         ),
         // Paging parameters

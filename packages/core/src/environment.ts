@@ -1,5 +1,5 @@
 import { core, devspace } from '@sap/bas-sdk';
-import type { GuidedAnswersQueryFilterOptions, IDE } from '@sap/guided-answers-extension-types';
+import type { FilterStack, IDE } from '@sap/guided-answers-extension-types';
 import environmentJson from './environment.json';
 
 const devSpaceComponentsMap: { [devspace: string]: string[] } = environmentJson.devSpaceComponentsMap;
@@ -42,8 +42,8 @@ export async function getDevSpace(): Promise<string> {
  * @param ide - runtime IDE, VSCODE or SBAS
  * @returns - filters for given ide
  */
-export async function getFiltersForIde(ide: IDE): Promise<GuidedAnswersQueryFilterOptions> {
-    const filterOptions: GuidedAnswersQueryFilterOptions = {};
+export async function getFiltersForIde(ide: IDE): Promise<FilterStack> {
+    const filterOptions: FilterStack = {};
     let components: Set<string> = new Set();
     let basDevSpace;
 

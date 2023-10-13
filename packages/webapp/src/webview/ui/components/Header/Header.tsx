@@ -24,11 +24,12 @@ export function Header(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
     const verticalSearch = appState.activeScreen === 'HOME';
     return (
-        <div
-            className={`guided-answer__header ${verticalSearch ? 'vertical' : ''}`}
-            style={{ paddingBottom: appState.activeScreen === 'NODE' ? '0' : '20px' }}>
+        <div className={`guided-answer__header ${verticalSearch ? 'vertical' : ''}`}>
             {appState.activeScreen === 'NODE' ? (
-                <FocusZone isCircularNavigation={true} className="guided-answer__header">
+                <FocusZone
+                    isCircularNavigation={true}
+                    className="guided-answer__header"
+                    style={{ paddingTop: '30px', paddingBottom: '0' }}>
                     <div className="guided-answer__header__homeButton">
                         <HomeButton />
                     </div>
