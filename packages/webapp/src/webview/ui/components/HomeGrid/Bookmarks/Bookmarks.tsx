@@ -59,7 +59,14 @@ export function Bookmarks(): ReactElement {
                         return (
                             <li key={`tree-item-${bookmarkTitle}`} className="guided-answer__bookmark">
                                 <div className="guided-answer__bookmark__title">
-                                    <a id="goto-bookmark-button" onClick={(): void => goToBookmark(bookmark)}>
+                                    <a
+                                        id="goto-bookmark-button"
+                                        onClick={(): void => goToBookmark(bookmark)}
+                                        onKeyDown={(event) => {
+                                            if (event.key === 'Enter') {
+                                                goToBookmark(bookmark);
+                                            }
+                                        }}>
                                         {bookmarkTitle}
                                     </a>
                                     <UIIconButton

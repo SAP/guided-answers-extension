@@ -23,6 +23,11 @@ export function Right(props: { activeNode: GuidedAnswerNodeType }): ReactElement
                               title={command.label}
                               onClick={() => {
                                   actions.executeCommand(command);
+                              }}
+                              onKeyDown={(event) => {
+                                  if (event.key === 'Enter') {
+                                      actions.executeCommand(command);
+                                  }
                               }}>
                               <div className="guided-answer__node__command__header">
                                   <UIIcon
