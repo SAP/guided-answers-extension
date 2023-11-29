@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.32.1
+
+### Patch Changes
+
+-   2b054b8: Fix a11y minor issues
+
 ## 1.32.0
 
 ### Minor Changes

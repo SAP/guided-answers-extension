@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.32.1
+
+### Patch Changes
+
+-   2b054b8: Fix a11y minor issues
+
 ## 1.32.0
 
 ## 1.31.1
