@@ -28,11 +28,11 @@
             font-size: 2em;
         }
 
-        &__navButtons {
+        &__button {
             display: flex;
             align-items: center;
             gap: 3px;
-            margin: 30px 0 0 0;
+            margin: 0;
             padding: 5px;
             color: var(--vscode-foreground);
             text-align: start;
@@ -52,11 +52,13 @@
             }
 
             &__text {
+                font-size: 13px;
+                line-height: 13px;
                 text-decoration: underline;
             }
         }
 
-        &__navButtons:hover {
+        &__button:hover {
             background: var(--vscode-menubar-selectionBackground);
             outline: 1px solid var(--vscode-contrastActiveBorder);
             border-radius: 3px;
@@ -66,7 +68,7 @@
             }
         }
 
-        &__navButtons:focus-visible {
+        &__button:focus-visible {
             outline: 1px solid var(--vscode-focusBorder, #007fd4);
         }
 
@@ -83,12 +85,12 @@
 
         &__restart-feedback-buttons {
             display: flex;
+            align-items: center;
         }
 
         &__divider {
             border-left: 1px solid var(--vscode-editorWidget-border);
             height: 16px;
-            margin-top: 35px;
             margin-left: 10px;
             margin-right: 10px;
         }
@@ -273,7 +275,7 @@
                 align-items: start;
             }
 
-            &__navButtons {
+            &__button {
                 text-align: center;
                 justify-content: center;
 

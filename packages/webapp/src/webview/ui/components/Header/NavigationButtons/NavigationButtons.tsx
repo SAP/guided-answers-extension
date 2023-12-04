@@ -25,13 +25,13 @@ export const HomeButton = React.memo(function HomeButton() {
     return (
         <button
             id="home-button"
-            className="guided-answer__header__navButtons"
+            className="guided-answer__header__button"
             title={i18next.t('HOME')}
             onClick={(): void => {
                 actions.goToHomePage();
             }}>
             <UIIcon iconName={UiIcons.Home} />
-            <span className="guided-answer__header__navButtons__text">{i18next.t('HOME')}</span>
+            <span className="guided-answer__header__button__text">{i18next.t('HOME')}</span>
         </button>
     );
 });
@@ -44,13 +44,13 @@ export function BackButton() {
     return (
         <button
             id="back-button"
-            className="guided-answer__header__navButtons"
+            className="guided-answer__header__button"
             title={i18next.t('STEP_BACK')}
             onClick={(): void => {
                 actions.goToPreviousPage();
             }}>
             <UIIcon iconName={UiIcons.GoLeft} />
-            <span className="guided-answer__header__navButtons__text">{i18next.t('STEP_BACK')}</span>
+            <span className="guided-answer__header__button__text">{i18next.t('STEP_BACK')}</span>
         </button>
     );
 }
@@ -63,13 +63,13 @@ export function RestartButton() {
     return (
         <button
             id="restart-button"
-            className="guided-answer__header__navButtons"
+            className="guided-answer__header__button"
             title={i18next.t('RESTART')}
             onClick={(): void => {
                 actions.restartAnswer();
             }}>
             <UIIcon iconName={UiIcons.Refresh} />
-            <span className="guided-answer__header__navButtons__text">{i18next.t('RESTART')}</span>
+            <span className="guided-answer__header__button__text">{i18next.t('RESTART')}</span>
         </button>
     );
 }
@@ -98,7 +98,7 @@ export function ShareButton() {
     return treeId ? (
         <>
             <UIIconButton
-                className="guided-answer__header__navButtons"
+                className="guided-answer__header__button"
                 id={id}
                 title={i18next.t('SHARE_THIS_GUIDE')}
                 iconProps={{ iconName: UiIcons.Link }}
@@ -185,7 +185,7 @@ export function ShareButton() {
 export function GeneralFeedbackButton() {
     return (
         <UIIconButton
-            className="guided-answer__header__navButtons"
+            className="guided-answer__header__button"
             title={i18next.t('FEEDBACK')}
             iconProps={{ iconName: UiIcons.ChatBubbles }}
             onClick={(): void => {
@@ -212,7 +212,7 @@ export function BookmarkButton() {
     return (
         <UIIconButton
             id="bookmark-button"
-            className="guided-answer__header__navButtons"
+            className="guided-answer__header__button"
             title={!bookmarks[bookmarkKey] ? i18next.t('BOOKMARK_THIS_GUIDE') : i18next.t('REMOVE_FROM_BOOKMARKS')}
             iconProps={{ iconName: !bookmarks[bookmarkKey] ? UiIcons.Star : UiIcons.StarActive }}
             onClick={(): void => {

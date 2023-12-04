@@ -46,8 +46,10 @@ import type {
     UpdateLastVisitedGuides,
     UpdateBookmarksPayload,
     GoToHomePage,
-    SetQuickFilters,
-    GuidedAnswersQueryFilterOptions
+    GetAutoFilters,
+    GetCustomFilters,
+    UpdateCustomFilters,
+    FilterStack
 } from './types';
 import {
     EXECUTE_COMMAND,
@@ -84,7 +86,9 @@ import {
     GET_LAST_VISITED_GUIDES,
     UPDATE_LAST_VISITED_GUIDES,
     GO_TO_HOME_PAGE,
-    SET_QUICK_FILTERS
+    GET_AUTO_FILTERS,
+    GET_CUSTOM_FILTERS,
+    UPDATE_CUSTOM_FILTERS
 } from './types';
 
 export const updateGuidedAnswerTrees = (payload: UpdateGuidedAnswerTrees['payload']): UpdateGuidedAnswerTrees => ({
@@ -243,7 +247,17 @@ export const updateLastVisitedGuide = (payload: LastVisitedGuide[]): UpdateLastV
     payload
 });
 
-export const setQuickFilters = (payload: GuidedAnswersQueryFilterOptions[]): SetQuickFilters => ({
-    type: SET_QUICK_FILTERS,
+export const getAutoFilters = (payload: FilterStack[]): GetAutoFilters => ({
+    type: GET_AUTO_FILTERS,
+    payload
+});
+
+export const getCustomFilters = (payload: FilterStack[]): GetCustomFilters => ({
+    type: GET_CUSTOM_FILTERS,
+    payload
+});
+
+export const updateCustomFilters = (payload: FilterStack[]): UpdateCustomFilters => ({
+    type: UPDATE_CUSTOM_FILTERS,
     payload
 });

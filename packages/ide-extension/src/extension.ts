@@ -8,6 +8,7 @@ import { GuidedAnswersUriHandler } from './links';
 import type { StartOptions } from './types';
 import { initBookmarks } from './bookmarks';
 import { initLastVisited } from './last-visited';
+import { initCustomFilters } from './custom-filters';
 
 /**
  *  Activate function is called by VSCode when the extension gets active.
@@ -23,6 +24,7 @@ export function activate(context: ExtensionContext): void {
     try {
         initBookmarks(context.globalState);
         initLastVisited(context.globalState);
+        initCustomFilters(context.globalState);
     } catch (error) {
         logError(`Error during initialization of functionality that relies on VSCode's global state storage.`, error);
     }

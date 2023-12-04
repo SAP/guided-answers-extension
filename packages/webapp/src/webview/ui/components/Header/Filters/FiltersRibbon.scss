@@ -1,31 +1,11 @@
-.clear-filters {
-    height: 25px;
-    color: var(--vscode-foreground);
-    padding: 0 5px 0px 3px;
-    text-align: start;
-    cursor: pointer;
-    background: none;
-    border: 0;
-    margin-left: 7px;
+.guided-answer__header__filter-ribbon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
 
-    >i {
-        vertical-align: middle;
-        margin-right: 3px;
+    &__text {
+        margin: 0;
     }
-
-    >span {
-        text-decoration: underline;
-        text-underline-offset: 1px;
-    }
-}
-.clear-filters:hover {
-    background: var(--vscode-menubar-selectionBackground);
-    outline: 1px solid var(--vscode-contrastActiveBorder);
-    border-radius: 3px;
-    > span {
-        text-decoration: none;
-    }
-}
-.clear-filters:focus-visible {
-    outline: 1px solid var(--vscode-focusBorder, #007fd4);
 }

@@ -18,7 +18,6 @@ import {
     RESTORE_STATE,
     SEND_TELEMETRY,
     GET_BOOKMARKS,
-    AppState,
     SYNCHRONIZE_BOOKMARK,
     UPDATE_BOOKMARKS,
     GET_LAST_VISITED_GUIDES,
@@ -34,7 +33,8 @@ import type {
     GuidedAnswerTree,
     GuidedAnswerTreeId,
     GuidedAnswerTreeSearchResult,
-    LastVisitedGuide
+    LastVisitedGuide,
+    AppState
 } from '@sap/guided-answers-extension-types';
 import { GuidedAnswersPanel, GuidedAnswersSerializer } from '../../src/panel/guidedAnswersPanel';
 import * as logger from '../../src/logger/logger';
@@ -58,7 +58,7 @@ const getWebViewPanelMock = (onDidReceiveMessage: (callback: WebviewMessageCallb
         onDidChangeViewState: jest.fn(),
         onDidDispose: jest.fn(),
         reveal: jest.fn()
-    } as unknown as WebviewPanel);
+    }) as unknown as WebviewPanel;
 
 const getApiMock = (firstNodeId?: number): GuidedAnswerAPI =>
     ({
@@ -78,7 +78,7 @@ const getApiMock = (firstNodeId?: number): GuidedAnswerAPI =>
         getTrees: () => Promise.resolve([{ TREE_ID: 1 }, { TREE_ID: 2 }, { TREE_ID: 3 }]),
         sendFeedbackOutcome: jest.fn(),
         sendFeedbackComment: jest.fn()
-    } as unknown as GuidedAnswerAPI);
+    }) as unknown as GuidedAnswerAPI;
 
 const delay = async (ms: number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -132,7 +132,7 @@ describe('GuidedAnswersPanel', () => {
         expect(loggerMock.info).toBeCalledWith('Webview is ready to receive actions');
     });
 
-    test('GuidedAnswersPanel for SBAS, should set quick filters', async () => {
+    test('GuidedAnswersPanel for SBAS, should set auto filters', async () => {
         // Mock setup
         let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
         const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
@@ -152,9 +152,9 @@ describe('GuidedAnswersPanel', () => {
         expect(loggerMock.info).toBeCalledWith('Webview is ready to receive actions');
         expect(getFiltersForIdeSpy).toBeCalledWith('SBAS');
         const searchCall = (webViewPanelMock.webview.postMessage as jest.Mock).mock.calls.find((c) =>
-            c.find((p: { type: string }) => p.type === 'SET_QUICK_FILTERS')
+            c.find((p: { type: string }) => p.type === 'SET_AUTO_FILTERS')
         )[0];
-        expect(searchCall).toEqual({ type: 'SET_QUICK_FILTERS', payload: [{ component: ['AB-CD', 'EFG-H'] }] });
+        expect(searchCall).toEqual({ type: 'SET_AUTO_FILTERS', payload: [{ component: ['AB-CD', 'EFG-H'] }] });
     });
 
     test('GuidedAnswersPanel for SBAS with error in getFiltersForIde(), should log error', async () => {

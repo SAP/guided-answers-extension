@@ -14,13 +14,13 @@ export interface GuidedAnswerTree {
 
 export interface GuidedAnswersQueryOptions {
     query?: string;
-    filters?: GuidedAnswersQueryFilterOptions;
+    filters?: FilterStack;
     paging?: GuidedAnswersQueryPagingOptions;
 }
 
-export interface GuidedAnswersQueryFilterOptions {
-    component?: string[];
-    product?: string[];
+export interface FilterStack {
+    component: string[];
+    product: string[];
 }
 
 export interface GuidedAnswersQueryPagingOptions {
@@ -219,7 +219,9 @@ export type GuidedAnswerActions =
     | UpdateGuidedAnswerTrees
     | UpdateNetworkStatus
     | WebviewReady
-    | SetQuickFilters;
+    | GetAutoFilters
+    | GetCustomFilters
+    | UpdateCustomFilters;
 
 export type NetworkStatus = 'OK' | 'LOADING' | 'ERROR';
 
@@ -232,15 +234,15 @@ export interface AppState {
     activeNodeSharing: ShareNodeLinks | null;
     betaFeatures: boolean;
     guideFeedback: null | boolean;
-    selectedProductFilters: string[];
-    selectedComponentFilters: string[];
+    selectedFilters: FilterStack;
     pageSize: number;
     feedbackStatus: boolean;
     feedbackResponse: boolean;
     bookmarks: Bookmarks;
     activeScreen: 'HOME' | 'SEARCH' | 'NODE';
     lastVisitedGuides: LastVisitedGuide[];
-    quickFilters: GuidedAnswersQueryFilterOptions[];
+    autoFilters: FilterStack[];
+    customFilters: FilterStack[];
 }
 
 export const UPDATE_GUIDED_ANSWER_TREES = 'UPDATE_GUIDED_ANSWER_TREES';
@@ -447,8 +449,20 @@ export interface SynchronizeBookmark {
     payload: Bookmark;
 }
 
-export const SET_QUICK_FILTERS = 'SET_QUICK_FILTERS';
-export interface SetQuickFilters {
-    type: typeof SET_QUICK_FILTERS;
-    payload: GuidedAnswersQueryFilterOptions[];
+export const GET_AUTO_FILTERS = 'GET_AUTO_FILTERS';
+export interface GetAutoFilters {
+    type: typeof GET_AUTO_FILTERS;
+    payload: FilterStack[];
+}
+
+export const GET_CUSTOM_FILTERS = 'GET_CUSTOM_FILTERS';
+export interface GetCustomFilters {
+    type: typeof GET_CUSTOM_FILTERS;
+    payload: FilterStack[];
+}
+
+export const UPDATE_CUSTOM_FILTERS = 'UPDATE_CUSTOM_FILTERS';
+export interface UpdateCustomFilters {
+    type: typeof UPDATE_CUSTOM_FILTERS;
+    payload: FilterStack[];
 }

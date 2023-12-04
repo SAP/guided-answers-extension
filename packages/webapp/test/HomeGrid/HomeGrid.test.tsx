@@ -26,7 +26,7 @@ describe('<HomeGrid />', () => {
                     }
                 },
                 lastVisitedGuides: [],
-                quickFilters: []
+                autoFilters: []
             })
         );
         const { container } = render(<HomeGrid />);
@@ -50,19 +50,19 @@ describe('<HomeGrid />', () => {
                         createdAt: 'time'
                     }
                 ],
-                quickFilters: []
+                autoFilters: []
             })
         );
         const { container } = render(<HomeGrid />);
         expect(container).toMatchSnapshot();
     });
 
-    it('Should render only QuickFilters', () => {
+    it('Should render only Filters', () => {
         (useSelector as jest.Mock).mockImplementation((selector) =>
             selector({
                 bookmarks: {},
                 lastVisitedGuides: [],
-                quickFilters: [
+                autoFilters: [
                     {
                         product: ['product 1'],
                         component: ['component 1']
@@ -102,7 +102,7 @@ describe('<HomeGrid />', () => {
                         createdAt: 'time'
                     }
                 ],
-                quickFilters: [
+                autoFilters: [
                     {
                         product: ['product 1'],
                         component: ['component 1']
@@ -130,7 +130,7 @@ describe('<HomeGrid />', () => {
                     }
                 },
                 lastVisitedGuides: [],
-                quickFilters: []
+                autoFilters: []
             })
         );
         const { container } = render(<HomeGrid />);
@@ -154,7 +154,7 @@ describe('<HomeGrid />', () => {
                         createdAt: 'time'
                     }
                 ],
-                quickFilters: []
+                autoFilters: []
             })
         );
         const { container } = render(<HomeGrid />);

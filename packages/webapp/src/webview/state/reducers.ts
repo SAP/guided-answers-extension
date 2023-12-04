@@ -19,7 +19,8 @@ import type {
     FeedbackStatus,
     GuidedAnswerNode,
     GetLastVisitedGuides,
-    SetQuickFilters
+    GetAutoFilters,
+    GetCustomFilters
 } from '@sap/guided-answers-extension-types';
 import i18next from 'i18next';
 import type { Reducer } from 'redux';
@@ -44,15 +45,18 @@ export function getInitialState(): AppState {
         activeGuidedAnswerNode: [],
         betaFeatures: false,
         guideFeedback: null,
-        selectedProductFilters: [],
-        selectedComponentFilters: [],
+        selectedFilters: {
+            product: [],
+            component: []
+        },
         pageSize: 20,
         feedbackStatus: false,
         feedbackResponse: false,
         bookmarks: {},
         activeScreen: 'HOME',
         lastVisitedGuides: [],
-        quickFilters: []
+        autoFilters: [],
+        customFilters: []
     };
 }
 
@@ -99,7 +103,8 @@ const reducers: Partial<Reducers> = {
     GET_BOOKMARKS: getBookmarksReducer,
     UPDATE_BOOKMARKS: updateBookmarksReducer,
     GET_LAST_VISITED_GUIDES: getLastVisitedGuidesReducer,
-    SET_QUICK_FILTERS: setQuickFiltersReducer
+    GET_AUTO_FILTERS: getAutoFiltersReducer,
+    GET_CUSTOM_FILTERS: getCustomFiltersReducer
 };
 
 /**
@@ -421,8 +426,9 @@ function resetFiltersReducer(newState: AppState): AppState {
  * @returns new state with changes
  */
 function searchTreeReducer(newState: AppState, action: SearchTree): AppState {
-    newState.selectedComponentFilters = action.payload.filters?.component ?? [];
-    newState.selectedProductFilters = action.payload.filters?.product ?? [];
+    newState.selectedFilters = action.payload.filters;
+    newState.selectedComponentFilters = action.payload.filters?.component;
+    newState.selectedProductFilters = action.payload.filters?.product;
     newState.activeScreen = 'SEARCH';
     return newState;
 }
@@ -452,14 +458,27 @@ function updatePageSize(newState: AppState, action: SetPageSize): AppState {
 }
 
 /**
- * Set quick filters.
+ * Get auto filters.
  *
  * @param newState - already cloned state that is modified and returned
  * @param action - action with payload
  * @returns new state with changes
  */
-function setQuickFiltersReducer(newState: AppState, action: SetQuickFilters): AppState {
-    newState.quickFilters = action.payload;
+function getAutoFiltersReducer(newState: AppState, action: GetAutoFilters): AppState {
+    newState.autoFilters = action.payload;
+    return newState;
+}
+
+/**
+ * Get custom filters.
+ *
+ * @param newState - already cloned state that is modified and returned
+ * @param action - action with payload
+ * @returns new state with changes
+ */
+function getCustomFiltersReducer(newState: AppState, action: GetCustomFilters): AppState {
+    console.log(action.payload);
+    newState.customFilters = action.payload;
     return newState;
 }
 

@@ -30,5 +30,6 @@ export {
     getLastVisitedGuides,
     updateBookmark,
     synchronizeBookmark,
-    updateLastVisitedGuide
+    updateLastVisitedGuide,
+    updateCustomFilters
 } from '@sap/guided-answers-extension-types';

@@ -18,6 +18,7 @@ import {
     SYNCHRONIZE_BOOKMARK,
     UPDATE_BOOKMARKS,
     UPDATE_LAST_VISITED_GUIDES,
+    UPDATE_CUSTOM_FILTERS,
     updateGuidedAnswerTrees,
     updateActiveNode,
     updateNetworkStatus,
@@ -34,7 +35,8 @@ import {
     goToAllAnswers,
     updateBookmark,
     getLastVisitedGuides,
-    setQuickFilters
+    getAutoFilters,
+    getCustomFilters
 } from '@sap/guided-answers-extension-types';
 import { getFiltersForIde, getGuidedAnswerApi } from '@sap/guided-answers-extension-core';
 import { getHtml } from './html';
@@ -45,6 +47,7 @@ import { setCommonProperties, trackAction, trackEvent } from '../telemetry';
 import { extractLinkInfo, generateExtensionLink, generateWebLink } from '../links/link-info';
 import { getAllBookmarks, updateBookmarks } from '../bookmarks';
 import { updateLastVisitedGuides, getAllLastVisitedGuides } from '../last-visited';
+import { getAllCustomFilters, updateCustomFilters } from '../custom-filters';
 
 /**
  *  Class that represents the Guided Answers panel, which hosts the webview UI.
@@ -164,13 +167,14 @@ export class GuidedAnswersPanel {
         if (this.startOptions) {
             await this.processStartOptions(this.startOptions);
         }
-        await this.loadQuickFilters(this.ide);
+        await this.loadAutoFilters(this.ide);
         this.postActionToWebview(
             getBetaFeatures(workspace.getConfiguration('sap.ux.guidedAnswer').get<boolean>('betaFeatures') ?? false)
         );
         this.postActionToWebview(updateNetworkStatus('OK'));
         this.postActionToWebview(getBookmarks(getAllBookmarks()));
         this.postActionToWebview(getLastVisitedGuides(getAllLastVisitedGuides()));
+        this.postActionToWebview(getCustomFilters(getAllCustomFilters()));
     }
 
     /**
@@ -214,12 +218,12 @@ export class GuidedAnswersPanel {
      *
      * @param ide - environment like VSCODE or BAS
      */
-    private async loadQuickFilters(ide: IDE): Promise<void> {
+    private async loadAutoFilters(ide: IDE): Promise<void> {
         try {
             const filters = await getFiltersForIde(ide);
             logger.logInfo(`Filters for environment '${ide}':`, filters);
             if (Object.keys(filters).length > 0) {
-                this.postActionToWebview(setQuickFilters([filters]));
+                this.postActionToWebview(getAutoFilters([filters]));
             }
         } catch (error: any) {
             logger.logError(`Error while retrieving context information, error was:`, error);
@@ -377,6 +381,11 @@ export class GuidedAnswersPanel {
                     this.synchronizeBookmark(action.payload).catch((error) =>
                         logger.logError(`Error during synchronizing bookmark.`, error)
                     );
+                    break;
+                }
+                case UPDATE_CUSTOM_FILTERS: {
+                    updateCustomFilters(action.payload);
+                    this.postActionToWebview(getCustomFilters(getAllCustomFilters()));
                     break;
                 }
                 default: {
