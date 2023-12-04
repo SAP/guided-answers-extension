@@ -39,5 +39,8 @@
     "COPIED_TO_CLIPBOARD_DESC": "Copy this link to share via email or messages. When pasted into the search input field of the Guided Answers extension, it will navigate you straight to this node.",
     "VIEW_ON_WEBSITE": "View on the GA website",
     "COPY_WITH_INSTRUCTIONS": "Copy link with instructions",
-    "COPY_WITH_INSTRUCTIONS_TEXT": "To resolve your reported issue, open Guided Answers extension by SAP, and follow the steps mentioned in the guide.\n If your IDE is VSCode, please click on the following link: {{-extensionLink}} .\n If your IDE is SAP Business Application Studio, then launch Guided Answers via the command \"SAP: Open Guided Answers\" and paste the following guide shortlink into the search input field: {{-extensionLink}} ."
+    "COPY_WITH_INSTRUCTIONS_TEXT": "To resolve your reported issue, open Guided Answers extension by SAP, and follow the steps mentioned in the guide.\n If your IDE is VSCode, please click on the following link: {{-extensionLink}} .\n If your IDE is SAP Business Application Studio, then launch Guided Answers via the command \"SAP: Open Guided Answers\" and paste the following guide shortlink into the search input field: {{-extensionLink}} .",
+    "VIEW_MORE_RESULTS": "View {{-count}} more results",
+    "EXPAND_ALL_TREES": "Expand all trees",
+    "COLLAPSE_ALL_TREES": "Collapse all trees"
 }

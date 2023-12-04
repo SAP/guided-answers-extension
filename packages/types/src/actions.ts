@@ -84,7 +84,10 @@ import {
     GET_LAST_VISITED_GUIDES,
     UPDATE_LAST_VISITED_GUIDES,
     GO_TO_HOME_PAGE,
-    SET_QUICK_FILTERS
+    SET_QUICK_FILTERS,
+    EXPAND_ALL_SEARCH_NODES,
+    COLLAPSE_ALL_SEARCH_NODES,
+    EXPAND_SEARCH_NODES_FOR_TREE
 } from './types';
 
 export const updateGuidedAnswerTrees = (payload: UpdateGuidedAnswerTrees['payload']): UpdateGuidedAnswerTrees => ({
@@ -247,3 +250,9 @@ export const setQuickFilters = (payload: GuidedAnswersQueryFilterOptions[]): Set
     type: SET_QUICK_FILTERS,
     payload
 });
+
+export const expandAllSearchNodes = () => ({ type: EXPAND_ALL_SEARCH_NODES });
+
+export const collapseAllSearchNodes = () => ({ type: COLLAPSE_ALL_SEARCH_NODES });
+
+export const expandSearchNodesForTree = (payload: number) => ({ type: EXPAND_SEARCH_NODES_FOR_TREE, payload });

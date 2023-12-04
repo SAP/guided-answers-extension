@@ -10,11 +10,19 @@ ul.filter-list {
 }
 
 .filter-button {
-    width: 18px;
-    height: 18px;
-    border-radius: 2px;
-    margin-left: 8px;
+    padding: 5px;
+
+    svg {
+        width: 16px;
+        height: 16px;
+        min-width: 16px;
+    }
+
+    i {
+        height: 16px;
+    }
 }
+
 .filter-button:focus-visible {
     outline: 1px solid var(--vscode-focusBorder, #007fd4);
     outline-offset: -1px;

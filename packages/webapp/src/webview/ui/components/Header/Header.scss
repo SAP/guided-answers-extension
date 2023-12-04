@@ -102,8 +102,9 @@
 
         &__searchField {
             display: flex;
-            align-items: start;
+            align-items: center;
             flex-direction: row;
+            gap: 5px;
             margin-top: 40px;
             width: 66%;
 

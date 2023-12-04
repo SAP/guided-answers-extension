@@ -98,50 +98,88 @@ exports[`<SearchField /> Should render a SearchField component, on search screen
         </button>
       </div>
     </div>
-    <div
-      id="filters"
+    <button
+      aria-disabled="true"
+      class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-180"
+      data-is-focusable="false"
+      disabled=""
+      id="filter-products"
+      title="Filter Products"
+      type="button"
     >
-      <button
-        aria-disabled="true"
-        class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-180"
-        data-is-focusable="false"
-        disabled=""
-        id="filter-products"
-        title="Filter Products"
-        type="button"
+      <span
+        class="ms-Button-flexContainer flexContainer-181"
+        data-automationid="splitbuttonprimary"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-181"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-162 ms-Button-icon icon-182"
-            data-icon-name="Table"
-          />
-        </span>
-      </button>
-      <button
-        aria-disabled="true"
-        class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-180"
-        data-is-focusable="false"
-        disabled=""
-        id="filter-components"
-        title="Filter Components"
-        type="button"
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-162 ms-Button-icon icon-182"
+          data-icon-name="Table"
+        />
+      </span>
+    </button>
+    <button
+      aria-disabled="true"
+      class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-180"
+      data-is-focusable="false"
+      disabled=""
+      id="filter-components"
+      title="Filter Components"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-181"
+        data-automationid="splitbuttonprimary"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-181"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-162 ms-Button-icon icon-182"
-            data-icon-name="IdTag"
-          />
-        </span>
-      </button>
-    </div>
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-162 ms-Button-icon icon-182"
+          data-icon-name="IdTag"
+        />
+      </span>
+    </button>
+    <div
+      class="guided-answer__header__divider"
+      style="margin-top: 0px; margin-left: 5px; margin-right: 5px;"
+    />
+    <button
+      class="ms-Button ms-Button--icon guided-answer__header__navButtons root-191"
+      data-is-focusable="true"
+      id="expand-all-button"
+      style="margin-top: 0px;"
+      title="Expand all trees"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-181"
+        data-automationid="splitbuttonprimary"
+      >
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-162 ms-Button-icon icon-192"
+          data-icon-name="ExpandNodes"
+        />
+      </span>
+    </button>
+    <button
+      class="ms-Button ms-Button--icon guided-answer__header__navButtons root-191"
+      data-is-focusable="true"
+      id="collapse-all-button"
+      style="margin-top: 0px;"
+      title="Collapse all trees"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-181"
+        data-automationid="splitbuttonprimary"
+      >
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-162 ms-Button-icon icon-192"
+          data-icon-name="ContractNodes"
+        />
+      </span>
+    </button>
   </div>
 </div>
 `;

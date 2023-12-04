@@ -40,7 +40,8 @@ describe('Guided Answers Api: getTrees()', () => {
                     FIRST_NODE_ID: 100,
                     SCORE: 0.1,
                     COMPONENT: 'C1',
-                    PRODUCT: 'P_one'
+                    PRODUCT: 'P_one',
+                    ACTIONS: []
                 },
                 {
                     TREE_ID: 2,
@@ -50,7 +51,8 @@ describe('Guided Answers Api: getTrees()', () => {
                     FIRST_NODE_ID: 200,
                     SCORE: 0.2,
                     COMPONENT: 'C2',
-                    PRODUCT: 'P_two'
+                    PRODUCT: 'P_two',
+                    ACTIONS: []
                 },
                 {
                     TREE_ID: 3,
@@ -60,7 +62,8 @@ describe('Guided Answers Api: getTrees()', () => {
                     FIRST_NODE_ID: 300,
                     SCORE: 0.3,
                     COMPONENT: 'C3',
-                    PRODUCT: 'P_three'
+                    PRODUCT: 'P_three',
+                    ACTIONS: []
                 }
             ],
             resultSize: 3,
@@ -90,7 +93,8 @@ describe('Guided Answers Api: getTrees()', () => {
                     FIRST_NODE_ID: 100,
                     SCORE: 0.1,
                     COMPONENT: 'C1',
-                    PRODUCT: 'P_one'
+                    PRODUCT: 'P_one',
+                    ACTIONS: []
                 },
                 {
                     TREE_ID: 2,
@@ -100,7 +104,8 @@ describe('Guided Answers Api: getTrees()', () => {
                     FIRST_NODE_ID: 200,
                     SCORE: 0.2,
                     COMPONENT: 'C2',
-                    PRODUCT: 'P_two'
+                    PRODUCT: 'P_two',
+                    ACTIONS: []
                 },
                 {
                     TREE_ID: 3,
@@ -110,7 +115,8 @@ describe('Guided Answers Api: getTrees()', () => {
                     FIRST_NODE_ID: 300,
                     SCORE: 0.3,
                     COMPONENT: 'C3',
-                    PRODUCT: 'P_three'
+                    PRODUCT: 'P_three',
+                    ACTIONS: []
                 }
             ],
             resultSize: 3,
