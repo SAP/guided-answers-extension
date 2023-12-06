@@ -36,6 +36,7 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
               >
                 <a
                   id="goto-bookmark-button"
+                  role="button"
                   tabindex="0"
                 >
                   Bookmark 1 Title
@@ -124,6 +125,7 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
             >
               <a
                 id="last-visited-link"
+                role="button"
                 tabindex="0"
               >
                 Bookmark 1 Title
@@ -248,6 +250,7 @@ exports[`<HomeGrid /> Should render only Bookmarks 1`] = `
               >
                 <a
                   id="goto-bookmark-button"
+                  role="button"
                   tabindex="0"
                 >
                   Bookmark 1 Title
@@ -348,6 +351,7 @@ exports[`<HomeGrid /> Should render only Bookmarks, no beta features 1`] = `
               >
                 <a
                   id="goto-bookmark-button"
+                  role="button"
                   tabindex="0"
                 >
                   Bookmark 1 Title
@@ -445,6 +449,7 @@ exports[`<HomeGrid /> Should render only LastVisited 1`] = `
             >
               <a
                 id="last-visited-link"
+                role="button"
                 tabindex="0"
               >
                 Bookmark 1 Title
@@ -523,6 +528,7 @@ exports[`<HomeGrid /> Should render only LastVisited, no beta features 1`] = `
             >
               <a
                 id="last-visited-link"
+                role="button"
                 tabindex="0"
               >
                 Bookmark 1 Title

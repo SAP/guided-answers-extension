@@ -11,6 +11,7 @@ exports[`<Right /> Should render a Right component 1`] = `
     >
       <div
         class="guided-answer__node__command"
+        role="button"
         title="Label for command"
       >
         <div

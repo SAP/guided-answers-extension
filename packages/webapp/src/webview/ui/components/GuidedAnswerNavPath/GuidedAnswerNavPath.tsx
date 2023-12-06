@@ -28,7 +28,6 @@ export function GuidedAnswerNavPath(): ReactElement {
             <nav className="container">
                 <FocusZone
                     direction={FocusZoneDirection.vertical}
-                    role="tree"
                     onFocus={() => {
                         if (firstTimeFocus) {
                             focusOnElement('.timeline-content');
@@ -38,7 +37,7 @@ export function GuidedAnswerNavPath(): ReactElement {
                     isCircularNavigation={true}>
                     {nodes.map((node, i) => {
                         return (
-                            <div key={`timeline-block-${node.TITLE}`} className="timeline-block" role="treeitem">
+                            <div key={`timeline-block-${node.TITLE}`} className="timeline-block">
                                 <button
                                     id="timeline-content"
                                     className={`timeline-content ${i === lastIndex ? lastBlockBorderStyle : ''}`}
