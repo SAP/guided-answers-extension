@@ -53,8 +53,7 @@ export function LastVisited(): ReactElement {
                                         if (event.key === 'Enter') {
                                             lastVisitedLinkHandler(guide);
                                         }
-                                    }}
-                                    role="button">
+                                    }}>
                                     {guideTitle}
                                 </a>
                                 <TreeItemBottomSection product={guide.tree.PRODUCT} component={guide.tree.COMPONENT} />

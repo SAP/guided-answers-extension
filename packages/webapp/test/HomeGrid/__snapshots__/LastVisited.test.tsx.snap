@@ -27,7 +27,6 @@ exports[`<LastVisited /> Should render LastVisited component 1`] = `
         >
           <a
             id="last-visited-link"
-            role="button"
             tabindex="0"
           >
             Bookmark 2 Title

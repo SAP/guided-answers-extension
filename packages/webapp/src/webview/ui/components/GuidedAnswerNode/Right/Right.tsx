@@ -28,8 +28,7 @@ export function Right(props: Readonly<{ activeNode: GuidedAnswerNodeType }>): Re
                                   if (event.key === 'Enter') {
                                       actions.executeCommand(command);
                                   }
-                              }}
-                              role="button">
+                              }}>
                               <div className="guided-answer__node__command__header">
                                   <UIIcon
                                       className="guided-answer__node__command__header__icon"

@@ -66,8 +66,7 @@ export function Bookmarks(): ReactElement {
                                             if (event.key === 'Enter') {
                                                 goToBookmark(bookmark);
                                             }
-                                        }}
-                                        role="button">
+                                        }}>
                                         {bookmarkTitle}
                                     </a>
                                     <UIIconButton
