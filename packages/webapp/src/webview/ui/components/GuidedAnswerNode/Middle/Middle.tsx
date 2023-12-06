@@ -22,10 +22,12 @@ let firstTimeFocus = true;
  * @param props.enhancedBody - a react element that is rendered if enhancements are present in the node
  * @returns - The middle react element
  */
-export function Middle(props: {
-    activeNode: GuidedAnswerNode;
-    enhancedBody: ReactElement | undefined | null;
-}): ReactElement {
+export function Middle(
+    props: Readonly<{
+        activeNode: GuidedAnswerNode;
+        enhancedBody: ReactElement | undefined | null;
+    }>
+): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
     firstTimeFocus = true;
 
@@ -65,7 +67,6 @@ export function Middle(props: {
                     <p className="guided-answer__node__question">{props.activeNode.QUESTION}</p>
                 </div>
                 <FocusZone
-                    role="listbox"
                     onFocus={() => {
                         if (firstTimeFocus) {
                             focusOnElement('.guided-answer__node__edge:first-child');
@@ -78,7 +79,6 @@ export function Middle(props: {
                         {props.activeNode.EDGES.length > 0
                             ? props.activeNode.EDGES.map((edge) => (
                                   <button
-                                      role="option"
                                       key={`edge_button${edge.TARGET_NODE}`}
                                       className="guided-answer__node__edge"
                                       id="edge_button"

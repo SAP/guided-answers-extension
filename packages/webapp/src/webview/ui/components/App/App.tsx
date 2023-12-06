@@ -92,7 +92,7 @@ export function App(): ReactElement {
                 <ErrorScreen title={i18next.t('NO_ANSWERS_FOUND')} subtitle={i18next.t('PLEASE_MODIFY_SEARCH')} />
             ) : (
                 <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
-                    <ul className="striped-list" role="listbox">
+                    <ul className="striped-list">
                         <InfiniteScroll
                             dataLength={appState.guidedAnswerTreeSearchResult.trees.length} //This is important field to render the next data
                             next={fetchData}
@@ -103,7 +103,7 @@ export function App(): ReactElement {
                             }>
                             {appState.guidedAnswerTreeSearchResult.trees.map((tree) => {
                                 return (
-                                    <li key={`tree-item-${tree.TITLE}`} className="tree-item" role="option">
+                                    <li key={`tree-item-${tree.TITLE}`} className="tree-item">
                                         <button
                                             className="guided-answer__tree"
                                             onClick={(): void => {

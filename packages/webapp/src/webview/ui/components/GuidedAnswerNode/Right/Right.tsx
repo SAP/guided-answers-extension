@@ -11,7 +11,7 @@ import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
  * @param props.activeNode - array that stores GuidedAnswers node objects
  * @returns - The middle react element
  */
-export function Right(props: { activeNode: GuidedAnswerNodeType }): ReactElement {
+export function Right(props: Readonly<{ activeNode: GuidedAnswerNodeType }>): ReactElement {
     return (
         <div className="guided-answer__node__commands">
             <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>

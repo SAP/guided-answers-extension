@@ -22,12 +22,12 @@ export function FeedbackDialogBox(): ReactElement {
     );
     const feedbackStatus = useSelector<AppState, boolean>((state) => state.feedbackStatus);
     const container = document.querySelector('.feedback-section-dialog');
-    const [isVisible, setVisible] = useState(feedbackStatus);
+    const [isVisible, setIsVisible] = useState(feedbackStatus);
     const [feedback, setFeedback] = useState('');
 
     useEffect(() => {
         setFeedback('');
-        setVisible(feedbackStatus);
+        setIsVisible(feedbackStatus);
         if (feedbackStatus === false) {
             container?.classList.toggle('.dialog-exit');
         }

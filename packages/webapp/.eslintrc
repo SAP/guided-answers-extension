@@ -26,6 +26,8 @@
     "plugins": ["react"],
     "rules": {
         "jsdoc/require-param-type": "off",
-        "jsdoc/require-returns-type": "off"
+        "jsdoc/require-returns-type": "off",
+        "react/prefer-read-only-props": "error",
+        "react/hook-use-state": ["error", { "allowDestructuredState": true }]
     }
 }

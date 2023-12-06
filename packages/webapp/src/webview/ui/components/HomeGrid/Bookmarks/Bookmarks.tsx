@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import i18next from 'i18next';
 import type { AppState } from '../../../../types';
@@ -17,7 +17,7 @@ import './Bookmarks.scss';
  */
 export function Bookmarks(): ReactElement {
     const storedBookmarks = useSelector<AppState, BookmarksType>((state) => state.bookmarks);
-    const [localBookmarks] = useState<BookmarksType>(JSON.parse(JSON.stringify(storedBookmarks)));
+    const localBookmarks = JSON.parse(JSON.stringify(storedBookmarks));
 
     const goToBookmark = (bookmark: Bookmark) => {
         actions.setActiveTree(bookmark.tree);
@@ -48,7 +48,7 @@ export function Bookmarks(): ReactElement {
                 <span>Bookmarks</span>
             </h3>
             <FocusZone direction={FocusZoneDirection.bidirectional} isCircularNavigation={true}>
-                <ul className="guided-answer__home-grid__section__list" role="listbox">
+                <ul className="guided-answer__home-grid__section__list">
                     {Object.keys(localBookmarks).map((bookmarkKey) => {
                         const bookmark = localBookmarks[bookmarkKey];
                         const bookmarkTitle =
