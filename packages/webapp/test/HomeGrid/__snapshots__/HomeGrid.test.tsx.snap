@@ -27,7 +27,6 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
         >
           <ul
             class="guided-answer__home-grid__section__list"
-            role="listbox"
           >
             <li
               class="guided-answer__bookmark"
@@ -119,7 +118,6 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
         >
           <ul
             class="guided-answer__home-grid__section__list"
-            role="listbox"
           >
             <li
               class="guided-answer__last-visited"
@@ -185,7 +183,6 @@ exports[`<HomeGrid /> Should render all in 2 columns 1`] = `
         >
           <ul
             class="guided-answer__home-grid__section__list"
-            role="listbox"
           >
             <li
               class="guided-answer__quick-filter"
@@ -242,7 +239,6 @@ exports[`<HomeGrid /> Should render only Bookmarks 1`] = `
         >
           <ul
             class="guided-answer__home-grid__section__list"
-            role="listbox"
           >
             <li
               class="guided-answer__bookmark"
@@ -343,7 +339,6 @@ exports[`<HomeGrid /> Should render only Bookmarks, no beta features 1`] = `
         >
           <ul
             class="guided-answer__home-grid__section__list"
-            role="listbox"
           >
             <li
               class="guided-answer__bookmark"
@@ -444,7 +439,6 @@ exports[`<HomeGrid /> Should render only LastVisited 1`] = `
         >
           <ul
             class="guided-answer__home-grid__section__list"
-            role="listbox"
           >
             <li
               class="guided-answer__last-visited"
@@ -523,7 +517,6 @@ exports[`<HomeGrid /> Should render only LastVisited, no beta features 1`] = `
         >
           <ul
             class="guided-answer__home-grid__section__list"
-            role="listbox"
           >
             <li
               class="guided-answer__last-visited"
@@ -602,7 +595,6 @@ exports[`<HomeGrid /> Should render only QuickFilters 1`] = `
         >
           <ul
             class="guided-answer__home-grid__section__list"
-            role="listbox"
           >
             <li
               class="guided-answer__quick-filter"
