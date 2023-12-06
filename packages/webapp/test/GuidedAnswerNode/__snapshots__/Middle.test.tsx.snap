@@ -173,7 +173,6 @@ exports[`<Middle /> Should render a Middle component with NotSolvedMessage 1`] =
           <a
             class="guided-answer__node__edge not-solved-link"
             href="https://launchpad.support.sap.com/#/expertchat/create"
-            role="button"
             tabindex="0"
           >
             Start an Expert Chat
@@ -185,7 +184,6 @@ exports[`<Middle /> Should render a Middle component with NotSolvedMessage 1`] =
           <a
             class="guided-answer__node__edge not-solved-link"
             href="https://launchpad.support.sap.com/#/sae"
-            role="button"
             tabindex="-1"
           >
             Schedule an Expert
@@ -197,7 +195,6 @@ exports[`<Middle /> Should render a Middle component with NotSolvedMessage 1`] =
           <a
             class="guided-answer__node__edge not-solved-link"
             href="https://launchpad.support.sap.com/#/incident/create"
-            role="button"
             tabindex="-1"
           >
             Open an Incident
@@ -209,7 +206,6 @@ exports[`<Middle /> Should render a Middle component with NotSolvedMessage 1`] =
           <a
             class="guided-answer__node__edge not-solved-link"
             href="https://answers.sap.com/index.html"
-            role="button"
             tabindex="-1"
           >
             Ask the SAP Community
