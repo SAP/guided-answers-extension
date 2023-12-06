@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.32.2
+
+### Patch Changes
+
+-   87b31a4: Sonar code smells
+
 ## 1.32.1
 
 ### Patch Changes
