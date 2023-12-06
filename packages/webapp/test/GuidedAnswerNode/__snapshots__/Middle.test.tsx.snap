@@ -37,7 +37,6 @@ exports[`<Middle /> Should render a Middle component 1`] = `
     <div
       class="ms-FocusZone css-166"
       data-focuszone-id="FocusZone1"
-      role="listbox"
     >
       <div
         class="guided-answer__node"
@@ -45,7 +44,6 @@ exports[`<Middle /> Should render a Middle component 1`] = `
         <button
           class="guided-answer__node__edge"
           id="edge_button"
-          role="option"
           tabindex="0"
         >
           Deployment
@@ -53,7 +51,6 @@ exports[`<Middle /> Should render a Middle component 1`] = `
         <button
           class="guided-answer__node__edge"
           id="edge_button"
-          role="option"
           tabindex="-1"
         >
           Fiori Generator
@@ -107,7 +104,6 @@ exports[`<Middle /> Should render a Middle component with FeedbackDialogBox 1`] 
     <div
       class="ms-FocusZone css-166"
       data-focuszone-id="FocusZone38"
-      role="listbox"
     >
       <div
         class="guided-answer__node"
@@ -115,7 +111,6 @@ exports[`<Middle /> Should render a Middle component with FeedbackDialogBox 1`] 
         <button
           class="guided-answer__node__edge"
           id="edge_button"
-          role="option"
           tabindex="0"
         >
           Deployment
@@ -123,7 +118,6 @@ exports[`<Middle /> Should render a Middle component with FeedbackDialogBox 1`] 
         <button
           class="guided-answer__node__edge"
           id="edge_button"
-          role="option"
           tabindex="-1"
         >
           Fiori Generator
@@ -272,7 +266,6 @@ exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
     <div
       class="ms-FocusZone css-166"
       data-focuszone-id="FocusZone19"
-      role="listbox"
     >
       <div
         class="guided-answer__node"
@@ -280,7 +273,6 @@ exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
         <button
           class="guided-answer__node__edge"
           id="edge_button"
-          role="option"
           tabindex="0"
         >
           Deployment
@@ -288,7 +280,6 @@ exports[`<Middle /> Should render a Middle component with enhancedBody 1`] = `
         <button
           class="guided-answer__node__edge"
           id="edge_button"
-          role="option"
           tabindex="-1"
         >
           Fiori Generator

@@ -8,7 +8,7 @@ import ErrorIcon from './no-answers-found.svg';
  * @param props.subtitle - the screen subtitle
  *@returns - react element to show an error page when there are no answers found
  */
-export function ErrorScreen(props: { title: string; subtitle: string }) {
+export function ErrorScreen(props: Readonly<{ title: string; subtitle: string }>) {
     return (
         <div className="error-screen">
             <div className="error-screen__objects">

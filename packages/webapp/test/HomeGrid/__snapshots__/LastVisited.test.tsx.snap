@@ -21,7 +21,6 @@ exports[`<LastVisited /> Should render LastVisited component 1`] = `
     >
       <ul
         class="guided-answer__home-grid__section__list"
-        role="listbox"
       >
         <li
           class="guided-answer__last-visited"
@@ -92,7 +91,6 @@ exports[`<LastVisited /> Should render LastVisited component with no data 1`] = 
     >
       <ul
         class="guided-answer__home-grid__section__list"
-        role="listbox"
       />
     </div>
   </div>

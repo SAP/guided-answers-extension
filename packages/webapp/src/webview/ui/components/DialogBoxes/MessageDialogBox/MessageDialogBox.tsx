@@ -16,17 +16,19 @@ import { UIDefaultButton, UIDialog } from '@sap-ux/ui-components';
  * @param props.defaultButtonAction a function that triggers a redux state change when default button is pressed
  * @returns - react element to show a Dialog box
  */
-export function MessageDialogBox(props: {
-    dialogTitle: string;
-    dialogText: string;
-    stylingClassName: string;
-    dialogVisible: boolean;
-    primaryButtonAction: Function;
-    defaultButtonAction: Function;
-}): ReactElement {
-    const [isVisible, setVisible] = useState(props.dialogVisible);
+export function MessageDialogBox(
+    props: Readonly<{
+        dialogTitle: string;
+        dialogText: string;
+        stylingClassName: string;
+        dialogVisible: boolean;
+        primaryButtonAction: Function;
+        defaultButtonAction: Function;
+    }>
+): ReactElement {
+    const [isVisible, setIsVisible] = useState(props.dialogVisible);
     useEffect(() => {
-        setVisible(props.dialogVisible);
+        setIsVisible(props.dialogVisible);
     }, [props.dialogVisible]);
 
     const dialogContentProps = {
@@ -41,26 +43,24 @@ export function MessageDialogBox(props: {
     };
 
     return (
-        <>
-            <UIDialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
-                <DialogFooter>
-                    <FocusZone direction={FocusZoneDirection.horizontal} className="button-container">
-                        <UIDefaultButton
-                            id="dialog-home-button"
-                            primary
-                            text={i18next.t('HOME')}
-                            onClick={() => props.primaryButtonAction()}
-                        />
-                        <UIDefaultButton
-                            id="dialog-close-button"
-                            text={i18next.t('CLOSE')}
-                            onClick={() => {
-                                props.defaultButtonAction();
-                            }}
-                        />
-                    </FocusZone>
-                </DialogFooter>
-            </UIDialog>
-        </>
+        <UIDialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
+            <DialogFooter>
+                <FocusZone direction={FocusZoneDirection.horizontal} className="button-container">
+                    <UIDefaultButton
+                        id="dialog-home-button"
+                        primary
+                        text={i18next.t('HOME')}
+                        onClick={() => props.primaryButtonAction()}
+                    />
+                    <UIDefaultButton
+                        id="dialog-close-button"
+                        text={i18next.t('CLOSE')}
+                        onClick={() => {
+                            props.defaultButtonAction();
+                        }}
+                    />
+                </FocusZone>
+            </DialogFooter>
+        </UIDialog>
     );
 }

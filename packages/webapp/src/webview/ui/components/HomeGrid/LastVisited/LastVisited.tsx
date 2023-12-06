@@ -36,7 +36,7 @@ export function LastVisited(): ReactElement {
                 <span>Last visited</span>
             </h3>
             <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
-                <ul className="guided-answer__home-grid__section__list" role="listbox">
+                <ul className="guided-answer__home-grid__section__list">
                     {lastVisitedGuides.slice(-1).map((guide: LastVisitedGuide) => {
                         const guideTitle =
                             guide.nodePath.length > 1

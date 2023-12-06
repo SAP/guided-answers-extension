@@ -15,13 +15,13 @@ import { actions } from '../../../../state';
  */
 export function FeedbackSentDialogBox(): ReactElement {
     const feedbackResponse = useSelector<AppState, boolean>((state) => state.feedbackResponse);
-    const [isVisible, setVisible] = useState(feedbackResponse);
+    const [isVisible, setIsVisible] = useState(feedbackResponse);
     useEffect(() => {
-        setVisible(feedbackResponse);
+        setIsVisible(feedbackResponse);
 
         //Dialog box will transition out after being loaded
         const timer = setTimeout(() => {
-            setVisible(false);
+            setIsVisible(false);
             actions.feedbackResponse(false);
         }, 4000);
         return () => {
@@ -41,10 +41,8 @@ export function FeedbackSentDialogBox(): ReactElement {
     };
 
     return (
-        <>
-            <UIDialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
-                <UIIcon className="feedback-response-icon" iconName={UiIcons.MessageSent} />
-            </UIDialog>
-        </>
+        <UIDialog hidden={!isVisible} dialogContentProps={dialogContentProps} modalProps={modalProps}>
+            <UIIcon className="feedback-response-icon" iconName={UiIcons.MessageSent} />
+        </UIDialog>
     );
 }

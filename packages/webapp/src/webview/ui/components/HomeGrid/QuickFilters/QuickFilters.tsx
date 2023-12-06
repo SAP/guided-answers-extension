@@ -22,7 +22,7 @@ export function QuickFilters(): ReactElement {
                 <span>Quick Filters</span>
             </h3>
             <FocusZone direction={FocusZoneDirection.vertical} isCircularNavigation={true}>
-                <ul className="guided-answer__home-grid__section__list" role="listbox">
+                <ul className="guided-answer__home-grid__section__list">
                     {filters.map((f: GuidedAnswersQueryFilterOptions) => (
                         <li
                             key={`tree-item-${f.product?.join('-')}-${f.component?.join('-')}`}

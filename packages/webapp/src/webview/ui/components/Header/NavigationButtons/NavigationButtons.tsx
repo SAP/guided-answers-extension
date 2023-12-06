@@ -80,7 +80,7 @@ export function RestartButton() {
  */
 export function ShareButton() {
     const id = 'callout-test-id';
-    const [isCopiedVisible, setCopiedVisible] = useState(false);
+    const [isCopiedVisible, setIsCopiedVisible] = useState(false);
     const treeId = useSelector<AppState, GuidedAnswerTreeId | undefined>((state) => state.activeGuidedAnswer?.TREE_ID);
     const nodes = useSelector<AppState, GuidedAnswerNode[]>((state) => state.activeGuidedAnswerNode);
     const nodeIdPath = nodes.map((n) => n.NODE_ID);
@@ -92,7 +92,7 @@ export function ShareButton() {
 
     const handleCopy = (): void => {
         actions.shareLinkTelemetry();
-        setCopiedVisible(true);
+        setIsCopiedVisible(true);
     };
 
     return treeId ? (
@@ -112,7 +112,7 @@ export function ShareButton() {
                     beakWidth={10}
                     directionalHint={DirectionalHint.bottomCenter}
                     onDismiss={() => {
-                        setCopiedVisible(false);
+                        setIsCopiedVisible(false);
                         actions.updateActiveNodeSharing(null);
                     }}
                     calloutWidth={268}

@@ -62,8 +62,8 @@ export function Filters() {
     const appState = useSelector<AppState, AppState>((state) => state);
     const PRODUCTS = 'Products';
     const COMPONENTS = 'Components';
-    const [isDialogVisible, setDialogVisible] = useState(false);
-    const [filter, setFilterType] = useState(PRODUCTS);
+    const [isDialogVisible, setIsDialogVisible] = useState(false);
+    const [filter, setFilter] = useState(PRODUCTS);
     const [productFilters, setProductFilters] = useState(appState.guidedAnswerTreeSearchResult.productFilters);
     const [componentFilters, setComponentFilters] = useState(appState.guidedAnswerTreeSearchResult.componentFilters);
     const [query, setQuery] = useState('');
@@ -84,12 +84,12 @@ export function Filters() {
 
     const toggleVisibility = (type: string): void => {
         if (type === PRODUCTS) {
-            setFilterType(PRODUCTS);
+            setFilter(PRODUCTS);
         } else {
-            setFilterType(COMPONENTS);
+            setFilter(COMPONENTS);
         }
         setQuery('');
-        setDialogVisible(!isDialogVisible);
+        setIsDialogVisible(!isDialogVisible);
     };
 
     const applyFilters = (type: string): void => {
@@ -118,7 +118,7 @@ export function Filters() {
     const cancel = () => {
         setSelectedComponentFilters([...appState.selectedComponentFilters]);
         setSelectedProductFilters([...appState.selectedProductFilters]);
-        setDialogVisible(false);
+        setIsDialogVisible(false);
     };
 
     const toggleFilters = (type: string): void => {
@@ -149,7 +149,7 @@ export function Filters() {
                 component: appState.selectedComponentFilters.length > 0 ? appState.selectedComponentFilters : []
             }
         });
-        setDialogVisible(!isDialogVisible);
+        setIsDialogVisible(!isDialogVisible);
     };
 
     const onChange = (filter: string) => (ev?: any, checked?: boolean) => {
@@ -226,47 +226,45 @@ export function Filters() {
         }
     };
     return (
-        <>
-            <div id="filters">
-                <UIIconButton
-                    id="filter-products"
-                    iconProps={{ iconName: UiIcons.Table }}
-                    onClick={() => toggleFilters(PRODUCTS)}
-                    disabled={appState.guidedAnswerTreeSearchResult.productFilters.length === 0}
-                    className={`filter-button ${selectedProductFilters.length > 0 ? 'filter-button-selected' : ''}`}
-                    primary
-                    title="Filter Products"></UIIconButton>
-                <UIIconButton
-                    id="filter-components"
-                    iconProps={{ iconName: UiIcons.IdTag }}
-                    onClick={() => toggleFilters(COMPONENTS)}
-                    disabled={appState.guidedAnswerTreeSearchResult.componentFilters.length === 0}
-                    primary
-                    title="Filter Components"
-                    className={`filter-button ${
-                        selectedComponentFilters.length > 0 ? 'filter-button-selected' : ''
-                    }`}></UIIconButton>
-                <UIDialog
-                    dialogContentProps={{ title: filterType[filter].title }}
-                    hidden={!filterType[filter].visibility}
-                    modalProps={{ className: 'dialog-filter', isBlocking: true }}
-                    acceptButtonText={'Apply Filter'}
-                    cancelButtonText={'Cancel'}
-                    styles={{ main }}
-                    onAccept={() => filterType[filter].apply()}
-                    onCancel={cancel}
-                    onDismiss={resetFilter}>
-                    <UITextInput placeholder="Search" value={query} onChange={searchFilter} />
-                    <FocusZone
-                        direction={FocusZoneDirection.domOrder}
-                        isCircularNavigation={true}
-                        style={{ overflowY: 'scroll', height: '90%', padding: 0, marginTop: '10px' }}>
-                        <Stack tokens={verticalGapStackTokens} style={{ margin: '0px 4px' }}>
-                            {filterType[filter].listItems}
-                        </Stack>{' '}
-                    </FocusZone>
-                </UIDialog>
-            </div>
-        </>
+        <div id="filters">
+            <UIIconButton
+                id="filter-products"
+                iconProps={{ iconName: UiIcons.Table }}
+                onClick={() => toggleFilters(PRODUCTS)}
+                disabled={appState.guidedAnswerTreeSearchResult.productFilters.length === 0}
+                className={`filter-button ${selectedProductFilters.length > 0 ? 'filter-button-selected' : ''}`}
+                primary
+                title="Filter Products"></UIIconButton>
+            <UIIconButton
+                id="filter-components"
+                iconProps={{ iconName: UiIcons.IdTag }}
+                onClick={() => toggleFilters(COMPONENTS)}
+                disabled={appState.guidedAnswerTreeSearchResult.componentFilters.length === 0}
+                primary
+                title="Filter Components"
+                className={`filter-button ${
+                    selectedComponentFilters.length > 0 ? 'filter-button-selected' : ''
+                }`}></UIIconButton>
+            <UIDialog
+                dialogContentProps={{ title: filterType[filter].title }}
+                hidden={!filterType[filter].visibility}
+                modalProps={{ className: 'dialog-filter', isBlocking: true }}
+                acceptButtonText={'Apply Filter'}
+                cancelButtonText={'Cancel'}
+                styles={{ main }}
+                onAccept={() => filterType[filter].apply()}
+                onCancel={cancel}
+                onDismiss={resetFilter}>
+                <UITextInput placeholder="Search" value={query} onChange={searchFilter} />
+                <FocusZone
+                    direction={FocusZoneDirection.domOrder}
+                    isCircularNavigation={true}
+                    style={{ overflowY: 'scroll', height: '90%', padding: 0, marginTop: '10px' }}>
+                    <Stack tokens={verticalGapStackTokens} style={{ margin: '0px 4px' }}>
+                        {filterType[filter].listItems}
+                    </Stack>{' '}
+                </FocusZone>
+            </UIDialog>
+        </div>
     );
 }

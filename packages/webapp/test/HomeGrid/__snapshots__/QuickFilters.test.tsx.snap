@@ -21,7 +21,6 @@ exports[`<QuickFilters /> Should render QuickFilters component 1`] = `
     >
       <ul
         class="guided-answer__home-grid__section__list"
-        role="listbox"
       >
         <li
           class="guided-answer__quick-filter"

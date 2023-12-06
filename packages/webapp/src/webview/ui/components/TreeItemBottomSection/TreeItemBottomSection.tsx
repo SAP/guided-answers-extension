@@ -9,7 +9,7 @@ import React from 'react';
  * @param props.component - Guided Answers tree component
  * @returns A TreeItemBottomSection component.
  */
-export function TreeItemBottomSection(props: { description?: string; product?: string; component?: string }) {
+export function TreeItemBottomSection(props: Readonly<{ description?: string; product?: string; component?: string }>) {
     return (
         <div className="bottom-section" id="bottom-section">
             {props.description && <span className="guided-answer__tree__desc">{props.description}</span>}
