@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.32.3
+
+### Patch Changes
+
+-   e763330: Fix code smells in webapp
+
 ## 1.32.2
 
 ### Patch Changes

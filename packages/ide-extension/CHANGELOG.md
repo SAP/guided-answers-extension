@@ -1,5 +1,7 @@
 # sap-guided-answer-extension
 
+## 1.32.3
+
 ## 1.32.2
 
 ## 1.32.1
