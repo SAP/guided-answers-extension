@@ -24,8 +24,12 @@ function replace(domNode: DOMNode): ReactElement | undefined {
     let result: ReactElement | undefined;
     if (domNode.type === 'tag') {
         const domElement: Element = domNode as Element;
+
         result = replaceDataCommand(domElement);
-        result = replaceNodeLink(domElement);
+
+        if (!result) {
+            result = replaceNodeLink(domElement);
+        }
     }
     return result;
 }
