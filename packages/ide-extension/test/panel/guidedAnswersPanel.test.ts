@@ -5,6 +5,7 @@ import {
     EXECUTE_COMMAND,
     SEARCH_TREE,
     SELECT_NODE,
+    NAVIGATE,
     SET_ACTIVE_TREE,
     UPDATE_ACTIVE_NODE,
     UPDATE_GUIDED_ANSWER_TREES,
@@ -18,7 +19,6 @@ import {
     RESTORE_STATE,
     SEND_TELEMETRY,
     GET_BOOKMARKS,
-    AppState,
     SYNCHRONIZE_BOOKMARK,
     UPDATE_BOOKMARKS,
     GET_LAST_VISITED_GUIDES,
@@ -34,7 +34,8 @@ import type {
     GuidedAnswerTree,
     GuidedAnswerTreeId,
     GuidedAnswerTreeSearchResult,
-    LastVisitedGuide
+    LastVisitedGuide,
+    AppState
 } from '@sap/guided-answers-extension-types';
 import { GuidedAnswersPanel, GuidedAnswersSerializer } from '../../src/panel/guidedAnswersPanel';
 import * as logger from '../../src/logger/logger';
@@ -58,7 +59,7 @@ const getWebViewPanelMock = (onDidReceiveMessage: (callback: WebviewMessageCallb
         onDidChangeViewState: jest.fn(),
         onDidDispose: jest.fn(),
         reveal: jest.fn()
-    } as unknown as WebviewPanel);
+    }) as unknown as WebviewPanel;
 
 const getApiMock = (firstNodeId?: number): GuidedAnswerAPI =>
     ({
@@ -78,7 +79,7 @@ const getApiMock = (firstNodeId?: number): GuidedAnswerAPI =>
         getTrees: () => Promise.resolve([{ TREE_ID: 1 }, { TREE_ID: 2 }, { TREE_ID: 3 }]),
         sendFeedbackOutcome: jest.fn(),
         sendFeedbackComment: jest.fn()
-    } as unknown as GuidedAnswerAPI);
+    }) as unknown as GuidedAnswerAPI;
 
 const delay = async (ms: number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -323,6 +324,76 @@ describe('GuidedAnswersPanel', () => {
             expect.stringContaining('GET_NODE_API_ERROR')
         );
         expect(webViewPanelMock.webview.postMessage).not.toBeCalled();
+    });
+
+    test('GuidedAnswersPanel communication NAVIGATE', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => getApiMock());
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({ type: NAVIGATE, payload: { treeId: 1, nodeIdPath: [1, 2, 3] } });
+
+        // Result check
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
+            type: UPDATE_NETWORK_STATUS,
+            payload: 'LOADING'
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {
+            type: SET_ACTIVE_TREE,
+            payload: { TREE_ID: 1 }
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(3, {
+            type: UPDATE_ACTIVE_NODE,
+            payload: { NODE_ID: 1 }
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(4, {
+            type: UPDATE_ACTIVE_NODE,
+            payload: { NODE_ID: 2 }
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(5, {
+            type: UPDATE_ACTIVE_NODE,
+            payload: { NODE_ID: 3 }
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(6, {
+            type: UPDATE_NETWORK_STATUS,
+            payload: 'OK'
+        });
+    });
+
+    test('GuidedAnswersPanel communication NAVIGATE throws error', async () => {
+        // Mock setup
+        let onDidReceiveMessageMock: WebviewMessageCallback = () => {};
+        const webViewPanelMock = getWebViewPanelMock((callback: WebviewMessageCallback) => {
+            onDidReceiveMessageMock = callback;
+        });
+        jest.spyOn(window, 'createWebviewPanel').mockImplementation(() => webViewPanelMock);
+        const localApiMock = getApiMock();
+        localApiMock.getTreeById = () => {
+            throw Error('GET_TREE_API_ERROR');
+        };
+        jest.spyOn(coreMock, 'getGuidedAnswerApi').mockImplementation(() => localApiMock);
+
+        // Test execution
+        const panel = new GuidedAnswersPanel();
+        panel.show();
+        await onDidReceiveMessageMock({ type: NAVIGATE, payload: { treeId: 1, nodeIdPath: [1, 2, 3] } });
+
+        // Result check
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
+            type: UPDATE_NETWORK_STATUS,
+            payload: 'LOADING'
+        });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(2, {
+            type: UPDATE_NETWORK_STATUS,
+            payload: 'ERROR'
+        });
     });
 
     test('GuidedAnswersPanel communication EXECUTE_COMMAND', async () => {

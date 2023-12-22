@@ -5,13 +5,16 @@ import type {
     Bookmark,
     GuidedAnswerActions,
     GuidedAnswerAPI,
+    GuidedAnswerNodeId,
     GuidedAnswersQueryOptions,
+    GuidedAnswerTreeId,
     GuidedAnswerTreeSearchResult,
     IDE
 } from '@sap/guided-answers-extension-types';
 import {
     FILL_SHARE_LINKS,
     SELECT_NODE,
+    NAVIGATE,
     SEND_TELEMETRY,
     SEND_FEEDBACK_OUTCOME,
     SEND_FEEDBACK_COMMENT,
@@ -290,6 +293,27 @@ export class GuidedAnswersPanel {
     }
 
     /**
+     *
+     * @param treeId - tree to navigate to
+     * @param nodeIdPath - nodes in tree to navigate to
+     */
+    async navigate(treeId: GuidedAnswerTreeId, nodeIdPath: GuidedAnswerNodeId[]): Promise<void> {
+        this.postActionToWebview(updateNetworkStatus('LOADING'));
+        try {
+            const tree = await this.guidedAnswerApi.getTreeById(treeId);
+            const nodePath = await this.guidedAnswerApi.getNodePath(nodeIdPath);
+            this.postActionToWebview(setActiveTree(tree));
+            for (const node of nodePath) {
+                this.postActionToWebview(updateActiveNode(node));
+            }
+            this.postActionToWebview(updateNetworkStatus('OK'));
+        } catch (e) {
+            this.postActionToWebview(updateNetworkStatus('ERROR'));
+            throw e;
+        }
+    }
+
+    /**
      * Handler for actions coming from webview. This should be primarily commands with arguments.
      *
      * @param action - action to execute
@@ -301,6 +325,10 @@ export class GuidedAnswersPanel {
                     const node = await this.guidedAnswerApi.getNodeById(action.payload);
                     logger.logInfo(`Node selected: ${node.NODE_ID}: ${node.TITLE}`);
                     this.postActionToWebview(updateActiveNode(node));
+                    break;
+                }
+                case NAVIGATE: {
+                    await this.navigate(action.payload.treeId, action.payload.nodeIdPath);
                     break;
                 }
                 case SEND_FEEDBACK_OUTCOME: {

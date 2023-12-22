@@ -1,4 +1,4 @@
-import { default as parse } from 'html-react-parser';
+import { default as parse, domToReact } from 'html-react-parser';
 import type { DOMNode, Element } from 'html-react-parser';
 import React from 'react';
 import type { ReactElement } from 'react';
@@ -7,45 +7,81 @@ import { HTML_ENHANCEMENT_DATA_ATTR_MARKER } from '@sap/guided-answers-extension
 import { useSelector } from 'react-redux';
 import { actions } from '../../../state';
 import type { AppState } from '../../../types';
+import { extractLinkInfo } from '../utils';
 import './GuidedAnswerNode.scss';
 import { GuidedAnswerNavPath } from '../GuidedAnswerNavPath';
 import { Middle } from './Middle';
 import { Right } from './Right';
 
 /**
- * Replacer function for html-react-parser's replace function. If an element was marked, replace it with  link <a>
+ * Replacer function for html-react-parser's replace function.
  * The command JSON is in the data-* attribute.
  *
  * @param domNode - current DOM node from html-react-parser
- * @returns - undefined if nothing to replace; the new node (<a>) in case of replacement
+ * @returns - undefined if nothing to replace; the new node in case of replacement
  */
 function replace(domNode: DOMNode): ReactElement | undefined {
     let result: ReactElement | undefined;
     if (domNode.type === 'tag') {
         const domElement: Element = domNode as Element;
-        const dataCommandString = domElement?.attribs?.[HTML_ENHANCEMENT_DATA_ATTR_MARKER];
-        if (dataCommandString) {
-            try {
-                const command = JSON.parse(decodeURIComponent(dataCommandString)) as Command;
-                const textContent = domElement?.firstChild?.type === 'text' ? domElement.firstChild.data : '';
-                if (command) {
-                    result = (
-                        <button
-                            title={command.description}
-                            className="enhancement-link"
-                            onClick={(): void => {
-                                actions.executeCommand(command);
-                            }}>
-                            {textContent}
-                        </button>
-                    );
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        }
+        result = replaceDataCommand(domElement);
+        result = replaceNodeLink(domElement);
     }
     return result;
+}
+
+/**
+ *
+ * @param element - current Element from html-react-parser
+ * @returns - undefined if nothing to replace; the new node in case of replacement
+ */
+function replaceDataCommand(element: Element): ReactElement | undefined {
+    const dataCommandString = element?.attribs?.[HTML_ENHANCEMENT_DATA_ATTR_MARKER];
+    if (dataCommandString) {
+        try {
+            const command = JSON.parse(decodeURIComponent(dataCommandString)) as Command;
+            const textContent = element?.firstChild?.type === 'text' ? element.firstChild.data : '';
+            if (command) {
+                return (
+                    <button
+                        title={command.description}
+                        className="enhancement-link"
+                        onClick={(): void => {
+                            actions.executeCommand(command);
+                        }}>
+                        {textContent}
+                    </button>
+                );
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    return undefined;
+}
+
+/**
+ *
+ * @param element - current Element from html-react-parser
+ * @returns - undefined if nothing to replace; the new node in case of replacement
+ */
+function replaceNodeLink(element: Element): ReactElement | undefined {
+    if (element.name === 'a') {
+        const href = element.attribs.href;
+        const linkInfo = extractLinkInfo(href);
+        if (linkInfo && linkInfo.nodeIdPath.length > 0) {
+            return (
+                <a
+                    href=""
+                    onClick={(): void => {
+                        actions.navigate({ treeId: linkInfo.treeId, nodeIdPath: linkInfo.nodeIdPath });
+                    }}>
+                    {domToReact(element.children)}
+                </a>
+            );
+        }
+    }
+    return undefined;
 }
 
 /**
@@ -65,16 +101,6 @@ function enhanceBodyHtml(htmlString: string): ReactElement | undefined {
 }
 
 /**
- * Check if an HTML string contains an enhancement.
- *
- * @param htmlString - HTML string
- * @returns true: has enhancementsl; false: no enhancements
- */
-function hasEnhancements(htmlString: string): boolean {
-    return typeof htmlString === 'string' && htmlString.includes(HTML_ENHANCEMENT_DATA_ATTR_MARKER);
-}
-
-/**
  * Render the react elements to display a Guided Answers node.
  *
  * @returns - react element of Guided Answers node
@@ -85,7 +111,7 @@ export function GuidedAnswerNode(): ReactElement {
     const activeNode = nodes[nodes.length - 1];
 
     if (activeNode) {
-        const enhancedBody = hasEnhancements(activeNode.BODY) ? enhanceBodyHtml(activeNode.BODY) : null;
+        const enhancedBody = enhanceBodyHtml(activeNode.BODY);
 
         return (
             <section className="guided-answer__node__body">
