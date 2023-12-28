@@ -5,6 +5,7 @@ export {
     updateActiveNodeSharing,
     updateNetworkStatus,
     selectNode,
+    navigate,
     goToPreviousPage,
     goToAllAnswers,
     restartAnswer,

@@ -11,6 +11,7 @@ import type {
     RestartAnswer,
     SearchTree,
     SelectNode,
+    Navigate,
     NetworkStatus,
     SetActiveTree,
     SetQueryValue,
@@ -56,6 +57,7 @@ import {
     GO_TO_ALL_ANSWERS,
     RESTART_ANSWER,
     SELECT_NODE,
+    NAVIGATE,
     SET_ACTIVE_TREE,
     SEARCH_TREE,
     SET_QUERY_VALUE,
@@ -93,6 +95,11 @@ export const updateGuidedAnswerTrees = (payload: UpdateGuidedAnswerTrees['payloa
 });
 
 export const selectNode = (payload: GuidedAnswerNodeId): SelectNode => ({ type: SELECT_NODE, payload });
+
+export const navigate = (payload: { treeId: GuidedAnswerTreeId; nodeIdPath: GuidedAnswerNodeId[] }): Navigate => ({
+    type: NAVIGATE,
+    payload
+});
 
 export const updateActiveNode = (payload: GuidedAnswerNode): UpdateActiveNode => ({
     type: UPDATE_ACTIVE_NODE,

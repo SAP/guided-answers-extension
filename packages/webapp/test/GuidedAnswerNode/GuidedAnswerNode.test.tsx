@@ -11,7 +11,7 @@ jest.mock('react-redux', () => ({
         .mockReturnValue({ activeGuidedAnswerNode: [] })
         .mockReturnValueOnce([
             {
-                BODY: `<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code <span ${HTML_ENHANCEMENT_DATA_ATTR_MARKER}="%7B%22label%22%3A%22Archive%20Project%22%2C%22description%22%3A%22Run%20command%20to%20archive%20a%20Fiori%20tools%20project%20from%20current%20workspace%22%2C%22exec%22%3A%7B%22extensionId%22%3A%22sapse.sap-ux-application-modeler-extension%22%2C%22commandId%22%3A%22sap.ux.environmentcheck.archiveProject%22%7D%7D">Fiori: Archive Project</span></p>`,
+                BODY: `<p>SAP Fiori Tools is a set of extensions <a href="vscode://saposs.sap-guided-answers-extension#/tree/2827/actions/41344:41346:57775:57776">link</a> for SAP Business Application Studio and Visual Studio Code <span ${HTML_ENHANCEMENT_DATA_ATTR_MARKER}="%7B%22label%22%3A%22Archive%20Project%22%2C%22description%22%3A%22Run%20command%20to%20archive%20a%20Fiori%20tools%20project%20from%20current%20workspace%22%2C%22exec%22%3A%7B%22extensionId%22%3A%22sapse.sap-ux-application-modeler-extension%22%2C%22commandId%22%3A%22sap.ux.environmentcheck.archiveProject%22%7D%7D">Fiori: Archive Project</span></p>`,
                 EDGES: [
                     { LABEL: 'Deployment', TARGET_NODE: 45996, ORD: 1 },
                     { LABEL: 'Fiori Generator', TARGET_NODE: 48363, ORD: 2 }

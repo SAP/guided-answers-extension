@@ -199,6 +199,7 @@ export type GuidedAnswerActions =
     | GuideFeedback
     | SearchTree
     | SelectNode
+    | Navigate
     | SendFeedbackComment
     | SendFeedbackOutcome
     | SendTelemetry
@@ -256,6 +257,15 @@ export const SELECT_NODE = 'SELECT_NODE';
 export interface SelectNode {
     type: typeof SELECT_NODE;
     payload: GuidedAnswerNodeId;
+}
+
+export const NAVIGATE = 'NAVIGATE';
+export interface Navigate {
+    type: typeof NAVIGATE;
+    payload: {
+        treeId: GuidedAnswerTreeId;
+        nodeIdPath: GuidedAnswerNodeId[];
+    };
 }
 
 export const UPDATE_ACTIVE_NODE = 'UPDATE_ACTIVE_NODE';
