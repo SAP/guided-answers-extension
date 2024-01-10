@@ -18,8 +18,8 @@
 [#85](https://github.com/SAP/guided-answers-extension/issues/85),
 [#426](https://github.com/SAP/guided-answers-extension/issues/426),
 [#492](https://github.com/SAP/guided-answers-extension/issues/492),
-[#490](https://github.com/SAP/guided-answers-extension/issues/490)
-
+[#490](https://github.com/SAP/guided-answers-extension/issues/490),
+[#531](https://github.com/SAP/guided-answers-extension/issues/531)
 
 Prerequisites: Guided Answers Extension is installed in either SAP Business Application Studio (SBAS) or Microsoft Visual Studio Code (VSCODE)
 
@@ -66,30 +66,22 @@ Prerequisites: Guided Answers Extension is installed in either SAP Business Appl
 
 
 **Expected Results 1** 
-
-Guided Answers extension opens in view port
-    a. A blank home page 
-    b. Empty search input field
-    c. A grid icon for the Product filter
-    d. A id icon for the Component filter
+Guided Answers extension opens in view port displaying a home page containing 
+    a. SAP logo and Guided Answers 
+    b. An Empty search input field
 
 **Expected Results 2** 
-
 The search input field falls under the SAP Guided Answers Extension 
 
 
 **Expected Results 3** 
-
 Guided Answers extension opens in view port
-    a. A component filter is applied  CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
-    b. A list of Guided Answer Content associated to the components CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE appears
+    a. SAP Logo and Guided Answers
     b. Empty search input field
-    c. A grid icon for the Product filter
-    d. A id icon for the Component filter . Id icon is highlighted in blue as Component filter is applied by default.
-
+    c. A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
 
 **Expected Results 4** 
-
 If the Guided Answers extension is already open in the existing view port is given focus. A new instance of the GA extension is not opened the existing instance is re used. 
 
 **Expected Results 5**
@@ -99,67 +91,70 @@ Guided Answers extension open in a new view port. Two instances of the Guided An
 
 
 ### Search Guided Answers Content
-
 1. Open Guided Answers Extension
-2. Clear filters if filters have been applied e.g. SBAS default component filters.
-3. Enter 'SAP Fiori Tools' in search fields (See expected result 1)
+2. Enter 'SAP Fiori Tools' in search fields (See expected result 1)
+3. Click on SAP logo  ( See expected result 2) 
 
 **Expected Results 1**
-
 The view port displays
 
     a. A list containing guides that are related to the 'SAP Fiori Tools' search criteria. 'SAP Fiori tools' , 'SAP Fiori tools - Application Preview' and 'Configuring the UI of a Fiori Element Application' should appear in the list
     b. The name of the Guided Answer should appear in the list 
-    b. The description of the Guided Answer  should appear in the list
-    c. The Product the Guided Answer is associated to
-    d. The Component the Guided Answer is associated to
+    c. The description of the Guided Answer  should appear in the list
+    d. The Product the Guided Answer is associated to
+    e. The Component the Guided Answer is associated to
 
-
-
-
+**Expected Results 2**
+ Guided Answers Home page is displayed containing 
+ 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
 
 ### Filtering Guided Answers Content on Product 
-
 1. Open Guided Answers Extension 
-2. Clear filters if filters have been applied e.g. SBAS default component filters.
-3. Enter 'Fiori Tools' in search input field
-4. Click on Product Filter ( See expected result 1 ) 
-5. Enter 'Fiori Tools' in the pop up search bar (See expected result 2)
-6. Check 'SAP Fiori Tools'
-7. Click 'Appy Filter'( See expected result 3)
-8. Click 'Clear Filter' ( See expected result 4)
-
+2. Enter 'Fiori Tools' in search input field
+3. Click on Product Filter ( See expected result 1 ) 
+4. Enter 'Fiori Tools' in the pop up search bar (See expected result 2)
+5. Check 'SAP Fiori Tools'
+6. Click 'Appy Filter'( See expected result 3)
+7. Click 'Clear Filter' ( See expected result 4)
+8. Click on SAP logo  ( See expected result 5)
+   
 **Expected result 1**
-
 A pop up appears containing all products that the returned Guided Answers list are associated to
 
 **Expected result 2**
-
-Only SAP Fiori Tools appars in Product list
+Only SAP Fiori Tools appears in Product list
 
 **Expected result 3**
-
 Text appears informing the user that the outcomes list has been filtered on product 'SAP Fiori Tools' 
 All outcomes appearing in the list are associated to the product 'SAP Fiori Tools' 
 
 **Expected result 4**
-
 The outcome list is refreshed displaying all Guided Answers closely mathcing the Guided Answers search input
 
-
+**Expected result 5**
+ Guided Answers Home page is displayed containing 
+ 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
 
 
 
 ### Filtering Guided Answers Content on Components 
 
 1. Open Guided Answers Extension 
-2. 2. Clear filters if filters have been applied e.g. SBAS default component filters.
-3. Enter 'Fiori tools' in search input field
-4. Click on Component Filter ( See expected result 1 ) 
-5. Enter 'CA-UX-IDE' in the pop up search bar (See expected result 2)
-6. Check 'CA-UX-IDE'
-7. Click 'Appy Filter'( See expected result 3)
-8. Click 'Clear Filter' ( See expected result 4)
+2. Enter 'Fiori tools' in search input field
+3. Click on Component Filter ( See expected result 1 ) 
+4. Enter 'CA-UX-IDE' in the pop up search bar (See expected result 2)
+5. Check 'CA-UX-IDE'
+6. Click 'Appy Filter'( See expected result 3)
+7. Click 'Clear Filter' ( See expected result 4)
+8. Click on SAP logo  ( See expected result 5)
 
 **Expected result 1**
 A pop up appears containing all components that the returned Guided Answers list are associated to
@@ -174,103 +169,185 @@ All outcomes appearing in the list are associated to the product 'CA-UX-IDE'
 **Expected result 4**
 The outcome list is refreshed displaying all Guided Answers closely mathcing the Guided Answers search input
 
-
-
-
+**Expected result 5**
+ Guided Answers Home page is displayed containing 
+ 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
 
 ### Filtering Guided Answers Content on Products and Components 
 
 1. Open Guided Answer Extension
-2. Clear filters if filters have been applied e.g. SBAS default component filters.
-3. Enter 'SAP Business Application Studio' in search input field
-4. Click on Product Filter
-5. Enter 'SAP Business Application Studio' in product pop input field
-6. Click Apply Filter
-7. Click on Component Filter ( See expected results 1 ) 
-8. User selects 'CA-WDE'
-9. Click Apply Filter ( See expected results 2)
+2. Enter 'SAP Business Application Studio' in search input field
+3. Click on Product Filter
+4. Enter 'SAP Business Application Studio' in product pop up input field
+5. Click Apply Filter
+6. Click on Component Filter ( See expected results 1 ) 
+7. User selects 'CA-WDE'
+8. Click Apply Filter ( See expected results 2)
+9. Click on SAP logo  ( See expected result 3)
 
 **Expected result 1**
 Component Filter pop up opens displaying all the components associated to the outcomes list that is filtered on 'SAP Business Application Studio. 
 This list contains 
 
-        a. CA-WDE
-        b. BC-NEO-CPT
-        c. HAN-WDE-DOC
+        a. CA-BAS
 
 Note: This list is subject to change based on Guided Answers being continually added for different products and components
 
 **Expected result 2**
-Text informing the user the outcomes list is filtered on 'SAP Business Application Studio' and the component 'CA-WDE'. The outcomes list displays outcomes associated to 'SAP Business Application Studio' and components 'CA_WDE' 
+Text informing the user the outcomes list is filtered on 'SAP Business Application Studio' and the component 'CA-BAS'. The outcomes list displays outcomes associated to 'SAP Business Application Studio' and components 'CA_BAS' 
+
+**Expected result 3**
+ Guided Answers Home page is displayed containing 
+ 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
 
 
 
+### Open Guided Answers Content and Last visited content
 
-
-### Open Guided Answers Content 
-
-1. Open Guided Answers Extension
-2. Clear filters if filters have been applied e.g. SBAS default component filters.
+1. Open Guided Answers Extension ( See expected results 1 ) 
 3. Enter SAP Fiori Tools in search
-4. Select SAP Fiori Tools Guided Answer in the list ( See expected result 1)
-5. Select an outcome of the first node of the Guided Answer (See expected result 2)
-6. Select multiple outcomes in the Guided Answer Tree 
-7. Click 'Step back' ( See expected result 3)
-8. Click on a  node in the tree component ( See expected result 4)
-9. Click 'Restart' ( See expected result 5)
-10. Click Home icon
-
+4. Select SAP Fiori Tools Guided Answer in the list ( See expected result 2)
+5. Select an outcome of the first node of the Guided Answer (See expected result 3)
+6. Select multiple outcomes in the Guided Answer Tree  - SBAS -> Services unavailable , All catalog service request failed
+7. Click 'Step back' ( See expected result 4)
+8. Click on a node in the tree component ( See expected result 5) - Fiori Generator
+9. Click 'Restart' ( See expected result 6)
+10. Click 'Step back' ( See expected results 7) 
+11. Select SAP Fiori Tools Guided Answer in the list ( See expected result 2)
+12. Click Home icon ( See expected results 8 )
+13. Click on last visited Guide ( See expected result 2)
+14. Select an outcome of the first node of the Guided Answer (See expected result 3)
+15. Click Home icon ( See expected results 9 )
+16. Click on last visited Guide ( See expected result 2)
+17. Click on 'Step back'  ( See expected result 4)
+18. Click on 'Step back' ( See expected results 10) 
 
 **Expected Result 1**
-
-View port now displays
-    a. 'All Answers' link
-    b. Guided Answers content tree showing the first node of the Guided Answer Tree
-    c. The title of the Guided Answer
-    d. The content of the first Guided Answer node
-    e. The outcomes of the Guided Answer content 
-
-Note: Check the content matches the content in the web application e.g. headers , bullet points , images 
-
+ Guided Answers Home page is displayed containing 
+ 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
 **Expected Result 2**
+View port now displays
+    a. 'Home' icon, 'Step back' , Feedback icon, Share link and Bookmark star 
+    b. Guided Answers content tree showing the first node of the Guided Answer Tree
+    c. The title of the Guided Answer - SAP Fiori Tools
+    d. The content of the first Guided Answer node
+    e. The outcomes of the Guided Answer content  - Generation of SAP SAP Fiori Application , Deployment of SAP Fiori Application, Preview of SAP Fiori application, Configuration of SAP Fiori application
 
+**Expected Result 3**
 The contents of that outcome/node is displayed  
 
-    a. 'All Answers' link
-    b. 'Step back' and 'Restart' Link 
-    c. Guided Answers content tree showing the first node of the Guided Answer Tree and the outcome the user selected is underlined in blue 
+    a. 'Home' icon, 'Step back' , Restart , Feedback icon, Share link and Bookmark star 
+    b. Guided Answers content tree showing the first node of the Guided Answer Tree and the outcome the user selected is underlined in blue - Fiori Genearator
     c. The contents of the Guided Answer
            1. Images
            2. Bullet points
            3. Paragraphs
            4. Videos
-    d. The content of the first Guided Answer content 
+    d. The content of the Guided Answer content 
     e. The outcomes of the Guided Answer content 
 
 Note: Check the content matches the content in the web application e.g. headers , bullet points , images , scrolling the content
 
-
-**Expected result 3**
-
+**Expected result 4**
 The user is returned to the previous node of the tree content  
 
-**Expected result 4**
-
-The user is returned to the start of the Guided Answer  
-
-**Expected result 4**
-
+**Expected result 5**
 The user is navigated to the node in the Guided Answer Tree  
 
-**Expected result 5**
-
+**Expected result 6**
 The user is returned to the start of the Guided Answer  
 
-**Expected result 6**
+View port now displays
+    a. 'Home' icon, 'Step back' , Feedback icon, Share link and Bookmark star 
+    b. Guided Answers content tree showing the first node of the Guided Answer Tree
+    c. The title of the Guided Answer - SAP Fiori Tools
+    d. The content of the first Guided Answer node
+    e. The outcomes of the Guided Answer content  - Generation of SAP SAP Fiori Application , Deployment of SAP Fiori Application, Preview of SAP Fiori application, Configuration of SAP Fiori application
 
-The user is navigated to the Guided Answers home page to an empty search bar
+**Expected result 7**
+The user is navigated to the Guided Answers home search list with 'SAP Fiori Tools ' in the search input field.
+
+**Expected result 8**
+ Guided Answers Home page is displayed containing 
+ 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. Last visited section  displaying the last visited node e.g. The first node of the SAP Fiori Tools tree - "SAP Fiori Tools - SAP Fiori Tools"
+    d. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
+**Expected result 9**
+ Guided Answers Home page is displayed containing 
+ 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. Last visited section  displaying the last visited node e.g. The first node of the SAP Fiori Tools tree - "SAP Fiori Tools - Fiori Generator"
+    d. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
+**Expected result 10**
+The user is navigated to the Guided Answers search list with nothing in the search input list
 
 
+### Open Quick Filter 
+
+_SBAS_
+1. Open GA extension ( See expected results 1)
+2. Click on Quick Filter Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE  (See expected results 2)
+3. Enter search criteria (See expected results 3)
+4. Click Clear Filters (See expected results 4)
+5. Click on SAP Logo (See expected results 5)
+6. Click on Quick Filter Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE  (See expected results 2)
+7. Click on SAP Logo (See expected results 5)
+
+**Expected result 1**
+Guided Answers Home page is displayed containing 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
+**Expected result 2**
+Guided Answer view port displays
+    a. A list containing guides that are related to the components CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    b. Clear Filter link
+    c. The name of the Guided Answer should appear in the list 
+    d. The description of the Guided Answer  should appear in the list
+    e. The Product the Guided Answer is associated to
+    f. The Component the Guided Answer is associated to
+    
+**Expected result 3**
+Guided Answer view port displays
+    a. A list containing guides that are related to the components CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE and search input 'SAP Fiori Tools'
+    b. Clear Filter link
+    c. The name of the Guided Answer should appear in the list 
+    d. The description of the Guided Answer  should appear in the list
+    e. The Product the Guided Answer is associated to
+    f. The Component the Guided Answer is associated to
+    
+**Expected result 4**
+Guided Answer view port displays
+    a. A list containing guides that are related to the search input 'SAP Fiori Tools'
+    b. Clear Filter link
+    c. The name of the Guided Answer should appear in the list 
+    d. The description of the Guided Answer  should appear in the list
+    e. The Product the Guided Answer is associated to
+    f. The Component the Guided Answer is associated to
+
+**Expected result 5**
+Guided Answers Home page is displayed containing 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
 
 
 ### The Guided Answer solved the issue
@@ -289,6 +366,13 @@ Pop up appears containing
  
  **Expected result 2**
 The user is navigated to the home page
+
+Guided Answers Home page is displayed containing 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. Last visited section  displaying the last visited node e.g. the last node of the tree
+    d. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
 Verify that the submission of the 'This solved my issue' is captured in the backend with the GA content creator of the outcome that you selected.
  
  **Expected result 3**
@@ -311,20 +395,21 @@ User is navigated to a new node
     b. Description of the Node: 'We are sorry to hear that your issue was not yet resolved. There are several options to getting further assistance' 
     c. A list of options e.g Start Expert Chart,  Schedule an Expert, Open an Incident, Ask the SAP Community, Search for Another Guided Answer
 
-
 **Expected result 2**
 User is navigated to a browswer where the user can continue with the option they selected.
 Note: Verify that the submission of the 'This did not solve my issue' is captured in the backend with the GA content creator of the outcome that you selected.
 
-
 **Expected result 3**
 User is navigated back to the Guided Answer Extension Home page
 
-
-
+Guided Answers Home page is displayed containing 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. Last visited section  displaying the last visited node e.g. the last node of the tree
+    d. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
 
 ### Submiting General Feedback on Guided Answer
-
 1. Open GA extension
 2. Search and Select a Guided Answer in the List
 3. Navgate through a Guided Answer 
@@ -337,8 +422,8 @@ Pop up appears containing
  a. Heading - Is this content helpful?
  b. Text - If you have suggestions on how to improve this content we would love to hear them!
  c. Text Input field - Suggestion
- b. A 'Send' Button
- c. A 'Close' Button
+ d. A 'Send' Button
+ e. A 'Close' Button
  
 **Expected result 2**
 Text appears in suggestion input field
@@ -364,23 +449,38 @@ _Adding a Bookmark_
 5. Click on star icon(See expected results 1)
 6. Click on Home icon ( See expected results 2)
 7. Close GA extension
-8. Open GA extension ( See expected results 3) 
-9. Click on the bookmark ( See expected result 4) 
-10. Click on the star icon ( See expected results 5)
-11. Click on Home icon
-12. Enter 'SAP Fiori Tools' into search input field (See expected results 6)
-13. Close GA extension
-14. Open GA extension (See expected results 7)
+8. Open GA extension ( See expected results 3)
+9. Search for SAP Fiori Tools  ( See expected results 9)
+10. Click on SAP Logo ( See expected results 10 ) 
+11. Click on the bookmark ( See expected result 4) 
+12. Click on the star icon ( See expected results 5)
+13. Click on Home icon (See expected results 6)
+14. Click on last visited Guided Answer (See expected results 4)
+15. Click on star icon (See expected results 1)
+16. Click on Home icon ( See expected results 2)
+17. Click on Star icon opposited book marked guide  ( See expected results 7)
+18. Close GA extension 
+19. Open GA extension (See expected results 8)
 
 **Expected Result 1**
 Star icon is turned yellow 
 
 **Expected Results 2**
-Guided Answer Tree 'SAP Fiori Tools' Guided Answer content has yellow star icon beside the Title in the returned list.
-
+Guided Answers Home page is displayed containing 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. Last visited section  displaying the last visited node e.g. SAP Fiori Tools - Archive not okay
+    d. Bookmarks section displaying - SAP Fiori Tools - Archive not okay
+    e. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
 **Expected Results 3**
-List of Bookmarks are displayed to the user. Showing the Tree name and the node name that was bookmarked e.g. 'SAP Fiori Tools - Request failed with status code 400 - Archive not okay". The Guided Answer tree description is shown and the product and componement of the Guided Answer Tree
-
+Guided Answers Home page is displayed containing 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. Last visited section  displaying the last visited node e.g. SAP Fiori Tools - Archive not okay
+    d. Bookmarks section displaying - SAP Fiori Tools - Archive not okay
+    e. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
 **Expected Results 4**
 The Guided Answer extension opens the node  "Request failed with status code 400 - Archive not okay"
 
@@ -388,11 +488,46 @@ The Guided Answer extension opens the node  "Request failed with status code 400
 Star icon is no longer yellow in colour
 
 **Expected Results 6**
-In the returned searched list the Guided Answers Tree 'SAP Fiori Tools' no longer has a yellow star icon beside it.
-
+Guided Answers Home page is displayed containing 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. Last visited section  displaying the last visited node e.g. SAP Fiori Tools - Archive not okay
+    d. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
 **Expected Results 7**
-No saved Bookmarks are displayed to the user. Just a blank screen with empty search input field. 
+Guided Answers Home page is displayed containing 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. Last visited section  displaying the last visited node e.g. SAP Fiori Tools - Archive not okay
+    d. Bookmarks section displaying bookmard guided e.g. SAP Fiori Tools - Archive not okay with the star icon not filled with yellow
+    e. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+    
+**Expected Results 8**
+Guided Answers Home page is displayed containing 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. Last visited section  displaying the last visited node e.g. SAP Fiori Tools - Archive not okay
+    d. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
 
+**Expected Results 9**
+The view port displays
+
+    a. A list containing guides that are related to the 'SAP Fiori Tools' search criteria. 'SAP Fiori tools' , 'SAP Fiori tools - Application Preview' and 'Configuring the UI of a Fiori Element Application' should appear in the list
+    b. SAP Fiori Tools guided has a yellow star 
+    c. The name of the Guided Answer should appear in the list 
+    d. The description of the Guided Answer  should appear in the list
+    e. The Product the Guided Answer is associated to
+    f. The Component the Guided Answer is associated to
+
+**Expected Results 10**
+Guided Answers Home page is displayed containing 
+    a. SAP Logo and Guided Answers
+    b. Empty search input field
+    c. Last visited section  displaying the last visited node e.g. SAP Fiori Tools - Archive not okay
+    d. Bookmarks section displaying bookmard guided e.g. SAP Fiori Tools - Archive not okay with the star icon not filled with yellow
+    e. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
+
+    
 ### Sharing Guided Answer content 
 
 _VSCode and SBAS_
@@ -524,7 +659,6 @@ Pre Req: Create or Import a project
 11. Click ABAP on Premise
 12. Click Request failed with status code 400 - Archive not okay ( See expected results 4)
 
-
 _SAP BUSINESS APPLICATION STUDIO _ FIORI DEV SPACE_
 
 1. Open SAP Business Application Studio
@@ -534,7 +668,6 @@ _SAP BUSINESS APPLICATION STUDIO _ FIORI DEV SPACE_
 5. Click on Services unavailable, All catalog service requests failed' outcome ( See expected results 5)
 6. Click on 'Fiori: Open Environment Check' ( See expected results 6) 
 7. Click on Environment Check node enhancment ( See expected results 7)
-
 
 
 _SAP BUSINESS APPLICATION STUDIO _ FIORI DEV SPACE_
