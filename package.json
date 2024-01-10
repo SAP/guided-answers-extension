@@ -45,10 +45,10 @@
     "engines": {
         "npm": "please-use-pnpm",
         "yarn": "please-use-pnpm",
-        "pnpm": "8",
+        "pnpm": "8.14.0",
         "node": ">=16.1.0"
     },
-    "packageManager": "pnpm@8.6.3",
+    "packageManager": "pnpm@8.14.0",
     "pnpm": {
         "overrides": {}
     }
