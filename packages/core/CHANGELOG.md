@@ -1,5 +1,13 @@
 # @sap/guided-answers-extension-core
 
+## 1.32.5
+
+### Patch Changes
+
+- 500d0a0: Update dependencies
+- Updated dependencies [500d0a0]
+  - @sap/guided-answers-extension-types@1.32.5
+
 ## 1.32.4
 
 ### Patch Changes
