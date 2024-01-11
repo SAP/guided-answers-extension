@@ -19,7 +19,8 @@
 [#426](https://github.com/SAP/guided-answers-extension/issues/426),
 [#492](https://github.com/SAP/guided-answers-extension/issues/492),
 [#490](https://github.com/SAP/guided-answers-extension/issues/490),
-[#531](https://github.com/SAP/guided-answers-extension/issues/531)
+[#531](https://github.com/SAP/guided-answers-extension/issues/531),
+[#309](https://github.com/SAP/guided-answers-extension/issues/309)
 
 Prerequisites: Guided Answers Extension is installed in either SAP Business Application Studio (SBAS) or Microsoft Visual Studio Code (VSCODE)
 
@@ -526,7 +527,6 @@ Guided Answers Home page is displayed containing
     c. Last visited section  displaying the last visited node e.g. SAP Fiori Tools - Archive not okay
     d. Bookmarks section displaying bookmard guided e.g. SAP Fiori Tools - Archive not okay with the star icon not filled with yellow
     e. SBAS - A quick filters section containing a filter on Component: CA-FE-FAL, CA-FE-FLP-EU, CA-FE-FLP-DT, CA-UI2-INT-BE, CA-UI2-INT-FE, CA-UI2-THD, CA-UX-IDE
-
     
 ### Sharing Guided Answer content 
 
@@ -622,6 +622,22 @@ The following link will appear in the notepad
 vscode://saposs.sap-guided-answers-extension#/tree/3046/actions/45995:45996:50742:46000:46005 
 
 
+### Navigating to another Guided Answer Tree or External content
+
+Note: This test is testing specific links within a specific Guided Answer. The links within this Guided Answer be changed by external content creators.
+
+1. Open Guided Answer Extension
+2. Enter "vscode://saposs.sap-guided-answers-extension#/tree/2827/actions/41344:41346:57775:57776" into search input field
+3. Scroll down to the bottom of the guide and click on 'Configure an SAP BTP Destination' ( See expected results 1)
+4. Navigate back to 'Destination configuration in SAP BTP cockpit' node  using step back button
+5. Click on 'Connecting to External Systems' ( See Expected Results 2 ) 
+
+**Expected Results 1**
+Guided Answer content is opened within the Guided Answer Extension. The tree component displays the navigation path from the previous Guided Answer guide to the new Guided Answers guide.
+SAP Business Application Studio Troubleshooting -> Connectivity Troblesshooting -> Problems Connecting to External Systems -> Destination configuration in the SAP BTP cockpit -> SAP Fiori Tools -> Fiori Geneartor-> Application Generation in SAP Business Application -> The destination is mis-configured.
+
+**Expected Results 2**
+Browser window opens display external content.
 
 ### Displaying HTML and Node enhancements specific to VSCode or SAP Business Application Studio
 
