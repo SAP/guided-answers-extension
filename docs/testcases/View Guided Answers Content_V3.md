@@ -20,7 +20,7 @@
 [#492](https://github.com/SAP/guided-answers-extension/issues/492),
 [#490](https://github.com/SAP/guided-answers-extension/issues/490),
 [#531](https://github.com/SAP/guided-answers-extension/issues/531),
-[#309](https://github.com/SAP/guided-answers-extension/issues/309)
+[#309](https://github.com/SAP/guided-answers-extension/issues/581)
 
 Prerequisites: Guided Answers Extension is installed in either SAP Business Application Studio (SBAS) or Microsoft Visual Studio Code (VSCODE)
 
