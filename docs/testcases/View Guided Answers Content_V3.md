@@ -20,7 +20,7 @@
 [#492](https://github.com/SAP/guided-answers-extension/issues/492),
 [#490](https://github.com/SAP/guided-answers-extension/issues/490),
 [#531](https://github.com/SAP/guided-answers-extension/issues/531),
-[#309](https://github.com/SAP/guided-answers-extension/issues/581)
+[#581](https://github.com/SAP/guided-answers-extension/issues/581)
 
 Prerequisites: Guided Answers Extension is installed in either SAP Business Application Studio (SBAS) or Microsoft Visual Studio Code (VSCODE)
 
@@ -127,7 +127,7 @@ The view port displays
 A pop up appears containing all products that the returned Guided Answers list are associated to
 
 **Expected result 2**
-Only SAP Fiori Tools appears in Product list
+The product list displays product matching the search content. Only SAP Fiori Tools appears in Product list
 
 **Expected result 3**
 Text appears informing the user that the outcomes list has been filtered on product 'SAP Fiori Tools' 
@@ -161,7 +161,7 @@ The outcome list is refreshed displaying all Guided Answers closely mathcing the
 A pop up appears containing all components that the returned Guided Answers list are associated to
 
 **Expected result 2**
-Only component 'CA-UX-IDE' appears in list 
+The product list displays product matching the search content. Only component 'CA-UX-IDE' appears in list 
 
 **Expected result 3**
 Text appears informing the user that the outcomes list has been filtered on component 'CA-UX-IDE' 
