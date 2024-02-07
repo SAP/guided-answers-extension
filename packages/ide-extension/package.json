@@ -80,6 +80,7 @@
         "@sap/guided-answers-extension-webapp": "workspace:*"
     },
     "devDependencies": {
+        "@sap-ux/logger": "0.5.0",
         "@sap/guided-answers-extension-core": "workspace:*",
         "@sap/guided-answers-extension-types": "workspace:*",
         "@types/uuid": "9.0.7",

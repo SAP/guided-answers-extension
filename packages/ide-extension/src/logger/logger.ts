@@ -1,19 +1,5 @@
-import type { LogOutputChannel } from 'vscode';
-import { window } from 'vscode';
-
-let channel: LogOutputChannel;
-
-/**
- * Get instance of LogOutputChannel, create if not initialized.
- *
- * @returns - LogOutputChannel
- */
-function getLogOutputChannel(): LogOutputChannel {
-    if (!channel) {
-        channel = window.createOutputChannel(`Guided Answers Extension`, { log: true });
-    }
-    return channel;
-}
+import { ExtensionLogger } from '@sap-ux/logger';
+const logger = new ExtensionLogger('Guided Answers Extension');
 
 /**
  * Log a trace message.
@@ -22,12 +8,7 @@ function getLogOutputChannel(): LogOutputChannel {
  * @param args - additional arguments
  */
 export function logTrace(message: string, ...args: any[]): void {
-    const logOutputChannel = getLogOutputChannel();
-    if (args.length <= 0) {
-        logOutputChannel.trace(message);
-    } else {
-        logOutputChannel.trace(message, ...args);
-    }
+    logger.trace(message, ...args);
 }
 
 /**
@@ -37,12 +18,7 @@ export function logTrace(message: string, ...args: any[]): void {
  * @param args - additional arguments
  */
 export function logDebug(message: string, ...args: any[]): void {
-    const logOutputChannel = getLogOutputChannel();
-    if (args.length <= 0) {
-        logOutputChannel.debug(message);
-    } else {
-        logOutputChannel.debug(message, ...args);
-    }
+    logger.debug(message, ...args);
 }
 
 /**
@@ -52,12 +28,7 @@ export function logDebug(message: string, ...args: any[]): void {
  * @param args - additional arguments
  */
 export function logInfo(message: string, ...args: any[]): void {
-    const logOutputChannel = getLogOutputChannel();
-    if (args.length <= 0) {
-        logOutputChannel.info(message);
-    } else {
-        logOutputChannel.info(message, ...args);
-    }
+    logger.info(message, ...args);
 }
 
 /**
@@ -67,12 +38,7 @@ export function logInfo(message: string, ...args: any[]): void {
  * @param args - additional arguments
  */
 export function logWarn(message: string, ...args: any[]): void {
-    const logOutputChannel = getLogOutputChannel();
-    if (args.length <= 0) {
-        logOutputChannel.warn(message);
-    } else {
-        logOutputChannel.warn(message, ...args);
-    }
+    logger.warn(message, ...args);
 }
 
 /**
@@ -82,10 +48,5 @@ export function logWarn(message: string, ...args: any[]): void {
  * @param args - additional arguments
  */
 export function logError(error: string | Error, ...args: any[]): void {
-    const logOutputChannel = getLogOutputChannel();
-    if (args.length <= 0) {
-        logOutputChannel.error(error);
-    } else {
-        logOutputChannel.error(error, ...args);
-    }
+    logger.error(error as string, ...args);
 }
