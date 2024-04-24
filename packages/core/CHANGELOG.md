@@ -1,5 +1,13 @@
 # @sap/guided-answers-extension-core
 
+## 1.32.6
+
+### Patch Changes
+
+- 088f7ca: update @sap-ux/ui-components to 1.15.2 to consume security fix
+- Updated dependencies [088f7ca]
+  - @sap/guided-answers-extension-types@1.32.6
+
 ## 1.32.5
 
 ### Patch Changes
