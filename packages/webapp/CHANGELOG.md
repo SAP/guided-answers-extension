@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.32.7
+
+### Patch Changes
+
+- 3fa911c: chore: update follow-redirects due to security
+
 ## 1.32.6
 
 ### Patch Changes
