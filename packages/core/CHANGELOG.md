@@ -1,5 +1,21 @@
 # @sap/guided-answers-extension-core
 
+## 1.32.7
+
+### Patch Changes
+
+- 3fa911c: chore: update follow-redirects due to security
+- Updated dependencies [3fa911c]
+  - @sap/guided-answers-extension-types@1.32.7
+
+## 1.32.6
+
+### Patch Changes
+
+- 088f7ca: update @sap-ux/ui-components to 1.15.2 to consume security fix
+- Updated dependencies [088f7ca]
+  - @sap/guided-answers-extension-types@1.32.6
+
 ## 1.32.5
 
 ### Patch Changes
