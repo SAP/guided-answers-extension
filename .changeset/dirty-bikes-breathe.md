@@ -5,4 +5,4 @@
 "@sap/guided-answers-extension-webapp": patch
 ---
 
-Update depenencies, remove follow-redirects override
+Update dependencies, remove follow-redirects override
