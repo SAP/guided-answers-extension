@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.32.8
+
+### Patch Changes
+
+- 71ba2ea: Update transitive dependencies
+
 ## 1.32.7
 
 ### Patch Changes

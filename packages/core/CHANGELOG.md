@@ -1,5 +1,13 @@
 # @sap/guided-answers-extension-core
 
+## 1.32.8
+
+### Patch Changes
+
+- 71ba2ea: Update transitive dependencies
+- Updated dependencies [71ba2ea]
+  - @sap/guided-answers-extension-types@1.32.8
+
 ## 1.32.7
 
 ### Patch Changes
