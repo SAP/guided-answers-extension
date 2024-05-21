@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.32.9
+
+### Patch Changes
+
+- 1e374fa: Update dependencies, remove follow-redirects override
+
 ## 1.32.8
 
 ### Patch Changes

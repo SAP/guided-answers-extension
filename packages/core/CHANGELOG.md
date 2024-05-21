@@ -1,5 +1,13 @@
 # @sap/guided-answers-extension-core
 
+## 1.32.9
+
+### Patch Changes
+
+- 1e374fa: Update dependencies, remove follow-redirects override
+- Updated dependencies [1e374fa]
+  - @sap/guided-answers-extension-types@1.32.9
+
 ## 1.32.8
 
 ### Patch Changes
