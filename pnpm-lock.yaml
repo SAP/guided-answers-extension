@@ -6,7 +6,6 @@ settings:
 
 overrides:
   '@babel/traverse@<7.23.2': '>=7.23.2'
-  follow-redirects@<1.15.4: '>=1.15.6'
 
 importers:
 
@@ -94,14 +93,14 @@ importers:
   packages/core:
     dependencies:
       '@sap/bas-sdk':
-        specifier: 3.7.7
-        version: 3.7.7
+        specifier: 3.8.2
+        version: 3.8.2
       '@sap/guided-answers-extension-types':
         specifier: workspace:*
         version: link:../types
       axios:
-        specifier: 1.6.5
-        version: 1.6.5
+        specifier: 1.6.8
+        version: 1.6.8
       xss:
         specifier: 1.0.14
         version: 1.0.14
@@ -2479,8 +2478,8 @@ packages:
       - '@types/react-dom'
     dev: false
 
-  /@sap/bas-sdk@3.7.7:
-    resolution: {integrity: sha512-kl43080dwR1sexefIfQ+kVSw8/0qXq4CODLK1fPrZMpCqWxMsrQUXtzibvgFFy38x02prgm9IStgLREOvNL3ng==}
+  /@sap/bas-sdk@3.8.2:
+    resolution: {integrity: sha512-2yebdrOygXXQzDOYni8wWWSGoXZV0velUL4xJzXmRXpF+/tKiwF9WgBolBePivQiK7hF4jZb+KL4+hSk3myHkg==}
     dependencies:
       axios: 1.6.2
       cross-spawn: 7.0.3
@@ -3433,10 +3432,10 @@ packages:
       - debug
     dev: false
 
-  /axios@1.6.5:
-    resolution: {integrity: sha512-Ii012v05KEVuUoFWmMW/UQv9aRIc3ZwkWDcM+h5Il8izZCtRVpDUfwpoFf7eOtajT3QiGR4yDUx7lPqHJULgbg==}
+  /axios@1.6.8:
+    resolution: {integrity: sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==}
     dependencies:
-      follow-redirects: 1.15.4
+      follow-redirects: 1.15.6
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -5184,16 +5183,6 @@ packages:
   /flatted@3.3.1:
     resolution: {integrity: sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==}
     dev: true
-
-  /follow-redirects@1.15.4:
-    resolution: {integrity: sha512-Cr4D/5wlrb0z9dgERpUL3LrmPKVDsETIJhaCMeDfuFYcqa5bldGV6wBsAN6X/vxlXQtFBMrXdXxdL8CbDTGniw==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dev: false
 
   /follow-redirects@1.15.6:
     resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
