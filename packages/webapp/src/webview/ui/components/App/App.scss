@@ -5,6 +5,9 @@ html {
     font-family: var(--vscode-font-family);
     -webkit-font-smoothing: antialiased;
 }
+body[role='document'] {
+    overflow: auto !important;
+}
 
 h1 {
     color: var(--vscode-settings-headerForeground);
@@ -70,7 +73,7 @@ h1 {
             margin-bottom: 10px;
             margin-top: 0px;
 
-            >i {
+            > i {
                 vertical-align: middle;
             }
         }
