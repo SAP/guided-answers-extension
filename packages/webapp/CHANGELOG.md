@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.32.10
+
+### Patch Changes
+
+- 158596e: Prevent screen jump when opening a dialog
+
 ## 1.32.9
 
 ### Patch Changes

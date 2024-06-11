@@ -1,7 +1,7 @@
 {
     "name": "@sap/guided-answers-extension-types",
     "description": "Guided Answers extension types",
-    "version": "1.32.9",
+    "version": "1.32.10",
     "license": "Apache-2.0",
     "private": true,
     "main": "dist/index.js",
