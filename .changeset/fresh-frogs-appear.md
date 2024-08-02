@@ -5,4 +5,4 @@
 "@sap/guided-answers-extension-webapp": patch
 ---
 
-chore: update transitive dependencies (#595)
+security: update bas-sdk to 3.8.8
