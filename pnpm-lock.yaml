@@ -93,8 +93,8 @@ importers:
   packages/core:
     dependencies:
       '@sap/bas-sdk':
-        specifier: 3.8.2
-        version: 3.8.2
+        specifier: 3.8.8
+        version: 3.8.8
       '@sap/guided-answers-extension-types':
         specifier: workspace:*
         version: link:../types
@@ -2526,15 +2526,15 @@ packages:
       - '@types/react-dom'
     dev: false
 
-  /@sap/bas-sdk@3.8.2:
-    resolution: {integrity: sha512-2yebdrOygXXQzDOYni8wWWSGoXZV0velUL4xJzXmRXpF+/tKiwF9WgBolBePivQiK7hF4jZb+KL4+hSk3myHkg==}
+  /@sap/bas-sdk@3.8.8:
+    resolution: {integrity: sha512-byGvBCGG7vW5HQ35RkBOXxCXqLD7f4Hc3rBrNl7JzahuvglUmEwG/NQysmvOMhLw+/c0vz/mblAULB6uFHKcvQ==}
     dependencies:
-      axios: 1.6.2
+      axios: 1.6.8
       cross-spawn: 7.0.3
       fs-extra: 11.1.0
       lodash: 4.17.21
       url-join: 4.0.1
-      ws: 8.13.0
+      ws: 8.17.1
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -3468,16 +3468,6 @@ packages:
     dependencies:
       possible-typed-array-names: 1.0.0
     dev: true
-
-  /axios@1.6.2:
-    resolution: {integrity: sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==}
-    dependencies:
-      follow-redirects: 1.15.6
-      form-data: 4.0.0
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
-    dev: false
 
   /axios@1.6.8:
     resolution: {integrity: sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==}
@@ -9537,6 +9527,20 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
+    dev: true
+
+  /ws@8.17.1:
+    resolution: {integrity: sha512-6XQFvXTkbfUOZOKKILFG1PDK2NDQs4azKQl26T0YS5CxqWLgXajbPZ+h4gZekJyRqFU8pvnbAbbs/3TgRPy+GQ==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+    dev: false
 
   /xml-name-validator@4.0.0:
     resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==}
