@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.32.12
+
+### Patch Changes
+
+-   e263cdc: security: update bas-sdk to 3.8.8
+
 ## 1.32.11
 
 ### Patch Changes

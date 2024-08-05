@@ -1,5 +1,13 @@
 # @sap/guided-answers-extension-core
 
+## 1.32.12
+
+### Patch Changes
+
+-   e263cdc: security: update bas-sdk to 3.8.8
+-   Updated dependencies [e263cdc]
+    -   @sap/guided-answers-extension-types@1.32.12
+
 ## 1.32.11
 
 ### Patch Changes
