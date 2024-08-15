@@ -32,7 +32,11 @@ const buildConfig = {
             // workaround because vsce doesn't support pnpm (https://github.com/microsoft/vscode-vsce/issues/421)
             // so it doesn't copy node_modules to vsix.
             assets: {
-                from: ['../webapp/dist/guidedAnswers.js', '../webapp/dist/guidedAnswers.css'],
+                from: [
+                    '../webapp/dist/guidedAnswers.js',
+                    '../webapp/dist/guidedAnswers.js.map',
+                    '../webapp/dist/guidedAnswers.css'
+                ],
                 to: ['.']
             }
         })
