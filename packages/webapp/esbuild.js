@@ -6,6 +6,20 @@ const postcss = require('postcss');
 const cssModulesPlugin = require('esbuild-css-modules-plugin');
 const svgrPlugin = require('esbuild-plugin-svgr');
 
+// from https://github.com/bvaughn/react-virtualized/issues/1212#issuecomment-847759202 workaround for https://github.com/bvaughn/react-virtualized/issues/1632 until it is released.
+const resolveFixup = {
+    name: 'resolve-fixup',
+    setup(build) {
+        build.onResolve({ filter: /react-virtualized/ }, async (args) => {
+            return {
+                path: require.resolve(
+                    '../../node_modules/.pnpm/react-virtualized@9.22.5_react-dom@16.14.0_react@16.14.0/node_modules/react-virtualized/dist/umd/react-virtualized.js'
+                )
+            };
+        });
+    }
+};
+
 const buildConfig = {
     logLevel: 'info',
     outdir: 'dist',
@@ -35,8 +49,9 @@ const buildConfig = {
         '@sap/guided-answers-extension-webapp'
     ],
     plugins: [
+        resolveFixup,
         sassPlugin({
-            async transform(source, _ ,filePath) {
+            async transform(source, _, filePath) {
                 const { css } = await postcss([autoprefixer]).process(source, { from: filePath });
                 return css;
             }
