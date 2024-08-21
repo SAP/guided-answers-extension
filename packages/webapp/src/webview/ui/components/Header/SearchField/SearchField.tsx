@@ -27,12 +27,12 @@ export function SearchField() {
 
     const debounceSearch = useCallback(
         debounce(
-            (newSearchTerm: string) =>
+            (newSearchTerm: string, productFilters: string[], componentFilters: string[]) =>
                 actions.searchTree({
                     query: newSearchTerm,
                     filters: {
-                        product: appState.selectedProductFilters,
-                        component: appState.selectedComponentFilters
+                        product: productFilters,
+                        component: componentFilters
                     },
                     paging: {
                         responseSize: appState.pageSize,
@@ -46,12 +46,12 @@ export function SearchField() {
 
     const onClearSearchTerm = (): void => {
         actions.setQueryValue('');
-        debounceSearch('');
+        debounceSearch('', [], []);
     };
 
     const onChangeSearchTerm = (_?: ChangeEvent<HTMLInputElement> | undefined, newSearchTerm = ''): void => {
         actions.setQueryValue(newSearchTerm);
-        debounceSearch(newSearchTerm);
+        debounceSearch(newSearchTerm, appState.selectedProductFilters, appState.selectedComponentFilters);
     };
 
     return (

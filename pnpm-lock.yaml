@@ -282,7 +282,7 @@ packages:
     engines: {node: '>=18.0.0'}
     dependencies:
       '@azure/abort-controller': 2.1.2
-      '@azure/core-util': 1.2.0
+      '@azure/core-util': 1.9.2
       tslib: 2.6.3
     dev: true
 
@@ -292,7 +292,7 @@ packages:
     dependencies:
       '@azure/abort-controller': 2.1.2
       '@azure/core-auth': 1.7.2
-      '@azure/core-rest-pipeline': 1.10.1
+      '@azure/core-rest-pipeline': 1.16.3
       '@azure/core-tracing': 1.1.2
       '@azure/core-util': 1.9.2
       '@azure/logger': 1.1.4
@@ -301,20 +301,18 @@ packages:
       - supports-color
     dev: true
 
-  /@azure/core-rest-pipeline@1.10.1:
-    resolution: {integrity: sha512-Kji9k6TOFRDB5ZMTw8qUf2IJ+CeJtsuMdAHox9eqpTf1cefiNMpzrfnF6sINEBZJsaVaWgQ0o48B6kcUH68niA==}
-    engines: {node: '>=14.0.0'}
+  /@azure/core-rest-pipeline@1.16.3:
+    resolution: {integrity: sha512-VxLk4AHLyqcHsfKe4MZ6IQ+D+ShuByy+RfStKfSjxJoL3WBWq17VNmrz8aT8etKzqc2nAeIyLxScjpzsS4fz8w==}
+    engines: {node: '>=18.0.0'}
     dependencies:
-      '@azure/abort-controller': 1.1.0
+      '@azure/abort-controller': 2.1.2
       '@azure/core-auth': 1.7.2
       '@azure/core-tracing': 1.1.2
-      '@azure/core-util': 1.2.0
+      '@azure/core-util': 1.9.2
       '@azure/logger': 1.1.4
-      form-data: 4.0.0
-      http-proxy-agent: 5.0.0
-      https-proxy-agent: 5.0.1
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.5
       tslib: 2.6.3
-      uuid: 8.3.2
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -323,14 +321,6 @@ packages:
     resolution: {integrity: sha512-dawW9ifvWAWmUm9/h+/UQ2jrdvjCJ7VJEuCJ6XVNudzcOwm53BFZH4Q845vjfgoUAM8ZxokvVNxNxAITc502YA==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      tslib: 2.6.3
-    dev: true
-
-  /@azure/core-util@1.2.0:
-    resolution: {integrity: sha512-ffGIw+Qs8bNKNLxz5UPkz4/VBM/EZY07mPve1ZYFqYUdPwFqRj0RPk0U7LZMOfT7GCck9YjuT1Rfp1PApNl1ng==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      '@azure/abort-controller': 1.1.0
       tslib: 2.6.3
     dev: true
 
@@ -349,7 +339,7 @@ packages:
       '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.7.2
       '@azure/core-client': 1.9.2
-      '@azure/core-rest-pipeline': 1.10.1
+      '@azure/core-rest-pipeline': 1.16.3
       '@azure/core-tracing': 1.1.2
       '@azure/core-util': 1.9.2
       '@azure/logger': 1.1.4
@@ -377,7 +367,7 @@ packages:
     dependencies:
       '@azure/core-auth': 1.7.2
       '@azure/core-client': 1.9.2
-      '@azure/core-rest-pipeline': 1.10.1
+      '@azure/core-rest-pipeline': 1.16.3
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/api-logs': 0.52.1
       '@opentelemetry/core': 1.25.1(@opentelemetry/api@1.9.0)
@@ -397,10 +387,10 @@ packages:
     dependencies:
       '@azure/core-auth': 1.7.2
       '@azure/core-client': 1.9.2
-      '@azure/core-rest-pipeline': 1.10.1
+      '@azure/core-rest-pipeline': 1.16.3
       '@azure/logger': 1.1.4
       '@azure/monitor-opentelemetry-exporter': 1.0.0-beta.25
-      '@azure/opentelemetry-instrumentation-azure-sdk': 1.0.0-beta.5
+      '@azure/opentelemetry-instrumentation-azure-sdk': 1.0.0-beta.6
       '@microsoft/applicationinsights-web-snippet': 1.2.1
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/api-logs': 0.52.1
@@ -449,15 +439,15 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@azure/opentelemetry-instrumentation-azure-sdk@1.0.0-beta.5:
-    resolution: {integrity: sha512-fsUarKQDvjhmBO4nIfaZkfNSApm1hZBzcvpNbSrXdcUBxu7lRvKsV5DnwszX7cnhLyVOW9yl1uigtRQ1yDANjA==}
-    engines: {node: '>=14.0.0'}
+  /@azure/opentelemetry-instrumentation-azure-sdk@1.0.0-beta.6:
+    resolution: {integrity: sha512-JP6TJ7vDNX6r0gN2+EQBINTNqZ86frl1RAj5STtbLP1ClgIhcdXXb0hvq7CuEOv7InrroHMDoEYG80OQcWChug==}
+    engines: {node: '>=18.0.0'}
     dependencies:
       '@azure/core-tracing': 1.1.2
       '@azure/logger': 1.1.4
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 1.25.1(@opentelemetry/api@1.9.0)
-      '@opentelemetry/instrumentation': 0.41.2(@opentelemetry/api@1.9.0)
+      '@opentelemetry/instrumentation': 0.52.1(@opentelemetry/api@1.9.0)
       tslib: 2.6.3
     transitivePeerDependencies:
       - supports-color
@@ -1170,7 +1160,7 @@ packages:
       '@babel/runtime': 7.25.0
       '@emotion/hash': 0.9.2
       '@emotion/memoize': 0.9.0
-      '@emotion/serialize': 1.3.0
+      '@emotion/serialize': 1.3.1
       babel-plugin-macros: 3.1.0
       convert-source-map: 1.9.0
       escape-string-regexp: 4.0.0
@@ -1199,8 +1189,8 @@ packages:
     resolution: {integrity: sha512-30FAj7/EoJ5mwVPOWhAyCX+FPfMDrVecJAM+Iw9NRoSl4BBAQeqj4cApHHUXOVvIPgLVDsCFoz/hGD+5QQD1GQ==}
     dev: false
 
-  /@emotion/react@11.13.0(@types/react@17.0.62)(react@16.14.0):
-    resolution: {integrity: sha512-WkL+bw1REC2VNV1goQyfxjx1GYJkcc23CRQkXX+vZNLINyfI7o+uUn/rTGPt/xJ3bJHd5GcljgnxHf4wRw5VWQ==}
+  /@emotion/react@11.13.3(@types/react@17.0.62)(react@16.14.0):
+    resolution: {integrity: sha512-lIsdU6JNrmYfJ5EbUCf4xW1ovy5wKQ2CkPRM4xogziOxH1nXxBSjpC9YqbFAP7circxMfYp+6x676BqWcEiixg==}
     peerDependencies:
       '@types/react': '*'
       react: '>=16.8.0'
@@ -1211,7 +1201,7 @@ packages:
       '@babel/runtime': 7.25.0
       '@emotion/babel-plugin': 11.12.0
       '@emotion/cache': 11.13.1
-      '@emotion/serialize': 1.3.0
+      '@emotion/serialize': 1.3.1
       '@emotion/use-insertion-effect-with-fallbacks': 1.1.0(react@16.14.0)
       '@emotion/utils': 1.4.0
       '@emotion/weak-memoize': 0.4.0
@@ -1222,12 +1212,12 @@ packages:
       - supports-color
     dev: false
 
-  /@emotion/serialize@1.3.0:
-    resolution: {integrity: sha512-jACuBa9SlYajnpIVXB+XOXnfJHyckDfe6fOpORIM6yhBDlqGuExvDdZYHDQGoDf3bZXGv7tNr+LpLjJqiEQ6EA==}
+  /@emotion/serialize@1.3.1:
+    resolution: {integrity: sha512-dEPNKzBPU+vFPGa+z3axPRn8XVDetYORmDC0wAiej+TNcOZE70ZMJa0X7JdeoM6q/nWTMZeLpN/fTnD9o8MQBA==}
     dependencies:
       '@emotion/hash': 0.9.2
       '@emotion/memoize': 0.9.0
-      '@emotion/unitless': 0.9.0
+      '@emotion/unitless': 0.10.0
       '@emotion/utils': 1.4.0
       csstype: 3.1.3
     dev: false
@@ -1236,8 +1226,8 @@ packages:
     resolution: {integrity: sha512-fTBW9/8r2w3dXWYM4HCB1Rdp8NLibOw2+XELH5m5+AkWiL/KqYX6dc0kKYlaYyKjrQ6ds33MCdMPEwgs2z1rqg==}
     dev: false
 
-  /@emotion/unitless@0.9.0:
-    resolution: {integrity: sha512-TP6GgNZtmtFaFcsOgExdnfxLLpRDla4Q66tnenA9CktvVSdNKDvMVuUah4QvWPIpNjrWsGg3qeGo9a43QooGZQ==}
+  /@emotion/unitless@0.10.0:
+    resolution: {integrity: sha512-dFoMUuQA20zvtVTuxZww6OHoJYgrzfKM1t52mVySDJnMSEa08ruEvdYQbhvyu6soU+NeLVd3yKfTfT0NeV6qGg==}
     dev: false
 
   /@emotion/use-insertion-effect-with-fallbacks@1.1.0(react@16.14.0):
@@ -1756,11 +1746,11 @@ packages:
       tslib: 2.6.3
     dev: false
 
-  /@fluentui/font-icons-mdl2@8.5.49(@types/react@17.0.62)(react@16.14.0):
-    resolution: {integrity: sha512-HPJXQf427vhtQLfKn4s6iYUREflwRnLUzt523sbObH6ww14Jw61TTYAOQkL0QlzaOzOnWDfqhjLGzGcvEC3f/g==}
+  /@fluentui/font-icons-mdl2@8.5.50(@types/react@17.0.62)(react@16.14.0):
+    resolution: {integrity: sha512-04pRRmuBf9r/3cnBlIedF+SFk2UW7GdRQvdfKxoMuL4dDMLPqo4ruPkI/dz8Mp3EDERQU01XDWtBx11w9obmFQ==}
     dependencies:
       '@fluentui/set-version': 8.2.23
-      '@fluentui/style-utilities': 8.10.20(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/style-utilities': 8.10.21(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/utilities': 8.15.15(@types/react@17.0.62)(react@16.14.0)
       tslib: 2.6.3
     transitivePeerDependencies:
@@ -1768,15 +1758,15 @@ packages:
       - react
     dev: false
 
-  /@fluentui/foundation-legacy@8.4.15(@types/react@17.0.62)(react@16.14.0):
-    resolution: {integrity: sha512-bWp4bsHtHZ7zLcKei8sSDasmjli8KL3LuNSz6YDL7Rh858w1p/IjOdohQdWsMJ1saHpruhzbLTu7A6dwdQD1tg==}
+  /@fluentui/foundation-legacy@8.4.16(@types/react@17.0.62)(react@16.14.0):
+    resolution: {integrity: sha512-01/uQPQ2pEkQ6nUUF+tXaYeOG8UssfoEgAVLPolYXr1DC4tT66hPi7Smgsh6tzUkt/Ljy0nw9TIMRoHDHlfRyg==}
     peerDependencies:
       '@types/react': '>=16.8.0 <19.0.0'
       react: '>=16.8.0 <19.0.0'
     dependencies:
       '@fluentui/merge-styles': 8.6.13
       '@fluentui/set-version': 8.2.23
-      '@fluentui/style-utilities': 8.10.20(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/style-utilities': 8.10.21(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/utilities': 8.15.15(@types/react@17.0.62)(react@16.14.0)
       '@types/react': 17.0.62
       react: 16.14.0
@@ -1858,8 +1848,8 @@ packages:
       react-dom: '>=16.8.0 <19.0.0'
     dependencies:
       '@fluentui/date-time-utilities': 8.6.9
-      '@fluentui/font-icons-mdl2': 8.5.49(@types/react@17.0.62)(react@16.14.0)
-      '@fluentui/foundation-legacy': 8.4.15(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/font-icons-mdl2': 8.5.50(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/foundation-legacy': 8.4.16(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/merge-styles': 8.6.13
       '@fluentui/react-focus': 8.8.37(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/react-hooks': 8.8.12(@types/react@17.0.62)(react@16.14.0)
@@ -1867,7 +1857,7 @@ packages:
       '@fluentui/react-window-provider': 2.2.28(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/set-version': 8.2.23
       '@fluentui/style-utilities': 8.10.1(@types/react@17.0.62)(react@16.14.0)
-      '@fluentui/theme': 2.6.58(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/theme': 2.6.59(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/utilities': 8.13.23(@types/react@17.0.62)(react@16.14.0)
       '@microsoft/load-themed-styles': 1.10.295
       '@types/react': 17.0.62
@@ -1886,8 +1876,8 @@ packages:
       react-dom: '>=16.8.0 <19.0.0'
     dependencies:
       '@fluentui/date-time-utilities': 8.6.9
-      '@fluentui/font-icons-mdl2': 8.5.49(@types/react@17.0.62)(react@16.14.0)
-      '@fluentui/foundation-legacy': 8.4.15(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/font-icons-mdl2': 8.5.50(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/foundation-legacy': 8.4.16(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/merge-styles': 8.6.13
       '@fluentui/react-focus': 8.8.37(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/react-hooks': 8.8.12(@types/react@17.0.62)(react@16.14.0)
@@ -1895,7 +1885,7 @@ packages:
       '@fluentui/react-window-provider': 2.2.28(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/set-version': 8.2.23
       '@fluentui/style-utilities': 8.10.1(@types/react@17.0.62)(react@16.14.0)
-      '@fluentui/theme': 2.6.58(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/theme': 2.6.59(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/utilities': 8.13.23(@types/react@17.0.62)(react@16.14.0)
       '@microsoft/load-themed-styles': 1.10.295
       '@types/react': 17.0.62
@@ -1916,7 +1906,7 @@ packages:
     dependencies:
       '@fluentui/merge-styles': 8.6.13
       '@fluentui/set-version': 8.2.23
-      '@fluentui/theme': 2.6.58(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/theme': 2.6.59(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/utilities': 8.13.23(@types/react@17.0.62)(react@16.14.0)
       '@microsoft/load-themed-styles': 1.10.295
       tslib: 2.6.3
@@ -1925,12 +1915,12 @@ packages:
       - react
     dev: false
 
-  /@fluentui/style-utilities@8.10.20(@types/react@17.0.62)(react@16.14.0):
-    resolution: {integrity: sha512-FS70bOKyWJR1EAP1+nCpHi9FbuDwMx5/GaGlykR315mVzyQ6PHfBR65XhndZAii/ZUOcc6ibjgkiCfYKPQwuXg==}
+  /@fluentui/style-utilities@8.10.21(@types/react@17.0.62)(react@16.14.0):
+    resolution: {integrity: sha512-tqdSQI1MAnNUPtNKKV9LeNqmEhBZL+lpV+m6Ngl6SDuR0aQkMkuo1jA9rPxNRLUf5+pbI8LrNQ4WiCWqYkV/QQ==}
     dependencies:
       '@fluentui/merge-styles': 8.6.13
       '@fluentui/set-version': 8.2.23
-      '@fluentui/theme': 2.6.58(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/theme': 2.6.59(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/utilities': 8.15.15(@types/react@17.0.62)(react@16.14.0)
       '@microsoft/load-themed-styles': 1.10.295
       tslib: 2.6.3
@@ -1939,8 +1929,8 @@ packages:
       - react
     dev: false
 
-  /@fluentui/theme@2.6.58(@types/react@17.0.62)(react@16.14.0):
-    resolution: {integrity: sha512-m92eUnlSXWIEvm8mVE3XZL0i6+h7UpX32g+dv5s5JjxlrMd6w9DDfmu1awAufX/MAYfO6SZkI7JndKf+r6XNDQ==}
+  /@fluentui/theme@2.6.59(@types/react@17.0.62)(react@16.14.0):
+    resolution: {integrity: sha512-o/6UgKgPW6QI/+2OfCXeJfcOCbtzLIwM/3W/DzI2Pjt56ubT98IEcb32NCHoIKB2xkEnJoTjGgN1m+vHAvcQxA==}
     peerDependencies:
       '@types/react': '>=16.8.0 <19.0.0'
       react: '>=16.8.0 <19.0.0'
@@ -2579,22 +2569,6 @@ packages:
       - supports-color
     dev: true
 
-  /@opentelemetry/instrumentation@0.41.2(@opentelemetry/api@1.9.0):
-    resolution: {integrity: sha512-rxU72E0pKNH6ae2w5+xgVYZLzc5mlxAbGzF4shxMVK8YC2QQsfN38B2GPbj0jvrKWWNUElfclQ+YTykkNg/grw==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': ^1.3.0
-    dependencies:
-      '@opentelemetry/api': 1.9.0
-      '@types/shimmer': 1.2.0
-      import-in-the-middle: 1.4.2
-      require-in-the-middle: 7.4.0
-      semver: 7.6.3
-      shimmer: 1.2.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@opentelemetry/instrumentation@0.52.1(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-uXJbYU/5/MBHjMp1FqrILLRuiJCs3Ofk0MeRDk8g1S1gD47U8X3JnSwcMO1rtRo1x1a7zKaQHaoYu49p/4eSKw==}
     engines: {node: '>=14'}
@@ -2892,7 +2866,7 @@ packages:
     dev: false
 
   /@sap/bas-sdk@3.8.9:
-    resolution: {integrity: sha512-ycYttnSTlEPjDrb0svSv0jBgqEvoekD4bNB4IxuKCu5OKk5FycwsOTgufU8CXYf1ag23wTlurN+N7c4Po6PcJQ==, tarball: https://int.repositories.cloud.sap/artifactory/api/npm/build-milestones-npm/@sap/bas-sdk/-/@sap/bas-sdk-3.8.9.tgz}
+    resolution: {integrity: sha512-ycYttnSTlEPjDrb0svSv0jBgqEvoekD4bNB4IxuKCu5OKk5FycwsOTgufU8CXYf1ag23wTlurN+N7c4Po6PcJQ==}
     dependencies:
       axios: 1.7.4
       cross-spawn: 7.0.3
@@ -3539,14 +3513,6 @@ packages:
       acorn-walk: 8.3.3
     dev: true
 
-  /acorn-import-assertions@1.9.0(acorn@8.12.1):
-    resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
-    peerDependencies:
-      acorn: ^8
-    dependencies:
-      acorn: 8.12.1
-    dev: true
-
   /acorn-import-attributes@1.9.5(acorn@8.12.1):
     resolution: {integrity: sha512-n02Vykv5uA3eHGM/Z2dQrcD56kL8TyDb2p1+0P83PClMnC/nc+anbQRhIOWnSq4Ke/KvDPrY3C9hDtC/A3eHnQ==}
     peerDependencies:
@@ -3579,6 +3545,15 @@ packages:
   /agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
+    dependencies:
+      debug: 4.3.6
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /agent-base@7.1.1:
+    resolution: {integrity: sha512-H0TSyFNDMomMNJQBn8wFV5YC/2eJ+VXECwOadZJT554xP6cODZHPX3H9QMQECxvrgiSOP1pHjy1sMWQVYJOUOA==}
+    engines: {node: '>= 14'}
     dependencies:
       debug: 4.3.6
     transitivePeerDependencies:
@@ -3662,11 +3637,11 @@ packages:
     dependencies:
       '@azure/core-auth': 1.7.2
       '@azure/core-client': 1.9.2
-      '@azure/core-rest-pipeline': 1.10.1
+      '@azure/core-rest-pipeline': 1.16.3
       '@azure/identity': 4.4.1
       '@azure/monitor-opentelemetry': 1.7.0
       '@azure/monitor-opentelemetry-exporter': 1.0.0-beta.25
-      '@azure/opentelemetry-instrumentation-azure-sdk': 1.0.0-beta.5
+      '@azure/opentelemetry-instrumentation-azure-sdk': 1.0.0-beta.6
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/api-logs': 0.52.1
       '@opentelemetry/core': 1.25.1(@opentelemetry/api@1.9.0)
@@ -3820,8 +3795,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /async@3.2.5:
-    resolution: {integrity: sha512-baNZyqaaLhyLVKm/DlvdW051MSgO6b8eVfIezl9E5PqWxFgzLm/wQntEW4zOytVburDEr0JlALEpdOFwvErLsg==}
+  /async@3.2.6:
+    resolution: {integrity: sha512-htCUDlxyyCLMgaM3xXg0C0LW2xqfuQ6p05pCEIsXuyQ+a1koYKTuBMzRNwmybfLgvJDMd0r1LTn4+E0Ti6C2AA==}
     dev: true
 
   /asynckit@0.4.0:
@@ -4013,7 +3988,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001651
-      electron-to-chromium: 1.5.7
+      electron-to-chromium: 1.5.13
       node-releases: 2.0.18
       update-browserslist-db: 1.1.0(browserslist@4.23.3)
     dev: true
@@ -4156,7 +4131,7 @@ packages:
       parse5: 7.1.2
       parse5-htmlparser2-tree-adapter: 7.0.0
       parse5-parser-stream: 7.1.2
-      undici: 6.19.7
+      undici: 6.19.8
       whatwg-mimetype: 4.0.0
     dev: true
 
@@ -4744,8 +4719,8 @@ packages:
       jake: 10.9.2
     dev: true
 
-  /electron-to-chromium@1.5.7:
-    resolution: {integrity: sha512-6FTNWIWMxMy/ZY6799nBlPtF1DFDQ6VQJ7yyDP27SJNt5lwtQ5ufqVvHylb3fdQefvRcgA3fKcFMJi9OLwBRNw==}
+  /electron-to-chromium@1.5.13:
+    resolution: {integrity: sha512-lbBcvtIJ4J6sS4tb5TLp1b4LyfCdMkwStzXPyAgVgTRAsep4bvrAGaBOP7ZJtQMNJpSQ9SqG4brWOroNaQtm7Q==}
     dev: true
 
   /emittery@0.13.1:
@@ -5962,11 +5937,31 @@ packages:
       - supports-color
     dev: true
 
+  /http-proxy-agent@7.0.2:
+    resolution: {integrity: sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig==}
+    engines: {node: '>= 14'}
+    dependencies:
+      agent-base: 7.1.1
+      debug: 4.3.6
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /https-proxy-agent@5.0.1:
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
     engines: {node: '>= 6'}
     dependencies:
       agent-base: 6.0.2
+      debug: 4.3.6
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /https-proxy-agent@7.0.5:
+    resolution: {integrity: sha512-1e4Wqeblerz+tMKPIq2EMGiiWW1dIjZOksyHWSUm1rmuvw/how9hBHZ38lAGj5ID4Ik6EdkOw7NmWPy6LAwalw==}
+    engines: {node: '>= 14'}
+    dependencies:
+      agent-base: 7.1.1
       debug: 4.3.6
     transitivePeerDependencies:
       - supports-color
@@ -6038,15 +6033,6 @@ packages:
     dependencies:
       acorn: 8.12.1
       acorn-import-attributes: 1.9.5(acorn@8.12.1)
-      cjs-module-lexer: 1.3.1
-      module-details-from-path: 1.0.3
-    dev: true
-
-  /import-in-the-middle@1.4.2:
-    resolution: {integrity: sha512-9WOz1Yh/cvO/p69sxRmhyQwrIGGSp7EIdcb+fFNVi7CzQGQB8U1/1XrKVSbEd/GNOAeM0peJtmi7+qphe7NvAw==}
-    dependencies:
-      acorn: 8.12.1
-      acorn-import-assertions: 1.9.0(acorn@8.12.1)
       cjs-module-lexer: 1.3.1
       module-details-from-path: 1.0.3
     dev: true
@@ -6442,7 +6428,7 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      async: 3.2.5
+      async: 3.2.6
       chalk: 4.1.2
       filelist: 1.0.4
       minimatch: 3.1.2
@@ -7614,8 +7600,8 @@ packages:
       tslib: 2.6.3
     dev: true
 
-  /node-abi@3.65.0:
-    resolution: {integrity: sha512-ThjYBfoDNr08AWx6hGaRbfPwxKV9kVzAzOzlLKbk2CuqXE2xnCh+cbAGnwM3t8Lq4v9rUB7VfondlkBckcJrVA==}
+  /node-abi@3.67.0:
+    resolution: {integrity: sha512-bLn/fU/ALVBE9wj+p4Y21ZJWYFjUXLXPi/IewyLZkx3ApxKDNBWCKdReeKOtD8dWpOdDCeMyLh6ZewzcLsG2Nw==}
     engines: {node: '>=10'}
     requiresBuild: true
     dependencies:
@@ -8055,7 +8041,7 @@ packages:
       minimist: 1.2.8
       mkdirp-classic: 0.5.3
       napi-build-utils: 1.0.2
-      node-abi: 3.65.0
+      node-abi: 3.67.0
       pump: 3.0.0
       rc: 1.2.8
       simple-get: 4.0.1
@@ -8254,7 +8240,6 @@ packages:
       prop-types: 15.8.1
       react: 16.14.0
       scheduler: 0.19.1
-    bundledDependencies: false
 
   /react-i18next@13.2.2(i18next@23.7.16)(react-dom@16.14.0)(react@16.14.0):
     resolution: {integrity: sha512-+nFUkbRByFwnrfDcYqvzBuaeZb+nACHx+fAWN/pZMddWOCJH5hoc21+Sa/N/Lqi6ne6/9wC/qRGOoQhJa6IkEQ==}
@@ -8356,7 +8341,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.25.0
       '@emotion/cache': 11.13.1
-      '@emotion/react': 11.13.0(@types/react@17.0.62)(react@16.14.0)
+      '@emotion/react': 11.13.3(@types/react@17.0.62)(react@16.14.0)
       '@floating-ui/dom': 1.6.10
       '@types/react-transition-group': 4.4.11
       memoize-one: 6.0.0
@@ -8407,7 +8392,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       prop-types: 15.8.1
-    bundledDependencies: false
 
   /read-pkg-up@7.0.1:
     resolution: {integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==}
@@ -8635,7 +8619,6 @@ packages:
 
   /safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
-    requiresBuild: true
     dev: true
 
   /safe-regex-test@1.0.3:
@@ -8858,7 +8841,7 @@ packages:
     resolution: {integrity: sha512-kN9dJbvnySHULIluDHy32WHRUu3Og7B9sbY7tsFLctQkIqnMh3hErYgdMjTYuqmcXX+lK5T1lnUt3G7zNswmZA==}
     dependencies:
       spdx-expression-parse: 3.0.1
-      spdx-license-ids: 3.0.18
+      spdx-license-ids: 3.0.20
     dev: true
 
   /spdx-exceptions@2.5.0:
@@ -8869,18 +8852,18 @@ packages:
     resolution: {integrity: sha512-cbqHunsQWnJNE6KhVSMsMeH5H/L9EpymbzqTQ3uLwNCLZ1Q481oWaofqH7nO6V07xlXwY6PhQdQ2IedWx/ZK4Q==}
     dependencies:
       spdx-exceptions: 2.5.0
-      spdx-license-ids: 3.0.18
+      spdx-license-ids: 3.0.20
     dev: true
 
   /spdx-expression-parse@4.0.0:
     resolution: {integrity: sha512-Clya5JIij/7C6bRR22+tnGXbc4VKlibKSVj2iHvVeX5iMW7s1SIQlqu699JkODJJIhh/pUu8L0/VLh8xflD+LQ==}
     dependencies:
       spdx-exceptions: 2.5.0
-      spdx-license-ids: 3.0.18
+      spdx-license-ids: 3.0.20
     dev: true
 
-  /spdx-license-ids@3.0.18:
-    resolution: {integrity: sha512-xxRs31BqRYHwiMzudOrpSiHtZ8i/GeionCBDSilhYRj+9gIcI8wCZTlXZKu9vZIVqViP3dcp9qE5G6AlIaD+TQ==}
+  /spdx-license-ids@3.0.20:
+    resolution: {integrity: sha512-jg25NiDV/1fLtSgEgyvVyDunvaNHbuwF9lfNV17gSmPFAlYzdfNBlLtLzXTevwkPj7DhGbmN9VnmJIgLnhvaBw==}
     dev: true
 
   /split2@3.2.2:
@@ -8997,7 +8980,6 @@ packages:
 
   /string_decoder@1.3.0:
     resolution: {integrity: sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==}
-    requiresBuild: true
     dependencies:
       safe-buffer: 5.2.1
     dev: true
@@ -9450,8 +9432,8 @@ packages:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
     dev: true
 
-  /undici@6.19.7:
-    resolution: {integrity: sha512-HR3W/bMGPSr90i8AAp2C4DM3wChFdJPLrWYpIS++LxS8K+W535qftjt+4MyjNYHeWabMj1nvtmLIi7l++iq91A==}
+  /undici@6.19.8:
+    resolution: {integrity: sha512-U8uCCl2x9TK3WANvmBavymRzxbfFYG+tAu+fgx3zxQy3qdagQqBLwJVrdyO1TBfUXvfKveMKJZhpvUYoOjM+4g==}
     engines: {node: '>=18.17'}
     dev: true
 
