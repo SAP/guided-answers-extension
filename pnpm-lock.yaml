@@ -90,8 +90,8 @@ importers:
   packages/core:
     dependencies:
       '@sap/bas-sdk':
-        specifier: 3.8.8
-        version: 3.8.8
+        specifier: 3.8.9
+        version: 3.8.9
       '@sap/guided-answers-extension-types':
         specifier: workspace:*
         version: link:../types
@@ -2891,10 +2891,10 @@ packages:
       - supports-color
     dev: false
 
-  /@sap/bas-sdk@3.8.8:
-    resolution: {integrity: sha512-byGvBCGG7vW5HQ35RkBOXxCXqLD7f4Hc3rBrNl7JzahuvglUmEwG/NQysmvOMhLw+/c0vz/mblAULB6uFHKcvQ==, tarball: https://int.repositories.cloud.sap/artifactory/api/npm/build-milestones-npm/@sap/bas-sdk/-/@sap/bas-sdk-3.8.8.tgz}
+  /@sap/bas-sdk@3.8.9:
+    resolution: {integrity: sha512-ycYttnSTlEPjDrb0svSv0jBgqEvoekD4bNB4IxuKCu5OKk5FycwsOTgufU8CXYf1ag23wTlurN+N7c4Po6PcJQ==, tarball: https://int.repositories.cloud.sap/artifactory/api/npm/build-milestones-npm/@sap/bas-sdk/-/@sap/bas-sdk-3.8.9.tgz}
     dependencies:
-      axios: 1.6.8
+      axios: 1.7.4
       cross-spawn: 7.0.3
       fs-extra: 11.2.0
       lodash: 4.17.21
@@ -3849,16 +3849,6 @@ packages:
     dependencies:
       possible-typed-array-names: 1.0.0
     dev: true
-
-  /axios@1.6.8:
-    resolution: {integrity: sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==}
-    dependencies:
-      follow-redirects: 1.15.6
-      form-data: 4.0.0
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
-    dev: false
 
   /axios@1.7.4:
     resolution: {integrity: sha512-DukmaFRnY6AzAALSH4J2M3k6PkaC+MfaAGdEERRWcC9q3/TWQwLpHR8ZRLKTdQ3aBDL64EdluRDjJqKw+BPZEw==}
