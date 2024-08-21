@@ -80,7 +80,7 @@ function replaceNodeLink(element: Element): ReactElement | undefined {
                     onClick={(): void => {
                         actions.navigate({ treeId: linkInfo.treeId, nodeIdPath: linkInfo.nodeIdPath });
                     }}>
-                    {domToReact(element.children)}
+                    {domToReact(element.children as DOMNode[])}
                 </a>
             );
         }
