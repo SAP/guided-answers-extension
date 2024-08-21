@@ -85,7 +85,7 @@
         "@types/uuid": "10.0.0",
         "@types/vscode": "1.74.1",
         "@vscode/vsce": "2.22.0",
-        "applicationinsights": "3.2.2",
+        "applicationinsights": "2.9.2",
         "esbuild": "0.23.1",
         "esbuild-plugin-copy": "2.1.1",
         "uuid": "10.0.0",
