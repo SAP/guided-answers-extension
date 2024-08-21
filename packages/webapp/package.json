@@ -33,7 +33,7 @@
         "esbuild-plugin-replace": "1.4.0",
         "esbuild-plugin-svgr": "2.1.0",
         "esbuild-sass-plugin": "2.16.1",
-        "html-react-parser": "4.2.2",
+        "html-react-parser": "5.1.12",
         "i18next": "23.7.16",
         "jest-css-modules-transform": "4.4.2",
         "jest-environment-jsdom": "29.7.0",

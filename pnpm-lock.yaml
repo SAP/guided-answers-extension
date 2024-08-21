@@ -210,8 +210,8 @@ importers:
         specifier: 2.16.1
         version: 2.16.1(esbuild@0.19.11)
       html-react-parser:
-        specifier: 4.2.2
-        version: 4.2.2(react@16.14.0)
+        specifier: 5.1.12
+        version: 5.1.12(@types/react@17.0.62)(react@16.14.0)
       i18next:
         specifier: 23.7.16
         version: 23.7.16
@@ -5285,11 +5285,11 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
-  /html-dom-parser@4.0.0:
-    resolution: {integrity: sha512-TUa3wIwi80f5NF8CVWzkopBVqVAtlawUzJoLwVLHns0XSJGynss4jiY0mTWpiDOsuyw+afP+ujjMgRh9CoZcXw==}
+  /html-dom-parser@5.0.9:
+    resolution: {integrity: sha512-QGeoFYwgQ582EDvrBx0+ejIz76/LuQcwwkmSR4ueKncjl2yWbciA45Kfz/LrHvWR3CgtKnxKFkr4Mpq2Sh1QNg==}
     dependencies:
       domhandler: 5.0.3
-      htmlparser2: 9.0.0
+      htmlparser2: 9.1.0
     dev: true
 
   /html-encoding-sniffer@3.0.0:
@@ -5309,16 +5309,21 @@ packages:
       void-elements: 3.1.0
     dev: true
 
-  /html-react-parser@4.2.2(react@16.14.0):
-    resolution: {integrity: sha512-lh0wEGISnFZEAmvQqK4xc0duFMUh/m9YYyAhFursWxdtNv+hCZge0kj1y4wep6qPB5Zm33L+2/P6TcGWAJJbjA==}
+  /html-react-parser@5.1.12(@types/react@17.0.62)(react@16.14.0):
+    resolution: {integrity: sha512-OPv8fsIvxxv/+pLj9mYvyNu8PE5dPMowTRdd5VHpcoZpXlstp8eYCxQ5rzqAE5Tb75rhdiWUXnPltfb62zCVjg==}
     peerDependencies:
+      '@types/react': 0.14 || 15 || 16 || 17 || 18
       react: 0.14 || 15 || 16 || 17 || 18
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
     dependencies:
+      '@types/react': 17.0.62
       domhandler: 5.0.3
-      html-dom-parser: 4.0.0
+      html-dom-parser: 5.0.9
       react: 16.14.0
-      react-property: 2.0.0
-      style-to-js: 1.1.4
+      react-property: 2.0.2
+      style-to-js: 1.1.12
     dev: true
 
   /htmlparser2@8.0.2:
@@ -5329,15 +5334,6 @@ packages:
       domutils: 3.1.0
       entities: 4.5.0
     dev: false
-
-  /htmlparser2@9.0.0:
-    resolution: {integrity: sha512-uxbSI98wmFT/G4P2zXx4OVx04qWUmyFPrD2/CNepa2Zo3GPNaCaaxElDgwUrwYWkK1nr9fft0Ya8dws8coDLLQ==}
-    dependencies:
-      domelementtype: 2.3.0
-      domhandler: 5.0.3
-      domutils: 3.1.0
-      entities: 4.5.0
-    dev: true
 
   /htmlparser2@9.1.0:
     resolution: {integrity: sha512-5zfg6mHUoaer/97TxnGpxmbR7zJtPwIYFMZ/H5ucTlPZhKvtum05yiPK3Mgai3a0DyVxv7qYqoweaEd2nrYQzQ==}
@@ -5478,8 +5474,8 @@ packages:
     resolution: {integrity: sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==}
     dev: true
 
-  /inline-style-parser@0.1.1:
-    resolution: {integrity: sha512-7NXolsK4CAS5+xvdj5OMMbI962hU/wvwoxk+LWR9Ek9bVtyuuYScDN6eS0rUm6TxApFpw7CX1o4uJzcd4AyD3Q==}
+  /inline-style-parser@0.2.3:
+    resolution: {integrity: sha512-qlD8YNDqyTKTyuITrDOffsl6Tdhv+UC4hcdAVuQsK4IMQ99nSgd1MIA/Q+jQYoh9r3hVUXhYh7urSRmXPkW04g==}
     dev: true
 
   /internal-slot@1.0.7:
@@ -7473,6 +7469,7 @@ packages:
       prop-types: 15.8.1
       react: 16.14.0
       scheduler: 0.19.1
+    bundledDependencies: false
 
   /react-i18next@13.2.2(i18next@23.7.16)(react-dom@16.14.0)(react@16.14.0):
     resolution: {integrity: sha512-+nFUkbRByFwnrfDcYqvzBuaeZb+nACHx+fAWN/pZMddWOCJH5hoc21+Sa/N/Lqi6ne6/9wC/qRGOoQhJa6IkEQ==}
@@ -7528,8 +7525,8 @@ packages:
       react-dom: 16.14.0(react@16.14.0)
     dev: false
 
-  /react-property@2.0.0:
-    resolution: {integrity: sha512-kzmNjIgU32mO4mmH5+iUyrqlpFQhF8K2k7eZ4fdLSOPFrD1XgEuSBv9LDEgxRXTMBqMd8ppT0x6TIzqE5pdGdw==}
+  /react-property@2.0.2:
+    resolution: {integrity: sha512-+PbtI3VuDV0l6CleQMsx2gtK0JZbZKbpdu5ynr+lbsuvtmgbNcS3VM0tuY2QjFNOcWxvXeHjDpy42RO+4U2rug==}
     dev: true
 
   /react-redux@8.1.2(@types/react-dom@17.0.20)(@types/react@17.0.62)(react-dom@16.14.0)(react@16.14.0)(redux@4.2.1):
@@ -7625,6 +7622,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       prop-types: 15.8.1
+    bundledDependencies: false
 
   /read-pkg-up@7.0.1:
     resolution: {integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==}
@@ -8259,16 +8257,16 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /style-to-js@1.1.4:
-    resolution: {integrity: sha512-zEeU3vy9xL/hdLBFmzqjhm+2vJ1Y35V0ctDeB2sddsvN1856OdMZUCOOfKUn3nOjjEKr6uLhOnY4CrX6gLDRrA==}
+  /style-to-js@1.1.12:
+    resolution: {integrity: sha512-tv+/FkgNYHI2fvCoBMsqPHh5xovwiw+C3X0Gfnss/Syau0Nr3IqGOJ9XiOYXoPnToHVbllKFf5qCNFJGwFg5mg==}
     dependencies:
-      style-to-object: 0.4.2
+      style-to-object: 1.0.6
     dev: true
 
-  /style-to-object@0.4.2:
-    resolution: {integrity: sha512-1JGpfPB3lo42ZX8cuPrheZbfQ6kqPPnPHlKMyeRYtfKD+0jG+QsXgXN57O/dvJlzlB2elI6dGmrPnl5VPQFPaA==}
+  /style-to-object@1.0.6:
+    resolution: {integrity: sha512-khxq+Qm3xEyZfKd/y9L3oIWQimxuc4STrQKtQn8aSDRHb8mFgpukgX1hdzfrMEW6JCjyJ8p89x+IUMVnCBI1PA==}
     dependencies:
-      inline-style-parser: 0.1.1
+      inline-style-parser: 0.2.3
     dev: true
 
   /stylis@4.2.0:
