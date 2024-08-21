@@ -82,13 +82,13 @@
     "devDependencies": {
         "@sap/guided-answers-extension-core": "workspace:*",
         "@sap/guided-answers-extension-types": "workspace:*",
-        "@types/uuid": "9.0.7",
-        "@types/vscode": "1.74.1",
-        "@vscode/vsce": "2.22.0",
-        "applicationinsights": "2.9.2",
-        "esbuild": "0.19.11",
+        "@types/uuid": "10.0.0",
+        "@types/vscode": "1.92.0",
+        "@vscode/vsce": "3.0.0",
+        "applicationinsights": "3.2.2",
+        "esbuild": "0.23.1",
         "esbuild-plugin-copy": "2.1.1",
-        "uuid": "9.0.1",
+        "uuid": "10.0.0",
         "vscode-uri": "3.0.8"
     },
     "galleryBanner": {

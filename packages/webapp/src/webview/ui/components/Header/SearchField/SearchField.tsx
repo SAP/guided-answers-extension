@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import type { ChangeEvent } from 'react';
 import { useSelector } from 'react-redux';
-import type { AppState } from '../../../../types';
-import { actions } from '../../../../state';
+
 import { UISearchBox } from '@sap-ux/ui-components';
 
+import type { AppState } from '../../../../types';
+import { actions } from '../../../../state';
 import { Filters } from '../Filters';
 
-let timer: NodeJS.Timeout;
+const SEARCH_TIMEOUT = 250;
+
 /**
  *
  * @returns An input field
@@ -14,22 +17,41 @@ let timer: NodeJS.Timeout;
 export function SearchField() {
     const appState = useSelector<AppState, AppState>((state) => state);
 
-    const onChange = (value: string): void => {
-        clearTimeout(timer);
-        actions.setQueryValue(value);
-        timer = setTimeout(() => {
-            actions.searchTree({
-                query: value,
-                filters: {
-                    product: appState.selectedProductFilters,
-                    component: appState.selectedComponentFilters
-                },
-                paging: {
-                    responseSize: appState.pageSize,
-                    offset: 0
-                }
-            });
-        }, 100);
+    const debounce = (fn: Function, delay = SEARCH_TIMEOUT) => {
+        let timeoutId: ReturnType<typeof setTimeout>;
+        return function (this: any, ...args: any[]) {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => fn.apply(this, args), delay);
+        };
+    };
+
+    const debounceSearch = useCallback(
+        debounce(
+            (newSearchTerm: string) =>
+                actions.searchTree({
+                    query: newSearchTerm,
+                    filters: {
+                        product: appState.selectedProductFilters,
+                        component: appState.selectedComponentFilters
+                    },
+                    paging: {
+                        responseSize: appState.pageSize,
+                        offset: 0
+                    }
+                }),
+            SEARCH_TIMEOUT
+        ),
+        []
+    );
+
+    const onClearSearchTerm = (): void => {
+        actions.setQueryValue('');
+        debounceSearch('');
+    };
+
+    const onChangeSearchTerm = (_?: ChangeEvent<HTMLInputElement> | undefined, newSearchTerm = ''): void => {
+        actions.setQueryValue(newSearchTerm);
+        debounceSearch(newSearchTerm);
     };
 
     return (
@@ -40,8 +62,8 @@ export function SearchField() {
                 readOnly={appState.networkStatus === 'LOADING'}
                 placeholder="Search Guided Answers"
                 id="search-field"
-                onClear={() => onChange('')}
-                onChange={(e: any) => onChange(e?.target?.value || '')}></UISearchBox>
+                onClear={onClearSearchTerm}
+                onChange={onChangeSearchTerm}></UISearchBox>
             {appState.activeScreen === 'SEARCH' && <Filters />}
         </div>
     );

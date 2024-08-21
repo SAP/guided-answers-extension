@@ -21,10 +21,10 @@
         "watch": "tsc --watch"
     },
     "dependencies": {
-        "@sap/bas-sdk": "3.8.8",
+        "@sap/bas-sdk": "3.8.9",
         "@sap/guided-answers-extension-types": "workspace:*",
-        "axios": "1.6.8",
-        "xss": "1.0.14"
+        "axios": "1.7.4",
+        "xss": "1.0.15"
     },
     "files": [
         "LICENSE",

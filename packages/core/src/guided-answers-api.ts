@@ -173,6 +173,7 @@ async function getTrees(host: string, queryOptions?: GuidedAnswersQueryOptions):
     const url = `${host}${TREE_PATH}${query}${urlGetParamString}`;
     const response: AxiosResponse<GuidedAnswerTreeSearchResult> = await axios.get<GuidedAnswerTreeSearchResult>(url);
     const searchResult = response.data;
+
     if (!Array.isArray(searchResult?.trees)) {
         throw Error(
             `Query result from call '${url}' does not contain property 'trees' as array. Received response: '${searchResult}'`

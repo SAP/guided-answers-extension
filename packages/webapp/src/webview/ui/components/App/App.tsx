@@ -1,20 +1,24 @@
 import type { ReactElement } from 'react';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import i18next from 'i18next';
+
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { SpinnerSize } from '@fluentui/react';
+import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
+import { initIcons, UILoader, UIIcon, UiIcons } from '@sap-ux/ui-components';
+
 import type { AppState } from '../../../types';
 import { actions } from '../../../state';
+
 import { GuidedAnswerNode } from '../GuidedAnswerNode';
 import { Header } from '../Header';
 import { ErrorScreen } from '../ErrorScreen';
 import { FiltersRibbon } from '../Header/Filters';
-import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
-import './App.scss';
-import { initIcons, UILoader, UIIcon, UiIcons } from '@sap-ux/ui-components';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { SpinnerSize } from '@fluentui/react';
-import i18next from 'i18next';
 import { TreeItemBottomSection } from '../TreeItemBottomSection';
 import { HomeGrid } from '../HomeGrid';
+
+import './App.scss';
 
 initIcons();
 
@@ -25,6 +29,8 @@ initIcons();
  */
 export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
+    const [hasMore, setHasMore] = useState(true);
+
     useEffect(() => {
         const resultsContainer = document.getElementById('results-container');
         if (!resultsContainer) {
@@ -50,8 +56,16 @@ export function App(): ReactElement {
         };
     }, []);
 
+    useEffect(() => {
+        // appState.pageSize
+
+        const isMore =
+            appState.guidedAnswerTreeSearchResult.trees.length < appState.guidedAnswerTreeSearchResult.resultSize;
+        setHasMore(isMore);
+    }, [appState.guidedAnswerTreeSearchResult.trees]);
+
     function fetchData() {
-        if (appState.guidedAnswerTreeSearchResult.resultSize > appState.pageSize) {
+        if (hasMore) {
             actions.searchTree({
                 query: appState.query,
                 filters: {
@@ -97,10 +111,7 @@ export function App(): ReactElement {
                             dataLength={appState.guidedAnswerTreeSearchResult.trees.length} //This is important field to render the next data
                             next={fetchData}
                             loader={<UILoader id="loading-indicator" size={SpinnerSize.large} />}
-                            hasMore={
-                                appState.guidedAnswerTreeSearchResult.trees.length <
-                                appState.guidedAnswerTreeSearchResult.resultSize
-                            }>
+                            hasMore={hasMore}>
                             {appState.guidedAnswerTreeSearchResult.trees.map((tree) => {
                                 return (
                                     <li key={`tree-item-${tree.TITLE}`} className="tree-item">

@@ -145,6 +145,7 @@ function updateGuidedAnswerTreesReducer(newState: AppState, action: UpdateGuided
     }
     delete newState.activeGuidedAnswer;
     newState.activeScreen = 'SEARCH';
+
     return newState;
 }
 
