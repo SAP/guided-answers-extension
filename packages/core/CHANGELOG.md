@@ -1,5 +1,12 @@
 # @sap/guided-answers-extension-core
 
+## 1.32.13
+
+### Patch Changes
+
+-   38f3290: security: update axios to 1.7.4
+    -   @sap/guided-answers-extension-types@1.32.13
+
 ## 1.32.12
 
 ### Patch Changes
