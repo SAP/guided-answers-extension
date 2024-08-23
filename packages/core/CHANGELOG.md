@@ -1,5 +1,12 @@
 # @sap/guided-answers-extension-core
 
+## 1.32.14
+
+### Patch Changes
+
+-   a402b50: security: update bas-sdk to 3.8.9
+    -   @sap/guided-answers-extension-types@1.32.14
+
 ## 1.32.13
 
 ### Patch Changes
