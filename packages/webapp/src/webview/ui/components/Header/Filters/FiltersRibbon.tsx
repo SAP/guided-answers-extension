@@ -26,7 +26,7 @@ export function FiltersRibbon() {
                 component: []
             },
             paging: {
-                responseSize: appState.pageSize,
+                responseSize: 20, //appState.pageSize,
                 offset: 0
             }
         });

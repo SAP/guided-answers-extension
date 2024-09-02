@@ -12,8 +12,4 @@ class ResizeObserver {
 
 window.ResizeObserver = ResizeObserver;
 
-global.vscode = { postMessage: (e) => {} };
-
-global.window = window;
-
-global.acquireVsCodeApi = () => typeof window['vscode'];
+global.vscode = { postMessage: (e) => {}, setState: () => {} };

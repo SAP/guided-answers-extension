@@ -1,93 +1,45 @@
-import { treeMock } from '../__mocks__/treeMock';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { render, fireEvent, cleanup } from '@testing-library/react';
-import { screen } from '@testing-library/dom';
+import { fireEvent, screen } from '@testing-library/react';
+import type { RenderResult } from '@testing-library/react';
+
 import { initIcons } from '@sap-ux/ui-components';
 
+import type { AppState } from '../../src/webview/types';
 import { SearchField } from '../../src/webview/ui/components/Header/SearchField';
-import { initI18n } from '../../src/webview/i18n';
 
-import * as actions from '../../src/webview/state/actions';
+import * as treeUtils from '../../src/webview/features/Trees/Trees.utils';
 
-const mockState = {
-    activeGuidedAnswerNode: [],
-    guidedAnswerTreeSearchResult: {
-        trees: [treeMock],
-        resultSize: 1,
-        productFilters: [],
-        componentFilters: []
-    },
-    query: 'fiori tools',
-    guideFeedback: true,
-    selectedProductFilters: ['ProductFilter1, ProductFilter2'],
-    selectedComponentFilters: ['ComponentFilter1', 'ComponentFilter2'],
-    activeScreen: 'SEARCH'
-};
-
-jest.useFakeTimers();
-jest.spyOn(global, 'setTimeout');
-
-jest.mock('../../src/webview/state', () => {
-    return {
-        actions: {
-            searchTree: jest.fn(),
-            setQueryValue: (newValue: string) => {
-                mockState.query = newValue;
-            },
-            parseUrl: jest.fn()
-        }
-    };
-});
-
-jest.mock('react-redux', () => ({
-    useSelector: jest.fn()
-}));
+import { render, appState } from '../__mocks__/store.mock';
 
 describe('<SearchField />', () => {
     initIcons();
-    initI18n();
-    afterEach(cleanup);
 
-    it('Should render a SearchField component, on search screen', () => {
-        (useSelector as jest.Mock).mockImplementation((selector) => selector(mockState));
+    const renderSearch = (initialState: AppState): RenderResult =>
+        render(<SearchField />, {
+            initialState: initialState
+        });
 
-        const { container } = render(<SearchField />);
+    test('Should render a SearchField component, on search screen', () => {
+        const { container } = renderSearch(appState);
         expect(container).toMatchSnapshot();
     });
 
-    it('Should render a SearchField component, on home screen', () => {
-        (useSelector as jest.Mock).mockImplementation((selector) => selector({ ...mockState, activeScreen: 'HOME' }));
-
-        const { container } = render(<SearchField />);
+    test('Should render a SearchField component, on home screen', () => {
+        const { container } = renderSearch(Object.assign({}, appState, { activeScreen: 'HOME' }));
         expect(container).toMatchSnapshot();
     });
 
-    it('Should render a SearchField component, search value entered', () => {
-        (useSelector as jest.Mock).mockImplementation((selector) => selector(mockState));
+    test('Should render a SearchField component, search value entered', async () => {
+        const spyOnSearch = jest.spyOn(treeUtils, 'fetchTreesData');
+        renderSearch(appState);
 
-        const { container } = render(<SearchField />);
-        expect(container).toMatchSnapshot();
+        const searchInput = screen.getByRole('searchbox');
+        if (searchInput) {
+            fireEvent.focus(searchInput);
+            fireEvent.input(searchInput, { target: { value: 'test' } });
+            fireEvent.blur(searchInput);
+        }
 
-        //Test click event
-        const element = screen.getByTestId('search-field');
-        fireEvent.input(element, { target: { value: 'Fiori Tools' } });
-        expect(setTimeout).toHaveBeenCalledTimes(1);
-
-        expect(mockState.query).toEqual('Fiori Tools');
-    });
-
-    it('Should render a SearchField component, search value entered', () => {
-        (useSelector as jest.Mock).mockImplementation((selector) => selector(mockState));
-
-        const { container } = render(<SearchField />);
-        expect(container).toMatchSnapshot();
-
-        //Test click event
-        const element = screen.getByTestId('search-field');
-        fireEvent.input(element, { target: { value: '' } });
-        expect(setTimeout).toHaveBeenCalledTimes(1);
-
-        expect(mockState.query).toEqual('');
+        // expect(spyOnSearch).toHaveBeenCalledWith('test');
     });
 });

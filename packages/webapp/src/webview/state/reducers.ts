@@ -474,3 +474,10 @@ function setQuickFiltersReducer(newState: AppState, action: SetQuickFilters): Ap
 function restoreStateReducer(newState: AppState, action: RestoreState) {
     return action.payload;
 }
+
+// State selectors
+export const getSearchQuery = (state: AppState) => state.query;
+export const getNetworkStatus = (state: AppState) => state.networkStatus;
+export const getActiveScreen = (state: AppState) => state.activeScreen;
+export const getProductFilters = (state: AppState) => state.selectedProductFilters;
+export const getComponentFilters = (state: AppState) => state.selectedComponentFilters;
