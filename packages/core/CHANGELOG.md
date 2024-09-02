@@ -1,5 +1,19 @@
 # @sap/guided-answers-extension-core
 
+## 1.32.14
+
+### Patch Changes
+
+-   a402b50: security: update bas-sdk to 3.8.9
+    -   @sap/guided-answers-extension-types@1.32.14
+
+## 1.32.13
+
+### Patch Changes
+
+-   38f3290: security: update axios to 1.7.4
+    -   @sap/guided-answers-extension-types@1.32.13
+
 ## 1.32.12
 
 ### Patch Changes

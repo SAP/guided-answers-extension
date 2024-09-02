@@ -1,7 +1,7 @@
 {
     "name": "@sap/guided-answers-extension-core",
     "description": "Guided Answers extension core module",
-    "version": "1.32.12",
+    "version": "1.32.14",
     "license": "Apache-2.0",
     "private": true,
     "main": "dist/index.js",
@@ -24,7 +24,7 @@
         "@sap/bas-sdk": "3.8.9",
         "@sap/guided-answers-extension-types": "workspace:*",
         "axios": "1.7.4",
-        "xss": "1.0.15"
+        "xss": "1.0.14"
     },
     "files": [
         "LICENSE",
