@@ -8,21 +8,23 @@ import configureMockStore from 'redux-mock-store';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import { AppState } from '../../src/webview/types';
 import { useSelector } from 'react-redux';
-import { treeMock } from '../__mocks__/treeMock';
+import { treeMock } from '../__mocks__/tree.mock';
 
 const initialState = {
     ...getInitialState(),
     activeGuidedAnswer: treeMock,
-    activeGuidedAnswerNode: [{
-        BODY: '<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p>',
-        EDGES: [
-            { LABEL: 'Deployment', TARGET_NODE: 45996, ORD: 1 },
-            { LABEL: 'Fiori Generator', TARGET_NODE: 48363, ORD: 2 }
-        ],
-        NODE_ID: 45995,
-        QUESTION: 'I have a problem with',
-        TITLE: 'SAP Fiori Tools'
-    }]
+    activeGuidedAnswerNode: [
+        {
+            BODY: '<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p>',
+            EDGES: [
+                { LABEL: 'Deployment', TARGET_NODE: 45996, ORD: 1 },
+                { LABEL: 'Fiori Generator', TARGET_NODE: 48363, ORD: 2 }
+            ],
+            NODE_ID: 45995,
+            QUESTION: 'I have a problem with',
+            TITLE: 'SAP Fiori Tools'
+        }
+    ]
 };
 
 jest.mock('../../src/webview/state', () => {

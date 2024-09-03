@@ -1,12 +1,14 @@
-import { treeMock } from '../__mocks__/treeMock';
 import React from 'react';
-import { Header } from '../../src/webview/ui/components/Header';
 import { render, cleanup } from '@testing-library/react';
-import { initI18n } from '../../src/webview/i18n';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
+
+import { initI18n } from '../../src/webview/i18n';
+import { Header } from '../../src/webview/ui/components/Header';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import type { AppState } from '../../src/webview/types';
+
+import { treeMock } from '../__mocks__/tree.mock';
 
 const createState = (initialState: AppState) => (actions: any[]) => actions.reduce(reducer, initialState);
 const mockStore = configureMockStore();

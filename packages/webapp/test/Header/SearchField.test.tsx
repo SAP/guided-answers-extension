@@ -9,7 +9,7 @@ import { SearchField } from '../../src/webview/ui/components/Header/SearchField'
 
 import * as treeUtils from '../../src/webview/features/Trees/Trees.utils';
 
-import { render, appState } from '../__mocks__/storeMock';
+import { render, appState } from '../__mocks__/store.mock';
 
 describe('<SearchField />', () => {
     initIcons();

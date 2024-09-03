@@ -6,7 +6,7 @@ import { initI18n } from '../src/webview/i18n';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import { getInitialState, reducer } from '../src/webview/state/reducers';
-import { treeMock } from './__mocks__/treeMock';
+import { treeMock } from './__mocks__/tree.mock';
 
 jest.mock('../src/webview/state', () => {
     return {

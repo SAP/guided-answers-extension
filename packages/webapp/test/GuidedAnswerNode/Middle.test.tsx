@@ -1,11 +1,13 @@
-import { treeMock } from '../__mocks__/treeMock';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
+
 import { Middle } from '../../src/webview/ui/components/GuidedAnswerNode/Middle';
 import { actions } from '../../src/webview/state';
 import { initI18n } from '../../src/webview/i18n';
+
+import { treeMock } from '../__mocks__/tree.mock';
 
 let activeNodeMock = {
     BODY: '<p>SAP Fiori Tools is a set of extensions for SAP Business Application Studio and Visual Studio Code</p>',

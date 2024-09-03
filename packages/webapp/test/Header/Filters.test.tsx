@@ -1,4 +1,3 @@
-import { treeMock } from '../__mocks__/treeMock';
 import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import { initI18n } from '../../src/webview/i18n';
@@ -12,6 +11,8 @@ import {
     sortProductFilters,
     sortComponentFilters
 } from '../../src/webview/ui/components/Header/Filters/Filters';
+
+import { treeMock } from '../__mocks__/tree.mock';
 
 const createState = (initialState: AppState) => (actions: any[]) => actions.reduce(reducer, initialState);
 const mockStore = configureMockStore();

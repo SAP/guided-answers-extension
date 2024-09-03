@@ -1,8 +1,9 @@
-import { treeMock } from '../__mocks__/treeMock';
 import React from 'react';
-import { actions } from '../../src/webview/state';
+import { Provider } from 'react-redux';
+import configureMockStore from 'redux-mock-store';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
+
 import {
     HomeButton,
     BackButton,
@@ -10,11 +11,12 @@ import {
     ShareButton,
     BookmarkButton
 } from '../../src/webview/ui/components/Header/NavigationButtons';
+import { actions } from '../../src/webview/state';
 import { initI18n } from '../../src/webview/i18n';
-import configureMockStore from 'redux-mock-store';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import { AppState } from '../../src/webview/types';
-import { Provider } from 'react-redux';
+
+import { treeMock } from '../__mocks__/tree.mock';
 
 jest.mock('../../src/webview/state', () => {
     return {

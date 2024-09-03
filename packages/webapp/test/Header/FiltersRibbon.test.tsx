@@ -1,14 +1,16 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import configureMockStore from 'redux-mock-store';
+import { screen } from '@testing-library/dom';
 import { render, fireEvent, cleanup } from '@testing-library/react';
+
 import { initI18n } from '../../src/webview/i18n';
 import { FiltersRibbon } from '../../src/webview/ui/components/Header/Filters/FiltersRibbon';
 import { actions } from '../../src/webview/state';
-import { Provider } from 'react-redux';
 import { getInitialState, reducer } from '../../src/webview/state/reducers';
 import { AppState } from '../../src/webview/types';
-import configureMockStore from 'redux-mock-store';
-import { screen } from '@testing-library/dom';
-import { treeMock } from '../__mocks__/treeMock';
+
+import { treeMock } from '../__mocks__/tree.mock';
 
 jest.mock('../../src/webview/state', () => {
     return {
