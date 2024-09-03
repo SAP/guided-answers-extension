@@ -12,7 +12,7 @@ import { I18nextProvider } from 'react-i18next';
 import type { AppState } from '../../src/webview/types';
 import { reducer } from '../../src/webview/state/reducers';
 
-import i18nMock from './i18n.mock';
+import i18nMock from './i18nMock';
 
 interface WrapperProps {
     children?: React.ReactNode;
