@@ -1,7 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import type { FC } from 'react';
-import type { ChangeEvent } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 
 import { UISearchBox } from '@sap-ux/ui-components';
 
@@ -17,20 +14,16 @@ import {
 } from '../../../../state/reducers';
 import { Filters } from '../Filters';
 
-const SEARCH_TIMEOUT = 250;
-
 /**
  *
  * @returns An input field
  */
-export const SearchField: FC = (): JSX.Element => {
-    const dispatch = useDispatch();
-
+export const SearchField: React.FC = (): JSX.Element => {
     const networkStatus: string = useAppSelector(getNetworkStatus);
     const productFilters: string[] = useAppSelector(getProductFilters);
     const componentFilters: string[] = useAppSelector(getComponentFilters);
     const activeScreen: string = useAppSelector(getActiveScreen);
-    const activeSearch: string = useSelector(getSearchQuery);
+    const activeSearch: string = useAppSelector(getSearchQuery);
 
     const [searchTerm, setSearchTerm] = useState<string>(activeSearch);
 
@@ -40,21 +33,12 @@ export const SearchField: FC = (): JSX.Element => {
         }
     };
 
-    const onChange = (_?: ChangeEvent<HTMLInputElement> | undefined, newSearchTerm = ''): void => {
-        if (!/\S/.test(newSearchTerm)) {
-            newSearchTerm = '';
-        }
-        if (activeSearch !== newSearchTerm) {
-            actions.setQueryValue(newSearchTerm);
-        }
-    };
-
     const onSearch = (searchItem: string): void => {
         if (!/\S/.test(searchItem)) {
             searchItem = '';
         }
         if (activeSearch !== searchItem) {
-            dispatch(actions.setQueryValue(searchItem));
+            actions.setQueryValue(searchItem);
         }
     };
 
@@ -69,7 +53,7 @@ export const SearchField: FC = (): JSX.Element => {
                     component: componentFilters
                 },
                 {
-                    responseSize: 20, //appState.pageSize,
+                    responseSize: 20,
                     offset: 0
                 }
             );
@@ -85,7 +69,6 @@ export const SearchField: FC = (): JSX.Element => {
                 placeholder="Search Guided Answers"
                 id="search-field"
                 onClear={onClear}
-                onChange={onChange}
                 onSearch={onSearch}></UISearchBox>
             {activeScreen === 'SEARCH' && <Filters />}
         </div>

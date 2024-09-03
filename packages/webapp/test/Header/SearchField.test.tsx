@@ -25,7 +25,7 @@ describe('<SearchField />', () => {
     });
 
     test('Should render a SearchField component, on home screen', () => {
-        const { container } = renderSearch(Object.assign({}, appState, { activeScreen: 'HOME' }));
+        const { container } = renderSearch({ ...appState, activeScreen: 'HOME' });
         expect(container).toMatchSnapshot();
     });
 
@@ -37,9 +37,10 @@ describe('<SearchField />', () => {
         if (searchInput) {
             fireEvent.focus(searchInput);
             fireEvent.input(searchInput, { target: { value: 'test' } });
-            fireEvent.blur(searchInput);
+            fireEvent.keyDown(searchInput, { key: 'Enter', code: 'Enter', keyCode: 13 });
         }
 
+        // TODO: Need to fix the redux store
         // expect(spyOnSearch).toHaveBeenCalledWith('test');
     });
 });
