@@ -23,7 +23,7 @@ import { Right } from './Right';
 function replace(domNode: DOMNode): ReactElement | undefined {
     let result: ReactElement | undefined;
     if (domNode.type === 'tag') {
-        const domElement: Element = domNode as Element;
+        const domElement: Element = domNode;
 
         result = replaceDataCommand(domElement);
 
