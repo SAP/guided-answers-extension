@@ -31,6 +31,7 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
         </button>
         <div
           class="guided-answer__header__searchField"
+          id="search-field-container"
         >
           <div
             class="ms-SearchBox tree-search-field root-109"
@@ -116,6 +117,7 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
         </button>
         <div
           class="guided-answer__header__searchField"
+          id="search-field-container"
         >
           <div
             class="ms-SearchBox tree-search-field root-109"
@@ -203,6 +205,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
         </button>
         <div
           class="guided-answer__header__searchField"
+          id="search-field-container"
         >
           <div
             class="ms-SearchBox tree-search-field root-109"
@@ -290,6 +293,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
         </button>
         <div
           class="guided-answer__header__searchField"
+          id="search-field-container"
         >
           <div
             class="ms-SearchBox tree-search-field root-109"

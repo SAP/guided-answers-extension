@@ -7,8 +7,6 @@ import { initIcons } from '@sap-ux/ui-components';
 import type { AppState } from '../../src/webview/types';
 import { SearchField } from '../../src/webview/ui/components/Header/SearchField';
 
-import * as treeUtils from '../../src/webview/features/Trees/Trees.utils';
-
 import { render, appState } from '../__mocks__/store.mock';
 
 describe('<SearchField />', () => {
@@ -30,7 +28,6 @@ describe('<SearchField />', () => {
     });
 
     test('Should render a SearchField component, search value entered', async () => {
-        const spyOnSearch = jest.spyOn(treeUtils, 'fetchTreesData');
         renderSearch(appState);
 
         const searchInput = screen.getByRole('searchbox');
@@ -40,7 +37,26 @@ describe('<SearchField />', () => {
             fireEvent.keyDown(searchInput, { key: 'Enter', code: 'Enter', keyCode: 13 });
         }
 
-        // TODO: Need to fix the redux store
-        // expect(spyOnSearch).toHaveBeenCalledWith('test');
+        //expect(actions.setQueryValue).toHaveBeenCalledWith('test');
+    });
+
+    test('Should render a SearchField component, search value entered, clear icon is visible', async () => {
+        renderSearch(appState);
+
+        const searchFieldContainerDOM = screen.getByTestId('search-field-container');
+        let searchFieldContainerButtonsDOM = searchFieldContainerDOM?.querySelectorAll('button');
+        expect(searchFieldContainerButtonsDOM?.length).toEqual(0);
+
+        const searchInput = screen.getByRole('searchbox');
+        if (searchInput) {
+            fireEvent.focus(searchInput);
+            fireEvent.input(searchInput, { target: { value: 'test' } });
+        }
+
+        searchFieldContainerButtonsDOM = searchFieldContainerDOM?.querySelectorAll('button');
+        expect(searchFieldContainerButtonsDOM?.length).toEqual(1);
+
+        fireEvent.click(searchFieldContainerButtonsDOM[0]);
+        //expect(actions.setQueryValue).toHaveBeenCalledWith('test');
     });
 });

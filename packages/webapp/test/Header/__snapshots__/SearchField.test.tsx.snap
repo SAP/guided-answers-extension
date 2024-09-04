@@ -4,6 +4,7 @@ exports[`<SearchField /> Should render a SearchField component, on home screen 1
 <div>
   <div
     class="guided-answer__header__searchField"
+    id="search-field-container"
   >
     <div
       class="ms-SearchBox tree-search-field root-109"
@@ -47,6 +48,7 @@ exports[`<SearchField /> Should render a SearchField component, on search screen
 <div>
   <div
     class="guided-answer__header__searchField"
+    id="search-field-container"
   >
     <div
       class="ms-SearchBox tree-search-field root-109"

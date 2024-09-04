@@ -61,7 +61,7 @@ export const SearchField: React.FC = (): JSX.Element => {
     }, [activeSearch]);
 
     return (
-        <div className="guided-answer__header__searchField">
+        <div className="guided-answer__header__searchField" id="search-field-container">
             <UISearchBox
                 className="tree-search-field"
                 defaultValue={searchTerm}
