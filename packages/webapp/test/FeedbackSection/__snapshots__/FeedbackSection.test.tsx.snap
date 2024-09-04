@@ -9,7 +9,7 @@ exports[`Feedback Section component Should render a FeedbackSection component 1`
       Please tell us if this answer was helpful
     </h3>
     <div
-      class="ms-FocusZone css-109 feedback-subcontainer"
+      class="ms-FocusZone css-110 feedback-subcontainer"
       data-focuszone-id="FocusZone0"
       role="tree"
     >

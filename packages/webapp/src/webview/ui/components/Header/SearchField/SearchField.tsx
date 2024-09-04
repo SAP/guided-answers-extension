@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { v4 as uuidv4 } from 'uuid';
 import { UISearchBox } from '@sap-ux/ui-components';
 
 import { fetchTreesData } from '../../../../features/Trees/Trees.utils';
@@ -26,6 +26,7 @@ export const SearchField: React.FC = (): JSX.Element => {
     const activeSearch: string = useAppSelector(getSearchQuery);
 
     const [searchTerm, setSearchTerm] = useState<string>(activeSearch);
+    const [uuidKey, setUuidKey] = useState<any>(uuidv4);
 
     const onClear = (): void => {
         if (activeSearch !== '') {
@@ -43,9 +44,11 @@ export const SearchField: React.FC = (): JSX.Element => {
     };
 
     useEffect(() => {
-        if (activeSearch !== searchTerm) {
+        if (activeScreen === 'HOME' && activeSearch === '') {
+            setSearchTerm('');
+            setUuidKey(uuidv4);
+        } else if (activeSearch !== searchTerm) {
             setSearchTerm(activeSearch);
-
             fetchTreesData(
                 activeSearch,
                 {
@@ -61,7 +64,7 @@ export const SearchField: React.FC = (): JSX.Element => {
     }, [activeSearch]);
 
     return (
-        <div className="guided-answer__header__searchField" id="search-field-container">
+        <div className="guided-answer__header__searchField" id="search-field-container" key={uuidKey}>
             <UISearchBox
                 className="tree-search-field"
                 defaultValue={searchTerm}

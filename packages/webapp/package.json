@@ -14,7 +14,7 @@
         "format": "prettier --write '**/*.{js,json,ts,tsx,yaml,yml}' --ignore-path ../../.prettierignore",
         "lint": "eslint . --ext .ts,.tsx",
         "watch": "node esbuild.js --watch",
-        "test": "jest --maxWorkers=2 --silent"
+        "test": "jest --maxWorkers=2 --silent --update-snapshot"
     },
     "devDependencies": {
         "@reduxjs/toolkit": "1.9.5",
@@ -27,6 +27,7 @@
         "@types/react-dom": "17.0.20",
         "@types/react-redux": "7.1.33",
         "@types/redux-mock-store": "1.0.6",
+        "@types/uuid": "10.0.0",
         "autoprefixer": "10.4.16",
         "esbuild": "0.19.11",
         "esbuild-css-modules-plugin": "3.1.0",
@@ -52,7 +53,7 @@
         "@fluentui/react-focus": "8.8.37",
         "@fluentui/style-utilities": "8.10.1",
         "@fluentui/utilities": "8.13.23",
-        "@sap-ux/ui-components": "1.17.5",
+        "@sap-ux/ui-components": "1.17.9",
         "react-copy-to-clipboard": "5.1.0",
         "react-infinite-scroll-component": "6.1.0"
     }

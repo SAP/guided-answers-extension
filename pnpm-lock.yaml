@@ -152,8 +152,8 @@ importers:
         specifier: 8.13.23
         version: 8.13.23(@types/react@17.0.62)(react@16.14.0)
       '@sap-ux/ui-components':
-        specifier: 1.17.5
-        version: 1.17.5(@types/react-dom@17.0.20)(@types/react@17.0.62)(react-dom@16.14.0)(react@16.14.0)
+        specifier: 1.17.9
+        version: 1.17.9(@types/react-dom@17.0.20)(@types/react@17.0.62)(react-dom@16.14.0)(react@16.14.0)
       react-copy-to-clipboard:
         specifier: 5.1.0
         version: 5.1.0(react@16.14.0)
@@ -191,6 +191,9 @@ importers:
       '@types/redux-mock-store':
         specifier: 1.0.6
         version: 1.0.6
+      '@types/uuid':
+        specifier: 10.0.0
+        version: 10.0.0
       autoprefixer:
         specifier: 10.4.16
         version: 10.4.16(postcss@8.4.33)
@@ -1684,6 +1687,22 @@ packages:
       tslib: 2.6.3
     dev: false
 
+  /@fluentui/react-focus@8.9.13(@types/react@17.0.62)(react@16.14.0):
+    resolution: {integrity: sha512-oUtY4F+tp0RmV0Wr30CoYFdTQEqHWKjU3/dYHPbI0xKH4emLrf8+sc0FAHJdeHH2rx4T1XSA807pm7YB4CQqWw==}
+    peerDependencies:
+      '@types/react': '>=16.8.0 <19.0.0'
+      react: '>=16.8.0 <19.0.0'
+    dependencies:
+      '@fluentui/keyboard-key': 0.4.23
+      '@fluentui/merge-styles': 8.6.13
+      '@fluentui/set-version': 8.2.23
+      '@fluentui/style-utilities': 8.10.21(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/utilities': 8.15.15(@types/react@17.0.62)(react@16.14.0)
+      '@types/react': 17.0.62
+      react: 16.14.0
+      tslib: 2.6.3
+    dev: false
+
   /@fluentui/react-hooks@8.8.12(@types/react@17.0.62)(react@16.14.0):
     resolution: {integrity: sha512-lplre6x5dONjd12D0BWs4LKq4lX++o0w07pIk2XhxikOW1e4Xfjn6VM52WSdtx+tU4rbLUoCA8drN2y/wDvhGg==}
     peerDependencies:
@@ -1721,8 +1740,8 @@ packages:
       tslib: 2.6.3
     dev: false
 
-  /@fluentui/react@8.100.0(@types/react-dom@17.0.20)(@types/react@17.0.62)(react-dom@16.14.0)(react@16.14.0):
-    resolution: {integrity: sha512-zdMTJgZEg0NCDLcchlFOnDP1krm7Qel7uUSjfYm5MGS/rK08o9dgpwzjAwjEukGkIZ/Q3C4DZQablVdV/CpW+A==}
+  /@fluentui/react@8.114.2(@types/react-dom@17.0.20)(@types/react@17.0.62)(react-dom@16.14.0)(react@16.14.0):
+    resolution: {integrity: sha512-6Dbp6bTIjiA+go2f13KcPjIjKPIdZvxBdRMW7Gh8SRH3FHHEEErOBCBRUFnI0oOlu4vEFSE62sRPupTH14CXig==}
     peerDependencies:
       '@types/react': '>=16.8.0 <19.0.0'
       '@types/react-dom': '>=16.8.0 <19.0.0'
@@ -1749,8 +1768,8 @@ packages:
       tslib: 2.6.3
     dev: false
 
-  /@fluentui/react@8.114.2(@types/react-dom@17.0.20)(@types/react@17.0.62)(react-dom@16.14.0)(react@16.14.0):
-    resolution: {integrity: sha512-6Dbp6bTIjiA+go2f13KcPjIjKPIdZvxBdRMW7Gh8SRH3FHHEEErOBCBRUFnI0oOlu4vEFSE62sRPupTH14CXig==}
+  /@fluentui/react@8.120.5(@types/react-dom@17.0.20)(@types/react@17.0.62)(react-dom@16.14.0)(react@16.14.0):
+    resolution: {integrity: sha512-Ca0zFi0/IkTvthMTyEQSvvUoRahDUa2SCyMMn4h1OzXrVvrap3q8GHfSanYbmRNPQIva+5O8mkvToRYN5UOm+w==}
     peerDependencies:
       '@types/react': '>=16.8.0 <19.0.0'
       '@types/react-dom': '>=16.8.0 <19.0.0'
@@ -1761,14 +1780,14 @@ packages:
       '@fluentui/font-icons-mdl2': 8.5.50(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/foundation-legacy': 8.4.16(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/merge-styles': 8.6.13
-      '@fluentui/react-focus': 8.8.37(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/react-focus': 8.9.13(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/react-hooks': 8.8.12(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/react-portal-compat-context': 9.0.12(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/react-window-provider': 2.2.28(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/set-version': 8.2.23
-      '@fluentui/style-utilities': 8.10.1(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/style-utilities': 8.10.21(@types/react@17.0.62)(react@16.14.0)
       '@fluentui/theme': 2.6.59(@types/react@17.0.62)(react@16.14.0)
-      '@fluentui/utilities': 8.13.23(@types/react@17.0.62)(react@16.14.0)
+      '@fluentui/utilities': 8.15.15(@types/react@17.0.62)(react@16.14.0)
       '@microsoft/load-themed-styles': 1.10.295
       '@types/react': 17.0.62
       '@types/react-dom': 17.0.20
@@ -2297,13 +2316,13 @@ packages:
       reselect: 4.1.8
     dev: true
 
-  /@sap-ux/ui-components@1.17.5(@types/react-dom@17.0.20)(@types/react@17.0.62)(react-dom@16.14.0)(react@16.14.0):
-    resolution: {integrity: sha512-6zIEfFlP5JQyg++AKX0Sb+uSCFM2Ck1YWyaBBj7RLj585ppPn/0GHQASBMDs2mm5pNtf0h5q+erUwFN+GgX/UA==}
+  /@sap-ux/ui-components@1.17.9(@types/react-dom@17.0.20)(@types/react@17.0.62)(react-dom@16.14.0)(react@16.14.0):
+    resolution: {integrity: sha512-vHR1QkhEbYLrAMuyYC3QQOgw9ApJ+bq+NDWnj90lCMI50SxzhMwXu9c4BdNtYN6RpaS6tO1YcYyaaQlKVaT7Tg==}
     peerDependencies:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
     dependencies:
-      '@fluentui/react': 8.100.0(@types/react-dom@17.0.20)(@types/react@17.0.62)(react-dom@16.14.0)(react@16.14.0)
+      '@fluentui/react': 8.120.5(@types/react-dom@17.0.20)(@types/react@17.0.62)(react-dom@16.14.0)(react@16.14.0)
       react: 16.14.0
       react-dom: 16.14.0(react@16.14.0)
       react-movable: 2.5.4(react-dom@16.14.0)(react@16.14.0)
