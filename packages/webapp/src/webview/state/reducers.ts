@@ -481,3 +481,4 @@ export const getNetworkStatus = (state: AppState) => state.networkStatus;
 export const getActiveScreen = (state: AppState) => state.activeScreen;
 export const getProductFilters = (state: AppState) => state.selectedProductFilters;
 export const getComponentFilters = (state: AppState) => state.selectedComponentFilters;
+export const getPageSize = (state: AppState) => state.pageSize;

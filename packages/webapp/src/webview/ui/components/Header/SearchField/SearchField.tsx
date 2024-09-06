@@ -9,6 +9,7 @@ import {
     getSearchQuery,
     getNetworkStatus,
     getActiveScreen,
+    getPageSize,
     getProductFilters,
     getComponentFilters
 } from '../../../../state/reducers';
@@ -22,6 +23,7 @@ export const SearchField: React.FC = (): JSX.Element => {
     const networkStatus: string = useAppSelector(getNetworkStatus);
     const productFilters: string[] = useAppSelector(getProductFilters);
     const componentFilters: string[] = useAppSelector(getComponentFilters);
+    const pageSize: number = useAppSelector(getPageSize);
     const activeScreen: string = useAppSelector(getActiveScreen);
     const activeSearch: string = useAppSelector(getSearchQuery);
 
@@ -70,7 +72,7 @@ export const SearchField: React.FC = (): JSX.Element => {
                     component: componentFilters
                 },
                 {
-                    responseSize: 20,
+                    responseSize: pageSize,
                     offset: 0
                 }
             );
