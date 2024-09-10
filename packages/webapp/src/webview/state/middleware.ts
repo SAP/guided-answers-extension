@@ -1,5 +1,6 @@
 import i18next from 'i18next';
 import type { Middleware, MiddlewareAPI, Dispatch, Action } from 'redux';
+import { createLogger } from 'redux-logger';
 import type { GuidedAnswerActions } from '@sap/guided-answers-extension-types';
 import {
     GO_TO_PREVIOUS_PAGE,
@@ -40,7 +41,6 @@ export const communicationMiddleware: Middleware<
     // Add event handler, this will dispatch incoming state updates
     window.addEventListener('message', (event: MessageEvent) => {
         if (event.origin === window.origin) {
-            console.log(i18next.t('MESSAGE_RECEIVED'), event);
             if (event.data && typeof event.data.type === 'string') {
                 store.dispatch(event.data);
             }
@@ -58,7 +58,6 @@ export const communicationMiddleware: Middleware<
             action = next(action);
             if (action && typeof action.type === 'string') {
                 window.vscode.postMessage(action);
-                console.log(i18next.t('REACT_ACTION_POSTED'), action);
             }
             return action;
         };
@@ -81,6 +80,7 @@ const allowedTelemetryActions = new Set([
     UPDATE_BOOKMARKS,
     SYNCHRONIZE_BOOKMARK
 ]);
+
 export const telemetryMiddleware: Middleware<
     Dispatch<GuidedAnswerActions>,
     AppState,
@@ -115,3 +115,7 @@ export const restoreMiddleware: Middleware<Dispatch<GuidedAnswerActions>, AppSta
             return action;
         };
 };
+
+export const loggerMiddleware = createLogger({
+    duration: true
+});

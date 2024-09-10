@@ -1,4 +1,4 @@
-import type { AxiosResponse } from 'axios';
+import type { AxiosResponse, CancelTokenSource } from 'axios';
 import axios from 'axios';
 import { default as xss } from 'xss';
 import type {
@@ -35,6 +35,7 @@ const FEEDBACK_COMMENT = `dtp/api/${VERSION}/feedback/comment`;
 const FEEDBACK_OUTCOME = `dtp/api/${VERSION}/feedback/outcome`;
 const DEFAULT_MAX_RESULTS = 9999;
 
+const previousToken: CancelTokenSource[] = [];
 /**
  * Returns API to programmatically access Guided Answers.
  *
@@ -171,13 +172,41 @@ async function getTrees(host: string, queryOptions?: GuidedAnswersQueryOptions):
     const query = queryOptions?.query ? encodeURIComponent(`"${queryOptions.query}"`) : '*';
     const urlGetParamString = convertQueryOptionsToGetParams(queryOptions?.filters, queryOptions?.paging);
     const url = `${host}${TREE_PATH}${query}${urlGetParamString}`;
-    const response: AxiosResponse<GuidedAnswerTreeSearchResult> = await axios.get<GuidedAnswerTreeSearchResult>(url);
-    const searchResult = response.data;
-    if (!Array.isArray(searchResult?.trees)) {
-        throw Error(
-            `Query result from call '${url}' does not contain property 'trees' as array. Received response: '${searchResult}'`
-        );
+
+    // Cancel the previous request if it exists
+    if (previousToken.length) {
+        const prev = previousToken.pop();
+        prev?.cancel('Canceling previous request');
     }
+
+    // Create a new CancelToken for the current request
+    const source = axios.CancelToken.source();
+    previousToken.push(source);
+
+    let searchResult: GuidedAnswerTreeSearchResult = {
+        resultSize: -1,
+        trees: [],
+        productFilters: [],
+        componentFilters: []
+    };
+    await axios
+        .get<GuidedAnswerTreeSearchResult>(url, {
+            cancelToken: source.token
+        })
+        .then((response) => {
+            searchResult = response.data;
+            if (!Array.isArray(searchResult?.trees)) {
+                throw Error(`Query result from call '${url}' does not contain property 'trees' as array`);
+            }
+        })
+        .catch((thrown) => {
+            if (axios.isCancel(thrown)) {
+                console.log(`Request canceled: '${thrown.message}'`);
+            } else {
+                throw Error(`Error fetching selection: '${thrown.message}'`);
+            }
+        });
+
     return searchResult;
 }
 

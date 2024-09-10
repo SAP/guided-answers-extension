@@ -1,4 +1,5 @@
 import axios from 'axios';
+import type { CancelTokenStatic } from 'axios';
 import type {
     APIOptions,
     FeedbackCommentPayload,
@@ -12,6 +13,7 @@ import { getGuidedAnswerApi } from '../src';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
+type Canceler = (message?: string) => void;
 const currentVersion = getGuidedAnswerApi().getApiInfo().version;
 
 describe('Guided Answers Api: getApiInfo()', () => {
@@ -24,6 +26,31 @@ describe('Guided Answers Api: getApiInfo()', () => {
 });
 
 describe('Guided Answers Api: getTrees()', () => {
+    /**
+     * Class representing a CancelToken.
+     */
+    class CancelToken {
+        /**
+         * Creates a cancel token source.
+         * @returns {Object} An object containing the cancel function and token.
+         */
+        public static source() {
+            const cancel: Canceler = jest.fn();
+            const token = new CancelToken();
+            return {
+                cancel,
+                token
+            };
+        }
+    }
+
+    mockedAxios.CancelToken = {
+        source: jest.fn(() => ({
+            cancel: jest.fn(),
+            token: new CancelToken()
+        }))
+    } as any;
+
     beforeEach(() => {
         jest.clearAllMocks();
     });
@@ -67,6 +94,7 @@ describe('Guided Answers Api: getTrees()', () => {
             componentFilters: [{ COMPONENT: 'C1', COUNT: 1 }],
             productFilters: [{ PRODUCT: 'P_one', COUNT: 1 }]
         };
+
         let requestUrl = '';
         mockedAxios.get.mockImplementation((url) => {
             requestUrl = url;
