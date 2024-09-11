@@ -8,7 +8,7 @@ import type { AppState } from '../../../../types';
 import { actions } from '../../../../state';
 import { Filters } from '../Filters';
 
-const SEARCH_TIMEOUT = 150;
+const SEARCH_TIMEOUT = 300;
 
 /**
  * SearchField component renders a search input field with debounce functionality.
