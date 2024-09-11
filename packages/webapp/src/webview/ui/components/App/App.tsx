@@ -26,28 +26,15 @@ initIcons();
 export function App(): ReactElement {
     const appState = useSelector<AppState, AppState>((state) => state);
     useEffect(() => {
-        const resultsContainer = document.getElementById('results-container');
-        if (!resultsContainer) {
-            return undefined;
-        }
-        //tree-item element height is ~100px, using 50px here to be on the safe side.
+        //tree-item element height is ~100px, using 50px here to be on the safe side. Header uses ~300,  minimum page size is 5.
         const setPageSizeByContainerHeight = (pxHeight: number): void => {
-            actions.setPageSize(Math.ceil(pxHeight / 50));
+            actions.setPageSize(Math.max(5, Math.ceil((pxHeight - 300) / 50)));
         };
-        const resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
-            const containerEntry = entries.find((entry) => entry?.target?.id === 'results-container');
-            if (containerEntry) {
-                setPageSizeByContainerHeight(containerEntry.contentRect.height);
-            }
-        });
-        // Set initial page size
-        setPageSizeByContainerHeight(resultsContainer.clientHeight);
-        resizeObserver.observe(resultsContainer);
-        return () => {
-            if (resizeObserver) {
-                resizeObserver.unobserve(resultsContainer);
-            }
+        window.onresize = () => {
+            setPageSizeByContainerHeight(window.innerHeight);
         };
+        setPageSizeByContainerHeight(window.innerHeight);
+        return undefined;
     }, []);
 
     function fetchData() {

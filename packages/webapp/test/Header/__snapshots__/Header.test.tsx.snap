@@ -154,6 +154,7 @@ exports[`<Header /> Should render a Header component without the navigation butt
       </button>
       <div
         class="guided-answer__header__searchField"
+        id="search-field-container"
       >
         <div
           class="ms-SearchBox tree-search-field root-109"
@@ -172,7 +173,6 @@ exports[`<Header /> Should render a Header component without the navigation butt
             class="ms-SearchBox-field field-113"
             id="search-field"
             placeholder="Search Guided Answers"
-            readonly=""
             role="searchbox"
             value=""
           />

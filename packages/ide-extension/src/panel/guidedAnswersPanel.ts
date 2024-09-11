@@ -243,14 +243,16 @@ export class GuidedAnswersPanel {
             }
             this.loadingTimeout = setTimeout(() => {
                 this.postActionToWebview(updateNetworkStatus('LOADING'));
-            }, 2000);
+            }, 50);
         }
         try {
             const trees = await this.guidedAnswerApi.getTrees(queryOptions);
             if (this.loadingTimeout) {
                 clearTimeout(this.loadingTimeout);
             }
-            this.postActionToWebview(updateNetworkStatus('OK'));
+            if (trees.resultSize !== -1) {
+                this.postActionToWebview(updateNetworkStatus('OK'));
+            }
             return trees;
         } catch (e) {
             if (this.loadingTimeout) {
