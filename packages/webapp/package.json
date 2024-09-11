@@ -22,7 +22,7 @@
         "@testing-library/dom": "8.20.1",
         "@testing-library/jest-dom": "6.2.0",
         "@testing-library/react": "12.1.5",
-        "@types/lodash": "4.14.149",
+        "@types/lodash": "4.17.7",
         "@types/react": "17.0.62",
         "@types/react-copy-to-clipboard": "5.0.7",
         "@types/react-dom": "17.0.20",
