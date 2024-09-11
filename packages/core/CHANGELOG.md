@@ -1,5 +1,15 @@
 # @sap/guided-answers-extension-core
 
+## 1.32.15
+
+### Patch Changes
+
+-   88c68a9: fix(ga): fix for #606 issue
+    -   [x] add fix for pageSize issue
+    -   [x] add cancel previous call to API before doing a new one
+    -   [x] add debounce on search input onChange callback
+    -   @sap/guided-answers-extension-types@1.32.15
+
 ## 1.32.14
 
 ### Patch Changes

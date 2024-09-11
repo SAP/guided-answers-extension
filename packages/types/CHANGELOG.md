@@ -1,5 +1,7 @@
 # @sap/guided-answers-extension-types
 
+## 1.32.15
+
 ## 1.32.14
 
 ## 1.32.13
