@@ -54,7 +54,7 @@ export function getGuidedAnswerApi(options?: APIOptions): GuidedAnswerAPI {
             enhanceNode({ node: await getNodeById(apiHost, id), extensions, logger, ide }),
         getTreeById: async (id: GuidedAnswerTreeId): Promise<GuidedAnswerTree> => getTreeById(apiHost, id),
         getTrees: async (queryOptions?: GuidedAnswersQueryOptions): Promise<GuidedAnswerTreeSearchResult> =>
-            getTrees(apiHost, queryOptions),
+            getTrees(apiHost, logger, queryOptions),
         getNodePath: async (nodeIdPath: GuidedAnswerNodeId[]): Promise<GuidedAnswerNode[]> => {
             let nodes = await getNodePath(apiHost, nodeIdPath);
             nodes = nodes.map((node) => enhanceNode({ node, extensions, logger, ide }));
@@ -157,13 +157,19 @@ async function getTreeById(host: string, id: GuidedAnswerTreeId): Promise<Guided
 }
 
 /**
- * Returns an array of Guided Answers trees.
- *
- * @param host - Guided Answer API host
- * @param queryOptions - options like query string, filters
- * @returns - Array of Guided Answer trees
+ * Fetches guided answer trees based on the provided query options.
+ * 
+ * @param {string} host - The host URL for the API.
+ * @param {Logger} logger - The logger instance for logging debug information.
+ * @param {GuidedAnswersQueryOptions} [queryOptions] - Optional query options including filters and paging.
+ * @returns {Promise<GuidedAnswerTreeSearchResult>} A promise that resolves to the search result containing guided answer trees.
+ * @throws {Error} Throws an error if the query is a number or if the response does not contain a 'trees' array.
  */
-async function getTrees(host: string, queryOptions?: GuidedAnswersQueryOptions): Promise<GuidedAnswerTreeSearchResult> {
+async function getTrees(
+    host: string,
+    logger: Logger,
+    queryOptions?: GuidedAnswersQueryOptions
+): Promise<GuidedAnswerTreeSearchResult> {
     if (typeof queryOptions?.query === 'number') {
         throw Error(
             `Invalid search for tree with number. Please use string or function getTreeById() to get a tree by id`
@@ -189,23 +195,22 @@ async function getTrees(host: string, queryOptions?: GuidedAnswersQueryOptions):
         productFilters: [],
         componentFilters: []
     };
-    await axios
-        .get<GuidedAnswerTreeSearchResult>(url, {
+
+    try {
+        const response = await axios.get<GuidedAnswerTreeSearchResult>(url, {
             cancelToken: source.token
-        })
-        .then((response) => {
-            searchResult = response.data;
-            if (!Array.isArray(searchResult?.trees)) {
-                throw Error(`Query result from call '${url}' does not contain property 'trees' as array`);
-            }
-        })
-        .catch((thrown) => {
-            if (axios.isCancel(thrown)) {
-                console.log(`Request canceled: '${thrown.message}'`);
-            } else {
-                throw Error(`Error fetching selection: '${thrown.message}'`);
-            }
         });
+        searchResult = response.data;
+        if (!Array.isArray(searchResult?.trees)) {
+            throw Error(`Query result from call '${url}' does not contain property 'trees' as array`);
+        }
+    } catch (error) {
+        if (axios.isCancel(error)) {
+            logger.logDebug(`Request canceled: '${error.message}'`);
+        } else {
+            throw error;
+        }
+    }
 
     return searchResult;
 }
