@@ -158,7 +158,7 @@ async function getTreeById(host: string, id: GuidedAnswerTreeId): Promise<Guided
 
 /**
  * Fetches guided answer trees based on the provided query options.
- * 
+ *
  * @param {string} host - The host URL for the API.
  * @param {Logger} logger - The logger instance for logging debug information.
  * @param {GuidedAnswersQueryOptions} [queryOptions] - Optional query options including filters and paging.
