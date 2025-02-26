@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-types
 
+## 1.32.16
+
+### Patch Changes
+
+-   3fa1044: security: update cross-spawn to >=7.0.5
+
 ## 1.32.15
 
 ## 1.32.14
