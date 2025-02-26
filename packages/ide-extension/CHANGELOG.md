@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.32.18
+
+### Patch Changes
+
+-   4a69c48: feat: new extension icon
+
 ## 1.32.17
 
 ### Patch Changes
