@@ -50,6 +50,8 @@
     },
     "packageManager": "pnpm@8.14.0",
     "pnpm": {
-        "overrides": {}
+        "overrides": {
+            "cross-spawn": ">=7.0.5"
+        }
     }
 }
