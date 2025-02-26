@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.32.17
+
+### Patch Changes
+
+-   07e1580: chore: update transitive dependencies
+
 ## 1.32.16
 
 ### Patch Changes
