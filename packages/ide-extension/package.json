@@ -5,7 +5,7 @@
     "publisher": "SAPOSS",
     "license": "Apache-2.0",
     "version": "1.32.18",
-    "icon": "media/guided-answers-extension.png",
+    "icon": "media/guided-answers-extension@2x.png",
     "categories": [
         "Education"
     ],
