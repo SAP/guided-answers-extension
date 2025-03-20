@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.32.19
+
+### Patch Changes
+
+-   5dfc81a: fix: improve icon resampling
+
 ## 1.32.18
 
 ### Patch Changes
