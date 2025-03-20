@@ -24,7 +24,7 @@ jobs:
               with:
                   run_install: true
             - name: Cache pnpm modules
-              uses: actions/cache@v4.0.3
+              uses: actions/cache@v4
               env:
                   cache-name: cache-pnpm-modules
               with:
@@ -46,7 +46,7 @@ jobs:
               run: pnpm run test
             - name: Run SonarCloud scan
               if: matrix.os == 'ubuntu-latest' && matrix.node-version == '18.x'
-              uses: sonarsource/sonarcloud-github-action@v4
+              uses: sonarsource/sonarcloud-scan-action@v5
               env:
                   GITHUB_TOKEN: ${{ secrets.ACCESS_PAT }}
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -69,7 +69,7 @@ jobs:
               with:
                   run_install: true
             - name: Cache pnpm modules
-              uses: actions/cache@v4.0.3
+              uses: actions/cache@v4
               env:
                   cache-name: cache-pnpm-modules
               with:
@@ -113,7 +113,7 @@ jobs:
               with:
                   run_install: true
             - name: Cache pnpm modules
-              uses: actions/cache@v4.0.3
+              uses: actions/cache@v4
               env:
                   cache-name: cache-pnpm-modules
               with:
