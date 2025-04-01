@@ -9,7 +9,7 @@ import { ErrorScreen } from '../ErrorScreen';
 import { FiltersRibbon } from '../Header/Filters';
 import { FocusZone, FocusZoneDirection } from '@fluentui/react-focus';
 import './App.scss';
-import { initIcons, UILoader, UIIcon, UiIcons } from '@sap-ux/ui-components';
+import { initIcons, initTheme, UILoader, UIIcon, UiIcons } from '@sap-ux/ui-components';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { SpinnerSize } from '@fluentui/react';
 import i18next from 'i18next';
@@ -17,6 +17,7 @@ import { TreeItemBottomSection } from '../TreeItemBottomSection';
 import { HomeGrid } from '../HomeGrid';
 
 initIcons();
+initTheme();
 
 /**
  * Start element for Guided Answers Extension app.
