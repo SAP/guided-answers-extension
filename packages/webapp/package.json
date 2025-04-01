@@ -52,7 +52,7 @@
         "uuid": "9.0.1"
     },
     "dependencies": {
-        "@fluentui/react": "8.114.2",
+        "@fluentui/react": "8.120.5",
         "@fluentui/react-focus": "8.8.37",
         "@fluentui/style-utilities": "8.10.1",
         "@fluentui/utilities": "8.13.23",
