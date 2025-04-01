@@ -34,15 +34,15 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
           id="search-field-container"
         >
           <div
-            class="ms-SearchBox tree-search-field root-110"
+            class="ms-SearchBox tree-search-field root-109"
           >
             <div
               aria-hidden="true"
-              class="ms-SearchBox-iconContainer iconContainer-111"
+              class="ms-SearchBox-iconContainer iconContainer-110"
             >
               <i
                 aria-hidden="true"
-                class="ms-SearchBox-icon icon-115"
+                class="ms-SearchBox-icon icon-114"
                 data-icon-name="Search"
               >
                 <svg
@@ -60,7 +60,7 @@ exports[`<App /> Match snapshot of component <App/> in initial mode 1`] = `
               </i>
             </div>
             <input
-              class="ms-SearchBox-field field-114"
+              class="ms-SearchBox-field field-113"
               id="search-field"
               placeholder="Search Guided Answers"
               role="searchbox"
@@ -120,15 +120,15 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
           id="search-field-container"
         >
           <div
-            class="ms-SearchBox tree-search-field root-110"
+            class="ms-SearchBox tree-search-field root-109"
           >
             <div
               aria-hidden="true"
-              class="ms-SearchBox-iconContainer iconContainer-111"
+              class="ms-SearchBox-iconContainer iconContainer-110"
             >
               <i
                 aria-hidden="true"
-                class="ms-SearchBox-icon icon-115"
+                class="ms-SearchBox-icon icon-114"
                 data-icon-name="Search"
               >
                 <svg
@@ -146,7 +146,7 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
               </i>
             </div>
             <input
-              class="ms-SearchBox-field field-114"
+              class="ms-SearchBox-field field-113"
               id="search-field"
               placeholder="Search Guided Answers"
               role="searchbox"
@@ -161,11 +161,11 @@ exports[`<App /> Match snapshot of component <App/> in loading mode 1`] = `
       id="results-container"
     >
       <div
-        class="ms-Spinner root-117"
+        class="ms-Spinner root-116"
         id="loading-indicator"
       >
         <div
-          class="ms-Spinner-circle ms-Spinner--large circle-118"
+          class="ms-Spinner-circle ms-Spinner--large circle-117"
         />
       </div>
     </main>
@@ -207,15 +207,15 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
           id="search-field-container"
         >
           <div
-            class="ms-SearchBox tree-search-field root-110"
+            class="ms-SearchBox tree-search-field root-109"
           >
             <div
               aria-hidden="true"
-              class="ms-SearchBox-iconContainer iconContainer-111"
+              class="ms-SearchBox-iconContainer iconContainer-110"
             >
               <i
                 aria-hidden="true"
-                class="ms-SearchBox-icon icon-115"
+                class="ms-SearchBox-icon icon-114"
                 data-icon-name="Search"
               >
                 <svg
@@ -233,7 +233,7 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
               </i>
             </div>
             <input
-              class="ms-SearchBox-field field-114"
+              class="ms-SearchBox-field field-113"
               id="search-field"
               placeholder="Search Guided Answers"
               role="searchbox"
@@ -248,11 +248,11 @@ exports[`<App /> Match snapshot of component <App/> with a guide selected 1`] = 
       id="results-container"
     >
       <div
-        class="ms-Spinner root-117"
+        class="ms-Spinner root-116"
         id="loading-indicator"
       >
         <div
-          class="ms-Spinner-circle ms-Spinner--large circle-118"
+          class="ms-Spinner-circle ms-Spinner--large circle-117"
         />
       </div>
     </main>
@@ -294,15 +294,15 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
           id="search-field-container"
         >
           <div
-            class="ms-SearchBox tree-search-field root-110"
+            class="ms-SearchBox tree-search-field root-109"
           >
             <div
               aria-hidden="true"
-              class="ms-SearchBox-iconContainer iconContainer-111"
+              class="ms-SearchBox-iconContainer iconContainer-110"
             >
               <i
                 aria-hidden="true"
-                class="ms-SearchBox-icon icon-115"
+                class="ms-SearchBox-icon icon-114"
                 data-icon-name="Search"
               >
                 <svg
@@ -320,7 +320,7 @@ exports[`<App /> Match snapshot of component <App/> with results list 1`] = `
               </i>
             </div>
             <input
-              class="ms-SearchBox-field field-114"
+              class="ms-SearchBox-field field-113"
               id="search-field"
               placeholder="Search Guided Answers"
               role="searchbox"

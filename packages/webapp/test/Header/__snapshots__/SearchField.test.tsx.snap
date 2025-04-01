@@ -7,15 +7,15 @@ exports[`<SearchField /> Should render a SearchField component, on home screen 1
     id="search-field-container"
   >
     <div
-      class="ms-SearchBox tree-search-field root-110"
+      class="ms-SearchBox tree-search-field root-109"
     >
       <div
         aria-hidden="true"
-        class="ms-SearchBox-iconContainer iconContainer-111"
+        class="ms-SearchBox-iconContainer iconContainer-110"
       >
         <i
           aria-hidden="true"
-          class="ms-SearchBox-icon icon-115"
+          class="ms-SearchBox-icon icon-114"
           data-icon-name="Search"
         >
           <svg
@@ -33,7 +33,7 @@ exports[`<SearchField /> Should render a SearchField component, on home screen 1
         </i>
       </div>
       <input
-        class="ms-SearchBox-field field-114"
+        class="ms-SearchBox-field field-113"
         id="search-field"
         placeholder="Search Guided Answers"
         role="searchbox"
@@ -51,15 +51,15 @@ exports[`<SearchField /> Should render a SearchField component, on search screen
     id="search-field-container"
   >
     <div
-      class="ms-SearchBox tree-search-field root-110"
+      class="ms-SearchBox tree-search-field root-109"
     >
       <div
         aria-hidden="true"
-        class="ms-SearchBox-iconContainer iconContainer-111"
+        class="ms-SearchBox-iconContainer iconContainer-110"
       >
         <i
           aria-hidden="true"
-          class="ms-SearchBox-icon icon-115"
+          class="ms-SearchBox-icon icon-114"
           data-icon-name="Search"
         >
           <svg
@@ -77,7 +77,7 @@ exports[`<SearchField /> Should render a SearchField component, on search screen
         </i>
       </div>
       <input
-        class="ms-SearchBox-field field-114"
+        class="ms-SearchBox-field field-113"
         id="search-field"
         placeholder="Search Guided Answers"
         role="searchbox"
@@ -89,7 +89,7 @@ exports[`<SearchField /> Should render a SearchField component, on search screen
     >
       <button
         aria-disabled="true"
-        class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-116"
+        class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-115"
         data-is-focusable="false"
         disabled=""
         id="filter-products"
@@ -97,12 +97,12 @@ exports[`<SearchField /> Should render a SearchField component, on search screen
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-117"
+          class="ms-Button-flexContainer flexContainer-116"
           data-automationid="splitbuttonprimary"
         >
           <i
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon icon-119"
+            class="ms-Icon root-105 ms-Button-icon icon-118"
             data-icon-name="Table"
           >
             <svg
@@ -121,7 +121,7 @@ exports[`<SearchField /> Should render a SearchField component, on search screen
       </button>
       <button
         aria-disabled="true"
-        class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-116"
+        class="ms-Button ms-Button--icon is-disabled filter-button filter-button-selected root-115"
         data-is-focusable="false"
         disabled=""
         id="filter-components"
@@ -129,12 +129,12 @@ exports[`<SearchField /> Should render a SearchField component, on search screen
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-117"
+          class="ms-Button-flexContainer flexContainer-116"
           data-automationid="splitbuttonprimary"
         >
           <i
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon icon-119"
+            class="ms-Icon root-105 ms-Button-icon icon-118"
             data-icon-name="IdTag"
           >
             <svg

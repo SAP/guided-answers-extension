@@ -9,7 +9,7 @@ exports[`<BackButton /> Should render a BackButton component 1`] = `
   >
     <i
       aria-hidden="true"
-      class="ts-icon root-109"
+      class="ts-icon root-105"
       data-icon-name="GoLeft"
     />
     <span
@@ -30,7 +30,7 @@ exports[`<HomeButton /> Should render a HomeButton component 1`] = `
   >
     <i
       aria-hidden="true"
-      class="ts-icon root-109"
+      class="ts-icon root-105"
       data-icon-name="Home"
     />
     <span
@@ -51,7 +51,7 @@ exports[`<RestartButton /> Should render a RestartButton component 1`] = `
   >
     <i
       aria-hidden="true"
-      class="ts-icon root-109"
+      class="ts-icon root-105"
       data-icon-name="Refresh"
     />
     <span
@@ -66,19 +66,19 @@ exports[`<RestartButton /> Should render a RestartButton component 1`] = `
 exports[`<ShareButton /> Should render a ShareButton component 1`] = `
 <div>
   <button
-    class="ms-Button ms-Button--icon is-checked guided-answer__header__navButtons root-110"
+    class="ms-Button ms-Button--icon is-checked guided-answer__header__navButtons root-109"
     data-is-focusable="true"
     id="callout-test-id"
     title="Share this guide"
     type="button"
   >
     <span
-      class="ms-Button-flexContainer flexContainer-111"
+      class="ms-Button-flexContainer flexContainer-110"
       data-automationid="splitbuttonprimary"
     >
       <i
         aria-hidden="true"
-        class="ms-Icon root-109 ms-Button-icon icon-113"
+        class="ms-Icon root-105 ms-Button-icon icon-112"
         data-icon-name="Link"
       />
     </span>
