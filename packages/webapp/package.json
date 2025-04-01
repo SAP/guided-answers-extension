@@ -52,11 +52,11 @@
         "uuid": "9.0.1"
     },
     "dependencies": {
-        "@fluentui/react": "8.114.2",
+        "@fluentui/react": "8.120.5",
         "@fluentui/react-focus": "8.8.37",
         "@fluentui/style-utilities": "8.10.1",
         "@fluentui/utilities": "8.13.23",
-        "@sap-ux/ui-components": "1.15.12",
+        "@sap-ux/ui-components": "1.26.0",
         "react-copy-to-clipboard": "5.1.0",
         "react-infinite-scroll-component": "6.1.0"
     }
