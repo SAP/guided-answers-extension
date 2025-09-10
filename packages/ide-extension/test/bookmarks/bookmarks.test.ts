@@ -23,7 +23,7 @@ const mockBookmarks: Bookmarks = {
             {
                 NODE_ID: 1,
                 TITLE: 'Forty-two',
-                BODY: `<p>Body of solution to all questions <img src="services/backend.xsjs?cmd=viewImage&amp;id=1" width="200" height="100" /><script>alert("evil");</script></p>`,
+                BODY: `<p>Body of solution to all questions <img src="/api/viewer/image/12345" width="200" height="100" /><script>alert("evil");</script></p>`,
                 QUESTION: 'Answer to the Ultimate Question of Life, the Universe, and Everything',
                 EDGES: [
                     {
@@ -50,7 +50,7 @@ const mockBookmarks: Bookmarks = {
             {
                 NODE_ID: 1,
                 TITLE: 'Forty-two',
-                BODY: `<p>Body of solution to all questions <img src="services/backend.xsjs?cmd=viewImage&amp;id=1" width="200" height="100" /><script>alert("evil");</script></p>`,
+                BODY: `<p>Body of solution to all questions <img src="/api/viewer/image/98765" width="200" height="100" /><script>alert("evil");</script></p>`,
                 QUESTION: 'Answer to the Ultimate Question of Life, the Universe, and Everything',
                 EDGES: [
                     {

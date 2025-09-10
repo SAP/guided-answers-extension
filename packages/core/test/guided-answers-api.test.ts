@@ -391,7 +391,7 @@ describe('Guided Answers Api: getNodeById()', () => {
         const data = {
             NODE_ID: 123,
             TITLE: 'Node',
-            BODY: `<p>Body of node 123 <img src="services/backend.xsjs?cmd=viewImage&amp;id=1" width="200" height="100" /><script>alert("evil");</script></p>`,
+            BODY: `<p>Body of node 123 <img src="/api/viewer/image/1234" width="200" height="100" /><script>alert("evil");</script></p>`,
             QUESTION: 'How are you?',
             EDGES: [
                 {
@@ -424,7 +424,7 @@ describe('Guided Answers Api: getNodeById()', () => {
         const data: GuidedAnswerNode = {
             NODE_ID: -1,
             TITLE: 'Forty-two',
-            BODY: `<p>Body of solution to all questions <img src="services/backend.xsjs?cmd=viewImage&amp;id=1" width="200" height="100" /><script>alert("evil");</script></p>`,
+            BODY: `<p>Body of solution to all questions <img src="/api/viewer/image/9876" width="200" height="100" /><script>alert("evil");</script></p>`,
             QUESTION: 'Answer to the Ultimate Question of Life, the Universe, and Everything',
             EDGES: [
                 {
@@ -681,7 +681,7 @@ describe('Guided Answers Api: getNodeById()', () => {
         mockedAxios.get.mockImplementation(() =>
             Promise.resolve({
                 data: {
-                    BODY: '<img src="services/backend.xsjs?no-extra-attributes" /><img width="321" src="services/backend.xsjs?with-attribute=width;height" height="123" /><img width="111" src="https://any.host/services/backend.xsjs?" height="222" />'
+                    BODY: '<img src="/api/viewer/image/any/thing/else" /><img width="321" src="/api/viewer/image/1" height="123" /><img width="111" src="/api/viewer/image/2" height="222" />'
                 }
             })
         );
@@ -691,7 +691,7 @@ describe('Guided Answers Api: getNodeById()', () => {
 
         //Result check
         expect(result.BODY).toBe(
-            '<img src="http://host/dtp/viewer/services/backend.xsjs?no-extra-attributes" /><img width="321" src="http://host/dtp/viewer/services/backend.xsjs?with-attribute=width;height" height="123" /><img width="111" src="https://any.host/services/backend.xsjs?" height="222" />'
+            '<img src="http://host/api/viewer/image/any/thing/else" /><img width="321" src="http://host/api/viewer/image/1" height="123" /><img width="111" src="http://host/api/viewer/image/2" height="222" />'
         );
     });
 
