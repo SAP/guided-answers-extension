@@ -4,7 +4,7 @@
     "description": "%guidedAnswer.description%",
     "publisher": "SAPOSS",
     "license": "Apache-2.0",
-    "version": "1.32.19",
+    "version": "1.32.20",
     "icon": "media/guided-answers-extension@2x.png",
     "categories": [
         "Education"
