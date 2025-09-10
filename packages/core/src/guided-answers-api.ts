@@ -30,7 +30,6 @@ const API_HOST = 'https://ga.support.sap.com';
 const VERSION = 'v6';
 const NODE_PATH = `/dtp/api/${VERSION}/nodes/`;
 const TREE_PATH = `/dtp/api/${VERSION}/trees/`;
-const IMG_PREFIX = '/dtp/viewer/';
 const FEEDBACK_COMMENT = `dtp/api/${VERSION}/feedback/comment`;
 const FEEDBACK_OUTCOME = `dtp/api/${VERSION}/feedback/outcome`;
 const DEFAULT_MAX_RESULTS = 9999;
@@ -90,7 +89,7 @@ function getConsoleLogger(): Logger {
  * @returns - html string with converted <img>-tags
  */
 function convertImageSrc(body: string, host: string): string {
-    return body.replace(/src="services\/backend\.xsjs\?/gi, `src="${host}${IMG_PREFIX}services/backend.xsjs?`);
+    return body.replace(/src="\/api\/viewer\/image\//gi, `src="${host}/api/viewer/image/`);
 }
 
 /**
