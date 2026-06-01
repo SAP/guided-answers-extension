@@ -28,6 +28,7 @@ exports[`Feedback Section component Should render a FeedbackSection component 1`
       <button
         class="feedback-box not-solved-hover"
         id="not-solved-issue-button"
+        style="border: 2px solid var(--vscode-terminal-ansiRed);"
         tabindex="-1"
       >
         <svg
