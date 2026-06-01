@@ -45,10 +45,10 @@
     "engines": {
         "npm": "please-use-pnpm",
         "yarn": "please-use-pnpm",
-        "pnpm": "8.14.0",
+        "pnpm": "8.15.9",
         "node": ">=18.x"
     },
-    "packageManager": "pnpm@8.14.0",
+    "packageManager": "pnpm@8.15.9",
     "pnpm": {
         "overrides": {
             "cross-spawn": ">=7.0.5"
