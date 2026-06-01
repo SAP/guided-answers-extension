@@ -13,6 +13,8 @@ jobs:
                 os: [ubuntu-latest, windows-latest]
                 node-version: [18.x, 20.x]
         runs-on: ${{ matrix.os }}
+        permissions:
+            contents: read
         timeout-minutes: 15
         steps:
             - name: Checkout code repository
@@ -55,6 +57,8 @@ jobs:
         # Run version job only on pushes to the main branch. The job depends on completion of the build job.
         if: github.repository == 'SAP/guided-answers-extension' && github.event_name == 'push' && github.ref == 'refs/heads/main'
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         needs: build
         outputs:
             changes: ${{ steps.changesetVersion.outputs.changes }} # map step output to job output
@@ -104,6 +108,8 @@ jobs:
         # This job needs to run after the version job commit has been merged - so check if that step returns 'false'
         if: github.repository == 'SAP/guided-answers-extension' && github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.version.outputs.changes == 'false'
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
         needs: version
         steps:
             - name: Checkout code repository
