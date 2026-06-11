@@ -8,6 +8,7 @@ on:
 
 jobs:
     build:
+        environment: ci-secrets
         strategy:
             matrix:
                 os: [ubuntu-latest, windows-latest]
@@ -57,6 +58,7 @@ jobs:
         # Run version job only on pushes to the main branch. The job depends on completion of the build job.
         if: github.repository == 'SAP/guided-answers-extension' && github.event_name == 'push' && github.ref == 'refs/heads/main'
         runs-on: ubuntu-latest
+        environment: ci-secrets
         permissions:
             contents: read
         needs: build
@@ -108,6 +110,7 @@ jobs:
         # This job needs to run after the version job commit has been merged - so check if that step returns 'false'
         if: github.repository == 'SAP/guided-answers-extension' && github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.version.outputs.changes == 'false'
         runs-on: ubuntu-latest
+        environment: ci-secrets
         permissions:
             contents: write
         needs: version
