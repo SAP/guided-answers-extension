@@ -52,7 +52,8 @@
     "pnpm": {
         "overrides": {
             "cross-spawn": ">=7.0.5",
-            "handlebars": ">=4.7.9"
+            "handlebars": ">=4.7.9",
+            "tar-fs": ">=2.1.3"
         }
     }
 }
