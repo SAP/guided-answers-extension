@@ -33,7 +33,7 @@ overrides:
   tmp: '>=0.2.6'
   undici: '>=6.24.0'
   underscore: '>=1.13.8'
-  uuid: '>=11.1.1'
+  uuid: 11.1.1
   ws: '>=8.20.1'
   yaml@>=1 <2: '>=1.10.3'
 
@@ -159,8 +159,8 @@ importers:
         specifier: 2.1.1
         version: 2.1.1(esbuild@0.28.1)
       uuid:
-        specifier: '>=11.1.1'
-        version: 14.0.0
+        specifier: 11.1.1
+        version: 11.1.1
       vscode-uri:
         specifier: 3.0.8
         version: 3.0.8
@@ -288,8 +288,8 @@ importers:
         specifier: 1.5.4
         version: 1.5.4
       uuid:
-        specifier: '>=11.1.1'
-        version: 14.0.0
+        specifier: 11.1.1
+        version: 11.1.1
 
 packages:
 
@@ -2522,7 +2522,7 @@ packages:
       react-select: 5.8.0(@types/react@17.0.62)(react-dom@16.14.0)(react@16.14.0)
       react-virtualized: 9.22.5(react-dom@16.14.0)(react@16.14.0)
       sanitize-html: 2.12.1
-      uuid: 14.0.0
+      uuid: 11.1.1
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
@@ -9594,8 +9594,8 @@ packages:
       inherits: 2.0.3
     dev: true
 
-  /uuid@14.0.0:
-    resolution: {integrity: sha512-Qo+uWgilfSmAhXCMav1uYFynlQO7fMFiMVZsQqZRMIXp0O7rR7qjkj+cPvBHLgBqi960QCoo/PH2/6ZtVqKvrg==}
+  /uuid@11.1.1:
+    resolution: {integrity: sha512-vIYxrBCC/N/K+Js3qSN88go7kIfNPssr/hHCesKCQNAjmgvYS2oqr69kIufEG+O4+PfezOH4EbIeHCfFov8ZgQ==}
     hasBin: true
 
   /v8-compile-cache-lib@3.0.1:
