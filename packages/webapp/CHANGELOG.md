@@ -1,5 +1,12 @@
 # @sap/guided-answers-extension-webapp
 
+## 1.32.21
+
+### Patch Changes
+
+- b43ad62: Bump dependency versions @sap/bas-sdk, axios, applicationinsights, jest-environment-jsdom
+- fde65e8: bump version of handlebars as transient devdependency of ts-jest
+
 ## 1.32.20
 
 ## 1.32.19

@@ -1,5 +1,11 @@
 # @sap/guided-answers-extension-types
 
+## 1.32.21
+
+### Patch Changes
+
+- fde65e8: bump version of handlebars as transient devdependency of ts-jest
+
 ## 1.32.20
 
 ## 1.32.19
