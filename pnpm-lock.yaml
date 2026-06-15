@@ -13,7 +13,6 @@ overrides:
   brace-expansion@>=1 <2: 1.1.13
   brace-expansion@>=2 <2.0.3: 2.0.3
   diff@>=4 <4.0.4: 4.0.4
-  esbuild: '>=0.25.2'
   fast-uri@>=3 <3.1.2: 3.1.2
   flatted@>=3 <3.4.2: 3.4.2
   glob@>=10.2.0 <10.5.0: 10.5.0
@@ -153,7 +152,7 @@ importers:
         specifier: 2.9.8
         version: 2.9.8
       esbuild:
-        specifier: '>=0.25.2'
+        specifier: 0.28.1
         version: 0.28.1
       esbuild-plugin-copy:
         specifier: 2.1.1
@@ -231,7 +230,7 @@ importers:
         specifier: 10.4.16
         version: 10.4.16(postcss@8.5.10)
       esbuild:
-        specifier: '>=0.25.2'
+        specifier: 0.28.1
         version: 0.28.1
       esbuild-css-modules-plugin:
         specifier: 3.1.5
@@ -243,8 +242,8 @@ importers:
         specifier: 3.1.1
         version: 3.1.1(esbuild@0.28.1)(typescript@4.9.5)
       esbuild-sass-plugin:
-        specifier: 3.3.1
-        version: 3.3.1(esbuild@0.28.1)(sass-embedded@1.100.0)
+        specifier: 3.7.0
+        version: 3.7.0(esbuild@0.28.1)(sass-embedded@1.100.0)
       html-react-parser:
         specifier: 4.2.2
         version: 4.2.2(react@16.14.0)
@@ -4049,7 +4048,6 @@ packages:
     dependencies:
       readdirp: 5.0.0
     dev: true
-    optional: true
 
   /chownr@1.1.4:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
@@ -4884,7 +4882,7 @@ packages:
     resolution: {integrity: sha512-38WnZ1k4N0Nq5pEJm/YXDDpUuWkScyTFP20lk5xCUSNqi3m9QZJHG8iFLhtKesp1GhMDe79VV3l9o0BqyI4CCA==}
     engines: {node: '>= 20'}
     peerDependencies:
-      esbuild: '>=0.25.2'
+      esbuild: '*'
     dependencies:
       esbuild: 0.28.1
       lightningcss: 1.32.0
@@ -4894,7 +4892,7 @@ packages:
   /esbuild-plugin-copy@2.1.1(esbuild@0.28.1):
     resolution: {integrity: sha512-Bk66jpevTcV8KMFzZI1P7MZKZ+uDcrZm2G2egZ2jNIvVnivDpodZI+/KnpL3Jnap0PBdIHU7HwFGB8r+vV5CVw==}
     peerDependencies:
-      esbuild: '>=0.25.2'
+      esbuild: '>= 0.14.0'
     dependencies:
       chalk: 4.1.2
       chokidar: 3.6.0
@@ -4912,7 +4910,7 @@ packages:
   /esbuild-plugin-svgr@3.1.1(esbuild@0.28.1)(typescript@4.9.5):
     resolution: {integrity: sha512-P0GVOTvmCMFUktRuIyjrUkx5C1VDZZH7VOFvtboQpWUG93eAvYyXPFf90kUMW9HMaTsRGpRrRoUmJ29PlQ0kLw==}
     peerDependencies:
-      esbuild: '>=0.25.2'
+      esbuild: ^0.25.2
     dependencies:
       '@svgr/core': 8.1.0(typescript@4.9.5)
       '@svgr/plugin-jsx': 8.1.0(@svgr/core@8.1.0)
@@ -4922,16 +4920,15 @@ packages:
       - typescript
     dev: true
 
-  /esbuild-sass-plugin@3.3.1(esbuild@0.28.1)(sass-embedded@1.100.0):
-    resolution: {integrity: sha512-SnO1ls+d52n6j8gRRpjexXI8MsHEaumS0IdDHaYM29Y6gakzZYMls6i9ql9+AWMSQk/eryndmUpXEgT34QrX1A==}
+  /esbuild-sass-plugin@3.7.0(esbuild@0.28.1)(sass-embedded@1.100.0):
+    resolution: {integrity: sha512-vxNSXFx3/0ZFApKo9036ek2iRfsT+yVO99qIYqa+JaDSuJuId2/N4s1TY+xfK+5LRpAMQkfdBVUTxb/1r2bq1A==}
     peerDependencies:
-      esbuild: '>=0.25.2'
-      sass-embedded: ^1.71.1
+      esbuild: '>=0.27.3'
+      sass-embedded: ^1.97.3
     dependencies:
       esbuild: 0.28.1
-      resolve: 1.22.10
-      safe-identifier: 0.4.2
-      sass: 1.77.8
+      resolve: 1.22.12
+      sass: 1.100.0
       sass-embedded: 1.100.0
     dev: true
 
@@ -5951,10 +5948,6 @@ packages:
 
   /immer@9.0.21:
     resolution: {integrity: sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==}
-    dev: true
-
-  /immutable@4.3.8:
-    resolution: {integrity: sha512-d/Ld9aLbKpNwyl0KiM2CT1WYvkitQ1TSvmRtkcV8FKStiDoA7Slzgjmb/1G2yhKM1p0XeNOieaTbFZmU1d3Xuw==}
     dev: true
 
   /immutable@5.1.6:
@@ -8295,7 +8288,6 @@ packages:
     engines: {node: '>= 20.19.0'}
     requiresBuild: true
     dev: true
-    optional: true
 
   /redent@3.0.0:
     resolution: {integrity: sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==}
@@ -8427,6 +8419,17 @@ packages:
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
+  /resolve@1.22.12:
+    resolution: {integrity: sha512-TyeJ1zif53BPfHootBGwPRYT1RUt6oGWsaQr8UyZW/eAm9bKoijtvruSDEmZHm92CwS9nj7/fWttqPCgzep8CA==}
+    engines: {node: '>= 0.4'}
+    hasBin: true
+    dependencies:
+      es-errors: 1.3.0
+      is-core-module: 2.16.1
+      path-parse: 1.0.7
+      supports-preserve-symlinks-flag: 1.0.0
+    dev: true
+
   /resolve@2.0.0-next.5:
     resolution: {integrity: sha512-U7WjGVG9sH8tvjW5SmGbQuui75FiyjAX72HX15DwBBwF9dNiQZRQAg9nnPhYy+TUnE0+VcrttuvNI8oSxZcocA==}
     hasBin: true
@@ -8486,10 +8489,6 @@ packages:
   /safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
     requiresBuild: true
-    dev: true
-
-  /safe-identifier@0.4.2:
-    resolution: {integrity: sha512-6pNbSMW6OhAi9j+N8V+U715yBQsaWJ7eyEUaOrawX+isg5ZxhUlV1NipNtgaKHmFGiABwt+ZF04Ii+3Xjkg+8w==}
     dev: true
 
   /safe-push-apply@1.0.0:
@@ -8730,17 +8729,6 @@ packages:
       source-map-js: 1.2.1
     optionalDependencies:
       '@parcel/watcher': 2.5.6
-    dev: true
-    optional: true
-
-  /sass@1.77.8:
-    resolution: {integrity: sha512-4UHg6prsrycW20fqLGPShtEvo/WyHRVRHwOP4DzkUrObWoWI05QBSfzU71TVB7PFaL104TwNaHpjlWXAZbQiNQ==}
-    engines: {node: '>=14.0.0'}
-    hasBin: true
-    dependencies:
-      chokidar: 3.6.0
-      immutable: 4.3.8
-      source-map-js: 1.2.1
     dev: true
 
   /sax@1.4.1:
