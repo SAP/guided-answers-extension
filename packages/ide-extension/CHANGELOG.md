@@ -1,5 +1,11 @@
 # sap-guided-answer-extension
 
+## 1.32.22
+
+### Patch Changes
+
+- 2bdb7fc: Update esbuild dev dependency
+
 ## 1.32.21
 
 ### Patch Changes
