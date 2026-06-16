@@ -30,7 +30,7 @@ overrides:
   postcss@>=8 <8.5.10: 8.5.10
   qs@>=6 <6.15.2: 6.15.2
   tmp@>=0 <0.2.6: 0.2.6
-  undici@>=6 <6.24.0: 6.24.0
+  undici@>=6 <6.24.0: 6.27.0
   underscore@>=1 <1.13.8: 1.13.8
   uuid: 11.1.1
   ws@>=8 <8.20.1: 8.20.1
@@ -4022,7 +4022,7 @@ packages:
       parse5: 7.3.0
       parse5-htmlparser2-tree-adapter: 7.0.0
       parse5-parser-stream: 7.1.2
-      undici: 6.24.0
+      undici: 6.27.0
       whatwg-mimetype: 4.0.0
     dev: true
 
@@ -9601,8 +9601,8 @@ packages:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
     dev: true
 
-  /undici@6.24.0:
-    resolution: {integrity: sha512-lVLNosgqo5EkGqh5XUDhGfsMSoO8K0BAN0TyJLvwNRSl4xWGZlCVYsAIpa/OpA3TvmnM01GWcoKmc3ZWo5wKKA==}
+  /undici@6.27.0:
+    resolution: {integrity: sha512-YmfV3YnEDzXRC5lZ2jWtWWHKGUm1zIt8AhesR1tens+HTNv+YZlN/dp6G727LOvMJ8xjP9Be7Y2Sdr96LDm+pg==}
     engines: {node: '>=18.17'}
     dev: true
 
