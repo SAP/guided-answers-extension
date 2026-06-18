@@ -29,7 +29,7 @@ overrides:
   picomatch@>=4 <4.0.4: 4.0.4
   postcss@>=8 <8.5.10: 8.5.10
   qs@>=6 <6.15.2: 6.15.2
-  tmp@>=0 <0.2.6: 0.2.6
+  tmp@>=0 <0.2.6: 0.2.7
   undici@>=6 <6.24.0: 6.24.0
   underscore@>=1 <1.13.8: 1.13.8
   uuid: 11.1.1
@@ -3320,7 +3320,7 @@ packages:
       parse-semver: 1.1.1
       read: 1.0.7
       semver: 7.8.4
-      tmp: 0.2.6
+      tmp: 0.2.7
       typed-rest-client: 1.8.11
       url-join: 4.0.1
       xml2js: 0.5.0
@@ -9321,8 +9321,8 @@ packages:
       tldts-core: 6.1.86
     dev: true
 
-  /tmp@0.2.6:
-    resolution: {integrity: sha512-5sJPdPjfI5Kx+qbrDesxkglRBxW//g7hCsqspEjwkewGvBMGIKMOTKzLt1hFVJzyadba3lDUN20O9qhvbQUSTA==}
+  /tmp@0.2.7:
+    resolution: {integrity: sha512-e0votIpp4Uo2AJYSzVHV6xCcawuiez3DzqDAbrTc3YxBkplN6e+dM13ZeIcZnDg/QpSuU2zfZ3rzwY8ukEnaXw==}
     engines: {node: '>=14.14'}
     dev: true
 
