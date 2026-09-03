@@ -14,7 +14,7 @@ overrides:
   brace-expansion@>=2 <2.0.3: 2.0.3
   diff@>=4 <4.0.4: 4.0.4
   fast-uri@>=3 <3.1.2: 3.1.2
-  flatted@>=3 <3.4.2: 3.4.2
+  flatted@>=3 <3.4.2: 3.4.4
   glob@>=10.2.0 <10.5.0: 10.5.0
   immutable@>=4 <4.3.8: 4.3.8
   js-yaml@>=3 <3.14.2: 3.14.2
@@ -5445,13 +5445,13 @@ packages:
     resolution: {integrity: sha512-CYcENa+FtcUKLmhhqyctpclsq7QF38pKjZHsGNiSQF5r4FtoKDWabFDl3hzaEQMvT1LHEysw5twgLvpYYb4vbw==}
     engines: {node: ^10.12.0 || >=12.0.0}
     dependencies:
-      flatted: 3.4.2
+      flatted: 3.4.4
       keyv: 4.5.4
       rimraf: 3.0.2
     dev: true
 
-  /flatted@3.4.2:
-    resolution: {integrity: sha512-PjDse7RzhcPkIJwy5t7KPWQSZ9cAbzQXcafsetQoD7sOJRQlGikNbx7yZp2OotDnJyrDcbyRq3Ttb18iYOqkxA==}
+  /flatted@3.4.4:
+    resolution: {integrity: sha512-5+ybhBZANEJxaH3X5evAFatUxLfEHSr7n6kYJ+1Qd0mUqr4eu9gIf6GDbWHf8RJijHrjjO8G+la14SlL2SeS1Q==}
     dev: true
 
   /follow-redirects@1.16.0:
