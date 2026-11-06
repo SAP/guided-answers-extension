@@ -41,7 +41,7 @@
         "jest-environment-jsdom": "30.4.1",
         "lodash": "4.18.0",
         "path": "0.12.7",
-        "postcss": "8.5.10",
+        "postcss": "8.5.23",
         "react": "16.14.0",
         "react-dom": "16.14.0",
         "react-i18next": "13.2.2",
