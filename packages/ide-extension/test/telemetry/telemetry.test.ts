@@ -81,7 +81,7 @@ describe('Telemetry trackEvent() tests', () => {
         } as unknown as TelemetryEvent);
 
         // Result check
-        expect(reporter.client.trackEvent).toBeCalledWith({
+        expect(reporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/STARTUP',
             properties: {
                 apiHost: 'any:host',
@@ -144,7 +144,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'OPEN_TREE',
@@ -152,7 +152,7 @@ describe('Telemetry trackAction() tests', () => {
                 treeTitle: 'Title'
             }
         });
-        expect(loggerMock.trace).toBeCalledWith(expect.stringContaining('USER_INTERACTION'), {
+        expect(loggerMock.trace).toHaveBeenCalledWith(expect.stringContaining('USER_INTERACTION'), {
             action: 'OPEN_TREE',
             treeId: '10',
             treeTitle: 'Title'
@@ -167,7 +167,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'NODE_SELECTED',
@@ -191,7 +191,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'GO_BACK_IN_TREE',
@@ -214,7 +214,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'SELECT_OUTCOME',
@@ -238,7 +238,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'COMMENT',
@@ -264,7 +264,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'SEARCH',
@@ -284,7 +284,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'EXECUTE_COMMAND',
@@ -308,7 +308,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'FILTER_COMPONENTS'
@@ -325,7 +325,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'FILTER_PRODUCTS'
@@ -342,7 +342,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'SHARE_LINK'
@@ -359,7 +359,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'OPEN_LINK'
@@ -376,7 +376,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'CLEAR_FILTERS'
@@ -394,7 +394,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'REMOVE_BOOKMARK',
@@ -419,7 +419,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'ADD_BOOKMARK',
@@ -443,7 +443,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'SYNC_BOOKMARK',
@@ -466,7 +466,7 @@ describe('Telemetry trackAction() tests', () => {
         trackAction(mockAction);
 
         // Result check
-        expect(telemetryReporter.client.trackEvent).toBeCalledWith({
+        expect(telemetryReporter.client.trackEvent).toHaveBeenCalledWith({
             name: 'sap-guided-answers-extension/USER_INTERACTION',
             properties: {
                 action: 'CLICK_BOOKMARK',
@@ -514,7 +514,7 @@ describe('Telemetry disabled', () => {
         trackEvent({ name: '', properties: {} } as unknown as TelemetryEvent);
 
         // Result check
-        expect(reporter.client.trackEvent).not.toBeCalled();
+        expect(reporter.client.trackEvent).not.toHaveBeenCalled();
     });
 
     test('Track action when telemetry is disabled, should not send anything', () => {
@@ -526,7 +526,7 @@ describe('Telemetry disabled', () => {
         trackAction(getDummyAction(''));
 
         // Result check
-        expect(reporter.client.trackEvent).not.toBeCalled();
+        expect(reporter.client.trackEvent).not.toHaveBeenCalled();
     });
 
     test('Toggle telemetry setting', () => {
@@ -540,7 +540,7 @@ describe('Telemetry disabled', () => {
 
         // Result check
         expect(reporter.enabled).toBe(false);
-        expect(reporter.client.trackEvent).not.toBeCalled();
+        expect(reporter.client.trackEvent).not.toHaveBeenCalled();
 
         // Enable telemetry
         reporter.dispose();
@@ -560,7 +560,7 @@ describe('Telemetry disabled', () => {
 
         // Result check
         expect(reporter.enabled).toBe(true);
-        expect(reporter.client.trackEvent).toBeCalled();
+        expect(reporter.client.trackEvent).toHaveBeenCalled();
     });
 });
 

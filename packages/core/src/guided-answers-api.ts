@@ -1,4 +1,4 @@
-import type { AxiosResponse, CancelTokenSource } from 'axios';
+import type { AxiosResponse } from 'axios';
 import axios from 'axios';
 import { default as xss } from 'xss';
 import type {
@@ -34,7 +34,7 @@ const FEEDBACK_COMMENT = `dtp/api/${VERSION}/feedback/comment`;
 const FEEDBACK_OUTCOME = `dtp/api/${VERSION}/feedback/outcome`;
 const DEFAULT_MAX_RESULTS = 9999;
 
-const previousToken: CancelTokenSource[] = [];
+const previousController: AbortController[] = [];
 /**
  * Returns API to programmatically access Guided Answers.
  *
@@ -89,6 +89,7 @@ function getConsoleLogger(): Logger {
  * @returns - html string with converted <img>-tags
  */
 function convertImageSrc(body: string, host: string): string {
+    // eslint-disable-next-line sonarjs/null-dereference
     return body.replace(/src="\/api\/viewer\/image\//gi, `src="${host}/api/viewer/image/`);
 }
 
@@ -179,14 +180,14 @@ async function getTrees(
     const url = `${host}${TREE_PATH}${query}${urlGetParamString}`;
 
     // Cancel the previous request if it exists
-    if (previousToken.length) {
-        const prev = previousToken.pop();
-        prev?.cancel('Canceling previous request');
+    if (previousController.length) {
+        const prev = previousController.pop();
+        prev?.abort('Canceling previous request');
     }
 
-    // Create a new CancelToken for the current request
-    const source = axios.CancelToken.source();
-    previousToken.push(source);
+    // Create a new AbortController for the current request
+    const controller = new AbortController();
+    previousController.push(controller);
 
     let searchResult: GuidedAnswerTreeSearchResult = {
         resultSize: -1,
@@ -197,7 +198,7 @@ async function getTrees(
 
     try {
         const response = await axios.get<GuidedAnswerTreeSearchResult>(url, {
-            cancelToken: source.token
+            signal: controller.signal
         });
         searchResult = response.data;
         if (!Array.isArray(searchResult?.trees)) {

@@ -19,7 +19,7 @@ describe('Test GuidedAnswersUriHandler', () => {
         uriHandler.handleUri(Uri.parse(`vscode://saposs.sap-guided-answers-extension#/tree/1/actions/2:3`));
 
         // Result check
-        expect(executeCommandSpy).toBeCalledWith('sap.ux.guidedAnswer.openGuidedAnswer', {
+        expect(executeCommandSpy).toHaveBeenCalledWith('sap.ux.guidedAnswer.openGuidedAnswer', {
             treeId: 1,
             nodeIdPath: [2, 3]
         });
@@ -34,7 +34,7 @@ describe('Test GuidedAnswersUriHandler', () => {
         uriHandler.handleUri(Uri.parse(`https://host.domain:123/invalid`));
 
         // Result check
-        expect(executeCommandSpy).not.toBeCalled();
+        expect(executeCommandSpy).not.toHaveBeenCalled();
     });
 
     test('Calling startup command throws error', async () => {
@@ -47,7 +47,7 @@ describe('Test GuidedAnswersUriHandler', () => {
 
         // Result check
         await (() => new Promise(setImmediate))();
-        expect(loggerMock.error).toBeCalledWith(
+        expect(loggerMock.error).toHaveBeenCalledWith(
             expect.stringContaining('Error'),
             expect.stringContaining('START_ERROR')
         );

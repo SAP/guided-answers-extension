@@ -22,8 +22,8 @@ export function MessageDialogBox(
         dialogText: string;
         stylingClassName: string;
         dialogVisible: boolean;
-        primaryButtonAction: Function;
-        defaultButtonAction: Function;
+        primaryButtonAction: () => void;
+        defaultButtonAction: () => void;
     }>
 ): ReactElement {
     const [isVisible, setIsVisible] = useState(props.dialogVisible);

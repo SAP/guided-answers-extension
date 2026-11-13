@@ -110,7 +110,7 @@ describe('GuidedAnswersPanel', () => {
 
         // Result check
         await (() => new Promise(setImmediate))();
-        expect(loggerMock.error).toBeCalledWith(
+        expect(loggerMock.error).toHaveBeenCalledWith(
             expect.stringContaining('Error'),
             expect.stringContaining('TELEMETRY_ERROR')
         );
@@ -130,7 +130,7 @@ describe('GuidedAnswersPanel', () => {
         await onDidReceiveMessageMock({ type: WEBVIEW_READY });
 
         // Result check
-        expect(loggerMock.info).toBeCalledWith('Webview is ready to receive actions');
+        expect(loggerMock.info).toHaveBeenCalledWith('Webview is ready to receive actions');
     });
 
     test('GuidedAnswersPanel for SBAS, should set quick filters', async () => {
@@ -150,8 +150,8 @@ describe('GuidedAnswersPanel', () => {
         await onDidReceiveMessageMock({ type: WEBVIEW_READY });
 
         // Result check
-        expect(loggerMock.info).toBeCalledWith('Webview is ready to receive actions');
-        expect(getFiltersForIdeSpy).toBeCalledWith('SBAS');
+        expect(loggerMock.info).toHaveBeenCalledWith('Webview is ready to receive actions');
+        expect(getFiltersForIdeSpy).toHaveBeenCalledWith('SBAS');
         const searchCall = (webViewPanelMock.webview.postMessage as jest.Mock).mock.calls.find((c) =>
             c.find((p: { type: string }) => p.type === 'SET_QUICK_FILTERS')
         )[0];
@@ -175,7 +175,7 @@ describe('GuidedAnswersPanel', () => {
         await onDidReceiveMessageMock({ type: WEBVIEW_READY });
 
         // Result check
-        expect(loggerMock.error).toBeCalledWith(
+        expect(loggerMock.error).toHaveBeenCalledWith(
             expect.stringContaining('Error'),
             expect.objectContaining({
                 message: 'GET_FILTERS_ERROR'
@@ -198,7 +198,7 @@ describe('GuidedAnswersPanel', () => {
         await onDidReceiveMessageMock({ type: WEBVIEW_READY });
 
         // Result check
-        expect(loggerMock.info).toBeCalledWith('Webview is ready to receive actions');
+        expect(loggerMock.info).toHaveBeenCalledWith('Webview is ready to receive actions');
         expect((webViewPanelMock.webview.postMessage as jest.Mock).mock.calls).toEqual([
             [{ type: SET_ACTIVE_TREE, payload: { TREE_ID: 1, FIRST_NODE_ID: 1234 } }],
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 1234, TITLE: 'Node 1234' } }],
@@ -224,7 +224,7 @@ describe('GuidedAnswersPanel', () => {
         await onDidReceiveMessageMock({ type: WEBVIEW_READY });
 
         // Result check
-        expect(loggerMock.info).toBeCalledWith('Webview is ready to receive actions');
+        expect(loggerMock.info).toHaveBeenCalledWith('Webview is ready to receive actions');
         expect((webViewPanelMock.webview.postMessage as jest.Mock).mock.calls).toEqual([
             [{ type: SET_ACTIVE_TREE, payload: { TREE_ID: 11 } }],
             [{ type: UPDATE_ACTIVE_NODE, payload: { NODE_ID: 100 } }],
@@ -258,7 +258,10 @@ describe('GuidedAnswersPanel', () => {
         // Result check
         const errorLog = (loggerMock.error as jest.Mock).mock.calls.find((e) => e[0].includes('MOCKED_API_ERROR'))[1];
         expect(errorLog).toEqual({ treeId: NaN });
-        expect(webViewPanelMock.webview.postMessage).toBeCalledWith({ type: UPDATE_NETWORK_STATUS, payload: 'OK' });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenCalledWith({
+            type: UPDATE_NETWORK_STATUS,
+            payload: 'OK'
+        });
     });
 
     test('GuidedAnswersPanel communication WEBVIEW_READY, invalid start params', async () => {
@@ -276,7 +279,10 @@ describe('GuidedAnswersPanel', () => {
 
         // Result check
         expect((loggerMock.error as jest.Mock).mock.calls.find((e) => e[1].includes('INVALID_PARAM'))[0]).toBeDefined();
-        expect(webViewPanelMock.webview.postMessage).toBeCalledWith({ type: UPDATE_NETWORK_STATUS, payload: 'OK' });
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenCalledWith({
+            type: UPDATE_NETWORK_STATUS,
+            payload: 'OK'
+        });
     });
 
     test('GuidedAnswersPanel communication SELECT_NODE', async () => {
@@ -294,7 +300,7 @@ describe('GuidedAnswersPanel', () => {
         await onDidReceiveMessageMock({ type: SELECT_NODE, payload: 42 });
 
         // Result check
-        expect(webViewPanelMock.webview.postMessage).toBeCalledWith({
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenCalledWith({
             type: UPDATE_ACTIVE_NODE,
             payload: { NODE_ID: 42, TITLE: 'Node 42' }
         });
@@ -319,11 +325,11 @@ describe('GuidedAnswersPanel', () => {
         await onDidReceiveMessageMock({ type: SELECT_NODE, payload: NaN });
 
         // Result check
-        expect(loggerMock.error).toBeCalledWith(
+        expect(loggerMock.error).toHaveBeenCalledWith(
             expect.stringContaining(SELECT_NODE),
             expect.stringContaining('GET_NODE_API_ERROR')
         );
-        expect(webViewPanelMock.webview.postMessage).not.toBeCalled();
+        expect(webViewPanelMock.webview.postMessage).not.toHaveBeenCalled();
     });
 
     test('GuidedAnswersPanel communication NAVIGATE', async () => {
@@ -420,7 +426,7 @@ describe('GuidedAnswersPanel', () => {
         });
 
         // Result check
-        expect(commandMock).toBeCalledWith('MOCK.COMMAND', { arguments: { test: 'MOCKARG' } });
+        expect(commandMock).toHaveBeenCalledWith('MOCK.COMMAND', { arguments: { test: 'MOCKARG' } });
     });
 
     test('GuidedAnswersPanel communication SEARCH_TREE', async () => {
@@ -438,7 +444,7 @@ describe('GuidedAnswersPanel', () => {
         await onDidReceiveMessageMock({ type: SEARCH_TREE, payload: {} });
 
         // Result check
-        expect(webViewPanelMock.webview.postMessage).toBeCalledWith({
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenCalledWith({
             type: UPDATE_GUIDED_ANSWER_TREES,
             payload: { searchResult: [{ TREE_ID: 1 }, { TREE_ID: 2 }, { TREE_ID: 3 }] }
         });
@@ -459,7 +465,7 @@ describe('GuidedAnswersPanel', () => {
         await onDidReceiveMessageMock({ type: SEARCH_TREE, payload: { query: '#/tree/12/actions/34:56' } });
 
         // Result check
-        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(6);
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenCalledTimes(6);
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
             type: UPDATE_NETWORK_STATUS,
             payload: 'LOADING'
@@ -508,7 +514,7 @@ describe('GuidedAnswersPanel', () => {
         });
 
         // Result check
-        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(1);
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenCalledTimes(1);
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
             type: UPDATE_NETWORK_STATUS,
             payload: 'ERROR'
@@ -542,7 +548,7 @@ describe('GuidedAnswersPanel', () => {
         });
 
         // Result check
-        // expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(3);
+        // expect(webViewPanelMock.webview.postMessage).toHaveBeenCalledTimes(3);
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
             type: UPDATE_NETWORK_STATUS,
             payload: 'LOADING'
@@ -587,7 +593,7 @@ describe('GuidedAnswersPanel', () => {
         });
 
         // Result check
-        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(2);
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenCalledTimes(2);
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
             type: UPDATE_NETWORK_STATUS,
             payload: 'OK'
@@ -617,8 +623,8 @@ describe('GuidedAnswersPanel', () => {
         await onDidReceiveMessageMock({ type: SEND_FEEDBACK_OUTCOME, payload: { nodeId: 1, treeId: 2, solved: true } });
 
         // Result check
-        expect(guidedAnswerApiSpy).toBeCalled();
-        expect(localApiMock.sendFeedbackOutcome).toBeCalledWith({ nodeId: 1, treeId: 2, solved: true });
+        expect(guidedAnswerApiSpy).toHaveBeenCalled();
+        expect(localApiMock.sendFeedbackOutcome).toHaveBeenCalledWith({ nodeId: 1, treeId: 2, solved: true });
     });
 
     test('GuidedAnswersPanel communication SEND_FEEDBACK_COMMENT', async () => {
@@ -640,8 +646,8 @@ describe('GuidedAnswersPanel', () => {
         });
 
         // Result check
-        expect(guidedAnswerApiSpy).toBeCalled();
-        expect(localApiMock.sendFeedbackComment).toBeCalledWith({ nodeId: 1, treeId: 2, comment: 'test' });
+        expect(guidedAnswerApiSpy).toHaveBeenCalled();
+        expect(localApiMock.sendFeedbackComment).toHaveBeenCalledWith({ nodeId: 1, treeId: 2, comment: 'test' });
     });
 
     test('GuidedAnswersPanel communication FILL_SHARE_LINKS', async () => {
@@ -663,7 +669,7 @@ describe('GuidedAnswersPanel', () => {
         });
 
         // Result check
-        expect(guidedAnswerApiSpy).toBeCalled();
+        expect(guidedAnswerApiSpy).toHaveBeenCalled();
     });
 
     test('GuidedAnswersPanel communication SEND_TELEMETRY with error handling', async () => {
@@ -686,7 +692,7 @@ describe('GuidedAnswersPanel', () => {
 
         // Result check
         await (() => new Promise(setImmediate))();
-        expect(telemetryMock).toBeCalledWith({
+        expect(telemetryMock).toHaveBeenCalledWith({
             type: 'SEND_TELEMETRY',
             payload: {
                 action: {
@@ -696,7 +702,7 @@ describe('GuidedAnswersPanel', () => {
                 state: {}
             }
         });
-        expect(loggerMock.error).toBeCalledWith(
+        expect(loggerMock.error).toHaveBeenCalledWith(
             expect.stringContaining('Error'),
             expect.stringContaining('TRACK_ACTION_ERROR')
         );
@@ -728,7 +734,7 @@ describe('GuidedAnswersPanel', () => {
 
         // Result check
         await (() => new Promise(setImmediate))();
-        expect(webViewPanelMock.webview.postMessage).toBeCalledTimes(5);
+        expect(webViewPanelMock.webview.postMessage).toHaveBeenCalledTimes(5);
         expect(webViewPanelMock.webview.postMessage).toHaveBeenNthCalledWith(1, {
             type: 'UPDATE_BOOKMARKS',
             payload: {
@@ -814,7 +820,7 @@ describe('GuidedAnswersPanel', () => {
         });
 
         // Result check
-        expect(globalStateMock.update).toBeCalledWith('bookmark', expectBookmarks);
+        expect(globalStateMock.update).toHaveBeenCalledWith('bookmark', expectBookmarks);
     });
 
     test('GuidedAnswersPanel communication UPDATE_LAST_VISITED_GUIDES', async () => {
@@ -850,7 +856,7 @@ describe('GuidedAnswersPanel', () => {
         });
 
         // Result check
-        expect(globalStateMock.update).toBeCalledWith('lastVisitedGuides', lastVisitedMock);
+        expect(globalStateMock.update).toHaveBeenCalledWith('lastVisitedGuides', lastVisitedMock);
     });
 
     test('GuidedAnswersPanel communication unhandled action', async () => {
@@ -867,7 +873,7 @@ describe('GuidedAnswersPanel', () => {
         await onDidReceiveMessageMock({ type: 'UNHANDLED', payload: '' } as unknown as GuidedAnswerActions);
 
         // Result check
-        expect(webViewPanelMock.webview.postMessage).not.toBeCalled();
+        expect(webViewPanelMock.webview.postMessage).not.toHaveBeenCalled();
     });
 
     test('GuidedAnswersPanel communication exception when sending action', async () => {
@@ -885,7 +891,7 @@ describe('GuidedAnswersPanel', () => {
         await onDidReceiveMessageMock({ type: WEBVIEW_READY });
 
         // Result check
-        expect(loggerMock.error).toBeCalledWith(
+        expect(loggerMock.error).toHaveBeenCalledWith(
             expect.stringContaining('Error'),
             expect.stringContaining('COMMUNICATION_ERROR')
         );
@@ -939,7 +945,7 @@ describe('GuidedAnswersPanel', () => {
 
         panel.restartWithOptions({ openToSide: true });
         expect(panel.startOptions).toStrictEqual({ openToSide: true });
-        expect(mockWebviewPanel.reveal).toBeCalledWith(ViewColumn.Beside);
+        expect(mockWebviewPanel.reveal).toHaveBeenCalledWith(ViewColumn.Beside);
     });
 });
 
@@ -967,11 +973,11 @@ describe('GuidedAnswersPanel deserialization', () => {
         const serializer = new GuidedAnswersSerializer();
         serializer.deserializeWebviewPanel(panelMock, '{"mock": "state"}');
         expect(GuidedAnswersPanel.getInstance()?.panel).toBe(panelMock);
-        expect(panelMock.reveal).toBeCalled();
-        expect(panelMock.onDidDispose).toBeCalledWith(expect.any(Function));
+        expect(panelMock.reveal).toHaveBeenCalled();
+        expect(panelMock.onDidDispose).toHaveBeenCalledWith(expect.any(Function));
 
         (panelMock.webview.onDidReceiveMessage as jest.Mock).mock.calls[0][0]({ type: WEBVIEW_READY });
-        expect(panelMock.webview.postMessage).toBeCalledWith({ type: RESTORE_STATE, payload: { mock: 'state' } });
+        expect(panelMock.webview.postMessage).toHaveBeenCalledWith({ type: RESTORE_STATE, payload: { mock: 'state' } });
     });
 
     test('Deserialize GuidedAnswersPanel with state, then dispose', () => {
@@ -1006,7 +1012,7 @@ describe('GuidedAnswersPanel deserialization', () => {
         serializer.deserializeWebviewPanel(panelMock, '');
 
         // Result check
-        expect(panelMock.dispose).toBeCalled();
+        expect(panelMock.dispose).toHaveBeenCalled();
     });
 
     test('Deserialize GuidedAnswersPanel with invalid state, should dispose', () => {
@@ -1021,7 +1027,7 @@ describe('GuidedAnswersPanel deserialization', () => {
         serializer.deserializeWebviewPanel(panelMock, '{');
 
         // Result check
-        expect(panelMock.dispose).toBeCalled();
+        expect(panelMock.dispose).toHaveBeenCalled();
         expect(logErrorMock.mock.calls[0][1].toString()).toContain('JSON');
     });
 });

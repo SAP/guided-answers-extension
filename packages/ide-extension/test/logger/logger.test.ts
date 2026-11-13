@@ -23,7 +23,7 @@ describe('Tests for logging', () => {
         logTrace('TRACE_MESSAGE');
 
         // Result check
-        expect(channelMock.trace).toBeCalledWith('TRACE_MESSAGE');
+        expect(channelMock.trace).toHaveBeenCalledWith('TRACE_MESSAGE');
     });
 
     test('Test for logTrace() with arguments', () => {
@@ -31,7 +31,7 @@ describe('Tests for logging', () => {
         logTrace('TRACE_MESSAGE', ...testArgs);
 
         // Result check
-        expect(channelMock.trace).toBeCalledWith('TRACE_MESSAGE', ...testArgs);
+        expect(channelMock.trace).toHaveBeenCalledWith('TRACE_MESSAGE', ...testArgs);
     });
 
     test('Test for logDebug() without arguments', () => {
@@ -39,7 +39,7 @@ describe('Tests for logging', () => {
         logDebug('DEBUG_MESSAGE');
 
         // Result check
-        expect(channelMock.debug).toBeCalledWith('DEBUG_MESSAGE');
+        expect(channelMock.debug).toHaveBeenCalledWith('DEBUG_MESSAGE');
     });
 
     test('Test for logDebug() with arguments', () => {
@@ -47,7 +47,7 @@ describe('Tests for logging', () => {
         logDebug('DEBUG_MESSAGE', ...testArgs);
 
         // Result check
-        expect(channelMock.debug).toBeCalledWith('DEBUG_MESSAGE', ...testArgs);
+        expect(channelMock.debug).toHaveBeenCalledWith('DEBUG_MESSAGE', ...testArgs);
     });
 
     test('Test for logInfo() without arguments', () => {
@@ -55,7 +55,7 @@ describe('Tests for logging', () => {
         logInfo('INFO_MESSAGE');
 
         // Result check
-        expect(channelMock.info).toBeCalledWith('INFO_MESSAGE');
+        expect(channelMock.info).toHaveBeenCalledWith('INFO_MESSAGE');
     });
 
     test('Test for logInfo() with arguments', () => {
@@ -63,7 +63,7 @@ describe('Tests for logging', () => {
         logInfo('INFO_MESSAGE', ...testArgs);
 
         // Result check
-        expect(channelMock.info).toBeCalledWith('INFO_MESSAGE', ...testArgs);
+        expect(channelMock.info).toHaveBeenCalledWith('INFO_MESSAGE', ...testArgs);
     });
 
     test('Test for logWarn() without arguments', () => {
@@ -71,7 +71,7 @@ describe('Tests for logging', () => {
         logWarn('WARN_MESSAGE');
 
         // Result check
-        expect(channelMock.warn).toBeCalledWith('WARN_MESSAGE');
+        expect(channelMock.warn).toHaveBeenCalledWith('WARN_MESSAGE');
     });
 
     test('Test for logWarn() with arguments', () => {
@@ -79,7 +79,7 @@ describe('Tests for logging', () => {
         logWarn('WARN_MESSAGE', ...testArgs);
 
         // Result check
-        expect(channelMock.warn).toBeCalledWith('WARN_MESSAGE', ...testArgs);
+        expect(channelMock.warn).toHaveBeenCalledWith('WARN_MESSAGE', ...testArgs);
     });
 
     test('Test for logError() without arguments', () => {
@@ -87,7 +87,7 @@ describe('Tests for logging', () => {
         logError('ERROR_MESSAGE');
 
         // Result check
-        expect(channelMock.error).toBeCalledWith('ERROR_MESSAGE');
+        expect(channelMock.error).toHaveBeenCalledWith('ERROR_MESSAGE');
     });
 
     test('Test for logError() with arguments', () => {
@@ -95,6 +95,6 @@ describe('Tests for logging', () => {
         logError('ERROR_MESSAGE', ...testArgs);
 
         // Result check
-        expect(channelMock.error).toBeCalledWith('ERROR_MESSAGE', ...testArgs);
+        expect(channelMock.error).toHaveBeenCalledWith('ERROR_MESSAGE', ...testArgs);
     });
 });

@@ -7,7 +7,7 @@ import type { TerminalCommand, VSCodeCommand } from './types';
  * @returns true: is VSCode commmand; false: no VSCode command
  */
 export function isVSCodeCommand(exec: VSCodeCommand | TerminalCommand): exec is VSCodeCommand {
-    return (exec as VSCodeCommand).commandId !== undefined && (exec as VSCodeCommand).extensionId !== undefined;
+    return 'commandId' in exec && 'extensionId' in exec;
 }
 
 /**

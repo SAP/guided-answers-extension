@@ -50,7 +50,7 @@ export const communicationMiddleware: Middleware<
     });
     try {
         window.vscode = acquireVsCodeApi();
-    } catch (e) {
+    } catch {
         console.error(i18next.t('ERROR_NOT_RUNNING_IN_WEB_VIEW'));
     }
     return (next: Dispatch<GuidedAnswerActions>) =>
