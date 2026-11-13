@@ -14,6 +14,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
+const packageTsConfigs = ['core', 'ide-extension', 'types', 'webapp'].map(
+    (pkg) => path.join(rootDir, 'packages', pkg, 'tsconfig.json')
+);
+const allTsConfigs = [...packageTsConfigs, path.join(rootDir, 'tsconfig.json')];
 
 export default defineConfig([
     globalIgnores(['**/dist/**', '**/test/**', '**/node_modules/**']),
@@ -48,7 +52,7 @@ export default defineConfig([
             'import/resolver': {
                 typescript: {
                     alwaysTryTypes: true,
-                    project: ['./packages/*/tsconfig.json', './tsconfig.json']
+                    project: allTsConfigs
                 }
             }
         },
@@ -271,7 +275,7 @@ export default defineConfig([
         languageOptions: {
             parser: tsParser,
             parserOptions: {
-                project: [path.join(rootDir, 'packages/*/tsconfig.json'), path.join(rootDir, 'tsconfig.json')]
+                project: allTsConfigs
             }
         },
 
