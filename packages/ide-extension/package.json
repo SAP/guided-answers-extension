@@ -32,7 +32,7 @@
         "clean": "rimraf --glob ./dist ./out ./reports *.tgz *.vsix",
         "format": "prettier --write '**/*.{js,json,ts,yaml,yml}' --ignore-path ../../.prettierignore",
         "lint": "eslint .",
-        "ide-ext:package": "pnpm run build:extension && vsce package",
+        "ide-ext:package": "pnpm run build:extension && COREPACK_ENABLE_STRICT=0 vsce package",
         "test": "jest --ci --forceExit --detectOpenHandles --colors",
         "watch": "pnpm clean && node esbuild.js --watch"
     },
