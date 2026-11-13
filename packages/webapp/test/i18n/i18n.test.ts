@@ -26,6 +26,6 @@ describe('Tests for i18n', () => {
 
         // Result check
         await jest.runAllTimers();
-        expect(console.error).toBeCalledWith(expect.stringContaining('I18N_ERROR'));
+        expect(console.error).toHaveBeenCalledWith(expect.stringContaining('I18N_ERROR'));
     });
 });

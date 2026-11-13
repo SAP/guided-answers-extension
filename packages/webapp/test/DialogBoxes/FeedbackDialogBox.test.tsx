@@ -77,8 +77,8 @@ describe('<FeedbackDialogBox />', () => {
         fireEvent.change(textArea, { target: { value: 'test' } });
         const element = screen.getByTestId('sendFeedbackBtn');
         fireEvent.click(element);
-        expect(actions.feedbackResponse).toBeCalled();
-        expect(actions.sendFeedbackComment).toBeCalled();
-        expect(actions.feedbackStatus).toBeCalled();
+        expect(actions.feedbackResponse).toHaveBeenCalled();
+        expect(actions.sendFeedbackComment).toHaveBeenCalled();
+        expect(actions.feedbackStatus).toHaveBeenCalled();
     });
 });

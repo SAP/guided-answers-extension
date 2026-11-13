@@ -15,6 +15,7 @@ export function extractLinkInfo(link: string): LinkInfo | undefined {
     const fragmentRegExp = /#\/tree\/(\d*)($|\/$|\/actions\/([\d:]*))$/;
 
     try {
+        // eslint-disable-next-line sonarjs/null-dereference
         const match = fragmentRegExp.exec(link.trim());
         if (Array.isArray(match) && match.length > 1 && typeof match[1] === 'string') {
             const treeId = parseInt(match[1], 10);

@@ -36,9 +36,9 @@ describe('Test for handleCommand()', () => {
         handleCommand(command as Command);
 
         // Check results
-        expect(executeCommandMock).toBeCalledTimes(1);
-        expect(executeCommandMock).toBeCalledWith('TEST.COMMAND', { fsPath: 'TESTPATH' });
-        expect(loggerMock.info).toBeCalledWith(expect.stringContaining('TEST.COMMAND'), {
+        expect(executeCommandMock).toHaveBeenCalledTimes(1);
+        expect(executeCommandMock).toHaveBeenCalledWith('TEST.COMMAND', { fsPath: 'TESTPATH' });
+        expect(loggerMock.info).toHaveBeenCalledWith(expect.stringContaining('TEST.COMMAND'), {
             exec: { extensionId: 'TEST.EXTENSION', commandId: 'TEST.COMMAND', argument: { fsPath: 'TESTPATH' } }
         });
     });
@@ -58,7 +58,7 @@ describe('Test for handleCommand()', () => {
 
         // Check results
         await (() => new Promise(setImmediate))();
-        expect(loggerMock.error).toBeCalledWith(expect.stringContaining('Error'), 'COMMAND_ERROR');
+        expect(loggerMock.error).toHaveBeenCalledWith(expect.stringContaining('Error'), 'COMMAND_ERROR');
     });
 
     test('Execute terminal command without cwd', () => {
@@ -78,10 +78,10 @@ describe('Test for handleCommand()', () => {
         handleCommand(command as Command);
 
         // Check results
-        expect(terminalMock.show).toBeCalledTimes(1);
+        expect(terminalMock.show).toHaveBeenCalledTimes(1);
         expect(terminalMock.sendText).toHaveBeenCalledTimes(1);
-        expect(terminalMock.sendText).toBeCalledWith('TEST.ARG');
-        expect(loggerMock.info).toBeCalledWith(expect.stringContaining('TEST.ARG'), {
+        expect(terminalMock.sendText).toHaveBeenCalledWith('TEST.ARG');
+        expect(loggerMock.info).toHaveBeenCalledWith(expect.stringContaining('TEST.ARG'), {
             exec: { arguments: ['TEST.ARG'] }
         });
     });
@@ -104,11 +104,11 @@ describe('Test for handleCommand()', () => {
         handleCommand(command as Command);
 
         // Check results
-        expect(terminalMock.show).toBeCalledTimes(1);
+        expect(terminalMock.show).toHaveBeenCalledTimes(1);
         expect(terminalMock.sendText).toHaveBeenCalledTimes(2);
         expect(terminalMock.sendText).toHaveBeenNthCalledWith(1, 'cd "TEST/CWD"');
         expect(terminalMock.sendText).toHaveBeenNthCalledWith(2, 'ARG.ONE ARG.TWO');
-        expect(loggerMock.info).toBeCalledWith(expect.stringContaining('ARG.ONE ARG.TWO'), {
+        expect(loggerMock.info).toHaveBeenCalledWith(expect.stringContaining('ARG.ONE ARG.TWO'), {
             exec: { cwd: 'TEST/CWD', arguments: ['ARG.ONE', 'ARG.TWO'] }
         });
     });

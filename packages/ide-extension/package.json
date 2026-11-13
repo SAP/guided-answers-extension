@@ -31,11 +31,10 @@
         "build:extension": "node esbuild.js",
         "clean": "rimraf --glob ./dist ./out ./reports *.tgz *.vsix",
         "format": "prettier --write '**/*.{js,json,ts,yaml,yml}' --ignore-path ../../.prettierignore",
-        "lint": "eslint . --ext .ts",
-        "ide-ext:package": "vsce package",
+        "lint": "eslint .",
+        "ide-ext:package": "pnpm run build:extension && cross-env COREPACK_ENABLE_STRICT=0 vsce package",
         "test": "jest --ci --forceExit --detectOpenHandles --colors",
-        "watch": "pnpm clean && node esbuild.js --watch",
-        "vscode:prepublish": "pnpm run build"
+        "watch": "pnpm clean && node esbuild.js --watch"
     },
     "activationEvents": [
         "onCommand:sap.ux.guidedAnswer.openGuidedAnswer",
@@ -83,8 +82,9 @@
         "@sap/guided-answers-extension-core": "workspace:*",
         "@sap/guided-answers-extension-types": "workspace:*",
         "@types/vscode": "1.74.1",
-        "@vscode/vsce": "2.22.0",
+        "@vscode/vsce": "4.1.1",
         "applicationinsights": "2.9.8",
+        "cross-env": "^10.1.0",
         "esbuild": "0.28.1",
         "esbuild-plugin-copy": "2.1.1",
         "uuid": "11.1.1",
