@@ -83,7 +83,7 @@
         "@sap/guided-answers-extension-core": "workspace:*",
         "@sap/guided-answers-extension-types": "workspace:*",
         "@types/vscode": "1.74.1",
-        "@vscode/vsce": "2.22.0",
+        "@vscode/vsce": "4.1.1",
         "applicationinsights": "2.9.8",
         "esbuild": "0.28.1",
         "esbuild-plugin-copy": "2.1.1",
