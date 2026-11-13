@@ -141,6 +141,8 @@ jobs:
               run: pnpm run build
             - name: Package vsix
               run: pnpm run ide-ext:package
+              env:
+                  COREPACK_ENABLE_STRICT: "0"
             - name: Get version number from /packages/ide-extension/package.json
               id: package-version
               uses: martinbeentjes/npm-get-version-action@3cf273023a0dda27efcd3164bdfb51908dd46a5b # v1.3.1
