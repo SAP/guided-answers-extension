@@ -2,3 +2,7 @@ packages:
     - 'packages/**'
     - '!packages/**/test-input/**'
     - '!packages/**/test-output/**'
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  keytar: true
