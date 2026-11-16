@@ -670,7 +670,7 @@ describe('Guided Answers Api: getNodeById()', () => {
 
         // Result check
         expect(result.COMMANDS).toBe(undefined);
-        expect(options.logger?.logError).toBeCalledWith(
+        expect(options.logger?.logError).toHaveBeenCalledWith(
             expect.stringContaining('Error'),
             expect.objectContaining({ message: expect.stringContaining('WRONG') })
         );
@@ -985,7 +985,7 @@ describe('Guided Answers Api: getNodePath()', () => {
         expect(result.length).toBe(2);
         expect(result[0].BODY).toBe('<p>Should not be modified at all</p>');
         expect(result[1].BODY).toBe('<p>Also should not be modified at all</p>');
-        expect(options.logger?.logError).toBeCalledWith(
+        expect(options.logger?.logError).toHaveBeenCalledWith(
             expect.stringContaining('Error when parsing argument'),
             expect.objectContaining({ message: expect.stringContaining('JSON') })
         );
@@ -1008,7 +1008,7 @@ describe('Guided Answers Api: getNodePath()', () => {
         const result = await getGuidedAnswerApi(options).getNodePath([1]);
 
         // Result check
-        expect(options.logger?.logError).toBeCalledWith(
+        expect(options.logger?.logError).toHaveBeenCalledWith(
             expect.stringContaining('Error'),
             expect.objectContaining({ message: expect.stringContaining('enhancements') })
         );
@@ -1107,7 +1107,7 @@ describe('Guided Answers Api: sendFeedbackComment()', () => {
         await getGuidedAnswerApi({ apiHost: 'any.host' }).sendFeedbackComment(feedbackCommentPayload);
 
         // Result check
-        expect(postMock).toBeCalledWith(`any.host/dtp/api/${currentVersion}/feedback/comment`, {
+        expect(postMock).toHaveBeenCalledWith(`any.host/dtp/api/${currentVersion}/feedback/comment`, {
             treeId: 1,
             nodeId: 2,
             message: 'This is a mock comment'
@@ -1163,7 +1163,7 @@ describe('Guided Answers Api: sendFeedbackOutcome()', () => {
         await getGuidedAnswerApi({ apiHost: 'mock.host' }).sendFeedbackOutcome(feedbackOutcomePayload);
 
         // Result check
-        expect(postMock).toBeCalledWith(`mock.host/dtp/api/${currentVersion}/feedback/outcome`, {
+        expect(postMock).toHaveBeenCalledWith(`mock.host/dtp/api/${currentVersion}/feedback/outcome`, {
             treeId: 10,
             nodeId: 20,
             message: 'Solved'
@@ -1187,7 +1187,7 @@ describe('Guided Answers Api: sendFeedbackOutcome()', () => {
         await getGuidedAnswerApi({ apiHost: 'mock.host' }).sendFeedbackOutcome(feedbackOutcomePayload);
 
         // Result check
-        expect(postMock).toBeCalledWith(`mock.host/dtp/api/${currentVersion}/feedback/outcome`, {
+        expect(postMock).toHaveBeenCalledWith(`mock.host/dtp/api/${currentVersion}/feedback/outcome`, {
             treeId: 11,
             nodeId: 22,
             message: 'Not Solved'
@@ -1238,7 +1238,7 @@ describe('Guided Answers Api: console logger', () => {
 
         // Result check
         expect(result?.BODY).toMatchSnapshot();
-        expect(console.error).toBeCalledWith(
+        expect(console.error).toHaveBeenCalledWith(
             expect.stringContaining(`Error when parsing argument '{'`),
             expect.objectContaining({ message: expect.stringContaining('JSON') })
         );

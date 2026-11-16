@@ -17,7 +17,7 @@ describe('Test function getFiltersForIde()', () => {
         const filters = await getFiltersForIde('SBAS');
 
         // Result check
-        expect(devspaceMock).toBeCalled();
+        expect(devspaceMock).toHaveBeenCalled();
         expect(filters).toEqual({
             component: [
                 'CA-UX-IDE',
@@ -41,7 +41,7 @@ describe('Test function getFiltersForIde()', () => {
         const filters = await getFiltersForIde('SBAS');
 
         // Result check
-        expect(devspaceMock).toBeCalled();
+        expect(devspaceMock).toHaveBeenCalled();
         expect(filters).toEqual({});
     });
 
@@ -55,7 +55,7 @@ describe('Test function getFiltersForIde()', () => {
         const filters = await getFiltersForIde('VSCODE');
 
         // Result check
-        expect(devspaceMock).not.toBeCalled();
+        expect(devspaceMock).not.toHaveBeenCalled();
         expect(filters).toEqual({});
     });
 
@@ -78,7 +78,7 @@ describe('Test function getIde()', () => {
 
         // Result check
         expect(ide).toBe('VSCODE');
-        expect(coreMock).toBeCalled();
+        expect(coreMock).toHaveBeenCalled();
     });
 
     test('Mock environment as SBAS', async () => {
@@ -90,7 +90,7 @@ describe('Test function getIde()', () => {
 
         // Result check
         expect(ide).toBe('SBAS');
-        expect(coreMock).toBeCalled();
+        expect(coreMock).toHaveBeenCalled();
     });
 });
 

@@ -26,10 +26,7 @@ function replace(domNode: DOMNode): ReactElement | undefined {
         const domElement: Element = domNode as Element;
 
         result = replaceDataCommand(domElement);
-
-        if (!result) {
-            result = replaceNodeLink(domElement);
-        }
+        result ??= replaceNodeLink(domElement);
     }
     return result;
 }
@@ -44,6 +41,7 @@ function replaceDataCommand(element: Element): ReactElement | undefined {
     if (dataCommandString) {
         try {
             const command = JSON.parse(decodeURIComponent(dataCommandString)) as Command;
+            // eslint-disable-next-line sonarjs/different-types-comparison
             const textContent = element?.firstChild?.type === 'text' ? element.firstChild.data : '';
             if (command) {
                 return (

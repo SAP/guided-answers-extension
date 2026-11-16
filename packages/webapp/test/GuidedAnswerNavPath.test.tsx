@@ -57,7 +57,7 @@ describe('<GuidedAnswerNavPath />', () => {
         //Test click event
         const element = screen.getByTestId('timeline-content');
         fireEvent.click(element);
-        expect(actions.updateActiveNode).toBeCalled();
+        expect(actions.updateActiveNode).toHaveBeenCalled();
     });
 
     it('Should render an empty GuidedAnswerNavPath component', () => {

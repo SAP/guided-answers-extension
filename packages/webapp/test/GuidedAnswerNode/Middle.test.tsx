@@ -60,8 +60,8 @@ describe('<Middle />', () => {
 
         const edgeBtn = screen.getAllByTestId('edge_button')[0];
         fireEvent.click(edgeBtn);
-        expect(actions.selectNode).toBeCalled();
-        expect(actions.updateLastVisitedGuide).toBeCalled();
+        expect(actions.selectNode).toHaveBeenCalled();
+        expect(actions.updateLastVisitedGuide).toHaveBeenCalled();
     });
 
     it('Should render a Middle component with enhancedBody', () => {

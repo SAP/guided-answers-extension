@@ -44,7 +44,6 @@ const buildConfig = {
 };
 
 async function run() {
-    'use strict';
     const watch = process.argv.slice(2).includes('--watch');
     if (!watch) {
         // Standard build

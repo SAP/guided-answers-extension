@@ -79,16 +79,16 @@ describe('<Bookmarks />', () => {
         render(<Bookmarks />);
 
         fireEvent.click(screen.getAllByTestId('goto-bookmark-button')[1]);
-        expect(actions.setActiveTree).toBeCalledTimes(1);
-        expect(actions.updateActiveNode).toBeCalledTimes(2);
-        expect(actions.synchronizeBookmark).toBeCalledTimes(1);
+        expect(actions.setActiveTree).toHaveBeenCalledTimes(1);
+        expect(actions.updateActiveNode).toHaveBeenCalledTimes(2);
+        expect(actions.synchronizeBookmark).toHaveBeenCalledTimes(1);
     });
 
     it('removes bookmark from the list', () => {
         render(<Bookmarks />);
 
         fireEvent.click(screen.getAllByTestId('toggle-bookmark-button')[0]);
-        expect(actions.updateBookmark).toBeCalledWith({
+        expect(actions.updateBookmark).toHaveBeenCalledWith({
             bookmarkKey: 'tree1-node1',
             bookmarks: {
                 [Object.keys(mockBookmarks)[1]]: Object.values(mockBookmarks)[1]
@@ -109,7 +109,7 @@ describe('<Bookmarks />', () => {
         render(<Bookmarks />);
 
         fireEvent.click(screen.getAllByTestId('toggle-bookmark-button')[0]);
-        expect(actions.updateBookmark).toBeCalledWith({
+        expect(actions.updateBookmark).toHaveBeenCalledWith({
             bookmarkKey: 'tree1-node1',
             bookmarks: {
                 [Object.keys(mockBookmarks)[0]]: {

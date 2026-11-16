@@ -32,7 +32,7 @@ describe('<QuickFilters />', () => {
         expect(container).toMatchSnapshot();
 
         fireEvent.click(screen.getByRole('button'));
-        expect(actions.updateNetworkStatus).toBeCalledWith('LOADING');
-        expect(actions.searchTree).toBeCalled();
+        expect(actions.updateNetworkStatus).toHaveBeenCalledWith('LOADING');
+        expect(actions.searchTree).toHaveBeenCalled();
     });
 });

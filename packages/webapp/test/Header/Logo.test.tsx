@@ -27,6 +27,6 @@ describe('<Logo />', () => {
         //Test click event
         const element = screen.getByTestId('logo-and-title');
         fireEvent.click(element);
-        expect(actions.goToHomePage).toBeCalled();
+        expect(actions.goToHomePage).toHaveBeenCalled();
     });
 });

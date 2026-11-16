@@ -75,7 +75,7 @@ describe('Middleware', () => {
         const spyDispatch = jest.spyOn(store, 'dispatch');
         invoke(action);
         expect(next).toHaveBeenCalledWith(action);
-        expect(spyPostMessage).toBeCalledTimes(1);
+        expect(spyPostMessage).toHaveBeenCalledTimes(1);
         expect(1).toEqual(1);
         // jsdom doesn't set proper orign for post message event. In middleware we check for window.origin, mock it here
         (window as { origin: string }).origin = '';
@@ -83,25 +83,25 @@ describe('Middleware', () => {
         window.postMessage({ type: 'TEST' }, '*');
         // Check that message was dispatched
         setTimeout(() => {
-            expect(spyDispatch).toBeCalledTimes(1);
+            expect(spyDispatch).toHaveBeenCalledTimes(1);
         }, 1000);
     });
 
     it('Recive message - mismatching origin', () => {
         const spyDispatch = jest.spyOn(store, 'dispatch');
         windowEventListenerMock.simulateEvent('message', { origin: 'dummy' });
-        expect(spyDispatch).toBeCalledTimes(0);
+        expect(spyDispatch).toHaveBeenCalledTimes(0);
     });
 
     it('Recive message - valid state', () => {
         const spyDispatch = jest.spyOn(store, 'dispatch');
         windowEventListenerMock.simulateEvent('message', { origin: '', data: { type: 'action' } });
-        expect(spyDispatch).toBeCalledTimes(1);
+        expect(spyDispatch).toHaveBeenCalledTimes(1);
     });
 
     it('Recive message - data without type', () => {
         const spyDispatch = jest.spyOn(store, 'dispatch');
         windowEventListenerMock.simulateEvent('message', { origin: '', data: {} });
-        expect(spyDispatch).toBeCalledTimes(0);
+        expect(spyDispatch).toHaveBeenCalledTimes(0);
     });
 });

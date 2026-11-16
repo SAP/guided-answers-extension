@@ -62,6 +62,7 @@ export function App(): ReactElement {
      * @returns boolean
      */
     function isBookmark(treeId: { toString: () => string }): boolean {
+        // eslint-disable-next-line sonarjs/null-dereference
         return !!Object.keys(appState.bookmarks).find((bookmarkKey) => bookmarkKey.startsWith(`${treeId}-`));
     }
 

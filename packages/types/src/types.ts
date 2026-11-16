@@ -1,6 +1,7 @@
 /**
  * API types for Guided Answer
  */
+// eslint-disable-next-line sonarjs/redundant-type-aliases
 export type GuidedAnswerTreeId = number;
 export interface GuidedAnswerTree {
     TREE_ID: GuidedAnswerTreeId;
@@ -41,6 +42,7 @@ export interface GuidedAnswerTreeSearchResult {
     componentFilters: ComponentFilter[];
 }
 
+// eslint-disable-next-line sonarjs/redundant-type-aliases
 export type GuidedAnswerNodeId = number;
 export interface GuidedAnswerNode {
     NODE_ID: GuidedAnswerNodeId;

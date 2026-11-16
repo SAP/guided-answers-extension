@@ -7,14 +7,15 @@ const cssModulesPlugin = require('esbuild-css-modules-plugin');
 const svgrPlugin = require('esbuild-plugin-svgr');
 
 // from https://github.com/bvaughn/react-virtualized/issues/1212#issuecomment-847759202 workaround for https://github.com/bvaughn/react-virtualized/issues/1632 until it is released.
+const uiComponentsDir = require.resolve('@sap-ux/ui-components/package.json').replace(/package\.json$/, '');
 const resolveFixup = {
     name: 'resolve-fixup',
     setup(build) {
         build.onResolve({ filter: /react-virtualized/ }, async (args) => {
             return {
-                path: require.resolve(
-                    '../../node_modules/.pnpm/react-virtualized@9.22.5_react-dom@16.14.0_react@16.14.0/node_modules/react-virtualized/dist/umd/react-virtualized.js'
-                )
+                path: require.resolve('react-virtualized/dist/umd/react-virtualized.js', {
+                    paths: [uiComponentsDir]
+                })
             };
         });
     }
@@ -62,7 +63,6 @@ const buildConfig = {
 };
 
 async function run() {
-    'use strict';
     const watch = process.argv.includes('--watch');
     if (!watch) {
         // Standard build

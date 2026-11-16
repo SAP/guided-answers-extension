@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Guided Answers Api: console logger Get node by id: Fallback to console logger for erroneous enhancement 1`] = `"<p><span data-guided-answers-command-8d98638a0304b3f13b54d885dc542121="%7B%22exec%22%3A%7B%22extensionId%22%3A%22ext.id%22%2C%22commandId%22%3A%22ps%22%7D%7D">Body</span>, should be modified</p>"`;
 

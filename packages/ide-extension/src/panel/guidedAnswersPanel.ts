@@ -93,6 +93,7 @@ export class GuidedAnswersPanel {
         const { host: apiHost, version: apiVersion } = this.guidedAnswerApi.getApiInfo();
         setCommonProperties({ ide: this.ide, devSpace: options?.devSpace ?? '', apiHost, apiVersion });
         logger.logInfo(`Using API host: '${apiHost}', version: '${apiVersion}'`);
+        // eslint-disable-next-line sonarjs/no-async-constructor
         trackEvent({
             name: 'STARTUP',
             properties: {

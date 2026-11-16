@@ -44,7 +44,7 @@ describe('<HomeButton />', () => {
         //Test click event
         const element = screen.getByTestId('home-button');
         fireEvent.click(element);
-        expect(actions.goToHomePage).toBeCalled();
+        expect(actions.goToHomePage).toHaveBeenCalled();
     });
 });
 
@@ -59,7 +59,7 @@ describe('<BackButton />', () => {
         //Test click event
         const element = screen.getByTestId('back-button');
         fireEvent.click(element);
-        expect(actions.goToPreviousPage).toBeCalled();
+        expect(actions.goToPreviousPage).toHaveBeenCalled();
     });
 });
 
@@ -74,7 +74,7 @@ describe('<RestartButton />', () => {
         //Test click event
         const element = screen.getByTestId('restart-button');
         fireEvent.click(element);
-        expect(actions.restartAnswer).toBeCalled();
+        expect(actions.restartAnswer).toHaveBeenCalled();
     });
 });
 
@@ -154,7 +154,7 @@ describe('BookmarkButton', () => {
         const button = getByRole('button');
         fireEvent.click(button);
 
-        expect(actions.updateBookmark).toBeCalled();
+        expect(actions.updateBookmark).toHaveBeenCalled();
     });
 
     it('removes bookmark when clicked', () => {
@@ -176,6 +176,6 @@ describe('BookmarkButton', () => {
 
         const button = getByRole('button');
         fireEvent.click(button);
-        expect(actions.updateBookmark).toBeCalled();
+        expect(actions.updateBookmark).toHaveBeenCalled();
     });
 });

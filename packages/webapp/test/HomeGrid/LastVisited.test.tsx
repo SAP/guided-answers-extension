@@ -51,8 +51,8 @@ describe('<LastVisited />', () => {
 
         const btn = screen.getAllByTestId('last-visited-link')[0];
         fireEvent.click(btn);
-        expect(actions.setActiveTree).toBeCalledTimes(1);
-        expect(actions.updateActiveNode).toBeCalledTimes(1);
+        expect(actions.setActiveTree).toHaveBeenCalledTimes(1);
+        expect(actions.updateActiveNode).toHaveBeenCalledTimes(1);
     });
 
     it('Should render LastVisited component with no data', () => {

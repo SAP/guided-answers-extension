@@ -53,6 +53,6 @@ describe('<Right />', () => {
         //Test click event
         const element = screen.getByTestId('guided-answer__node__command');
         fireEvent.click(element);
-        expect(actions.executeCommand).toBeCalled();
+        expect(actions.executeCommand).toHaveBeenCalled();
     });
 });

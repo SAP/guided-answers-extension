@@ -49,7 +49,7 @@ describe('<FiltersRibbon />', () => {
         const element = screen.getByTestId('clear-filters');
         fireEvent.click(element);
 
-        expect(actions.resetFilters).toBeCalled();
+        expect(actions.resetFilters).toHaveBeenCalled();
         expect(actions.searchTree).toHaveBeenCalledWith({
             query: 'Fiori tools',
             filters: {
