@@ -167,7 +167,7 @@ overrides:
   handlebars: '>=4.7.9'
   '@babel/helpers': '>=7.26.10'
   '@babel/runtime': '>=7.26.10'
-  '@opentelemetry/core@>=1 <1.30.1': 2.8.0
+  '@opentelemetry/core@>=1 <1.30.1': 2.12.1
   axios: '>=1.20.0'
   brace-expansion@>=1 <2: 1.1.22
   brace-expansion@>=2 <2.0.3: 2.1.8
@@ -1570,12 +1570,6 @@ packages:
 
   '@opentelemetry/core@2.12.1':
     resolution: {integrity: sha512-3hr6Pj0/G0oVgIGb97IVcw9BjZ6eudonKjrmQxw7JquyU/XmVbJelkmyoU0sT/OvHGkv+r1tcrwv8MbSX7aKHw==}
-    engines: {node: ^18.19.0 || >=20.6.0}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
-
-  '@opentelemetry/core@2.8.0':
-    resolution: {integrity: sha512-hd1Lfh8p545nNz+jq1Ejfz+Mn1hyLuxYn1YzTfFNrxr8urEWMNQLPf1Th8kjOH+HxwawCrtgBp8JpBUR4ZSgww==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
       '@opentelemetry/api': '>=1.0.0 <1.10.0'
@@ -6882,11 +6876,6 @@ snapshots:
       '@opentelemetry/api': 1.10.0
       '@opentelemetry/semantic-conventions': 1.45.0
 
-  '@opentelemetry/core@2.8.0(@opentelemetry/api@1.10.0)':
-    dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/semantic-conventions': 1.45.0
-
   '@opentelemetry/instrumentation@0.211.0(@opentelemetry/api@1.10.0)(supports-color@8.1.1)':
     dependencies:
       '@opentelemetry/api': 1.10.0
@@ -7674,7 +7663,7 @@ snapshots:
       '@azure/opentelemetry-instrumentation-azure-sdk': 1.0.0(supports-color@8.1.1)
       '@microsoft/applicationinsights-web-snippet': 1.0.1
       '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.8.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
       '@opentelemetry/sdk-trace-base': 1.30.1(@opentelemetry/api@1.10.0)
       '@opentelemetry/semantic-conventions': 1.45.0
       cls-hooked: 4.2.2
