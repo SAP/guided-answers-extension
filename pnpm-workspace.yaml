@@ -24,7 +24,7 @@ overrides:
     handlebars: '>=4.7.9'
     '@babel/helpers': '>=7.26.10'
     '@babel/runtime': '>=7.26.10'
-    '@opentelemetry/core@>=1 <1.30.1': '1.30.1'
+    '@opentelemetry/core@>=1 <1.30.1': '2.8.0'
     axios: '>=1.20.0'
     'brace-expansion@>=1 <2': '1.1.21'
     'brace-expansion@>=2 <2.0.3': '2.0.3'
