@@ -194,7 +194,7 @@ overrides:
   undici@>=6 <6.24.0: 6.29.1
   underscore@>=1 <1.13.8: 1.13.8
   uuid: 11.1.1
-  ws@>=8 <8.21.0: 8.21.0
+  ws@>=8 <8.21.0: 8.23.0
   yaml@>=1 <1.10.3: 1.10.3
 
 importers:
@@ -5406,8 +5406,8 @@ packages:
     resolution: {integrity: sha512-+QU2zd6OTD8XWIJCbffaiQeH9U73qIqafo1x6V1snCWYGJf6cVE0cDR4D8xRzcEnfI21IFrUPzPGtcPf8AC+Rw==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  ws@8.21.0:
-    resolution: {integrity: sha512-Vsp28b7DRcimFQvrqu2Wek3z1iYxDCWqHYB8Qsnk/S4RfaCQzPGPyBNuVjJV3cd6UiKtUtp6sNM77gWvzcCH+g==}
+  ws@8.23.0:
+    resolution: {integrity: sha512-wCkmX8QMOrKjgO8HW2WyDbTSGeqkocxgDzS9iR79rEAexty6/2qzilx3Ag8Tqf9ykop3irLKle0MtVn5qjVnoQ==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -7025,7 +7025,7 @@ snapshots:
       fs-extra: 11.3.2
       jwt-decode: 4.0.0
       url-join: 4.0.1
-      ws: 8.21.0
+      ws: 8.23.0
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -9724,7 +9724,7 @@ snapshots:
       whatwg-encoding: 3.1.1
       whatwg-mimetype: 4.0.0
       whatwg-url: 14.2.0
-      ws: 8.21.0
+      ws: 8.23.0
       xml-name-validator: 5.0.0
     transitivePeerDependencies:
       - bufferutil
@@ -11206,7 +11206,7 @@ snapshots:
       imurmurhash: 0.1.4
       signal-exit: 4.1.0
 
-  ws@8.21.0: {}
+  ws@8.23.0: {}
 
   wsl-utils@1.0.1:
     dependencies:
