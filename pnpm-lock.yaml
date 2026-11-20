@@ -184,7 +184,7 @@ overrides:
   lodash-es@>=4 <4.18.0: 4.18.1
   micromatch@>=4 <4.0.8: 4.0.8
   minimatch@>=3.0.0 <3.1.4: 3.1.5
-  minimatch@>=7.0.0 <11.0.1: 11.0.1
+  minimatch@>=7.0.0 <11.0.1: 11.0.9
   nanoid@>=3 <3.3.8: 3.3.8
   picomatch@>=2 <2.3.2: 2.3.2
   picomatch@>=4 <4.0.4: 4.0.7
@@ -4189,12 +4189,12 @@ packages:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
 
-  minimatch@11.0.1:
-    resolution: {integrity: sha512-t+Vn6DX4wPCxS23y03C0uhF7S1jpi1GfqPrnlEipCJaA2ykiNbMkVlDutZtmvLfRcUN6R8AYVlzTsQrT4RZoLQ==}
-    engines: {node: 18 || 20 || >=22}
-
   minimatch@11.0.8:
     resolution: {integrity: sha512-nFQuYSTVrGvysVBps5Ih+0BdnYFN/Cj3C816r6+p7yK+FHrVLGE4O4N9AFwykrlNlvM2HYt+Rad1Uiro6h88Ig==}
+    engines: {node: 20 || >=22}
+
+  minimatch@11.0.9:
+    resolution: {integrity: sha512-KCFkfyjqerNlSstjlhIGNXIKZGA/6O4V4RlhZ+Dsr621SPPw0mzlypE9D9ZOoPiVefHID+j7/XuMMlqfD/F60Q==}
     engines: {node: 20 || >=22}
 
   minimatch@3.1.5:
@@ -7407,7 +7407,7 @@ snapshots:
       '@typescript-eslint/types': 8.72.2
       '@typescript-eslint/visitor-keys': 8.72.2
       debug: 4.4.3(supports-color@8.1.1)
-      minimatch: 11.0.1
+      minimatch: 11.0.9
       semver: 7.8.6
       tinyglobby: 0.2.17
       ts-api-utils: 2.5.0(typescript@4.9.5)
@@ -7593,7 +7593,7 @@ snapshots:
       jsonc-parser: 3.3.1
       marked: 18.2.0
       mime: 1.6.0
-      minimatch: 11.0.1
+      minimatch: 11.0.9
       parse5: 8.1.1
       proper-lockfile: 4.1.2
       read: 1.0.7
@@ -8648,7 +8648,7 @@ snapshots:
       globals: 17.14.0
       jsx-ast-utils-x: 0.1.0
       lodash.merge: 4.6.2
-      minimatch: 11.0.1
+      minimatch: 11.0.9
       scslre: 0.3.0
       semver: 7.8.6
       ts-api-utils: 2.5.0(typescript@6.0.3)
@@ -9959,12 +9959,12 @@ snapshots:
 
   min-indent@1.0.1: {}
 
-  minimatch@11.0.1:
+  minimatch@11.0.8:
     dependencies:
       '@isaacs/nonrecursive-glob-match': 1.1.0
       brace-expansion: 5.0.13
 
-  minimatch@11.0.8:
+  minimatch@11.0.9:
     dependencies:
       '@isaacs/nonrecursive-glob-match': 1.1.0
       brace-expansion: 5.0.13
@@ -10892,7 +10892,7 @@ snapshots:
     dependencies:
       '@istanbuljs/schema': 0.1.6
       glob: 14.0.6
-      minimatch: 11.0.1
+      minimatch: 11.0.9
 
   textextensions@6.11.0:
     dependencies:
