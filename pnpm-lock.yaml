@@ -183,7 +183,7 @@ overrides:
   lodash@>=4 <4.18.0: 4.18.1
   lodash-es@>=4 <4.18.0: 4.18.1
   micromatch@>=4 <4.0.8: 4.0.8
-  minimatch@>=3.0.0 <3.1.4: 3.1.4
+  minimatch@>=3.0.0 <3.1.4: 3.1.5
   minimatch@>=7.0.0 <11.0.1: 11.0.1
   nanoid@>=3 <3.3.8: 3.3.8
   picomatch@>=2 <2.3.2: 2.3.2
@@ -4196,9 +4196,6 @@ packages:
   minimatch@11.0.8:
     resolution: {integrity: sha512-nFQuYSTVrGvysVBps5Ih+0BdnYFN/Cj3C816r6+p7yK+FHrVLGE4O4N9AFwykrlNlvM2HYt+Rad1Uiro6h88Ig==}
     engines: {node: 20 || >=22}
-
-  minimatch@3.1.4:
-    resolution: {integrity: sha512-twmL+S8+7yIsE9wsqgzU3E8/LumN3M3QELrBZ20OdmQ9jB2JvW5oZtBEmft84k/Gs5CG9mqtWc6Y9vW+JEzGxw==}
 
   minimatch@3.1.5:
     resolution: {integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==}
@@ -8566,7 +8563,7 @@ snapshots:
       hasown: 2.0.4
       is-core-module: 2.18.0
       is-glob: 4.0.3
-      minimatch: 3.1.4
+      minimatch: 3.1.5
       object.fromentries: 2.0.8
       object.groupby: 1.0.3
       object.values: 1.2.1
@@ -8630,7 +8627,7 @@ snapshots:
       estraverse: 5.3.0
       hasown: 2.0.4
       jsx-ast-utils: 3.3.5
-      minimatch: 3.1.4
+      minimatch: 3.1.5
       object.entries: 1.1.9
       object.fromentries: 2.0.8
       object.values: 1.2.1
@@ -9971,10 +9968,6 @@ snapshots:
     dependencies:
       '@isaacs/nonrecursive-glob-match': 1.1.0
       brace-expansion: 5.0.13
-
-  minimatch@3.1.4:
-    dependencies:
-      brace-expansion: 1.1.22
 
   minimatch@3.1.5:
     dependencies:
